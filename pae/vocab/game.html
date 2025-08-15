@@ -313,7 +313,9 @@
                 const btn = document.createElement('button');
                 btn.className = 'answer-option';
                 btn.textContent = choice;
-                btn.onclick = () => checkAnswer(choice === currentQuestion.correct, isSteal);
+                btn.addEventListener('click', function() {
+                    checkAnswer(choice === currentQuestion.correct, isSteal, this);
+                });
                 optionsContainer.appendChild(btn);
             });
             
@@ -343,13 +345,13 @@
                 if (timeLeft <= 0) {
                     clearInterval(questionTimer);
                     playSound('ding-ding'); // Time's up warning
-                    checkAnswer(false, isSteal);
+                    checkAnswer(false, isSteal, null);
                 }
             }, 1000);
         }
         
         // Check answer
-        function checkAnswer(isCorrect, isSteal = false) {
+        function checkAnswer(isCorrect, isSteal = false, clickedElement = null) {
             clearInterval(questionTimer);
             
             if (isCorrect) {
@@ -391,13 +393,12 @@
                 } else {
                     // Steal attempt failed - show correct answer
                     const options = document.querySelectorAll('.answer-option');
-                    const clickedOption = event.target;
                     
                     options.forEach(option => {
                         option.disabled = true;
                         if (option.textContent === currentQuestion.correct) {
                             option.classList.add('correct');
-                        } else if (option === clickedOption) {
+                        } else if (clickedElement && option === clickedElement) {
                             option.classList.add('incorrect');
                         }
                     });
