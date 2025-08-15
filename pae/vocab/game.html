@@ -113,6 +113,11 @@
         </div>
     </div>
     
+    <!-- Audio Notice -->
+    <div class="audio-notice">
+        <i class="bi bi-volume-up"></i> Audio enabled: correct.mp3, incorrect.mp3, ding-ding.mp3
+    </div>
+    
     <!-- Question Modal -->
     <div class="question-modal" id="questionModal">
         <div class="question-content">
@@ -323,6 +328,7 @@
                 
                 if (timeLeft <= 0) {
                     clearInterval(questionTimer);
+                    playSound('ding-ding'); // Time's up warning
                     checkAnswer(false, isSteal);
                 }
             }, 1000);
@@ -334,6 +340,7 @@
             
             if (isCorrect) {
                 // Correct answer
+                playSound('correct'); // Play correct sound
                 const options = document.querySelectorAll('.answer-option');
                 options.forEach(option => {
                     option.disabled = true;
@@ -351,6 +358,7 @@
                 }, 2000);
             } else {
                 // Incorrect answer
+                playSound('incorrect'); // Play incorrect sound
                 if (!isSteal) {
                     // First attempt wrong - offer steal
                     setTimeout(() => {
