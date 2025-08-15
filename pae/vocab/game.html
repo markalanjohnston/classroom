@@ -313,9 +313,17 @@
                 const btn = document.createElement('button');
                 btn.className = 'answer-option';
                 btn.textContent = choice;
-                btn.addEventListener('click', function() {
-                    checkAnswer(choice === currentQuestion.correct, isSteal, this);
-                });
+                btn.type = 'button'; // Ensure it's a button
+                
+                // Use a closure to capture the choice and button element
+                (function(selectedChoice, buttonElement) {
+                    btn.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        checkAnswer(selectedChoice === currentQuestion.correct, isSteal, buttonElement);
+                    };
+                })(choice, btn);
+                
                 optionsContainer.appendChild(btn);
             });
             
@@ -352,14 +360,20 @@
         
         // Check answer
         function checkAnswer(isCorrect, isSteal = false, clickedElement = null) {
+            console.log('checkAnswer called:', { isCorrect, isSteal, clickedElement });
             clearInterval(questionTimer);
+            
+            // Disable all options immediately to prevent double-clicks
+            const options = document.querySelectorAll('.answer-option');
+            options.forEach(option => {
+                option.disabled = true;
+                option.style.pointerEvents = 'none';
+            });
             
             if (isCorrect) {
                 // Correct answer
                 playSound('correct'); // Play correct sound
-                const options = document.querySelectorAll('.answer-option');
                 options.forEach(option => {
-                    option.disabled = true;
                     if (option.textContent === currentQuestion.correct) {
                         option.classList.add('correct');
                     }
@@ -392,10 +406,7 @@
                     }, 1000);
                 } else {
                     // Steal attempt failed - show correct answer
-                    const options = document.querySelectorAll('.answer-option');
-                    
                     options.forEach(option => {
-                        option.disabled = true;
                         if (option.textContent === currentQuestion.correct) {
                             option.classList.add('correct');
                         } else if (clickedElement && option === clickedElement) {
@@ -435,6 +446,9 @@
         function closeQuestion() {
             document.getElementById('questionModal').classList.remove('show');
             document.getElementById('modalTimer').classList.remove('warning', 'danger');
+            
+            // Reset timer display
+            document.getElementById('modalTimer').textContent = '30';
             
             // Check if game is over
             const unusedQuestions = vocabularyData.filter(q => !q.used);
