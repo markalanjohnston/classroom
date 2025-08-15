@@ -1,0 +1,41 @@
+# File: classroom/.gitignore
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Node modules (if you add any build tools later)
+node_modules/
+npm-debug.log
+
+# Backup files
+*.bak
+*.backup
+
+# Cache files
+.cache/
+
+# Local environment files
+.env
+.env.local
+.env.*.local

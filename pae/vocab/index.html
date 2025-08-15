@@ -1,0 +1,148 @@
+<!-- File: classroom/pae/vocab/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAE Vocabulary Games - Chapter Selection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+    <div class="header-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../" class="text-white">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../" class="text-white">PAE</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Vocabulary Games</span>
+        </nav>
+        
+        <div class="header-card">
+            <h1 class="display-5 mb-3">
+                <i class="bi bi-puzzle text-warning"></i>
+                Vocabulary Game
+            </h1>
+            <p class="lead text-muted">Select a chapter to start the team-based vocabulary game</p>
+            <div class="alert alert-info mt-3">
+                <i class="bi bi-info-circle"></i>
+                <strong>Game Format:</strong> Team-based Jeopardy-style game with multiple choice questions
+            </div>
+        </div>
+        
+        <div class="chapter-grid">
+            <div class="chapter-card" onclick="startGame(1)">
+                <div class="chapter-number">1</div>
+                <h5>Introduction to Engineering</h5>
+                <small class="text-muted">Basic concepts and overview</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(2)">
+                <div class="chapter-number">2</div>
+                <h5>Engineering Ethics & Roles</h5>
+                <small class="text-muted">Professional responsibilities</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(3)">
+                <div class="chapter-number">3</div>
+                <h5>Design Process</h5>
+                <small class="text-muted">Engineering methodology</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(4)">
+                <div class="chapter-number">4</div>
+                <h5>Materials Science</h5>
+                <small class="text-muted">Properties and applications</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(5)">
+                <div class="chapter-number">5</div>
+                <h5>Mechanical Systems</h5>
+                <small class="text-muted">Forces and motion</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(6)">
+                <div class="chapter-number">6</div>
+                <h5>Electrical Systems</h5>
+                <small class="text-muted">Circuits and components</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(7)">
+                <div class="chapter-number">7</div>
+                <h5>Energy & Power</h5>
+                <small class="text-muted">Types and conversion</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(8)">
+                <div class="chapter-number">8</div>
+                <h5>Structures & Construction</h5>
+                <small class="text-muted">Building and design</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(9)">
+                <div class="chapter-number">9</div>
+                <h5>Manufacturing</h5>
+                <small class="text-muted">Production processes</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(10)">
+                <div class="chapter-number">10</div>
+                <h5>Transportation</h5>
+                <small class="text-muted">Vehicles and systems</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(11)">
+                <div class="chapter-number">11</div>
+                <h5>Communication</h5>
+                <small class="text-muted">Information systems</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(12)">
+                <div class="chapter-number">12</div>
+                <h5>Bio-Engineering</h5>
+                <small class="text-muted">Medical applications</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(13)">
+                <div class="chapter-number">13</div>
+                <h5>Environmental Engineering</h5>
+                <small class="text-muted">Sustainability and ecology</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(14)">
+                <div class="chapter-number">14</div>
+                <h5>Computer Engineering</h5>
+                <small class="text-muted">Hardware and software</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(15)">
+                <div class="chapter-number">15</div>
+                <h5>Aerospace Engineering</h5>
+                <small class="text-muted">Flight and space</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(16)">
+                <div class="chapter-number">16</div>
+                <h5>Chemical Engineering</h5>
+                <small class="text-muted">Processes and reactions</small>
+            </div>
+            
+            <div class="chapter-card" onclick="startGame(17)">
+                <div class="chapter-number">17</div>
+                <h5>Future of Engineering</h5>
+                <small class="text-muted">Emerging technologies</small>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function startGame(chapter) {
+            // Redirect to the game with the selected chapter
+            window.location.href = `game.html?chapter=${chapter}`;
+        }
+    </script>
+</body>
+</html>
