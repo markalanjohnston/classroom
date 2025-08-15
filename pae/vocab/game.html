@@ -352,7 +352,11 @@
                 
                 if (timeLeft <= 0) {
                     clearInterval(questionTimer);
-                    playSound('ding-ding'); // Time's up warning
+                    try {
+                        playSound('ding-ding'); // Time's up warning
+                    } catch (e) {
+                        console.log('Sound error:', e);
+                    }
                     checkAnswer(false, isSteal, null);
                 }
             }, 1000);
@@ -360,7 +364,6 @@
         
         // Check answer
         function checkAnswer(isCorrect, isSteal = false, clickedElement = null) {
-            console.log('checkAnswer called:', { isCorrect, isSteal, clickedElement });
             clearInterval(questionTimer);
             
             // Disable all options immediately to prevent double-clicks
@@ -372,7 +375,12 @@
             
             if (isCorrect) {
                 // Correct answer
-                playSound('correct'); // Play correct sound
+                try {
+                    playSound('correct'); // Play correct sound
+                } catch (e) {
+                    console.log('Sound error:', e);
+                }
+                
                 options.forEach(option => {
                     if (option.textContent === currentQuestion.correct) {
                         option.classList.add('correct');
@@ -388,7 +396,12 @@
                 }, 2000);
             } else {
                 // Incorrect answer
-                playSound('incorrect'); // Play incorrect sound
+                try {
+                    playSound('incorrect'); // Play incorrect sound
+                } catch (e) {
+                    console.log('Sound error:', e);
+                }
+                
                 if (!isSteal) {
                     // First attempt wrong - offer steal
                     setTimeout(() => {
