@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../css/styles.css">
+    <!-- jsPDF for certificate generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="game-container">
@@ -57,6 +59,11 @@
                             </select>
                         </div>
                         
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i>
+                            <strong>Team Member Names:</strong> Enter all team member names in each field (separated by commas if multiple students per team)
+                        </div>
+                        
                         <div id="teamInputs" class="team-setup">
                             <!-- Team inputs will be generated here -->
                         </div>
@@ -102,6 +109,9 @@
                 </div>
                 
                 <div class="text-center">
+                    <button class="btn btn-success btn-lg me-3" onclick="generateCertificate()">
+                        <i class="bi bi-download"></i> Get Certificate
+                    </button>
                     <button class="btn btn-primary btn-lg me-3" onclick="playAgain()">
                         <i class="bi bi-arrow-repeat"></i> Play Again
                     </button>
@@ -184,9 +194,9 @@
                 const div = document.createElement('div');
                 div.className = 'mb-3';
                 div.innerHTML = `
-                    <label class="form-label fw-bold">Team ${i}:</label>
+                    <label class="form-label fw-bold">Team ${i} Member Names:</label>
                     <input type="text" class="form-control form-control-lg" id="team${i}" 
-                           placeholder="Enter Team ${i} name" value="Team ${i}">
+                           placeholder="Enter all team member names (e.g., John Doe, Jane Smith)" value="">
                 `;
                 container.appendChild(div);
             }
@@ -197,10 +207,14 @@
             const numTeams = parseInt(document.getElementById('numTeams').value);
             teams = [];
             
-            // Collect team names
+            // Collect team names and members
             for (let i = 1; i <= numTeams; i++) {
-                const name = document.getElementById(`team${i}`).value || `Team ${i}`;
-                teams.push({ name: name, score: 0 });
+                const memberNames = document.getElementById(`team${i}`).value || `Team ${i}`;
+                teams.push({ 
+                    name: `Team ${i}`, 
+                    members: memberNames,
+                    score: 0 
+                });
             }
             
             // Switch to game section
@@ -450,41 +464,69 @@
         function endGame() {
             gameActive = false;
             
-            // Sort teams by score
+            // Sort teams by score (highest first)
             const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
             
-            // Create rankings display
+            // Create rankings display with proper tie handling
             const finalScoresContainer = document.getElementById('finalScores');
             finalScoresContainer.innerHTML = '';
             
             const rankingsDiv = document.createElement('div');
             rankingsDiv.className = 'row justify-content-center';
             
+            let currentRank = 1;
+            let previousScore = null;
+            let teamsAtSameRank = 0;
+            
             sortedTeams.forEach((team, index) => {
+                // Handle tie logic
+                if (previousScore !== null && team.score !== previousScore) {
+                    // Score changed, update rank
+                    currentRank = index + 1;
+                    teamsAtSameRank = 0;
+                } else if (previousScore === team.score) {
+                    // Same score as previous team (tie)
+                    teamsAtSameRank++;
+                }
+                
+                previousScore = team.score;
+                
                 const colDiv = document.createElement('div');
                 colDiv.className = 'col-md-6 mb-3';
                 
                 const scoreCard = document.createElement('div');
                 scoreCard.className = 'team-score-card text-center p-4';
                 
+                // Determine rank display and styling
                 let rankIcon = '';
-                if (index === 0) {
+                let rankText = '';
+                let isTie = teamsAtSameRank > 0 || (index < sortedTeams.length - 1 && sortedTeams[index + 1].score === team.score);
+                
+                if (currentRank === 1) {
                     rankIcon = '🥇';
+                    rankText = isTie ? '1st Place (Tie)' : '1st Place';
                     scoreCard.style.background = 'linear-gradient(135deg, #fff3cd, #ffeaa7)';
                     scoreCard.style.border = '3px solid #ffc107';
-                } else if (index === 1) {
+                } else if (currentRank === 2) {
                     rankIcon = '🥈';
+                    rankText = isTie ? '2nd Place (Tie)' : '2nd Place';
                     scoreCard.style.background = 'linear-gradient(135deg, #e9ecef, #dee2e6)';
                     scoreCard.style.border = '2px solid #6c757d';
-                } else if (index === 2) {
+                } else if (currentRank === 3) {
                     rankIcon = '🥉';
+                    rankText = isTie ? '3rd Place (Tie)' : '3rd Place';
                     scoreCard.style.background = 'linear-gradient(135deg, #f8d7da, #f5c2c7)';
                     scoreCard.style.border = '2px solid #dc3545';
+                } else {
+                    rankIcon = '🏆';
+                    rankText = isTie ? `${getOrdinalSuffix(currentRank)} Place (Tie)` : `${getOrdinalSuffix(currentRank)} Place`;
+                    scoreCard.style.background = 'linear-gradient(135deg, #f8f9fa, #e9ecef)';
+                    scoreCard.style.border = '2px solid #6c757d';
                 }
                 
                 scoreCard.innerHTML = `
                     <div class="h1 mb-2">${rankIcon}</div>
-                    <h4 class="mb-2">${index + 1}${index === 0 ? 'st' : index === 1 ? 'nd' : index === 2 ? 'rd' : 'th'} Place</h4>
+                    <h4 class="mb-2">${rankText}</h4>
                     <h5 class="text-primary">${team.name}</h5>
                     <div class="h2 mb-0">${team.score} points</div>
                 `;
@@ -498,6 +540,22 @@
             // Switch to complete section
             document.getElementById('gameSection').classList.remove('active');
             document.getElementById('completeSection').classList.add('active');
+        }
+        
+        // Helper function to get ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
+        function getOrdinalSuffix(num) {
+            const j = num % 10;
+            const k = num % 100;
+            if (j == 1 && k != 11) {
+                return num + "st";
+            }
+            if (j == 2 && k != 12) {
+                return num + "nd";
+            }
+            if (j == 3 && k != 13) {
+                return num + "rd";
+            }
+            return num + "th";
         }
         
         // Restart game with same teams
@@ -518,6 +576,98 @@
         // Go back to chapter selection
         function selectNewChapter() {
             window.location.href = 'index.html';
+        }
+        
+        // Generate and download certificate
+        function generateCertificate() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Get current date
+            const currentDate = new Date().toLocaleDateString();
+            
+            // Sort teams for certificate
+            const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
+            
+            // Certificate styling
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(24);
+            doc.setTextColor(46, 134, 171); // #2e86ab color
+            
+            // Title
+            doc.text('VOCABULARY GAME CERTIFICATE', 105, 30, { align: 'center' });
+            
+            // Subtitle
+            doc.setFontSize(16);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Chapter ${currentChapter} - Principles of Applied Engineering`, 105, 45, { align: 'center' });
+            
+            // Date and instructor
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(12);
+            doc.text(`Date: ${currentDate}`, 20, 60);
+            doc.text('Instructor: Mark Johnston', 20, 70);
+            
+            // Results section
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.text('GAME RESULTS:', 20, 90);
+            
+            // Team results
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(11);
+            let yPosition = 105;
+            
+            let currentRank = 1;
+            let previousScore = null;
+            let teamsAtSameRank = 0;
+            
+            sortedTeams.forEach((team, index) => {
+                // Handle tie logic for certificate
+                if (previousScore !== null && team.score !== previousScore) {
+                    currentRank = index + 1;
+                    teamsAtSameRank = 0;
+                } else if (previousScore === team.score) {
+                    teamsAtSameRank++;
+                }
+                
+                previousScore = team.score;
+                
+                let isTie = teamsAtSameRank > 0 || (index < sortedTeams.length - 1 && sortedTeams[index + 1].score === team.score);
+                let rankText = isTie ? `${getOrdinalSuffix(currentRank)} Place (Tie)` : `${getOrdinalSuffix(currentRank)} Place`;
+                
+                // Add medal emoji equivalent
+                let medal = '';
+                if (currentRank === 1) medal = '[GOLD]';
+                else if (currentRank === 2) medal = '[SILVER]';
+                else if (currentRank === 3) medal = '[BRONZE]';
+                
+                doc.setFont('helvetica', 'bold');
+                doc.text(`${medal} ${rankText} - ${team.score} points`, 25, yPosition);
+                
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Team Members: ${team.members}`, 25, yPosition + 8);
+                
+                yPosition += 20;
+                
+                // Start new page if needed
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 30;
+                }
+            });
+            
+            // Footer
+            if (yPosition < 220) {
+                doc.setFont('helvetica', 'italic');
+                doc.setFontSize(10);
+                doc.setTextColor(100, 100, 100);
+                doc.text('Generated by Mark Johnston\'s Classroom Vocabulary Game', 105, 280, { align: 'center' });
+            }
+            
+            // Save the PDF
+            const fileName = `Chapter_${currentChapter}_Vocabulary_Game_Results_${currentDate.replace(/\//g, '-')}.pdf`;
+            doc.save(fileName);
         }
         
         // Sample data for testing when JSON file is not available
