@@ -1,5 +1,6 @@
 ---
 ---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -62,7 +63,7 @@
               <li>If incorrect, the next team can steal for half points</li>
               <li>Only the answering team may talk during their turn</li>
               <li>
-                20 questions will be randomly selected from available questions
+                The game will dynamically adjust based on available questions
               </li>
             </ol>
           </div>
@@ -78,6 +79,16 @@
               Categories have been randomly selected from all 17 chapters!
             </p>
             <div id="selectedCategories" class="small"></div>
+          </div>
+
+          <!-- Board configuration info -->
+          <div
+            class="alert alert-success mb-4"
+            id="boardConfigInfo"
+            style="display: none"
+          >
+            <h5><i class="bi bi-grid-3x3"></i> Board Configuration</h5>
+            <div id="boardConfigDetails"></div>
           </div>
 
           <div class="row">
@@ -211,8 +222,9 @@
       let vocabularyData = {};
       let allChaptersData = {}; // Store all chapter data for random mode
       let selectedRandomCategories = []; // Store the 4 selected categories for random mode
-      let gameQuestions = []; // This will hold the 20 selected questions for the game
+      let gameQuestions = []; // This will hold the selected questions for the game
       let questionPool = {}; // Organized by category and points
+      let boardConfiguration = {}; // Store the dynamic board configuration
       let teams = [];
       let currentTeam = 0;
       let gameActive = false;
@@ -221,6 +233,7 @@
       let currentPoints = 0;
       let gameEndedEarly = false;
       let questionsAnswered = 0;
+      let totalQuestionsInGame = 0; // Track the actual number of questions in this game
 
       // Initialize
       document.addEventListener("DOMContentLoaded", function () {
@@ -320,11 +333,12 @@
         )) {
           if (chapterData.categories && chapterData.questions) {
             chapterData.categories.forEach((category) => {
-              // Check if this category has enough questions (at least 5 for different point values)
+              // Get all questions for this category
               const categoryQuestions = chapterData.questions.filter(
                 (q) => q.category === category
               );
-              if (categoryQuestions.length >= 5) {
+              if (categoryQuestions.length >= 3) {
+                // Minimum 3 questions per category
                 allAvailableCategories.push({
                   category: category,
                   chapter: parseInt(chapterNum),
@@ -463,155 +477,182 @@
         }
       }
 
-      // Prepare 20 questions for the game
+      // Dynamically prepare questions based on available data
       function prepareGameQuestions() {
         // Reset the question pool
         questionPool = {};
         gameQuestions = [];
+        boardConfiguration = {
+          categories: [],
+          rows: 3, // Minimum 3 rows
+          totalQuestions: 0,
+        };
 
-        // Organize questions by category and also collect all questions per category
-        const categoryQuestions = {};
+        // Analyze available questions per category
+        const categoryAnalysis = {};
         vocabularyData.questions.forEach((question) => {
           const category = question.category || "General";
-          const points = parseInt(question.points);
-
-          // Store by category and points
-          const key = `${category}_${points}`;
-          if (!questionPool[key]) {
-            questionPool[key] = [];
+          if (!categoryAnalysis[category]) {
+            categoryAnalysis[category] = {
+              questions: [],
+              count: 0,
+            };
           }
-          questionPool[key].push({ ...question }); // Clone the question
-
-          // Also store all questions by category (for fallback)
-          if (!categoryQuestions[category]) {
-            categoryQuestions[category] = [];
-          }
-          categoryQuestions[category].push({ ...question });
+          categoryAnalysis[category].questions.push({ ...question });
+          categoryAnalysis[category].count++;
         });
 
-        // Create the standard 4x5 board structure
-        const categories = vocabularyData.categories || [
-          "Category 1",
-          "Category 2",
-          "Category 3",
-          "Category 4",
-        ];
-        const pointValues = [100, 200, 300, 400, 500];
+        // Determine which categories have enough questions
+        const viableCategories = [];
+        const weakCategories = [];
 
-        // Track used questions to avoid duplicates
+        for (const [category, data] of Object.entries(categoryAnalysis)) {
+          if (data.count >= 3) {
+            viableCategories.push({
+              name: category,
+              questions: data.questions,
+              count: data.count,
+            });
+          } else if (data.count > 0) {
+            weakCategories.push({
+              name: category,
+              questions: data.questions,
+              count: data.count,
+            });
+          }
+        }
+
+        console.log(
+          "Viable categories:",
+          viableCategories.map((c) => `${c.name} (${c.count})`)
+        );
+        console.log(
+          "Weak categories:",
+          weakCategories.map((c) => `${c.name} (${c.count})`)
+        );
+
+        // If we have weak categories, create a MIX category
+        let mixCategory = null;
+        if (weakCategories.length > 0) {
+          mixCategory = {
+            name: "MIX",
+            questions: [],
+            count: 0,
+          };
+
+          // Add all weak category questions to MIX
+          weakCategories.forEach((cat) => {
+            mixCategory.questions.push(...cat.questions);
+            mixCategory.count += cat.count;
+          });
+
+          // If MIX still needs more questions, borrow from viable categories
+          if (mixCategory.count < 3) {
+            const needed = 3 - mixCategory.count;
+            let borrowed = 0;
+
+            for (const cat of viableCategories) {
+              if (borrowed >= needed) break;
+              if (cat.count > 3) {
+                // This category has extras to spare
+                const toTake = Math.min(needed - borrowed, cat.count - 3);
+                const borrowedQuestions = cat.questions.splice(
+                  cat.count - toTake,
+                  toTake
+                );
+                mixCategory.questions.push(...borrowedQuestions);
+                mixCategory.count += toTake;
+                cat.count -= toTake;
+                borrowed += toTake;
+                console.log(
+                  `Borrowed ${toTake} questions from ${cat.name} for MIX`
+                );
+              }
+            }
+          }
+        }
+
+        // Build final category list
+        const finalCategories = [...viableCategories];
+        if (mixCategory && mixCategory.count >= 3) {
+          finalCategories.push(mixCategory);
+        }
+
+        // Limit to 4 categories max
+        const selectedCategories = finalCategories.slice(0, 4);
+
+        // Determine number of rows based on minimum questions in any category
+        const minQuestions = Math.min(
+          ...selectedCategories.map((c) => c.count)
+        );
+        const numRows = Math.min(5, Math.max(3, minQuestions)); // Between 3 and 5 rows
+
+        // Build the board configuration
+        boardConfiguration.categories = selectedCategories.map((c) => c.name);
+        boardConfiguration.rows = numRows;
+        boardConfiguration.totalQuestions = selectedCategories.length * numRows;
+
+        // Display board configuration info
+        const configInfo = document.getElementById("boardConfigInfo");
+        const configDetails = document.getElementById("boardConfigDetails");
+        configInfo.style.display = "block";
+        configDetails.innerHTML = `
+                <p class="mb-2">Board Size: <strong>${
+                  selectedCategories.length
+                } categories × ${numRows} rows = ${
+          boardConfiguration.totalQuestions
+        } questions</strong></p>
+                <p class="mb-0">Categories: ${boardConfiguration.categories.join(
+                  ", "
+                )}</p>
+            `;
+
+        // Assign point values dynamically
+        const pointValues = [];
+        for (let i = 0; i < numRows; i++) {
+          pointValues.push((i + 1) * 100);
+        }
+
+        // Track used questions
         const usedQuestionIndices = new Set();
 
-        // Select 20 questions (4 categories × 5 point values)
-        categories.forEach((category, catIndex) => {
-          // Get all available questions for this category
-          const allCategoryQuestions = categoryQuestions[category] || [];
+        // Build game questions
+        selectedCategories.forEach((category, catIndex) => {
+          // Sort questions by original points (if available) or randomly
+          const sortedQuestions = [...category.questions].sort((a, b) => {
+            const pointsA = parseInt(a.points) || 0;
+            const pointsB = parseInt(b.points) || 0;
+            return pointsA - pointsB || Math.random() - 0.5;
+          });
 
-          pointValues.forEach((points) => {
-            const key = `${category}_${points}`;
-            let availableQuestions = questionPool[key] || [];
-
-            // Filter out already used questions
-            availableQuestions = availableQuestions.filter(
-              (q) => !usedQuestionIndices.has(q.index)
-            );
-
+          pointValues.forEach((points, rowIndex) => {
             let selectedQuestion = null;
 
-            if (availableQuestions.length > 0) {
-              // Randomly select one question from available ones with exact point match
-              const randomIndex = Math.floor(
-                Math.random() * availableQuestions.length
-              );
-              selectedQuestion = { ...availableQuestions[randomIndex] };
-            } else {
-              // No exact point match - find ANY unused question from this category
-              const unusedCategoryQuestions = allCategoryQuestions.filter(
-                (q) => !usedQuestionIndices.has(q.index)
-              );
-
-              if (unusedCategoryQuestions.length > 0) {
-                // Pick a random unused question from this category
-                const randomIndex = Math.floor(
-                  Math.random() * unusedCategoryQuestions.length
-                );
-                selectedQuestion = { ...unusedCategoryQuestions[randomIndex] };
-
-                // Override its point value to match the board position
-                selectedQuestion.originalPoints = selectedQuestion.points;
-                selectedQuestion.points = points;
-
-                console.log(
-                  `✅ Using ${category} question originally worth ${selectedQuestion.originalPoints} for ${points} slot`
-                );
-              } else {
-                // Absolutely no questions left in this category
-                console.warn(
-                  `⚠️ No questions left in ${category} for ${points} slot`
-                );
-
-                // Try to find from another category as last resort
-                for (let fallbackCat of categories) {
-                  if (fallbackCat === category) continue;
-
-                  const fallbackQuestions =
-                    categoryQuestions[fallbackCat] || [];
-                  const unusedFallback = fallbackQuestions.filter(
-                    (q) => !usedQuestionIndices.has(q.index)
-                  );
-
-                  if (unusedFallback.length > 0) {
-                    const randomIndex = Math.floor(
-                      Math.random() * unusedFallback.length
-                    );
-                    selectedQuestion = { ...unusedFallback[randomIndex] };
-                    selectedQuestion.originalPoints = selectedQuestion.points;
-                    selectedQuestion.points = points;
-                    selectedQuestion.originalCategory =
-                      selectedQuestion.category;
-
-                    console.log(
-                      `⚠️ Could not find any question for ${category} at ${points} points`
-                    );
-                    console.log(
-                      `✅ Using question from ${fallbackCat} instead`
-                    );
-                    break;
-                  }
-                }
+            // Try to find an unused question
+            for (const q of sortedQuestions) {
+              if (!usedQuestionIndices.has(q.index)) {
+                selectedQuestion = { ...q };
+                usedQuestionIndices.add(q.index);
+                break;
               }
             }
 
             if (selectedQuestion) {
-              // Add board position info
+              // Assign board position info
               selectedQuestion.boardCategory = catIndex;
               selectedQuestion.boardPoints = points;
+              selectedQuestion.displayCategory = category.name;
               selectedQuestion.used = false;
 
-              // Track that we've used this question
-              usedQuestionIndices.add(selectedQuestion.index);
-
               gameQuestions.push(selectedQuestion);
-            } else {
-              console.error(
-                `❌ Could not find any question for ${category} at ${points} points - cell will be disabled`
-              );
             }
           });
         });
 
+        totalQuestionsInGame = gameQuestions.length;
         console.log(
-          `✅ Prepared ${gameQuestions.length} questions for the game`
+          `✅ Prepared ${totalQuestionsInGame} questions for a ${boardConfiguration.categories.length}×${boardConfiguration.rows} game board`
         );
-
-        // Log distribution for debugging
-        const distribution = {};
-        gameQuestions.forEach((q) => {
-          const cat = vocabularyData.categories[q.boardCategory];
-          if (!distribution[cat]) distribution[cat] = {};
-          distribution[cat][q.boardPoints] =
-            (distribution[cat][q.boardPoints] || 0) + 1;
-        });
-        console.log("📊 Question distribution:", distribution);
       }
 
       // Generate team input fields based on number selected
@@ -675,10 +716,10 @@
 
       // Update questions remaining display
       function updateQuestionsRemaining() {
-        const remaining = 20 - questionsAnswered;
+        const remaining = totalQuestionsInGame - questionsAnswered;
         document.getElementById(
           "questionsRemaining"
-        ).textContent = `Questions Remaining: ${remaining}/20`;
+        ).textContent = `Questions Remaining: ${remaining}/${totalQuestionsInGame}`;
       }
 
       // Display team scores
@@ -698,25 +739,16 @@
         });
       }
 
-      // Setup game board
+      // Setup dynamic game board
       function setupGameBoard() {
         const gameBoard = document.getElementById("gameBoard");
         gameBoard.innerHTML = "";
 
-        // Use categories from loaded data
-        let headers = vocabularyData.categories || [
-          "Category 1",
-          "Category 2",
-          "Category 3",
-          "Category 4",
-        ];
+        // Set grid columns based on number of categories
+        gameBoard.style.gridTemplateColumns = `repeat(${boardConfiguration.categories.length}, 1fr)`;
 
-        // For random mode, use the actual category names without the chapter info
-        if (isRandomMode && selectedRandomCategories.length > 0) {
-          headers = selectedRandomCategories.map((cat) => cat.category);
-        }
-
-        headers.forEach((header) => {
+        // Add category headers
+        boardConfiguration.categories.forEach((header) => {
           const headerCell = document.createElement("div");
           headerCell.className = "jeopardy-cell jeopardy-header";
 
@@ -732,9 +764,13 @@
         });
 
         // Create point values grid
-        const pointValues = [100, 200, 300, 400, 500];
+        const pointValues = [];
+        for (let i = 0; i < boardConfiguration.rows; i++) {
+          pointValues.push((i + 1) * 100);
+        }
+
         pointValues.forEach((points) => {
-          for (let col = 0; col < headers.length; col++) {
+          for (let col = 0; col < boardConfiguration.categories.length; col++) {
             const cell = document.createElement("div");
             cell.className = "jeopardy-cell";
             cell.textContent = points;
@@ -785,7 +821,9 @@
         } else {
           console.log(`📁 Source: ch${currentChapter}vocab.json`);
         }
-        console.log(`📂 Category: ${question.category}`);
+        console.log(
+          `📂 Category: ${question.displayCategory || question.category}`
+        );
         console.log(
           `💰 Original Points: ${question.originalPoints || question.points}`
         );
@@ -794,11 +832,6 @@
           `❓ Definition: ${question.definition.substring(0, 50)}...`
         );
         console.log(`✅ Correct Answer: ${question.correct}`);
-        if (question.originalCategory) {
-          console.log(
-            `⚠️ Note: Question borrowed from category "${question.originalCategory}"`
-          );
-        }
         console.groupEnd();
 
         question.used = true;
@@ -815,8 +848,6 @@
         let pointsText = isSteal
           ? `${currentPoints} Points (STEAL) - ${teams[currentTeam].name}'s Turn`
           : `${currentPoints} Points - ${teams[currentTeam].name}'s Turn`;
-
-        // Don't add source chapter info since all questions in a category are from the same chapter
 
         document.getElementById("questionPoints").textContent = pointsText;
         document.getElementById("questionText").textContent =
@@ -1018,8 +1049,8 @@
         // Reset timer display
         document.getElementById("modalTimer").textContent = "30";
 
-        // Check if game is over (all 20 questions answered)
-        if (questionsAnswered >= 20) {
+        // Check if game is over (all questions answered)
+        if (questionsAnswered >= totalQuestionsInGame) {
           endGame();
         }
       }
@@ -1075,7 +1106,7 @@
           document.getElementById("gameCompleteAlert").innerHTML = `
                     <h3><i class="bi bi-clock"></i> Game Ended Early</h3>
                     <p class="mb-3">The game was ended before all questions were completed.</p>
-                    <p class="mb-3">Questions Answered: ${questionsAnswered}/20</p>
+                    <p class="mb-3">Questions Answered: ${questionsAnswered}/${totalQuestionsInGame}</p>
                     <div id="finalScores" class="mt-3"></div>
                 `;
         } else {
@@ -1085,7 +1116,7 @@
             "alert alert-success text-center";
           document.getElementById("gameCompleteAlert").innerHTML = `
                     <h3>Final Results</h3>
-                    <p class="mb-3">All 20 questions completed!</p>
+                    <p class="mb-3">All ${totalQuestionsInGame} questions completed!</p>
                     <div id="finalScores" class="mt-3"></div>
                 `;
         }
@@ -1232,7 +1263,8 @@
           currentChapter: currentChapter,
           gameEndedEarly: gameEndedEarly,
           questionsAnswered: questionsAnswered,
-          totalQuestions: 20,
+          totalQuestions: totalQuestionsInGame,
+          boardConfiguration: boardConfiguration,
           teams: teams.map((team) => ({
             name: team.name,
             members: team.members,
@@ -1258,7 +1290,7 @@
 
       // Sample data for testing
       function getSampleData() {
-        // Generate sample data with proper categories and point distribution
+        // Generate sample data with varied distribution
         const categories = [
           "Category 1",
           "Category 2",
@@ -1268,24 +1300,58 @@
         const questions = [];
         let index = 0;
 
-        // Generate 5 questions per category at different point values
-        categories.forEach((category) => {
-          [100, 200, 300, 400, 500].forEach((points) => {
-            questions.push({
-              index: index++,
-              points: points,
-              category: category,
-              definition: `Sample definition for ${category} at ${points} points`,
-              choices: ["Option A", "Option B", "Correct Answer", "Option D"],
-              correct: "Correct Answer",
-            });
+        // Category 1: Full 5 questions
+        [100, 200, 300, 400, 500].forEach((points) => {
+          questions.push({
+            index: index++,
+            points: points,
+            category: "Category 1",
+            definition: `Sample definition for Category 1 at ${points} points`,
+            choices: ["Option A", "Option B", "Correct Answer", "Option D"],
+            correct: "Correct Answer",
+          });
+        });
+
+        // Category 2: 4 questions
+        [100, 200, 300, 400].forEach((points) => {
+          questions.push({
+            index: index++,
+            points: points,
+            category: "Category 2",
+            definition: `Sample definition for Category 2 at ${points} points`,
+            choices: ["Option A", "Option B", "Correct Answer", "Option D"],
+            correct: "Correct Answer",
+          });
+        });
+
+        // Category 3: 3 questions
+        [100, 200, 300].forEach((points) => {
+          questions.push({
+            index: index++,
+            points: points,
+            category: "Category 3",
+            definition: `Sample definition for Category 3 at ${points} points`,
+            choices: ["Option A", "Option B", "Correct Answer", "Option D"],
+            correct: "Correct Answer",
+          });
+        });
+
+        // Category 4: Only 2 questions (will become part of MIX)
+        [100, 200].forEach((points) => {
+          questions.push({
+            index: index++,
+            points: points,
+            category: "Category 4",
+            definition: `Sample definition for Category 4 at ${points} points`,
+            choices: ["Option A", "Option B", "Correct Answer", "Option D"],
+            correct: "Correct Answer",
           });
         });
 
         return {
           chapter: currentChapter,
           title: `Chapter ${currentChapter}`,
-          description: "Sample data for testing",
+          description: "Sample data for testing dynamic board sizing",
           categories: categories,
           questions: questions,
         };
