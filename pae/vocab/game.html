@@ -395,69 +395,120 @@
             questionPool = {};
             gameQuestions = [];
             
-            // Organize questions by category and points
+            // Organize questions by category and also collect all questions per category
+            const categoryQuestions = {};
             vocabularyData.questions.forEach(question => {
                 const category = question.category || 'General';
                 const points = parseInt(question.points);
                 
+                // Store by category and points
                 const key = `${category}_${points}`;
                 if (!questionPool[key]) {
                     questionPool[key] = [];
                 }
                 questionPool[key].push({...question}); // Clone the question
+                
+                // Also store all questions by category (for fallback)
+                if (!categoryQuestions[category]) {
+                    categoryQuestions[category] = [];
+                }
+                categoryQuestions[category].push({...question});
             });
             
             // Create the standard 4x5 board structure
             const categories = vocabularyData.categories || ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
             const pointValues = [100, 200, 300, 400, 500];
             
+            // Track used questions to avoid duplicates
+            const usedQuestionIndices = new Set();
+            
             // Select 20 questions (4 categories × 5 point values)
             categories.forEach((category, catIndex) => {
+                // Get all available questions for this category
+                const allCategoryQuestions = categoryQuestions[category] || [];
+                const usedInCategory = [];
+                
                 pointValues.forEach(points => {
                     const key = `${category}_${points}`;
-                    const availableQuestions = questionPool[key] || [];
+                    let availableQuestions = questionPool[key] || [];
+                    
+                    // Filter out already used questions
+                    availableQuestions = availableQuestions.filter(q => !usedQuestionIndices.has(q.index));
+                    
+                    let selectedQuestion = null;
                     
                     if (availableQuestions.length > 0) {
-                        // Randomly select one question from available ones
+                        // Randomly select one question from available ones with exact point match
                         const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-                        const selectedQuestion = availableQuestions[randomIndex];
+                        selectedQuestion = availableQuestions[randomIndex];
+                    } else {
+                        // No exact point match - try to find ANY unused question from this category
+                        const unusedCategoryQuestions = allCategoryQuestions.filter(q => 
+                            !usedQuestionIndices.has(q.index) && !usedInCategory.includes(q.index)
+                        );
                         
+                        if (unusedCategoryQuestions.length > 0) {
+                            // Pick a random unused question from this category
+                            const randomIndex = Math.floor(Math.random() * unusedCategoryQuestions.length);
+                            selectedQuestion = {...unusedCategoryQuestions[randomIndex]};
+                            
+                            // Override its point value to match the board position
+                            selectedQuestion.originalPoints = selectedQuestion.points;
+                            selectedQuestion.points = points;
+                            
+                            console.log(`Using ${category} question originally worth ${selectedQuestion.originalPoints} for ${points} slot`);
+                        } else {
+                            // Absolutely no questions left in this category
+                            // Try to find from another category as last resort
+                            for (let fallbackCat of categories) {
+                                if (fallbackCat === category) continue;
+                                
+                                const fallbackQuestions = categoryQuestions[fallbackCat] || [];
+                                const unusedFallback = fallbackQuestions.filter(q => 
+                                    !usedQuestionIndices.has(q.index)
+                                );
+                                
+                                if (unusedFallback.length > 0) {
+                                    const randomIndex = Math.floor(Math.random() * unusedFallback.length);
+                                    selectedQuestion = {...unusedFallback[randomIndex]};
+                                    selectedQuestion.originalPoints = selectedQuestion.points;
+                                    selectedQuestion.points = points;
+                                    selectedQuestion.originalCategory = selectedQuestion.category;
+                                    
+                                    console.log(`No questions left in ${category}, using ${fallbackCat} question for ${points} slot`);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (selectedQuestion) {
                         // Add board position info
                         selectedQuestion.boardCategory = catIndex;
                         selectedQuestion.boardPoints = points;
                         selectedQuestion.used = false;
                         
+                        // Track that we've used this question
+                        usedQuestionIndices.add(selectedQuestion.index);
+                        usedInCategory.push(selectedQuestion.index);
+                        
                         gameQuestions.push(selectedQuestion);
-                        
-                        // Remove selected question from pool to avoid duplicates
-                        availableQuestions.splice(randomIndex, 1);
                     } else {
-                        // If no question exists for this category/points combo, create a placeholder
-                        // or try to find a question from another category with same points
-                        let fallbackQuestion = null;
-                        
-                        // Look for any question with the same point value
-                        for (let cat of categories) {
-                            const fallbackKey = `${cat}_${points}`;
-                            if (questionPool[fallbackKey] && questionPool[fallbackKey].length > 0) {
-                                const randomIndex = Math.floor(Math.random() * questionPool[fallbackKey].length);
-                                fallbackQuestion = questionPool[fallbackKey][randomIndex];
-                                questionPool[fallbackKey].splice(randomIndex, 1);
-                                break;
-                            }
-                        }
-                        
-                        if (fallbackQuestion) {
-                            fallbackQuestion.boardCategory = catIndex;
-                            fallbackQuestion.boardPoints = points;
-                            fallbackQuestion.used = false;
-                            gameQuestions.push(fallbackQuestion);
-                        }
+                        console.warn(`Could not find any question for ${category} at ${points} points`);
                     }
                 });
             });
             
             console.log(`Prepared ${gameQuestions.length} questions for the game`);
+            
+            // Log distribution for debugging
+            const distribution = {};
+            gameQuestions.forEach(q => {
+                const cat = vocabularyData.categories[q.boardCategory];
+                if (!distribution[cat]) distribution[cat] = {};
+                distribution[cat][q.boardPoints] = (distribution[cat][q.boardPoints] || 0) + 1;
+            });
+            console.log('Question distribution:', distribution);
         }
         
         // Generate team input fields based on number selected
