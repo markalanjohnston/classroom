@@ -140,22 +140,6 @@ body {
 }
 
 /* Game Specific Styles */
-.timer-display {
-    position: absolute;
-    top: 15px;
-    right: 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 5px 15px;
-    border-radius: 20px;
-    background: rgba(0,0,0,0.1);
-}
-
-.timer-display.danger {
-    color: #dc3545;
-    background: rgba(220, 53, 69, 0.1);
-}
-
 .game-section {
     display: none;
 }
