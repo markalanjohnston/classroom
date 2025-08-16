@@ -1,224 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PAE Vocabulary Games - Chapter Selection</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../css/styles.css">
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+  </head>
+  <body>
+    {% include navigation.html %}
     <div class="header-container">
-        <nav class="breadcrumb-nav">
-            <a href="../../" class="text-white">
-                <i class="bi bi-house"></i> Home
-            </a>
-            <span class="text-white-50 mx-2">/</span>
-            <a href="../" class="text-white">PAE</a>
-            <span class="text-white-50 mx-2">/</span>
-            <span class="text-white">Vocabulary Games</span>
-        </nav>
-        
-        <div class="header-card">
-            <h1 class="display-5 mb-3">
-                <i class="bi bi-puzzle text-warning"></i>
-                Vocabulary Game
-            </h1>
-            <p class="lead text-muted">Select a chapter to start the team-based vocabulary game</p>
-            <div class="alert alert-info mt-3">
-                <i class="bi bi-info-circle"></i>
-                <strong>Game Format:</strong> Team-based Jeopardy-style game with multiple choice questions
-            </div>
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">PAE</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Vocabulary Games</span>
+      </nav>
+
+      <div class="header-card">
+        <h1 class="display-5 mb-3">
+          <i class="bi bi-puzzle text-warning"></i>
+          Vocabulary Game
+        </h1>
+        <p class="lead text-muted">
+          Select a chapter to start the team-based vocabulary game
+        </p>
+        <div class="alert alert-info mt-3">
+          <i class="bi bi-info-circle"></i>
+          <strong>Game Format:</strong> Team-based Jeopardy-style game with
+          multiple choice questions
         </div>
-        
-        <div class="chapter-grid">
-            <div class="chapter-card" onclick="startGame(1)">
-                <div class="chapter-number">1</div>
-                <h5>What Is Engineering?</h5>
-                <small class="text-muted">Engineering basics and overview</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(2)">
-                <div class="chapter-number">2</div>
-                <h5>Engineering as a Profession</h5>
-                <small class="text-muted">Career paths and professional aspects</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(3)">
-                <div class="chapter-number">3</div>
-                <h5>Engineering Design</h5>
-                <small class="text-muted">Design process and methodology</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(4)">
-                <div class="chapter-number">4</div>
-                <h5>Defining Problems and Brainstorming</h5>
-                <small class="text-muted">Problem identification and solutions</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(5)">
-                <div class="chapter-number">5</div>
-                <h5>Researching Designs</h5>
-                <small class="text-muted">Design research and analysis</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(6)">
-                <div class="chapter-number">6</div>
-                <h5>Communicating Solutions</h5>
-                <small class="text-muted">Technical communication skills</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(7)">
-                <div class="chapter-number">7</div>
-                <h5>Modeling, Testing, and Final Outputs</h5>
-                <small class="text-muted">Prototyping and validation</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(8)">
-                <div class="chapter-number">8</div>
-                <h5>Mechanical Engineering</h5>
-                <small class="text-muted">Mechanics and thermal systems</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(9)">
-                <div class="chapter-number">9</div>
-                <h5>Materials Engineering</h5>
-                <small class="text-muted">Material properties and applications</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(10)">
-                <div class="chapter-number">10</div>
-                <h5>Manufacturing Engineering</h5>
-                <small class="text-muted">Production and manufacturing</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(11)">
-                <div class="chapter-number">11</div>
-                <h5>Electrical Engineering</h5>
-                <small class="text-muted">Electrical systems and circuits</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(12)">
-                <div class="chapter-number">12</div>
-                <h5>Computer Engineering</h5>
-                <small class="text-muted">Computer systems and software</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(13)">
-                <div class="chapter-number">13</div>
-                <h5>Civil Engineering</h5>
-                <small class="text-muted">Infrastructure and construction</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(14)">
-                <div class="chapter-number">14</div>
-                <h5>Aerospace Engineering</h5>
-                <small class="text-muted">Aircraft and spacecraft design</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(15)">
-                <div class="chapter-number">15</div>
-                <h5>Chemical Engineering</h5>
-                <small class="text-muted">Chemical processes and reactions</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(16)">
-                <div class="chapter-number">16</div>
-                <h5>Bioengineering</h5>
-                <small class="text-muted">Biological and medical applications</small>
-            </div>
-            
-            <div class="chapter-card" onclick="startGame(17)">
-                <div class="chapter-number">17</div>
-                <h5>Environmental Engineering</h5>
-                <small class="text-muted">Environmental protection and sustainability</small>
-            </div>
-            
-            <!-- Random All Chapters Option -->
-            <div class="chapter-card special-card" onclick="startRandomGame()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                <div class="chapter-number" style="background: rgba(255,255,255,0.2); color: white;">
-                    <i class="bi bi-shuffle" style="font-size: 1.5rem;"></i>
-                </div>
-                <h5 style="color: white;">Random All Chapters</h5>
-                <small style="color: rgba(255,255,255,0.9);">Mix categories from all 17 chapters!</small>
-                <div class="mt-2">
-                    <span class="badge bg-warning text-dark">
-                        <i class="bi bi-star-fill"></i> Ultimate Challenge
-                    </span>
-                </div>
-            </div>
+      </div>
+
+      <div class="chapter-grid">
+        <div class="chapter-card" onclick="startGame(1)">
+          <div class="chapter-number">1</div>
+          <h5>What Is Engineering?</h5>
+          <small class="text-muted">Engineering basics and overview</small>
         </div>
-        
-        <!-- Add description for Random Mode -->
-        <div class="mt-4 text-center">
-            <div class="alert alert-success mx-auto" style="max-width: 600px;">
-                <h5><i class="bi bi-lightbulb"></i> Try Random Mode!</h5>
-                <p class="mb-0">The Random All Chapters mode selects 4 categories from different chapters for the ultimate vocabulary challenge. Perfect for comprehensive review!</p>
-            </div>
+
+        <div class="chapter-card" onclick="startGame(2)">
+          <div class="chapter-number">2</div>
+          <h5>Engineering as a Profession</h5>
+          <small class="text-muted"
+            >Career paths and professional aspects</small
+          >
         </div>
+
+        <div class="chapter-card" onclick="startGame(3)">
+          <div class="chapter-number">3</div>
+          <h5>Engineering Design</h5>
+          <small class="text-muted">Design process and methodology</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(4)">
+          <div class="chapter-number">4</div>
+          <h5>Defining Problems and Brainstorming</h5>
+          <small class="text-muted">Problem identification and solutions</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(5)">
+          <div class="chapter-number">5</div>
+          <h5>Researching Designs</h5>
+          <small class="text-muted">Design research and analysis</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(6)">
+          <div class="chapter-number">6</div>
+          <h5>Communicating Solutions</h5>
+          <small class="text-muted">Technical communication skills</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(7)">
+          <div class="chapter-number">7</div>
+          <h5>Modeling, Testing, and Final Outputs</h5>
+          <small class="text-muted">Prototyping and validation</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(8)">
+          <div class="chapter-number">8</div>
+          <h5>Mechanical Engineering</h5>
+          <small class="text-muted">Mechanics and thermal systems</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(9)">
+          <div class="chapter-number">9</div>
+          <h5>Materials Engineering</h5>
+          <small class="text-muted">Material properties and applications</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(10)">
+          <div class="chapter-number">10</div>
+          <h5>Manufacturing Engineering</h5>
+          <small class="text-muted">Production and manufacturing</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(11)">
+          <div class="chapter-number">11</div>
+          <h5>Electrical Engineering</h5>
+          <small class="text-muted">Electrical systems and circuits</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(12)">
+          <div class="chapter-number">12</div>
+          <h5>Computer Engineering</h5>
+          <small class="text-muted">Computer systems and software</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(13)">
+          <div class="chapter-number">13</div>
+          <h5>Civil Engineering</h5>
+          <small class="text-muted">Infrastructure and construction</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(14)">
+          <div class="chapter-number">14</div>
+          <h5>Aerospace Engineering</h5>
+          <small class="text-muted">Aircraft and spacecraft design</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(15)">
+          <div class="chapter-number">15</div>
+          <h5>Chemical Engineering</h5>
+          <small class="text-muted">Chemical processes and reactions</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(16)">
+          <div class="chapter-number">16</div>
+          <h5>Bioengineering</h5>
+          <small class="text-muted">Biological and medical applications</small>
+        </div>
+
+        <div class="chapter-card" onclick="startGame(17)">
+          <div class="chapter-number">17</div>
+          <h5>Environmental Engineering</h5>
+          <small class="text-muted"
+            >Environmental protection and sustainability</small
+          >
+        </div>
+
+        <!-- Random All Chapters Option -->
+        <div
+          class="chapter-card special-card"
+          onclick="startRandomGame()"
+          style="
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+          "
+        >
+          <div
+            class="chapter-number"
+            style="background: rgba(255, 255, 255, 0.2); color: white"
+          >
+            <i class="bi bi-shuffle" style="font-size: 1.5rem"></i>
+          </div>
+          <h5 style="color: white">Random All Chapters</h5>
+          <small style="color: rgba(255, 255, 255, 0.9)"
+            >Mix categories from all 17 chapters!</small
+          >
+          <div class="mt-2">
+            <span class="badge bg-warning text-dark">
+              <i class="bi bi-star-fill"></i> Ultimate Challenge
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add description for Random Mode -->
+      <div class="mt-4 text-center">
+        <div class="alert alert-success mx-auto" style="max-width: 600px">
+          <h5><i class="bi bi-lightbulb"></i> Try Random Mode!</h5>
+          <p class="mb-0">
+            The Random All Chapters mode selects 4 categories from different
+            chapters for the ultimate vocabulary challenge. Perfect for
+            comprehensive review!
+          </p>
+        </div>
+      </div>
     </div>
-    
+
     <script>
-        function startGame(chapter) {
-            // Redirect to the game with the selected chapter
-            window.location.href = `game.html?chapter=${chapter}`;
-        }
-        
-        function startRandomGame() {
-            // Redirect to the game with random mode
-            window.location.href = `game.html?chapter=rand`;
-        }
+      function startGame(chapter) {
+        // Redirect to the game with the selected chapter
+        window.location.href = `game.html?chapter=${chapter}`;
+      }
+
+      function startRandomGame() {
+        // Redirect to the game with random mode
+        window.location.href = `game.html?chapter=rand`;
+      }
     </script>
-    
+
     <style>
-        /* Additional styling for the special random card */
-        .special-card {
-            border: 2px solid transparent;
-            animation: shimmer 3s infinite;
-            position: relative;
-            overflow: hidden;
+      /* Additional styling for the special random card */
+      .special-card {
+        border: 2px solid transparent;
+        animation: shimmer 3s infinite;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .special-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        animation: slide 3s infinite;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
-        
-        .special-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                transparent
-            );
-            transform: rotate(45deg);
-            animation: slide 3s infinite;
+        50% {
+          box-shadow: 0 4px 25px rgba(118, 75, 162, 0.6);
         }
-        
-        @keyframes shimmer {
-            0%, 100% {
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 25px rgba(118, 75, 162, 0.6);
-            }
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
         }
-        
-        @keyframes slide {
-            0% {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
-            }
-            100% {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
-            }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
         }
-        
-        .special-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
-        }
+      }
+
+      .special-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+      }
     </style>
-</body>
+  </body>
 </html>

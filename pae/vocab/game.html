@@ -1,1137 +1,1293 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PAE Vocabulary Game</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
     <!-- jsPDF for certificate generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
+    {% include navigation.html %}
     <div class="game-container">
-        <nav class="breadcrumb-nav">
-            <a href="../../../" class="text-white">
-                <i class="bi bi-house"></i> Home
-            </a>
-            <span class="text-white-50 mx-2">/</span>
-            <a href="../../" class="text-white">PAE</a>
-            <span class="text-white-50 mx-2">/</span>
-            <a href="../" class="text-white">Vocabulary</a>
-            <span class="text-white-50 mx-2">/</span>
-            <span class="text-white" id="chapterBreadcrumb">Chapter ?</span>
-        </nav>
+      <nav class="breadcrumb-nav">
+        <a href="../../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../../" class="text-white">PAE</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Vocabulary</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white" id="chapterBreadcrumb">Chapter ?</span>
+      </nav>
 
-        <div class="game-card">
-            <!-- Section 1: Chapter Info & Team Setup -->
-            <div class="game-section active" id="setupSection">
-                <h1 class="text-center mb-4">
-                    <i class="bi bi-gear-fill text-primary"></i> 
-                    <span id="chapterTitle">Chapter ? Vocabulary Game</span>
-                </h1>
-                
-                <!-- Loading indicator for random mode -->
-                <div class="alert alert-info text-center" id="loadingIndicator" style="display: none;">
-                    <div class="spinner-border text-primary me-2" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <strong>Loading Random Categories...</strong>
-                    <div id="loadingProgress" class="mt-2 small"></div>
-                </div>
-                
-                <div class="alert alert-info mb-4" id="gameInstructions">
-                    <h4><i class="bi bi-info-circle"></i> Game Instructions</h4>
-                    <ol class="mb-0">
-                        <li>Teams take turns selecting point values (higher = harder)</li>
-                        <li>You have 30 seconds to answer each question</li>
-                        <li>If incorrect, the next team can steal for half points</li>
-                        <li>Only the answering team may talk during their turn</li>
-                        <li>20 questions will be randomly selected from available questions</li>
-                    </ol>
-                </div>
-                
-                <!-- Random mode info -->
-                <div class="alert alert-warning mb-4" id="randomModeInfo" style="display: none;">
-                    <h4><i class="bi bi-shuffle"></i> Random All Chapters Mode</h4>
-                    <p class="mb-2">Categories have been randomly selected from all 17 chapters!</p>
-                    <div id="selectedCategories" class="small"></div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-8 mx-auto">
-                        <h3 class="text-center mb-4">Team Setup</h3>
-                        <div class="mb-3">
-                            <label class="form-label">Number of teams (2-6):</label>
-                            <select class="form-control" id="numTeams" onchange="updateTeamInputs()">
-                                <option value="2">2 Teams</option>
-                                <option value="3">3 Teams</option>
-                                <option value="4" selected>4 Teams</option>
-                                <option value="5">5 Teams</option>
-                                <option value="6">6 Teams</option>
-                            </select>
-                        </div>
-                        
-                        <div class="alert alert-info">
-                            <i class="bi bi-info-circle"></i>
-                            <strong>Team Member Names:</strong> Enter all team member names in each field (separated by commas if multiple students per team)
-                        </div>
-                        
-                        <div id="teamInputs" class="team-setup">
-                            <!-- Team inputs will be generated here -->
-                        </div>
-                        
-                        <div class="text-center mt-4">
-                            <button class="btn btn-primary btn-lg" onclick="startGame()" id="startGameBtn">
-                                <i class="bi bi-play-fill"></i> Start Game
-                            </button>
-                        </div>
-                    </div>
-                </div>
+      <div class="game-card">
+        <!-- Section 1: Chapter Info & Team Setup -->
+        <div class="game-section active" id="setupSection">
+          <h1 class="text-center mb-4">
+            <i class="bi bi-gear-fill text-primary"></i>
+            <span id="chapterTitle">Chapter ? Vocabulary Game</span>
+          </h1>
+
+          <!-- Loading indicator for random mode -->
+          <div
+            class="alert alert-info text-center"
+            id="loadingIndicator"
+            style="display: none"
+          >
+            <div class="spinner-border text-primary me-2" role="status">
+              <span class="visually-hidden">Loading...</span>
             </div>
-            
-            <!-- Section 2: Game Board -->
-            <div class="game-section" id="gameSection">
-                <h1 class="text-center mb-3">
-                    <i class="bi bi-trophy-fill text-warning"></i> 
-                    <span id="gameTitle">Chapter ? Vocabulary Game</span>
-                </h1>
-                
-                <div class="team-scores" id="teamScores"></div>
-                
-                <div class="jeopardy-board" id="gameBoard">
-                    <!-- Game board will be generated here -->
-                </div>
-                
-                <div class="text-center mt-3">
-                    <div class="countdown-timer" id="questionTimer" style="display: none;">30</div>
-                    <div id="currentTeamDisplay" class="h4 text-primary"></div>
-                    <div id="questionsRemaining" class="h5 text-muted mt-2"></div>
-                    
-                    <!-- End Game Early Button -->
-                    <div class="mt-4">
-                        <button class="btn btn-warning btn-sm" onclick="endGameEarly()">
-                            <i class="bi bi-stop-circle"></i> End Game Early
-                        </button>
-                    </div>
-                </div>
+            <strong>Loading Random Categories...</strong>
+            <div id="loadingProgress" class="mt-2 small"></div>
+          </div>
+
+          <div class="alert alert-info mb-4" id="gameInstructions">
+            <h4><i class="bi bi-info-circle"></i> Game Instructions</h4>
+            <ol class="mb-0">
+              <li>Teams take turns selecting point values (higher = harder)</li>
+              <li>You have 30 seconds to answer each question</li>
+              <li>If incorrect, the next team can steal for half points</li>
+              <li>Only the answering team may talk during their turn</li>
+              <li>
+                20 questions will be randomly selected from available questions
+              </li>
+            </ol>
+          </div>
+
+          <!-- Random mode info -->
+          <div
+            class="alert alert-warning mb-4"
+            id="randomModeInfo"
+            style="display: none"
+          >
+            <h4><i class="bi bi-shuffle"></i> Random All Chapters Mode</h4>
+            <p class="mb-2">
+              Categories have been randomly selected from all 17 chapters!
+            </p>
+            <div id="selectedCategories" class="small"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-8 mx-auto">
+              <h3 class="text-center mb-4">Team Setup</h3>
+              <div class="mb-3">
+                <label class="form-label">Number of teams (2-6):</label>
+                <select
+                  class="form-control"
+                  id="numTeams"
+                  onchange="updateTeamInputs()"
+                >
+                  <option value="2">2 Teams</option>
+                  <option value="3">3 Teams</option>
+                  <option value="4" selected>4 Teams</option>
+                  <option value="5">5 Teams</option>
+                  <option value="6">6 Teams</option>
+                </select>
+              </div>
+
+              <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i>
+                <strong>Team Member Names:</strong> Enter all team member names
+                in each field (separated by commas if multiple students per
+                team)
+              </div>
+
+              <div id="teamInputs" class="team-setup">
+                <!-- Team inputs will be generated here -->
+              </div>
+
+              <div class="text-center mt-4">
+                <button
+                  class="btn btn-primary btn-lg"
+                  onclick="startGame()"
+                  id="startGameBtn"
+                >
+                  <i class="bi bi-play-fill"></i> Start Game
+                </button>
+              </div>
             </div>
-            
-            <!-- Section 3: Game Complete -->
-            <div class="game-section" id="completeSection">
-                <h1 class="text-center mb-4">
-                    <i class="bi bi-trophy text-warning"></i> 
-                    <span id="gameCompleteTitle">Game Complete!</span>
-                </h1>
-                
-                <div class="alert alert-success text-center" id="gameCompleteAlert">
-                    <h3>Final Results</h3>
-                    <div id="finalScores" class="mt-3"></div>
-                </div>
-                
-                <div class="text-center">
-                    <button class="btn btn-success btn-lg me-3" onclick="generateCertificate()">
-                        <i class="bi bi-download"></i> Get Certificate
-                    </button>
-                    <button class="btn btn-primary btn-lg me-3" onclick="playAgain()">
-                        <i class="bi bi-arrow-repeat"></i> Play Again
-                    </button>
-                    <button class="btn btn-secondary btn-lg" onclick="selectNewChapter()">
-                        <i class="bi bi-list"></i> Select New Chapter
-                    </button>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- Section 2: Game Board -->
+        <div class="game-section" id="gameSection">
+          <h1 class="text-center mb-3">
+            <i class="bi bi-trophy-fill text-warning"></i>
+            <span id="gameTitle">Chapter ? Vocabulary Game</span>
+          </h1>
+
+          <div class="team-scores" id="teamScores"></div>
+
+          <div class="jeopardy-board" id="gameBoard">
+            <!-- Game board will be generated here -->
+          </div>
+
+          <div class="text-center mt-3">
+            <div
+              class="countdown-timer"
+              id="questionTimer"
+              style="display: none"
+            >
+              30
+            </div>
+            <div id="currentTeamDisplay" class="h4 text-primary"></div>
+            <div id="questionsRemaining" class="h5 text-muted mt-2"></div>
+
+            <!-- End Game Early Button -->
+            <div class="mt-4">
+              <button class="btn btn-warning btn-sm" onclick="endGameEarly()">
+                <i class="bi bi-stop-circle"></i> End Game Early
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Game Complete -->
+        <div class="game-section" id="completeSection">
+          <h1 class="text-center mb-4">
+            <i class="bi bi-trophy text-warning"></i>
+            <span id="gameCompleteTitle">Game Complete!</span>
+          </h1>
+
+          <div class="alert alert-success text-center" id="gameCompleteAlert">
+            <h3>Final Results</h3>
+            <div id="finalScores" class="mt-3"></div>
+          </div>
+
+          <div class="text-center">
+            <button
+              class="btn btn-success btn-lg me-3"
+              onclick="generateCertificate()"
+            >
+              <i class="bi bi-download"></i> Get Certificate
+            </button>
+            <button class="btn btn-primary btn-lg me-3" onclick="playAgain()">
+              <i class="bi bi-arrow-repeat"></i> Play Again
+            </button>
+            <button
+              class="btn btn-secondary btn-lg"
+              onclick="selectNewChapter()"
+            >
+              <i class="bi bi-list"></i> Select New Chapter
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
     <!-- Audio Notice -->
     <div class="audio-notice">
-        <i class="bi bi-volume-up"></i> Looking for audio files in: ../../media/ (correct.mp3, incorrect.mp3, ding-ding.mp3)
+      <i class="bi bi-volume-up"></i> Looking for audio files in: ../../media/
+      (correct.mp3, incorrect.mp3, ding-ding.mp3)
     </div>
-    
+
     <!-- Question Modal -->
     <div class="question-modal" id="questionModal">
-        <div class="question-content">
-            <h3 id="questionPoints"></h3>
-            <p id="questionText" class="fs-5"></p>
-            <div id="answerOptions"></div>
-            <div class="countdown-timer" id="modalTimer">30</div>
-        </div>
+      <div class="question-content">
+        <h3 id="questionPoints"></h3>
+        <p id="questionText" class="fs-5"></p>
+        <div id="answerOptions"></div>
+        <div class="countdown-timer" id="modalTimer">30</div>
+      </div>
     </div>
-    
+
     <script>
-        // Global Variables
-        let currentChapter = 1;
-        let isRandomMode = false;
-        let vocabularyData = {};
-        let allChaptersData = {}; // Store all chapter data for random mode
-        let selectedRandomCategories = []; // Store the 4 selected categories for random mode
-        let gameQuestions = []; // This will hold the 20 selected questions for the game
-        let questionPool = {}; // Organized by category and points
-        let teams = [];
-        let currentTeam = 0;
-        let gameActive = false;
-        let questionTimer = null;
-        let currentQuestion = null;
-        let currentPoints = 0;
-        let gameEndedEarly = false;
-        let questionsAnswered = 0;
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get chapter from URL parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            const chapterParam = urlParams.get('chapter');
-            
-            if (chapterParam && chapterParam.toLowerCase() === 'rand') {
-                isRandomMode = true;
-                loadRandomChaptersData();
-            } else {
-                currentChapter = parseInt(chapterParam) || 1;
-                loadVocabularyData();
+      // Global Variables
+      let currentChapter = 1;
+      let isRandomMode = false;
+      let vocabularyData = {};
+      let allChaptersData = {}; // Store all chapter data for random mode
+      let selectedRandomCategories = []; // Store the 4 selected categories for random mode
+      let gameQuestions = []; // This will hold the 20 selected questions for the game
+      let questionPool = {}; // Organized by category and points
+      let teams = [];
+      let currentTeam = 0;
+      let gameActive = false;
+      let questionTimer = null;
+      let currentQuestion = null;
+      let currentPoints = 0;
+      let gameEndedEarly = false;
+      let questionsAnswered = 0;
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get chapter from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const chapterParam = urlParams.get("chapter");
+
+        if (chapterParam && chapterParam.toLowerCase() === "rand") {
+          isRandomMode = true;
+          loadRandomChaptersData();
+        } else {
+          currentChapter = parseInt(chapterParam) || 1;
+          loadVocabularyData();
+        }
+
+        // Setup initial team inputs
+        updateTeamInputs();
+      });
+
+      // Load all chapters for random mode
+      async function loadRandomChaptersData() {
+        document.getElementById("loadingIndicator").style.display = "block";
+        document.getElementById("gameInstructions").style.display = "none";
+        document.getElementById("startGameBtn").disabled = true;
+
+        const totalChapters = 17;
+        let loadedChapters = 0;
+        allChaptersData = {};
+
+        // Try to load all 17 chapters
+        const loadPromises = [];
+        for (let i = 1; i <= totalChapters; i++) {
+          loadPromises.push(loadChapterData(i));
+        }
+
+        await Promise.allSettled(loadPromises);
+
+        // Check if we have enough data
+        const availableChapters = Object.keys(allChaptersData).length;
+        if (availableChapters < 4) {
+          alert(
+            `Only ${availableChapters} chapters available. Need at least 4 for random mode. Using sample data.`
+          );
+          // Generate sample data for missing chapters
+          for (let i = 1; i <= totalChapters; i++) {
+            if (!allChaptersData[i]) {
+              allChaptersData[i] = generateSampleChapterData(i);
             }
-            
-            // Setup initial team inputs
-            updateTeamInputs();
+          }
+        }
+
+        // Select random categories
+        selectRandomCategories();
+
+        // Update UI
+        document.getElementById("loadingIndicator").style.display = "none";
+        document.getElementById("gameInstructions").style.display = "block";
+        document.getElementById("randomModeInfo").style.display = "block";
+        document.getElementById("startGameBtn").disabled = false;
+
+        document.getElementById("chapterBreadcrumb").textContent = "Random Mix";
+        document.getElementById("chapterTitle").textContent =
+          "Random All Chapters Vocabulary Game";
+        document.getElementById("gameTitle").textContent =
+          "Random All Chapters Vocabulary Game";
+      }
+
+      // Load a single chapter's data
+      async function loadChapterData(chapterNum) {
+        try {
+          document.getElementById(
+            "loadingProgress"
+          ).textContent = `Loading Chapter ${chapterNum}...`;
+
+          const response = await fetch(`ch${chapterNum}vocab.json`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          allChaptersData[chapterNum] = data;
+
+          console.log(`Loaded Chapter ${chapterNum}: ${data.title}`);
+        } catch (error) {
+          console.error(`Error loading chapter ${chapterNum}:`, error);
+          // Don't store anything for this chapter if it fails
+        }
+      }
+
+      // Select 4 random categories from all available chapters
+      function selectRandomCategories() {
+        selectedRandomCategories = [];
+        const allAvailableCategories = [];
+
+        // Collect all categories from all chapters with their chapter info
+        for (const [chapterNum, chapterData] of Object.entries(
+          allChaptersData
+        )) {
+          if (chapterData.categories && chapterData.questions) {
+            chapterData.categories.forEach((category) => {
+              // Check if this category has enough questions (at least 5 for different point values)
+              const categoryQuestions = chapterData.questions.filter(
+                (q) => q.category === category
+              );
+              if (categoryQuestions.length >= 5) {
+                allAvailableCategories.push({
+                  category: category,
+                  chapter: parseInt(chapterNum),
+                  chapterTitle: chapterData.title || `Chapter ${chapterNum}`,
+                  questions: categoryQuestions,
+                });
+              }
+            });
+          }
+        }
+
+        // Shuffle and select 4 categories
+        const shuffled = allAvailableCategories.sort(() => Math.random() - 0.5);
+        selectedRandomCategories = shuffled.slice(0, 4);
+
+        // Display selected categories
+        const categoriesDisplay = document.getElementById("selectedCategories");
+        categoriesDisplay.innerHTML =
+          "<strong>Selected Categories:</strong><br>";
+        selectedRandomCategories.forEach((cat, index) => {
+          categoriesDisplay.innerHTML += `${index + 1}. <strong>${
+            cat.category
+          }</strong> (from ${cat.chapterTitle})<br>`;
         });
-        
-        // Load all chapters for random mode
-        async function loadRandomChaptersData() {
-            document.getElementById('loadingIndicator').style.display = 'block';
-            document.getElementById('gameInstructions').style.display = 'none';
-            document.getElementById('startGameBtn').disabled = true;
-            
-            const totalChapters = 17;
-            let loadedChapters = 0;
-            allChaptersData = {};
-            
-            // Try to load all 17 chapters
-            const loadPromises = [];
-            for (let i = 1; i <= totalChapters; i++) {
-                loadPromises.push(loadChapterData(i));
+
+        // Prepare the vocabulary data structure for the game
+        vocabularyData = {
+          title: "Random All Chapters",
+          categories: selectedRandomCategories.map((c) => c.category),
+          questions: [],
+        };
+
+        // Combine all questions from selected categories
+        selectedRandomCategories.forEach((cat) => {
+          cat.questions.forEach((q) => {
+            vocabularyData.questions.push({
+              ...q,
+              sourceChapter: cat.chapter,
+              sourceChapterTitle: cat.chapterTitle,
+            });
+          });
+        });
+
+        console.log(
+          `Selected ${selectedRandomCategories.length} random categories with ${vocabularyData.questions.length} total questions`
+        );
+      }
+
+      // Generate sample chapter data if file not found
+      function generateSampleChapterData(chapterNum) {
+        const categories = [
+          `Ch${chapterNum} Category A`,
+          `Ch${chapterNum} Category B`,
+          `Ch${chapterNum} Category C`,
+          `Ch${chapterNum} Category D`,
+        ];
+
+        const questions = [];
+        let index = 0;
+
+        categories.forEach((category) => {
+          [100, 200, 300, 400, 500].forEach((points) => {
+            questions.push({
+              index: index++,
+              points: points,
+              category: category,
+              definition: `Sample definition from Chapter ${chapterNum}, ${category} at ${points} points`,
+              choices: [
+                `Option A-${chapterNum}`,
+                `Option B-${chapterNum}`,
+                `Correct Answer-${chapterNum}`,
+                `Option D-${chapterNum}`,
+              ],
+              correct: `Correct Answer-${chapterNum}`,
+            });
+          });
+        });
+
+        return {
+          chapter: chapterNum,
+          title: `Chapter ${chapterNum} (Sample)`,
+          categories: categories,
+          questions: questions,
+        };
+      }
+
+      // Load vocabulary data from JSON file (single chapter mode)
+      async function loadVocabularyData() {
+        try {
+          const response = await fetch(`ch${currentChapter}vocab.json`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          vocabularyData = await response.json();
+
+          // Update UI with chapter info from loaded data
+          const chapterTitle =
+            vocabularyData.title || `Chapter ${currentChapter}`;
+          document.getElementById("chapterBreadcrumb").textContent =
+            chapterTitle;
+          document.getElementById(
+            "chapterTitle"
+          ).textContent = `${chapterTitle} Vocabulary Game`;
+          document.getElementById(
+            "gameTitle"
+          ).textContent = `${chapterTitle} Vocabulary Game`;
+
+          console.log(
+            `Loaded ${vocabularyData.questions.length} vocabulary items for ${chapterTitle}`
+          );
+
+          // Prepare questions for the game
+          prepareGameQuestions();
+        } catch (error) {
+          console.error("Error loading vocabulary data:", error);
+          // Use sample data if file not found
+          vocabularyData = getSampleData();
+
+          // Update UI with fallback info
+          document.getElementById(
+            "chapterBreadcrumb"
+          ).textContent = `Chapter ${currentChapter}`;
+          document.getElementById(
+            "chapterTitle"
+          ).textContent = `Chapter ${currentChapter} Vocabulary Game`;
+          document.getElementById(
+            "gameTitle"
+          ).textContent = `Chapter ${currentChapter} Vocabulary Game`;
+
+          alert(
+            `Could not load ch${currentChapter}vocab.json. Using sample data for demonstration.`
+          );
+
+          // Prepare questions even with sample data
+          prepareGameQuestions();
+        }
+      }
+
+      // Prepare 20 questions for the game
+      function prepareGameQuestions() {
+        // Reset the question pool
+        questionPool = {};
+        gameQuestions = [];
+
+        // Organize questions by category and also collect all questions per category
+        const categoryQuestions = {};
+        vocabularyData.questions.forEach((question) => {
+          const category = question.category || "General";
+          const points = parseInt(question.points);
+
+          // Store by category and points
+          const key = `${category}_${points}`;
+          if (!questionPool[key]) {
+            questionPool[key] = [];
+          }
+          questionPool[key].push({ ...question }); // Clone the question
+
+          // Also store all questions by category (for fallback)
+          if (!categoryQuestions[category]) {
+            categoryQuestions[category] = [];
+          }
+          categoryQuestions[category].push({ ...question });
+        });
+
+        // Create the standard 4x5 board structure
+        const categories = vocabularyData.categories || [
+          "Category 1",
+          "Category 2",
+          "Category 3",
+          "Category 4",
+        ];
+        const pointValues = [100, 200, 300, 400, 500];
+
+        // Track used questions to avoid duplicates
+        const usedQuestionIndices = new Set();
+
+        // Select 20 questions (4 categories × 5 point values)
+        categories.forEach((category, catIndex) => {
+          // Get all available questions for this category
+          const allCategoryQuestions = categoryQuestions[category] || [];
+
+          pointValues.forEach((points) => {
+            const key = `${category}_${points}`;
+            let availableQuestions = questionPool[key] || [];
+
+            // Filter out already used questions
+            availableQuestions = availableQuestions.filter(
+              (q) => !usedQuestionIndices.has(q.index)
+            );
+
+            let selectedQuestion = null;
+
+            if (availableQuestions.length > 0) {
+              // Randomly select one question from available ones with exact point match
+              const randomIndex = Math.floor(
+                Math.random() * availableQuestions.length
+              );
+              selectedQuestion = { ...availableQuestions[randomIndex] };
+            } else {
+              // No exact point match - find ANY unused question from this category
+              const unusedCategoryQuestions = allCategoryQuestions.filter(
+                (q) => !usedQuestionIndices.has(q.index)
+              );
+
+              if (unusedCategoryQuestions.length > 0) {
+                // Pick a random unused question from this category
+                const randomIndex = Math.floor(
+                  Math.random() * unusedCategoryQuestions.length
+                );
+                selectedQuestion = { ...unusedCategoryQuestions[randomIndex] };
+
+                // Override its point value to match the board position
+                selectedQuestion.originalPoints = selectedQuestion.points;
+                selectedQuestion.points = points;
+
+                console.log(
+                  `✅ Using ${category} question originally worth ${selectedQuestion.originalPoints} for ${points} slot`
+                );
+              } else {
+                // Absolutely no questions left in this category
+                console.warn(
+                  `⚠️ No questions left in ${category} for ${points} slot`
+                );
+
+                // Try to find from another category as last resort
+                for (let fallbackCat of categories) {
+                  if (fallbackCat === category) continue;
+
+                  const fallbackQuestions =
+                    categoryQuestions[fallbackCat] || [];
+                  const unusedFallback = fallbackQuestions.filter(
+                    (q) => !usedQuestionIndices.has(q.index)
+                  );
+
+                  if (unusedFallback.length > 0) {
+                    const randomIndex = Math.floor(
+                      Math.random() * unusedFallback.length
+                    );
+                    selectedQuestion = { ...unusedFallback[randomIndex] };
+                    selectedQuestion.originalPoints = selectedQuestion.points;
+                    selectedQuestion.points = points;
+                    selectedQuestion.originalCategory =
+                      selectedQuestion.category;
+
+                    console.log(
+                      `⚠️ Could not find any question for ${category} at ${points} points`
+                    );
+                    console.log(
+                      `✅ Using question from ${fallbackCat} instead`
+                    );
+                    break;
+                  }
+                }
+              }
             }
-            
-            await Promise.allSettled(loadPromises);
-            
-            // Check if we have enough data
-            const availableChapters = Object.keys(allChaptersData).length;
-            if (availableChapters < 4) {
-                alert(`Only ${availableChapters} chapters available. Need at least 4 for random mode. Using sample data.`);
-                // Generate sample data for missing chapters
-                for (let i = 1; i <= totalChapters; i++) {
-                    if (!allChaptersData[i]) {
-                        allChaptersData[i] = generateSampleChapterData(i);
-                    }
-                }
+
+            if (selectedQuestion) {
+              // Add board position info
+              selectedQuestion.boardCategory = catIndex;
+              selectedQuestion.boardPoints = points;
+              selectedQuestion.used = false;
+
+              // Track that we've used this question
+              usedQuestionIndices.add(selectedQuestion.index);
+
+              gameQuestions.push(selectedQuestion);
+            } else {
+              console.error(
+                `❌ Could not find any question for ${category} at ${points} points - cell will be disabled`
+              );
             }
-            
-            // Select random categories
-            selectRandomCategories();
-            
-            // Update UI
-            document.getElementById('loadingIndicator').style.display = 'none';
-            document.getElementById('gameInstructions').style.display = 'block';
-            document.getElementById('randomModeInfo').style.display = 'block';
-            document.getElementById('startGameBtn').disabled = false;
-            
-            document.getElementById('chapterBreadcrumb').textContent = 'Random Mix';
-            document.getElementById('chapterTitle').textContent = 'Random All Chapters Vocabulary Game';
-            document.getElementById('gameTitle').textContent = 'Random All Chapters Vocabulary Game';
-        }
-        
-        // Load a single chapter's data
-        async function loadChapterData(chapterNum) {
-            try {
-                document.getElementById('loadingProgress').textContent = `Loading Chapter ${chapterNum}...`;
-                
-                const response = await fetch(`ch${chapterNum}vocab.json`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                allChaptersData[chapterNum] = data;
-                
-                console.log(`Loaded Chapter ${chapterNum}: ${data.title}`);
-            } catch (error) {
-                console.error(`Error loading chapter ${chapterNum}:`, error);
-                // Don't store anything for this chapter if it fails
-            }
-        }
-        
-        // Select 4 random categories from all available chapters
-        function selectRandomCategories() {
-            selectedRandomCategories = [];
-            const allAvailableCategories = [];
-            
-            // Collect all categories from all chapters with their chapter info
-            for (const [chapterNum, chapterData] of Object.entries(allChaptersData)) {
-                if (chapterData.categories && chapterData.questions) {
-                    chapterData.categories.forEach(category => {
-                        // Check if this category has enough questions (at least 5 for different point values)
-                        const categoryQuestions = chapterData.questions.filter(q => q.category === category);
-                        if (categoryQuestions.length >= 5) {
-                            allAvailableCategories.push({
-                                category: category,
-                                chapter: parseInt(chapterNum),
-                                chapterTitle: chapterData.title || `Chapter ${chapterNum}`,
-                                questions: categoryQuestions
-                            });
-                        }
-                    });
-                }
-            }
-            
-            // Shuffle and select 4 categories
-            const shuffled = allAvailableCategories.sort(() => Math.random() - 0.5);
-            selectedRandomCategories = shuffled.slice(0, 4);
-            
-            // Display selected categories
-            const categoriesDisplay = document.getElementById('selectedCategories');
-            categoriesDisplay.innerHTML = '<strong>Selected Categories:</strong><br>';
-            selectedRandomCategories.forEach((cat, index) => {
-                categoriesDisplay.innerHTML += `${index + 1}. <strong>${cat.category}</strong> (from ${cat.chapterTitle})<br>`;
-            });
-            
-            // Prepare the vocabulary data structure for the game
-            vocabularyData = {
-                title: "Random All Chapters",
-                categories: selectedRandomCategories.map(c => c.category),
-                questions: []
-            };
-            
-            // Combine all questions from selected categories
-            selectedRandomCategories.forEach(cat => {
-                cat.questions.forEach(q => {
-                    vocabularyData.questions.push({
-                        ...q,
-                        sourceChapter: cat.chapter,
-                        sourceChapterTitle: cat.chapterTitle
-                    });
-                });
-            });
-            
-            console.log(`Selected ${selectedRandomCategories.length} random categories with ${vocabularyData.questions.length} total questions`);
-        }
-        
-        // Generate sample chapter data if file not found
-        function generateSampleChapterData(chapterNum) {
-            const categories = [
-                `Ch${chapterNum} Category A`,
-                `Ch${chapterNum} Category B`,
-                `Ch${chapterNum} Category C`,
-                `Ch${chapterNum} Category D`
-            ];
-            
-            const questions = [];
-            let index = 0;
-            
-            categories.forEach(category => {
-                [100, 200, 300, 400, 500].forEach(points => {
-                    questions.push({
-                        index: index++,
-                        points: points,
-                        category: category,
-                        definition: `Sample definition from Chapter ${chapterNum}, ${category} at ${points} points`,
-                        choices: [
-                            `Option A-${chapterNum}`,
-                            `Option B-${chapterNum}`,
-                            `Correct Answer-${chapterNum}`,
-                            `Option D-${chapterNum}`
-                        ],
-                        correct: `Correct Answer-${chapterNum}`
-                    });
-                });
-            });
-            
-            return {
-                chapter: chapterNum,
-                title: `Chapter ${chapterNum} (Sample)`,
-                categories: categories,
-                questions: questions
-            };
-        }
-        
-        // Load vocabulary data from JSON file (single chapter mode)
-        async function loadVocabularyData() {
-            try {
-                const response = await fetch(`ch${currentChapter}vocab.json`);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                vocabularyData = await response.json();
-                
-                // Update UI with chapter info from loaded data
-                const chapterTitle = vocabularyData.title || `Chapter ${currentChapter}`;
-                document.getElementById('chapterBreadcrumb').textContent = chapterTitle;
-                document.getElementById('chapterTitle').textContent = `${chapterTitle} Vocabulary Game`;
-                document.getElementById('gameTitle').textContent = `${chapterTitle} Vocabulary Game`;
-                
-                console.log(`Loaded ${vocabularyData.questions.length} vocabulary items for ${chapterTitle}`);
-                
-                // Prepare questions for the game
-                prepareGameQuestions();
-                
-            } catch (error) {
-                console.error('Error loading vocabulary data:', error);
-                // Use sample data if file not found
-                vocabularyData = getSampleData();
-                
-                // Update UI with fallback info
-                document.getElementById('chapterBreadcrumb').textContent = `Chapter ${currentChapter}`;
-                document.getElementById('chapterTitle').textContent = `Chapter ${currentChapter} Vocabulary Game`;
-                document.getElementById('gameTitle').textContent = `Chapter ${currentChapter} Vocabulary Game`;
-                
-                alert(`Could not load ch${currentChapter}vocab.json. Using sample data for demonstration.`);
-                
-                // Prepare questions even with sample data
-                prepareGameQuestions();
-            }
-        }
-        
-        // Prepare 20 questions for the game
-        function prepareGameQuestions() {
-            // Reset the question pool
-            questionPool = {};
-            gameQuestions = [];
-            
-            // Organize questions by category and also collect all questions per category
-            const categoryQuestions = {};
-            vocabularyData.questions.forEach(question => {
-                const category = question.category || 'General';
-                const points = parseInt(question.points);
-                
-                // Store by category and points
-                const key = `${category}_${points}`;
-                if (!questionPool[key]) {
-                    questionPool[key] = [];
-                }
-                questionPool[key].push({...question}); // Clone the question
-                
-                // Also store all questions by category (for fallback)
-                if (!categoryQuestions[category]) {
-                    categoryQuestions[category] = [];
-                }
-                categoryQuestions[category].push({...question});
-            });
-            
-            // Create the standard 4x5 board structure
-            const categories = vocabularyData.categories || ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
-            const pointValues = [100, 200, 300, 400, 500];
-            
-            // Track used questions to avoid duplicates
-            const usedQuestionIndices = new Set();
-            
-            // Select 20 questions (4 categories × 5 point values)
-            categories.forEach((category, catIndex) => {
-                // Get all available questions for this category
-                const allCategoryQuestions = categoryQuestions[category] || [];
-                
-                pointValues.forEach(points => {
-                    const key = `${category}_${points}`;
-                    let availableQuestions = questionPool[key] || [];
-                    
-                    // Filter out already used questions
-                    availableQuestions = availableQuestions.filter(q => !usedQuestionIndices.has(q.index));
-                    
-                    let selectedQuestion = null;
-                    
-                    if (availableQuestions.length > 0) {
-                        // Randomly select one question from available ones with exact point match
-                        const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-                        selectedQuestion = {...availableQuestions[randomIndex]};
-                    } else {
-                        // No exact point match - find ANY unused question from this category
-                        const unusedCategoryQuestions = allCategoryQuestions.filter(q => 
-                            !usedQuestionIndices.has(q.index)
-                        );
-                        
-                        if (unusedCategoryQuestions.length > 0) {
-                            // Pick a random unused question from this category
-                            const randomIndex = Math.floor(Math.random() * unusedCategoryQuestions.length);
-                            selectedQuestion = {...unusedCategoryQuestions[randomIndex]};
-                            
-                            // Override its point value to match the board position
-                            selectedQuestion.originalPoints = selectedQuestion.points;
-                            selectedQuestion.points = points;
-                            
-                            console.log(`✅ Using ${category} question originally worth ${selectedQuestion.originalPoints} for ${points} slot`);
-                        } else {
-                            // Absolutely no questions left in this category
-                            console.warn(`⚠️ No questions left in ${category} for ${points} slot`);
-                            
-                            // Try to find from another category as last resort
-                            for (let fallbackCat of categories) {
-                                if (fallbackCat === category) continue;
-                                
-                                const fallbackQuestions = categoryQuestions[fallbackCat] || [];
-                                const unusedFallback = fallbackQuestions.filter(q => 
-                                    !usedQuestionIndices.has(q.index)
-                                );
-                                
-                                if (unusedFallback.length > 0) {
-                                    const randomIndex = Math.floor(Math.random() * unusedFallback.length);
-                                    selectedQuestion = {...unusedFallback[randomIndex]};
-                                    selectedQuestion.originalPoints = selectedQuestion.points;
-                                    selectedQuestion.points = points;
-                                    selectedQuestion.originalCategory = selectedQuestion.category;
-                                    
-                                    console.log(`⚠️ Could not find any question for ${category} at ${points} points`);
-                                    console.log(`✅ Using question from ${fallbackCat} instead`);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    
-                    if (selectedQuestion) {
-                        // Add board position info
-                        selectedQuestion.boardCategory = catIndex;
-                        selectedQuestion.boardPoints = points;
-                        selectedQuestion.used = false;
-                        
-                        // Track that we've used this question
-                        usedQuestionIndices.add(selectedQuestion.index);
-                        
-                        gameQuestions.push(selectedQuestion);
-                    } else {
-                        console.error(`❌ Could not find any question for ${category} at ${points} points - cell will be disabled`);
-                    }
-                });
-            });
-            
-            console.log(`✅ Prepared ${gameQuestions.length} questions for the game`);
-            
-            // Log distribution for debugging
-            const distribution = {};
-            gameQuestions.forEach(q => {
-                const cat = vocabularyData.categories[q.boardCategory];
-                if (!distribution[cat]) distribution[cat] = {};
-                distribution[cat][q.boardPoints] = (distribution[cat][q.boardPoints] || 0) + 1;
-            });
-            console.log('📊 Question distribution:', distribution);
-        }
-        
-        // Generate team input fields based on number selected
-        function updateTeamInputs() {
-            const numTeams = parseInt(document.getElementById('numTeams').value);
-            const container = document.getElementById('teamInputs');
-            container.innerHTML = '';
-            
-            for (let i = 1; i <= numTeams; i++) {
-                const div = document.createElement('div');
-                div.className = 'mb-3';
-                div.innerHTML = `
+          });
+        });
+
+        console.log(
+          `✅ Prepared ${gameQuestions.length} questions for the game`
+        );
+
+        // Log distribution for debugging
+        const distribution = {};
+        gameQuestions.forEach((q) => {
+          const cat = vocabularyData.categories[q.boardCategory];
+          if (!distribution[cat]) distribution[cat] = {};
+          distribution[cat][q.boardPoints] =
+            (distribution[cat][q.boardPoints] || 0) + 1;
+        });
+        console.log("📊 Question distribution:", distribution);
+      }
+
+      // Generate team input fields based on number selected
+      function updateTeamInputs() {
+        const numTeams = parseInt(document.getElementById("numTeams").value);
+        const container = document.getElementById("teamInputs");
+        container.innerHTML = "";
+
+        for (let i = 1; i <= numTeams; i++) {
+          const div = document.createElement("div");
+          div.className = "mb-3";
+          div.innerHTML = `
                     <label class="form-label fw-bold">Team ${i} Member Names:</label>
                     <input type="text" class="form-control form-control-lg" id="team${i}" 
                            placeholder="Enter all team member names (e.g., John Doe, Jane Smith)" value="">
                 `;
-                container.appendChild(div);
-            }
+          container.appendChild(div);
         }
-        
-        // Start the game
-        function startGame() {
-            const numTeams = parseInt(document.getElementById('numTeams').value);
-            teams = [];
-            
-            // Collect team names and members
-            for (let i = 1; i <= numTeams; i++) {
-                const memberNames = document.getElementById(`team${i}`).value || `Team ${i}`;
-                teams.push({ 
-                    name: `Team ${i}`, 
-                    members: memberNames,
-                    score: 0 
-                });
-            }
-            
-            // Reset game state
-            questionsAnswered = 0;
-            gameEndedEarly = false;
-            
-            // Prepare questions for the game
-            prepareGameQuestions();
-            
-            // Switch to game section
-            document.getElementById('setupSection').classList.remove('active');
-            document.getElementById('gameSection').classList.add('active');
-            
-            // Initialize game
-            initializeGame();
+      }
+
+      // Start the game
+      function startGame() {
+        const numTeams = parseInt(document.getElementById("numTeams").value);
+        teams = [];
+
+        // Collect team names and members
+        for (let i = 1; i <= numTeams; i++) {
+          const memberNames =
+            document.getElementById(`team${i}`).value || `Team ${i}`;
+          teams.push({
+            name: `Team ${i}`,
+            members: memberNames,
+            score: 0,
+          });
         }
-        
-        // Initialize game board and scoring
-        function initializeGame() {
-            displayTeamScores();
-            setupGameBoard();
-            gameActive = true;
-            currentTeam = 0;
-            updateCurrentTeam();
-            updateQuestionsRemaining();
-        }
-        
-        // Update questions remaining display
-        function updateQuestionsRemaining() {
-            const remaining = 20 - questionsAnswered;
-            document.getElementById('questionsRemaining').textContent = `Questions Remaining: ${remaining}/20`;
-        }
-        
-        // Display team scores
-        function displayTeamScores() {
-            const scoresContainer = document.getElementById('teamScores');
-            scoresContainer.innerHTML = '';
-            
-            teams.forEach((team, index) => {
-                const scoreCard = document.createElement('div');
-                scoreCard.className = 'team-score-card';
-                scoreCard.id = `team-${index}`;
-                scoreCard.innerHTML = `
+
+        // Reset game state
+        questionsAnswered = 0;
+        gameEndedEarly = false;
+
+        // Prepare questions for the game
+        prepareGameQuestions();
+
+        // Switch to game section
+        document.getElementById("setupSection").classList.remove("active");
+        document.getElementById("gameSection").classList.add("active");
+
+        // Initialize game
+        initializeGame();
+      }
+
+      // Initialize game board and scoring
+      function initializeGame() {
+        displayTeamScores();
+        setupGameBoard();
+        gameActive = true;
+        currentTeam = 0;
+        updateCurrentTeam();
+        updateQuestionsRemaining();
+      }
+
+      // Update questions remaining display
+      function updateQuestionsRemaining() {
+        const remaining = 20 - questionsAnswered;
+        document.getElementById(
+          "questionsRemaining"
+        ).textContent = `Questions Remaining: ${remaining}/20`;
+      }
+
+      // Display team scores
+      function displayTeamScores() {
+        const scoresContainer = document.getElementById("teamScores");
+        scoresContainer.innerHTML = "";
+
+        teams.forEach((team, index) => {
+          const scoreCard = document.createElement("div");
+          scoreCard.className = "team-score-card";
+          scoreCard.id = `team-${index}`;
+          scoreCard.innerHTML = `
                     <h5>${team.name}</h5>
                     <div class="h3 mb-0">${team.score}</div>
                 `;
-                scoresContainer.appendChild(scoreCard);
-            });
+          scoresContainer.appendChild(scoreCard);
+        });
+      }
+
+      // Setup game board
+      function setupGameBoard() {
+        const gameBoard = document.getElementById("gameBoard");
+        gameBoard.innerHTML = "";
+
+        // Use categories from loaded data
+        let headers = vocabularyData.categories || [
+          "Category 1",
+          "Category 2",
+          "Category 3",
+          "Category 4",
+        ];
+
+        // For random mode, use the actual category names without the chapter info
+        if (isRandomMode && selectedRandomCategories.length > 0) {
+          headers = selectedRandomCategories.map((cat) => cat.category);
         }
-        
-        // Setup game board
-        function setupGameBoard() {
-            const gameBoard = document.getElementById('gameBoard');
-            gameBoard.innerHTML = '';
-            
-            // Use categories from loaded data
-            let headers = vocabularyData.categories || ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
-            
-            // For random mode, use the actual category names without the chapter info
-            if (isRandomMode && selectedRandomCategories.length > 0) {
-                headers = selectedRandomCategories.map(cat => cat.category);
-            }
-            
-            headers.forEach(header => {
-                const headerCell = document.createElement('div');
-                headerCell.className = 'jeopardy-cell jeopardy-header';
-                
-                // Show shortened category names if too long
-                if (header.length > 25) {
-                    headerCell.textContent = header.substring(0, 22) + '...';
-                    headerCell.title = header; // Full name on hover
-                } else {
-                    headerCell.textContent = header;
-                }
-                
-                gameBoard.appendChild(headerCell);
-            });
-            
-            // Create point values grid
-            const pointValues = [100, 200, 300, 400, 500];
-            pointValues.forEach(points => {
-                for (let col = 0; col < headers.length; col++) {
-                    const cell = document.createElement('div');
-                    cell.className = 'jeopardy-cell';
-                    cell.textContent = points;
-                    cell.dataset.category = col;
-                    cell.dataset.points = points;
-                    
-                    // Check if we have a question for this cell
-                    const hasQuestion = gameQuestions.some(q => 
-                        q.boardCategory === col && 
-                        q.boardPoints === points && 
-                        !q.used
-                    );
-                    
-                    if (hasQuestion) {
-                        cell.onclick = () => handleCellClick(points, col, cell);
-                    } else {
-                        cell.classList.add('used'); // Mark as unavailable if no question
-                    }
-                    
-                    gameBoard.appendChild(cell);
-                }
-            });
-        }
-        
-        // Handle game board cell click
-        function handleCellClick(points, category, cellElement) {
-            if (!gameActive) return;
-            if (cellElement.classList.contains('used')) return;
-            
-            // Find the specific question for this cell
-            const question = gameQuestions.find(q => 
-                q.boardCategory === category && 
-                q.boardPoints === points && 
-                !q.used
+
+        headers.forEach((header) => {
+          const headerCell = document.createElement("div");
+          headerCell.className = "jeopardy-cell jeopardy-header";
+
+          // Show shortened category names if too long
+          if (header.length > 25) {
+            headerCell.textContent = header.substring(0, 22) + "...";
+            headerCell.title = header; // Full name on hover
+          } else {
+            headerCell.textContent = header;
+          }
+
+          gameBoard.appendChild(headerCell);
+        });
+
+        // Create point values grid
+        const pointValues = [100, 200, 300, 400, 500];
+        pointValues.forEach((points) => {
+          for (let col = 0; col < headers.length; col++) {
+            const cell = document.createElement("div");
+            cell.className = "jeopardy-cell";
+            cell.textContent = points;
+            cell.dataset.category = col;
+            cell.dataset.points = points;
+
+            // Check if we have a question for this cell
+            const hasQuestion = gameQuestions.some(
+              (q) =>
+                q.boardCategory === col && q.boardPoints === points && !q.used
             );
-            
-            if (!question) {
-                alert('No question available for this cell');
-                return;
-            }
-            
-            // Debug logging
-            console.group('🎯 Question Selected');
-            if (isRandomMode && question.sourceChapter) {
-                console.log(`📁 Source: ch${question.sourceChapter}vocab.json (${question.sourceChapterTitle || 'Chapter ' + question.sourceChapter})`);
+
+            if (hasQuestion) {
+              cell.onclick = () => handleCellClick(points, col, cell);
             } else {
-                console.log(`📁 Source: ch${currentChapter}vocab.json`);
+              cell.classList.add("used"); // Mark as unavailable if no question
             }
-            console.log(`📂 Category: ${question.category}`);
-            console.log(`💰 Original Points: ${question.originalPoints || question.points}`);
-            console.log(`🎮 Board Points: ${points}`);
-            console.log(`❓ Definition: ${question.definition.substring(0, 50)}...`);
-            console.log(`✅ Correct Answer: ${question.correct}`);
-            if (question.originalCategory) {
-                console.log(`⚠️ Note: Question borrowed from category "${question.originalCategory}"`);
-            }
-            console.groupEnd();
-            
-            question.used = true;
-            currentQuestion = question;
-            currentPoints = points;
-            
-            cellElement.classList.add('used');
-            showQuestion();
+
+            gameBoard.appendChild(cell);
+          }
+        });
+      }
+
+      // Handle game board cell click
+      function handleCellClick(points, category, cellElement) {
+        if (!gameActive) return;
+        if (cellElement.classList.contains("used")) return;
+
+        // Find the specific question for this cell
+        const question = gameQuestions.find(
+          (q) =>
+            q.boardCategory === category && q.boardPoints === points && !q.used
+        );
+
+        if (!question) {
+          alert("No question available for this cell");
+          return;
         }
-        
-        // Show question modal
-        function showQuestion(isSteal = false) {
-            const modal = document.getElementById('questionModal');
-            let pointsText = isSteal ? `${currentPoints} Points (STEAL) - ${teams[currentTeam].name}'s Turn` : `${currentPoints} Points - ${teams[currentTeam].name}'s Turn`;
-            
-            // Don't add source chapter info since all questions in a category are from the same chapter
-            
-            document.getElementById('questionPoints').textContent = pointsText;
-            document.getElementById('questionText').textContent = currentQuestion.definition;
-            
-            // Display answer options
-            const optionsContainer = document.getElementById('answerOptions');
-            optionsContainer.innerHTML = '';
-            
-            currentQuestion.choices.forEach((choice, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'answer-option';
-                btn.textContent = choice;
-                btn.type = 'button';
-                
-                // Use a closure to capture the choice and button element
-                (function(selectedChoice, buttonElement) {
-                    btn.onclick = function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        checkAnswer(selectedChoice === currentQuestion.correct, isSteal, buttonElement);
-                    };
-                })(choice, btn);
-                
-                optionsContainer.appendChild(btn);
-            });
-            
-            modal.classList.add('show');
-            startQuestionTimer(isSteal);
+
+        // Debug logging
+        console.group("🎯 Question Selected");
+        if (isRandomMode && question.sourceChapter) {
+          console.log(
+            `📁 Source: ch${question.sourceChapter}vocab.json (${
+              question.sourceChapterTitle || "Chapter " + question.sourceChapter
+            })`
+          );
+        } else {
+          console.log(`📁 Source: ch${currentChapter}vocab.json`);
         }
-        
-        // Start question timer
-        function startQuestionTimer(isSteal = false) {
-            let timeLeft = 30;
-            const timerDisplay = document.getElementById('modalTimer');
-            
-            if (questionTimer) clearInterval(questionTimer);
-            
-            questionTimer = setInterval(() => {
-                timeLeft--;
-                timerDisplay.textContent = timeLeft;
-                
-                if (timeLeft <= 10) {
-                    timerDisplay.classList.add('warning');
-                }
-                if (timeLeft <= 5) {
-                    timerDisplay.classList.remove('warning');
-                    timerDisplay.classList.add('danger');
-                }
-                
-                if (timeLeft <= 0) {
-                    clearInterval(questionTimer);
-                    try {
-                        playSound('ding-ding');
-                    } catch (e) {
-                        console.log('Sound error:', e);
-                    }
-                    checkAnswer(false, isSteal, null);
-                }
-            }, 1000);
+        console.log(`📂 Category: ${question.category}`);
+        console.log(
+          `💰 Original Points: ${question.originalPoints || question.points}`
+        );
+        console.log(`🎮 Board Points: ${points}`);
+        console.log(
+          `❓ Definition: ${question.definition.substring(0, 50)}...`
+        );
+        console.log(`✅ Correct Answer: ${question.correct}`);
+        if (question.originalCategory) {
+          console.log(
+            `⚠️ Note: Question borrowed from category "${question.originalCategory}"`
+          );
         }
-        
-        // Play sound effect
-        function playSound(soundName) {
-            try {
-                const audio = new Audio(`../../media/${soundName}.mp3`);
-                audio.play().catch(e => console.log('Audio play failed:', e));
-            } catch (e) {
-                console.log('Audio error:', e);
-            }
-        }
-        
-        // Check answer
-        function checkAnswer(isCorrect, isSteal = false, clickedElement = null) {
+        console.groupEnd();
+
+        question.used = true;
+        currentQuestion = question;
+        currentPoints = points;
+
+        cellElement.classList.add("used");
+        showQuestion();
+      }
+
+      // Show question modal
+      function showQuestion(isSteal = false) {
+        const modal = document.getElementById("questionModal");
+        let pointsText = isSteal
+          ? `${currentPoints} Points (STEAL) - ${teams[currentTeam].name}'s Turn`
+          : `${currentPoints} Points - ${teams[currentTeam].name}'s Turn`;
+
+        // Don't add source chapter info since all questions in a category are from the same chapter
+
+        document.getElementById("questionPoints").textContent = pointsText;
+        document.getElementById("questionText").textContent =
+          currentQuestion.definition;
+
+        // Display answer options
+        const optionsContainer = document.getElementById("answerOptions");
+        optionsContainer.innerHTML = "";
+
+        currentQuestion.choices.forEach((choice, index) => {
+          const btn = document.createElement("button");
+          btn.className = "answer-option";
+          btn.textContent = choice;
+          btn.type = "button";
+
+          // Use a closure to capture the choice and button element
+          (function (selectedChoice, buttonElement) {
+            btn.onclick = function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              checkAnswer(
+                selectedChoice === currentQuestion.correct,
+                isSteal,
+                buttonElement
+              );
+            };
+          })(choice, btn);
+
+          optionsContainer.appendChild(btn);
+        });
+
+        modal.classList.add("show");
+        startQuestionTimer(isSteal);
+      }
+
+      // Start question timer
+      function startQuestionTimer(isSteal = false) {
+        let timeLeft = 30;
+        const timerDisplay = document.getElementById("modalTimer");
+
+        if (questionTimer) clearInterval(questionTimer);
+
+        questionTimer = setInterval(() => {
+          timeLeft--;
+          timerDisplay.textContent = timeLeft;
+
+          if (timeLeft <= 10) {
+            timerDisplay.classList.add("warning");
+          }
+          if (timeLeft <= 5) {
+            timerDisplay.classList.remove("warning");
+            timerDisplay.classList.add("danger");
+          }
+
+          if (timeLeft <= 0) {
             clearInterval(questionTimer);
-            
-            // Disable all options immediately to prevent double-clicks
-            const options = document.querySelectorAll('.answer-option');
-            options.forEach(option => {
-                option.disabled = true;
-                option.style.pointerEvents = 'none';
-            });
-            
-            if (isCorrect) {
-                // Correct answer
-                try {
-                    playSound('correct');
-                } catch (e) {
-                    console.log('Sound error:', e);
-                }
-                
-                options.forEach(option => {
-                    if (option.textContent === currentQuestion.correct) {
-                        option.classList.add('correct');
-                    }
-                });
-                
-                teams[currentTeam].score += currentPoints;
-                displayTeamScores();
-                
+            try {
+              playSound("ding-ding");
+            } catch (e) {
+              console.log("Sound error:", e);
+            }
+            checkAnswer(false, isSteal, null);
+          }
+        }, 1000);
+      }
+
+      // Play sound effect
+      function playSound(soundName) {
+        try {
+          const audio = new Audio(`../../media/${soundName}.mp3`);
+          audio.play().catch((e) => console.log("Audio play failed:", e));
+        } catch (e) {
+          console.log("Audio error:", e);
+        }
+      }
+
+      // Check answer
+      function checkAnswer(isCorrect, isSteal = false, clickedElement = null) {
+        clearInterval(questionTimer);
+
+        // Disable all options immediately to prevent double-clicks
+        const options = document.querySelectorAll(".answer-option");
+        options.forEach((option) => {
+          option.disabled = true;
+          option.style.pointerEvents = "none";
+        });
+
+        if (isCorrect) {
+          // Correct answer
+          try {
+            playSound("correct");
+          } catch (e) {
+            console.log("Sound error:", e);
+          }
+
+          options.forEach((option) => {
+            if (option.textContent === currentQuestion.correct) {
+              option.classList.add("correct");
+            }
+          });
+
+          teams[currentTeam].score += currentPoints;
+          displayTeamScores();
+
+          questionsAnswered++;
+          updateQuestionsRemaining();
+
+          setTimeout(() => {
+            closeQuestion();
+            nextTeam();
+          }, 2000);
+        } else {
+          // Incorrect answer
+          try {
+            playSound("incorrect");
+          } catch (e) {
+            console.log("Sound error:", e);
+          }
+
+          if (!isSteal) {
+            // First attempt wrong - offer steal
+            setTimeout(() => {
+              closeQuestion();
+              if (
+                confirm(
+                  `Incorrect! Next team can steal for ${Math.floor(
+                    currentPoints / 2
+                  )} points?`
+                )
+              ) {
+                nextTeam();
+                currentPoints = Math.floor(currentPoints / 2);
+                showQuestion(true);
+              } else {
                 questionsAnswered++;
                 updateQuestionsRemaining();
-                
+                revealAnswer();
                 setTimeout(() => {
-                    closeQuestion();
-                    nextTeam();
+                  nextTeam();
                 }, 2000);
-            } else {
-                // Incorrect answer
-                try {
-                    playSound('incorrect');
-                } catch (e) {
-                    console.log('Sound error:', e);
-                }
-                
-                if (!isSteal) {
-                    // First attempt wrong - offer steal
-                    setTimeout(() => {
-                        closeQuestion();
-                        if (confirm(`Incorrect! Next team can steal for ${Math.floor(currentPoints/2)} points?`)) {
-                            nextTeam();
-                            currentPoints = Math.floor(currentPoints / 2);
-                            showQuestion(true);
-                        } else {
-                            questionsAnswered++;
-                            updateQuestionsRemaining();
-                            revealAnswer();
-                            setTimeout(() => {
-                                nextTeam();
-                            }, 2000);
-                        }
-                    }, 1000);
-                } else {
-                    // Steal attempt failed - show correct answer
-                    options.forEach(option => {
-                        if (option.textContent === currentQuestion.correct) {
-                            option.classList.add('correct');
-                        } else if (clickedElement && option === clickedElement) {
-                            option.classList.add('incorrect');
-                        }
-                    });
-                    
-                    questionsAnswered++;
-                    updateQuestionsRemaining();
-                    
-                    setTimeout(() => {
-                        closeQuestion();
-                        nextTeam();
-                    }, 3000);
-                }
-            }
-        }
-        
-        // Reveal correct answer
-        function revealAnswer() {
-            const modal = document.getElementById('questionModal');
-            modal.classList.add('show');
-            
-            document.getElementById('questionPoints').textContent = 'Answer Revealed';
-            
-            const options = document.querySelectorAll('.answer-option');
-            const optionsContainer = document.getElementById('answerOptions');
-            
-            options.forEach(option => {
-                option.disabled = true;
-                if (option.textContent === currentQuestion.correct) {
-                    option.classList.add('correct');
-                }
+              }
+            }, 1000);
+          } else {
+            // Steal attempt failed - show correct answer
+            options.forEach((option) => {
+              if (option.textContent === currentQuestion.correct) {
+                option.classList.add("correct");
+              } else if (clickedElement && option === clickedElement) {
+                option.classList.add("incorrect");
+              }
             });
-            
-            // Add a continue button below the options
-            const continueBtn = document.createElement('button');
-            continueBtn.className = 'btn btn-primary mt-3';
-            continueBtn.innerHTML = '<i class="bi bi-arrow-right"></i> Continue';
-            continueBtn.onclick = () => {
-                closeQuestion();
-            };
-            optionsContainer.appendChild(continueBtn);
+
+            questionsAnswered++;
+            updateQuestionsRemaining();
+
+            setTimeout(() => {
+              closeQuestion();
+              nextTeam();
+            }, 3000);
+          }
         }
-        
-        // Close question modal
-        function closeQuestion() {
-            document.getElementById('questionModal').classList.remove('show');
-            document.getElementById('modalTimer').classList.remove('warning', 'danger');
-            
-            // Reset timer display
-            document.getElementById('modalTimer').textContent = '30';
-            
-            // Check if game is over (all 20 questions answered)
-            if (questionsAnswered >= 20) {
-                endGame();
-            }
+      }
+
+      // Reveal correct answer
+      function revealAnswer() {
+        const modal = document.getElementById("questionModal");
+        modal.classList.add("show");
+
+        document.getElementById("questionPoints").textContent =
+          "Answer Revealed";
+
+        const options = document.querySelectorAll(".answer-option");
+        const optionsContainer = document.getElementById("answerOptions");
+
+        options.forEach((option) => {
+          option.disabled = true;
+          if (option.textContent === currentQuestion.correct) {
+            option.classList.add("correct");
+          }
+        });
+
+        // Add a continue button below the options
+        const continueBtn = document.createElement("button");
+        continueBtn.className = "btn btn-primary mt-3";
+        continueBtn.innerHTML = '<i class="bi bi-arrow-right"></i> Continue';
+        continueBtn.onclick = () => {
+          closeQuestion();
+        };
+        optionsContainer.appendChild(continueBtn);
+      }
+
+      // Close question modal
+      function closeQuestion() {
+        document.getElementById("questionModal").classList.remove("show");
+        document
+          .getElementById("modalTimer")
+          .classList.remove("warning", "danger");
+
+        // Reset timer display
+        document.getElementById("modalTimer").textContent = "30";
+
+        // Check if game is over (all 20 questions answered)
+        if (questionsAnswered >= 20) {
+          endGame();
         }
-        
-        // Move to next team
-        function nextTeam() {
-            currentTeam = (currentTeam + 1) % teams.length;
-            updateCurrentTeam();
+      }
+
+      // Move to next team
+      function nextTeam() {
+        currentTeam = (currentTeam + 1) % teams.length;
+        updateCurrentTeam();
+      }
+
+      // Update current team display
+      function updateCurrentTeam() {
+        document.getElementById(
+          "currentTeamDisplay"
+        ).textContent = `Current Turn: ${teams[currentTeam].name}`;
+
+        document.querySelectorAll(".team-score-card").forEach((card, index) => {
+          card.classList.remove("active");
+          if (index === currentTeam) {
+            card.classList.add("active");
+          }
+        });
+      }
+
+      // End game early function
+      function endGameEarly() {
+        if (!gameActive) return;
+
+        const confirmation = confirm(
+          "Are you sure you want to end the game early? This will show final results with current scores."
+        );
+        if (confirmation) {
+          gameEndedEarly = true;
+          clearInterval(questionTimer);
+
+          // Close any open question modal
+          document.getElementById("questionModal").classList.remove("show");
+
+          endGame();
         }
-        
-        // Update current team display
-        function updateCurrentTeam() {
-            document.getElementById('currentTeamDisplay').textContent = `Current Turn: ${teams[currentTeam].name}`;
-            
-            document.querySelectorAll('.team-score-card').forEach((card, index) => {
-                card.classList.remove('active');
-                if (index === currentTeam) {
-                    card.classList.add('active');
-                }
-            });
-        }
-        
-        // End game early function
-        function endGameEarly() {
-            if (!gameActive) return;
-            
-            const confirmation = confirm('Are you sure you want to end the game early? This will show final results with current scores.');
-            if (confirmation) {
-                gameEndedEarly = true;
-                clearInterval(questionTimer);
-                
-                // Close any open question modal
-                document.getElementById('questionModal').classList.remove('show');
-                
-                endGame();
-            }
-        }
-        
-        // End game and show results
-        function endGame() {
-            gameActive = false;
-            
-            // Update UI based on how game ended
-            if (gameEndedEarly) {
-                document.getElementById('gameCompleteTitle').textContent = 'Game Ended Early';
-                document.getElementById('gameCompleteAlert').className = 'alert alert-warning text-center';
-                document.getElementById('gameCompleteAlert').innerHTML = `
+      }
+
+      // End game and show results
+      function endGame() {
+        gameActive = false;
+
+        // Update UI based on how game ended
+        if (gameEndedEarly) {
+          document.getElementById("gameCompleteTitle").textContent =
+            "Game Ended Early";
+          document.getElementById("gameCompleteAlert").className =
+            "alert alert-warning text-center";
+          document.getElementById("gameCompleteAlert").innerHTML = `
                     <h3><i class="bi bi-clock"></i> Game Ended Early</h3>
                     <p class="mb-3">The game was ended before all questions were completed.</p>
                     <p class="mb-3">Questions Answered: ${questionsAnswered}/20</p>
                     <div id="finalScores" class="mt-3"></div>
                 `;
-            } else {
-                document.getElementById('gameCompleteTitle').textContent = 'Game Complete!';
-                document.getElementById('gameCompleteAlert').className = 'alert alert-success text-center';
-                document.getElementById('gameCompleteAlert').innerHTML = `
+        } else {
+          document.getElementById("gameCompleteTitle").textContent =
+            "Game Complete!";
+          document.getElementById("gameCompleteAlert").className =
+            "alert alert-success text-center";
+          document.getElementById("gameCompleteAlert").innerHTML = `
                     <h3>Final Results</h3>
                     <p class="mb-3">All 20 questions completed!</p>
                     <div id="finalScores" class="mt-3"></div>
                 `;
-            }
-            
-            // Sort teams by score (highest first)
-            const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
-            
-            // Create rankings display with proper tie handling
-            const finalScoresContainer = document.getElementById('finalScores');
-            finalScoresContainer.innerHTML = '';
-            
-            const rankingsDiv = document.createElement('div');
-            rankingsDiv.className = 'row justify-content-center';
-            
-            let currentRank = 1;
-            let previousScore = null;
-            let teamsAtSameRank = 0;
-            
-            sortedTeams.forEach((team, index) => {
-                // Handle tie logic
-                if (previousScore !== null && team.score !== previousScore) {
-                    currentRank = index + 1;
-                    teamsAtSameRank = 0;
-                } else if (previousScore === team.score) {
-                    teamsAtSameRank++;
-                }
-                
-                previousScore = team.score;
-                
-                const colDiv = document.createElement('div');
-                colDiv.className = 'col-md-6 mb-3';
-                
-                const scoreCard = document.createElement('div');
-                scoreCard.className = 'team-score-card text-center p-4';
-                
-                // Determine rank display and styling
-                let rankIcon = '';
-                let rankText = '';
-                let isTie = teamsAtSameRank > 0 || (index < sortedTeams.length - 1 && sortedTeams[index + 1].score === team.score);
-                
-                if (currentRank === 1) {
-                    rankIcon = '🥇';
-                    rankText = isTie ? '1st Place (Tie)' : '1st Place';
-                    scoreCard.style.background = 'linear-gradient(135deg, #fff3cd, #ffeaa7)';
-                    scoreCard.style.border = '3px solid #ffc107';
-                } else if (currentRank === 2) {
-                    rankIcon = '🥈';
-                    rankText = isTie ? '2nd Place (Tie)' : '2nd Place';
-                    scoreCard.style.background = 'linear-gradient(135deg, #e9ecef, #dee2e6)';
-                    scoreCard.style.border = '2px solid #6c757d';
-                } else if (currentRank === 3) {
-                    rankIcon = '🥉';
-                    rankText = isTie ? '3rd Place (Tie)' : '3rd Place';
-                    scoreCard.style.background = 'linear-gradient(135deg, #f8d7da, #f5c2c7)';
-                    scoreCard.style.border = '2px solid #dc3545';
-                } else {
-                    rankIcon = '🏆';
-                    rankText = isTie ? `${getOrdinalSuffix(currentRank)} Place (Tie)` : `${getOrdinalSuffix(currentRank)} Place`;
-                    scoreCard.style.background = 'linear-gradient(135deg, #f8f9fa, #e9ecef)';
-                    scoreCard.style.border = '2px solid #6c757d';
-                }
-                
-                scoreCard.innerHTML = `
+        }
+
+        // Sort teams by score (highest first)
+        const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
+
+        // Create rankings display with proper tie handling
+        const finalScoresContainer = document.getElementById("finalScores");
+        finalScoresContainer.innerHTML = "";
+
+        const rankingsDiv = document.createElement("div");
+        rankingsDiv.className = "row justify-content-center";
+
+        let currentRank = 1;
+        let previousScore = null;
+        let teamsAtSameRank = 0;
+
+        sortedTeams.forEach((team, index) => {
+          // Handle tie logic
+          if (previousScore !== null && team.score !== previousScore) {
+            currentRank = index + 1;
+            teamsAtSameRank = 0;
+          } else if (previousScore === team.score) {
+            teamsAtSameRank++;
+          }
+
+          previousScore = team.score;
+
+          const colDiv = document.createElement("div");
+          colDiv.className = "col-md-6 mb-3";
+
+          const scoreCard = document.createElement("div");
+          scoreCard.className = "team-score-card text-center p-4";
+
+          // Determine rank display and styling
+          let rankIcon = "";
+          let rankText = "";
+          let isTie =
+            teamsAtSameRank > 0 ||
+            (index < sortedTeams.length - 1 &&
+              sortedTeams[index + 1].score === team.score);
+
+          if (currentRank === 1) {
+            rankIcon = "🥇";
+            rankText = isTie ? "1st Place (Tie)" : "1st Place";
+            scoreCard.style.background =
+              "linear-gradient(135deg, #fff3cd, #ffeaa7)";
+            scoreCard.style.border = "3px solid #ffc107";
+          } else if (currentRank === 2) {
+            rankIcon = "🥈";
+            rankText = isTie ? "2nd Place (Tie)" : "2nd Place";
+            scoreCard.style.background =
+              "linear-gradient(135deg, #e9ecef, #dee2e6)";
+            scoreCard.style.border = "2px solid #6c757d";
+          } else if (currentRank === 3) {
+            rankIcon = "🥉";
+            rankText = isTie ? "3rd Place (Tie)" : "3rd Place";
+            scoreCard.style.background =
+              "linear-gradient(135deg, #f8d7da, #f5c2c7)";
+            scoreCard.style.border = "2px solid #dc3545";
+          } else {
+            rankIcon = "🏆";
+            rankText = isTie
+              ? `${getOrdinalSuffix(currentRank)} Place (Tie)`
+              : `${getOrdinalSuffix(currentRank)} Place`;
+            scoreCard.style.background =
+              "linear-gradient(135deg, #f8f9fa, #e9ecef)";
+            scoreCard.style.border = "2px solid #6c757d";
+          }
+
+          scoreCard.innerHTML = `
                     <div class="h1 mb-2">${rankIcon}</div>
                     <h4 class="mb-2">${rankText}</h4>
                     <h5 class="text-primary">${team.name}</h5>
                     <div class="h2 mb-0">${team.score} points</div>
                 `;
-                
-                colDiv.appendChild(scoreCard);
-                rankingsDiv.appendChild(colDiv);
+
+          colDiv.appendChild(scoreCard);
+          rankingsDiv.appendChild(colDiv);
+        });
+
+        finalScoresContainer.appendChild(rankingsDiv);
+
+        // Switch to complete section
+        document.getElementById("gameSection").classList.remove("active");
+        document.getElementById("completeSection").classList.add("active");
+      }
+
+      // Helper function to get ordinal suffix
+      function getOrdinalSuffix(num) {
+        const j = num % 10;
+        const k = num % 100;
+        if (j == 1 && k != 11) {
+          return num + "st";
+        }
+        if (j == 2 && k != 12) {
+          return num + "nd";
+        }
+        if (j == 3 && k != 13) {
+          return num + "rd";
+        }
+        return num + "th";
+      }
+
+      // Restart game with same teams
+      function playAgain() {
+        // Reset all game state
+        teams.forEach((team) => (team.score = 0));
+        questionsAnswered = 0;
+        currentTeam = 0;
+        gameEndedEarly = false;
+
+        // For random mode, reselect categories
+        if (isRandomMode) {
+          selectRandomCategories();
+        }
+
+        // Re-prepare questions for a new game
+        prepareGameQuestions();
+
+        // Switch back to game section
+        document.getElementById("completeSection").classList.remove("active");
+        document.getElementById("gameSection").classList.add("active");
+
+        // Reinitialize game
+        initializeGame();
+      }
+
+      // Go back to chapter selection
+      function selectNewChapter() {
+        window.location.href = "index.html";
+      }
+
+      // Generate and download certificate
+      function generateCertificate() {
+        // Prepare certificate data
+        const certificateData = {
+          gameDate: new Date().toISOString(),
+          chapterInfo: isRandomMode
+            ? "Random All Chapters"
+            : vocabularyData.title || `Chapter ${currentChapter}`,
+          isRandomMode: isRandomMode,
+          currentChapter: currentChapter,
+          gameEndedEarly: gameEndedEarly,
+          questionsAnswered: questionsAnswered,
+          totalQuestions: 20,
+          teams: teams.map((team) => ({
+            name: team.name,
+            members: team.members,
+            score: team.score,
+          })),
+          randomCategories: isRandomMode
+            ? selectedRandomCategories.map((cat) => ({
+                category: cat.category,
+                chapterTitle: cat.chapterTitle,
+              }))
+            : null,
+        };
+
+        // Store in localStorage
+        localStorage.setItem(
+          "certificateData",
+          JSON.stringify(certificateData)
+        );
+
+        // Open certificate page in new window/tab
+        window.open("certificate.html", "_blank");
+      }
+
+      // Sample data for testing
+      function getSampleData() {
+        // Generate sample data with proper categories and point distribution
+        const categories = [
+          "Category 1",
+          "Category 2",
+          "Category 3",
+          "Category 4",
+        ];
+        const questions = [];
+        let index = 0;
+
+        // Generate 5 questions per category at different point values
+        categories.forEach((category) => {
+          [100, 200, 300, 400, 500].forEach((points) => {
+            questions.push({
+              index: index++,
+              points: points,
+              category: category,
+              definition: `Sample definition for ${category} at ${points} points`,
+              choices: ["Option A", "Option B", "Correct Answer", "Option D"],
+              correct: "Correct Answer",
             });
-            
-            finalScoresContainer.appendChild(rankingsDiv);
-            
-            // Switch to complete section
-            document.getElementById('gameSection').classList.remove('active');
-            document.getElementById('completeSection').classList.add('active');
-        }
-        
-        // Helper function to get ordinal suffix
-        function getOrdinalSuffix(num) {
-            const j = num % 10;
-            const k = num % 100;
-            if (j == 1 && k != 11) {
-                return num + "st";
-            }
-            if (j == 2 && k != 12) {
-                return num + "nd";
-            }
-            if (j == 3 && k != 13) {
-                return num + "rd";
-            }
-            return num + "th";
-        }
-        
-        // Restart game with same teams
-        function playAgain() {
-            // Reset all game state
-            teams.forEach(team => team.score = 0);
-            questionsAnswered = 0;
-            currentTeam = 0;
-            gameEndedEarly = false;
-            
-            // For random mode, reselect categories
-            if (isRandomMode) {
-                selectRandomCategories();
-            }
-            
-            // Re-prepare questions for a new game
-            prepareGameQuestions();
-            
-            // Switch back to game section
-            document.getElementById('completeSection').classList.remove('active');
-            document.getElementById('gameSection').classList.add('active');
-            
-            // Reinitialize game
-            initializeGame();
-        }
-        
-        // Go back to chapter selection
-        function selectNewChapter() {
-            window.location.href = 'index.html';
-        }
-        
-        // Generate and download certificate
-        function generateCertificate() {
-            // Prepare certificate data
-            const certificateData = {
-                gameDate: new Date().toISOString(),
-                chapterInfo: isRandomMode ? 'Random All Chapters' : (vocabularyData.title || `Chapter ${currentChapter}`),
-                isRandomMode: isRandomMode,
-                currentChapter: currentChapter,
-                gameEndedEarly: gameEndedEarly,
-                questionsAnswered: questionsAnswered,
-                totalQuestions: 20,
-                teams: teams.map(team => ({
-                    name: team.name,
-                    members: team.members,
-                    score: team.score
-                })),
-                randomCategories: isRandomMode ? selectedRandomCategories.map(cat => ({
-                    category: cat.category,
-                    chapterTitle: cat.chapterTitle
-                })) : null
-            };
-            
-            // Store in localStorage
-            localStorage.setItem('certificateData', JSON.stringify(certificateData));
-            
-            // Open certificate page in new window/tab
-            window.open('certificate.html', '_blank');
-        }
-        
-        // Sample data for testing
-        function getSampleData() {
-            // Generate sample data with proper categories and point distribution
-            const categories = ["Category 1", "Category 2", "Category 3", "Category 4"];
-            const questions = [];
-            let index = 0;
-            
-            // Generate 5 questions per category at different point values
-            categories.forEach(category => {
-                [100, 200, 300, 400, 500].forEach(points => {
-                    questions.push({
-                        "index": index++,
-                        "points": points,
-                        "category": category,
-                        "definition": `Sample definition for ${category} at ${points} points`,
-                        "choices": [
-                            "Option A",
-                            "Option B",
-                            "Correct Answer",
-                            "Option D"
-                        ],
-                        "correct": "Correct Answer"
-                    });
-                });
-            });
-            
-            return {
-                "chapter": currentChapter,
-                "title": `Chapter ${currentChapter}`,
-                "description": "Sample data for testing",
-                "categories": categories,
-                "questions": questions
-            };
-        }
+          });
+        });
+
+        return {
+          chapter: currentChapter,
+          title: `Chapter ${currentChapter}`,
+          description: "Sample data for testing",
+          categories: categories,
+          questions: questions,
+        };
+      }
     </script>
-</body>
+  </body>
 </html>

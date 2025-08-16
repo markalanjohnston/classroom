@@ -1,0 +1,11 @@
+# _config.yml
+title: Mr. Johnston's Classroom
+description: STEM Education Resources
+# Since you're using a custom domain, leave baseurl empty
+baseurl: ""
+url: "https://classroom.mjstem.com"
+
+# Optional: exclude files from processing
+exclude:
+  - README.md
+  - .gitignore

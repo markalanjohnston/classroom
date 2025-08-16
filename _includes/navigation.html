@@ -1,0 +1,438 @@
+<!-- _includes/navigation.html -->
+<!-- Universal Navigation Bar for Mr. Johnston's Classroom -->
+
+<!-- Navigation Styles -->
+<style>
+    /* Navigation Bar Styles */
+    .site-navigation {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 0;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .nav-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0;
+    }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 600;
+        transition: opacity 0.3s;
+    }
+
+    .nav-brand:hover {
+        opacity: 0.9;
+        text-decoration: none;
+        color: white;
+    }
+
+    .nav-brand img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 12px;
+        border: 2px solid rgba(255,255,255,0.3);
+        object-fit: cover;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
+
+    .nav-item {
+        position: relative;
+        margin: 0;
+    }
+
+    .nav-link {
+        color: rgba(255,255,255,0.9);
+        text-decoration: none;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    .nav-link:hover {
+        background: rgba(255,255,255,0.1);
+        color: white;
+        text-decoration: none;
+    }
+
+    .nav-link.active {
+        background: rgba(255,255,255,0.15);
+        color: white;
+    }
+
+    .nav-link i {
+        margin-right: 6px;
+        font-size: 1.1rem;
+    }
+
+    /* Dropdown Styles */
+    .nav-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s;
+        min-width: 220px;
+        margin-top: 5px;
+    }
+
+    .nav-item:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-link {
+        display: block;
+        padding: 12px 20px;
+        color: #2c3e50;
+        text-decoration: none;
+        transition: all 0.3s;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        font-size: 0.95rem;
+    }
+
+    .dropdown-link:first-child {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .dropdown-link:last-child {
+        border-radius: 0 0 8px 8px;
+        border-bottom: none;
+    }
+
+    .dropdown-link:hover {
+        background: #f8f9fa;
+        color: #667eea;
+        text-decoration: none;
+        padding-left: 25px;
+    }
+
+    .dropdown-link i {
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+
+    /* Mobile Menu Toggle */
+    .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px;
+        transition: transform 0.3s;
+    }
+
+    .nav-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    /* Dropdown arrow indicator */
+    .nav-link.has-dropdown::after {
+        content: '▾';
+        margin-left: 5px;
+        font-size: 0.8em;
+        transition: transform 0.3s;
+    }
+
+    .nav-item:hover .nav-link.has-dropdown::after {
+        transform: rotate(180deg);
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+        .nav-toggle {
+            display: block;
+        }
+
+        .nav-menu {
+            position: fixed;
+            left: -100%;
+            top: 70px;
+            flex-direction: column;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            width: 100%;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+            padding: 20px 0;
+            align-items: stretch;
+            max-height: calc(100vh - 70px);
+            overflow-y: auto;
+        }
+
+        .nav-menu.active {
+            left: 0;
+        }
+
+        .nav-item {
+            margin: 5px 20px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px;
+            justify-content: center;
+        }
+
+        .nav-dropdown {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            box-shadow: none;
+            background: rgba(255,255,255,0.1);
+            margin-top: 10px;
+            display: none;
+            border-radius: 8px;
+        }
+
+        .nav-item:hover .nav-dropdown {
+            display: none;
+        }
+
+        .nav-item.mobile-open .nav-dropdown {
+            display: block;
+        }
+
+        .dropdown-link {
+            color: rgba(255,255,255,0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dropdown-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding-left: 20px;
+        }
+
+        .nav-link.has-dropdown::after {
+            transition: transform 0.3s;
+        }
+
+        .nav-item.mobile-open .nav-link.has-dropdown::after {
+            transform: rotate(180deg);
+        }
+    }
+</style>
+
+<!-- Navigation Bar -->
+<section class="site-navigation">
+    <div class="nav-container">
+        <nav class="nav-header">
+            <a href="{{ site.baseurl | default: '' }}/" class="nav-brand" id="navBrand">
+                <img src="{{ site.baseurl | default: '' }}/images/johnston-small.png" alt="Mr. Johnston">
+                <span>Mr. Johnston's Classroom</span>
+            </a>
+            
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="{{ site.baseurl | default: '' }}/" class="nav-link" id="homeLink">
+                        <i class="bi bi-house-door"></i> Home
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="#" class="nav-link has-dropdown" onclick="return false;">
+                        <i class="bi bi-mortarboard"></i> Classes
+                    </a>
+                    <div class="nav-dropdown">
+                        <a href="{{ site.baseurl | default: '' }}/pae/" class="dropdown-link">
+                            <i class="bi bi-gear-wide-connected"></i> PAE - Principles of Applied Engineering
+                        </a>
+                        <a href="{{ site.baseurl | default: '' }}/win/" class="dropdown-link">
+                            <i class="bi bi-robot"></i> W.I.N. Robotics
+                        </a>
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="{{ site.baseurl | default: '' }}/pae/vocab/" class="nav-link">
+                        <i class="bi bi-puzzle"></i> Vocab Games
+                    </a>
+                </li>
+                
+                <!-- Add more navigation items as needed -->
+                <!-- 
+                <li class="nav-item">
+                    <a href="{{ site.baseurl | default: '' }}/resources/" class="nav-link">
+                        <i class="bi bi-book"></i> Resources
+                    </a>
+                </li>
+                -->
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<!-- Navigation JavaScript -->
+<script>
+    (function() {
+        'use strict';
+        
+        // Get base URL for proper path matching
+        const baseUrl = '{{ site.baseurl | default: "" }}';
+        
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                // Toggle icon
+                const icon = this.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('bi-list');
+                    icon.classList.add('bi-x');
+                } else {
+                    icon.classList.remove('bi-x');
+                    icon.classList.add('bi-list');
+                }
+            });
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navToggle || !navMenu) return;
+            
+            const isClickInside = navToggle.contains(event.target) || navMenu.contains(event.target);
+            
+            if (!isClickInside && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = navToggle.querySelector('i');
+                icon.classList.remove('bi-x');
+                icon.classList.add('bi-list');
+            }
+        });
+        
+        // Handle mobile dropdown toggles
+        const dropdownLinks = document.querySelectorAll('.nav-link.has-dropdown');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (window.innerWidth <= 768) {
+                    const parent = this.parentElement;
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.nav-item.mobile-open').forEach(item => {
+                        if (item !== parent) {
+                            item.classList.remove('mobile-open');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    parent.classList.toggle('mobile-open');
+                }
+            });
+        });
+        
+        // Set active link based on current page
+        function setActiveLink() {
+            const currentPath = window.location.pathname;
+            const cleanPath = currentPath.replace(baseUrl, '').replace(/\/$/, '') || '/';
+            
+            // Remove all active classes first
+            document.querySelectorAll('.nav-link, .dropdown-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Check each link
+            const navLinks = document.querySelectorAll('.nav-link:not(.has-dropdown), .dropdown-link');
+            let activeFound = false;
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (!href || href === '#') return;
+                
+                const linkPath = href.replace(baseUrl, '').replace(/\/$/, '') || '/';
+                
+                // Check for exact match or if current path starts with link path
+                if (cleanPath === linkPath || 
+                    (linkPath !== '/' && cleanPath.startsWith(linkPath))) {
+                    link.classList.add('active');
+                    activeFound = true;
+                    
+                    // If it's a dropdown link, also highlight parent
+                    if (link.classList.contains('dropdown-link')) {
+                        const parent = link.closest('.nav-item');
+                        if (parent) {
+                            const parentLink = parent.querySelector('.nav-link');
+                            if (parentLink) {
+                                parentLink.classList.add('active');
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Special case for home if no active found and we're at root
+            if (!activeFound && (cleanPath === '/' || cleanPath === '')) {
+                const homeLink = document.getElementById('homeLink');
+                if (homeLink) {
+                    homeLink.classList.add('active');
+                }
+            }
+        }
+        
+        // Initialize active link
+        setActiveLink();
+        
+        // Handle browser back/forward
+        window.addEventListener('popstate', setActiveLink);
+        
+        // Reinitialize on page focus (for when navigating back)
+        window.addEventListener('focus', setActiveLink);
+        
+        // Close mobile menu on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = navToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('bi-x');
+                    icon.classList.add('bi-list');
+                }
+            }
+        });
+    })();
+</script>
