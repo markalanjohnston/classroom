@@ -17,24 +17,26 @@
     />
     <link rel="stylesheet" href="../css/styles.css" />
     <style>
-      /* Make cards equal height */
+      /* Make cards equal height and width */
       .activity-row {
         display: flex;
         flex-wrap: wrap;
-        margin: -10px;
+        gap: 20px;
+        justify-content: center;
       }
       
       .activity-col {
-        flex: 1;
-        padding: 10px;
-        display: flex;
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
         min-width: 300px;
+        display: flex;
       }
       
       .activity-card {
         display: flex;
         flex-direction: column;
         height: 100%;
+        width: 100%;
         min-height: 200px;
       }
       
@@ -44,7 +46,8 @@
       
       @media (max-width: 768px) {
         .activity-col {
-          flex: 100%;
+          flex: 1 1 100%;
+          max-width: 100%;
         }
       }
     </style>
