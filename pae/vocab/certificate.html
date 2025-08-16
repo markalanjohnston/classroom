@@ -12,24 +12,62 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
+      /* Print-friendly styles */
       @media print {
-        body {
+        @page {
+          size: letter;
           margin: 0;
         }
+
+        body {
+          margin: 0;
+          background: white !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          color-adjust: exact !important;
+        }
+
         .no-print {
           display: none !important;
         }
+
+        .certificate-page {
+          min-height: 100vh !important;
+          padding: 0 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .certificate-wrapper {
+          transform: scale(0.9);
+          transform-origin: center center;
+        }
+
         .certificate-container {
+          box-shadow: none !important;
           page-break-inside: avoid;
-          margin: 0;
-          padding: 20px;
+        }
+
+        /* Ensure backgrounds print */
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          color-adjust: exact !important;
         }
       }
 
       body {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      .certificate-page {
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -38,52 +76,33 @@
       }
 
       .certificate-wrapper {
-        max-width: 900px;
-        margin: 0 auto;
+        width: 850px;
+        max-width: 100%;
       }
 
       .certificate-container {
         background: white;
-        padding: 40px;
+        padding: 30px;
         border-radius: 15px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         position: relative;
-        overflow: hidden;
+        overflow: visible;
       }
 
-      .certificate-container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 10px;
-        background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
-        background-size: 200% 100%;
-        animation: shimmer 3s infinite;
-      }
-
-      @keyframes shimmer {
-        0% {
-          background-position: 0% 0%;
-        }
-        100% {
-          background-position: 200% 0%;
-        }
-      }
-
+      /* Decorative border */
       .certificate-border {
         border: 3px solid #667eea;
         border-radius: 10px;
-        padding: 30px;
-        margin: 20px 0;
+        padding: 40px;
         position: relative;
+        background: white;
       }
 
+      /* Corner decorations */
       .corner-decoration {
         position: absolute;
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         border: 3px solid #764ba2;
       }
 
@@ -126,40 +145,104 @@
 
       .certificate-title {
         color: #2e86ab;
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         font-weight: bold;
         margin-bottom: 10px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .trophy-icon {
+        color: #ffc107;
+        font-size: 2.5rem;
       }
 
       .certificate-subtitle {
         color: #333;
-        font-size: 1.2rem;
-        margin-bottom: 20px;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+
+      .certificate-course {
+        color: #666;
+        font-size: 1rem;
+        font-style: italic;
       }
 
       .game-info {
-        background: #f8f9fa;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
         border-radius: 10px;
         padding: 20px;
-        margin-bottom: 30px;
+        margin: 20px 0;
+        border: 1px solid #dee2e6;
       }
 
-      .team-results {
-        margin-top: 30px;
+      .game-info-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .info-item {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .info-label {
+        font-weight: 600;
+        color: #495057;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .info-value {
+        color: #212529;
+        font-size: 1.1rem;
+        margin-top: 5px;
+      }
+
+      .alert-warning {
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+
+      .results-section {
+        margin: 30px 0;
+      }
+
+      .results-header {
+        text-align: center;
+        margin-bottom: 25px;
+        font-size: 1.5rem;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .star-icon {
+        color: #ffc107;
       }
 
       .team-card {
         background: white;
         border-radius: 10px;
         padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-      }
-
-      .team-card:hover {
-        transform: translateY(-5px);
+        margin-bottom: 15px;
+        border: 2px solid #dee2e6;
+        display: flex;
+        align-items: center;
+        gap: 20px;
       }
 
       .team-card.gold {
@@ -168,90 +251,152 @@
       }
 
       .team-card.silver {
-        background: linear-gradient(135deg, #e9ecef, #dee2e6);
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
         border: 2px solid #6c757d;
       }
 
       .team-card.bronze {
-        background: linear-gradient(135deg, #f8d7da, #f5c2c7);
+        background: linear-gradient(135deg, #ffeee9, #ffd4c4);
         border: 2px solid #dc3545;
       }
 
-      .rank-badge {
-        display: inline-block;
-        padding: 5px 15px;
-        border-radius: 20px;
-        font-weight: bold;
-        margin-right: 10px;
-      }
-
-      .action-buttons {
+      .rank-display {
         text-align: center;
-        margin-top: 30px;
-        padding: 20px;
-        background: #f8f9fa;
-        border-radius: 10px;
+        min-width: 80px;
       }
 
-      .btn-certificate {
-        margin: 0 10px;
-        padding: 10px 30px;
-        font-size: 1.1rem;
+      .rank-icon {
+        font-size: 3rem;
+        line-height: 1;
       }
 
-      .category-list {
-        list-style: none;
-        padding-left: 0;
-      }
-
-      .category-list li {
-        padding: 5px 0;
+      .rank-text {
+        font-size: 0.9rem;
         color: #666;
+        margin-top: 5px;
       }
 
-      .category-list li:before {
-        content: "📚 ";
-        margin-right: 10px;
+      .team-details {
+        flex: 1;
+      }
+
+      .team-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #212529;
+        margin-bottom: 5px;
+      }
+
+      .team-score {
+        font-size: 1.8rem;
+        color: #007bff;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .team-members {
+        color: #666;
+        font-size: 0.95rem;
       }
 
       .signature-section {
         margin-top: 40px;
         display: flex;
         justify-content: space-around;
+        align-items: flex-end;
+      }
+
+      .signature-block {
         text-align: center;
+        min-width: 200px;
+      }
+
+      .signature-image {
+        height: 50px;
+        width: auto;
+        max-width: 180px;
+        object-fit: contain;
+        margin-bottom: 10px;
       }
 
       .signature-line {
-        width: 200px;
         border-top: 2px solid #333;
-        margin-top: 50px;
         padding-top: 10px;
+        font-size: 0.9rem;
+        color: #666;
       }
 
-      .watermark {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-45deg);
-        font-size: 8rem;
-        color: rgba(102, 126, 234, 0.05);
-        font-weight: bold;
-        pointer-events: none;
-        z-index: 0;
+      .certificate-footer {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #dee2e6;
+        color: #6c757d;
+        font-size: 0.85rem;
       }
 
-      .certificate-content {
-        position: relative;
-        z-index: 1;
+      .action-buttons {
+        text-align: center;
+        margin-top: 30px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-certificate {
+        margin: 0 10px;
+        padding: 12px 30px;
+        font-size: 1rem;
+        border-radius: 8px;
+        font-weight: 500;
+      }
+
+      /* Loading overlay */
+      .loading-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .loading-overlay.active {
+        display: flex;
+      }
+
+      .loading-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        margin-bottom: 15px;
       }
     </style>
   </head>
   <body>
-    <div class="certificate-wrapper">
-      <div class="certificate-container">
-        <div class="watermark">CERTIFICATE</div>
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-content">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div>Generating PDF...</div>
+      </div>
+    </div>
 
-        <div class="certificate-content">
+    <div class="certificate-page">
+      <div class="certificate-wrapper">
+        <div class="certificate-container" id="certificateContent">
           <div class="certificate-border">
             <div class="corner-decoration top-left"></div>
             <div class="corner-decoration top-right"></div>
@@ -260,100 +405,103 @@
 
             <div class="certificate-header">
               <h1 class="certificate-title">
-                <i class="bi bi-trophy-fill text-warning"></i>
-                VOCABULARY GAME CERTIFICATE
+                <i class="bi bi-trophy-fill trophy-icon"></i>
+                <span>VOCABULARY GAME CERTIFICATE</span>
+                <i class="bi bi-trophy-fill trophy-icon"></i>
               </h1>
               <div class="certificate-subtitle" id="chapterInfo">
                 Loading...
               </div>
-              <div class="text-muted">Principles of Applied Engineering</div>
+              <div class="certificate-course">
+                Principles of Applied Engineering
+              </div>
             </div>
 
             <div class="game-info">
-              <div class="row">
-                <div class="col-md-4">
-                  <strong>Date:</strong> <span id="gameDate"></span>
+              <div class="game-info-row">
+                <div class="info-item">
+                  <div class="info-label">Date</div>
+                  <div class="info-value" id="gameDate"></div>
                 </div>
-                <div class="col-md-4">
-                  <strong>Instructor:</strong> Mark Johnston
+                <div class="info-item">
+                  <div class="info-label">Instructor</div>
+                  <div class="info-value">Mark Johnston</div>
                 </div>
-                <div class="col-md-4">
-                  <strong>Questions:</strong>
-                  <span id="questionsCompleted"></span>
+                <div class="info-item">
+                  <div class="info-label">Questions</div>
+                  <div class="info-value" id="questionsCompleted"></div>
                 </div>
-              </div>
-
-              <div id="randomCategories" class="mt-3" style="display: none">
-                <strong>Categories Included:</strong>
-                <ul class="category-list mt-2" id="categoryList"></ul>
-              </div>
-
-              <div
-                id="earlyEndNotice"
-                class="alert alert-warning mt-3"
-                style="display: none"
-              >
-                <i class="bi bi-exclamation-triangle"></i>
-                <span id="earlyEndText"></span>
               </div>
             </div>
 
-            <div class="team-results">
-              <h3 class="text-center mb-4">
-                <i class="bi bi-star-fill text-warning"></i>
+            <div
+              id="earlyEndNotice"
+              class="alert-warning"
+              style="display: none"
+            >
+              <i class="bi bi-exclamation-triangle"></i>
+              <strong>Note:</strong> <span id="earlyEndText"></span>
+            </div>
+
+            <div class="results-section">
+              <h2 class="results-header">
+                <i class="bi bi-star-fill star-icon"></i>
                 Game Results
-                <i class="bi bi-star-fill text-warning"></i>
-              </h3>
+                <i class="bi bi-star-fill star-icon"></i>
+              </h2>
               <div id="teamResultsContainer"></div>
             </div>
 
             <div class="signature-section">
-              <div>
+              <div class="signature-block">
+                <img
+                  src="/images/signature.png"
+                  alt="Signature"
+                  class="signature-image"
+                  id="signatureImg"
+                />
                 <div class="signature-line">Instructor Signature</div>
               </div>
-              <div>
+              <div class="signature-block">
+                <div style="height: 60px"></div>
                 <div class="signature-line">Date</div>
               </div>
             </div>
-          </div>
 
-          <div class="action-buttons no-print">
-            <button
-              class="btn btn-success btn-certificate"
-              onclick="downloadPDF()"
-            >
-              <i class="bi bi-download"></i> Download PDF
-            </button>
-            <button
-              class="btn btn-primary btn-certificate"
-              onclick="window.print()"
-            >
-              <i class="bi bi-printer"></i> Print Certificate
-            </button>
-            <button
-              class="btn btn-secondary btn-certificate"
-              onclick="window.close()"
-            >
-              <i class="bi bi-x-circle"></i> Close
-            </button>
+            <div class="certificate-footer">
+              Generated by Mark Johnston's Classroom • PAE Vocabulary Game
+              System
+            </div>
           </div>
+        </div>
 
-          <div class="text-center mt-3 text-muted">
-            <small
-              >Generated by Mark Johnston's Classroom Vocabulary Game
-              System</small
-            >
-          </div>
+        <div class="action-buttons no-print">
+          <button
+            class="btn btn-success btn-certificate"
+            onclick="generatePDF()"
+          >
+            <i class="bi bi-file-pdf"></i> Download PDF
+          </button>
+          <button
+            class="btn btn-primary btn-certificate"
+            onclick="window.print()"
+          >
+            <i class="bi bi-printer"></i> Print Certificate
+          </button>
+          <button
+            class="btn btn-secondary btn-certificate"
+            onclick="window.close()"
+          >
+            <i class="bi bi-x-circle"></i> Close
+          </button>
         </div>
       </div>
     </div>
 
     <script>
-      // Load certificate data
       let certificateData = null;
 
       document.addEventListener("DOMContentLoaded", function () {
-        // Get data from localStorage
         const dataStr = localStorage.getItem("certificateData");
         if (!dataStr) {
           alert(
@@ -365,36 +513,28 @@
 
         certificateData = JSON.parse(dataStr);
         displayCertificate();
+
+        // Hide signature if image doesn't load
+        document.getElementById("signatureImg").onerror = function () {
+          this.style.display = "none";
+        };
       });
 
       function displayCertificate() {
         // Format date
         const gameDate = new Date(certificateData.gameDate);
+        const options = { year: "numeric", month: "long", day: "numeric" };
         document.getElementById("gameDate").textContent =
-          gameDate.toLocaleDateString();
+          gameDate.toLocaleDateString("en-US", options);
 
         // Chapter info
         let chapterText = certificateData.chapterInfo;
-        if (certificateData.gameEndedEarly) {
-          chapterText += ` (Game Ended Early)`;
-        }
         document.getElementById("chapterInfo").textContent = chapterText;
 
         // Questions completed
         document.getElementById(
           "questionsCompleted"
         ).textContent = `${certificateData.questionsAnswered} of ${certificateData.totalQuestions}`;
-
-        // Random categories if applicable
-        if (certificateData.isRandomMode && certificateData.randomCategories) {
-          document.getElementById("randomCategories").style.display = "block";
-          const categoryList = document.getElementById("categoryList");
-          certificateData.randomCategories.forEach((cat) => {
-            const li = document.createElement("li");
-            li.innerHTML = `<strong>${cat.category}</strong> from ${cat.chapterTitle}`;
-            categoryList.appendChild(li);
-          });
-        }
 
         // Early end notice
         if (certificateData.gameEndedEarly) {
@@ -423,21 +563,13 @@
           }
           previousScore = team.score;
 
-          const isTie =
-            index < sortedTeams.length - 1 &&
-            sortedTeams[index + 1].score === team.score;
-
           const teamCard = document.createElement("div");
           teamCard.className = "team-card";
 
           // Add special styling for top 3
-          if (currentRank === 1) {
-            teamCard.classList.add("gold");
-          } else if (currentRank === 2) {
-            teamCard.classList.add("silver");
-          } else if (currentRank === 3) {
-            teamCard.classList.add("bronze");
-          }
+          if (currentRank === 1) teamCard.classList.add("gold");
+          else if (currentRank === 2) teamCard.classList.add("silver");
+          else if (currentRank === 3) teamCard.classList.add("bronze");
 
           let rankIcon = "";
           if (currentRank === 1) rankIcon = "🥇";
@@ -445,27 +577,26 @@
           else if (currentRank === 3) rankIcon = "🥉";
           else rankIcon = "🏆";
 
+          const isTie =
+            index < sortedTeams.length - 1 &&
+            sortedTeams[index + 1].score === team.score;
           const rankText = isTie
             ? `${getOrdinalSuffix(currentRank)} Place (Tie)`
             : `${getOrdinalSuffix(currentRank)} Place`;
 
           teamCard.innerHTML = `
-                    <div class="row align-items-center">
-                        <div class="col-md-2 text-center">
-                            <div style="font-size: 3rem;">${rankIcon}</div>
-                        </div>
-                        <div class="col-md-10">
-                            <h4>
-                                <span class="rank-badge bg-primary text-white">${rankText}</span>
-                                ${team.name}
-                            </h4>
-                            <div class="h3 text-primary mb-2">${team.score} points</div>
-                            <div class="text-muted">
-                                <strong>Team Members:</strong> ${team.members}
-                            </div>
-                        </div>
-                    </div>
-                `;
+            <div class="rank-display">
+              <div class="rank-icon">${rankIcon}</div>
+              <div class="rank-text">${rankText}</div>
+            </div>
+            <div class="team-details">
+              <div class="team-name">${team.name}</div>
+              <div class="team-score">${team.score} points</div>
+              <div class="team-members">
+                <strong>Members:</strong> ${team.members}
+              </div>
+            </div>
+          `;
 
           container.appendChild(teamCard);
         });
@@ -474,137 +605,74 @@
       function getOrdinalSuffix(num) {
         const j = num % 10;
         const k = num % 100;
-        if (j == 1 && k != 11) {
-          return num + "st";
-        }
-        if (j == 2 && k != 12) {
-          return num + "nd";
-        }
-        if (j == 3 && k != 13) {
-          return num + "rd";
-        }
+        if (j == 1 && k != 11) return num + "st";
+        if (j == 2 && k != 12) return num + "nd";
+        if (j == 3 && k != 13) return num + "rd";
         return num + "th";
       }
 
-      function downloadPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+      async function generatePDF() {
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        loadingOverlay.classList.add("active");
 
-        // Title
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(24);
-        doc.setTextColor(46, 134, 171);
-        doc.text("VOCABULARY GAME CERTIFICATE", 105, 30, { align: "center" });
-
-        // Subtitle
-        doc.setFontSize(16);
-        doc.setTextColor(0, 0, 0);
-        let subtitle =
-          certificateData.chapterInfo + " - Principles of Applied Engineering";
-        if (certificateData.gameEndedEarly) {
-          subtitle += ` (${certificateData.questionsAnswered}/${certificateData.totalQuestions} Completed)`;
-        }
-        doc.text(subtitle, 105, 45, { align: "center" });
-
-        // Date and instructor
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(12);
-        const gameDate = new Date(certificateData.gameDate);
-        doc.text(`Date: ${gameDate.toLocaleDateString()}`, 20, 60);
-        doc.text("Instructor: Mark Johnston", 20, 70);
-        doc.text(
-          `Questions Completed: ${certificateData.questionsAnswered}/${certificateData.totalQuestions}`,
-          20,
-          80
-        );
-
-        // Categories for random mode
-        let yPos = 90;
-        if (certificateData.isRandomMode && certificateData.randomCategories) {
-          doc.setFont("helvetica", "italic");
-          doc.setFontSize(10);
-          doc.text("Categories Included:", 20, yPos);
-          yPos += 5;
-          certificateData.randomCategories.forEach((cat) => {
-            doc.text(`• ${cat.category} (${cat.chapterTitle})`, 25, yPos);
-            yPos += 5;
+        try {
+          // Use html2canvas to capture the certificate
+          const element = document.getElementById("certificateContent");
+          const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            backgroundColor: "#ffffff",
+            windowWidth: 850,
+            windowHeight: 1100,
           });
-          yPos += 5;
-        }
 
-        // Results
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(14);
-        doc.text("GAME RESULTS:", 20, yPos);
-        yPos += 10;
+          // Convert to PDF
+          const imgData = canvas.toDataURL("image/png");
+          const { jsPDF } = window.jspdf;
+          const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "mm",
+            format: "letter",
+          });
 
-        // Team results
-        const sortedTeams = [...certificateData.teams].sort(
-          (a, b) => b.score - a.score
-        );
-        let currentRank = 1;
-        let previousScore = null;
-
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(11);
-
-        sortedTeams.forEach((team, index) => {
-          if (previousScore !== null && team.score !== previousScore) {
-            currentRank = index + 1;
-          }
-          previousScore = team.score;
-
-          const isTie =
-            index < sortedTeams.length - 1 &&
-            sortedTeams[index + 1].score === team.score;
-          const rankText = isTie
-            ? `${getOrdinalSuffix(currentRank)} Place (Tie)`
-            : `${getOrdinalSuffix(currentRank)} Place`;
-
-          let medal = "";
-          if (currentRank === 1) medal = "[GOLD]";
-          else if (currentRank === 2) medal = "[SILVER]";
-          else if (currentRank === 3) medal = "[BRONZE]";
-
-          doc.setFont("helvetica", "bold");
-          doc.text(`${medal} ${rankText} - ${team.score} points`, 25, yPos);
-
-          doc.setFont("helvetica", "normal");
-          doc.text(`Team: ${team.name}`, 25, yPos + 7);
-          doc.text(`Members: ${team.members}`, 25, yPos + 14);
-
-          yPos += 25;
-
-          if (yPos > 250) {
-            doc.addPage();
-            yPos = 30;
-          }
-        });
-
-        // Footer
-        if (yPos < 250) {
-          doc.setFont("helvetica", "italic");
-          doc.setFontSize(10);
-          doc.setTextColor(100, 100, 100);
-          doc.text(
-            "Generated by Mark Johnston's Classroom Vocabulary Game",
-            105,
-            280,
-            { align: "center" }
+          // Calculate dimensions to fit the page
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imgWidth = canvas.width;
+          const imgHeight = canvas.height;
+          const ratio = Math.min(
+            (pdfWidth / imgWidth) * 25.4,
+            (pdfHeight / imgHeight) * 25.4
           );
+
+          const imgX = (pdfWidth - imgWidth * ratio) / 2;
+          const imgY = 10;
+
+          pdf.addImage(
+            imgData,
+            "PNG",
+            imgX,
+            imgY,
+            imgWidth * ratio,
+            imgHeight * ratio
+          );
+
+          // Generate filename
+          const gameDate = new Date(certificateData.gameDate);
+          const dateStr = gameDate.toLocaleDateString().replace(/\//g, "-");
+          const modeText = certificateData.isRandomMode
+            ? "_Random"
+            : `_Ch${certificateData.currentChapter}`;
+          const filename = `PAE_Certificate${modeText}_${dateStr}.pdf`;
+
+          pdf.save(filename);
+        } catch (error) {
+          console.error("Error generating PDF:", error);
+          alert("Error generating PDF. Please try printing instead.");
+        } finally {
+          loadingOverlay.classList.remove("active");
         }
-
-        // Generate filename
-        const dateStr = gameDate.toLocaleDateString().replace(/\//g, "-");
-        const modeText = certificateData.isRandomMode
-          ? "_Random_Mix"
-          : `_Chapter_${certificateData.currentChapter}`;
-        const statusText = certificateData.gameEndedEarly
-          ? "_Partial"
-          : "_Complete";
-        const filename = `PAE_Vocabulary_Certificate${modeText}${statusText}_${dateStr}.pdf`;
-
-        doc.save(filename);
       }
     </script>
   </body>
