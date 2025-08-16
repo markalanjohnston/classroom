@@ -18,6 +18,39 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      /* Make class cards equal height */
+      .class-cards-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -10px;
+      }
+      
+      .class-card-col {
+        flex: 1;
+        padding: 10px;
+        display: flex;
+        min-width: 300px;
+      }
+      
+      .class-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 180px;
+      }
+      
+      .class-card p {
+        flex-grow: 1;
+        margin-bottom: 0;
+      }
+      
+      @media (max-width: 768px) {
+        .class-card-col {
+          flex: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
     {% include navigation.html %}
@@ -40,27 +73,27 @@
 
         <h2 class="h3 mb-4 text-muted">Select a Class</h2>
 
-        <div class="row">
-          <div class="col-md-6">
+        <div class="class-cards-row">
+          <div class="class-card-col">
             <a href="pae/" class="class-card">
               <div class="class-icon text-primary">
                 <i class="bi bi-gear-wide-connected"></i>
               </div>
               <h3>Principles of Applied Engineering</h3>
-              <p class="text-muted mb-0">
+              <p class="text-muted">
                 PAE - Engineering fundamentals, design process, and
                 problem-solving
               </p>
             </a>
           </div>
 
-          <div class="col-md-6">
+          <div class="class-card-col">
             <a href="win/" class="class-card">
               <div class="class-icon text-success">
                 <i class="bi bi-robot"></i>
               </div>
               <h3>W.I.N. Robotics</h3>
-              <p class="text-muted mb-0">
+              <p class="text-muted">
                 Robotics programming, design, and competition preparation
               </p>
             </a>
