@@ -1071,124 +1071,31 @@
         
         // Generate and download certificate
         function generateCertificate() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+            // Prepare certificate data
+            const certificateData = {
+                gameDate: new Date().toISOString(),
+                chapterInfo: isRandomMode ? 'Random All Chapters' : (vocabularyData.title || `Chapter ${currentChapter}`),
+                isRandomMode: isRandomMode,
+                currentChapter: currentChapter,
+                gameEndedEarly: gameEndedEarly,
+                questionsAnswered: questionsAnswered,
+                totalQuestions: 20,
+                teams: teams.map(team => ({
+                    name: team.name,
+                    members: team.members,
+                    score: team.score
+                })),
+                randomCategories: isRandomMode ? selectedRandomCategories.map(cat => ({
+                    category: cat.category,
+                    chapterTitle: cat.chapterTitle
+                })) : null
+            };
             
-            // Get current date
-            const currentDate = new Date().toLocaleDateString();
+            // Store in localStorage
+            localStorage.setItem('certificateData', JSON.stringify(certificateData));
             
-            // Sort teams for certificate
-            const sortedTeams = [...teams].sort((a, b) => b.score - a.score);
-            
-            // Certificate styling
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(24);
-            doc.setTextColor(46, 134, 171);
-            
-            // Title
-            doc.text('VOCABULARY GAME CERTIFICATE', 105, 30, { align: 'center' });
-            
-            // Subtitle with mode indicator
-            doc.setFontSize(16);
-            doc.setTextColor(0, 0, 0);
-            let subtitle = isRandomMode ? 
-                'Random All Chapters - Principles of Applied Engineering' :
-                `${vocabularyData.title || `Chapter ${currentChapter}`} - Principles of Applied Engineering`;
-            
-            if (gameEndedEarly) {
-                subtitle += ` (${questionsAnswered}/20 Questions Completed)`;
-            }
-            doc.text(subtitle, 105, 45, { align: 'center' });
-            
-            // Date and instructor
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(12);
-            doc.text(`Date: ${currentDate}`, 20, 60);
-            doc.text('Instructor: Mark Johnston', 20, 70);
-            
-            // Random mode categories info
-            if (isRandomMode) {
-                doc.setFont('helvetica', 'italic');
-                doc.setFontSize(10);
-                doc.text('Categories Included:', 20, 80);
-                selectedRandomCategories.forEach((cat, index) => {
-                    const catText = `${cat.category} (${cat.chapterTitle})`;
-                    doc.text(catText, 25, 85 + (index * 5));
-                });
-            }
-            
-            // Game status
-            if (gameEndedEarly) {
-                doc.setFont('helvetica', 'italic');
-                doc.setTextColor(200, 100, 0);
-                const yPos = isRandomMode ? 105 : 80;
-                doc.text(`Note: Game ended early. ${questionsAnswered} of 20 questions were completed.`, 20, yPos);
-                doc.setTextColor(0, 0, 0);
-            }
-            
-            // Results section
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(14);
-            const resultsYPos = isRandomMode ? (gameEndedEarly ? 120 : 110) : (gameEndedEarly ? 95 : 90);
-            doc.text('GAME RESULTS:', 20, resultsYPos);
-            
-            // Team results
-            doc.setFont('helvetica', 'normal');
-            doc.setFontSize(11);
-            let yPosition = resultsYPos + 15;
-            
-            let currentRank = 1;
-            let previousScore = null;
-            let teamsAtSameRank = 0;
-            
-            sortedTeams.forEach((team, index) => {
-                // Handle tie logic for certificate
-                if (previousScore !== null && team.score !== previousScore) {
-                    currentRank = index + 1;
-                    teamsAtSameRank = 0;
-                } else if (previousScore === team.score) {
-                    teamsAtSameRank++;
-                }
-                
-                previousScore = team.score;
-                
-                let isTie = teamsAtSameRank > 0 || (index < sortedTeams.length - 1 && sortedTeams[index + 1].score === team.score);
-                let rankText = isTie ? `${getOrdinalSuffix(currentRank)} Place (Tie)` : `${getOrdinalSuffix(currentRank)} Place`;
-                
-                // Add medal emoji equivalent
-                let medal = '';
-                if (currentRank === 1) medal = '[GOLD]';
-                else if (currentRank === 2) medal = '[SILVER]';
-                else if (currentRank === 3) medal = '[BRONZE]';
-                
-                doc.setFont('helvetica', 'bold');
-                doc.text(`${medal} ${rankText} - ${team.score} points`, 25, yPosition);
-                
-                doc.setFont('helvetica', 'normal');
-                doc.text(`Team Members: ${team.members}`, 25, yPosition + 8);
-                
-                yPosition += 20;
-                
-                // Start new page if needed
-                if (yPosition > 250) {
-                    doc.addPage();
-                    yPosition = 30;
-                }
-            });
-            
-            // Footer
-            if (yPosition < 220) {
-                doc.setFont('helvetica', 'italic');
-                doc.setFontSize(10);
-                doc.setTextColor(100, 100, 100);
-                doc.text('Generated by Mark Johnston\'s Classroom Vocabulary Game', 105, 280, { align: 'center' });
-            }
-            
-            // Save the PDF
-            const modeText = isRandomMode ? '_Random_Mix' : `_Chapter_${currentChapter}`;
-            const earlyEndText = gameEndedEarly ? `_${questionsAnswered}_of_20` : '_Complete';
-            const fileName = `PAE_Vocabulary_Game${modeText}${earlyEndText}_Results_${currentDate.replace(/\//g, '-')}.pdf`;
-            doc.save(fileName);
+            // Open certificate page in new window/tab
+            window.open('certificate.html', '_blank');
         }
         
         // Sample data for testing
