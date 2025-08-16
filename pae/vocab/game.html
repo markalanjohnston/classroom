@@ -598,13 +598,19 @@
             gameBoard.innerHTML = '';
             
             // Use categories from loaded data
-            const headers = vocabularyData.categories || ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
+            let headers = vocabularyData.categories || ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
+            
+            // For random mode, use the actual category names without the chapter info
+            if (isRandomMode && selectedRandomCategories.length > 0) {
+                headers = selectedRandomCategories.map(cat => cat.category);
+            }
+            
             headers.forEach(header => {
                 const headerCell = document.createElement('div');
                 headerCell.className = 'jeopardy-cell jeopardy-header';
                 
-                // For random mode, show shortened category names if too long
-                if (isRandomMode && header.length > 25) {
+                // Show shortened category names if too long
+                if (header.length > 25) {
                     headerCell.textContent = header.substring(0, 22) + '...';
                     headerCell.title = header; // Full name on hover
                 } else {
@@ -659,6 +665,23 @@
                 return;
             }
             
+            // Debug logging
+            console.group('🎯 Question Selected');
+            if (isRandomMode && question.sourceChapter) {
+                console.log(`📁 Source: ch${question.sourceChapter}vocab.json (${question.sourceChapterTitle || 'Chapter ' + question.sourceChapter})`);
+            } else {
+                console.log(`📁 Source: ch${currentChapter}vocab.json`);
+            }
+            console.log(`📂 Category: ${question.category}`);
+            console.log(`💰 Original Points: ${question.originalPoints || question.points}`);
+            console.log(`🎮 Board Points: ${points}`);
+            console.log(`❓ Definition: ${question.definition.substring(0, 50)}...`);
+            console.log(`✅ Correct Answer: ${question.correct}`);
+            if (question.originalCategory) {
+                console.log(`⚠️ Note: Question borrowed from category "${question.originalCategory}"`);
+            }
+            console.groupEnd();
+            
             question.used = true;
             currentQuestion = question;
             currentPoints = points;
@@ -672,10 +695,7 @@
             const modal = document.getElementById('questionModal');
             let pointsText = isSteal ? `${currentPoints} Points (STEAL) - ${teams[currentTeam].name}'s Turn` : `${currentPoints} Points - ${teams[currentTeam].name}'s Turn`;
             
-            // Add source chapter info for random mode
-            if (isRandomMode && currentQuestion.sourceChapterTitle) {
-                pointsText += ` [${currentQuestion.sourceChapterTitle}]`;
-            }
+            // Don't add source chapter info since all questions in a category are from the same chapter
             
             document.getElementById('questionPoints').textContent = pointsText;
             document.getElementById('questionText').textContent = currentQuestion.definition;
@@ -836,6 +856,8 @@
             document.getElementById('questionPoints').textContent = 'Answer Revealed';
             
             const options = document.querySelectorAll('.answer-option');
+            const optionsContainer = document.getElementById('answerOptions');
+            
             options.forEach(option => {
                 option.disabled = true;
                 if (option.textContent === currentQuestion.correct) {
@@ -843,9 +865,14 @@
                 }
             });
             
-            setTimeout(() => {
+            // Add a continue button below the options
+            const continueBtn = document.createElement('button');
+            continueBtn.className = 'btn btn-primary mt-3';
+            continueBtn.innerHTML = '<i class="bi bi-arrow-right"></i> Continue';
+            continueBtn.onclick = () => {
                 closeQuestion();
-            }, 2000);
+            };
+            optionsContainer.appendChild(continueBtn);
         }
         
         // Close question modal
