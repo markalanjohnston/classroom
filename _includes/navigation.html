@@ -96,7 +96,8 @@
     .nav-dropdown {
         position: absolute;
         top: 100%;
-        left: 0;
+        left: auto;
+        right: 0;
         background: white;
         border-radius: 8px;
         box-shadow: 0 5px 20px rgba(0,0,0,0.15);
@@ -104,8 +105,9 @@
         visibility: hidden;
         transform: translateY(-10px);
         transition: all 0.3s;
-        min-width: 220px;
+        min-width: 280px;
         margin-top: 5px;
+        max-width: calc(100vw - 40px);
     }
 
     .nav-item:hover .nav-dropdown {
@@ -287,15 +289,16 @@
                         </a>
                     </div>
                 </li>
-                
-                <!-- Uncomment to enable additional navigation items
-
+                <!--
                 <li class="nav-item">
                     <a href="{{ site.baseurl | default: '' }}/pae/vocab/" class="nav-link">
                         <i class="bi bi-puzzle"></i> Vocab Games
                     </a>
                 </li>
+                -->
                 
+                <!-- Add more navigation items as needed -->
+                <!-- 
                 <li class="nav-item">
                     <a href="{{ site.baseurl | default: '' }}/resources/" class="nav-link">
                         <i class="bi bi-book"></i> Resources
