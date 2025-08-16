@@ -1,0 +1,117 @@
+{
+  "chapter": 4,
+  "title": "Defining Problems and Brainstorming",
+  "description": "Problem identification, constraint analysis, and ideation techniques for engineering solutions",
+  "categories": [
+    "Problem Definition",
+    "Constraint Analysis", 
+    "Brainstorming Techniques",
+    "Solution Development"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Brainstorming Techniques",
+      "definition": "Method of linking different ideas together by finding commonalities between them.",
+      "choices": [
+        "concept mapping",
+        "mind mapping",
+        "brainstorming web",
+        "idea clustering"
+      ],
+      "correct": "brainstorming web"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Constraint Analysis",
+      "definition": "Conditions that are in all engineering design problems.",
+      "choices": [
+        "universal limitations",
+        "common constraints",
+        "standard restrictions",
+        "general parameters"
+      ],
+      "correct": "common constraints"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Problem Definition",
+      "definition": "Guidelines to follow in order to successfully solve the problem.",
+      "choices": [
+        "design requirements",
+        "success metrics",
+        "criteria",
+        "performance standards"
+      ],
+      "correct": "criteria"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Brainstorming Techniques",
+      "definition": "Act of describing as many ideas as possible without any concern about their ability to be accomplished.",
+      "choices": [
+        "open ideation",
+        "unrestricted thinking",
+        "free association",
+        "creative brainstorming"
+      ],
+      "correct": "free association"
+    },
+    {
+      "index": 4,
+      "points": "200",
+      "category": "Brainstorming Techniques",
+      "definition": "Individual brainstorming technique in which an engineer generates possible ideas by writing them down.",
+      "choices": [
+        "stream of consciousness",
+        "ideation journaling",
+        "freewriting",
+        "concept scribing"
+      ],
+      "correct": "freewriting"
+    },
+    {
+      "index": 5,
+      "points": "200",
+      "category": "Solution Development",
+      "definition": "Intentionally focusing on solutions that are not possible yet because of technological or scientific limitations.",
+      "choices": [
+        "speculative design",
+        "theoretical engineering",
+        "future process",
+        "conceptual planning"
+      ],
+      "correct": "future process"
+    },
+    {
+      "index": 6,
+      "points": "200",
+      "category": "Problem Definition",
+      "definition": "Question, something that is needed for a design, or something that needs to be changed in a design.",
+      "choices": [
+        "design challenge",
+        "engineering issue",
+        "problem",
+        "project requirement"
+      ],
+      "correct": "problem"
+    },
+    {
+      "index": 7,
+      "points": "200",
+      "category": "Constraint Analysis",
+      "definition": "Conditions that are directly related to the engineering design problem at hand.",
+      "choices": [
+        "contextual limitations",
+        "project-specific boundaries",
+        "specific constraints",
+        "targeted restrictions"
+      ],
+      "correct": "specific constraints"
+    }
+  ]
+}

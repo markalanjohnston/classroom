@@ -1,0 +1,182 @@
+{
+  "chapter": 6,
+  "title": "Communicating Solutions",
+  "description": "Technical drawing types, dimensioning methods, and visual communication techniques for engineering designs",
+  "categories": [
+    "Drawing Types",
+    "Dimensioning Systems", 
+    "Pictorial Methods",
+    "Communication Tools"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "300",
+      "category": "Drawing Types",
+      "definition": "Type of working drawing that shows how different parts fit together to create the entire object.",
+      "choices": [
+        "exploded view",
+        "assembly drawing",
+        "sectional drawing",
+        "component diagram"
+      ],
+      "correct": "assembly drawing"
+    },
+    {
+      "index": 1,
+      "points": "300",
+      "category": "Drawing Types",
+      "definition": "Technical drawing that accurately communicates size and shape and usually includes specific dimensions for others to see.",
+      "choices": [
+        "working drawing",
+        "technical illustration",
+        "detail drawing",
+        "precision diagram"
+      ],
+      "correct": "detail drawing"
+    },
+    {
+      "index": 2,
+      "points": "300",
+      "category": "Dimensioning Systems",
+      "definition": "Process used to describe the size of an object as well as the location of different features of a design.",
+      "choices": [
+        "measurement notation",
+        "scale specification",
+        "dimensioning",
+        "size annotation"
+      ],
+      "correct": "dimensioning"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Drawing Types",
+      "definition": "Drawing created to communicate products that will be manufactured.",
+      "choices": [
+        "technical drawing",
+        "manufacturing blueprint",
+        "engineering drawing",
+        "production diagram"
+      ],
+      "correct": "engineering drawing"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Communication Tools",
+      "definition": "Line with an arrow on the end pointing to the feature.",
+      "choices": [
+        "extension line",
+        "leader",
+        "pointer line",
+        "reference arrow"
+      ],
+      "correct": "leader"
+    },
+    {
+      "index": 5,
+      "points": "100",
+      "category": "Dimensioning Systems",
+      "definition": "Type of dimension that shows the distance between two different features.",
+      "choices": [
+        "spacing dimension",
+        "location dimension",
+        "distance measurement",
+        "positional dimension"
+      ],
+      "correct": "location dimension"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Pictorial Methods",
+      "definition": "Type of pictorial drawing that features one side of the object as the front image.",
+      "choices": [
+        "cabinet projection",
+        "oblique drawing",
+        "cavalier projection",
+        "frontal projection"
+      ],
+      "correct": "oblique drawing"
+    },
+    {
+      "index": 7,
+      "points": "300",
+      "category": "Pictorial Methods",
+      "definition": "Type of pictorial drawing that shows an object from a specific point of view and simulates what the eye sees.",
+      "choices": [
+        "isometric view",
+        "perspective drawing",
+        "three-point projection",
+        "vanishing point drawing"
+      ],
+      "correct": "perspective drawing"
+    },
+    {
+      "index": 8,
+      "points": "200",
+      "category": "Drawing Types",
+      "definition": "Type of working drawing used to show how different parts are connected together to form a system.",
+      "choices": [
+        "circuit diagram",
+        "schematic drawing",
+        "system layout",
+        "connection diagram"
+      ],
+      "correct": "schematic drawing"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Dimensioning Systems",
+      "definition": "Type of dimension used to provide detailed information about the shape of features.",
+      "choices": [
+        "geometric dimension",
+        "shape dimension",
+        "form specification",
+        "contour dimension"
+      ],
+      "correct": "shape dimension"
+    },
+    {
+      "index": 10,
+      "points": "200",
+      "category": "Dimensioning Systems",
+      "definition": "Type of dimension that describes the length, width, and depth of an object.",
+      "choices": [
+        "overall dimension",
+        "size dimension",
+        "primary dimension",
+        "boundary dimension"
+      ],
+      "correct": "size dimension"
+    },
+    {
+      "index": 11,
+      "points": "200",
+      "category": "Communication Tools",
+      "definition": "Ability to mentally see a representation of a product for which there is no physical object.",
+      "choices": [
+        "spatial reasoning",
+        "visualization",
+        "mental modeling",
+        "conceptual imaging"
+      ],
+      "correct": "visualization"
+    },
+    {
+      "index": 12,
+      "points": "200",
+      "category": "Drawing Types",
+      "definition": "Type of engineering drawing that shows the most complete drawing produced.",
+      "choices": [
+        "master drawing",
+        "working drawing",
+        "comprehensive drawing",
+        "complete drawing"
+      ],
+      "correct": "working drawing"
+    }
+  ]
+}

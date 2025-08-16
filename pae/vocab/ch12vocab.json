@@ -1,0 +1,339 @@
+{
+  "chapter": 12,
+  "title": "Computer Engineering & Robotics",
+  "description": "Digital systems, logic gates, computer architecture, robotics, and manufacturing automation",
+  "categories": [
+    "Digital Systems & Logic",
+    "Logic Gates",
+    "Computer Systems & Architecture",
+    "Robotics & Automation",
+    "Computer-Aided Manufacturing"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "300",
+      "category": "Digital Systems & Logic",
+      "definition": "Step-by-step procedure for solving problems or completing tasks.",
+      "choices": [
+        "heuristic",
+        "flowchart",
+        "algorithm",
+        "pseudocode"
+      ],
+      "correct": "algorithm"
+    },
+    {
+      "index": 1,
+      "points": "300",
+      "category": "Logic Gates",
+      "definition": "Gate that provides an output of 1 only if both inputs (A and B) are 1.",
+      "choices": [
+        "NAND gate",
+        "AND gate",
+        "NOR gate",
+        "XOR gate"
+      ],
+      "correct": "AND gate"
+    },
+    {
+      "index": 2,
+      "points": "200",
+      "category": "Robotics & Automation",
+      "definition": "Advanced robot that is programmed to respond to the world around it.",
+      "choices": [
+        "industrial robot",
+        "collaborative robot",
+        "autonomous robot",
+        "teleoperated robot"
+      ],
+      "correct": "autonomous robot"
+    },
+    {
+      "index": 3,
+      "points": "200",
+      "category": "Digital Systems & Logic",
+      "definition": "System of representing information in only 1s and 0s.",
+      "choices": [
+        "binary code",
+        "hexadecimal code",
+        "ASCII code",
+        "machine code"
+      ],
+      "correct": "binary code"
+    },
+    {
+      "index": 4,
+      "points": "200",
+      "category": "Digital Systems & Logic",
+      "definition": "Numbers represented by only 1 and 0.",
+      "choices": [
+        "binary numbers",
+        "Boolean values",
+        "bit patterns",
+        "digital signals"
+      ],
+      "correct": "binary numbers"
+    },
+    {
+      "index": 5,
+      "points": "500",
+      "category": "Computer-Aided Manufacturing",
+      "definition": "Software used to import CAD drawings while allowing users to input the type of material to be cut, the type and size of the cutter, the speed the cutter will move, and more.",
+      "choices": [
+        "computer-aided engineering (CAE) software",
+        "computer-aided manufacturing (CAM) software",
+        "product lifecycle management (PLM) software",
+        "manufacturing execution system (MES) software"
+      ],
+      "correct": "computer-aided manufacturing (CAM) software"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Computer-Aided Manufacturing",
+      "definition": "Using a computer to design the processes that are used to manufacture parts.",
+      "choices": [
+        "computer-aided process planning (CAPP)",
+        "manufacturing resource planning (MRP)",
+        "enterprise resource planning (ERP)",
+        "computer-aided quality (CAQ)"
+      ],
+      "correct": "computer-aided process planning (CAPP)"
+    },
+    {
+      "index": 7,
+      "points": "300",
+      "category": "Computer Systems & Architecture",
+      "definition": "Way in which computers are designed, with a focus on the central processing unit (CPU), and how it works internally and accesses memory.",
+      "choices": [
+        "computer architecture",
+        "system design",
+        "hardware engineering",
+        "microarchitecture"
+      ],
+      "correct": "computer architecture"
+    },
+    {
+      "index": 8,
+      "points": "300",
+      "category": "Computer Systems & Architecture",
+      "definition": "Design, development, and testing of various aspects of computer systems; a unique field that overlaps electrical engineering and software engineering.",
+      "choices": [
+        "systems engineering",
+        "computer engineering",
+        "software architecture",
+        "embedded systems design"
+      ],
+      "correct": "computer engineering"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Computer-Aided Manufacturing",
+      "definition": "Manufacturing process in which computers control the entire production process.",
+      "choices": [
+        "flexible manufacturing system (FMS)",
+        "computer-integrated manufacturing (CIM)",
+        "lean manufacturing",
+        "digital manufacturing"
+      ],
+      "correct": "computer-integrated manufacturing (CIM)"
+    },
+    {
+      "index": 10,
+      "points": "200",
+      "category": "Computer Systems & Architecture",
+      "definition": "Structured system of storing data in a computer system.",
+      "choices": [
+        "file system",
+        "data warehouse",
+        "database",
+        "data structure"
+      ],
+      "correct": "database"
+    },
+    {
+      "index": 11,
+      "points": "100",
+      "category": "Digital Systems & Logic",
+      "definition": "Processing of signals that are represented by 1s and 0s.",
+      "choices": [
+        "analog signal processing",
+        "digital signal processing",
+        "mixed-signal processing",
+        "discrete-time processing"
+      ],
+      "correct": "digital signal processing"
+    },
+    {
+      "index": 12,
+      "points": "400",
+      "category": "Robotics & Automation",
+      "definition": "Ability for a variety of tools to be attached to the end of a robotic arm. Examples include paint spray guns, welders, and grippers.",
+      "choices": [
+        "robotic manipulator",
+        "end-of-arm tooling",
+        "automated tool changer",
+        "robotic end effector system"
+      ],
+      "correct": "end-of-arm tooling"
+    },
+    {
+      "index": 13,
+      "points": "100",
+      "category": "Computer Systems & Architecture",
+      "definition": "The science and physiology of touch.",
+      "choices": [
+        "haptic",
+        "tactile",
+        "kinesthetic",
+        "proprioceptive"
+      ],
+      "correct": "haptic"
+    },
+    {
+      "index": 14,
+      "points": "100",
+      "category": "Computer Systems & Architecture",
+      "definition": "Study of the interactions between humans and computers.",
+      "choices": [
+        "ergonomics",
+        "user experience (UX)",
+        "human-computer interaction",
+        "cognitive engineering"
+      ],
+      "correct": "human-computer interaction"
+    },
+    {
+      "index": 15,
+      "points": "100",
+      "category": "Digital Systems & Logic",
+      "definition": "System of operations performed by a computer.",
+      "choices": [
+        "logic",
+        "computation",
+        "processing",
+        "execution"
+      ],
+      "correct": "logic"
+    },
+    {
+      "index": 16,
+      "points": "100",
+      "category": "Logic Gates",
+      "definition": "Gate that is a combination of a NOT and an AND gate. If either or both inputs are 1, then the output is 0.",
+      "choices": [
+        "NOR gate",
+        "NAND gate",
+        "XNOR gate",
+        "NOT gate"
+      ],
+      "correct": "NAND gate"
+    },
+    {
+      "index": 17,
+      "points": "400",
+      "category": "Logic Gates",
+      "definition": "Gate that is a combination of an OR and a NOT gate. If both inputs are 0, the output is 1. If either or both inputs are 1, then the output is 0.",
+      "choices": [
+        "NOR gate",
+        "NAND gate",
+        "XOR gate",
+        "XNOR gate"
+      ],
+      "correct": "NOR gate"
+    },
+    {
+      "index": 18,
+      "points": "500",
+      "category": "Logic Gates",
+      "definition": "Gate that is also called an <em>inverter</em> because it changes the input. If the input is 1, then the output is 0. If the input is 0, then the output is 1.",
+      "choices": [
+        "buffer gate",
+        "NOT gate",
+        "NAND gate",
+        "NOR gate"
+      ],
+      "correct": "NOT gate"
+    },
+    {
+      "index": 19,
+      "points": "100",
+      "category": "Logic Gates",
+      "definition": "Gate that provides an output of 1 if either or both of the inputs are 1.",
+      "choices": [
+        "XOR gate",
+        "AND gate",
+        "OR gate",
+        "NAND gate"
+      ],
+      "correct": "OR gate"
+    },
+    {
+      "index": 20,
+      "points": "100",
+      "category": "Robotics & Automation",
+      "definition": "Automatically controlled, reprogrammable, multipurpose machine.",
+      "choices": [
+        "automaton",
+        "robot",
+        "manipulator",
+        "actuator"
+      ],
+      "correct": "robot"
+    },
+    {
+      "index": 21,
+      "points": "500",
+      "category": "Robotics & Automation",
+      "definition": "Area of engineering that deals with the design, construction, and programming of robots to perform specific tasks.",
+      "choices": [
+        "mechatronics",
+        "automation engineering",
+        "robotics",
+        "control systems engineering"
+      ],
+      "correct": "robotics"
+    },
+    {
+      "index": 22,
+      "points": "500",
+      "category": "Computer Systems & Architecture",
+      "definition": "Application of engineering principles to software design. It is a systematic, quantifiable approach to software development.",
+      "choices": [
+        "systems analysis",
+        "software engineering",
+        "computer science",
+        "software architecture"
+      ],
+      "correct": "software engineering"
+    },
+    {
+      "index": 23,
+      "points": "400",
+      "category": "Logic Gates",
+      "definition": "Gate that is an exclusive NOR gate. Provides an output of 1 if the inputs are both 1 or both 0, but not if one is 0 and one is 1.",
+      "choices": [
+        "equivalence gate",
+        "XNOR gate",
+        "biconditional gate",
+        "coincidence gate"
+      ],
+      "correct": "XNOR gate"
+    },
+    {
+      "index": 24,
+      "points": "400",
+      "category": "Logic Gates",
+      "definition": "Gate that is an exclusive OR gate. Provides an output of 1 if one input is 1, but not if both are 1.",
+      "choices": [
+        "XOR gate",
+        "XNOR gate",
+        "parity gate",
+        "modulo-2 adder"
+      ],
+      "correct": "XOR gate"
+    }
+  ]
+}

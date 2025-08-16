@@ -1,0 +1,442 @@
+{
+  "chapter": 9,
+  "title": "Materials Engineering",
+  "description": "Material properties, classifications, testing methods, and nanotechnology applications in engineering",
+  "categories": [
+    "Material Types",
+    "Material Properties", 
+    "Testing Methods",
+    "Nanotechnology"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Material Types",
+      "definition": "Mixture of a metal with one or more additional elements. Often a combination of two or more metals.",
+      "choices": [
+        "metallic compound",
+        "alloy",
+        "metal matrix",
+        "intermetallic"
+      ],
+      "correct": "alloy"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Material Types",
+      "definition": "Plastics made with renewable resources, such as sugar cane, corn, or starch, and are often biodegradable.",
+      "choices": [
+        "sustainable polymer",
+        "biodegradable plastic",
+        "bio-based plastic",
+        "renewable polymer"
+      ],
+      "correct": "bio-based plastic"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Material Types",
+      "definition": "Substance that interacts with living systems.",
+      "choices": [
+        "biocompatible material",
+        "biomaterial",
+        "biological material",
+        "medical material"
+      ],
+      "correct": "biomaterial"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Nanotechnology",
+      "definition": "Carbon sphere made up of a series of hexagons and pentagons, similar to a miniature soccer ball.",
+      "choices": [
+        "fullerene",
+        "buckyball",
+        "carbon sphere",
+        "graphene ball"
+      ],
+      "correct": "buckyball"
+    },
+    {
+      "index": 4,
+      "points": "400",
+      "category": "Material Types",
+      "definition": "Nonmetallic solids made from inorganic materials (often minerals). A very hard, inorganic, refractory, nonmetallic material with little electrical conductivity.",
+      "choices": [
+        "refractory material",
+        "ceramic",
+        "crystalline solid",
+        "inorganic compound"
+      ],
+      "correct": "ceramic"
+    },
+    {
+      "index": 5,
+      "points": "100",
+      "category": "Material Types",
+      "definition": "Material that combines two or more materials.",
+      "choices": [
+        "hybrid material",
+        "composite",
+        "laminated material",
+        "multi-phase material"
+      ],
+      "correct": "composite"
+    },
+    {
+      "index": 6,
+      "points": "300",
+      "category": "Material Properties",
+      "definition": "Ability of a material to withstand a load that compresses or squeezes the material.",
+      "choices": [
+        "compressive resistance",
+        "compression strength",
+        "crushing strength",
+        "bearing strength"
+      ],
+      "correct": "compression strength"
+    },
+    {
+      "index": 7,
+      "points": "200",
+      "category": "Material Properties",
+      "definition": "Measurement of how well electricity flows through a material.",
+      "choices": [
+        "electrical conductance",
+        "conductivity",
+        "current capacity",
+        "electrical transmission"
+      ],
+      "correct": "conductivity"
+    },
+    {
+      "index": 8,
+      "points": "300",
+      "category": "Material Properties",
+      "definition": "Reaction between a material and the environment that leads to deterioration of the material.",
+      "choices": [
+        "material degradation",
+        "corrosion",
+        "environmental attack",
+        "chemical deterioration"
+      ],
+      "correct": "corrosion"
+    },
+    {
+      "index": 9,
+      "points": "200",
+      "category": "Testing Methods",
+      "definition": "Test that destroys a material or somehow makes a material unusable.",
+      "choices": [
+        "failure testing",
+        "destructive material test",
+        "ultimate testing",
+        "break testing"
+      ],
+      "correct": "destructive material test"
+    },
+    {
+      "index": 10,
+      "points": "200",
+      "category": "Material Properties",
+      "definition": "Ability to return to the original dimensions when stress is removed.",
+      "choices": [
+        "elastic recovery",
+        "elasticity",
+        "reversible deformation",
+        "spring-back"
+      ],
+      "correct": "elasticity"
+    },
+    {
+      "index": 11,
+      "points": "200",
+      "category": "Material Properties",
+      "definition": "Ease with which a material will ignite.",
+      "choices": [
+        "ignition resistance",
+        "flammability",
+        "combustibility",
+        "fire resistance"
+      ],
+      "correct": "flammability"
+    },
+    {
+      "index": 12,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Ease with which the material can be transformed from raw material to a usable material.",
+      "choices": [
+        "processability",
+        "manufacturability",
+        "workability",
+        "formability"
+      ],
+      "correct": "manufacturability"
+    },
+    {
+      "index": 13,
+      "points": "300",
+      "category": "Material Types",
+      "definition": "Understanding and modification of the structure and properties of materials to improve the performance and processing of the material.",
+      "choices": [
+        "material science",
+        "materials engineering",
+        "material development",
+        "material design"
+      ],
+      "correct": "materials engineering"
+    },
+    {
+      "index": 14,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Temperature at which material changes from a solid to a liquid.",
+      "choices": [
+        "fusion point",
+        "melting point",
+        "liquefaction temperature",
+        "phase transition temperature"
+      ],
+      "correct": "melting point"
+    },
+    {
+      "index": 15,
+      "points": "400",
+      "category": "Material Types",
+      "definition": "Chemical element that belongs to one of the families of metals on the periodic table; a type of inorganic material with good conductivity to heat and electricity.",
+      "choices": [
+        "metallic element",
+        "metal",
+        "conductive material",
+        "crystalline metal"
+      ],
+      "correct": "metal"
+    },
+    {
+      "index": 16,
+      "points": "100",
+      "category": "Nanotechnology",
+      "definition": "Most basic component at the nanoscale.",
+      "choices": [
+        "nano-building-block",
+        "nanoparticle",
+        "atomic cluster",
+        "molecular unit"
+      ],
+      "correct": "nanoparticle"
+    },
+    {
+      "index": 17,
+      "points": "100",
+      "category": "Nanotechnology",
+      "definition": "Design of new materials and devices at the scale of a nanometer.",
+      "choices": [
+        "molecular engineering",
+        "nanotechnology",
+        "atomic engineering",
+        "nanoscale engineering"
+      ],
+      "correct": "nanotechnology"
+    },
+    {
+      "index": 18,
+      "points": "100",
+      "category": "Nanotechnology",
+      "definition": "Nano-sized cylinders of carbon.",
+      "choices": [
+        "carbon cylinders",
+        "nanotubes",
+        "carbon filaments",
+        "graphene tubes"
+      ],
+      "correct": "nanotubes"
+    },
+    {
+      "index": 19,
+      "points": "100",
+      "category": "Nanotechnology",
+      "definition": "Small strand of material that ranges 1 nm–60 nm in width.",
+      "choices": [
+        "nanofiber",
+        "nanowire",
+        "nanofilament",
+        "molecular wire"
+      ],
+      "correct": "nanowire"
+    },
+    {
+      "index": 20,
+      "points": "100",
+      "category": "Testing Methods",
+      "definition": "Test that leaves the material intact and does not destroy the material.",
+      "choices": [
+        "non-invasive test",
+        "nondestructive material test",
+        "preservation test",
+        "intact testing"
+      ],
+      "correct": "nondestructive material test"
+    },
+    {
+      "index": 21,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Deformation that occurs from the yield point to the fracture point.",
+      "choices": [
+        "permanent deformation",
+        "plasticity",
+        "ductile behavior",
+        "yielding behavior"
+      ],
+      "correct": "plasticity"
+    },
+    {
+      "index": 22,
+      "points": "400",
+      "category": "Material Types",
+      "definition": "Organic, noncrystalline material made up of a long chain of small molecules (primarily made up of carbon and hydrogen atoms) that form a much larger molecule.",
+      "choices": [
+        "macromolecule",
+        "polymer",
+        "organic chain",
+        "molecular chain"
+      ],
+      "correct": "polymer"
+    },
+    {
+      "index": 23,
+      "points": "400",
+      "category": "Nanotechnology",
+      "definition": "Synthetic crystals that are made at the nanoscale, operate as semiconductors, and have interesting optical and electrical properties.",
+      "choices": [
+        "semiconductor nanocrystals",
+        "quantum dots",
+        "nano semiconductors",
+        "photonic crystals"
+      ],
+      "correct": "quantum dots"
+    },
+    {
+      "index": 24,
+      "points": "100",
+      "category": "Testing Methods",
+      "definition": "Test that uses x-rays that pass through the material.",
+      "choices": [
+        "x-ray inspection",
+        "radiography test",
+        "penetration test",
+        "imaging test"
+      ],
+      "correct": "radiography test"
+    },
+    {
+      "index": 25,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Measurement of how well a material resists the flow of electricity.",
+      "choices": [
+        "electrical resistance",
+        "resistivity",
+        "insulation property",
+        "conduction resistance"
+      ],
+      "correct": "resistivity"
+    },
+    {
+      "index": 26,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Bending or twisting force, like the stress that occurs when using a wrench.",
+      "choices": [
+        "torsional stress",
+        "shear stress",
+        "bending stress",
+        "twisting force"
+      ],
+      "correct": "shear stress"
+    },
+    {
+      "index": 27,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Deformation that occurs from stress.",
+      "choices": [
+        "material deformation",
+        "strain",
+        "stress response",
+        "mechanical deformation"
+      ],
+      "correct": "strain"
+    },
+    {
+      "index": 28,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Amount of force or load that is applied to a material.",
+      "choices": [
+        "applied force",
+        "stress",
+        "loading force",
+        "mechanical load"
+      ],
+      "correct": "stress"
+    },
+    {
+      "index": 29,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Ability of a material to withstand a force that pulls the material apart.",
+      "choices": [
+        "pulling strength",
+        "tensile strength",
+        "ultimate strength",
+        "fracture strength"
+      ],
+      "correct": "tensile strength"
+    },
+    {
+      "index": 30,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Material property determined by how well heat is transferred through the material.",
+      "choices": [
+        "heat transfer rate",
+        "thermal conductivity",
+        "thermal transmission",
+        "heat conductance"
+      ],
+      "correct": "thermal conductivity"
+    },
+    {
+      "index": 31,
+      "points": "100",
+      "category": "Material Properties",
+      "definition": "Reciprocal of thermal conductivity.",
+      "choices": [
+        "thermal insulation",
+        "thermal resistance",
+        "heat resistance",
+        "thermal barrier"
+      ],
+      "correct": "thermal resistance"
+    },
+    {
+      "index": 32,
+      "points": "300",
+      "category": "Testing Methods",
+      "definition": "Test that uses sound waves that \"bounce off\" changes in the material to determine the internal composition of a material.",
+      "choices": [
+        "acoustic testing",
+        "ultrasonic test",
+        "sound wave analysis",
+        "sonic inspection"
+      ],
+      "correct": "ultrasonic test"
+    }
+  ]
+}

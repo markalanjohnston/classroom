@@ -1,0 +1,859 @@
+{
+  "chapter": 11,
+  "title": "Electrical Engineering",
+  "description": "Fundamental electrical concepts, components, circuits, and measurement tools",
+  "categories": [
+    "Fundamental Concepts",
+    "Electrical Components",
+    "Circuit Types & Analysis",
+    "Measurement & Testing",
+    "Power Systems & Applications"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Current flow where polarity is constantly changing.",
+      "choices": [
+        "alternating current (ac)",
+        "direct current (dc)",
+        "pulsating current",
+        "static electricity"
+      ],
+      "correct": "alternating current (ac)"
+    },
+    {
+      "index": 1,
+      "points": "400",
+      "category": "Measurement & Testing",
+      "definition": "System for sizing round wires based on their cross-sectional area where smaller numbers represent larger wire.",
+      "choices": [
+        "American Wire Gage (AWG)",
+        "International Wire Standard (IWS)",
+        "metric wire measurement",
+        "circular mil system"
+      ],
+      "correct": "American Wire Gage (AWG)"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Measurement & Testing",
+      "definition": "Meter that is used to measure current.",
+      "choices": [
+        "ammeter",
+        "voltmeter",
+        "ohmmeter",
+        "wattmeter"
+      ],
+      "correct": "ammeter"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Microscopic building block of matter, made up of electrons, protons, and neutrons.",
+      "choices": [
+        "molecule",
+        "compound",
+        "atom",
+        "element"
+      ],
+      "correct": "atom"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Power Systems & Applications",
+      "definition": "Electrical connection of two or more cells.",
+      "choices": [
+        "capacitor bank",
+        "battery",
+        "transformer",
+        "rectifier circuit"
+      ],
+      "correct": "battery"
+    },
+    {
+      "index": 5,
+      "points": "500",
+      "category": "Electrical Components",
+      "definition": "Component that consists of two conductive plates separated by an insulator called a <em>dielectric</em>. Can store an electrical charge on their plates.",
+      "choices": [
+        "inductor",
+        "transformer",
+        "resistor",
+        "capacitor"
+      ],
+      "correct": "capacitor"
+    },
+    {
+      "index": 6,
+      "points": "400",
+      "category": "Power Systems & Applications",
+      "definition": "Device that generates electricity through chemical action. In biology, it is the structural and functional units of all living things.",
+      "choices": [
+        "generator",
+        "cell",
+        "battery",
+        "photovoltaic module"
+      ],
+      "correct": "cell"
+    },
+    {
+      "index": 7,
+      "points": "500",
+      "category": "Electrical Components",
+      "definition": "Rigid piece of insulation (typically fiberglass) is used as a platform for circuitry. Thin copper tracks are laid on the fiberglass and electronic components are soldered to the track. Commonly known as a <em>PCB</em> (printed circuit board).",
+      "choices": [
+        "breadboard",
+        "circuit board",
+        "wire wrap board",
+        "stripboard"
+      ],
+      "correct": "circuit board"
+    },
+    {
+      "index": 8,
+      "points": "100",
+      "category": "Power Systems & Applications",
+      "definition": "Lamp that works on the same principle as a fluorescent lamp but is designed to fit into a normal light socket.",
+      "choices": [
+        "halogen lamp",
+        "LED bulb",
+        "compact florescent lamp (CFL)",
+        "metal halide lamp"
+      ],
+      "correct": "compact florescent lamp (CFL)"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Material with low resistance that easily passes electrons from one atom to another.",
+      "choices": [
+        "conductor",
+        "semiconductor",
+        "superconductor",
+        "insulator"
+      ],
+      "correct": "conductor"
+    },
+    {
+      "index": 10,
+      "points": "100",
+      "category": "Measurement & Testing",
+      "definition": "Tool used to test if there is a complete path between two points.",
+      "choices": [
+        "megohmmeter",
+        "logic probe",
+        "continuity tester",
+        "phase detector"
+      ],
+      "correct": "continuity tester"
+    },
+    {
+      "index": 11,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Measure of the amount of electricity. One coulomb is equal to 6,240,000,000,000,000,000 (6.24 × 1018) electrons.",
+      "choices": [
+        "coulombs",
+        "amperes",
+        "farads",
+        "joules"
+      ],
+      "correct": "coulombs"
+    },
+    {
+      "index": 12,
+      "points": "200",
+      "category": "Fundamental Concepts",
+      "definition": "Measure of electrons per unit time.",
+      "choices": [
+        "voltage",
+        "current",
+        "resistance",
+        "capacitance"
+      ],
+      "correct": "current"
+    },
+    {
+      "index": 13,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Component that limits current flow to one direction. Can be used as rectifiers to change ac to pulsating dc.",
+      "choices": [
+        "diode",
+        "transistor",
+        "thyristor",
+        "MOSFET"
+      ],
+      "correct": "diode"
+    },
+    {
+      "index": 14,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Current flow in one direction, where polarity never changes.",
+      "choices": [
+        "direct current (dc)",
+        "alternating current (ac)",
+        "ripple current",
+        "transient current"
+      ],
+      "correct": "direct current (dc)"
+    },
+    {
+      "index": 15,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Design and construction of electrical and electronic systems, components, and devices.",
+      "choices": [
+        "mechanical engineering",
+        "computer engineering",
+        "electrical engineering",
+        "systems engineering"
+      ],
+      "correct": "electrical engineering"
+    },
+    {
+      "index": 16,
+      "points": "200",
+      "category": "Fundamental Concepts",
+      "definition": "Movement of electrons.",
+      "choices": [
+        "magnetism",
+        "electricity",
+        "inductance",
+        "electromagnetic radiation"
+      ],
+      "correct": "electricity"
+    },
+    {
+      "index": 17,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Solid conductor through which electricity enters or leaves a medium.",
+      "choices": [
+        "electrode",
+        "terminal",
+        "anode",
+        "cathode"
+      ],
+      "correct": "electrode"
+    },
+    {
+      "index": 18,
+      "points": "200",
+      "category": "Fundamental Concepts",
+      "definition": "Negatively charged subatomic particle.",
+      "choices": [
+        "electron",
+        "positron",
+        "neutron",
+        "muon"
+      ],
+      "correct": "electron"
+    },
+    {
+      "index": 19,
+      "points": "500",
+      "category": "Power Systems & Applications",
+      "definition": "Energy-efficient lamp that uses a long tube coated on the inside with phosphorous and filled with an inert gas. Mercury inside of the tube is ionized, creating ultraviolet light, which causes the phosphorous to glow.",
+      "choices": [
+        "incandescent lamp",
+        "sodium vapor lamp",
+        "halogen lamp",
+        "fluorescent lamp"
+      ],
+      "correct": "fluorescent lamp"
+    },
+    {
+      "index": 20,
+      "points": "100",
+      "category": "Power Systems & Applications",
+      "definition": "Lamp that creates light when gas inside of a globe is ionized and glows.",
+      "choices": [
+        "gas discharge lamps",
+        "incandescent lamps",
+        "LED lamps",
+        "arc lamps"
+      ],
+      "correct": "gas discharge lamps"
+    },
+    {
+      "index": 21,
+      "points": "400",
+      "category": "Power Systems & Applications",
+      "definition": "Device that produces electricity by changing mechanical energy to electrical energy through the use of magnets.",
+      "choices": [
+        "generator",
+        "alternator",
+        "dynamo",
+        "motor"
+      ],
+      "correct": "generator"
+    },
+    {
+      "index": 22,
+      "points": "300",
+      "category": "Power Systems & Applications",
+      "definition": "Fuel-efficient car that uses an internal combustion engine combined with an electric motor and batteries.",
+      "choices": [
+        "electric vehicle",
+        "fuel cell vehicle",
+        "hybrid car",
+        "plug-in electric vehicle"
+      ],
+      "correct": "hybrid car"
+    },
+    {
+      "index": 23,
+      "points": "300",
+      "category": "Power Systems & Applications",
+      "definition": "Device that uses electricity to heat a tungsten filament in a vacuum until it glows and creates light.",
+      "choices": [
+        "halogen lamp",
+        "xenon lamp",
+        "incandescent lamp",
+        "mercury vapor lamp"
+      ],
+      "correct": "incandescent lamp"
+    },
+    {
+      "index": 24,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Broadest professional society for electrical engineers, with over 375,000 members in more than 160 countries.",
+      "choices": [
+        "Institute of Electrical and Electronics Engineers (IEEE)",
+        "International Electrotechnical Commission (IEC)",
+        "National Electrical Manufacturers Association (NEMA)",
+        "American National Standards Institute (ANSI)"
+      ],
+      "correct": "Institute of Electrical and Electronics Engineers (IEEE)"
+    },
+    {
+      "index": 25,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Material with a very high resistance that does not allow current to flow.",
+      "choices": [
+        "dielectric",
+        "insulator",
+        "resistor",
+        "semiconductor"
+      ],
+      "correct": "insulator"
+    },
+    {
+      "index": 26,
+      "points": "300",
+      "category": "Electrical Components",
+      "definition": "Consists of multiple electronic circuits etched into a thin layer of silicon and enclosed in a protective material like plastic.",
+      "choices": [
+        "microprocessor",
+        "integrated circuit (IC)",
+        "printed circuit board",
+        "system on chip (SoC)"
+      ],
+      "correct": "integrated circuit (IC)"
+    },
+    {
+      "index": 27,
+      "points": "200",
+      "category": "Fundamental Concepts",
+      "definition": "Electrically charged atom.",
+      "choices": [
+        "isotope",
+        "molecule",
+        "ion",
+        "radical"
+      ],
+      "correct": "ion"
+    },
+    {
+      "index": 28,
+      "points": "300",
+      "category": "Fundamental Concepts",
+      "definition": "Law that states that energy cannot be created or destroyed. It can only be converted from one form to another.",
+      "choices": [
+        "law of conservation of energy",
+        "law of thermodynamics",
+        "Kirchhoff's law",
+        "Faraday's law"
+      ],
+      "correct": "law of conservation of energy"
+    },
+    {
+      "index": 29,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Extremely efficient lamp that creates light by forward biasing semiconductor material.",
+      "choices": [
+        "organic LED (OLED)",
+        "light-emitting diode (LED)",
+        "laser diode",
+        "photodiode"
+      ],
+      "correct": "light-emitting diode (LED)"
+    },
+    {
+      "index": 30,
+      "points": "100",
+      "category": "Power Systems & Applications",
+      "definition": "Device that uses magnetism to change electrical energy to mechanical energy.",
+      "choices": [
+        "motor",
+        "generator",
+        "transformer",
+        "solenoid"
+      ],
+      "correct": "motor"
+    },
+    {
+      "index": 31,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Subatomic particle with a neutral charge.",
+      "choices": [
+        "photon",
+        "neutrino",
+        "neutron",
+        "quark"
+      ],
+      "correct": "neutron"
+    },
+    {
+      "index": 32,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Base unit of measurement of resistance.",
+      "choices": [
+        "siemens",
+        "ohm (Ω)",
+        "henry",
+        "farad"
+      ],
+      "correct": "ohm (Ω)"
+    },
+    {
+      "index": 33,
+      "points": "100",
+      "category": "Measurement & Testing",
+      "definition": "Meter that is used to measure resistance.",
+      "choices": [
+        "galvanometer",
+        "electrometer",
+        "ohmmeter",
+        "potentiometer"
+      ],
+      "correct": "ohmmeter"
+    },
+    {
+      "index": 34,
+      "points": "100",
+      "category": "Circuit Types & Analysis",
+      "definition": "Law that defines the relationship between voltage, current, and resistance.",
+      "choices": [
+        "Ohm's law",
+        "Kirchhoff's voltage law",
+        "Thevenin's theorem",
+        "Norton's theorem"
+      ],
+      "correct": "Ohm's law"
+    },
+    {
+      "index": 35,
+      "points": "500",
+      "category": "Measurement & Testing",
+      "definition": "Electrical test device whose screen can show the exact shape of a wave and, therefore, any possible distortion. It can measure voltage, frequency, pulses, and the timing of multiple signals.",
+      "choices": [
+        "spectrum analyzer",
+        "logic analyzer",
+        "oscilloscope",
+        "frequency counter"
+      ],
+      "correct": "oscilloscope"
+    },
+    {
+      "index": 36,
+      "points": "100",
+      "category": "Circuit Types & Analysis",
+      "definition": "Circuits that have more than one load and multiple paths for current flow.",
+      "choices": [
+        "parallel circuits",
+        "series circuits",
+        "combination circuits",
+        "bridge circuits"
+      ],
+      "correct": "parallel circuits"
+    },
+    {
+      "index": 37,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Positive or negative condition at the power supply terminal.",
+      "choices": [
+        "phase",
+        "polarity",
+        "potential",
+        "bias"
+      ],
+      "correct": "polarity"
+    },
+    {
+      "index": 38,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Rate at which work is done or energy is transmitted; the amount of work done based on a period of time.",
+      "choices": [
+        "power",
+        "energy",
+        "force",
+        "momentum"
+      ],
+      "correct": "power"
+    },
+    {
+      "index": 39,
+      "points": "100",
+      "category": "Power Systems & Applications",
+      "definition": "Disposable cell.",
+      "choices": [
+        "alkaline cell",
+        "primary cell",
+        "secondary cell",
+        "fuel cell"
+      ],
+      "correct": "primary cell"
+    },
+    {
+      "index": 40,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Subatomic particle with a positive charge.",
+      "choices": [
+        "proton",
+        "positron",
+        "cation",
+        "alpha particle"
+      ],
+      "correct": "proton"
+    },
+    {
+      "index": 41,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "The opposition to current flow.",
+      "choices": [
+        "impedance",
+        "reactance",
+        "resistance",
+        "inductance"
+      ],
+      "correct": "resistance"
+    },
+    {
+      "index": 42,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Electrical component used to limit current flow and divide voltage.",
+      "choices": [
+        "capacitor",
+        "inductor",
+        "resistor",
+        "thermistor"
+      ],
+      "correct": "resistor"
+    },
+    {
+      "index": 43,
+      "points": "100",
+      "category": "Circuit Types & Analysis",
+      "definition": "Basic sketch of circuitry showing schematic symbols for parts and lines to represent conductors.",
+      "choices": [
+        "schematic diagram",
+        "block diagram",
+        "wiring diagram",
+        "flow chart"
+      ],
+      "correct": "schematic diagram"
+    },
+    {
+      "index": 44,
+      "points": "100",
+      "category": "Circuit Types & Analysis",
+      "definition": "Simple symbols used to represent electrical parts.",
+      "choices": [
+        "schematic symbols",
+        "logic symbols",
+        "flowchart symbols",
+        "engineering notation"
+      ],
+      "correct": "schematic symbols"
+    },
+    {
+      "index": 45,
+      "points": "100",
+      "category": "Power Systems & Applications",
+      "definition": "Cell that can be recharged.",
+      "choices": [
+        "lithium-ion cell",
+        "primary cell",
+        "secondary cell",
+        "dry cell"
+      ],
+      "correct": "secondary cell"
+    },
+    {
+      "index": 46,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Material with conductive capabilities between that of conductors and insulators. Silicon is the most common semiconductor.",
+      "choices": [
+        "semiconductor",
+        "superconductor",
+        "metalloid",
+        "composite material"
+      ],
+      "correct": "semiconductor"
+    },
+    {
+      "index": 47,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Component that creates an electrical signal based on environmental conditions. Can be used to monitor things like temperature and light.",
+      "choices": [
+        "transducer",
+        "sensor",
+        "actuator",
+        "detector"
+      ],
+      "correct": "sensor"
+    },
+    {
+      "index": 48,
+      "points": "100",
+      "category": "Circuit Types & Analysis",
+      "definition": "Circuits with only one path for current to flow from the power source through the circuit and back to the power source.",
+      "choices": [
+        "series circuits",
+        "parallel circuits",
+        "mesh circuits",
+        "loop circuits"
+      ],
+      "correct": "series circuits"
+    },
+    {
+      "index": 49,
+      "points": "100",
+      "category": "Circuit Types & Analysis",
+      "definition": "Circuits with characteristics of both series and parallel circuits.",
+      "choices": [
+        "series-parallel combination circuits",
+        "bridge circuits",
+        "delta-wye circuits",
+        "Norton equivalent circuits"
+      ],
+      "correct": "series-parallel combination circuits"
+    },
+    {
+      "index": 50,
+      "points": "100",
+      "category": "Power Systems & Applications",
+      "definition": "Cell that uses light to produce electricity.",
+      "choices": [
+        "photoelectric cell",
+        "photovoltaic cell",
+        "solar cell",
+        "selenium cell"
+      ],
+      "correct": "solar cell"
+    },
+    {
+      "index": 51,
+      "points": "400",
+      "category": "Electrical Components",
+      "definition": "Platform ideal for experimentation and testing circuits before they are constructed. Components and leads can easily be moved from one place to another because no soldering is required to make connections.",
+      "choices": [
+        "prototyping board",
+        "perfboard",
+        "solderless breadboard",
+        "wire wrap board"
+      ],
+      "correct": "solderless breadboard"
+    },
+    {
+      "index": 52,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Excess of charge on the surface of an object.",
+      "choices": [
+        "static electricity",
+        "surface charge",
+        "triboelectric effect",
+        "electrostatic discharge"
+      ],
+      "correct": "static electricity"
+    },
+    {
+      "index": 53,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Electrical device used to open and close circuits or redirect current from one circuit to another.",
+      "choices": [
+        "relay",
+        "contactor",
+        "switch",
+        "circuit breaker"
+      ],
+      "correct": "switch"
+    },
+    {
+      "index": 54,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Device used as a solid state switch or amplifier.",
+      "choices": [
+        "MOSFET",
+        "thyristor",
+        "transistor",
+        "TRIAC"
+      ],
+      "correct": "transistor"
+    },
+    {
+      "index": 55,
+      "points": "100",
+      "category": "Measurement & Testing",
+      "definition": "To systematically search for the cause of a failure.",
+      "choices": [
+        "diagnose",
+        "troubleshoot",
+        "debug",
+        "analyze"
+      ],
+      "correct": "troubleshoot"
+    },
+    {
+      "index": 56,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Atom's outer ring of electrons.",
+      "choices": [
+        "valence shell",
+        "electron cloud",
+        "orbital shell",
+        "conduction band"
+      ],
+      "correct": "valence shell"
+    },
+    {
+      "index": 57,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Resistor whose resistance can be changed, usually by rotating a knob or sliding a switch.",
+      "choices": [
+        "potentiometer",
+        "rheostat",
+        "variable resistor",
+        "trimmer resistor"
+      ],
+      "correct": "variable resistor"
+    },
+    {
+      "index": 58,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Base unit of voltage.",
+      "choices": [
+        "volt",
+        "ampere",
+        "coulomb",
+        "joule"
+      ],
+      "correct": "volt"
+    },
+    {
+      "index": 59,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Amount of pressure behind the flow of electrons.",
+      "choices": [
+        "electromotive force",
+        "potential difference",
+        "voltage",
+        "electric field strength"
+      ],
+      "correct": "voltage"
+    },
+    {
+      "index": 60,
+      "points": "100",
+      "category": "Measurement & Testing",
+      "definition": "Meter that is used to measure voltage.",
+      "choices": [
+        "galvanometer",
+        "electrometer",
+        "voltmeter",
+        "potentiometer"
+      ],
+      "correct": "voltmeter"
+    },
+    {
+      "index": 61,
+      "points": "100",
+      "category": "Measurement & Testing",
+      "definition": "Meter that is used to measure voltage, current, and resistance.",
+      "choices": [
+        "digital multimeter (DMM)",
+        "volt-ohm-milliammeter (VOM)",
+        "LCR meter",
+        "power analyzer"
+      ],
+      "correct": "volt-ohm-milliammeter (VOM)"
+    },
+    {
+      "index": 62,
+      "points": "100",
+      "category": "Fundamental Concepts",
+      "definition": "Unit of electrical power.",
+      "choices": [
+        "joule",
+        "watt",
+        "horsepower",
+        "BTU"
+      ],
+      "correct": "watt"
+    },
+    {
+      "index": 63,
+      "points": "100",
+      "category": "Circuit Types & Analysis",
+      "definition": "Law that states that power equals effort multiplied by rate.",
+      "choices": [
+        "Joule's law",
+        "Watt's law",
+        "Faraday's law",
+        "Coulomb's law"
+      ],
+      "correct": "Watt's law"
+    },
+    {
+      "index": 64,
+      "points": "100",
+      "category": "Electrical Components",
+      "definition": "Diode that can conduct in reverse bias and is commonly used in voltage regulation.",
+      "choices": [
+        "Schottky diode",
+        "tunnel diode",
+        "zener diode",
+        "avalanche diode"
+      ],
+      "correct": "zener diode"
+    }
+  ]
+}

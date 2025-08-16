@@ -1,0 +1,195 @@
+{
+  "chapter": 7,
+  "title": "Modeling, Testing, and Final Outputs",
+  "description": "Mathematical modeling, simulation software, testing methods, and project documentation for engineering solutions",
+  "categories": [
+    "Modeling & Simulation",
+    "Testing & Analysis", 
+    "Project Documentation",
+    "Specialized Software"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Testing & Analysis",
+      "definition": "Quality of being visually appealing.",
+      "choices": [
+        "visual harmony",
+        "aesthetics",
+        "design appeal",
+        "artistic quality"
+      ],
+      "correct": "aesthetics"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Modeling & Simulation",
+      "definition": "Idea that is believed to be true and used in engineering design.",
+      "choices": [
+        "design premise",
+        "theoretical basis",
+        "assumption",
+        "engineering hypothesis"
+      ],
+      "correct": "assumption"
+    },
+    {
+      "index": 2,
+      "points": "300",
+      "category": "Specialized Software",
+      "definition": "Type of software that focuses on the use of fluids (air) in relationship to the flight of airplanes. Aerospace engineers can create computational models before they produce solutions to flight-based challenges.",
+      "choices": [
+        "aerodynamic simulation",
+        "computational fluid dynamics (CFD)",
+        "fluid flow analysis",
+        "airflow modeling software"
+      ],
+      "correct": "computational fluid dynamics (CFD)"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Modeling & Simulation",
+      "definition": "Type of modeling that uses computer software to create useful models for engineers.",
+      "choices": [
+        "digital simulation",
+        "computer modeling",
+        "virtual prototyping",
+        "computational design"
+      ],
+      "correct": "computer modeling"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Project Documentation",
+      "definition": "All financial considerations and decisions made during the production of a new design.",
+      "choices": [
+        "cost analysis",
+        "engineering economics",
+        "financial engineering",
+        "economic evaluation"
+      ],
+      "correct": "engineering economics"
+    },
+    {
+      "index": 5,
+      "points": "200",
+      "category": "Project Documentation",
+      "definition": "Summary of the design process for a specific project.",
+      "choices": [
+        "project summary",
+        "final project report",
+        "design documentation",
+        "process analysis"
+      ],
+      "correct": "final project report"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Modeling & Simulation",
+      "definition": "Series of mathematical symbols that represent a rule or relationship between concepts.",
+      "choices": [
+        "mathematical expression",
+        "formula",
+        "equation set",
+        "symbolic notation"
+      ],
+      "correct": "formula"
+    },
+    {
+      "index": 7,
+      "points": "300",
+      "category": "Testing & Analysis",
+      "definition": "Criteria tested on a design to determine whether it works properly.",
+      "choices": [
+        "performance criteria",
+        "function",
+        "operational requirements",
+        "design specifications"
+      ],
+      "correct": "function"
+    },
+    {
+      "index": 8,
+      "points": "300",
+      "category": "Specialized Software",
+      "definition": "Civil engineering software that uses spatial and analytical methods integrated with information about the earth's surface and data about people to create models.",
+      "choices": [
+        "geographic information systems",
+        "geospatial modeling software",
+        "spatial analysis tools",
+        "mapping software"
+      ],
+      "correct": "geospatial modeling software"
+    },
+    {
+      "index": 9,
+      "points": "300",
+      "category": "Modeling & Simulation",
+      "definition": "Type of model used to find solutions to problems using mathematical prediction.",
+      "choices": [
+        "computational model",
+        "mathematical model",
+        "analytical framework",
+        "predictive algorithm"
+      ],
+      "correct": "mathematical model"
+    },
+    {
+      "index": 10,
+      "points": "200",
+      "category": "Testing & Analysis",
+      "definition": "Physical model used to show the design of an object.",
+      "choices": [
+        "prototype model",
+        "mock-up",
+        "scale model",
+        "demonstration model"
+      ],
+      "correct": "mock-up"
+    },
+    {
+      "index": 11,
+      "points": "200",
+      "category": "Project Documentation",
+      "definition": "Spoken delivery of a report to an audience.",
+      "choices": [
+        "verbal report",
+        "oral presentation",
+        "spoken briefing",
+        "verbal delivery"
+      ],
+      "correct": "oral presentation"
+    },
+    {
+      "index": 12,
+      "points": "200",
+      "category": "Testing & Analysis",
+      "definition": "Tool using many different factors, including statistics and theoretical models, to predict future events.",
+      "choices": [
+        "forecasting model",
+        "predictive analysis",
+        "statistical projection",
+        "trend analysis"
+      ],
+      "correct": "predictive analysis"
+    },
+    {
+      "index": 13,
+      "points": "100",
+      "category": "Testing & Analysis",
+      "definition": "Method of determining the properties or function of a device by taking it apart and looking at its operation structure. An existing product or process is disassembled to better understand how it was designed and how it works.",
+      "choices": [
+        "product teardown",
+        "reverse engineering",
+        "disassembly analysis",
+        "deconstruction study"
+      ],
+      "correct": "reverse engineering"
+    }
+  ]
+}

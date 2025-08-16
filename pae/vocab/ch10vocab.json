@@ -1,0 +1,507 @@
+{
+  "chapter": 10,
+  "title": "Manufacturing Engineering",
+  "description": "Manufacturing processes, production systems, facility design, and quality control in industrial engineering",
+  "categories": [
+    "Manufacturing Processes",
+    "Production Systems", 
+    "Facility Planning",
+    "Materials & Quality"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Manufacturing Processes",
+      "definition": "Bonding of two materials using an adhesive material like glue or cement.",
+      "choices": [
+        "bonding attachment",
+        "adhesion",
+        "adhesive joining",
+        "material bonding"
+      ],
+      "correct": "adhesion"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "Mixture of a metal with one or more additional elements. Often a combination of two or more metals.",
+      "choices": [
+        "metallic composite",
+        "alloy",
+        "metal blend",
+        "intermetallic compound"
+      ],
+      "correct": "alloy"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Manufacturing Processes",
+      "definition": "Process of changing materials to a liquid or plastic state and then shaping them in or around a mold.",
+      "choices": [
+        "molding process",
+        "casting and molding",
+        "forming and shaping",
+        "liquid forming"
+      ],
+      "correct": "casting and molding"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "Nonmetallic solids made from inorganic materials (often minerals). A very hard, inorganic, refractory, nonmetallic material with little electrical conductivity.",
+      "choices": [
+        "refractory material",
+        "ceramic",
+        "inorganic solid",
+        "mineral composite"
+      ],
+      "correct": "ceramic"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Manufacturing Processes",
+      "definition": "Joining of two materials through heat or pressure.",
+      "choices": [
+        "thermal bonding",
+        "cohesion",
+        "pressure welding",
+        "fusion joining"
+      ],
+      "correct": "cohesion"
+    },
+    {
+      "index": 5,
+      "points": "200",
+      "category": "Manufacturing Processes",
+      "definition": "Process of joining parts through mechanical assembly and bonding.",
+      "choices": [
+        "assembly process",
+        "combining",
+        "mechanical joining",
+        "parts integration"
+      ],
+      "correct": "combining"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Production Systems",
+      "definition": "Type of manufacturing process that produces the highest number of products at the highest quality and the lowest cost because plants are designed to produce a specific product.",
+      "choices": [
+        "mass production",
+        "continuous manufacturing",
+        "flow production",
+        "dedicated manufacturing"
+      ],
+      "correct": "continuous manufacturing"
+    },
+    {
+      "index": 7,
+      "points": "100",
+      "category": "Production Systems",
+      "definition": "System of ensuring the company is profitable by controlling the resources used in the manufacture of products, including materials, machine time, and labor.",
+      "choices": [
+        "resource management",
+        "cost control",
+        "production control",
+        "financial management"
+      ],
+      "correct": "cost control"
+    },
+    {
+      "index": 8,
+      "points": "100",
+      "category": "Production Systems",
+      "definition": "Type of manufacturing process that is used to produce a single product or a small number of products, usually to meet a customer's particular need.",
+      "choices": [
+        "bespoke manufacturing",
+        "custom manufacturing",
+        "made-to-order production",
+        "specialized manufacturing"
+      ],
+      "correct": "custom manufacturing"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Manufacturing Processes",
+      "definition": "Act of cutting a circular hole down into the earth to extract water, natural gas, oil, and other materials from under the earth's surface.",
+      "choices": [
+        "excavation",
+        "drilling",
+        "boring operations",
+        "extraction process"
+      ],
+      "correct": "drilling"
+    },
+    {
+      "index": 10,
+      "points": "400",
+      "category": "Production Systems",
+      "definition": "Process concerned with the entire life of a product from the time the raw materials are gathered to the time the product's life is over and it is disposed of. Tries to minimize scrap, reduce or eliminate hazardous waste, and makes the most effective use of natural resources.",
+      "choices": [
+        "sustainable manufacturing",
+        "environmentally conscious manufacturing (ECM)",
+        "green manufacturing",
+        "lifecycle manufacturing"
+      ],
+      "correct": "environmentally conscious manufacturing (ECM)"
+    },
+    {
+      "index": 11,
+      "points": "100",
+      "category": "Facility Planning",
+      "definition": "Design of production facilities specifically for the efficient production of products that will be made in them. Usually carried out by manufacturing engineers with expertise in tools, materials, processes, and the product(s) to be manufactured.",
+      "choices": [
+        "plant design",
+        "facility engineering",
+        "production design",
+        "manufacturing design"
+      ],
+      "correct": "facility engineering"
+    },
+    {
+      "index": 12,
+      "points": "200",
+      "category": "Manufacturing Processes",
+      "definition": "Type of tooling used to guide a work piece.",
+      "choices": [
+        "work holder",
+        "fixture",
+        "positioning device",
+        "workpiece guide"
+      ],
+      "correct": "fixture"
+    },
+    {
+      "index": 13,
+      "points": "200",
+      "category": "Production Systems",
+      "definition": "Chart used to record and communicate the order of the processes dictated by the manufacturing engineer to make each part.",
+      "choices": [
+        "process chart",
+        "flow process chart",
+        "operation chart",
+        "manufacturing flowchart"
+      ],
+      "correct": "flow process chart"
+    },
+    {
+      "index": 14,
+      "points": "200",
+      "category": "Manufacturing Processes",
+      "definition": "Mechanical process used to change the shape of materials through compression, bending, or stretching.",
+      "choices": [
+        "deformation process",
+        "forming",
+        "shaping process",
+        "material forming"
+      ],
+      "correct": "forming"
+    },
+    {
+      "index": 15,
+      "points": "300",
+      "category": "Materials & Quality",
+      "definition": "Process of retrieving mature natural resources that grow on the earth. In manufacturing, this commonly refers to the cutting of trees for wood and wood products.",
+      "choices": [
+        "resource extraction",
+        "harvesting",
+        "natural procurement",
+        "material gathering"
+      ],
+      "correct": "harvesting"
+    },
+    {
+      "index": 16,
+      "points": "300",
+      "category": "Production Systems",
+      "definition": "Type of manufacturing process that produces smaller batches of the same part.",
+      "choices": [
+        "batch manufacturing",
+        "intermittent manufacturing",
+        "periodic production",
+        "small-lot manufacturing"
+      ],
+      "correct": "intermittent manufacturing"
+    },
+    {
+      "index": 17,
+      "points": "300",
+      "category": "Manufacturing Processes",
+      "definition": "Type of tooling used to guide tools to the correct location.",
+      "choices": [
+        "tool guide",
+        "jig",
+        "positioning fixture",
+        "guidance device"
+      ],
+      "correct": "jig"
+    },
+    {
+      "index": 18,
+      "points": "400",
+      "category": "Production Systems",
+      "definition": "Delivery system that allows for the delivery of parts and materials at exactly the time they are needed in production. JIT delivery cuts down on the costs of maintaining a large inventory, but it is a much more complex system to manage.",
+      "choices": [
+        "lean delivery system",
+        "just-in-time (JIT) delivery system",
+        "synchronized delivery",
+        "demand-based delivery"
+      ],
+      "correct": "just-in-time (JIT) delivery system"
+    },
+    {
+      "index": 19,
+      "points": "300",
+      "category": "Production Systems",
+      "definition": "Process of changing raw materials to make them more useful.",
+      "choices": [
+        "material processing",
+        "manufacturing",
+        "production process",
+        "material transformation"
+      ],
+      "correct": "manufacturing"
+    },
+    {
+      "index": 20,
+      "points": "100",
+      "category": "Production Systems",
+      "definition": "Design of machines, tools, and processes used to manufacture goods.",
+      "choices": [
+        "production engineering",
+        "manufacturing engineering",
+        "industrial engineering",
+        "process engineering"
+      ],
+      "correct": "manufacturing engineering"
+    },
+    {
+      "index": 21,
+      "points": "100",
+      "category": "Facility Planning",
+      "definition": "Movement of materials and products through a plant.",
+      "choices": [
+        "material flow",
+        "materials handling",
+        "product movement",
+        "logistics management"
+      ],
+      "correct": "materials handling"
+    },
+    {
+      "index": 22,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "Chemical element that belongs to one of the families of metals on the periodic table; a type of inorganic material with good conductivity to heat and electricity.",
+      "choices": [
+        "metallic element",
+        "metal",
+        "conductive material",
+        "metallic substance"
+      ],
+      "correct": "metal"
+    },
+    {
+      "index": 23,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "Process used to extract materials like metals, coal, uranium, iron, diamonds, and stone from beneath the surface of the earth.",
+      "choices": [
+        "extraction process",
+        "mining",
+        "underground excavation",
+        "mineral extraction"
+      ],
+      "correct": "mining"
+    },
+    {
+      "index": 24,
+      "points": "100",
+      "category": "Production Systems",
+      "definition": "Type of chart used to study all operations in the manufacture of an entire product.",
+      "choices": [
+        "manufacturing chart",
+        "operation process chart",
+        "production flowchart",
+        "process analysis chart"
+      ],
+      "correct": "operation process chart"
+    },
+    {
+      "index": 25,
+      "points": "100",
+      "category": "Production Systems",
+      "definition": "Way the operation name, machine, and tooling are recorded and communicated.",
+      "choices": [
+        "work instruction",
+        "operation sheet",
+        "process document",
+        "manufacturing record"
+      ],
+      "correct": "operation sheet"
+    },
+    {
+      "index": 26,
+      "points": "400",
+      "category": "Facility Planning",
+      "definition": "Arrangement of facilities based on the location of the materials that will be made into products and how they are moved through the plant, including such aspects as equipment layout, utility location, and traffic flow. It is also based on the economics of construction and operation, the specific requirements of the processes that will take place, the convenience of the maintenance that will be necessary, possible future expansion, and safety.",
+      "choices": [
+        "facility design",
+        "plant layout",
+        "manufacturing layout",
+        "production arrangement"
+      ],
+      "correct": "plant layout"
+    },
+    {
+      "index": 27,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "Processing of raw materials into standard stock.",
+      "choices": [
+        "material preparation",
+        "primary processing",
+        "initial processing",
+        "raw material conversion"
+      ],
+      "correct": "primary processing"
+    },
+    {
+      "index": 28,
+      "points": "100",
+      "category": "Facility Planning",
+      "definition": "Layout based on the location of the equipment depending on the process it performs.",
+      "choices": [
+        "functional layout",
+        "process layout",
+        "equipment layout",
+        "operational layout"
+      ],
+      "correct": "process layout"
+    },
+    {
+      "index": 29,
+      "points": "100",
+      "category": "Facility Planning",
+      "definition": "Layout based on the entire facility being designed around the manufacture of one product. It is commonly used for continuous manufacturing.",
+      "choices": [
+        "line layout",
+        "product layout",
+        "dedicated layout",
+        "flow layout"
+      ],
+      "correct": "product layout"
+    },
+    {
+      "index": 30,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "System whereby manufacturers ensure the quality of their products meets or exceeds expectations.",
+      "choices": [
+        "quality assurance",
+        "quality control",
+        "quality management",
+        "quality inspection"
+      ],
+      "correct": "quality control"
+    },
+    {
+      "index": 31,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "Natural resources found in the earth, on the earth, and in the seas and made into industrial materials.",
+      "choices": [
+        "base materials",
+        "raw materials",
+        "source materials",
+        "primary materials"
+      ],
+      "correct": "raw materials"
+    },
+    {
+      "index": 32,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "Processing of stock materials into useful products.",
+      "choices": [
+        "final processing",
+        "secondary processing",
+        "finishing operations",
+        "product manufacturing"
+      ],
+      "correct": "secondary processing"
+    },
+    {
+      "index": 33,
+      "points": "100",
+      "category": "Production Systems",
+      "definition": "Decisions of what operations, or processes, will be used to create the product and in what order, or sequence, they will be performed.",
+      "choices": [
+        "process planning",
+        "selecting and sequencing manufacturing operations",
+        "operation scheduling",
+        "manufacturing sequencing"
+      ],
+      "correct": "selecting and sequencing manufacturing operations"
+    },
+    {
+      "index": 34,
+      "points": "100",
+      "category": "Manufacturing Processes",
+      "definition": "Process of cutting materials to the desired size or shape through mechanical, heat, or chemical means.",
+      "choices": [
+        "material cutting",
+        "separating",
+        "division process",
+        "cutting operations"
+      ],
+      "correct": "separating"
+    },
+    {
+      "index": 35,
+      "points": "100",
+      "category": "Production Systems",
+      "definition": "Largest professional society for manufacturing engineers with over 500,000 members in more than 70 countries.",
+      "choices": [
+        "Manufacturing Engineers Association",
+        "Society for Manufacturing Engineers (SME)",
+        "International Manufacturing Society",
+        "Professional Manufacturing Engineers"
+      ],
+      "correct": "Society for Manufacturing Engineers (SME)"
+    },
+    {
+      "index": 36,
+      "points": "100",
+      "category": "Materials & Quality",
+      "definition": "Type of plastic that can be easily reheated and reshaped with little or no damage to the plastic because there is little or no bonding between the chains.",
+      "choices": [
+        "reformable plastic",
+        "thermoplastic",
+        "heat-moldable plastic",
+        "reshapeable polymer"
+      ],
+      "correct": "thermoplastic"
+    },
+    {
+      "index": 37,
+      "points": "400",
+      "category": "Materials & Quality",
+      "definition": "Type of plastic that is generally stronger than thermoplastic because it is cured with heat and pressure to crosslink the chains. Once cured, it can no longer be reshaped and will remain rigid even when heat is applied.",
+      "choices": [
+        "crosslinked plastic",
+        "thermoset plastic",
+        "cured polymer",
+        "rigid plastic"
+      ],
+      "correct": "thermoset plastic"
+    }
+  ]
+}

@@ -1,0 +1,625 @@
+{
+  "chapter": 15,
+  "title": "Chemical Engineering",
+  "description": "Chemical processes, measurement systems, thermodynamics, and plant operations",
+  "categories": [
+    "Measurement & Instrumentation",
+    "Chemical Processes & Operations",
+    "Thermodynamics & Fluid Dynamics",
+    "Safety & Documentation",
+    "Materials & Environmental Technology"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Pressure relative to a vacuum.",
+      "choices": [
+        "absolute pressure",
+        "gauge pressure",
+        "differential pressure",
+        "static pressure"
+      ],
+      "correct": "absolute pressure"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Chemical Processes & Operations",
+      "definition": "Largest professional society for chemical engineers, with nearly 40,000 members in more than 93 countries.",
+      "choices": [
+        "Institution of Chemical Engineers (IChemE)",
+        "American Chemical Society (ACS)",
+        "American Institute of Chemical Engineers (AIChE)",
+        "Society of Chemical Industry (SCI)"
+      ],
+      "correct": "American Institute of Chemical Engineers (AIChE)"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Type of gauge that uses a small bellows (like an accordion) that changes shape as pressure changes.",
+      "choices": [
+        "aneroid gauge",
+        "diaphragm gauge",
+        "capsule gauge",
+        "manometer"
+      ],
+      "correct": "aneroid gauge"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Chemical Processes & Operations",
+      "definition": "Type of operation where chemicals are fed into the system, the chemical process takes place, and the materials are removed.",
+      "choices": [
+        "batch chemical plant operations",
+        "semi-batch operations",
+        "fed-batch operations",
+        "discontinuous operations"
+      ],
+      "correct": "batch chemical plant operations"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Device that relies on the concept that different metals expand and contract due to temperature at different rates.",
+      "choices": [
+        "thermistor",
+        "bimetallic temperature measurement device",
+        "thermocouple",
+        "resistance temperature detector"
+      ],
+      "correct": "bimetallic temperature measurement device"
+    },
+    {
+      "index": 5,
+      "points": "500",
+      "category": "Materials & Environmental Technology",
+      "definition": "Type of material that looks, feels, and functions much like traditional plastics that were made from petroleum products. Bioplastics are made from renewable biomass sources, such as corn starch, pea starch, glucose, vegetable oil, potatoes, and cane sugar.",
+      "choices": [
+        "biodegradable polymer",
+        "bioplastic",
+        "biocomposite",
+        "renewable polymer"
+      ],
+      "correct": "bioplastic"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Safety & Documentation",
+      "definition": "Extremely basic representation of major processes in a plant.",
+      "choices": [
+        "process flow diagram",
+        "block flow diagram",
+        "simplified flow diagram",
+        "conceptual flow diagram"
+      ],
+      "correct": "block flow diagram"
+    },
+    {
+      "index": 7,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Type of gauge that uses coils of tubing. The shape of the coil changes in relation to the pressure changes. The coil is connected to the needle through a mechanical linkage. As the pressure changes, the needle moves.",
+      "choices": [
+        "Bourdon-style pressure gauge",
+        "helix pressure gauge",
+        "spiral pressure gauge",
+        "coil spring gauge"
+      ],
+      "correct": "Bourdon-style pressure gauge"
+    },
+    {
+      "index": 8,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Device that permanently changes colors when it reaches a certain temperature.",
+      "choices": [
+        "thermochromic indicator",
+        "change-of-state temperature measurement device",
+        "phase change indicator",
+        "temperature sensitive paint"
+      ],
+      "correct": "change-of-state temperature measurement device"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Chemical Processes & Operations",
+      "definition": "Branch of engineering that deals with the research, development, and design involved in the large-scale production of chemical products.",
+      "choices": [
+        "process engineering",
+        "chemical engineering",
+        "industrial chemistry",
+        "production engineering"
+      ],
+      "correct": "chemical engineering"
+    },
+    {
+      "index": 10,
+      "points": "100",
+      "category": "Materials & Environmental Technology",
+      "definition": "Term that refers to numerous techniques used to trap harmful gases like carbon dioxide and other toxins, which usually result from the burning of coal, before they escape into the atmosphere.",
+      "choices": [
+        "carbon capture",
+        "clean coal",
+        "emission control",
+        "scrubbing technology"
+      ],
+      "correct": "clean coal"
+    },
+    {
+      "index": 11,
+      "points": "500",
+      "category": "Materials & Environmental Technology",
+      "definition": "Clean coal method in which coal is broken down into its basic chemical parts using heat and pressure with steam. The parts are separated and CO<sub>2</sub> can be sequestered. Sulfur and ammonia can be removed and sold for profit. Solids are either removed during the process or are filtered out downstream. Many solids can also be sold. The result is a synthetic gas that can be burned cleanly to produce electricity.",
+      "choices": [
+        "coal liquefaction",
+        "coal pyrolysis",
+        "coal gasification",
+        "integrated gasification combined cycle"
+      ],
+      "correct": "coal gasification"
+    },
+    {
+      "index": 12,
+      "points": "100",
+      "category": "Chemical Processes & Operations",
+      "definition": "Type of operation in which materials are fed into the facility, reactions occur, and materials are fed out of the facility constantly.",
+      "choices": [
+        "continuous chemical plant operations",
+        "steady-state operations",
+        "flow-through operations",
+        "continuous flow processing"
+      ],
+      "correct": "continuous chemical plant operations"
+    },
+    {
+      "index": 13,
+      "points": "200",
+      "category": "Chemical Processes & Operations",
+      "definition": "Process that involves the identification and separation of chemical components within a substance.",
+      "choices": [
+        "reverse engineering",
+        "deformulation",
+        "chemical analysis",
+        "compositional analysis"
+      ],
+      "correct": "deformulation"
+    },
+    {
+      "index": 14,
+      "points": "100",
+      "category": "Chemical Processes & Operations",
+      "definition": "Type of balance that is taken at the same point over time.",
+      "choices": [
+        "differential balance",
+        "transient balance",
+        "accumulation balance",
+        "rate balance"
+      ],
+      "correct": "differential balance"
+    },
+    {
+      "index": 15,
+      "points": "500",
+      "category": "Measurement & Instrumentation",
+      "definition": "Type of flowmeter that constricts the flow by placing some sort of obstruction inside of a pipe or by narrowing the pipe at a point. As the fluid goes around the obstruction or through the narrow point, it speeds up and its pressure decreases. Flow rate is determined using the pressure at the obstruction or narrow point and away from that point.",
+      "choices": [
+        "orifice flowmeter",
+        "venturi flowmeter",
+        "differential pressure flowmeter",
+        "restriction flowmeter"
+      ],
+      "correct": "differential pressure flowmeter"
+    },
+    {
+      "index": 16,
+      "points": "100",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Tendency of all energy and matter to seek a state of uniformity.",
+      "choices": [
+        "entropy",
+        "enthalpy",
+        "equilibrium",
+        "disorder"
+      ],
+      "correct": "entropy"
+    },
+    {
+      "index": 17,
+      "points": "200",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Application of the law of conservation of energy, which states that energy cannot be created or destroyed.",
+      "choices": [
+        "first law of thermodynamics",
+        "conservation principle",
+        "energy balance equation",
+        "Joule's law"
+      ],
+      "correct": "first law of thermodynamics"
+    },
+    {
+      "index": 18,
+      "points": "100",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Study of fluid flow.",
+      "choices": [
+        "fluid dynamics",
+        "hydrodynamics",
+        "fluid mechanics",
+        "flow dynamics"
+      ],
+      "correct": "fluid dynamics"
+    },
+    {
+      "index": 19,
+      "points": "100",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Liquids or gases in motion.",
+      "choices": [
+        "fluid flow",
+        "fluid transport",
+        "fluid motion",
+        "fluid convection"
+      ],
+      "correct": "fluid flow"
+    },
+    {
+      "index": 20,
+      "points": "200",
+      "category": "Measurement & Instrumentation",
+      "definition": "Measurement of pressure relative to the atmospheric pressure.",
+      "choices": [
+        "relative pressure",
+        "gauge pressure",
+        "differential pressure",
+        "barometric pressure"
+      ],
+      "correct": "gauge pressure"
+    },
+    {
+      "index": 21,
+      "points": "100",
+      "category": "Materials & Environmental Technology",
+      "definition": "Rotating oceanic current.",
+      "choices": [
+        "gyre",
+        "eddy",
+        "vortex",
+        "circulation cell"
+      ],
+      "correct": "gyre"
+    },
+    {
+      "index": 22,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Device that measures the thermal radiation emitted from a material.",
+      "choices": [
+        "pyrometer",
+        "infrared temperature measurement device",
+        "radiometer",
+        "thermal imager"
+      ],
+      "correct": "infrared temperature measurement device"
+    },
+    {
+      "index": 23,
+      "points": "100",
+      "category": "Chemical Processes & Operations",
+      "definition": "Type of balance that is taken at two different points to show what is happening between one point and another. It is typically taken at the beginning and end of a process.",
+      "choices": [
+        "integral balance",
+        "overall balance",
+        "global balance",
+        "cumulative balance"
+      ],
+      "correct": "integral balance"
+    },
+    {
+      "index": 24,
+      "points": "100",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Type of flow that has no disruption between the layers of the moving fluid, with no eddies or changes.",
+      "choices": [
+        "laminar flow",
+        "streamline flow",
+        "viscous flow",
+        "ordered flow"
+      ],
+      "correct": "laminar flow"
+    },
+    {
+      "index": 25,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Type of gauge that measures pressure using fluid in a tube. One end is connected to the pressure to be measured, and the other is exposed to a control pressure, which could be atmospheric pressure or a vacuum.",
+      "choices": [
+        "liquid column gauge",
+        "manometer",
+        "U-tube gauge",
+        "hydrostatic gauge"
+      ],
+      "correct": "liquid column gauge"
+    },
+    {
+      "index": 26,
+      "points": "300",
+      "category": "Chemical Processes & Operations",
+      "definition": "Property founded in the law of the conservation of matter, which states that matter cannot be created or destroyed and, therefore, must be constant in a closed loop.",
+      "choices": [
+        "material balance",
+        "mass balance",
+        "conservation equation",
+        "continuity equation"
+      ],
+      "correct": "mass balance"
+    },
+    {
+      "index": 27,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Type of flowmeter that measures the mass rather than the volume.",
+      "choices": [
+        "mass flowmeter",
+        "coriolis flowmeter",
+        "thermal mass flowmeter",
+        "inertial flowmeter"
+      ],
+      "correct": "mass flowmeter"
+    },
+    {
+      "index": 28,
+      "points": "200",
+      "category": "Measurement & Instrumentation",
+      "definition": "Type of flowmeter that uses a variety of mechanical devices inside of a pipe to measure flow.",
+      "choices": [
+        "mechanical flowmeter",
+        "turbine flowmeter",
+        "positive displacement flowmeter",
+        "rotameter"
+      ],
+      "correct": "mechanical flowmeter"
+    },
+    {
+      "index": 29,
+      "points": "100",
+      "category": "Safety & Documentation",
+      "definition": "Agency of the US Department of Labor, whose mission is to ensure safe and healthful working conditions for all workers by authorizing enforcement of standards developed under the Occupational Safety and Health Act of 1970.",
+      "choices": [
+        "Environmental Protection Agency (EPA)",
+        "Occupational Safety and Health Administration (OSHA)",
+        "National Institute for Occupational Safety and Health (NIOSH)",
+        "Chemical Safety Board (CSB)"
+      ],
+      "correct": "Occupational Safety and Health Administration (OSHA)"
+    },
+    {
+      "index": 30,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Type of flowmeter that measures the flow in a channel rather than in a pipe.",
+      "choices": [
+        "open-channel flowmeter",
+        "weir flowmeter",
+        "flume flowmeter",
+        "channel gauge"
+      ],
+      "correct": "open-channel flowmeter"
+    },
+    {
+      "index": 31,
+      "points": "500",
+      "category": "Safety & Documentation",
+      "definition": "Detailed type of plan diagram that shows every detail of plant layout and design, including all chemical flows, instrumentation, temperature, control systems, location of all equipment, and everything else needed to build and maintain the facility.",
+      "choices": [
+        "process and instrumentation diagram",
+        "piping and instrumentation diagram",
+        "plant layout diagram",
+        "engineering flow diagram"
+      ],
+      "correct": "piping and instrumentation diagram"
+    },
+    {
+      "index": 32,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Measurement that is force per unit area.",
+      "choices": [
+        "pressure",
+        "stress",
+        "force density",
+        "surface load"
+      ],
+      "correct": "pressure"
+    },
+    {
+      "index": 33,
+      "points": "100",
+      "category": "Safety & Documentation",
+      "definition": "Detailed diagram that includes main flow of chemicals, general processes, and main equipment.",
+      "choices": [
+        "process flow diagram",
+        "flowsheet",
+        "process schematic",
+        "flow diagram"
+      ],
+      "correct": "process flow diagram"
+    },
+    {
+      "index": 34,
+      "points": "300",
+      "category": "Measurement & Instrumentation",
+      "definition": "Measurement device that relies on the concept that resistance, or conductivity of a conductor changes as temperature changes.",
+      "choices": [
+        "thermistor",
+        "resistance temperature measurement device",
+        "RTD sensor",
+        "platinum resistance thermometer"
+      ],
+      "correct": "resistance temperature measurement device"
+    },
+    {
+      "index": 35,
+      "points": "400",
+      "category": "Safety & Documentation",
+      "definition": "Laws that are designed to ensure people know what chemicals they are being exposed to and what the health effects could be. Employees have a right to know what chemicals they are using at work. Community members who live near plants using hazardous chemicals have a right to know what chemicals they are exposed to.",
+      "choices": [
+        "hazard communication standards",
+        "\"right to understand\" laws",
+        "chemical disclosure laws",
+        "community right-to-know laws"
+      ],
+      "correct": "\"right to understand\" laws"
+    },
+    {
+      "index": 36,
+      "points": "100",
+      "category": "Safety & Documentation",
+      "definition": "Information sheet that includes a chemical's common name and chemical name, hazard warnings, and the manufacturer's name and address.",
+      "choices": [
+        "material safety data sheets (MSDS)",
+        "safety data sheets (SDS)",
+        "chemical hazard sheets",
+        "product safety sheets"
+      ],
+      "correct": "safety data sheets (SDS)"
+    },
+    {
+      "index": 37,
+      "points": "300",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Often called the <em>entropy law</em>, this law is concerned with the idea that concentrated sources of energy will naturally disperse.",
+      "choices": [
+        "second law of thermodynamics",
+        "law of entropy increase",
+        "Clausius statement",
+        "Kelvin-Planck statement"
+      ],
+      "correct": "second law of thermodynamics"
+    },
+    {
+      "index": 38,
+      "points": "300",
+      "category": "Safety & Documentation",
+      "definition": "Description of the specific location of all required facilities, such as the plant itself, roads, parking, storm water management, and utilities.",
+      "choices": [
+        "plot plan",
+        "site layout",
+        "facility layout",
+        "master plan"
+      ],
+      "correct": "site layout"
+    },
+    {
+      "index": 39,
+      "points": "400",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Characteristic almost like a film on the surface, caused by the molecules of a liquid tending to be more attracted to each other than they are to their surrounding materials.",
+      "choices": [
+        "cohesion",
+        "surface tension",
+        "interfacial tension",
+        "capillary action"
+      ],
+      "correct": "surface tension"
+    },
+    {
+      "index": 40,
+      "points": "400",
+      "category": "Measurement & Instrumentation",
+      "definition": "Temperature sensors that are made from two different pieces of conductive material. As the temperature increases, it creates a voltage. This voltage can be measured to determine the temperature.",
+      "choices": [
+        "thermopile",
+        "thermocouple sensors",
+        "Seebeck sensors",
+        "junction thermometers"
+      ],
+      "correct": "thermocouple sensors"
+    },
+    {
+      "index": 41,
+      "points": "100",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Study of work, energy, and efficiency in large-scale systems.",
+      "choices": [
+        "thermodynamics",
+        "energy systems",
+        "thermal physics",
+        "statistical mechanics"
+      ],
+      "correct": "thermodynamics"
+    },
+    {
+      "index": 42,
+      "points": "100",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Chaotic or abnormal flow consisting of swirls, or eddies.",
+      "choices": [
+        "turbulent flow",
+        "chaotic flow",
+        "vortex flow",
+        "irregular flow"
+      ],
+      "correct": "turbulent flow"
+    },
+    {
+      "index": 43,
+      "points": "100",
+      "category": "Measurement & Instrumentation",
+      "definition": "Type of flowmeter that measures the speed of passing fluid and the depth of the fluid.",
+      "choices": [
+        "velocity flowmeter",
+        "ultrasonic flowmeter",
+        "doppler flowmeter",
+        "transit-time flowmeter"
+      ],
+      "correct": "velocity flowmeter"
+    },
+    {
+      "index": 44,
+      "points": "100",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Thickness of a liquid, or its resistance to being deformed.",
+      "choices": [
+        "viscosity",
+        "density",
+        "consistency",
+        "fluidity"
+      ],
+      "correct": "viscosity"
+    },
+    {
+      "index": 45,
+      "points": "400",
+      "category": "Materials & Environmental Technology",
+      "definition": "By-product of chemical operations. Some waste materials can be reused in the plant or sold to other companies. What cannot be reused or sold must be disposed of in compliance with local regulations.",
+      "choices": [
+        "effluent",
+        "waste",
+        "by-product",
+        "residue"
+      ],
+      "correct": "waste"
+    },
+    {
+      "index": 46,
+      "points": "100",
+      "category": "Thermodynamics & Fluid Dynamics",
+      "definition": "Observation dealing with thermodynamic equilibrium.",
+      "choices": [
+        "Zeroth law",
+        "thermal equilibrium law",
+        "temperature law",
+        "equilibrium principle"
+      ],
+      "correct": "Zeroth law"
+    }
+  ]
+}

@@ -1,0 +1,612 @@
+{
+  "chapter": 16,
+  "title": "Environmental Engineering",
+  "description": "Environmental science, water treatment, pollution control, and environmental remediation",
+  "categories": [
+    "Environmental Science Fundamentals",
+    "Water & Wastewater Treatment",
+    "Measurement & Testing Equipment",
+    "Pollution & Remediation",
+    "Environmental Chemistry & Biology"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Measurement & Testing Equipment",
+      "definition": "Equipment that tests for particulate and chemical contaminants in air.",
+      "choices": [
+        "air samplers",
+        "gas analyzers",
+        "particulate monitors",
+        "aerosol spectrometers"
+      ],
+      "correct": "air samplers"
+    },
+    {
+      "index": 1,
+      "points": "300",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Largest professional organization specific to environmental engineering.",
+      "choices": [
+        "Association of Environmental Engineering and Science Professors (AEESP)",
+        "American Academy of Environmental Engineers and Scientists (AAEES)",
+        "International Association of Environmental Engineers (IAEE)",
+        "Society of Environmental Engineers (SEE)"
+      ],
+      "correct": "American Academy of Environmental Engineers and Scientists (AAEES)"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Water & Wastewater Treatment",
+      "definition": "Human-made system of channels used to deliver water.",
+      "choices": [
+        "aqueduct",
+        "canal",
+        "pipeline",
+        "water conduit"
+      ],
+      "correct": "aqueduct"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Organic compound found in petroleum.",
+      "choices": [
+        "benzene",
+        "toluene",
+        "xylene",
+        "ethylbenzene"
+      ],
+      "correct": "benzene"
+    },
+    {
+      "index": 4,
+      "points": "400",
+      "category": "Pollution & Remediation",
+      "definition": "Filter that contains microorganisms that digest pollutants and convert them into less harmful substances.",
+      "choices": [
+        "biological filter",
+        "biofilter",
+        "trickling filter",
+        "activated carbon filter"
+      ],
+      "correct": "biofilter"
+    },
+    {
+      "index": 5,
+      "points": "400",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Scientist who studies living organisms both in a lab environment and in their natural habitat to understand how living organisms work.",
+      "choices": [
+        "ecologist",
+        "biologist",
+        "naturalist",
+        "life scientist"
+      ],
+      "correct": "biologist"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Study of living organisms.",
+      "choices": [
+        "ecology",
+        "biology",
+        "life science",
+        "zoology"
+      ],
+      "correct": "biology"
+    },
+    {
+      "index": 7,
+      "points": "100",
+      "category": "Pollution & Remediation",
+      "definition": "Use of microscopic organisms to clean contaminated substances.",
+      "choices": [
+        "bioremediation",
+        "phytoremediation",
+        "mycoremediation",
+        "bioaugmentation"
+      ],
+      "correct": "bioremediation"
+    },
+    {
+      "index": 8,
+      "points": "300",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Scientific study of materials, their properties, their interactions, and the changes that they undergo.",
+      "choices": [
+        "materials science",
+        "chemistry",
+        "physical chemistry",
+        "analytical chemistry"
+      ],
+      "correct": "chemistry"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Two or more atoms chemically bonded together.",
+      "choices": [
+        "compounds",
+        "molecules",
+        "complexes",
+        "substances"
+      ],
+      "correct": "compounds"
+    },
+    {
+      "index": 10,
+      "points": "100",
+      "category": "Water & Wastewater Treatment",
+      "definition": "Out-flowing water.",
+      "choices": [
+        "effluent",
+        "discharge",
+        "outflow",
+        "runoff"
+      ],
+      "correct": "effluent"
+    },
+    {
+      "index": 11,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Matter that consists of only one kind of atom and cannot be broken down into smaller types of matter.",
+      "choices": [
+        "elements",
+        "atoms",
+        "pure substances",
+        "fundamental matter"
+      ],
+      "correct": "elements"
+    },
+    {
+      "index": 12,
+      "points": "500",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Application of the principles of engineering, combined with the principles of chemistry, biology, math, and technology, to solve environmental problems.",
+      "choices": [
+        "ecological engineering",
+        "environmental engineering",
+        "sustainability engineering",
+        "green engineering"
+      ],
+      "correct": "environmental engineering"
+    },
+    {
+      "index": 13,
+      "points": "100",
+      "category": "Pollution & Remediation",
+      "definition": "Process of removing pollutants and contaminants from the environment.",
+      "choices": [
+        "environmental remediation",
+        "site restoration",
+        "decontamination",
+        "environmental cleanup"
+      ],
+      "correct": "environmental remediation"
+    },
+    {
+      "index": 14,
+      "points": "500",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Combination of physical science and biology into a multidisciplinary approach to study of the environment and solving environmental problems.",
+      "choices": [
+        "ecology",
+        "environmental science",
+        "earth science",
+        "natural science"
+      ],
+      "correct": "environmental science"
+    },
+    {
+      "index": 15,
+      "points": "500",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Professionals who usually work under the direction of environmental engineers. They split their time between office, lab, and site work.",
+      "choices": [
+        "environmental specialists",
+        "environmental technicians",
+        "field technicians",
+        "environmental analysts"
+      ],
+      "correct": "environmental technicians"
+    },
+    {
+      "index": 16,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Single or multicell microscopic organisms that have a nucleus.",
+      "choices": [
+        "fungi",
+        "protists",
+        "algae",
+        "protozoa"
+      ],
+      "correct": "fungi"
+    },
+    {
+      "index": 17,
+      "points": "100",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Scientific study of the earth, its evolution, and its physical properties.",
+      "choices": [
+        "geophysics",
+        "geology",
+        "earth science",
+        "geoscience"
+      ],
+      "correct": "geology"
+    },
+    {
+      "index": 18,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Organic compounds made of carbon and hydrogen, such as methane and propane.",
+      "choices": [
+        "hydrocarbons",
+        "alkanes",
+        "organic compounds",
+        "petrochemicals"
+      ],
+      "correct": "hydrocarbons"
+    },
+    {
+      "index": 19,
+      "points": "500",
+      "category": "Water & Wastewater Treatment",
+      "definition": "Continuous process in which water is purified (cleaned) by evaporation and returned to earth as precipitation. Also called <em>water cycle</em>.",
+      "choices": [
+        "water circulation",
+        "hydrologic cycle",
+        "precipitation cycle",
+        "evaporation-condensation cycle"
+      ],
+      "correct": "hydrologic cycle"
+    },
+    {
+      "index": 20,
+      "points": "100",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Study of the hydrologic cycle.",
+      "choices": [
+        "hydrology",
+        "hydrogeology",
+        "water science",
+        "aquatic science"
+      ],
+      "correct": "hydrology"
+    },
+    {
+      "index": 21,
+      "points": "300",
+      "category": "Water & Wastewater Treatment",
+      "definition": "In-flowing liquid, like sewage flowing into a sewer treatment plant.",
+      "choices": [
+        "influent",
+        "inflow",
+        "feedwater",
+        "raw water"
+      ],
+      "correct": "influent"
+    },
+    {
+      "index": 22,
+      "points": "300",
+      "category": "Measurement & Testing Equipment",
+      "definition": "Testing devices that are lowered into wells and signal the presence and location of water and hydrocarbons.",
+      "choices": [
+        "well probes",
+        "interface probes",
+        "water-oil detectors",
+        "phase detection probes"
+      ],
+      "correct": "interface probes"
+    },
+    {
+      "index": 23,
+      "points": "100",
+      "category": "Measurement & Testing Equipment",
+      "definition": "Product used to measure the pH of liquids.",
+      "choices": [
+        "litmus test strips",
+        "pH indicator paper",
+        "universal indicator",
+        "pH test strips"
+      ],
+      "correct": "litmus test strips"
+    },
+    {
+      "index": 24,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Microscopic organisms like bacteria and fungus.",
+      "choices": [
+        "microbes",
+        "microorganisms",
+        "pathogens",
+        "bacteria"
+      ],
+      "correct": "microbes"
+    },
+    {
+      "index": 25,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Two or more different elements or compounds that are physically intermingled, but can be physically separated.",
+      "choices": [
+        "mixtures",
+        "solutions",
+        "heterogeneous materials",
+        "blends"
+      ],
+      "correct": "mixtures"
+    },
+    {
+      "index": 26,
+      "points": "200",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Two or more atoms held tightly together by a chemical bond.",
+      "choices": [
+        "compounds",
+        "molecules",
+        "chemical units",
+        "bonded atoms"
+      ],
+      "correct": "molecules"
+    },
+    {
+      "index": 27,
+      "points": "200",
+      "category": "Measurement & Testing Equipment",
+      "definition": "Multifunction meters used to test for airflow, temperature, and humidity.",
+      "choices": [
+        "environmental meters",
+        "multimeters",
+        "IAQ meters",
+        "climate meters"
+      ],
+      "correct": "multimeters"
+    },
+    {
+      "index": 28,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Control center of a cell.",
+      "choices": [
+        "nucleus",
+        "nucleolus",
+        "cell core",
+        "organelle center"
+      ],
+      "correct": "nucleus"
+    },
+    {
+      "index": 29,
+      "points": "200",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Any living thing including people, fish, insects, trees, bacteria, or anything else that is alive.",
+      "choices": [
+        "organism",
+        "life form",
+        "biological entity",
+        "living being"
+      ],
+      "correct": "organism"
+    },
+    {
+      "index": 30,
+      "points": "100",
+      "category": "Water & Wastewater Treatment",
+      "definition": "Used to determine the suitability of soil for on-site drain fields.",
+      "choices": [
+        "percolation (perc) test",
+        "soil infiltration test",
+        "drainage test",
+        "absorption test"
+      ],
+      "correct": "percolation (perc) test"
+    },
+    {
+      "index": 31,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Table that lists all known chemical elements.",
+      "choices": [
+        "periodic table of elements",
+        "chemical elements table",
+        "atomic table",
+        "Mendeleev's table"
+      ],
+      "correct": "periodic table of elements"
+    },
+    {
+      "index": 32,
+      "points": "100",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Measure of the ease with which fluid can flow through material.",
+      "choices": [
+        "permeability",
+        "hydraulic conductivity",
+        "transmissivity",
+        "flow capacity"
+      ],
+      "correct": "permeability"
+    },
+    {
+      "index": 33,
+      "points": "100",
+      "category": "Environmental Chemistry & Biology",
+      "definition": "Measure of how acidic or basic a substance is.",
+      "choices": [
+        "pH",
+        "acidity",
+        "alkalinity",
+        "hydrogen ion concentration"
+      ],
+      "correct": "pH"
+    },
+    {
+      "index": 34,
+      "points": "100",
+      "category": "Measurement & Testing Equipment",
+      "definition": "Measure levels of volatile organic compounds (VOC) in the air.",
+      "choices": [
+        "photoionizing detectors",
+        "PID meters",
+        "VOC monitors",
+        "gas chromatographs"
+      ],
+      "correct": "photoionizing detectors"
+    },
+    {
+      "index": 35,
+      "points": "200",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Branch of science that deals mainly with nonliving matter, including areas like chemistry, astronomy, physics, and geology.",
+      "choices": [
+        "natural science",
+        "physical science",
+        "earth science",
+        "inorganic science"
+      ],
+      "correct": "physical science"
+    },
+    {
+      "index": 36,
+      "points": "100",
+      "category": "Pollution & Remediation",
+      "definition": "Pollution coming from a single identifiable source.",
+      "choices": [
+        "point source pollution",
+        "direct pollution",
+        "discrete source pollution",
+        "localized pollution"
+      ],
+      "correct": "point source pollution"
+    },
+    {
+      "index": 37,
+      "points": "100",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Measure of open space in materials such as rock.",
+      "choices": [
+        "porosity",
+        "void ratio",
+        "pore space",
+        "permeability"
+      ],
+      "correct": "porosity"
+    },
+    {
+      "index": 38,
+      "points": "100",
+      "category": "Measurement & Testing Equipment",
+      "definition": "Personal protective equipment that removes contaminants from the air, making it safe to breathe.",
+      "choices": [
+        "respirators",
+        "breathing apparatus",
+        "air purifying respirators",
+        "gas masks"
+      ],
+      "correct": "respirators"
+    },
+    {
+      "index": 39,
+      "points": "100",
+      "category": "Water & Wastewater Treatment",
+      "definition": "Basins that collect and treat rainwater runoff by removing solids and chemicals.",
+      "choices": [
+        "retention basins",
+        "detention ponds",
+        "stormwater basins",
+        "settling ponds"
+      ],
+      "correct": "retention basins"
+    },
+    {
+      "index": 40,
+      "points": "100",
+      "category": "Water & Wastewater Treatment",
+      "definition": "On-site sewage treatment system that includes settling tanks and drain fields.",
+      "choices": [
+        "septic system",
+        "onsite wastewater system",
+        "decentralized treatment system",
+        "leach field system"
+      ],
+      "correct": "septic system"
+    },
+    {
+      "index": 41,
+      "points": "100",
+      "category": "Water & Wastewater Treatment",
+      "definition": "Centralized facilities that treat wastewater that comes from houses and businesses in the area.",
+      "choices": [
+        "sewer treatment plants",
+        "wastewater treatment plants",
+        "municipal treatment facilities",
+        "water reclamation facilities"
+      ],
+      "correct": "sewer treatment plants"
+    },
+    {
+      "index": 42,
+      "points": "400",
+      "category": "Water & Wastewater Treatment",
+      "definition": "Final stage of sewage treatment that can include the removal of nitrogen and phosphorous, sand filtering for particulate removal, and more.",
+      "choices": [
+        "advanced treatment",
+        "tertiary treatment",
+        "polishing treatment",
+        "final treatment"
+      ],
+      "correct": "tertiary treatment"
+    },
+    {
+      "index": 43,
+      "points": "100",
+      "category": "Measurement & Testing Equipment",
+      "definition": "Tool used to determine the water level in wells.",
+      "choices": [
+        "water level meter",
+        "well sounder",
+        "depth gauge",
+        "piezometer"
+      ],
+      "correct": "water level meter"
+    },
+    {
+      "index": 44,
+      "points": "400",
+      "category": "Measurement & Testing Equipment",
+      "definition": "Measure things like chlorine, pH, copper, chromium, carbon dioxide, bromine, salinity, dissolved oxygen, microbial contaminants like bacteria and mold, and much more.",
+      "choices": [
+        "water quality analyzers",
+        "water test kits",
+        "water testing equipment",
+        "aquatic analysis kits"
+      ],
+      "correct": "water test kits"
+    },
+    {
+      "index": 45,
+      "points": "100",
+      "category": "Environmental Science Fundamentals",
+      "definition": "Areas that stay wet most of the year, provide wildlife habitat, and help to clean and hold rainwater.",
+      "choices": [
+        "wetlands",
+        "marshes",
+        "swamps",
+        "riparian zones"
+      ],
+      "correct": "wetlands"
+    }
+  ]
+}

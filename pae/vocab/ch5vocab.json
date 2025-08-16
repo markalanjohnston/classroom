@@ -1,0 +1,156 @@
+{
+  "chapter": 5,
+  "title": "Researching Designs",
+  "description": "Research methodologies, feasibility analysis, and design documentation techniques for engineering solutions",
+  "categories": [
+    "Research Methods",
+    "Feasibility Analysis", 
+    "Design Documentation",
+    "Information Sources"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Feasibility Analysis",
+      "definition": "Evaluation of the effectiveness of the potential solution from a financial perspective.",
+      "choices": [
+        "economic viability",
+        "budget analysis",
+        "cost feasibility",
+        "financial assessment"
+      ],
+      "correct": "cost feasibility"
+    },
+    {
+      "index": 1,
+      "points": "200",
+      "category": "Information Sources",
+      "definition": "Area on the internet where a person can enter a question or comment and other people can respond to the question or comment on the original message.",
+      "choices": [
+        "online community",
+        "digital platform",
+        "discussion forum",
+        "collaborative workspace"
+      ],
+      "correct": "discussion forum"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Feasibility Analysis",
+      "definition": "The level at which an engineer's design meets the intended outcome or effect.",
+      "choices": [
+        "performance efficiency",
+        "design success",
+        "effectiveness",
+        "outcome achievement"
+      ],
+      "correct": "effectiveness"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Research Methods",
+      "definition": "Type of research that uses tests to discover information about a potential solution.",
+      "choices": [
+        "empirical testing",
+        "experimental research",
+        "laboratory investigation",
+        "controlled studies"
+      ],
+      "correct": "experimental research"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Feasibility Analysis",
+      "definition": "The potential for something to be completed practically.",
+      "choices": [
+        "practicality",
+        "feasibility",
+        "viability",
+        "achievability"
+      ],
+      "correct": "feasibility"
+    },
+    {
+      "index": 5,
+      "points": "200",
+      "category": "Research Methods",
+      "definition": "Type of research that uses different forms of printed and digital materials as a source of information.",
+      "choices": [
+        "documentary research",
+        "archival studies",
+        "library research",
+        "literature review"
+      ],
+      "correct": "library research"
+    },
+    {
+      "index": 6,
+      "points": "200",
+      "category": "Design Documentation",
+      "definition": "Type of sketch that combines all the components of the final design, which may be a combination of different ideas.",
+      "choices": [
+        "composite drawing",
+        "integrated design",
+        "refined sketch",
+        "consolidated diagram"
+      ],
+      "correct": "refined sketch"
+    },
+    {
+      "index": 7,
+      "points": "200",
+      "category": "Research Methods",
+      "definition": "Scientific way to discover facts about a certain topic or situation.",
+      "choices": [
+        "systematic investigation",
+        "research",
+        "methodical inquiry",
+        "analytical study"
+      ],
+      "correct": "research"
+    },
+    {
+      "index": 8,
+      "points": "100",
+      "category": "Design Documentation",
+      "definition": "First drawings completed by engineers, of solutions that are in the early stages of development.",
+      "choices": [
+        "preliminary drawing",
+        "rough sketch",
+        "initial draft",
+        "concept sketch"
+      ],
+      "correct": "rough sketch"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Design Documentation",
+      "definition": "See rough sketch.",
+      "choices": [
+        "preliminary sketch",
+        "initial drawing",
+        "thumbnail sketch",
+        "concept draft"
+      ],
+      "correct": "thumbnail sketch"
+    },
+    {
+      "index": 10,
+      "points": "100",
+      "category": "Feasibility Analysis",
+      "definition": "Something an engineer gives up in order to meet specifications while staying within the constraints; the consideration that gaining one positive quality in a design means you lose one other quality.",
+      "choices": [
+        "design compromise",
+        "engineering balance",
+        "trade-off",
+        "design sacrifice"
+      ],
+      "correct": "trade-off"
+    }
+  ]
+}

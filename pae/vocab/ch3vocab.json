@@ -1,0 +1,312 @@
+{
+  "chapter": 3,
+  "title": "Engineering Design",
+  "description": "Design process, technical drawing, documentation, and prototyping methods",
+  "categories": [
+    "Design Process",
+    "Technical Drawing", 
+    "Documentation",
+    "Prototyping & Modeling"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "400",
+      "category": "Design Process",
+      "definition": "Process of generating ideas in order to develop solutions. This technique can be done by an individual, but is more commonly and more effectively done in groups.",
+      "choices": [
+        "orthographic drawing",
+        "design brief",
+        "brainstorming",
+        "computer-aided design (CAD) software"
+      ],
+      "correct": "brainstorming"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Prototyping & Modeling",
+      "definition": "Software that creates 3D drawings of design solutions.",
+      "choices": [
+        "computer numerical control (CNC)",
+        "engineering design",
+        "prototype",
+        "computer-aided design (CAD) software"
+      ],
+      "correct": "computer-aided design (CAD) software"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Prototyping & Modeling",
+      "definition": "Equipment used to convert CAD models into 3D shapes.",
+      "choices": [
+        "computer numerical control (CNC)",
+        "iterative process",
+        "specification sheets",
+        "problem statement"
+      ],
+      "correct": "computer numerical control (CNC)"
+    },
+    {
+      "index": 3,
+      "points": "300",
+      "category": "Prototyping & Modeling",
+      "definition": "Type of simulation used for testing because it takes relatively little time and money to set up and run, but much can be learned.",
+      "choices": [
+        "computer simulation",
+        "mechanical drawing",
+        "intellectual property",
+        "brainstorming"
+      ],
+      "correct": "computer simulation"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Documentation",
+      "definition": "Document that guides the design process and includes constraints, such as size, cost, and quality.",
+      "choices": [
+        "computer-aided design (CAD) software",
+        "reverse engineering",
+        "design brief",
+        "specification sheets"
+      ],
+      "correct": "design brief"
+    },
+    {
+      "index": 5,
+      "points": "300",
+      "category": "Technical Drawing",
+      "definition": "Technical drawing that accurately communicates size and shape and usually includes specific dimensions for others to see.",
+      "choices": [
+        "orthographic drawing",
+        "intellectual property",
+        "rendering",
+        "detail drawing"
+      ],
+      "correct": "detail drawing"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Design Process",
+      "definition": "Creative application of technology to design a system, product, or process to solve a given problem or meet a given need.",
+      "choices": [
+        "rendering",
+        "orthographic drawing",
+        "engineering design",
+        "rapid prototyping"
+      ],
+      "correct": "engineering design"
+    },
+    {
+      "index": 7,
+      "points": "400",
+      "category": "Documentation",
+      "definition": "Notebook used to record all the information from every step of the design process in one place, and that can be accessed, if necessary, in the future. When kept properly, engineering notebooks can be legal documents if there are ever disputes over intellectual property.",
+      "choices": [
+        "engineering notebook",
+        "computer-aided design (CAD) software",
+        "three-dimensional (3D) model",
+        "rapid prototyping"
+      ],
+      "correct": "engineering notebook"
+    },
+    {
+      "index": 8,
+      "points": "100",
+      "category": "Design Process",
+      "definition": "Process of generating ideas.",
+      "choices": [
+        "sketch",
+        "engineering notebook",
+        "intellectual property",
+        "ideation"
+      ],
+      "correct": "ideation"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Documentation",
+      "definition": "The legal rights to the creations of the mind.",
+      "choices": [
+        "computer-aided design (CAD) software",
+        "intellectual property",
+        "rendering",
+        "engineering notebook"
+      ],
+      "correct": "intellectual property"
+    },
+    {
+      "index": 10,
+      "points": "100",
+      "category": "Design Process",
+      "definition": "A series of steps that repeat until a goal is reached.",
+      "choices": [
+        "iterative process",
+        "pictorial drawing",
+        "specification sheets",
+        "problem statement"
+      ],
+      "correct": "iterative process"
+    },
+    {
+      "index": 11,
+      "points": "100",
+      "category": "Technical Drawing",
+      "definition": "Highly accurate technical drawing meant to communicate the size and shape of objects in great detail.",
+      "choices": [
+        "multiview drawing",
+        "iterative process",
+        "mechanical drawing",
+        "rapid prototyping"
+      ],
+      "correct": "mechanical drawing"
+    },
+    {
+      "index": 12,
+      "points": "100",
+      "category": "Technical Drawing",
+      "definition": "Drawing with true shape that shows what a part will look like from a given direction.",
+      "choices": [
+        "multiview drawing",
+        "iterative process",
+        "mechanical drawing",
+        "reverse engineering"
+      ],
+      "correct": "multiview drawing"
+    },
+    {
+      "index": 13,
+      "points": "100",
+      "category": "Technical Drawing",
+      "definition": "Drawing with true shape that shows what a part will look like from a given direction.",
+      "choices": [
+        "orthographic drawing",
+        "rendering",
+        "intellectual property",
+        "sketch"
+      ],
+      "correct": "orthographic drawing"
+    },
+    {
+      "index": 14,
+      "points": "300",
+      "category": "Technical Drawing",
+      "definition": "Drawing that shows a single view of an object in a way that makes it look 3D, as your eye would see it.",
+      "choices": [
+        "reverse engineering",
+        "computer-aided design (CAD) software",
+        "pictorial drawing",
+        "brainstorming"
+      ],
+      "correct": "pictorial drawing"
+    },
+    {
+      "index": 15,
+      "points": "300",
+      "category": "Documentation",
+      "definition": "Document that outlines the problem in clear terms, but it is not so specific that it limits creativity in design.",
+      "choices": [
+        "problem statement",
+        "sketch",
+        "design brief",
+        "three-dimensional (3D) model"
+      ],
+      "correct": "problem statement"
+    },
+    {
+      "index": 16,
+      "points": "100",
+      "category": "Prototyping & Modeling",
+      "definition": "Physical model of a final product or some aspect of a product.",
+      "choices": [
+        "prototype",
+        "iterative process",
+        "design brief",
+        "ideation"
+      ],
+      "correct": "prototype"
+    },
+    {
+      "index": 17,
+      "points": "200",
+      "category": "Prototyping & Modeling",
+      "definition": "Way of creating 3D models that uses machines and builds by laying down many thin layers of material until the entire shape has been created.",
+      "choices": [
+        "intellectual property",
+        "multiview drawing",
+        "rapid prototyping",
+        "brainstorming"
+      ],
+      "correct": "rapid prototyping"
+    },
+    {
+      "index": 18,
+      "points": "200",
+      "category": "Technical Drawing",
+      "definition": "Full-color drawing that shows what the object will look like in a given light.",
+      "choices": [
+        "rendering",
+        "iterative process",
+        "mechanical drawing",
+        "engineering notebook"
+      ],
+      "correct": "rendering"
+    },
+    {
+      "index": 19,
+      "points": "400",
+      "category": "Design Process",
+      "definition": "Method of determining the properties or function of a device by taking it apart and looking at its operation structure. An existing product or process is disassembled to better understand how it was designed and how it works.",
+      "choices": [
+        "brainstorming",
+        "intellectual property",
+        "reverse engineering",
+        "pictorial drawing"
+      ],
+      "correct": "reverse engineering"
+    },
+    {
+      "index": 20,
+      "points": "200",
+      "category": "Technical Drawing",
+      "definition": "Simple drawing used in the idea generation stage to record and communicate ideas so they can be refined further in the solution creation step.",
+      "choices": [
+        "sketch",
+        "three-dimensional (3D) model",
+        "engineering notebook",
+        "intellectual property"
+      ],
+      "correct": "sketch"
+    },
+    {
+      "index": 21,
+      "points": "400",
+      "category": "Documentation",
+      "definition": "Sheets that provide the necessary technical information to the builder or manufacturer of a product, and include materials, how the product is to be made, specific parts to be included, tolerances, and more.",
+      "choices": [
+        "computer numerical control (CNC)",
+        "rapid prototyping",
+        "problem statement",
+        "specification sheets"
+      ],
+      "correct": "specification sheets"
+    },
+    {
+      "index": 22,
+      "points": "200",
+      "category": "Prototyping & Modeling",
+      "definition": "Type of model that can be made out of products like clay, plastic, wood, and foam, or can be drawn using 3D CAD software.",
+      "choices": [
+        "rendering",
+        "engineering design",
+        "three-dimensional (3D) model",
+        "computer simulation"
+      ],
+      "correct": "three-dimensional (3D) model"
+    }
+  ]
+}

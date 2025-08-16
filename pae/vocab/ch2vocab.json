@@ -1,254 +1,287 @@
-[
-  {
-    "index": 0,
-    "points": "100",
-    "definition": "Organization that accredits high-quality engineering programs.",
-    "choices": [
-      "Accreditation Board for Engineering and Technology (ABET)",
-      "National Society of Professional Engineers (NSPE)",
-      "American Society for Engineering Education (ASEE)",
-      "Institute of Electrical and Electronics Engineers (IEEE)"
-    ],
-    "correct": "Accreditation Board for Engineering and Technology (ABET)"
-  },
-  {
-    "index": 1,
-    "points": "500",
-    "definition": "Sets of guidelines that should be followed when engineers interact with the public, their employers, their clients, and other engineers.",
-    "choices": [
-      "professional standards",
-      "industry regulations",
-      "legal requirements",
-      "codes of ethics"
-    ],
-    "correct": "codes of ethics"
-  },
-  {
-    "index": 2,
-    "points": "100",
-    "definition": "Engineer who plans, coordinates, and schedules for structures such as roads, bridges, and skyscrapers.",
-    "choices": [
-      "structural engineer",
-      "civil engineer",
-      "construction engineer",
-      "project engineer"
-    ],
-    "correct": "construction engineer"
-  },
-  {
-    "index": 3,
-    "points": "100",
-    "definition": "A willingness to work together.",
-    "choices": [
-      "collaboration",
-      "teamwork",
-      "cooperation",
-      "coordination"
-    ],
-    "correct": "cooperation"
-  },
-  {
-    "index": 4,
-    "points": "100",
-    "definition": "Engineer who uses an engineering design process to create a product that meets the needs of a client.",
-    "choices": [
-      "product engineer",
-      "design engineer",
-      "development engineer",
-      "systems engineer"
-    ],
-    "correct": "design engineer"
-  },
-  {
-    "index": 5,
-    "points": "100",
-    "definition": "Engineer who is involved in the testing and analysis of ideas and products.",
-    "choices": [
-      "test engineer",
-      "quality engineer",
-      "development engineer",
-      "validation engineer"
-    ],
-    "correct": "development engineer"
-  },
-  {
-    "index": 6,
-    "points": "200",
-    "definition": "Effects products have on financial systems.",
-    "choices": [
-      "market impact",
-      "economic impact",
-      "financial impact",
-      "commercial impact"
-    ],
-    "correct": "economic impact"
-  },
-  {
-    "index": 7,
-    "points": "200",
-    "definition": "Effect engineered products have on human health and the world around us.",
-    "choices": [
-      "ecological impact",
-      "environmental impact",
-      "sustainability impact",
-      "ecological footprint"
-    ],
-    "correct": "environmental impact"
-  },
-  {
-    "index": 8,
-    "points": "200",
-    "definition": "Guidelines that we use to help us make decisions about our behavior.",
-    "choices": [
-      "moral principles",
-      "ethics",
-      "values",
-      "behavioral standards"
-    ],
-    "correct": "ethics"
-  },
-  {
-    "index": 9,
-    "points": "400",
-    "definition": "Type of design that focuses on creating products that are not harmful to the environment throughout their life cycle.",
-    "choices": [
-      "sustainable design",
-      "eco-friendly design",
-      "green design",
-      "environmentally conscious design"
-    ],
-    "correct": "green design"
-  },
-  {
-    "index": 10,
-    "points": "400",
-    "definition": "Engineer who coordinates all of the engineering processes including materials and human resources.",
-    "choices": [
-      "project manager",
-      "systems engineer",
-      "management engineer",
-      "operations manager"
-    ],
-    "correct": "management engineer"
-  },
-  {
-    "index": 11,
-    "points": "400",
-    "definition": "Costs or effects that cause damage to people or the environment.",
-    "choices": [
-      "adverse impact",
-      "harmful effects",
-      "negative impact",
-      "detrimental consequences"
-    ],
-    "correct": "negative impact"
-  },
-  {
-    "index": 12,
-    "points": "500",
-    "definition": "Engineer who controls and maintains large systems, such as manufacturing facilities, railroad systems, and traffic systems.",
-    "choices": [
-      "systems engineer",
-      "operations engineer",
-      "industrial engineer",
-      "process engineer"
-    ],
-    "correct": "operations engineer"
-  },
-  {
-    "index": 13,
-    "points": "500",
-    "definition": "Exclusive right that is granted by a government to the creator of a new product or design so others cannot produce it without permission.",
-    "choices": [
-      "copyright",
-      "trademark",
-      "patent",
-      "intellectual property"
-    ],
-    "correct": "patent"
-  },
-  {
-    "index": 14,
-    "points": "200",
-    "definition": "Benefits or successful solutions to engineering design problems.",
-    "choices": [
-      "beneficial outcomes",
-      "positive impact",
-      "successful results",
-      "favorable effects"
-    ],
-    "correct": "positive impact"
-  },
-  {
-    "index": 15,
-    "points": "300",
-    "definition": "Engineer who plans, coordinates, and schedules the manufacturing of consumer goods.",
-    "choices": [
-      "manufacturing engineer",
-      "industrial engineer",
-      "production engineer",
-      "process engineer"
-    ],
-    "correct": "production engineer"
-  },
-  {
-    "index": 16,
-    "points": "500",
-    "definition": "Designation for engineers who have completed licensure requirements, allowing engineers to approve, sign, and stamp plans and documents.",
-    "choices": [
-      "Licensed Engineer (L.E.)",
-      "Professional Engineer (P.E.)",
-      "Certified Engineer (C.E.)",
-      "Registered Engineer (R.E.)"
-    ],
-    "correct": "Professional Engineer (P.E.)"
-  },
-  {
-    "index": 17,
-    "points": "300",
-    "definition": "Engineer who works with scientists to find uses for scientific discoveries.",
-    "choices": [
-      "applied scientist",
-      "research engineer",
-      "development engineer",
-      "innovation engineer"
-    ],
-    "correct": "research engineer"
-  },
-  {
-    "index": 18,
-    "points": "400",
-    "definition": "Process that identifies and evaluates as many of the potential impacts of an engineered solution as possible.",
-    "choices": [
-      "impact assessment",
-      "feasibility study",
-      "risk analysis",
-      "safety evaluation"
-    ],
-    "correct": "risk analysis"
-  },
-  {
-    "index": 19,
-    "points": "300",
-    "definition": "Engineer who works with clients to find products that meet their needs.",
-    "choices": [
-      "customer engineer",
-      "client engineer",
-      "sales engineer",
-      "application engineer"
-    ],
-    "correct": "sales engineer"
-  },
-  {
-    "index": 20,
-    "points": "300",
-    "definition": "Effects that engineered products have on the lives of groups of people, such as housing, safety, food, communication, and transportation.",
-    "choices": [
-      "community impact",
-      "social impact",
-      "societal impact",
-      "public impact"
-    ],
-    "correct": "societal impact"
-  }
-]
+{
+  "chapter": 2,
+  "title": "Engineering Professions & Ethics",
+  "description": "Professional engineering roles, ethics, impacts, and industry standards",
+  "categories": [
+    "Professional Roles",
+    "Ethics & Standards",
+    "Engineering Impact",
+    "Professional Development",
+    "Design & Management"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "200",
+      "category": "Professional Development",
+      "definition": "Organization that accredits high-quality engineering programs.",
+      "choices": [
+        "Accreditation Board for Engineering and Technology (ABET)",
+        "National Society of Professional Engineers (NSPE)",
+        "American Society for Engineering Education (ASEE)",
+        "Institute of Electrical and Electronics Engineers (IEEE)"
+      ],
+      "correct": "Accreditation Board for Engineering and Technology (ABET)"
+    },
+    {
+      "index": 1,
+      "points": "600",
+      "category": "Ethics & Standards",
+      "definition": "Sets of guidelines that should be followed when engineers interact with the public, their employers, their clients, and other engineers.",
+      "choices": [
+        "professional standards",
+        "industry regulations",
+        "codes of ethics",
+        "legal requirements"
+      ],
+      "correct": "codes of ethics"
+    },
+    {
+      "index": 2,
+      "points": "200",
+      "category": "Professional Roles",
+      "definition": "Engineer who plans, coordinates, and schedules for structures such as roads, bridges, and skyscrapers.",
+      "choices": [
+        "structural engineer",
+        "civil engineer",
+        "construction engineer",
+        "project engineer"
+      ],
+      "correct": "construction engineer"
+    },
+    {
+      "index": 3,
+      "points": "200",
+      "category": "Ethics & Standards",
+      "definition": "A willingness to work together.",
+      "choices": [
+        "collaboration",
+        "teamwork",
+        "cooperation",
+        "coordination"
+      ],
+      "correct": "cooperation"
+    },
+    {
+      "index": 4,
+      "points": "200",
+      "category": "Professional Roles",
+      "definition": "Engineer who uses an engineering design process to create a product that meets the needs of a client.",
+      "choices": [
+        "product engineer",
+        "design engineer",
+        "development engineer",
+        "systems engineer"
+      ],
+      "correct": "design engineer"
+    },
+    {
+      "index": 5,
+      "points": "200",
+      "category": "Professional Roles",
+      "definition": "Engineer who is involved in the testing and analysis of ideas and products.",
+      "choices": [
+        "test engineer",
+        "quality engineer",
+        "development engineer",
+        "validation engineer"
+      ],
+      "correct": "development engineer"
+    },
+    {
+      "index": 6,
+      "points": "300",
+      "category": "Engineering Impact",
+      "definition": "Effects products have on financial systems.",
+      "choices": [
+        "market impact",
+        "economic impact",
+        "financial impact",
+        "commercial impact"
+      ],
+      "correct": "economic impact"
+    },
+    {
+      "index": 7,
+      "points": "300",
+      "category": "Engineering Impact",
+      "definition": "Effect engineered products have on human health and the world around us.",
+      "choices": [
+        "ecological impact",
+        "environmental impact",
+        "sustainability impact",
+        "ecological footprint"
+      ],
+      "correct": "environmental impact"
+    },
+    {
+      "index": 8,
+      "points": "300",
+      "category": "Ethics & Standards",
+      "definition": "Guidelines that we use to help us make decisions about our behavior.",
+      "choices": [
+        "moral principles",
+        "ethics",
+        "values",
+        "behavioral standards"
+      ],
+      "correct": "ethics"
+    },
+    {
+      "index": 9,
+      "points": "500",
+      "category": "Design & Management",
+      "definition": "Type of design that focuses on creating products that are not harmful to the environment throughout their life cycle.",
+      "choices": [
+        "sustainable design",
+        "eco-friendly design",
+        "green design",
+        "environmentally conscious design"
+      ],
+      "correct": "green design"
+    },
+    {
+      "index": 10,
+      "points": "500",
+      "category": "Professional Roles",
+      "definition": "Engineer who coordinates all of the engineering processes including materials and human resources.",
+      "choices": [
+        "project manager",
+        "systems engineer",
+        "management engineer",
+        "operations manager"
+      ],
+      "correct": "management engineer"
+    },
+    {
+      "index": 11,
+      "points": "500",
+      "category": "Engineering Impact",
+      "definition": "Costs or effects that cause damage to people or the environment.",
+      "choices": [
+        "adverse impact",
+        "harmful effects",
+        "negative impact",
+        "detrimental consequences"
+      ],
+      "correct": "negative impact"
+    },
+    {
+      "index": 12,
+      "points": "600",
+      "category": "Professional Roles",
+      "definition": "Engineer who controls and maintains large systems, such as manufacturing facilities, railroad systems, and traffic systems.",
+      "choices": [
+        "systems engineer",
+        "operations engineer",
+        "industrial engineer",
+        "process engineer"
+      ],
+      "correct": "operations engineer"
+    },
+    {
+      "index": 13,
+      "points": "600",
+      "category": "Professional Development",
+      "definition": "Exclusive right that is granted by a government to the creator of a new product or design so others cannot produce it without permission.",
+      "choices": [
+        "copyright",
+        "trademark",
+        "patent",
+        "intellectual property"
+      ],
+      "correct": "patent"
+    },
+    {
+      "index": 14,
+      "points": "300",
+      "category": "Engineering Impact",
+      "definition": "Benefits or successful solutions to engineering design problems.",
+      "choices": [
+        "beneficial outcomes",
+        "positive impact",
+        "successful results",
+        "favorable effects"
+      ],
+      "correct": "positive impact"
+    },
+    {
+      "index": 15,
+      "points": "400",
+      "category": "Professional Roles",
+      "definition": "Engineer who plans, coordinates, and schedules the manufacturing of consumer goods.",
+      "choices": [
+        "manufacturing engineer",
+        "industrial engineer",
+        "production engineer",
+        "process engineer"
+      ],
+      "correct": "production engineer"
+    },
+    {
+      "index": 16,
+      "points": "600",
+      "category": "Professional Development",
+      "definition": "Designation for engineers who have completed licensure requirements, allowing engineers to approve, sign, and stamp plans and documents.",
+      "choices": [
+        "Licensed Engineer (L.E.)",
+        "Professional Engineer (P.E.)",
+        "Certified Engineer (C.E.)",
+        "Registered Engineer (R.E.)"
+      ],
+      "correct": "Professional Engineer (P.E.)"
+    },
+    {
+      "index": 17,
+      "points": "400",
+      "category": "Professional Roles",
+      "definition": "Engineer who works with scientists to find uses for scientific discoveries.",
+      "choices": [
+        "applied scientist",
+        "research engineer",
+        "development engineer",
+        "innovation engineer"
+      ],
+      "correct": "research engineer"
+    },
+    {
+      "index": 18,
+      "points": "500",
+      "category": "Design & Management",
+      "definition": "Process that identifies and evaluates as many of the potential impacts of an engineered solution as possible.",
+      "choices": [
+        "impact assessment",
+        "feasibility study",
+        "risk analysis",
+        "safety evaluation"
+      ],
+      "correct": "risk analysis"
+    },
+    {
+      "index": 19,
+      "points": "400",
+      "category": "Professional Roles",
+      "definition": "Engineer who works with clients to find products that meet their needs.",
+      "choices": [
+        "customer engineer",
+        "client engineer",
+        "sales engineer",
+        "application engineer"
+      ],
+      "correct": "sales engineer"
+    },
+    {
+      "index": 20,
+      "points": "400",
+      "category": "Engineering Impact",
+      "definition": "Effects that engineered products have on the lives of groups of people, such as housing, safety, food, communication, and transportation.",
+      "choices": [
+        "community impact",
+        "social impact",
+        "societal impact",
+        "public impact"
+      ],
+      "correct": "societal impact"
+    }
+  ]
+}

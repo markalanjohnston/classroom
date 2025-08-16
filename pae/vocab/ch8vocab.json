@@ -1,0 +1,247 @@
+{
+  "chapter": 8,
+  "title": "Mechanical Engineering",
+  "description": "Mechanical systems, simple machines, power transmission, and fluid power systems for engineering applications",
+  "categories": [
+    "Simple Machines",
+    "Power & Energy", 
+    "Fluid Systems",
+    "Mechanical Components"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Power & Energy",
+      "definition": "The real world efficiency that includes the impact of the outside force of friction",
+      "choices": [
+        "effective mechanical advantage",
+        "actual mechanical advantage (AMA)",
+        "practical mechanical advantage",
+        "real mechanical advantage"
+      ],
+      "correct": "actual mechanical advantage (AMA)"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Fluid Systems",
+      "definition": "Device used to convert fluid power into either linear or rotary motion.",
+      "choices": [
+        "fluid converter",
+        "actuator",
+        "power transducer",
+        "motion generator"
+      ],
+      "correct": "actuator"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Fluid Systems",
+      "definition": "Device used by pneumatic systems to produce compressed gas.",
+      "choices": [
+        "gas compressor",
+        "air compressor",
+        "pneumatic pump",
+        "pressure generator"
+      ],
+      "correct": "air compressor"
+    },
+    {
+      "index": 3,
+      "points": "400",
+      "category": "Mechanical Components",
+      "definition": "Metal piece that is used to reduce friction with shafts by using smooth metal balls inside circular pieces of metal that fit around the shaft.",
+      "choices": [
+        "shaft support",
+        "bearing",
+        "friction reducer",
+        "rotational bushing"
+      ],
+      "correct": "bearing"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Mechanical Components",
+      "definition": "Band of material that is used to link and transmit energy between pulleys.",
+      "choices": [
+        "drive band",
+        "belt",
+        "transmission strap",
+        "power band"
+      ],
+      "correct": "belt"
+    },
+    {
+      "index": 5,
+      "points": "100",
+      "category": "Simple Machines",
+      "definition": "Use of multiple simple machines to transfer power, such as the vehicles we drive.",
+      "choices": [
+        "complex machine",
+        "compound machine",
+        "composite system",
+        "integrated machine"
+      ],
+      "correct": "compound machine"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Fluid Systems",
+      "definition": "Device that uses the pressure of fluid to move a piston that is connected to a rod.",
+      "choices": [
+        "hydraulic actuator",
+        "cylinder",
+        "fluid chamber",
+        "pressure vessel"
+      ],
+      "correct": "cylinder"
+    },
+    {
+      "index": 7,
+      "points": "100",
+      "category": "Power & Energy",
+      "definition": "Ability to do work.",
+      "choices": [
+        "power capacity",
+        "energy",
+        "work potential",
+        "force capability"
+      ],
+      "correct": "energy"
+    },
+    {
+      "index": 8,
+      "points": "400",
+      "category": "Fluid Systems",
+      "definition": "Device similar to a fluid pump, only used in reverse. Fluid is pumped through gears to turn the gears and gear shaft.",
+      "choices": [
+        "hydraulic motor",
+        "fluid motor",
+        "gear motor",
+        "pressure motor"
+      ],
+      "correct": "fluid motor"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Fluid Systems",
+      "definition": "Pump used by hydraulic systems to compress fluids.",
+      "choices": [
+        "hydraulic compressor",
+        "fluid pump",
+        "pressure pump",
+        "liquid compressor"
+      ],
+      "correct": "fluid pump"
+    },
+    {
+      "index": 10,
+      "points": "100",
+      "category": "Power & Energy",
+      "definition": "Push or pull of an object resulting from contact with another object.",
+      "choices": [
+        "applied pressure",
+        "force",
+        "contact energy",
+        "mechanical action"
+      ],
+      "correct": "force"
+    },
+    {
+      "index": 11,
+      "points": "100",
+      "category": "Power & Energy",
+      "definition": "Force that acts against motion when two surfaces rub together.",
+      "choices": [
+        "resistance force",
+        "friction",
+        "opposing force",
+        "surface resistance"
+      ],
+      "correct": "friction"
+    },
+    {
+      "index": 12,
+      "points": "100",
+      "category": "Mechanical Components",
+      "definition": "Device that transmits rotational force against another gear or device.",
+      "choices": [
+        "rotation transmitter",
+        "gear",
+        "torque wheel",
+        "power disc"
+      ],
+      "correct": "gear"
+    },
+    {
+      "index": 13,
+      "points": "100",
+      "category": "Mechanical Components",
+      "definition": "Ratio of speed (angular velocity) of input shaft to that of output shaft.",
+      "choices": [
+        "speed ratio",
+        "gear ratio",
+        "velocity ratio",
+        "transmission ratio"
+      ],
+      "correct": "gear ratio"
+    },
+    {
+      "index": 14,
+      "points": "100",
+      "category": "Power & Energy",
+      "definition": "Unit of work defined as 33,000 foot-pounds/min.",
+      "choices": [
+        "power unit",
+        "horsepower",
+        "work measurement",
+        "energy rating"
+      ],
+      "correct": "horsepower"
+    },
+    {
+      "index": 15,
+      "points": "100",
+      "category": "Fluid Systems",
+      "definition": "System that uses a liquid, such as water or oil, to transmit power.",
+      "choices": [
+        "liquid power system",
+        "hydraulic system",
+        "fluid transmission system",
+        "liquid drive system"
+      ],
+      "correct": "hydraulic system"
+    },
+    {
+      "index": 16,
+      "points": "100",
+      "category": "Power & Energy",
+      "definition": "How efficient a machine will be in an ideal situation.",
+      "choices": [
+        "theoretical mechanical advantage",
+        "ideal mechanical advantage (IMA)",
+        "perfect mechanical advantage",
+        "maximum mechanical advantage"
+      ],
+      "correct": "ideal mechanical advantage (IMA)"
+    },
+    {
+      "index": 17,
+      "points": "100",
+      "category": "Simple Machines",
+      "definition": "Simple machine that uses a flat surface that is higher on one end.",
+      "choices": [
+        "sloped surface",
+        "inclined plane",
+        "angled platform",
+        "ramp system"
+      ],
+      "correct": "inclined plane"
+    }
+  ]
+}

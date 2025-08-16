@@ -1,0 +1,534 @@
+{
+  "chapter": 13,
+  "title": "Civil & Structural Engineering",
+  "description": "Structural analysis, bridge design, surveying, and civil engineering fundamentals",
+  "categories": [
+    "Structural Components",
+    "Bridge Types & Design",
+    "Forces & Mechanics",
+    "Surveying & Measurement",
+    "Civil Engineering Applications"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Structural components that connect the bridge to the ground at the ends of the bridge.",
+      "choices": [
+        "abutments",
+        "piers",
+        "footings",
+        "anchors"
+      ],
+      "correct": "abutments"
+    },
+    {
+      "index": 1,
+      "points": "500",
+      "category": "Bridge Types & Design",
+      "definition": "Type of bridge that relies on the strength and rigidity of the arch. The strength of an arch is that the structural members are always in compression and that it can distribute the load throughout the arch to the abutments.",
+      "choices": [
+        "suspension bridge",
+        "cable-stayed bridge",
+        "arch bridge",
+        "truss bridge"
+      ],
+      "correct": "arch bridge"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Structural member that transmits loads to columns; carries horizontal loads.",
+      "choices": [
+        "beam",
+        "girder",
+        "joist",
+        "lintel"
+      ],
+      "correct": "beam"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Bridge Types & Design",
+      "definition": "Simplest type of bridge used to span the shortest distance.",
+      "choices": [
+        "beam bridge",
+        "slab bridge",
+        "deck bridge",
+        "stringer bridge"
+      ],
+      "correct": "beam bridge"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Forces & Mechanics",
+      "definition": "Force that causes a structure to sag when placed in the middle of it.",
+      "choices": [
+        "bending",
+        "deflection",
+        "flexure",
+        "buckling"
+      ],
+      "correct": "bending"
+    },
+    {
+      "index": 5,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Structural member used to provide structural stability.",
+      "choices": [
+        "strut",
+        "brace",
+        "tie",
+        "buttress"
+      ],
+      "correct": "brace"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Bridge Types & Design",
+      "definition": "Type of beam bridge that can span greater distances than a simple beam bridge and often includes trusses in the framework.",
+      "choices": [
+        "cantilever bridge",
+        "continuous beam bridge",
+        "prestressed bridge",
+        "segmental bridge"
+      ],
+      "correct": "cantilever bridge"
+    },
+    {
+      "index": 7,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Reinforced concrete shaft at the center of the building.",
+      "choices": [
+        "shear wall",
+        "central core",
+        "structural core",
+        "service core"
+      ],
+      "correct": "central core"
+    },
+    {
+      "index": 8,
+      "points": "500",
+      "category": "Civil Engineering Applications",
+      "definition": "Engineering of both the design and construction of public works projects or other large construction projects, and the use and control of natural resources, especially water.",
+      "choices": [
+        "structural engineering",
+        "civil engineering",
+        "construction engineering",
+        "environmental engineering"
+      ],
+      "correct": "civil engineering"
+    },
+    {
+      "index": 9,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Vertical structural member that transmits the load from above to other structural elements.",
+      "choices": [
+        "column",
+        "pillar",
+        "post",
+        "stanchion"
+      ],
+      "correct": "column"
+    },
+    {
+      "index": 10,
+      "points": "100",
+      "category": "Forces & Mechanics",
+      "definition": "Crushing force down the axis of a material that shortens the material.",
+      "choices": [
+        "compression",
+        "compaction",
+        "crushing stress",
+        "axial load"
+      ],
+      "correct": "compression"
+    },
+    {
+      "index": 11,
+      "points": "200",
+      "category": "Forces & Mechanics",
+      "definition": "Sudden impact on the structure.",
+      "choices": [
+        "impact load",
+        "dynamic load",
+        "shock load",
+        "transient load"
+      ],
+      "correct": "dynamic load"
+    },
+    {
+      "index": 12,
+      "points": "200",
+      "category": "Forces & Mechanics",
+      "definition": "Study of forces that cause motion on physical objects.",
+      "choices": [
+        "kinetics",
+        "dynamics",
+        "kinematics",
+        "mechanics"
+      ],
+      "correct": "dynamics"
+    },
+    {
+      "index": 13,
+      "points": "200",
+      "category": "Surveying & Measurement",
+      "definition": "Part of the total station, emitting infrared light.",
+      "choices": [
+        "laser rangefinder",
+        "electronic distance meter (EDM)",
+        "theodolite",
+        "optical plummet"
+      ],
+      "correct": "electronic distance meter (EDM)"
+    },
+    {
+      "index": 14,
+      "points": "200",
+      "category": "Forces & Mechanics",
+      "definition": "State at which structures can oppose external forces and can transfer the load throughout the structure.",
+      "choices": [
+        "equilibrium",
+        "stability",
+        "static balance",
+        "structural balance"
+      ],
+      "correct": "equilibrium"
+    },
+    {
+      "index": 15,
+      "points": "300",
+      "category": "Structural Components",
+      "definition": "Beam that is designed to resist bending as people walk across a floor.",
+      "choices": [
+        "floor beam",
+        "floor joist",
+        "decking beam",
+        "subflooring support"
+      ],
+      "correct": "floor joist"
+    },
+    {
+      "index": 16,
+      "points": "300",
+      "category": "Forces & Mechanics",
+      "definition": "Simple drawing that includes three components: the structural members and joints, the supports, and the loads or forces that are applied.",
+      "choices": [
+        "force diagram",
+        "structural diagram",
+        "free body diagram",
+        "load path diagram"
+      ],
+      "correct": "free body diagram"
+    },
+    {
+      "index": 17,
+      "points": "300",
+      "category": "Surveying & Measurement",
+      "definition": "Type of engineering usually associated with civil engineering; involves determining the location of objects on the earth.",
+      "choices": [
+        "geodetic engineering",
+        "geomatics engineering",
+        "topographic engineering",
+        "cartographic engineering"
+      ],
+      "correct": "geomatics engineering"
+    },
+    {
+      "index": 18,
+      "points": "300",
+      "category": "Structural Components",
+      "definition": "Device that connects two or more structural members together.",
+      "choices": [
+        "connector",
+        "fastener",
+        "joint",
+        "coupling"
+      ],
+      "correct": "joint"
+    },
+    {
+      "index": 19,
+      "points": "400",
+      "category": "Surveying & Measurement",
+      "definition": "Process of taking and using measurements to determine the exact size and shape of a piece of land.",
+      "choices": [
+        "topographic surveying",
+        "geodetic surveying",
+        "land surveying",
+        "cadastral surveying"
+      ],
+      "correct": "land surveying"
+    },
+    {
+      "index": 20,
+      "points": "100",
+      "category": "Forces & Mechanics",
+      "definition": "Forces the structure must withstand.",
+      "choices": [
+        "load",
+        "stress",
+        "force",
+        "pressure"
+      ],
+      "correct": "load"
+    },
+    {
+      "index": 21,
+      "points": "100",
+      "category": "Forces & Mechanics",
+      "definition": "The study of forces and motion on physical objects.",
+      "choices": [
+        "mechanics",
+        "physics",
+        "statics",
+        "dynamics"
+      ],
+      "correct": "mechanics"
+    },
+    {
+      "index": 22,
+      "points": "400",
+      "category": "Structural Components",
+      "definition": "Main vertical columns that transfer the load of the bridge into the ground.",
+      "choices": [
+        "pylons",
+        "piers",
+        "columns",
+        "supports"
+      ],
+      "correct": "piers"
+    },
+    {
+      "index": 23,
+      "points": "400",
+      "category": "Bridge Types & Design",
+      "definition": "Horizontal structure that enables transportation across the bridge.",
+      "choices": [
+        "deck",
+        "roadway",
+        "carriageway",
+        "bridge surface"
+      ],
+      "correct": "roadway"
+    },
+    {
+      "index": 24,
+      "points": "400",
+      "category": "Forces & Mechanics",
+      "definition": "Force that acts in opposite directions across a material.",
+      "choices": [
+        "torsion",
+        "bending moment",
+        "shear",
+        "lateral force"
+      ],
+      "correct": "shear"
+    },
+    {
+      "index": 25,
+      "points": "500",
+      "category": "Forces & Mechanics",
+      "definition": "Weight of the structure itself (known as <em>dead load</em>) and weight added to the structure under normal use (known as <em>live load</em>).",
+      "choices": [
+        "service load",
+        "design load",
+        "static load",
+        "permanent load"
+      ],
+      "correct": "static load"
+    },
+    {
+      "index": 26,
+      "points": "100",
+      "category": "Forces & Mechanics",
+      "definition": "Study that deals with the analysis of loads on objects at rest (or in equilibrium).",
+      "choices": [
+        "statics",
+        "structural mechanics",
+        "equilibrium analysis",
+        "force analysis"
+      ],
+      "correct": "statics"
+    },
+    {
+      "index": 27,
+      "points": "100",
+      "category": "Civil Engineering Applications",
+      "definition": "Analysis focused on ensuring the structure is as efficient as possible.",
+      "choices": [
+        "structural analysis",
+        "load analysis",
+        "stress analysis",
+        "efficiency analysis"
+      ],
+      "correct": "structural analysis"
+    },
+    {
+      "index": 28,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Columns and beams used to build a structure, called a <em>skeleton</em>.",
+      "choices": [
+        "structural frame",
+        "building frame",
+        "skeletal structure",
+        "framework system"
+      ],
+      "correct": "structural frame"
+    },
+    {
+      "index": 29,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Arrangement of parts built to remain stable while withstanding forces.",
+      "choices": [
+        "structure",
+        "assembly",
+        "construction",
+        "framework"
+      ],
+      "correct": "structure"
+    },
+    {
+      "index": 30,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Braces that resist compression.",
+      "choices": [
+        "compression members",
+        "struts",
+        "props",
+        "shores"
+      ],
+      "correct": "struts"
+    },
+    {
+      "index": 31,
+      "points": "100",
+      "category": "Bridge Types & Design",
+      "definition": "World's longest type of bridges, which utilize tension forces.",
+      "choices": [
+        "cable-stayed bridge",
+        "suspension bridge",
+        "tensioned arch bridge",
+        "stressed ribbon bridge"
+      ],
+      "correct": "suspension bridge"
+    },
+    {
+      "index": 32,
+      "points": "100",
+      "category": "Forces & Mechanics",
+      "definition": "Pulling force that tends to stretch a material.",
+      "choices": [
+        "tension",
+        "tensile stress",
+        "elongation force",
+        "stretching force"
+      ],
+      "correct": "tension"
+    },
+    {
+      "index": 33,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Braces that resist tension.",
+      "choices": [
+        "tension members",
+        "ties",
+        "cables",
+        "guy wires"
+      ],
+      "correct": "ties"
+    },
+    {
+      "index": 34,
+      "points": "100",
+      "category": "Forces & Mechanics",
+      "definition": "Turning force that is applied to a material or structure.",
+      "choices": [
+        "torque",
+        "torsion",
+        "twisting moment",
+        "rotational force"
+      ],
+      "correct": "torsion"
+    },
+    {
+      "index": 35,
+      "points": "100",
+      "category": "Surveying & Measurement",
+      "definition": "Tracks the survey rod and calculates the distance and angle without the need of the surveyor standing at the station.",
+      "choices": [
+        "robotic theodolite",
+        "automatic total station",
+        "total robotic station",
+        "remote positioning system"
+      ],
+      "correct": "total robotic station"
+    },
+    {
+      "index": 36,
+      "points": "100",
+      "category": "Surveying & Measurement",
+      "definition": "Surveying instrument designed to measure both distance and angles.",
+      "choices": [
+        "theodolite",
+        "total station",
+        "transit",
+        "tachymeter"
+      ],
+      "correct": "total station"
+    },
+    {
+      "index": 37,
+      "points": "100",
+      "category": "Structural Components",
+      "definition": "Structural element used in a number of civil engineering structures, as supports for roofs and floors to bridges.",
+      "choices": [
+        "truss",
+        "lattice",
+        "framework",
+        "space frame"
+      ],
+      "correct": "truss"
+    },
+    {
+      "index": 38,
+      "points": "100",
+      "category": "Bridge Types & Design",
+      "definition": "Type of bridge that uses a truss, which allows for the load to be spread out through all of the structural members in the truss.",
+      "choices": [
+        "lattice bridge",
+        "truss bridge",
+        "framework bridge",
+        "Warren bridge"
+      ],
+      "correct": "truss bridge"
+    },
+    {
+      "index": 39,
+      "points": "500",
+      "category": "Civil Engineering Applications",
+      "definition": "Largest employer of civil, structural, and architectural engineers, as well as land surveyors. This organization is responsible for building military and civil works throughout the United States and the world.",
+      "choices": [
+        "Bureau of Reclamation",
+        "Federal Highway Administration",
+        "US Army Corps of Engineers",
+        "National Society of Professional Engineers"
+      ],
+      "correct": "US Army Corps of Engineers"
+    }
+  ]
+}

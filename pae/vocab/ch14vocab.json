@@ -1,0 +1,300 @@
+{
+  "chapter": 14,
+  "title": "Aerospace Engineering",
+  "description": "Aerodynamics, flight control systems, propulsion, and spacecraft engineering",
+  "categories": [
+    "Aerodynamics & Flight Physics",
+    "Flight Control Surfaces",
+    "Propulsion Systems",
+    "Aerospace Disciplines",
+    "Aircraft & Spacecraft Components"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "100",
+      "category": "Aerodynamics & Flight Physics",
+      "definition": "Study of how air flows around solid objects.",
+      "choices": [
+        "fluid dynamics",
+        "aerodynamics",
+        "thermodynamics",
+        "computational fluid dynamics"
+      ],
+      "correct": "aerodynamics"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Aerospace Disciplines",
+      "definition": "Study of manned and unmanned craft within the earth's atmosphere.",
+      "choices": [
+        "aviation",
+        "aeronautics",
+        "atmospheric sciences",
+        "flight dynamics"
+      ],
+      "correct": "aeronautics"
+    },
+    {
+      "index": 2,
+      "points": "500",
+      "category": "Aerospace Disciplines",
+      "definition": "Design, building, analysis, and troubleshooting of components in aircraft, spacecraft, missiles, and high-altitude vehicles.",
+      "choices": [
+        "mechanical engineering",
+        "aeronautical engineering",
+        "aerospace engineering",
+        "systems engineering"
+      ],
+      "correct": "aerospace engineering"
+    },
+    {
+      "index": 3,
+      "points": "100",
+      "category": "Flight Control Surfaces",
+      "definition": "Component of a wing that is located on the outside rear of each wing and is adjusted for turning.",
+      "choices": [
+        "aileron",
+        "spoiler",
+        "winglet",
+        "trim tab"
+      ],
+      "correct": "aileron"
+    },
+    {
+      "index": 4,
+      "points": "100",
+      "category": "Aerodynamics & Flight Physics",
+      "definition": "Angle of the chord line of the wing relative to the airflow.",
+      "choices": [
+        "angle of attack",
+        "angle of incidence",
+        "sweep angle",
+        "dihedral angle"
+      ],
+      "correct": "angle of attack"
+    },
+    {
+      "index": 5,
+      "points": "100",
+      "category": "Aerodynamics & Flight Physics",
+      "definition": "Angle of the wing in relation to the airplane body.",
+      "choices": [
+        "washout angle",
+        "angle of incidence",
+        "installation angle",
+        "decalage angle"
+      ],
+      "correct": "angle of incidence"
+    },
+    {
+      "index": 6,
+      "points": "100",
+      "category": "Aerospace Disciplines",
+      "definition": "Study of manned and unmanned craft outside the earth's atmosphere.",
+      "choices": [
+        "astronautics",
+        "cosmonautics",
+        "orbital mechanics",
+        "space science"
+      ],
+      "correct": "astronautics"
+    },
+    {
+      "index": 7,
+      "points": "500",
+      "category": "Aerodynamics & Flight Physics",
+      "definition": "Theory that states an airfoil is more curved on the top, so air traveling over the wing has to travel farther than the air traveling under the wing, causing the air flowing over the wing to flow faster relative to the wing than the air flowing under the wing, causing a low pressure zone above the wing and, therefore, lift.",
+      "choices": [
+        "Newton's third law of lift",
+        "Coanda effect",
+        "Bernoulli theory of lift",
+        "circulation theory of lift"
+      ],
+      "correct": "Bernoulli theory of lift"
+    },
+    {
+      "index": 8,
+      "points": "200",
+      "category": "Aircraft & Spacecraft Components",
+      "definition": "Upward angle of wings away from the body that creates stability.",
+      "choices": [
+        "anhedral angle",
+        "dihedral angle",
+        "sweep angle",
+        "cant angle"
+      ],
+      "correct": "dihedral angle"
+    },
+    {
+      "index": 9,
+      "points": "200",
+      "category": "Aerodynamics & Flight Physics",
+      "definition": "Aerodynamic force created by the friction of moving air that opposes propulsion.",
+      "choices": [
+        "induced drag",
+        "drag",
+        "parasitic drag",
+        "form drag"
+      ],
+      "correct": "drag"
+    },
+    {
+      "index": 10,
+      "points": "200",
+      "category": "Flight Control Surfaces",
+      "definition": "Control surface located on the rear of the horizontal stabilizer that controls vertical movement of the nose.",
+      "choices": [
+        "stabilator",
+        "elevator",
+        "elevon",
+        "canard"
+      ],
+      "correct": "elevator"
+    },
+    {
+      "index": 11,
+      "points": "400",
+      "category": "Flight Control Surfaces",
+      "definition": "Airplane component that is located on the inside rear of wings and can be adjusted at takeoff and landing for additional lift.",
+      "choices": [
+        "slat",
+        "flap",
+        "slot",
+        "krueger flap"
+      ],
+      "correct": "flap"
+    },
+    {
+      "index": 12,
+      "points": "500",
+      "category": "Propulsion Systems",
+      "definition": "Engine, also known as a <em>jet engine</em>, that pulls air into the front of the engine, increases the pressure of the air, and forces it out the back of the engine at great speed.",
+      "choices": [
+        "turboprop engine",
+        "ramjet engine",
+        "gas turbine engine",
+        "pulsejet engine"
+      ],
+      "correct": "gas turbine engine"
+    },
+    {
+      "index": 13,
+      "points": "200",
+      "category": "Aerodynamics & Flight Physics",
+      "definition": "Upward force acting on wings when air is moved downward.",
+      "choices": [
+        "lift",
+        "upthrust",
+        "buoyancy",
+        "aerodynamic force"
+      ],
+      "correct": "lift"
+    },
+    {
+      "index": 14,
+      "points": "300",
+      "category": "Aerodynamics & Flight Physics",
+      "definition": "Up-and-down movement of the nose and tail.",
+      "choices": [
+        "pitch",
+        "roll",
+        "heave",
+        "porpoising"
+      ],
+      "correct": "pitch"
+    },
+    {
+      "index": 15,
+      "points": "300",
+      "category": "Propulsion Systems",
+      "definition": "Rotating blades that force air toward the rear of an aircraft causing the aircraft to move forward.",
+      "choices": [
+        "rotor",
+        "impeller",
+        "propeller",
+        "turbine"
+      ],
+      "correct": "propeller"
+    },
+    {
+      "index": 16,
+      "points": "300",
+      "category": "Propulsion Systems",
+      "definition": "System that creates thrust for movement.",
+      "choices": [
+        "propulsion system",
+        "powerplant",
+        "thrust system",
+        "drive system"
+      ],
+      "correct": "propulsion system"
+    },
+    {
+      "index": 17,
+      "points": "400",
+      "category": "Flight Control Surfaces",
+      "definition": "Control surface located on the rear of the vertical stabilizer, used to control side-to-side movement of the nose.",
+      "choices": [
+        "fin",
+        "rudder",
+        "vertical stabilizer",
+        "directional control surface"
+      ],
+      "correct": "rudder"
+    },
+    {
+      "index": 18,
+      "points": "500",
+      "category": "Aircraft & Spacecraft Components",
+      "definition": "Type of spacecraft that orbits the earth because the centrifugal force created by its motion is in perfect balance with the earth's gravitational pull.",
+      "choices": [
+        "space station",
+        "orbital vehicle",
+        "satellite",
+        "spacecraft"
+      ],
+      "correct": "satellite"
+    },
+    {
+      "index": 19,
+      "points": "400",
+      "category": "Propulsion Systems",
+      "definition": "Forward force acting on an aircraft or spacecraft created by air or gases being pushed to the rear.",
+      "choices": [
+        "propulsive force",
+        "thrust",
+        "jet force",
+        "reaction force"
+      ],
+      "correct": "thrust"
+    },
+    {
+      "index": 20,
+      "points": "300",
+      "category": "Aircraft & Spacecraft Components",
+      "definition": "Type of windmill used to generate electricity from wind energy.",
+      "choices": [
+        "wind generator",
+        "wind turbine",
+        "aerogenerator",
+        "wind converter"
+      ],
+      "correct": "wind turbine"
+    },
+    {
+      "index": 21,
+      "points": "400",
+      "category": "Aerodynamics & Flight Physics",
+      "definition": "Side-to-side movement of the nose and tail of an aircraft.",
+      "choices": [
+        "roll",
+        "yaw",
+        "sideslip",
+        "dutch roll"
+      ],
+      "correct": "yaw"
+    }
+  ]
+}
