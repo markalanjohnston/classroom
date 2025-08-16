@@ -342,20 +342,6 @@ h3 { color: #2e86ab; margin-top: 20px; }
     margin-bottom: 30px;
 }
 
-/* Audio Notice */
-.audio-notice {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    z-index: 100;
-    opacity: 0.8;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .main-container, .game-container, .header-container {
