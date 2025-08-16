@@ -426,7 +426,6 @@
             categories.forEach((category, catIndex) => {
                 // Get all available questions for this category
                 const allCategoryQuestions = categoryQuestions[category] || [];
-                const usedInCategory = [];
                 
                 pointValues.forEach(points => {
                     const key = `${category}_${points}`;
@@ -440,11 +439,11 @@
                     if (availableQuestions.length > 0) {
                         // Randomly select one question from available ones with exact point match
                         const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-                        selectedQuestion = availableQuestions[randomIndex];
+                        selectedQuestion = {...availableQuestions[randomIndex]};
                     } else {
-                        // No exact point match - try to find ANY unused question from this category
+                        // No exact point match - find ANY unused question from this category
                         const unusedCategoryQuestions = allCategoryQuestions.filter(q => 
-                            !usedQuestionIndices.has(q.index) && !usedInCategory.includes(q.index)
+                            !usedQuestionIndices.has(q.index)
                         );
                         
                         if (unusedCategoryQuestions.length > 0) {
@@ -456,9 +455,11 @@
                             selectedQuestion.originalPoints = selectedQuestion.points;
                             selectedQuestion.points = points;
                             
-                            console.log(`Using ${category} question originally worth ${selectedQuestion.originalPoints} for ${points} slot`);
+                            console.log(`✅ Using ${category} question originally worth ${selectedQuestion.originalPoints} for ${points} slot`);
                         } else {
                             // Absolutely no questions left in this category
+                            console.warn(`⚠️ No questions left in ${category} for ${points} slot`);
+                            
                             // Try to find from another category as last resort
                             for (let fallbackCat of categories) {
                                 if (fallbackCat === category) continue;
@@ -475,7 +476,8 @@
                                     selectedQuestion.points = points;
                                     selectedQuestion.originalCategory = selectedQuestion.category;
                                     
-                                    console.log(`No questions left in ${category}, using ${fallbackCat} question for ${points} slot`);
+                                    console.log(`⚠️ Could not find any question for ${category} at ${points} points`);
+                                    console.log(`✅ Using question from ${fallbackCat} instead`);
                                     break;
                                 }
                             }
@@ -490,16 +492,15 @@
                         
                         // Track that we've used this question
                         usedQuestionIndices.add(selectedQuestion.index);
-                        usedInCategory.push(selectedQuestion.index);
                         
                         gameQuestions.push(selectedQuestion);
                     } else {
-                        console.warn(`Could not find any question for ${category} at ${points} points`);
+                        console.error(`❌ Could not find any question for ${category} at ${points} points - cell will be disabled`);
                     }
                 });
             });
             
-            console.log(`Prepared ${gameQuestions.length} questions for the game`);
+            console.log(`✅ Prepared ${gameQuestions.length} questions for the game`);
             
             // Log distribution for debugging
             const distribution = {};
@@ -508,7 +509,7 @@
                 if (!distribution[cat]) distribution[cat] = {};
                 distribution[cat][q.boardPoints] = (distribution[cat][q.boardPoints] || 0) + 1;
             });
-            console.log('Question distribution:', distribution);
+            console.log('📊 Question distribution:', distribution);
         }
         
         // Generate team input fields based on number selected
