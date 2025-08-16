@@ -210,15 +210,18 @@
         }
 
         .nav-dropdown {
-            position: static;
+            position: static !important;
             opacity: 1;
             visibility: visible;
             transform: none;
             box-shadow: none;
             background: rgba(255,255,255,0.1);
-            margin-top: 10px;
+            margin: 10px 0;
             display: none;
             border-radius: 8px;
+            width: 100%;
+            left: 0 !important;
+            right: 0 !important;
         }
 
         .nav-item:hover .nav-dropdown {
@@ -232,6 +235,7 @@
         .dropdown-link {
             color: rgba(255,255,255,0.9);
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
         }
 
         .dropdown-link:hover {
@@ -284,13 +288,12 @@
                     </div>
                 </li>
                 
-                <!-- 
                 <li class="nav-item">
                     <a href="{{ site.baseurl | default: '' }}/pae/vocab/" class="nav-link">
                         <i class="bi bi-puzzle"></i> Vocab Games
                     </a>
                 </li>
-                -->
+                
                 <!-- Add more navigation items as needed -->
                 <!-- 
                 <li class="nav-item">
