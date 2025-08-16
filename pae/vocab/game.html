@@ -146,7 +146,7 @@
     <script>
         // Global Variables
         let currentChapter = 1;
-        let vocabularyData = [];
+        let vocabularyData = {};
         let teams = [];
         let currentTeam = 0;
         let gameActive = false;
@@ -160,11 +160,6 @@
             // Get chapter from URL parameter
             const urlParams = new URLSearchParams(window.location.search);
             currentChapter = parseInt(urlParams.get('chapter')) || 1;
-            
-            // Update UI with chapter info
-            document.getElementById('chapterBreadcrumb').textContent = `Chapter ${currentChapter}`;
-            document.getElementById('chapterTitle').textContent = `Chapter ${currentChapter} Vocabulary Game`;
-            document.getElementById('gameTitle').textContent = `Chapter ${currentChapter} Vocabulary Game`;
             
             // Load vocabulary data
             loadVocabularyData();
@@ -181,11 +176,24 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 vocabularyData = await response.json();
-                console.log(`Loaded ${vocabularyData.length} vocabulary items for Chapter ${currentChapter}`);
+                
+                // Update UI with chapter info from loaded data
+                const chapterTitle = vocabularyData.title || `Chapter ${currentChapter}`;
+                document.getElementById('chapterBreadcrumb').textContent = chapterTitle;
+                document.getElementById('chapterTitle').textContent = `${chapterTitle} Vocabulary Game`;
+                document.getElementById('gameTitle').textContent = `${chapterTitle} Vocabulary Game`;
+                
+                console.log(`Loaded ${vocabularyData.questions.length} vocabulary items for ${chapterTitle}`);
             } catch (error) {
                 console.error('Error loading vocabulary data:', error);
                 // Use sample data if file not found
                 vocabularyData = getSampleData();
+                
+                // Update UI with fallback info
+                document.getElementById('chapterBreadcrumb').textContent = `Chapter ${currentChapter}`;
+                document.getElementById('chapterTitle').textContent = `Chapter ${currentChapter} Vocabulary Game`;
+                document.getElementById('gameTitle').textContent = `Chapter ${currentChapter} Vocabulary Game`;
+                
                 alert(`Could not load ch${currentChapter}vocab.json. Using sample data for demonstration.`);
             }
         }
@@ -262,8 +270,8 @@
             const gameBoard = document.getElementById('gameBoard');
             gameBoard.innerHTML = '';
             
-            // Create headers
-            const headers = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
+            // Use categories from loaded data or fallback to generic headers
+            const headers = vocabularyData.categories || ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
             headers.forEach(header => {
                 const headerCell = document.createElement('div');
                 headerCell.className = 'jeopardy-cell jeopardy-header';
@@ -274,7 +282,7 @@
             // Create point values
             const pointValues = [100, 200, 300, 400, 500];
             pointValues.forEach(points => {
-                for (let col = 0; col < 4; col++) {
+                for (let col = 0; col < headers.length; col++) {
                     const cell = document.createElement('div');
                     cell.className = 'jeopardy-cell';
                     cell.textContent = points;
@@ -289,8 +297,9 @@
             if (!gameActive) return;
             if (event.target.classList.contains('used')) return;
             
-            // Find a question with matching points
-            const question = vocabularyData.find(q => parseInt(q.points) === points && !q.used);
+            // Find a question with matching points from the questions array
+            const questions = vocabularyData.questions || vocabularyData;
+            const question = questions.find(q => parseInt(q.points) === points && !q.used);
             if (!question) {
                 alert('No questions available for this point value');
                 return;
@@ -470,7 +479,8 @@
             document.getElementById('modalTimer').textContent = '30';
             
             // Check if game is over
-            const unusedQuestions = vocabularyData.filter(q => !q.used);
+            const questions = vocabularyData.questions || vocabularyData;
+            const unusedQuestions = questions.filter(q => !q.used);
             if (unusedQuestions.length === 0) {
                 endGame();
             }
@@ -630,7 +640,8 @@
         function playAgain() {
             // Reset all game state
             teams.forEach(team => team.score = 0);
-            vocabularyData.forEach(item => item.used = false);
+            const questions = vocabularyData.questions || vocabularyData;
+            questions.forEach(item => item.used = false);
             currentTeam = 0;
             gameEndedEarly = false; // Reset early end flag
             
@@ -669,7 +680,8 @@
             // Subtitle with early end indicator
             doc.setFontSize(16);
             doc.setTextColor(0, 0, 0);
-            let subtitle = `Chapter ${currentChapter} - Principles of Applied Engineering`;
+            const chapterTitle = vocabularyData.title || `Chapter ${currentChapter}`;
+            let subtitle = `${chapterTitle} - Principles of Applied Engineering`;
             if (gameEndedEarly) {
                 subtitle += ' (Game Ended Early)';
             }
@@ -754,68 +766,79 @@
         
         // Sample data for testing when JSON file is not available
         function getSampleData() {
-            return [
-                {
-                    "index": 0,
-                    "points": "100",
-                    "definition": "Guidelines that we use to help us make decisions about our behavior.",
-                    "choices": [
-                        "moral principles",
-                        "ethics",
-                        "values", 
-                        "behavioral standards"
-                    ],
-                    "correct": "ethics"
-                },
-                {
-                    "index": 1,
-                    "points": "200",
-                    "definition": "Effects products have on financial systems.",
-                    "choices": [
-                        "market impact",
-                        "economic impact",
-                        "financial impact",
-                        "commercial impact"
-                    ],
-                    "correct": "economic impact"
-                },
-                {
-                    "index": 2,
-                    "points": "300",
-                    "definition": "Type of design that focuses on creating products that are not harmful to the environment throughout their life cycle.",
-                    "choices": [
-                        "sustainable design",
-                        "eco-friendly design", 
-                        "green design",
-                        "environmentally conscious design"
-                    ],
-                    "correct": "green design"
-                },
-                {
-                    "index": 3,
-                    "points": "400",
-                    "definition": "Sets of guidelines that should be followed when engineers interact with the public, their employers, their clients, and other engineers.",
-                    "choices": [
-                        "professional standards",
-                        "industry regulations",
-                        "legal requirements",
-                        "codes of ethics"
-                    ],
-                    "correct": "codes of ethics"
-                },
-                {
-                    "index": 4,
-                    "points": "500",
-                    "definition": "Designation for engineers who have completed licensure requirements, allowing engineers to approve, sign, and stamp plans and documents.",
-                    "choices": [
-                        "Licensed Engineer (L.E.)",
-                        "Professional Engineer (P.E.)",
-                        "Certified Engineer (C.E.)",
-                        "Registered Engineer (R.E.)"
-                    ],
-                    "correct": "Professional Engineer (P.E.)"
-                }
-            ];
+            return {
+                "chapter": 2,
+                "title": "Sample Chapter",
+                "description": "Sample data for testing",
+                "categories": ["Category 1", "Category 2", "Category 3", "Category 4"],
+                "questions": [
+                    {
+                        "index": 0,
+                        "points": "100",
+                        "category": "Category 1",
+                        "definition": "Guidelines that we use to help us make decisions about our behavior.",
+                        "choices": [
+                            "moral principles",
+                            "ethics",
+                            "values", 
+                            "behavioral standards"
+                        ],
+                        "correct": "ethics"
+                    },
+                    {
+                        "index": 1,
+                        "points": "200",
+                        "category": "Category 2",
+                        "definition": "Effects products have on financial systems.",
+                        "choices": [
+                            "market impact",
+                            "economic impact",
+                            "financial impact",
+                            "commercial impact"
+                        ],
+                        "correct": "economic impact"
+                    },
+                    {
+                        "index": 2,
+                        "points": "300",
+                        "category": "Category 3",
+                        "definition": "Type of design that focuses on creating products that are not harmful to the environment throughout their life cycle.",
+                        "choices": [
+                            "sustainable design",
+                            "eco-friendly design", 
+                            "green design",
+                            "environmentally conscious design"
+                        ],
+                        "correct": "green design"
+                    },
+                    {
+                        "index": 3,
+                        "points": "400",
+                        "category": "Category 4",
+                        "definition": "Sets of guidelines that should be followed when engineers interact with the public, their employers, their clients, and other engineers.",
+                        "choices": [
+                            "professional standards",
+                            "industry regulations",
+                            "legal requirements",
+                            "codes of ethics"
+                        ],
+                        "correct": "codes of ethics"
+                    },
+                    {
+                        "index": 4,
+                        "points": "500",
+                        "category": "Category 1",
+                        "definition": "Designation for engineers who have completed licensure requirements, allowing engineers to approve, sign, and stamp plans and documents.",
+                        "choices": [
+                            "Licensed Engineer (L.E.)",
+                            "Professional Engineer (P.E.)",
+                            "Certified Engineer (C.E.)",
+                            "Registered Engineer (R.E.)"
+                        ],
+                        "correct": "Professional Engineer (P.E.)"
+                    }
+                ]
+            };
         }
     </script>
 </body>

@@ -1,0 +1,260 @@
+{
+  "chapter": 1,
+  "title": "Introduction to Engineering",
+  "description": "Basic engineering concepts, design process, and engineering disciplines",
+  "categories": [
+    "Engineering Fundamentals",
+    "Design Process", 
+    "Engineering Disciplines",
+    "Professional Roles"
+  ],
+  "questions": [
+    {
+      "index": 0,
+      "points": "200",
+      "category": "Engineering Disciplines",
+      "definition": "Design, building, analysis, and troubleshooting of components in aircraft, spacecraft, missiles, and high-altitude vehicles.",
+      "choices": [
+        "constraints",
+        "specifications",
+        "aerospace engineering",
+        "computer engineering"
+      ],
+      "correct": "aerospace engineering"
+    },
+    {
+      "index": 1,
+      "points": "100",
+      "category": "Engineering Disciplines",
+      "definition": "Field that uses biological organisms and tools to help humans and other species live.",
+      "choices": [
+        "optimization",
+        "constraints",
+        "manufacturing engineering",
+        "bioengineering"
+      ],
+      "correct": "bioengineering"
+    },
+    {
+      "index": 2,
+      "points": "100",
+      "category": "Engineering Disciplines",
+      "definition": "Branch of engineering that deals with the research, development, and design involved in the large-scale production of chemical products.",
+      "choices": [
+        "manufacturing engineering",
+        "chemical engineering",
+        "environmental engineering",
+        "electrical engineering"
+      ],
+      "correct": "chemical engineering"
+    },
+    {
+      "index": 3,
+      "points": "400",
+      "category": "Engineering Disciplines",
+      "definition": "Engineering of both the design and construction of public works projects or other large construction projects, and the use and control of natural resources, especially water.",
+      "choices": [
+        "chemical engineering",
+        "trade-off",
+        "optimization",
+        "civil engineering"
+      ],
+      "correct": "civil engineering"
+    },
+    {
+      "index": 4,
+      "points": "400",
+      "category": "Engineering Disciplines",
+      "definition": "Design, development, and testing of various aspects of computer systems; a unique field that overlaps electrical engineering and software engineering.",
+      "choices": [
+        "computer engineering",
+        "environmental engineering",
+        "tradespeople",
+        "engineering"
+      ],
+      "correct": "computer engineering"
+    },
+    {
+      "index": 5,
+      "points": "200",
+      "category": "Design Process",
+      "definition": "Limitations of the design, such as materials, cost, size, and time.",
+      "choices": [
+        "aerospace engineering",
+        "tradespeople",
+        "constraints",
+        "engineering design process"
+      ],
+      "correct": "constraints"
+    },
+    {
+      "index": 6,
+      "points": "200",
+      "category": "Engineering Disciplines",
+      "definition": "Design and construction of electrical and electronic systems, components, and devices.",
+      "choices": [
+        "mechanical engineering",
+        "computer engineering",
+        "constraints",
+        "electrical engineering"
+      ],
+      "correct": "electrical engineering"
+    },
+    {
+      "index": 7,
+      "points": "200",
+      "category": "Professional Roles",
+      "definition": "Highly trained professional who uses both knowledge and skills to solve problems.",
+      "choices": [
+        "engineering design process",
+        "engineer",
+        "optimization",
+        "electrical engineering"
+      ],
+      "correct": "engineer"
+    },
+    {
+      "index": 8,
+      "points": "300",
+      "category": "Engineering Fundamentals",
+      "definition": "Use of mathematics, science, and technology to create products and systems that improve the world.",
+      "choices": [
+        "engineering",
+        "chemical engineering",
+        "engineering design process",
+        "engineering technicians"
+      ],
+      "correct": "engineering"
+    },
+    {
+      "index": 9,
+      "points": "300",
+      "category": "Design Process",
+      "definition": "Specific set of steps that lead the engineer from a problem statement to a final solution.",
+      "choices": [
+        "aerospace engineering",
+        "tradespeople",
+        "engineering technicians",
+        "engineering design process"
+      ],
+      "correct": "engineering design process"
+    },
+    {
+      "index": 10,
+      "points": "300",
+      "category": "Professional Roles",
+      "definition": "People who carry out technical work of engineers by using more technology and less scientific and mathematical knowledge.",
+      "choices": [
+        "bioengineering",
+        "tradespeople",
+        "engineering technicians",
+        "constraints"
+      ],
+      "correct": "engineering technicians"
+    },
+    {
+      "index": 11,
+      "points": "400",
+      "category": "Engineering Disciplines",
+      "definition": "Application of the principles of engineering, combined with the principles of chemistry, biology, math, and technology, to solve environmental problems.",
+      "choices": [
+        "engineering",
+        "engineer",
+        "engineering technicians",
+        "environmental engineering"
+      ],
+      "correct": "environmental engineering"
+    },
+    {
+      "index": 12,
+      "points": "100",
+      "category": "Engineering Disciplines",
+      "definition": "Design of machines, tools, and processes used to manufacture goods.",
+      "choices": [
+        "specifications",
+        "constraints",
+        "manufacturing engineering",
+        "bioengineering"
+      ],
+      "correct": "manufacturing engineering"
+    },
+    {
+      "index": 13,
+      "points": "300",
+      "category": "Engineering Disciplines",
+      "definition": "Understanding and modification of the structure and properties of materials to improve the performance and processing of the material.",
+      "choices": [
+        "materials engineering",
+        "constraints",
+        "civil engineering",
+        "mechanical engineering"
+      ],
+      "correct": "materials engineering"
+    },
+    {
+      "index": 14,
+      "points": "100",
+      "category": "Engineering Disciplines",
+      "definition": "Designing, building, and maintaining of mechanical, thermal, and fluid systems.",
+      "choices": [
+        "optimization",
+        "materials engineering",
+        "computer engineering",
+        "mechanical engineering"
+      ],
+      "correct": "mechanical engineering"
+    },
+    {
+      "index": 15,
+      "points": "100",
+      "category": "Design Process",
+      "definition": "Process of creating the most optimal solution within the specifications and constraints.",
+      "choices": [
+        "constraints",
+        "engineer",
+        "engineering design process",
+        "optimization"
+      ],
+      "correct": "optimization"
+    },
+    {
+      "index": 16,
+      "points": "100",
+      "category": "Design Process",
+      "definition": "Design requirements of an engineered solution.",
+      "choices": [
+        "environmental engineering",
+        "specifications",
+        "constraints",
+        "tradespeople"
+      ],
+      "correct": "specifications"
+    },
+    {
+      "index": 17,
+      "points": "400",
+      "category": "Design Process",
+      "definition": "Something an engineer gives up in order to meet specifications while staying within the constraints; the consideration that gaining one positive quality in a design means you lose one other quality.",
+      "choices": [
+        "manufacturing engineering",
+        "engineering design process",
+        "trade-off",
+        "materials engineering"
+      ],
+      "correct": "trade-off"
+    },
+    {
+      "index": 18,
+      "points": "100",
+      "category": "Professional Roles",
+      "definition": "Workers who build the design products.",
+      "choices": [
+        "optimization",
+        "materials engineering",
+        "constraints",
+        "tradespeople"
+      ],
+      "correct": "tradespeople"
+    }
+  ]
+}
