@@ -30,12 +30,50 @@
         flex-direction: column;
         height: 100%;
         min-height: 200px;
+      }
+      
+      .activity-card.disabled {
         cursor: not-allowed;
+        opacity: 0.6;
+      }
+      
+      .activity-card.active {
+        cursor: pointer;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+      
+      .activity-card.active:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .activity-card.active .text-muted {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+      
+      .activity-card.active .activity-icon {
+        color: white !important;
       }
       
       .activity-card p {
         flex-grow: 1;
         margin-bottom: 10px;
+      }
+      
+      .badge-new {
+        background: #28a745;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        margin-left: 8px;
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
       }
       
       @media (min-width: 768px) {
@@ -65,7 +103,20 @@
       </div>
 
       <div class="activities-grid">
-        <div class="activity-card" style="opacity: 0.6">
+        <a href="gear-ratios/" class="activity-card active">
+          <div class="activity-icon">
+            <i class="bi bi-gear-wide-connected"></i>
+          </div>
+          <h3>Gear Ratio Simulator <span class="badge-new">NEW!</span></h3>
+          <p class="text-muted">
+            Interactive tool to explore gear ratios, mechanical advantage, and speed relationships
+          </p>
+          <small class="text-muted">
+            <i class="bi bi-play-circle"></i> Click to Launch
+          </small>
+        </a>
+
+        <div class="activity-card disabled">
           <div class="activity-icon text-primary">
             <i class="bi bi-code-slash"></i>
           </div>
@@ -78,7 +129,7 @@
           </small>
         </div>
 
-        <div class="activity-card" style="opacity: 0.6">
+        <div class="activity-card disabled">
           <div class="activity-icon text-warning">
             <i class="bi bi-trophy"></i>
           </div>
@@ -91,7 +142,7 @@
           </small>
         </div>
 
-        <div class="activity-card" style="opacity: 0.6">
+        <div class="activity-card disabled">
           <div class="activity-icon text-info">
             <i class="bi bi-diagram-3"></i>
           </div>
@@ -103,28 +154,27 @@
             <i class="bi bi-clock"></i> Planning Phase
           </small>
         </div>
+      </div>
 
-        <div class="activity-card" style="opacity: 0.6">
-          <div class="activity-icon text-danger">
-            <i class="bi bi-tools"></i>
-          </div>
-          <h3>Team Resources</h3>
-          <p class="text-muted">
-            Team management tools, schedules, and project tracking
-          </p>
-          <small class="text-muted">
-            <i class="bi bi-clock"></i> Future Release
-          </small>
-        </div>
+      <div class="alert alert-success mt-4">
+        <h5><i class="bi bi-stars"></i> What's New</h5>
+        <p class="mb-2">
+          <strong>Gear Ratio Simulator:</strong> Learn how gear trains work with our new interactive tool! 
+          Build virtual gear trains similar to your VEX GO exercises and see real-time calculations of:
+        </p>
+        <ul class="mb-0">
+          <li>Gear ratios and mechanical advantage</li>
+          <li>Speed increases or reductions</li>
+          <li>Direction of rotation</li>
+          <li>The effect of idler gears</li>
+        </ul>
       </div>
 
       <div class="alert alert-info mt-4">
-        <h5><i class="bi bi-lightbulb"></i> Coming Soon!</h5>
+        <h5><i class="bi bi-lightbulb"></i> More Coming Soon!</h5>
         <p class="mb-0">
-          The W.I.N. Robotics section is currently under development.
-          Interactive tools and resources for robotics programming, competition
-          preparation, and team collaboration will be added throughout the
-          semester.
+          Additional interactive tools for programming, competition prep, and team collaboration 
+          will be added throughout the semester. Check back regularly for updates!
         </p>
       </div>
     </div>
