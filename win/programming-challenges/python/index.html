@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Coding - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .python-icon {
+            background: linear-gradient(135deg, #3776ab, #ffd43b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3rem;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .lesson-card.coming-soon {
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            cursor: not-allowed;
+        }
+
+        .lesson-card.coming-soon::after {
+            content: 'COMING SOON';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .lesson-card:hover:not(.coming-soon) {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .lesson-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #3776ab, #ffd43b);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .lesson-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #3776ab;
+        }
+
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .lesson-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .lesson-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .topic-badge {
+            background: #f0f0f0;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .quick-start-section {
+            background: linear-gradient(135deg, #e8f5e9, #fff9c4);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .quick-start-section h3 {
+            background: linear-gradient(135deg, #3776ab, #ffd43b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .quick-link {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .quick-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .python-feature {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3776ab;
+        }
+
+        .python-feature h4 {
+            color: #3776ab;
+            margin-bottom: 10px;
+        }
+
+        .code-preview {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .keyword { color: #c678dd; }
+        .function { color: #61afef; }
+        .string { color: #98c379; }
+        .comment { color: #5c6370; font-style: italic; }
+        .number { color: #d19a66; }
+
+        .transition-note {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 2px solid #ff9800;
+        }
+
+        .transition-note h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .progress-indicator {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .advanced-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 3px dashed #ccc;
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Python Coding</span>
+        </nav>
+
+        <div class="header-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-code-slash python-icon"></i>
+                VEXcode VR Python
+            </h1>
+            <p class="lead">
+                Learn text-based programming with Python. Perfect for students ready to transition from blocks to code!
+            </p>
+        </div>
+
+        <div class="transition-note">
+            <h4><i class="bi bi-info-circle-fill"></i> Transitioning from Blocks?</h4>
+            <p>This course is designed for students who have completed the Block Coding lessons or have equivalent experience. Python provides more control and flexibility while using the same VEX VR robots and playgrounds.</p>
+        </div>
+
+        <div class="quick-start-section">
+            <h3><i class="bi bi-lightning-fill"></i> Quick Start</h3>
+            <div class="quick-links">
+                <a href="https://vr.vex.com" target="_blank" class="quick-link">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    Launch VEXcode VR
+                </a>
+                <a href="#" class="quick-link">
+                    <i class="bi bi-file-code"></i>
+                    Python Reference
+                </a>
+                <a href="#" class="quick-link">
+                    <i class="bi bi-book"></i>
+                    Documentation
+                </a>
+            </div>
+        </div>
+
+        <div class="python-feature">
+            <h4><i class="bi bi-star-fill"></i> Why Learn Python?</h4>
+            <ul>
+                <li><strong>Real Programming Language:</strong> Python is used by professionals worldwide</li>
+                <li><strong>Clear Syntax:</strong> Python's readable syntax makes it perfect for beginners</li>
+                <li><strong>Powerful Features:</strong> Variables, functions, and advanced logic</li>
+                <li><strong>Industry Relevant:</strong> Skills transfer to real-world applications</li>
+            </ul>
+        </div>
+
+        <div class="python-feature">
+            <h4><i class="bi bi-code"></i> Sample Python Code</h4>
+            <div class="code-preview">
+                <span class="comment"># Move the robot in a square pattern</span><br>
+                <span class="keyword">from</span> vex <span class="keyword">import</span> *<br><br>
+                
+                <span class="keyword">def</span> <span class="function">draw_square</span>():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">4</span>):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drivetrain.<span class="function">drive_for</span>(FORWARD, <span class="number">200</span>, MM)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drivetrain.<span class="function">turn_for</span>(RIGHT, <span class="number">90</span>, DEGREES)<br><br>
+                
+                <span class="comment"># Start the program</span><br>
+                pen.<span class="function">move</span>(DOWN)<br>
+                <span class="function">draw_square</span>()
+            </div>
+        </div>
+
+        <h2 class="text-white mb-4">Core Python Lessons</h2>
+
+        <div class="lesson-grid" id="lessonGrid">
+            <!-- Lesson 1: Getting Started with Python -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">1</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-terminal"></i>
+                </div>
+                <h3 class="lesson-title">Getting Started with Python</h3>
+                <p class="lesson-description">
+                    Introduction to VEXcode VR Python interface, creating projects, and understanding Python syntax basics.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">Setup</span>
+                    <span class="topic-badge">Syntax</span>
+                    <span class="topic-badge">Comments</span>
+                </div>
+            </div>
+
+            <!-- Lesson 2: Python Fundamentals -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">2</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-braces"></i>
+                </div>
+                <h3 class="lesson-title">Python Fundamentals</h3>
+                <p class="lesson-description">
+                    Variables, data types, and basic operations. Understanding how Python stores and manipulates information.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">Variables</span>
+                    <span class="topic-badge">Types</span>
+                    <span class="topic-badge">Operations</span>
+                </div>
+            </div>
+
+            <!-- Lesson 3: Robot Movement Commands -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">3</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-robot"></i>
+                </div>
+                <h3 class="lesson-title">Robot Movement Commands</h3>
+                <p class="lesson-description">
+                    Control your robot with Python commands: drive_for(), turn_for(), and velocity control.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">Drivetrain</span>
+                    <span class="topic-badge">Movement</span>
+                    <span class="topic-badge">Parameters</span>
+                </div>
+            </div>
+
+            <!-- Lesson 4: Loops in Python -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">4</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <h3 class="lesson-title">Loops in Python</h3>
+                <p class="lesson-description">
+                    Master for loops and while loops to create repeating patterns and behaviors efficiently.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">For Loops</span>
+                    <span class="topic-badge">While Loops</span>
+                    <span class="topic-badge">Range</span>
+                </div>
+            </div>
+
+            <!-- Lesson 5: Conditional Statements -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">5</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-signpost-split"></i>
+                </div>
+                <h3 class="lesson-title">Conditional Statements</h3>
+                <p class="lesson-description">
+                    Make decisions with if, elif, and else statements. Create smart robots that react to their environment.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">If/Else</span>
+                    <span class="topic-badge">Logic</span>
+                    <span class="topic-badge">Operators</span>
+                </div>
+            </div>
+
+            <!-- Lesson 6: Functions -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">6</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-box-seam"></i>
+                </div>
+                <h3 class="lesson-title">Functions</h3>
+                <p class="lesson-description">
+                    Create reusable code with functions. Learn about parameters, return values, and code organization.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">def</span>
+                    <span class="topic-badge">Parameters</span>
+                    <span class="topic-badge">Return</span>
+                </div>
+            </div>
+
+            <!-- Lesson 7: Sensor Programming -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">7</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-broadcast"></i>
+                </div>
+                <h3 class="lesson-title">Sensor Programming</h3>
+                <p class="lesson-description">
+                    Read and respond to sensor data using Python. Work with distance, color, and bumper sensors.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">Sensors</span>
+                    <span class="topic-badge">Data</span>
+                    <span class="topic-badge">Response</span>
+                </div>
+            </div>
+
+            <!-- Lesson 8: Lists and Data Structures -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">8</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-list-ol"></i>
+                </div>
+                <h3 class="lesson-title">Lists and Data Structures</h3>
+                <p class="lesson-description">
+                    Store and manipulate collections of data using Python lists and other data structures.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">Lists</span>
+                    <span class="topic-badge">Index</span>
+                    <span class="topic-badge">Methods</span>
+                </div>
+            </div>
+
+            <!-- Lesson 9: Advanced Algorithms -->
+            <div class="lesson-card coming-soon">
+                <div class="lesson-number">9</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+                <h3 class="lesson-title">Advanced Algorithms</h3>
+                <p class="lesson-description">
+                    Combine all concepts to create sophisticated robot behaviors and solve complex challenges.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">Algorithms</span>
+                    <span class="topic-badge">Optimization</span>
+                    <span class="topic-badge">Problem Solving</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Challenges Section -->
+        <div class="advanced-section">
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <h2 class="mb-0">Advanced Python Challenges</h2>
+                <span class="advanced-badge">BONUS</span>
+            </div>
+            <p class="mb-4">Master advanced Python concepts with these challenging projects!</p>
+
+            <div class="lesson-grid">
+                <!-- Python Projects -->
+                <div class="lesson-card coming-soon">
+                    <div class="lesson-icon" style="color: #ff6b6b;">
+                        <i class="bi bi-trophy-fill"></i>
+                    </div>
+                    <h3 class="lesson-title">Python Projects</h3>
+                    <p class="lesson-description">
+                        Advanced challenges including maze solving algorithms, pattern recognition, and autonomous navigation.
+                    </p>
+                    <div class="lesson-topics">
+                        <span class="topic-badge">Recursion</span>
+                        <span class="topic-badge">AI Basics</span>
+                        <span class="topic-badge">Optimization</span>
+                    </div>
+                </div>
+
+                <!-- Coral Reef Python -->
+                <div class="lesson-card coming-soon">
+                    <div class="lesson-icon" style="color: #00bcd4;">
+                        <i class="bi bi-water"></i>
+                    </div>
+                    <h3 class="lesson-title">Coral Reef Cleanup Python</h3>
+                    <p class="lesson-description">
+                        Implement efficient algorithms to clean the coral reef using Python's advanced features.
+                    </p>
+                    <div class="lesson-topics">
+                        <span class="topic-badge">Efficiency</span>
+                        <span class="topic-badge">Planning</span>
+                        <span class="topic-badge">Algorithms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-card" style="background: #f8f9fa;">
+            <h3 class="mb-3">
+                <i class="bi bi-graph-up text-primary"></i>
+                Python Course Progress
+            </h3>
+            <div class="progress-indicator">
+                <p class="mb-2">Lessons Available: <strong>Coming Soon!</strong></p>
+                <p class="text-muted">
+                    <i class="bi bi-clock-history"></i>
+                    Check back regularly for new Python lessons
+                </p>
+            </div>
+            <div class="mt-3">
+                <p class="text-muted">
+                    <i class="bi bi-info-circle"></i>
+                    This course is currently in development. Content will be released progressively.
+                </p>
+            </div>
+        </div>
+
+        <div class="python-feature">
+            <h4><i class="bi bi-lightbulb-fill"></i> Learning Path</h4>
+            <p>This Python course follows a similar structure to the Block Coding course but introduces text-based programming concepts:</p>
+            <ol>
+                <li><strong>Foundation:</strong> Python syntax and VEXcode VR environment</li>
+                <li><strong>Core Concepts:</strong> Variables, loops, conditionals, and functions</li>
+                <li><strong>Robot Control:</strong> Movement, sensors, and decision-making</li>
+                <li><strong>Advanced Topics:</strong> Data structures and algorithms</li>
+                <li><strong>Projects:</strong> Apply skills to solve complex challenges</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Add hover effects and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.5s ease-out';
+                    }
+                });
+            });
+
+            document.querySelectorAll('.lesson-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Add Python syntax highlighting animation
+            const codePreview = document.querySelector('.code-preview');
+            if (codePreview) {
+                // Simulate typing effect on hover
+                codePreview.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 0 20px rgba(55, 118, 171, 0.3)';
+                });
+                codePreview.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = 'none';
+                });
+            }
+        });
+
+        // Add fade-in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
