@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensors & Detection - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .sensor-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .sensor-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .sensor-card h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sensor-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .sensor-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 10px 0;
+        }
+
+        .sensor-block {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .boolean-block {
+            background: #fff3e0;
+            color: #f57c00;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 50%, 100% 100%, 10px 100%, 0 50%);
+            padding: 3px 15px;
+        }
+
+        .reporter-block {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 15px;
+            padding: 3px 12px;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .challenge-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sensor-demo {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .sensor-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .robot-diagram {
+            width: 150px;
+            height: 150px;
+            background: #333;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .sensor-indicator {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        .bumper-front {
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .distance-front {
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4ecdc4;
+        }
+
+        .eye-front {
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f39c12;
+        }
+
+        .eye-down {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #9b59b6;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #f0f7ff;
+            color: #667eea;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Block Coding</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Sensors & Detection</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('overview')">Sensor Overview</div>
+            <div class="progress-item" onclick="scrollToSection('bumper')">Bumper Sensor</div>
+            <div class="progress-item" onclick="scrollToSection('distance')">Distance Sensor</div>
+            <div class="progress-item" onclick="scrollToSection('eye')">Eye Sensors</div>
+            <div class="progress-item" onclick="scrollToSection('waituntil')">Wait Until</div>
+            <div class="progress-item" onclick="scrollToSection('challenge')">Maze Navigator</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Check Your Knowledge</div>
+        </div>
+
+        <div class="lesson-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-broadcast text-primary"></i>
+                Sensors & Detection
+            </h1>
+            <p class="lead">
+                Give your robot intelligence! Learn to use sensors to detect walls, measure distances, and identify colors. Your robot will navigate mazes and avoid obstacles autonomously!
+            </p>
+
+            <div class="info-box">
+                <i class="bi bi-info-circle"></i>
+                <strong>Lesson Goal:</strong> Master sensor blocks to create a robot that can navigate a maze without hitting walls.
+            </div>
+
+            <section id="overview">
+                <h2 class="section-title">
+                    <i class="bi bi-radar"></i> Understanding Robot Sensors
+                </h2>
+
+                <p>Sensors allow robots to perceive their environment and make decisions. The VR Robot follows the <strong>Sense → Think → Act</strong> cycle:</p>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <svg width="400" height="150" viewBox="0 0 400 150">
+                        <!-- Sense -->
+                        <circle cx="80" cy="75" r="50" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+                        <text x="80" y="80" text-anchor="middle" font-size="16" font-weight="bold">SENSE</text>
+                        
+                        <!-- Arrow 1 -->
+                        <path d="M 130 75 L 170 75" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Think -->
+                        <circle cx="200" cy="75" r="50" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2"/>
+                        <text x="200" y="80" text-anchor="middle" font-size="16" font-weight="bold">THINK</text>
+                        
+                        <!-- Arrow 2 -->
+                        <path d="M 250 75 L 290 75" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Act -->
+                        <circle cx="320" cy="75" r="50" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+                        <text x="320" y="80" text-anchor="middle" font-size="16" font-weight="bold">ACT</text>
+                        
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#667eea"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <h3 class="subsection-title">VR Robot Sensors</h3>
+                
+                <div class="sensor-visual">
+                    <div class="robot-diagram">
+                        <span>VR Robot</span>
+                        <div class="sensor-indicator bumper-front" title="Bumper Sensor"></div>
+                        <div class="sensor-indicator distance-front" title="Distance Sensor"></div>
+                        <div class="sensor-indicator eye-front" title="Front Eye Sensor"></div>
+                        <div class="sensor-indicator eye-down" title="Down Eye Sensor"></div>
+                    </div>
+                    <div>
+                        <p><span style="color: #ff6b6b;">●</span> Bumper Sensor (Front)</p>
+                        <p><span style="color: #4ecdc4;">●</span> Distance Sensor (Front)</p>
+                        <p><span style="color: #f39c12;">●</span> Eye Sensor (Front)</p>
+                        <p><span style="color: #9b59b6;">●</span> Eye Sensor (Down)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bumper">
+                <h2 class="section-title">
+                    <i class="bi bi-hand-index"></i> Bumper Sensor
+                </h2>
+
+                <div class="sensor-grid">
+                    <div class="sensor-card">
+                        <h4>
+                            <div class="sensor-icon"><i class="bi bi-toggle-on"></i></div>
+                            How It Works
+                        </h4>
+                        <p>Acts like a physical switch on the front of the robot</p>
+                        <p><strong>Pressed:</strong> Reports TRUE when touching a wall</p>
+                        <p><strong>Released:</strong> Reports FALSE when not touching</p>
+                    </div>
+                    <div class="sensor-card">
+                        <h4>
+                            <div class="sensor-icon"><i class="bi bi-code-square"></i></div>
+                            Sensor Blocks
+                        </h4>
+                        <p><span class="sensor-block boolean-block">&lt;Pressing bumper&gt;</span></p>
+                        <p>Boolean block that reports TRUE/FALSE</p>
+                        <p>Works with left or right bumper</p>
+                    </div>
+                </div>
+
+                <div class="image-container">
+                    <img src="images/bumper-sensor.png" alt="Bumper Sensor Location">
+                    <p class="image-caption">Location of bumper sensors on the VR Robot</p>
+                </div>
+
+                <h3 class="subsection-title">Example: Stop When Wall Hit</h3>
+                
+                <div class="code-block">
+                    when started<br>
+                    drive forward<br>
+                    wait until &lt;Pressing bumper "Left"&gt;<br>
+                    stop driving
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Pro Tip:</strong> The bumper sensor is perfect for wall following - drive until you hit a wall, then turn!
+                </div>
+            </section>
+
+            <section id="distance">
+                <h2 class="section-title">
+                    <i class="bi bi-rulers"></i> Distance Sensor
+                </h2>
+
+                <div class="sensor-grid">
+                    <div class="sensor-card">
+                        <h4>
+                            <div class="sensor-icon"><i class="bi bi-broadcast"></i></div>
+                            How It Works
+                        </h4>
+                        <p>Uses ultrasonic waves to measure distance</p>
+                        <p><strong>Range:</strong> 0-3000mm (3 meters)</p>
+                        <p>Located in the front eye of the robot</p>
+                    </div>
+                    <div class="sensor-card">
+                        <h4>
+                            <div class="sensor-icon"><i class="bi bi-code-square"></i></div>
+                            Sensor Blocks
+                        </h4>
+                        <p><span class="sensor-block boolean-block">&lt;Distance found object&gt;</span></p>
+                        <p><span class="sensor-block reporter-block">(Distance from)</span></p>
+                        <p>Reports distance in mm or inches</p>
+                    </div>
+                </div>
+
+                <div class="image-container">
+                    <img src="images/distance-sensor.jpg" alt="Distance Sensor">
+                    <p class="image-caption">Distance sensor detecting objects ahead</p>
+                </div>
+
+                <h3 class="subsection-title">Example: Maintain Safe Distance</h3>
+                
+                <div class="code-block">
+                    when started<br>
+                    repeat forever<br>
+                    &nbsp;&nbsp;if &lt;(Distance from "Front" in "mm") &lt; 100&gt; then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;stop driving<br>
+                    &nbsp;&nbsp;else<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;drive forward<br>
+                    &nbsp;&nbsp;end
+                </div>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Important:</strong> The distance sensor has a maximum range of 3000mm. Beyond this, it reports no object found.
+                </div>
+            </section>
+
+            <section id="eye">
+                <h2 class="section-title">
+                    <i class="bi bi-eye"></i> Eye Sensors
+                </h2>
+
+                <p>The VR Robot has two eye sensors that can detect colors:</p>
+
+                <div class="sensor-grid">
+                    <div class="sensor-card">
+                        <h4>
+                            <div class="sensor-icon"><i class="bi bi-arrow-up"></i></div>
+                            Front Eye Sensor
+                        </h4>
+                        <p>Faces forward to detect objects ahead</p>
+                        <p>Detects: Red, Green, Blue, or None</p>
+                        <p>Used for: Finding colored disks or walls</p>
+                    </div>
+                    <div class="sensor-card">
+                        <h4>
+                            <div class="sensor-icon"><i class="bi bi-arrow-down"></i></div>
+                            Down Eye Sensor
+                        </h4>
+                        <p>Faces downward to see the ground</p>
+                        <p>Detects: Red, Green, Blue, or None</p>
+                        <p>Used for: Following colored lines</p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Eye Sensor Blocks</h3>
+                
+                <ul>
+                    <li><span class="sensor-block boolean-block">&lt;Eye near object&gt;</span> - Detects if object is close</li>
+                    <li><span class="sensor-block boolean-block">&lt;Eye found color&gt;</span> - Checks for specific color</li>
+                    <li>Can specify "Front" or "Down" eye</li>
+                </ul>
+
+                <h3 class="subsection-title">Example: Find Red Disk</h3>
+                
+                <div class="code-block">
+                    when started<br>
+                    repeat forever<br>
+                    &nbsp;&nbsp;if &lt;Eye found "Red" with "Front" Eye&gt; then<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;stop driving<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;play sound "Tada"<br>
+                    &nbsp;&nbsp;else<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;turn right for 10 degrees<br>
+                    &nbsp;&nbsp;end
+                </div>
+            </section>
+
+            <section id="waituntil">
+                <h2 class="section-title">
+                    <i class="bi bi-hourglass-split"></i> Wait Until Blocks
+                </h2>
+
+                <p>The <strong>[wait until]</strong> block pauses your program until a sensor condition becomes TRUE:</p>
+
+                <div class="comparison-table">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Without Wait Until</th>
+                                <th>With Wait Until</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="code-block" style="background: #fff; margin: 0;">
+                                        repeat forever<br>
+                                        &nbsp;&nbsp;if &lt;Pressing bumper&gt; then<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;stop driving<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;break<br>
+                                        &nbsp;&nbsp;else<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;drive forward<br>
+                                        &nbsp;&nbsp;end
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="code-block" style="background: #fff; margin: 0;">
+                                        drive forward<br>
+                                        wait until &lt;Pressing bumper&gt;<br>
+                                        stop driving
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>When to use [wait until]:</strong> Use it when you want your robot to keep doing something until a specific event happens, like hitting a wall or seeing a color.
+                </div>
+            </section>
+
+            <section id="challenge">
+                <h2 class="section-title">
+                    <i class="bi bi-trophy"></i> Maze Navigator Challenge
+                </h2>
+
+                <div class="challenge-box">
+                    <h3 class="challenge-title">
+                        <i class="bi bi-flag-fill" style="color: #e74c3c;"></i>
+                        Your Mission: Navigate the Wall Maze!
+                    </h3>
+                    
+                    <p>Program your robot to navigate through the Wall Maze playground using sensors. Your robot should:</p>
+                    <ul>
+                        <li>Start at the beginning of the maze</li>
+                        <li>Navigate without hitting walls (use distance sensor)</li>
+                        <li>Turn when approaching walls</li>
+                        <li>Find the exit (marked with number "2")</li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 20px;">Strategy Tips:</h4>
+                    <ol>
+                        <li><strong>Wall Following:</strong> Keep one wall on your right (or left) and follow it</li>
+                        <li><strong>Distance Check:</strong> Turn before hitting walls using distance sensor</li>
+                        <li><strong>Decision Making:</strong> Check multiple sensors to decide which way to turn</li>
+                    </ol>
+
+                    <h4 style="color: #667eea; margin-top: 20px;">Starter Code - Basic Wall Avoidance:</h4>
+                    <div class="code-block">
+                        when started<br>
+                        repeat forever<br>
+                        &nbsp;&nbsp;// Check if wall is close<br>
+                        &nbsp;&nbsp;if &lt;(Distance from "Front" in "mm") &lt; 100&gt; then<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;// Wall detected! Turn to avoid<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;stop driving<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;turn right for 90 degrees<br>
+                        &nbsp;&nbsp;else<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;// No wall, keep going<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;drive forward<br>
+                        &nbsp;&nbsp;end
+                    </div>
+
+                    <div class="button-group" style="justify-content: center;">
+                        <a href="https://vr.vex.com" target="_blank" class="action-button">
+                            <i class="bi bi-play-fill"></i> Open VEXcode VR
+                        </a>
+                    </div>
+
+                    <details style="margin-top: 20px;">
+                        <summary style="cursor: pointer; color: #667eea; font-weight: bold;">
+                            <i class="bi bi-key"></i> Need hints?
+                        </summary>
+                        <div style="margin-top: 10px; padding: 15px; background: #f0f7ff; border-radius: 5px;">
+                            <p><strong>Hint 1:</strong> Use [wait until] blocks instead of forever loops for cleaner code</p>
+                            <p><strong>Hint 2:</strong> Try the "right hand rule" - always turn right when you hit a wall</p>
+                            <p><strong>Hint 3:</strong> Combine distance and bumper sensors for better detection</p>
+                            <p><strong>Hint 4:</strong> Add a small reverse movement after hitting a wall before turning</p>
+                        </div>
+                    </details>
+
+                    <details style="margin-top: 10px;">
+                        <summary style="cursor: pointer; color: #27ae60; font-weight: bold;">
+                            <i class="bi bi-star"></i> Advanced Challenge
+                        </summary>
+                        <div style="margin-top: 10px; padding: 15px; background: #e8f5e9; border-radius: 5px;">
+                            <p><strong>Challenge 1:</strong> Complete the maze without touching any walls (distance sensor only)</p>
+                            <p><strong>Challenge 2:</strong> Find the shortest path through the maze</p>
+                            <p><strong>Challenge 3:</strong> Create a maze solver that works on any maze layout</p>
+                            <p><strong>Challenge 4:</strong> Add color detection to find colored checkpoints in the maze</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Check Your Knowledge
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What value does the bumper sensor report when pressed?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> 0</label>
+                            <label><input type="radio" name="q1" value="b"> 1</label>
+                            <label><input type="radio" name="q1" value="c"> FALSE</label>
+                            <label><input type="radio" name="q1" value="d"> TRUE</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. What is the maximum detection range of the distance sensor?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> 1000mm</label>
+                            <label><input type="radio" name="q2" value="b"> 2000mm</label>
+                            <label><input type="radio" name="q2" value="c"> 3000mm</label>
+                            <label><input type="radio" name="q2" value="d"> 5000mm</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. Which sensor would you use to follow a colored line on the ground?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> Bumper sensor</label>
+                            <label><input type="radio" name="q3" value="b"> Distance sensor</label>
+                            <label><input type="radio" name="q3" value="c"> Front eye sensor</label>
+                            <label><input type="radio" name="q3" value="d"> Down eye sensor</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. What does the [wait until] block do?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> Waits for a specific time</label>
+                            <label><input type="radio" name="q4" value="b"> Pauses until a condition becomes TRUE</label>
+                            <label><input type="radio" name="q4" value="c"> Stops the program</label>
+                            <label><input type="radio" name="q4" value="d"> Repeats forever</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. What type of block is &lt;Distance found object&gt;?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q5" value="a"> Stack block</label>
+                            <label><input type="radio" name="q5" value="b"> Reporter block</label>
+                            <label><input type="radio" name="q5" value="c"> Boolean block</label>
+                            <label><input type="radio" name="q5" value="d"> Hat block</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback5"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-info-circle"></i>
+                <strong>Note:</strong> Complete the Maze Navigator Challenge and pass the quiz with 100% to unlock the "Mark as Complete" button.
+            </div>
+
+            <div class="button-group">
+                <a href="./" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Back to Lessons
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <button class="action-button disabled" id="completeBtn" onclick="markComplete()" disabled style="opacity: 0.5; cursor: not-allowed;">
+                    <i class="bi bi-check2-square"></i> Mark as Complete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizPassed = false;
+        
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'd',  // TRUE when pressed
+                q2: 'c',  // 3000mm max range
+                q3: 'd',  // Down eye sensor for lines
+                q4: 'b',  // Pauses until condition TRUE
+                q5: 'c'   // Boolean block
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! The bumper sensor reports TRUE when pressed.",
+                    incorrect: "Not quite. The bumper sensor reports TRUE when pressed, FALSE when released."
+                },
+                q2: {
+                    correct: "Correct! The distance sensor has a maximum range of 3000mm (3 meters).",
+                    incorrect: "Not quite. The distance sensor can detect objects up to 3000mm away."
+                },
+                q3: {
+                    correct: "Correct! The down eye sensor looks at the ground to follow lines.",
+                    incorrect: "Not quite. The down eye sensor faces downward to see colored lines on the ground."
+                },
+                q4: {
+                    correct: "Correct! [wait until] pauses the program until a condition becomes TRUE.",
+                    incorrect: "Not quite. [wait until] pauses execution until the specified condition becomes TRUE."
+                },
+                q5: {
+                    correct: "Correct! &lt;Distance found object&gt; is a Boolean block (hexagonal shape).",
+                    incorrect: "Not quite. &lt;Distance found object&gt; is a Boolean block that reports TRUE/FALSE."
+                }
+            };
+
+            let allCorrect = true;
+            let answeredCount = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+                
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (answeredCount < 5) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
+            if (allCorrect) {
+                quizPassed = true;
+                // Enable the Mark as Complete button
+                const completeBtn = document.getElementById('completeBtn');
+                completeBtn.disabled = false;
+                completeBtn.classList.remove('disabled');
+                completeBtn.style.opacity = '1';
+                completeBtn.style.cursor = 'pointer';
+                
+                // Show success message
+                setTimeout(() => {
+                    alert("Perfect score! You've mastered sensors and detection! Complete the Maze Navigator Challenge if you haven't already, then mark this lesson as complete.");
+                }, 500);
+            } else {
+                quizPassed = false;
+                alert("Not quite there yet! Review the incorrect answers and try again.");
+            }
+        }
+
+        // Mark lesson as complete
+        function markComplete() {
+            if (!quizPassed) {
+                alert('Please complete the quiz with all correct answers before marking this lesson as complete.');
+                document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            // Check if they've acknowledged the challenge
+            if (!confirm('Have you completed the Maze Navigator Challenge? Click OK if yes, Cancel to go back and complete it.')) {
+                document.getElementById('challenge').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            let progress = JSON.parse(localStorage.getItem('vexBlocksProgress') || '[]');
+            if (!progress.includes('sensors-detection')) {
+                progress.push('sensors-detection');
+                localStorage.setItem('vexBlocksProgress', JSON.stringify(progress));
+                alert('Lesson marked as complete! Great work on mastering sensors!');
+                // Redirect back to lessons page
+                setTimeout(() => {
+                    window.location.href = './';
+                }, 1500);
+            } else {
+                alert('You have already completed this lesson!');
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['overview', 'bumper', 'distance', 'eye', 'waituntil', 'challenge', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
