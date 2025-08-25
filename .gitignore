@@ -41,3 +41,4 @@ npm-debug.log
 .env.*.local
 
 inspiration/
+vex_vr_python_scraper.py
