@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Movement - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #f0f7ff;
+            color: #667eea;
+        }
+
+        .command-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .command-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .command-card:hover {
+            border-color: #667eea;
+        }
+
+        .command-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .command-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .parameter-badge {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .challenge-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .velocity-slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .velocity-display {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Block Coding</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Basic Movement</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('commands')">Movement Commands</div>
+            <div class="progress-item" onclick="scrollToSection('drive')">Driving Forward & Back</div>
+            <div class="progress-item" onclick="scrollToSection('turn')">Turning</div>
+            <div class="progress-item" onclick="scrollToSection('velocity')">Speed Control</div>
+            <div class="progress-item" onclick="scrollToSection('challenge')">Castle Crasher</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Check Your Knowledge</div>
+        </div>
+
+        <div class="lesson-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-arrows-move text-primary"></i>
+                Basic Movement
+            </h1>
+            <p class="lead">
+                Master the fundamentals of robot movement: driving forward, reverse, turning, and controlling speed. You'll learn to navigate precisely using the Castle Crasher playground!
+            </p>
+
+            <div class="info-box">
+                <i class="bi bi-info-circle"></i>
+                <strong>Lesson Goal:</strong> Program your VR Robot to knock down castles using precise movement commands.
+            </div>
+
+            <section id="commands">
+                <h2 class="section-title">
+                    <i class="bi bi-command"></i> Movement Commands Overview
+                </h2>
+
+                <p>VEXcode VR provides several blocks for controlling your robot's movement. Here are the essential commands you'll use:</p>
+
+                <div class="command-grid">
+                    <div class="command-card">
+                        <h4>[Drive for]</h4>
+                        <p>Moves the robot forward or reverse</p>
+                        <span class="parameter-badge">Direction: forward/reverse</span>
+                        <span class="parameter-badge">Distance: mm or inches</span>
+                    </div>
+                    <div class="command-card">
+                        <h4>[Turn for]</h4>
+                        <p>Rotates the robot left or right</p>
+                        <span class="parameter-badge">Direction: left/right</span>
+                        <span class="parameter-badge">Angle: degrees</span>
+                    </div>
+                    <div class="command-card">
+                        <h4>[Turn to heading]</h4>
+                        <p>Turns to a compass heading</p>
+                        <span class="parameter-badge">Heading: 0-359.9°</span>
+                    </div>
+                    <div class="command-card">
+                        <h4>[Set drive velocity]</h4>
+                        <p>Sets the movement speed</p>
+                        <span class="parameter-badge">Speed: 0-100%</span>
+                    </div>
+                    <div class="command-card">
+                        <h4>[Set turn velocity]</h4>
+                        <p>Sets the turning speed</p>
+                        <span class="parameter-badge">Speed: 0-100%</span>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Pro Tip:</strong> Remember that commands execute in order from top to bottom. Your robot will complete each action before moving to the next!
+                </div>
+            </section>
+
+            <section id="drive">
+                <h2 class="section-title">
+                    <i class="bi bi-arrow-up-down"></i> Driving Forward & Reverse
+                </h2>
+
+                <p>The <strong>[Drive for]</strong> block is your primary tool for linear movement. Let's explore how it works:</p>
+
+                <h3 class="subsection-title">Basic Drive Command</h3>
+                
+                <div class="code-block">
+                    when started<br>
+                    drive forward for 200 mm
+                </div>
+
+                <p>This simple program moves the robot forward 200 millimeters. But what if we need to go further?</p>
+
+                <h3 class="subsection-title">Adjusting Distance</h3>
+                
+                <ol class="step-list">
+                    <li>Click on the number (200) in the block</li>
+                    <li>Type a new value (e.g., 800)</li>
+                    <li>Press Enter to confirm</li>
+                    <li>You can also change units from mm to inches</li>
+                </ol>
+
+                <h3 class="subsection-title">Driving in Reverse</h3>
+                
+                <p>To make your robot back up, simply change the direction parameter:</p>
+                
+                <div class="code-block">
+                    when started<br>
+                    drive forward for 800 mm<br>
+                    drive reverse for 800 mm
+                </div>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Important:</strong> The robot needs space to move! Make sure your distance values don't send the robot off the playground edge.
+                </div>
+            </section>
+
+            <section id="turn">
+                <h2 class="section-title">
+                    <i class="bi bi-arrow-clockwise"></i> Turning Your Robot
+                </h2>
+
+                <p>VEXcode VR offers two ways to turn your robot:</p>
+
+                <h3 class="subsection-title">Method 1: Turn for Degrees</h3>
+                
+                <p>The <strong>[Turn for]</strong> block rotates your robot by a specific angle:</p>
+                
+                <div class="code-block">
+                    when started<br>
+                    turn right for 90 degrees<br>
+                    turn left for 45 degrees
+                </div>
+
+                <ul>
+                    <li><strong>90 degrees</strong> = Quarter turn (right angle)</li>
+                    <li><strong>180 degrees</strong> = Half turn (about face)</li>
+                    <li><strong>360 degrees</strong> = Full rotation</li>
+                </ul>
+
+                <h3 class="subsection-title">Method 2: Turn to Heading</h3>
+                
+                <p>The <strong>[Turn to heading]</strong> block uses compass directions:</p>
+                
+                <div class="image-container">
+                    <div style="width: 300px; height: 300px; margin: 0 auto; position: relative;">
+                        <svg width="300" height="300">
+                            <circle cx="150" cy="150" r="140" fill="none" stroke="#667eea" stroke-width="2"/>
+                            <text x="150" y="30" text-anchor="middle" font-size="20" font-weight="bold">0°</text>
+                            <text x="150" y="20" text-anchor="middle" font-size="14" fill="#666">North</text>
+                            <text x="270" y="155" text-anchor="middle" font-size="20" font-weight="bold">90°</text>
+                            <text x="280" y="170" text-anchor="middle" font-size="14" fill="#666">East</text>
+                            <text x="150" y="290" text-anchor="middle" font-size="20" font-weight="bold">180°</text>
+                            <text x="150" y="305" text-anchor="middle" font-size="14" fill="#666">South</text>
+                            <text x="30" y="155" text-anchor="middle" font-size="20" font-weight="bold">270°</text>
+                            <text x="20" y="170" text-anchor="middle" font-size="14" fill="#666">West</text>
+                            <line x1="150" y1="150" x2="150" y2="50" stroke="#e74c3c" stroke-width="3" marker-end="url(#arrowhead)"/>
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+                                    <polygon points="0 0, 10 3, 0 6" fill="#e74c3c"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                    <p class="image-caption">Compass headings: 0° = North, 90° = East, 180° = South, 270° = West</p>
+                </div>
+
+                <div class="code-block">
+                    when started<br>
+                    turn to heading 90 degrees   // Face East<br>
+                    turn to heading 270 degrees  // Face West
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>When to use each:</strong> Use [Turn for] when you want to turn relative to your current position. Use [Turn to heading] when you need to face a specific direction regardless of your current orientation.
+                </div>
+            </section>
+
+            <section id="velocity">
+                <h2 class="section-title">
+                    <i class="bi bi-speedometer2"></i> Controlling Speed
+                </h2>
+
+                <p>By default, your robot moves at 50% speed. You can adjust this for more precise or faster movements:</p>
+
+                <h3 class="subsection-title">Setting Drive Velocity</h3>
+                
+                <div class="code-block">
+                    when started<br>
+                    set drive velocity to 100 %<br>
+                    drive forward for 500 mm    // Fast movement<br>
+                    set drive velocity to 25 %<br>
+                    drive forward for 200 mm    // Slow, precise movement
+                </div>
+
+                <h3 class="subsection-title">Interactive Speed Demo</h3>
+                <p>Adjust the slider to see how velocity affects your robot:</p>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <input type="range" class="velocity-slider" id="velocitySlider" min="0" max="100" value="50">
+                    <div class="velocity-display" id="velocityDisplay">Velocity: 50%</div>
+                    <p style="text-align: center; color: #666; margin-top: 10px;">
+                        <span id="speedDescription">Normal speed - good for general movement</span>
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Speed Guidelines:</strong>
+                    <ul style="margin-bottom: 0;">
+                        <li><strong>0-25%:</strong> Very slow - precise positioning</li>
+                        <li><strong>26-50%:</strong> Normal speed - general tasks</li>
+                        <li><strong>51-75%:</strong> Fast - covering distance quickly</li>
+                        <li><strong>76-100%:</strong> Maximum speed - time challenges</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="challenge">
+                <h2 class="section-title">
+                    <i class="bi bi-trophy"></i> Castle Crasher Challenge
+                </h2>
+
+                <div class="challenge-box">
+                    <h3 class="challenge-title">
+                        <i class="bi bi-flag-fill" style="color: #e74c3c;"></i>
+                        Your Mission: Knock Down Three Castles!
+                    </h3>
+                    
+                    <div class="image-container">
+                        <img src="images/castle-crasher.png" alt="Castle Crasher Playground">
+                        <p class="image-caption">The Castle Crasher Playground with four castles to topple</p>
+                    </div>
+
+                    <p><strong>Challenge Requirements:</strong></p>
+                    <ol>
+                        <li>Start at the center of the playground</li>
+                        <li>Knock down the center castle (straight ahead)</li>
+                        <li>Return to the starting position</li>
+                        <li>Turn and knock down a castle on the left or right</li>
+                        <li>Choose and knock down one more castle</li>
+                    </ol>
+
+                    <h4 style="color: #667eea; margin-top: 20px;">Starter Code:</h4>
+                    <div class="code-block">
+                        when started<br>
+                        // Set your speeds (optional)<br>
+                        set drive velocity to 75 %<br>
+                        set turn velocity to 50 %<br>
+                        <br>
+                        // Knock down center castle<br>
+                        drive forward for 800 mm<br>
+                        drive reverse for 800 mm<br>
+                        <br>
+                        // Your turn! Add code to knock down two more castles<br>
+                        // Hint: Use turn commands and drive forward<br>
+                        // Castle positions: 90° (right), 180° (behind), 270° (left)
+                    </div>
+
+                    <div class="button-group" style="justify-content: center;">
+                        <a href="https://vr.vex.com" target="_blank" class="action-button">
+                            <i class="bi bi-play-fill"></i> Open VEXcode VR
+                        </a>
+                    </div>
+
+                    <details style="margin-top: 20px;">
+                        <summary style="cursor: pointer; color: #667eea; font-weight: bold;">
+                            <i class="bi bi-key"></i> Need a hint?
+                        </summary>
+                        <div style="margin-top: 10px; padding: 15px; background: #f0f7ff; border-radius: 5px;">
+                            <p><strong>Hint 1:</strong> After returning to center, use [Turn for] 90 degrees or [Turn to heading] to face a side castle.</p>
+                            <p><strong>Hint 2:</strong> The side castles are about 700mm away from the center.</p>
+                            <p><strong>Hint 3:</strong> Remember to return to center between castles for consistent positioning!</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Check Your Knowledge
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What parameter changes the direction in a [Drive for] block?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> The distance value</label>
+                            <label><input type="radio" name="q1" value="b"> The forward/reverse dropdown</label>
+                            <label><input type="radio" name="q1" value="c"> The velocity setting</label>
+                            <label><input type="radio" name="q1" value="d"> The units (mm/inches)</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. What heading would make your robot face West?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> 0 degrees</label>
+                            <label><input type="radio" name="q2" value="b"> 90 degrees</label>
+                            <label><input type="radio" name="q2" value="c"> 180 degrees</label>
+                            <label><input type="radio" name="q2" value="d"> 270 degrees</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. What is the default drive velocity in VEXcode VR?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> 25%</label>
+                            <label><input type="radio" name="q3" value="b"> 50%</label>
+                            <label><input type="radio" name="q3" value="c"> 75%</label>
+                            <label><input type="radio" name="q3" value="d"> 100%</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. How many degrees is a quarter turn?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> 45 degrees</label>
+                            <label><input type="radio" name="q4" value="b"> 90 degrees</label>
+                            <label><input type="radio" name="q4" value="c"> 180 degrees</label>
+                            <label><input type="radio" name="q4" value="d"> 360 degrees</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-info-circle"></i>
+                <strong>Note:</strong> Complete the Castle Crasher Challenge and pass the quiz with 100% to unlock the "Mark as Complete" button.
+            </div>
+
+            <div class="button-group">
+                <a href="./" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Back to Lessons
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <button class="action-button disabled" id="completeBtn" onclick="markComplete()" disabled style="opacity: 0.5; cursor: not-allowed;">
+                    <i class="bi bi-check2-square"></i> Mark as Complete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizPassed = false;
+        
+        // Velocity slider interaction
+        const slider = document.getElementById('velocitySlider');
+        const display = document.getElementById('velocityDisplay');
+        const description = document.getElementById('speedDescription');
+        
+        slider.addEventListener('input', function() {
+            const value = this.value;
+            display.textContent = `Velocity: ${value}%`;
+            
+            if (value <= 25) {
+                description.textContent = 'Very slow - ideal for precise positioning';
+            } else if (value <= 50) {
+                description.textContent = 'Normal speed - good for general movement';
+            } else if (value <= 75) {
+                description.textContent = 'Fast - covers distance quickly';
+            } else {
+                description.textContent = 'Maximum speed - great for time challenges!';
+            }
+        });
+        
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'd',
+                q3: 'b',
+                q4: 'b'
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! The forward/reverse dropdown changes the direction.",
+                    incorrect: "Not quite. The forward/reverse dropdown parameter controls direction."
+                },
+                q2: {
+                    correct: "Correct! 270 degrees points West on the compass.",
+                    incorrect: "Not quite. West is at 270 degrees (left from North)."
+                },
+                q3: {
+                    correct: "Correct! The default drive velocity is 50%.",
+                    incorrect: "Not quite. VEXcode VR uses 50% as the default speed."
+                },
+                q4: {
+                    correct: "Correct! A quarter turn is 90 degrees.",
+                    incorrect: "Not quite. A quarter turn (1/4 of 360°) is 90 degrees."
+                }
+            };
+
+            let allCorrect = true;
+            let answeredCount = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+                
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (answeredCount < 4) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
+            if (allCorrect) {
+                quizPassed = true;
+                // Enable the Mark as Complete button
+                const completeBtn = document.getElementById('completeBtn');
+                completeBtn.disabled = false;
+                completeBtn.classList.remove('disabled');
+                completeBtn.style.opacity = '1';
+                completeBtn.style.cursor = 'pointer';
+                
+                // Show success message
+                setTimeout(() => {
+                    alert("Perfect score! You've mastered basic movement! Complete the Castle Crasher Challenge if you haven't already, then mark this lesson as complete.");
+                }, 500);
+            } else {
+                quizPassed = false;
+                alert("Not quite there yet! Review the incorrect answers and try again.");
+            }
+        }
+
+        // Mark lesson as complete
+        function markComplete() {
+            if (!quizPassed) {
+                alert('Please complete the quiz with all correct answers before marking this lesson as complete.');
+                document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            // Check if they've acknowledged the challenge
+            if (!confirm('Have you completed the Castle Crasher Challenge? Click OK if yes, Cancel to go back and complete it.')) {
+                document.getElementById('challenge').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            let progress = JSON.parse(localStorage.getItem('vexBlocksProgress') || '[]');
+            if (!progress.includes('basic-movement')) {
+                progress.push('basic-movement');
+                localStorage.setItem('vexBlocksProgress', JSON.stringify(progress));
+                alert('Lesson marked as complete! Great work on mastering basic movement!');
+                // Redirect back to lessons page
+                setTimeout(() => {
+                    window.location.href = './';
+                }, 1500);
+            } else {
+                alert('You have already completed this lesson!');
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['commands', 'drive', 'turn', 'velocity', 'challenge', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
