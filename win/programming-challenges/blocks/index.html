@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -206,6 +207,127 @@
             color: #666;
         }
 
+        .advanced-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 3px dashed #ccc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advanced-section.locked {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .advanced-section.locked::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0,0,0,0.05) 10px,
+                rgba(0,0,0,0.05) 20px
+            );
+            z-index: 1;
+        }
+
+        .lock-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 2;
+            text-align: center;
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .advanced-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .advanced-header h2 {
+            color: #764ba2;
+            margin: 0;
+        }
+
+        .advanced-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .certificate-section {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .certificate-section.unlocked {
+            display: block;
+        }
+
+        .certificate-icon {
+            font-size: 4rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .certificate-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .certificate-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #fff;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .certificate-btn {
+            background: white;
+            color: #ff9800;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .certificate-btn:hover {
+            transform: scale(1.05);
+        }
+
         .completion-badge {
             background: #4CAF50;
             color: white;
@@ -214,6 +336,31 @@
             font-size: 0.85rem;
             margin-left: 10px;
             display: inline-block;
+        }
+
+        @keyframes unlock {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .unlocking {
+            animation: unlock 0.5s ease-out;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ffd700, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s ease-out forwards;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2) rotate(180deg); opacity: 0; }
         }
     </style>
 </head>
@@ -259,7 +406,7 @@
             </div>
         </div>
 
-        <h2 class="text-white mb-4">Lessons & Challenges</h2>
+        <h2 class="text-white mb-4">Core Lessons</h2>
 
         <div class="lesson-grid" id="lessonGrid">
             <a href="getting-started.html" class="lesson-card" id="lesson-getting-started">
@@ -341,39 +488,79 @@
                     <span class="topic-badge">Decisions</span>
                 </div>
             </a>
+        </div>
 
-            <a href="challenge-projects.html" class="lesson-card" id="lesson-challenge-projects">
-                <div class="lesson-number">6</div>
-                <div class="lesson-icon">
-                    <i class="bi bi-trophy"></i>
+        <!-- Advanced Challenges Section -->
+        <div class="advanced-section" id="advancedSection">
+            <div class="lock-overlay" id="lockOverlay" style="display: none;">
+                <div class="lock-icon">
+                    <i class="bi bi-lock-fill"></i>
                 </div>
-                <h3 class="lesson-title">Challenge Projects</h3>
-                <p class="lesson-description">
-                    Apply your skills in maze navigation, disk sorting, and complex challenges.
-                </p>
-                <div class="lesson-topics">
-                    <span class="topic-badge">Projects</span>
-                    <span class="topic-badge">Algorithms</span>
-                    <span class="topic-badge">Problem Solving</span>
+                <h3>Advanced Challenges Locked</h3>
+                <p>Complete all 5 core lessons to unlock!</p>
+                <div class="progress-indicator">
+                    <p class="mb-2">Progress: <strong id="lockProgress">0 / 5</strong></p>
+                    <div class="progress-bar-custom">
+                        <div class="progress-fill" id="lockProgressBar" style="width: 0%;"></div>
+                    </div>
                 </div>
-            </a>
+            </div>
 
-            <a href="rover-rescue.html" class="lesson-card" id="lesson-rover-rescue">
-                <div class="lesson-number">7</div>
-                <div class="lesson-icon">
-                    <i class="bi bi-rocket-takeoff"></i>
-                </div>
-                <h3 class="lesson-title">Rover Rescue</h3>
-                <p class="lesson-description">
-                    Master survival, resource management, and strategic planning in an alien environment.
-                </p>
-                <div class="lesson-topics">
-                    <span class="topic-badge">Advanced</span>
-                    <span class="topic-badge">Resources</span>
-                    <span class="topic-badge">Combat</span>
-                    <span class="topic-badge">XP System</span>
-                </div>
-            </a>
+            <div class="advanced-header">
+                <h2>Advanced Challenges</h2>
+                <span class="advanced-badge">BONUS</span>
+            </div>
+            <p class="mb-4">Put your skills to the test with these challenging projects!</p>
+
+            <div class="lesson-grid">
+                <a href="challenge-projects.html" class="lesson-card" id="lesson-challenge-projects">
+                    <div class="lesson-icon" style="color: #ff6b6b;">
+                        <i class="bi bi-trophy-fill"></i>
+                    </div>
+                    <h3 class="lesson-title">Challenge Projects</h3>
+                    <p class="lesson-description">
+                        Apply your skills in maze navigation, disk sorting, and complex challenges.
+                    </p>
+                    <div class="lesson-topics">
+                        <span class="topic-badge">Projects</span>
+                        <span class="topic-badge">Algorithms</span>
+                        <span class="topic-badge">Problem Solving</span>
+                    </div>
+                </a>
+
+                <a href="rover-rescue.html" class="lesson-card" id="lesson-rover-rescue">
+                    <div class="lesson-icon" style="color: #ff8e53;">
+                        <i class="bi bi-rocket-takeoff-fill"></i>
+                    </div>
+                    <h3 class="lesson-title">Rover Rescue</h3>
+                    <p class="lesson-description">
+                        Master survival, resource management, and strategic planning in an alien environment.
+                    </p>
+                    <div class="lesson-topics">
+                        <span class="topic-badge">Advanced</span>
+                        <span class="topic-badge">Resources</span>
+                        <span class="topic-badge">Combat</span>
+                        <span class="topic-badge">XP System</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Certificate Section -->
+        <div class="certificate-section" id="certificateSection">
+            <div class="certificate-icon">
+                <i class="bi bi-award-fill"></i>
+            </div>
+            <h2 style="color: white; margin-bottom: 20px;">🎉 Congratulations! 🎉</h2>
+            <p style="color: white; font-size: 1.2rem; margin-bottom: 30px;">
+                You've completed all core VEXcode VR Block Coding lessons!
+            </p>
+            <div class="certificate-form">
+                <input type="text" class="certificate-input" id="studentName" placeholder="Enter your name for certificate">
+                <button class="certificate-btn" onclick="generateCertificate()">
+                    <i class="bi bi-download"></i> Download Certificate
+                </button>
+            </div>
         </div>
 
         <div class="header-card" style="background: #f8f9fa;">
@@ -382,9 +569,9 @@
                 Your Progress
             </h3>
             <div class="progress-indicator">
-                <p class="mb-2">Lessons Completed: <strong>0 / 7</strong></p>
+                <p class="mb-2">Core Lessons Completed: <strong id="mainProgress">0 / 5</strong></p>
                 <div class="progress-bar-custom">
-                    <div class="progress-fill" style="width: 0%;"></div>
+                    <div class="progress-fill" id="mainProgressBar" style="width: 0%;"></div>
                 </div>
             </div>
             <p class="text-muted mt-3">
@@ -398,13 +585,17 @@
         // Check for completed lessons in localStorage
         document.addEventListener('DOMContentLoaded', function() {
             const completedLessons = JSON.parse(localStorage.getItem('vexBlocksProgress') || '[]');
-            const totalLessons = 7;
-            const completedCount = completedLessons.length;
-            const progressPercent = (completedCount / totalLessons) * 100;
+            
+            // Core lessons (first 5)
+            const coreLessons = ['getting-started', 'basic-movement', 'loops-patterns', 'sensors-detection', 'decision-making'];
+            const completedCore = completedLessons.filter(lesson => coreLessons.includes(lesson));
+            const coreCount = completedCore.length;
+            const totalCore = 5;
+            const progressPercent = (coreCount / totalCore) * 100;
             
             // Update progress bar
-            document.querySelector('.progress-fill').style.width = progressPercent + '%';
-            document.querySelector('.progress-indicator strong').textContent = `${completedCount} / ${totalLessons}`;
+            document.getElementById('mainProgressBar').style.width = progressPercent + '%';
+            document.getElementById('mainProgress').textContent = `${coreCount} / ${totalCore}`;
             
             // Mark completed lessons visually
             completedLessons.forEach(lessonId => {
@@ -413,7 +604,161 @@
                     lessonCard.classList.add('completed');
                 }
             });
+            
+            // Check if advanced section should be unlocked
+            const advancedSection = document.getElementById('advancedSection');
+            const lockOverlay = document.getElementById('lockOverlay');
+            const certificateSection = document.getElementById('certificateSection');
+            
+            if (coreCount === totalCore) {
+                // All core lessons completed - unlock advanced section
+                advancedSection.classList.remove('locked');
+                lockOverlay.style.display = 'none';
+                certificateSection.classList.add('unlocked');
+                
+                // Add unlock animation if just completed
+                const wasLocked = localStorage.getItem('advancedUnlocked') !== 'true';
+                if (wasLocked) {
+                    advancedSection.classList.add('unlocking');
+                    localStorage.setItem('advancedUnlocked', 'true');
+                    
+                    // Add sparkle effects
+                    for (let i = 0; i < 8; i++) {
+                        setTimeout(() => {
+                            const sparkle = document.createElement('div');
+                            sparkle.className = 'sparkle';
+                            sparkle.style.left = Math.random() * 100 + '%';
+                            sparkle.style.top = Math.random() * 100 + '%';
+                            advancedSection.appendChild(sparkle);
+                            setTimeout(() => sparkle.remove(), 1000);
+                        }, i * 100);
+                    }
+                }
+            } else {
+                // Not all core lessons completed - show lock
+                advancedSection.classList.add('locked');
+                lockOverlay.style.display = 'block';
+                document.getElementById('lockProgress').textContent = `${coreCount} / ${totalCore}`;
+                document.getElementById('lockProgressBar').style.width = progressPercent + '%';
+                localStorage.setItem('advancedUnlocked', 'false');
+            }
         });
+        
+        // Certificate generation
+        function generateCertificate() {
+            const name = document.getElementById('studentName').value.trim();
+            if (!name) {
+                alert('Please enter your name for the certificate.');
+                return;
+            }
+            
+            // Create PDF using jsPDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'mm',
+                format: 'a4'
+            });
+            
+            // Background gradient effect (simplified)
+            doc.setFillColor(102, 126, 234);
+            doc.rect(0, 0, 297, 210, 'F');
+            
+            // White certificate area
+            doc.setFillColor(255, 255, 255);
+            doc.roundedRect(20, 20, 257, 170, 5, 5, 'F');
+            
+            // Border
+            doc.setDrawColor(102, 126, 234);
+            doc.setLineWidth(2);
+            doc.roundedRect(25, 25, 247, 160, 3, 3, 'S');
+            
+            // Title
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(36);
+            doc.setTextColor(102, 126, 234);
+            doc.text('Certificate of Completion', 148.5, 55, { align: 'center' });
+            
+            // Subtitle
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(14);
+            doc.setTextColor(100, 100, 100);
+            doc.text('This certifies that', 148.5, 75, { align: 'center' });
+            
+            // Student name
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(28);
+            doc.setTextColor(0, 0, 0);
+            doc.text(name, 148.5, 95, { align: 'center' });
+            
+            // Achievement text
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(14);
+            doc.setTextColor(100, 100, 100);
+            doc.text('has successfully completed', 148.5, 110, { align: 'center' });
+            
+            // Course name
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(20);
+            doc.setTextColor(76, 175, 80);
+            doc.text('VEXcode VR Block Coding Course', 148.5, 125, { align: 'center' });
+            
+            // Program name
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(12);
+            doc.setTextColor(100, 100, 100);
+            doc.text('W.I.N. Robotics Programming Challenges', 148.5, 135, { align: 'center' });
+            
+            // Date
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            doc.setFont('helvetica', 'italic');
+            doc.setFontSize(12);
+            doc.text(`Awarded on ${dateStr}`, 148.5, 155, { align: 'center' });
+            
+            // Signature line
+            doc.setDrawColor(0, 0, 0);
+            doc.setLineWidth(0.5);
+            doc.line(100, 170, 197, 170);
+            
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Instructor Signature', 148.5, 175, { align: 'center' });
+            
+            // W.I.N. Robotics logo/text (bottom)
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(8);
+            doc.setTextColor(102, 126, 234);
+            doc.text('W.I.N. ROBOTICS', 30, 180);
+            
+            // Skills badges
+            const skills = ['Problem Solving', 'Algorithmic Thinking', 'Sensor Integration', 'Logic & Control'];
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8);
+            doc.setTextColor(150, 150, 150);
+            let xPos = 85;
+            skills.forEach(skill => {
+                doc.rect(xPos, 142, 30, 6, 'S');
+                doc.text(skill, xPos + 15, 146, { align: 'center' });
+                xPos += 32;
+            });
+            
+            // Save the PDF
+            doc.save(`VEXcode_VR_Certificate_${name.replace(/\s+/g, '_')}.pdf`);
+            
+            // Show success message
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Certificate Downloaded!';
+            btn.style.background = '#4CAF50';
+            btn.style.color = 'white';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = 'white';
+                btn.style.color = '#ff9800';
+            }, 3000);
+        }
     </script>
 </body>
 </html>
