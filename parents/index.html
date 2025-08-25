@@ -7,13 +7,92 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Welcome — How My Courses Are Organized</title>
+  <title>Welcome Parents– How My Courses Are Organized</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    /* Additional styles for parent page */
+    .content-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+    
+    .info-card {
+      background: #f8f9fa;
+      border-left: 4px solid #667eea;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    
+    .screenshot-container {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+    
+    .screenshot-container img {
+      border: 2px solid #dee2e6;
+    }
+    
+    .badge-secondary {
+      background-color: #6c757d;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    
+    /* Route badges */
+    .route-a-card {
+      border-left: 4px solid #007bff;
+    }
+    
+    .route-b-card {
+      border-left: 4px solid #ffc107;
+    }
+    
+    /* Improve list styling within cards */
+    .content-card ol li {
+      margin-bottom: 25px;
+    }
+    
+    .content-card ul li {
+      margin-bottom: 10px;
+    }
+    
+    /* Section spacing */
+    section {
+      margin-bottom: 30px;
+    }
+    
+    /* Header improvements */
+    .content-card h3 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .content-card h4 {
+      color: #34495e;
+      margin-bottom: 15px;
+    }
+    
+    .content-card h5 {
+      color: #495057;
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
 <body>
     {% include navigation.html %}
+    
     <div class="header-container">
       <nav class="breadcrumb-nav">
         <a href="../" class="text-white"> <i class="bi bi-house"></i> Home </a>
@@ -22,25 +101,27 @@
       </nav>
       
       <div class="header-card">
-        <h1 class="display-5 mb-3">Welcome — How My Courses Are Organized</h1>
-        <p class="lead text-muted mb-0">Mr. Johnston's Classroom</p>
+        <h1 class="display-5 mb-3">Welcome Parents!</h1>
+        <p class="lead text-muted mb-0">See how Mr. Johnston's Online Classroom Organized</p>
       </div>
     </div>
 
   <main class="main-container">
 
     <!-- Welcome Message -->
-    <div class="info-card mb-4">
-      <h4>Welcome to Our Engineering Community!</h4>
-      <p><strong>Dear Parents and Guardians,</strong></p>
-      <p>Thank you for entrusting me with your student's engineering education. I apologize for not sending this welcome message sooner—the first week was dedicated to ensuring every student felt comfortable and ready to succeed in our hands-on learning environment. Your patience while we established our classroom routines and procedures is greatly appreciated.</p>
-      <p class="mb-0">I'm excited to partner with you this year as we guide your student through an engaging journey of discovery, creativity, and real-world problem-solving. Your involvement and support make all the difference in their success!</p>
+    <div class="content-card">
+      <h3><i class="bi bi-heart-fill text-danger"></i> Welcome to Our Engineering Community!</h3>
+      <div class="info-card">
+        <p><strong>Dear Parents and Guardians,</strong></p>
+        <p>Thank you for entrusting me with your student's engineering education. I apologize for not sending this welcome message sooner—the first few weeks were dedicated to ensuring every student felt comfortable and ready to succeed in our hands-on learning environment. Your patience while we established our classroom routines and procedures is greatly appreciated.</p>
+        <p class="mb-0">I'm excited to partner with you this year as we guide your student through an engaging journey of discovery, creativity, and real-world problem-solving. Your involvement and support make all the difference in their success!</p>
+      </div>
     </div>
 
     <!-- About Me -->
-    <section id="about" class="mb-4">
+    <section id="about">
       <div class="content-card">
-        <h3>About Me</h3>
+        <h3><i class="bi bi-person-badge"></i> About Me</h3>
         <p>
           I'm Mr. Johnston, and I have the privilege of teaching Principles of Applied Engineering and W.I.N. Robotics at Hornedo. With years of experience in both industry and education, I've developed a teaching philosophy centered on hands-on learning, clear expectations, and real-world engineering applications. I believe every student has the potential to think like an engineer, and my role is to nurture that potential through structured guidance and encouragement.
         </p>
@@ -50,127 +131,159 @@
         <p>
           Rest assured that your student is in a supportive environment where mistakes are viewed as learning opportunities, creativity is celebrated, and every achievement—big or small—is recognized. I maintain high standards while providing the scaffolding students need to reach them successfully.
         </p>
-        <p>
-          You can learn more about my background, teaching philosophy, and classroom expectations here:
-          <a href="https://classroom.mjstem.com/about.html" target="_blank" rel="noopener">Read My Full Teaching Philosophy</a>.
-        </p>
+        <div class="info-card">
+          <p class="mb-0">
+            <i class="bi bi-link-45deg"></i> You can learn more about my background, teaching philosophy, and classroom expectations here:
+            <a href="https://classroom.mjstem.com/about.html" target="_blank" rel="noopener" class="fw-bold">Read My "About Me" page.</a>
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- Where to find info -->
-    <section id="where" class="mb-4">
+    <section id="where">
       <div class="content-card">
-        <h3>Where can I find more information about the class?</h3>
-          <div class="info-card mb-3">
-            <p class="mb-3">
-              I've designed my classroom website to be your central hub for understanding what your student is learning and how they're progressing. Everything is organized intuitively, making it easy for you to stay connected with their educational journey. The website is regularly updated with current assignments, project showcases, and important announcements, ensuring you're always informed about classroom activities.
-            </p>
-            <p class="mb-0">
-              To get started, simply visit my classroom website and select the course card that matches your student's class. I've included detailed screenshots below to guide you through the navigation process. You'll notice that items are clearly marked: those with a <span class="badge badge-secondary">A</span> badge indicate the Principles of Applied Engineering path, while those with a <span class="badge badge-secondary">B</span> badge show the W.I.N. Robotics path. This color-coding system makes it simple to find exactly what you need.
-            </p>
-          </div>
+        <h3><i class="bi bi-compass"></i> Where Can I Find More Information About the Class?</h3>
+        
+        <p class="mb-3">
+          I've designed my classroom website to be your central hub for understanding what your student is learning and how they're progressing. Everything is organized intuitively, making it easy for you to stay connected with their educational journey. The website is regularly updated with our semester schedule overview, and important announcements, ensuring you're always informed about classroom activities.
+        </p>
+        
+        <div class="info-card">
+          <p class="mb-0">
+            <strong>Quick tip:</strong> To get started, simply visit my classroom website and select the course card that matches your student's class. Items are clearly marked: those with a <span class="badge badge-secondary">A</span> badge indicate the Principles of Applied Engineering path, while those with a <span class="badge badge-secondary">B</span> badge show the W.I.N. Robotics path.
+          </p>
+        </div>
 
-          <ol class="mb-4">
-            <li class="mb-3">
-              <strong>Go to the main site and select the class.</strong>
-              <div class="mt-2">
-                <img src="1-main_site.png" class="img-fluid rounded shadow border" alt="Main classroom site showing two class cards">
-                <p class="text-muted small mt-2">Screenshot 1. Main site with two class options.</p>
-              </div>
-            </li>
+        <h4 class="mt-4 mb-3">Navigation Steps:</h4>
+        
+        <ol>
+          <li>
+            <strong>Go to the main site and select the class.</strong>
+            <div class="screenshot-container mt-3">
+              <img src="1-main_site.png" class="img-fluid rounded shadow" alt="Main classroom site showing two class cards">
+              <p class="text-muted small mt-2 mb-0">Screenshot 1. Main site with two class options.</p>
+            </div>
+          </li>
 
-            <li class="mb-4">
-              <strong>Choose your route.</strong>
+          <li>
+            <strong>Choose your route.</strong>
 
-              <div class="mt-3 mb-3">
-                <div class="info-card mb-3">
-                  <h5 class="text-primary">Route A — Principles of Applied Engineering</h5>
-                  <div class="mt-3">
-                    <img src="2a-PAE-Index.png" class="img-fluid rounded shadow border mb-3" alt="PAE landing page with tiles">
-                    <p class="text-muted small">Screenshot 2a. PAE course landing page.</p>
-                    <img src="3a-PAE-info.png" class="img-fluid rounded shadow border mb-2" alt="PAE syllabus and course info">
-                    <p class="text-muted small">Screenshot 3a. PAE syllabus and course information.</p>
+            <div class="row mt-3">
+              <div class="col-lg-6 mb-3">
+                <div class="info-card route-a-card h-100">
+                  <h5 class="text-primary"><i class="bi bi-gear-wide-connected"></i> Route A – Principles of Applied Engineering</h5>
+                  <div class="screenshot-container">
+                    <img src="2a-PAE-Index.png" class="img-fluid rounded shadow mb-2" alt="PAE landing page with tiles">
+                    <p class="text-muted small mb-0">Screenshot 2a. PAE course landing page.</p>
                   </div>
-                </div>
-
-                <div class="info-card">
-                  <h5 class="text-warning">Route B — W.I.N. Robotics</h5>
-                  <div class="mt-3">
-                    <img src="2b-WIN-Index.png" class="img-fluid rounded shadow border mb-3" alt="WIN Robotics landing page with tiles">
-                    <p class="text-muted small">Screenshot 2b. WIN Robotics landing page.</p>
-                    <img src="3b-WIN-info.png" class="img-fluid rounded shadow border mb-2" alt="WIN Robotics course info">
-                    <p class="text-muted small">Screenshot 3b. WIN Robotics course information.</p>
+                  <div class="screenshot-container">
+                    <img src="3a-PAE-info.png" class="img-fluid rounded shadow mb-2" alt="PAE syllabus and course info">
+                    <p class="text-muted small mb-0">Screenshot 3a. PAE syllabus and course information.</p>
                   </div>
                 </div>
               </div>
-            </li>
 
-            <li class="mb-3">
-              <strong>Look over the scope, sequence, and graded work types.</strong>
-              <div class="mt-2">
-                <img src="4-example-scope-fall-plan.png" class="img-fluid rounded shadow border" alt="Example weekly scope and graded assignment types">
-                <p class="text-muted small mt-2">Screenshot 4. Example week view with graded assignment types.</p>
+              <div class="col-lg-6 mb-3">
+                <div class="info-card route-b-card h-100">
+                  <h5 class="text-warning"><i class="bi bi-robot"></i> Route B – W.I.N. Robotics</h5>
+                  <div class="screenshot-container">
+                    <img src="2b-WIN-Index.png" class="img-fluid rounded shadow mb-2" alt="WIN Robotics landing page with tiles">
+                    <p class="text-muted small mb-0">Screenshot 2b. WIN Robotics landing page.</p>
+                  </div>
+                  <div class="screenshot-container">
+                    <img src="3b-WIN-info.png" class="img-fluid rounded shadow mb-2" alt="WIN Robotics course info">
+                    <p class="text-muted small mb-0">Screenshot 3b. WIN Robotics course information.</p>
+                  </div>
+                </div>
               </div>
-            </li>
-          </ol>
+            </div>
+          </li>
 
-          <hr class="my-4">
+          <li>
+            <strong>Look over the scope, sequence, and graded work types.</strong>
+            <div class="screenshot-container mt-3">
+              <img src="4-example-scope-fall-plan.png" class="img-fluid rounded shadow" alt="Example weekly scope and graded assignment types">
+              <p class="text-muted small mt-2 mb-0">Screenshot 4. Example week view with graded assignment types.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-          <h3 class="h5">Understanding Schoology: Your Window into Daily Learning</h3>
-          <div class="info-card mb-3">
-            <p class="mb-3">
-              While my public website provides the big picture, Schoology is where the day-to-day magic happens. This is our secure learning management system where students access assignments, submit work, and receive personalized feedback. I've structured everything in Schoology with clarity and consistency in mind—you'll find organized folders for Weekly Plans, clearly labeled assignment sections, and detailed rubrics for every project.
-            </p>
-            <p class="mb-3">
-              I believe in complete transparency with families, which is why I encourage you to ask your student to show you their Schoology account regularly. When you look together, you'll see that every assignment comes with step-by-step instructions, clear expectations, and rubrics that eliminate guesswork. This structure helps students develop independence while ensuring they always know what success looks like. The consistent organization also means your student can easily find resources when they need them, reducing stress and promoting confidence.
-            </p>
-            <p class="mb-0">
-              Below are screenshots from the student view so you know exactly what your child sees when they log in. Notice how everything is thoughtfully organized—this isn't by accident. This careful structure helps students develop executive functioning skills that will benefit them throughout their academic career and beyond.
-            </p>
+    <!-- Schoology Section -->
+    <section id="schoology">
+      <div class="content-card">
+        <h3><i class="bi bi-laptop"></i> Understanding Schoology: Your Window into Daily Learning</h3>
+        
+        <p>
+          While my public website provides the big picture, Schoology is where the day-to-day magic happens. This is our secure learning management system where students access assignments, submit work, and receive personalized feedback. I've structured everything in Schoology with clarity and consistency in mind—you'll find organized folders for Weekly Plans, clearly labeled assignment sections, and detailed rubrics for every project.
+        </p>
+        
+        <p>
+          I believe in complete transparency with families, which is why I encourage you to ask your student to show you their Schoology account regularly. When you look together, you'll see that every assignment comes with step-by-step instructions, clear expectations, and rubrics that eliminate guesswork. This structure helps students develop independence while ensuring they always know what success looks like.
+        </p>
+        
+        <div class="info-card">
+          <p class="mb-0">
+            <strong>Parent tip:</strong> The consistent organization means your student can easily find resources when they need them, reducing stress and promoting confidence. Below are screenshots from the student view so you know exactly what your child sees when they log in.
+          </p>
+        </div>
+
+        <div class="mt-4">
+          <div class="screenshot-container">
+            <img src="5-schoology-student-view.png" class="img-fluid rounded shadow" alt="Schoology student course view showing folders and assignments">
+            <p class="text-muted small mt-2 mb-0">Screenshot 5. Student course landing in Schoology—notice the organized structure that helps students stay on track.</p>
           </div>
-
-          <div class="mt-4 mb-4">
-            <img src="5-schoology-student-view.png" class="img-fluid rounded shadow border mb-2" alt="Schoology student course view showing folders and assignments">
-            <p class="text-muted small mb-4">Screenshot 5. Student course landing in Schoology—notice the organized structure that helps students stay on track.</p>
-            
-            <img src="6-Weekly-student-view.png" class="img-fluid rounded shadow border mb-2" alt="Schoology weekly plans folder open">
-            <p class="text-muted small mb-4">Screenshot 6. Weekly Plans folder layout—everything your student needs for the week in one organized location.</p>
-            
-            <img src="7-assignment-student-view.png" class="img-fluid rounded shadow border mb-2" alt="Schoology assignment page with instructions and rubric">
-            <p class="text-muted small">Screenshot 7. A sample assignment showing clear instructions and detailed rubric—no surprises, just clear expectations.</p>
+          
+          <div class="screenshot-container">
+            <img src="6-Weekly-student-view.png" class="img-fluid rounded shadow" alt="Schoology weekly plans folder open">
+            <p class="text-muted small mt-2 mb-0">Screenshot 6. Weekly Plans folder layout—everything your student needs for the week in one organized location.</p>
           </div>
-
-          <div class="info-card mt-4">
-            <h5>Quick Summary for Busy Parents:</h5>
-            <ul class="mb-0">
-              <li><strong>Public Website:</strong> Your go-to resource for course overview, curriculum scope, learning objectives, and seeing the exciting projects your student will create</li>
-              <li><strong>Schoology:</strong> The daily hub for assignments, submissions, detailed feedback, grades, and direct communication with me</li>
-              <li><strong>Both platforms work together</strong> to create a comprehensive learning experience that keeps everyone—students, parents, and teacher—connected and informed</li>
-            </ul>
+          
+          <div class="screenshot-container">
+            <img src="7-assignment-student-view.png" class="img-fluid rounded shadow" alt="Schoology assignment page with instructions and rubric">
+            <p class="text-muted small mt-2 mb-0">Screenshot 7. A sample assignment showing clear instructions and detailed rubric—no surprises, just clear expectations.</p>
           </div>
+        </div>
+
+        <div class="info-card mt-4">
+          <h5><i class="bi bi-bookmark-star"></i> Quick Summary for Busy Parents:</h5>
+          <ul class="mb-0">
+            <li><strong>Public Website:</strong> Your go-to resource for course overview, curriculum scope, learning objectives, and seeing the exciting projects your student will create</li>
+            <li><strong>Schoology:</strong> The daily hub for assignments, submissions, detailed feedback, and grades.</li>
+            <li><strong>Both platforms work together</strong> to create a comprehensive learning experience that keeps everyone—students, parents, and teacher—connected and informed</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <!-- Contact / Thanks -->
-    <section id="contact" class="mb-5">
+    <section id="contact">
       <div class="content-card">
-        <h3>Let's Stay Connected</h3>
+        <h3><i class="bi bi-chat-dots"></i> Let's Stay Connected</h3>
+        
         <p>
           Your involvement in your student's education is invaluable, and I'm here to support both you and your child every step of the way. Whether you have questions about assignments, want to understand a concept your student is learning, or simply want to share your child's excitement about a project, I welcome your communication. Together, we can ensure your student has an enriching, confidence-building experience in engineering and robotics.
         </p>
+        
         <p>
           I typically respond to emails within 24 hours during the school week, and I'm always happy to schedule phone calls or meetings if you'd prefer to discuss your student's progress in more detail. Don't hesitate to reach out—no question is too small, and your engagement makes a tremendous difference in your student's success.
         </p>
+        
         <div class="info-card">
+          <h5><i class="bi bi-envelope"></i> Contact Information:</h5>
           <p class="mb-2">
-            <strong>Contact Information:</strong><br>
-            Email: <a href="mailto:majohnst@episd.org">majohnst@episd.org</a><br>
+            Email: <a href="mailto:majohnst@episd.org" class="fw-bold">majohnst@episd.org</a><br>
             <small class="text-muted">Best times to reach me: 7:30 AM - 4:30 PM on school days</small>
           </p>
         </div>
-        <p class="mt-3">
-          <em>Thank you for being an active partner in your student's engineering journey. Your support and encouragement at home amplifies everything we do in the classroom, and I'm honored to work with your family this year.</em>
-        </p>
+        
+        <div class="alert alert-success mt-4" role="alert">
+          <p class="mb-0">
+            <em><i class="bi bi-heart"></i> Thank you for being an active partner in your student's engineering journey. Your support and encouragement at home amplifies everything we do in the classroom, and I'm honored to work with your family this year.</em>
+          </p>
+        </div>
       </div>
     </section>
 
