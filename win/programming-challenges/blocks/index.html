@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
@@ -721,10 +722,36 @@
             doc.setLineWidth(0.5);
             doc.line(100, 170, 197, 170);
             
+            // Add stylized signature using cursive font
+            // Since custom fonts are complex in jsPDF, we'll create a signature effect
+            doc.setFont('times', 'italic');
+            doc.setFontSize(22);
+            doc.setTextColor(25, 25, 80);
+            
+            // Create a signature by overlaying text with slight offsets for depth
+            doc.saveGraphicsState();
+            doc.setTextColor(25, 25, 80, 0.3);
+            doc.text('Mark Johnston', 149, 164, { align: 'center' });
+            doc.setTextColor(25, 25, 80);
+            doc.text('Mark Johnston', 148.5, 163, { align: 'center' });
+            doc.restoreGraphicsState();
+            
+            // Add a small flourish line under the signature
+            doc.setDrawColor(25, 25, 80);
+            doc.setLineWidth(0.7);
+            const flourishY = 165;
+            const flourishStartX = 125;
+            const flourishEndX = 172;
+            
+            // Create a decorative underline with curves
+            doc.moveTo(flourishStartX, flourishY);
+            doc.curveTo(flourishStartX + 10, flourishY - 1, flourishEndX - 10, flourishY - 1, flourishEndX, flourishY);
+            doc.stroke();
+            
             doc.setFont('helvetica', 'normal');
             doc.setFontSize(10);
             doc.setTextColor(100, 100, 100);
-            doc.text('Instructor Signature', 148.5, 175, { align: 'center' });
+            doc.text('Mark Johnston, Instructor', 148.5, 175, { align: 'center' });
             
             // W.I.N. Robotics logo/text (bottom)
             doc.setFont('helvetica', 'bold');
