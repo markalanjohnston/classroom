@@ -557,6 +557,11 @@
                 </div>
             </section>
 
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-info-circle"></i>
+                <strong>Note:</strong> Pass the quiz above with 100% to unlock the "Mark as Complete" button.
+            </div>
+
             <div class="button-group">
                 <a href="./" class="action-button secondary-button">
                     <i class="bi bi-arrow-left"></i> Back to Lessons
@@ -564,7 +569,7 @@
                 <a href="https://vr.vex.com" target="_blank" class="action-button">
                     <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
                 </a>
-                <button class="action-button" onclick="markComplete()">
+                <button class="action-button disabled" id="completeBtn" onclick="markComplete()" disabled style="opacity: 0.5; cursor: not-allowed;">
                     <i class="bi bi-check2-square"></i> Mark as Complete
                 </button>
             </div>
@@ -572,6 +577,8 @@
     </div>
 
     <script>
+        let quizPassed = false;
+        
         // Quiz functionality
         function checkAnswers() {
             const answers = {
@@ -596,12 +603,14 @@
             };
 
             let allCorrect = true;
+            let answeredCount = 0;
 
             for (let q in answers) {
                 const selected = document.querySelector(`input[name="${q}"]:checked`);
                 const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
                 
                 if (selected) {
+                    answeredCount++;
                     if (selected.value === answers[q]) {
                         feedbackDiv.className = 'quiz-feedback correct';
                         feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
@@ -616,20 +625,48 @@
                 }
             }
 
+            if (answeredCount < 3) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
             if (allCorrect) {
+                quizPassed = true;
+                // Enable the Mark as Complete button
+                const completeBtn = document.getElementById('completeBtn');
+                completeBtn.disabled = false;
+                completeBtn.classList.remove('disabled');
+                completeBtn.style.opacity = '1';
+                completeBtn.style.cursor = 'pointer';
+                
+                // Show success message
                 setTimeout(() => {
-                    alert("Great job! You've mastered the basics of VEXcode VR!");
+                    alert("Perfect score! You've mastered the basics of VEXcode VR! You can now mark this lesson as complete.");
                 }, 500);
+            } else {
+                quizPassed = false;
+                alert("Not quite there yet! Review the incorrect answers and try again.");
             }
         }
 
         // Mark lesson as complete
         function markComplete() {
+            if (!quizPassed) {
+                alert('Please complete the quiz with all correct answers before marking this lesson as complete.');
+                // Scroll to quiz section
+                document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
             let progress = JSON.parse(localStorage.getItem('vexBlocksProgress') || '[]');
             if (!progress.includes('getting-started')) {
                 progress.push('getting-started');
                 localStorage.setItem('vexBlocksProgress', JSON.stringify(progress));
                 alert('Lesson marked as complete! Great work!');
+                // Redirect back to lessons page after a short delay
+                setTimeout(() => {
+                    window.location.href = './';
+                }, 1500);
             } else {
                 alert('You have already completed this lesson!');
             }
