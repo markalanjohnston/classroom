@@ -342,7 +342,7 @@
                 </div>
             </a>
 
-            <div class="lesson-card" style="opacity: 0.6; cursor: not-allowed;">
+            <a href="challenge-projects.html" class="lesson-card" id="lesson-challenge-projects">
                 <div class="lesson-number">6</div>
                 <div class="lesson-icon">
                     <i class="bi bi-trophy"></i>
@@ -356,7 +356,24 @@
                     <span class="topic-badge">Algorithms</span>
                     <span class="topic-badge">Problem Solving</span>
                 </div>
-            </div>
+            </a>
+
+            <a href="rover-rescue.html" class="lesson-card" id="lesson-rover-rescue">
+                <div class="lesson-number">7</div>
+                <div class="lesson-icon">
+                    <i class="bi bi-rocket-takeoff"></i>
+                </div>
+                <h3 class="lesson-title">Rover Rescue</h3>
+                <p class="lesson-description">
+                    Master survival, resource management, and strategic planning in an alien environment.
+                </p>
+                <div class="lesson-topics">
+                    <span class="topic-badge">Advanced</span>
+                    <span class="topic-badge">Resources</span>
+                    <span class="topic-badge">Combat</span>
+                    <span class="topic-badge">XP System</span>
+                </div>
+            </a>
         </div>
 
         <div class="header-card" style="background: #f8f9fa;">
@@ -365,7 +382,7 @@
                 Your Progress
             </h3>
             <div class="progress-indicator">
-                <p class="mb-2">Lessons Completed: <strong>0 / 6</strong></p>
+                <p class="mb-2">Lessons Completed: <strong>0 / 7</strong></p>
                 <div class="progress-bar-custom">
                     <div class="progress-fill" style="width: 0%;"></div>
                 </div>
@@ -381,7 +398,7 @@
         // Check for completed lessons in localStorage
         document.addEventListener('DOMContentLoaded', function() {
             const completedLessons = JSON.parse(localStorage.getItem('vexBlocksProgress') || '[]');
-            const totalLessons = 6;
+            const totalLessons = 7;
             const completedCount = completedLessons.length;
             const progressPercent = (completedCount / totalLessons) * 100;
             

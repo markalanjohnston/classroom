@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Projects - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .challenge-grid {
+            display: grid;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .challenge-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .challenge-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .challenge-title {
+            font-size: 1.5rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .difficulty-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .difficulty-intermediate {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .difficulty-advanced {
+            background: #fce4ec;
+            color: #c2185b;
+        }
+
+        .difficulty-expert {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .playground-badge {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .skill-tag {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .rubric-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .rubric-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .rubric-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .rubric-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #f0f7ff;
+            color: #667eea;
+        }
+
+        .project-objectives {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .objective-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .objective-item:last-child {
+            border-bottom: none;
+        }
+
+        .starter-template {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .comment-line {
+            color: #75715e;
+        }
+
+        .keyword {
+            color: #66d9ef;
+        }
+
+        .string {
+            color: #e6db74;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Block Coding</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Challenge Projects</span>
+        </nav>
+
+        <div class="lesson-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-trophy-fill text-warning"></i>
+                Challenge Projects
+            </h1>
+            <p class="lead">
+                Put all your skills to the test! These comprehensive challenges combine everything you've learned. Choose your difficulty level and show what you can do!
+            </p>
+
+            <div class="info-box">
+                <i class="bi bi-info-circle"></i>
+                <strong>How It Works:</strong> Each challenge has specific objectives and a rubric. Complete as many as you can. These are designed to be challenging - don't worry if you can't complete them all on your first try!
+            </div>
+
+            <section>
+                <h2 class="section-title">
+                    <i class="bi bi-list-check"></i> Assessment Rubric
+                </h2>
+
+                <table class="rubric-table">
+                    <thead>
+                        <tr>
+                            <th>Criteria</th>
+                            <th>Excellent (4)</th>
+                            <th>Good (3)</th>
+                            <th>Satisfactory (2)</th>
+                            <th>Needs Improvement (1)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Functionality</strong></td>
+                            <td>Completes all objectives</td>
+                            <td>Completes most objectives</td>
+                            <td>Completes basic objectives</td>
+                            <td>Partial completion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Code Quality</strong></td>
+                            <td>Efficient, uses loops/functions</td>
+                            <td>Good structure, some efficiency</td>
+                            <td>Works but repetitive</td>
+                            <td>Disorganized code</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Problem Solving</strong></td>
+                            <td>Creative, optimal solution</td>
+                            <td>Good approach</td>
+                            <td>Basic solution</td>
+                            <td>Minimal effort</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentation</strong></td>
+                            <td>Clear comments throughout</td>
+                            <td>Some helpful comments</td>
+                            <td>Basic comments</td>
+                            <td>No comments</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2 class="section-title">
+                    <i class="bi bi-flag-fill"></i> Choose Your Challenge
+                </h2>
+
+                <div class="challenge-grid">
+                    <!-- Challenge 1: Dynamic Maze Solver -->
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <h3 class="challenge-title">
+                                <i class="bi bi-grid-3x3-gap text-primary"></i>
+                                Dynamic Maze Solver
+                            </h3>
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                        </div>
+                        
+                        <span class="playground-badge">
+                            <i class="bi bi-map"></i> Dynamic Wall Maze
+                        </span>
+                        
+                        <p class="mt-3">Create an algorithm that can solve ANY maze layout. The walls change position each time!</p>
+                        
+                        <div class="project-objectives">
+                            <h5>Objectives:</h5>
+                            <div class="objective-item">✓ Navigate from start to finish</div>
+                            <div class="objective-item">✓ Avoid all walls using sensors</div>
+                            <div class="objective-item">✓ Work on any maze configuration</div>
+                            <div class="objective-item">✓ Bonus: Track the path taken</div>
+                        </div>
+
+                        <div class="skills-list">
+                            <span class="skill-tag">Sensors</span>
+                            <span class="skill-tag">Loops</span>
+                            <span class="skill-tag">Conditionals</span>
+                            <span class="skill-tag">Algorithms</span>
+                        </div>
+
+                        <details>
+                            <summary style="cursor: pointer; color: #667eea; font-weight: bold; margin-top: 15px;">
+                                <i class="bi bi-code-slash"></i> Starter Template
+                            </summary>
+                            <div class="code-block">
+                                when started<br>
+                                // Wall following algorithm<br>
+                                repeat forever<br>
+                                &nbsp;&nbsp;// Check right wall<br>
+                                &nbsp;&nbsp;turn right for 90 degrees<br>
+                                &nbsp;&nbsp;if &lt;not (Distance found object)&gt; then<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;// No wall on right, go forward<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;drive forward for 200 mm<br>
+                                &nbsp;&nbsp;else<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;// Wall on right, check front<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;turn left for 90 degrees<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;// Add your logic here!<br>
+                                &nbsp;&nbsp;end
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Challenge 2: Secret Message Decoder -->
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <h3 class="challenge-title">
+                                <i class="bi bi-lock text-success"></i>
+                                Secret Message Decoder
+                            </h3>
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                        </div>
+                        
+                        <span class="playground-badge">
+                            <i class="bi bi-map"></i> Encoded Message
+                        </span>
+                        
+                        <p class="mt-3">Decode a secret binary message by reading colored tiles. Blue = 0, Green = 1.</p>
+                        
+                        <div class="project-objectives">
+                            <h5>Objectives:</h5>
+                            <div class="objective-item">✓ Navigate the grid systematically</div>
+                            <div class="objective-item">✓ Read colors with down eye sensor</div>
+                            <div class="objective-item">✓ Convert binary to decimal</div>
+                            <div class="objective-item">✓ Display the decoded message</div>
+                        </div>
+
+                        <div class="skills-list">
+                            <span class="skill-tag">Eye Sensor</span>
+                            <span class="skill-tag">Variables</span>
+                            <span class="skill-tag">Data Processing</span>
+                            <span class="skill-tag">Algorithms</span>
+                        </div>
+
+                        <details>
+                            <summary style="cursor: pointer; color: #667eea; font-weight: bold; margin-top: 15px;">
+                                <i class="bi bi-lightbulb"></i> Algorithm Hints
+                            </summary>
+                            <div class="tip-box">
+                                <p><strong>Step 1:</strong> Create a systematic path (like reading a book - left to right, top to bottom)</p>
+                                <p><strong>Step 2:</strong> Store each bit (0 or 1) in a list or string variable</p>
+                                <p><strong>Step 3:</strong> Every 8 bits makes one character</p>
+                                <p><strong>Step 4:</strong> Convert binary to ASCII to reveal the message</p>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Challenge 3: Coral Reef Cleanup -->
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <h3 class="challenge-title">
+                                <i class="bi bi-recycle text-info"></i>
+                                Coral Reef Cleanup
+                            </h3>
+                            <span class="difficulty-badge difficulty-expert">Expert</span>
+                        </div>
+                        
+                        <span class="playground-badge">
+                            <i class="bi bi-map"></i> Coral Reef Cleanup
+                        </span>
+                        
+                        <p class="mt-3">Clean the ocean efficiently with limited battery! Collect trash and manage your energy.</p>
+                        
+                        <div class="project-objectives">
+                            <h5>Objectives:</h5>
+                            <div class="objective-item">✓ Collect maximum trash items</div>
+                            <div class="objective-item">✓ Manage battery efficiently</div>
+                            <div class="objective-item">✓ Return to base before battery dies</div>
+                            <div class="objective-item">✓ Optimize collection path</div>
+                        </div>
+
+                        <div class="skills-list">
+                            <span class="skill-tag">Resource Management</span>
+                            <span class="skill-tag">Path Planning</span>
+                            <span class="skill-tag">Variables</span>
+                            <span class="skill-tag">Advanced Logic</span>
+                        </div>
+
+                        <details>
+                            <summary style="cursor: pointer; color: #667eea; font-weight: bold; margin-top: 15px;">
+                                <i class="bi bi-gear"></i> Strategy Guide
+                            </summary>
+                            <div class="info-box">
+                                <p><strong>Battery Management:</strong></p>
+                                <ul>
+                                    <li>Track battery level constantly</li>
+                                    <li>Calculate distance to base</li>
+                                    <li>Reserve energy for return trip</li>
+                                </ul>
+                                <p><strong>Collection Strategy:</strong></p>
+                                <ul>
+                                    <li>Prioritize nearby trash</li>
+                                    <li>Group collections in zones</li>
+                                    <li>Make efficient sweeping patterns</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Challenge 4: Art Gallery -->
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <h3 class="challenge-title">
+                                <i class="bi bi-palette text-warning"></i>
+                                Geometric Art Gallery
+                            </h3>
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                        </div>
+                        
+                        <span class="playground-badge">
+                            <i class="bi bi-map"></i> Art Canvas
+                        </span>
+                        
+                        <p class="mt-3">Create beautiful geometric patterns and artistic designs using loops and math!</p>
+                        
+                        <div class="project-objectives">
+                            <h5>Objectives:</h5>
+                            <div class="objective-item">✓ Draw at least 3 different patterns</div>
+                            <div class="objective-item">✓ Use multiple colors</div>
+                            <div class="objective-item">✓ Include spirals or fractals</div>
+                            <div class="objective-item">✓ Create a unique masterpiece</div>
+                        </div>
+
+                        <div class="skills-list">
+                            <span class="skill-tag">Loops</span>
+                            <span class="skill-tag">Pen Tool</span>
+                            <span class="skill-tag">Mathematics</span>
+                            <span class="skill-tag">Creativity</span>
+                        </div>
+
+                        <details>
+                            <summary style="cursor: pointer; color: #667eea; font-weight: bold; margin-top: 15px;">
+                                <i class="bi bi-stars"></i> Pattern Ideas
+                            </summary>
+                            <div class="code-block">
+                                // Spiral Pattern<br>
+                                pen down<br>
+                                set my variable "distance" to 10<br>
+                                repeat 50<br>
+                                &nbsp;&nbsp;drive forward for (distance) mm<br>
+                                &nbsp;&nbsp;turn right for 90 degrees<br>
+                                &nbsp;&nbsp;change "distance" by 5<br>
+                                end<br>
+                                <br>
+                                // Star Pattern<br>
+                                repeat 5<br>
+                                &nbsp;&nbsp;drive forward for 200 mm<br>
+                                &nbsp;&nbsp;turn right for 144 degrees<br>
+                                end
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Challenge 5: Disk Transport Master -->
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <h3 class="challenge-title">
+                                <i class="bi bi-circle-fill text-danger"></i>
+                                Disk Transport Master
+                            </h3>
+                            <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                        </div>
+                        
+                        <span class="playground-badge">
+                            <i class="bi bi-map"></i> Disk Transport
+                        </span>
+                        
+                        <p class="mt-3">Sort colored disks into their matching zones using the electromagnet. Speed and accuracy count!</p>
+                        
+                        <div class="project-objectives">
+                            <h5>Objectives:</h5>
+                            <div class="objective-item">✓ Identify disk colors</div>
+                            <div class="objective-item">✓ Transport to correct zones</div>
+                            <div class="objective-item">✓ Sort all disks correctly</div>
+                            <div class="objective-item">✓ Minimize total movements</div>
+                        </div>
+
+                        <div class="skills-list">
+                            <span class="skill-tag">Color Detection</span>
+                            <span class="skill-tag">Electromagnet</span>
+                            <span class="skill-tag">Path Planning</span>
+                            <span class="skill-tag">Optimization</span>
+                        </div>
+                    </div>
+
+                    <!-- Challenge 6: Shape Tracer Pro -->
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <h3 class="challenge-title">
+                                <i class="bi bi-vector-pen text-success"></i>
+                                Shape Tracer Pro
+                            </h3>
+                            <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                        </div>
+                        
+                        <span class="playground-badge">
+                            <i class="bi bi-map"></i> Shape Tracer
+                        </span>
+                        
+                        <p class="mt-3">Precisely trace complex shapes by following the guides. Accuracy is key!</p>
+                        
+                        <div class="project-objectives">
+                            <h5>Objectives:</h5>
+                            <div class="objective-item">✓ Trace all visible shapes</div>
+                            <div class="objective-item">✓ Maintain accuracy on curves</div>
+                            <div class="objective-item">✓ Use appropriate pen colors</div>
+                            <div class="objective-item">✓ Complete without gaps</div>
+                        </div>
+
+                        <div class="skills-list">
+                            <span class="skill-tag">Precision</span>
+                            <span class="skill-tag">Sensor Following</span>
+                            <span class="skill-tag">Pen Control</span>
+                            <span class="skill-tag">Curves</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">
+                    <i class="bi bi-lightbulb-fill"></i> General Tips for Success
+                </h2>
+
+                <div class="tip-box">
+                    <h5><i class="bi bi-1-circle"></i> Start Simple</h5>
+                    <p>Get basic functionality working first, then add complexity. A working simple solution is better than a broken complex one!</p>
+                </div>
+
+                <div class="tip-box">
+                    <h5><i class="bi bi-2-circle"></i> Test Frequently</h5>
+                    <p>Run your code often to catch problems early. Test each new feature as you add it.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h5><i class="bi bi-3-circle"></i> Use Comments</h5>
+                    <p>Explain your logic with comment blocks. This helps you remember your approach and shows your thinking.</p>
+                </div>
+
+                <div class="tip-box">
+                    <h5><i class="bi bi-4-circle"></i> Debug Systematically</h5>
+                    <p>When something doesn't work, isolate the problem. Test one section at a time.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">
+                    <i class="bi bi-share"></i> Share Your Success
+                </h2>
+
+                <div class="info-box">
+                    <i class="bi bi-camera"></i>
+                    <strong>Document Your Work:</strong>
+                    <ul style="margin-top: 10px;">
+                        <li>Take screenshots of your successful runs</li>
+                        <li>Save your project files with descriptive names</li>
+                        <li>Write a brief description of your approach</li>
+                        <li>Share with your classmates and learn from each other!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="button-group">
+                <a href="./" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Back to Lessons
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
