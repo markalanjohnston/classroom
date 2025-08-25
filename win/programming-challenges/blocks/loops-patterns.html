@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops & Patterns - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #f0f7ff;
+            color: #667eea;
+        }
+
+        .pen-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .pen-tool-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .pen-tool-card:hover {
+            border-color: #667eea;
+        }
+
+        .pen-tool-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .pen-tool-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+
+        .color-dot {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin: 0 3px;
+            border: 1px solid #ddd;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .challenge-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pattern-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .pattern-card {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .pattern-svg {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Block Coding</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Loops & Patterns</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('pen')">Pen Tool Basics</div>
+            <div class="progress-item" onclick="scrollToSection('loops')">Understanding Loops</div>
+            <div class="progress-item" onclick="scrollToSection('patterns')">Creating Patterns</div>
+            <div class="progress-item" onclick="scrollToSection('efficiency')">Code Efficiency</div>
+            <div class="progress-item" onclick="scrollToSection('challenge')">Draw a House</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Check Your Knowledge</div>
+        </div>
+
+        <div class="lesson-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-arrow-repeat text-primary"></i>
+                Loops & Patterns
+            </h1>
+            <p class="lead">
+                Learn how to use repeat blocks to create efficient code and draw amazing patterns! You'll master the pen tool and create geometric art on the Art Canvas playground.
+            </p>
+
+            <div class="info-box">
+                <i class="bi bi-info-circle"></i>
+                <strong>Lesson Goal:</strong> Use loops to draw shapes efficiently and create a house using the pen tool.
+            </div>
+
+            <section id="pen">
+                <h2 class="section-title">
+                    <i class="bi bi-pen"></i> Pen Tool Basics
+                </h2>
+
+                <p>The VR Robot has a built-in pen that can draw on the Art Canvas playground. Here are the essential pen commands:</p>
+
+                <div class="pen-tools-grid">
+                    <div class="pen-tool-card">
+                        <h4>[pen down]</h4>
+                        <p>Lowers the pen to start drawing</p>
+                    </div>
+                    <div class="pen-tool-card">
+                        <h4>[pen up]</h4>
+                        <p>Lifts the pen to stop drawing</p>
+                    </div>
+                    <div class="pen-tool-card">
+                        <h4>[set pen color]</h4>
+                        <p>Changes pen color</p>
+                        <p>Colors: 
+                            <span class="color-dot" style="background: black;"></span> black
+                            <span class="color-dot" style="background: red;"></span> red
+                            <span class="color-dot" style="background: green;"></span> green
+                            <span class="color-dot" style="background: blue;"></span> blue
+                        </p>
+                    </div>
+                    <div class="pen-tool-card">
+                        <h4>[set pen width]</h4>
+                        <p>Changes line thickness</p>
+                        <p>Width: 1-100%</p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Drawing Your First Line</h3>
+                
+                <div class="code-block">
+                    when started<br>
+                    pen down<br>
+                    drive forward for 200 mm<br>
+                    pen up
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Pro Tip:</strong> Always lift the pen when moving to a new position without drawing, and lower it when you want to draw!
+                </div>
+            </section>
+
+            <section id="loops">
+                <h2 class="section-title">
+                    <i class="bi bi-arrow-repeat"></i> Understanding Loops
+                </h2>
+
+                <p>A <strong>loop</strong> repeats a set of instructions multiple times. In VEXcode VR, the <strong>[repeat]</strong> block creates a loop.</p>
+
+                <h3 class="subsection-title">Why Use Loops?</h3>
+                
+                <p>Compare these two approaches to drawing a square:</p>
+
+                <div class="comparison-table">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Without Loop (8 blocks)</th>
+                                <th>With Loop (3 blocks)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="code-block" style="background: #fff; margin: 0;">
+                                        pen down<br>
+                                        drive forward for 200 mm<br>
+                                        turn right for 90 degrees<br>
+                                        drive forward for 200 mm<br>
+                                        turn right for 90 degrees<br>
+                                        drive forward for 200 mm<br>
+                                        turn right for 90 degrees<br>
+                                        drive forward for 200 mm<br>
+                                        turn right for 90 degrees
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="code-block" style="background: #fff; margin: 0;">
+                                        pen down<br>
+                                        repeat 4<br>
+                                        &nbsp;&nbsp;drive forward for 200 mm<br>
+                                        &nbsp;&nbsp;turn right for 90 degrees
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="image-container">
+                    <img src="images/repeat-comparison.png" alt="Repeat block comparison">
+                    <p class="image-caption">Visual comparison of code with and without loops</p>
+                </div>
+
+                <h3 class="subsection-title">Loop Benefits</h3>
+                <ul>
+                    <li><strong>Less code:</strong> Fewer blocks to manage</li>
+                    <li><strong>Easier to modify:</strong> Change one value instead of many</li>
+                    <li><strong>Fewer errors:</strong> Less chance of mistakes</li>
+                    <li><strong>More readable:</strong> Clear what the pattern is</li>
+                </ul>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Important:</strong> The [repeat] block only accepts whole numbers (integers). You cannot repeat 3.5 times!
+                </div>
+            </section>
+
+            <section id="patterns">
+                <h2 class="section-title">
+                    <i class="bi bi-grid-3x3"></i> Creating Patterns
+                </h2>
+
+                <p>Loops are perfect for creating geometric patterns. Let's explore some common shapes:</p>
+
+                <div class="pattern-showcase">
+                    <div class="pattern-card">
+                        <svg class="pattern-svg" viewBox="0 0 150 150">
+                            <rect x="40" y="40" width="70" height="70" fill="none" stroke="#667eea" stroke-width="2"/>
+                        </svg>
+                        <h5>Square</h5>
+                        <p style="font-size: 0.85rem;">Repeat 4: Forward + Turn 90°</p>
+                    </div>
+                    <div class="pattern-card">
+                        <svg class="pattern-svg" viewBox="0 0 150 150">
+                            <polygon points="75,30 40,100 110,100" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                        </svg>
+                        <h5>Triangle</h5>
+                        <p style="font-size: 0.85rem;">Repeat 3: Forward + Turn 120°</p>
+                    </div>
+                    <div class="pattern-card">
+                        <svg class="pattern-svg" viewBox="0 0 150 150">
+                            <polygon points="75,30 95,60 95,90 75,120 55,90 55,60" fill="none" stroke="#f39c12" stroke-width="2"/>
+                        </svg>
+                        <h5>Hexagon</h5>
+                        <p style="font-size: 0.85rem;">Repeat 6: Forward + Turn 60°</p>
+                    </div>
+                    <div class="pattern-card">
+                        <svg class="pattern-svg" viewBox="0 0 150 150">
+                            <polygon points="75,30 90,70 120,70 95,90 105,120 75,100 45,120 55,90 30,70 60,70" fill="none" stroke="#27ae60" stroke-width="2"/>
+                        </svg>
+                        <h5>Star</h5>
+                        <p style="font-size: 0.85rem;">Repeat 5: Forward + Turn 144°</p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">The Pattern Formula</h3>
+                
+                <div class="info-box">
+                    <i class="bi bi-calculator"></i>
+                    <strong>Shape Formula:</strong> For regular polygons, the turn angle = 360° ÷ number of sides
+                    <ul style="margin-top: 10px; margin-bottom: 0;">
+                        <li>Square: 360° ÷ 4 = 90°</li>
+                        <li>Triangle: 360° ÷ 3 = 120°</li>
+                        <li>Pentagon: 360° ÷ 5 = 72°</li>
+                        <li>Hexagon: 360° ÷ 6 = 60°</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Example: Drawing a Pentagon</h3>
+                
+                <div class="code-block">
+                    when started<br>
+                    pen down<br>
+                    set pen color to blue<br>
+                    repeat 5<br>
+                    &nbsp;&nbsp;drive forward for 300 mm<br>
+                    &nbsp;&nbsp;turn right for 72 degrees
+                </div>
+            </section>
+
+            <section id="efficiency">
+                <h2 class="section-title">
+                    <i class="bi bi-speedometer2"></i> Code Efficiency
+                </h2>
+
+                <p>Efficient code is easier to understand, modify, and debug. Let's look at strategies for writing better code with loops:</p>
+
+                <h3 class="subsection-title">Nested Loops</h3>
+                
+                <p>You can put loops inside other loops to create complex patterns:</p>
+                
+                <div class="code-block">
+                    when started<br>
+                    pen down<br>
+                    repeat 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Draw 4 squares<br>
+                    &nbsp;&nbsp;repeat 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Draw one square<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;drive forward for 100 mm<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;turn right for 90 degrees<br>
+                    &nbsp;&nbsp;turn right for 90 degrees&nbsp;&nbsp;// Rotate for next square
+                </div>
+
+                <h3 class="subsection-title">Tips for Efficient Code</h3>
+                
+                <ol>
+                    <li><strong>Identify patterns:</strong> Look for repeated sequences</li>
+                    <li><strong>Count repetitions:</strong> How many times does it repeat?</li>
+                    <li><strong>Use variables:</strong> Store values you use multiple times</li>
+                    <li><strong>Test incrementally:</strong> Add one loop at a time</li>
+                </ol>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Debugging Tip:</strong> If your pattern isn't working, try running the loop just once to see what one iteration does!
+                </div>
+            </section>
+
+            <section id="challenge">
+                <h2 class="section-title">
+                    <i class="bi bi-house"></i> Draw a House Challenge
+                </h2>
+
+                <div class="challenge-box">
+                    <h3 class="challenge-title">
+                        <i class="bi bi-flag-fill" style="color: #e74c3c;"></i>
+                        Your Mission: Draw a House with a Roof!
+                    </h3>
+                    
+                    <p>Create a program that draws a house on the Art Canvas playground. The house should have:</p>
+                    <ul>
+                        <li>A square base (the house)</li>
+                        <li>A triangular roof on top</li>
+                        <li>Use different colors for house and roof</li>
+                        <li>Use repeat blocks for efficiency</li>
+                    </ul>
+
+                    <div style="text-align: center; margin: 20px 0;">
+                        <svg width="200" height="200" viewBox="0 0 200 200">
+                            <!-- House base -->
+                            <rect x="50" y="80" width="100" height="100" fill="none" stroke="black" stroke-width="2"/>
+                            <!-- Roof -->
+                            <polygon points="100,40 50,80 150,80" fill="none" stroke="blue" stroke-width="2"/>
+                            <!-- Door -->
+                            <rect x="85" y="130" width="30" height="50" fill="none" stroke="black" stroke-width="1" stroke-dasharray="2,2"/>
+                            <!-- Windows -->
+                            <rect x="65" y="100" width="20" height="20" fill="none" stroke="black" stroke-width="1" stroke-dasharray="2,2"/>
+                            <rect x="115" y="100" width="20" height="20" fill="none" stroke="black" stroke-width="1" stroke-dasharray="2,2"/>
+                        </svg>
+                        <p class="image-caption">Example house design (door and windows optional)</p>
+                    </div>
+
+                    <h4 style="color: #667eea; margin-top: 20px;">Starter Code:</h4>
+                    <div class="code-block">
+                        when started<br>
+                        // Position the robot to start drawing<br>
+                        drive forward for 100 mm<br>
+                        turn left for 90 degrees<br>
+                        <br>
+                        // Draw the house base (square)<br>
+                        pen down<br>
+                        set pen color to black<br>
+                        repeat 4<br>
+                        &nbsp;&nbsp;drive forward for 400 mm<br>
+                        &nbsp;&nbsp;turn right for 90 degrees<br>
+                        <br>
+                        // Now add code to draw the roof!<br>
+                        // Hint: Move to the top-left corner first<br>
+                        // Then draw a triangle with blue color
+                    </div>
+
+                    <div class="button-group" style="justify-content: center;">
+                        <a href="https://vr.vex.com" target="_blank" class="action-button">
+                            <i class="bi bi-play-fill"></i> Open VEXcode VR
+                        </a>
+                    </div>
+
+                    <details style="margin-top: 20px;">
+                        <summary style="cursor: pointer; color: #667eea; font-weight: bold;">
+                            <i class="bi bi-key"></i> Need hints?
+                        </summary>
+                        <div style="margin-top: 10px; padding: 15px; background: #f0f7ff; border-radius: 5px;">
+                            <p><strong>Hint 1:</strong> After drawing the square, you're at the top-left corner. Perfect position to start the roof!</p>
+                            <p><strong>Hint 2:</strong> A triangle needs 3 sides with 120° turns (remember: 360° ÷ 3 = 120°)</p>
+                            <p><strong>Hint 3:</strong> For an equilateral triangle roof, make each side the same length as the house width (400mm)</p>
+                            <p><strong>Bonus:</strong> Try turning left instead of right for the triangle to make it point upward!</p>
+                        </div>
+                    </details>
+
+                    <details style="margin-top: 10px;">
+                        <summary style="cursor: pointer; color: #27ae60; font-weight: bold;">
+                            <i class="bi bi-star"></i> Extra Challenges
+                        </summary>
+                        <div style="margin-top: 10px; padding: 15px; background: #e8f5e9; border-radius: 5px;">
+                            <p><strong>Challenge 1:</strong> Add a door (rectangle) in the center of the house</p>
+                            <p><strong>Challenge 2:</strong> Add windows (small squares) on either side</p>
+                            <p><strong>Challenge 3:</strong> Create a row of houses using nested loops</p>
+                            <p><strong>Challenge 4:</strong> Make each house a different color using variables</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Check Your Knowledge
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What angle should you turn to draw a regular hexagon (6 sides)?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> 45 degrees</label>
+                            <label><input type="radio" name="q1" value="b"> 60 degrees</label>
+                            <label><input type="radio" name="q1" value="c"> 90 degrees</label>
+                            <label><input type="radio" name="q1" value="d"> 120 degrees</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. How many blocks are inside a [repeat 5] block if it creates 15 total actions?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> 2 blocks</label>
+                            <label><input type="radio" name="q2" value="b"> 3 blocks</label>
+                            <label><input type="radio" name="q2" value="c"> 5 blocks</label>
+                            <label><input type="radio" name="q2" value="d"> 15 blocks</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. What does the [pen up] block do?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> Moves the robot upward</label>
+                            <label><input type="radio" name="q3" value="b"> Increases pen width</label>
+                            <label><input type="radio" name="q3" value="c"> Stops drawing while moving</label>
+                            <label><input type="radio" name="q3" value="d"> Changes pen color to white</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. Why are loops useful in programming?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> They make code run faster</label>
+                            <label><input type="radio" name="q4" value="b"> They reduce repetition and make code more efficient</label>
+                            <label><input type="radio" name="q4" value="c"> They allow the robot to jump</label>
+                            <label><input type="radio" name="q4" value="d"> They increase battery life</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. To draw a triangle, you need to turn 120° at each corner. How many times should you repeat?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q5" value="a"> 2 times</label>
+                            <label><input type="radio" name="q5" value="b"> 3 times</label>
+                            <label><input type="radio" name="q5" value="c"> 4 times</label>
+                            <label><input type="radio" name="q5" value="d"> 120 times</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback5"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-info-circle"></i>
+                <strong>Note:</strong> Complete the Draw a House Challenge and pass the quiz with 100% to unlock the "Mark as Complete" button.
+            </div>
+
+            <div class="button-group">
+                <a href="./" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Back to Lessons
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <button class="action-button disabled" id="completeBtn" onclick="markComplete()" disabled style="opacity: 0.5; cursor: not-allowed;">
+                    <i class="bi bi-check2-square"></i> Mark as Complete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizPassed = false;
+        
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',  // 60 degrees for hexagon
+                q2: 'b',  // 3 blocks (15 ÷ 5 = 3)
+                q3: 'c',  // Stops drawing while moving
+                q4: 'b',  // Reduce repetition and efficiency
+                q5: 'b'   // 3 times for triangle
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! A hexagon has 6 sides, so 360° ÷ 6 = 60° per turn.",
+                    incorrect: "Not quite. For a hexagon (6 sides): 360° ÷ 6 = 60°"
+                },
+                q2: {
+                    correct: "Correct! If repeat 5 creates 15 actions, then 15 ÷ 5 = 3 blocks inside.",
+                    incorrect: "Not quite. Divide total actions by repeat count: 15 ÷ 5 = 3 blocks"
+                },
+                q3: {
+                    correct: "Correct! Pen up lifts the pen so the robot can move without drawing.",
+                    incorrect: "Not quite. [pen up] lifts the pen to stop drawing while moving."
+                },
+                q4: {
+                    correct: "Correct! Loops reduce code repetition and make programs more efficient.",
+                    incorrect: "Not quite. The main benefit is reducing repetition and making code more efficient."
+                },
+                q5: {
+                    correct: "Correct! A triangle has 3 sides, so you repeat 3 times.",
+                    incorrect: "Not quite. A triangle has 3 sides, so repeat the pattern 3 times."
+                }
+            };
+
+            let allCorrect = true;
+            let answeredCount = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+                
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (answeredCount < 5) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
+            if (allCorrect) {
+                quizPassed = true;
+                // Enable the Mark as Complete button
+                const completeBtn = document.getElementById('completeBtn');
+                completeBtn.disabled = false;
+                completeBtn.classList.remove('disabled');
+                completeBtn.style.opacity = '1';
+                completeBtn.style.cursor = 'pointer';
+                
+                // Show success message
+                setTimeout(() => {
+                    alert("Perfect score! You've mastered loops and patterns! Complete the Draw a House Challenge if you haven't already, then mark this lesson as complete.");
+                }, 500);
+            } else {
+                quizPassed = false;
+                alert("Not quite there yet! Review the incorrect answers and try again.");
+            }
+        }
+
+        // Mark lesson as complete
+        function markComplete() {
+            if (!quizPassed) {
+                alert('Please complete the quiz with all correct answers before marking this lesson as complete.');
+                document.getElementById('quiz').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            // Check if they've acknowledged the challenge
+            if (!confirm('Have you completed the Draw a House Challenge? Click OK if yes, Cancel to go back and complete it.')) {
+                document.getElementById('challenge').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            
+            let progress = JSON.parse(localStorage.getItem('vexBlocksProgress') || '[]');
+            if (!progress.includes('loops-patterns')) {
+                progress.push('loops-patterns');
+                localStorage.setItem('vexBlocksProgress', JSON.stringify(progress));
+                alert('Lesson marked as complete! Great work on mastering loops and patterns!');
+                // Redirect back to lessons page
+                setTimeout(() => {
+                    window.location.href = './';
+                }, 1500);
+            } else {
+                alert('You have already completed this lesson!');
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['pen', 'loops', 'patterns', 'efficiency', 'challenge', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
