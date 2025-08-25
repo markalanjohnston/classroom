@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with VEX VR - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #f0f7ff;
+            color: #667eea;
+        }
+
+        .block-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .block-type-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .block-type-card:hover {
+            border-color: #667eea;
+        }
+
+        .block-type-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .block-type-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .progress-item.completed {
+            color: #4caf50;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Block Coding</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Getting Started</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('launch')">Launch VEXcode</div>
+            <div class="progress-item" onclick="scrollToSection('interface')">Interface Tour</div>
+            <div class="progress-item" onclick="scrollToSection('blocks')">Block Types</div>
+            <div class="progress-item" onclick="scrollToSection('project')">First Project</div>
+            <div class="progress-item" onclick="scrollToSection('tips')">Tips & Tricks</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Check Your Knowledge</div>
+        </div>
+
+        <div class="lesson-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-rocket-takeoff text-primary"></i>
+                Getting Started with VEX VR
+            </h1>
+            <p class="lead">
+                Welcome to VEXcode VR! In this lesson, you'll learn everything you need to know to start programming virtual robots.
+            </p>
+
+            <div class="info-box">
+                <i class="bi bi-info-circle"></i>
+                <strong>No Downloads Required!</strong> VEXcode VR runs entirely in your web browser. All you need is an internet connection.
+            </div>
+
+            <section id="launch">
+                <h2 class="section-title">
+                    <i class="bi bi-play-circle"></i> Launching VEXcode VR
+                </h2>
+
+                <p>Getting started with VEXcode VR is simple:</p>
+
+                <ol class="step-list">
+                    <li>Open your web browser (Chrome, Firefox, Safari, or Edge)</li>
+                    <li>Navigate to <a href="https://vr.vex.com" target="_blank">vr.vex.com</a></li>
+                    <li>When the welcome screen appears, click <strong>"Students Get Started"</strong></li>
+                    <li>You're ready to code!</li>
+                </ol>
+
+                <div class="image-container">
+                    <img src="images/Pop-up.png" alt="VEXcode VR Welcome Screen">
+                    <p class="image-caption">The VEXcode VR welcome screen</p>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Pro Tip:</strong> Bookmark vr.vex.com for quick access to VEXcode VR in future sessions!
+                </div>
+            </section>
+
+            <section id="interface">
+                <h2 class="section-title">
+                    <i class="bi bi-grid-3x3"></i> Understanding the Interface
+                </h2>
+
+                <p>VEXcode VR has four main areas you'll work with:</p>
+
+                <div class="block-types-grid">
+                    <div class="block-type-card">
+                        <h4><i class="bi bi-collection"></i> Toolbox</h4>
+                        <p>Contains all the blocks organized by category (Motion, Looks, Events, etc.)</p>
+                    </div>
+                    <div class="block-type-card">
+                        <h4><i class="bi bi-code-square"></i> Workspace</h4>
+                        <p>Where you build your programs by dragging and connecting blocks</p>
+                    </div>
+                    <div class="block-type-card">
+                        <h4><i class="bi bi-joystick"></i> Playground</h4>
+                        <p>Virtual environment where your robot runs and interacts</p>
+                    </div>
+                    <div class="block-type-card">
+                        <h4><i class="bi bi-gear"></i> Toolbar</h4>
+                        <p>Project name, save/load options, and settings</p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">The VR Robot</h3>
+                <p>Your virtual robot comes pre-configured with:</p>
+                <ul>
+                    <li><strong>Drivetrain:</strong> For movement (forward, backward, turning)</li>
+                    <li><strong>Pen:</strong> For drawing on the playground</li>
+                    <li><strong>Sensors:</strong> Bumper, distance, color, and location sensors</li>
+                    <li><strong>Electromagnet:</strong> For picking up disks</li>
+                </ul>
+            </section>
+
+            <section id="blocks">
+                <h2 class="section-title">
+                    <i class="bi bi-puzzle"></i> Understanding Block Shapes
+                </h2>
+
+                <p>VEXcode VR uses five different block shapes, each with a specific purpose:</p>
+
+                <div class="image-container">
+                    <img src="images/block-shapes.png" alt="VEXcode Block Shapes">
+                    <p class="image-caption">The five types of blocks in VEXcode VR</p>
+                </div>
+
+                <div class="block-types-grid">
+                    <div class="block-type-card">
+                        <h4 style="color: #f39c12;">Hat Blocks</h4>
+                        <p>Start your program (curved top). Example: "when started"</p>
+                    </div>
+                    <div class="block-type-card">
+                        <h4 style="color: #3498db;">Stack Blocks</h4>
+                        <p>Perform actions (rectangular). Example: "drive forward"</p>
+                    </div>
+                    <div class="block-type-card">
+                        <h4 style="color: #9b59b6;">Boolean Blocks</h4>
+                        <p>Return true/false (hexagonal). Example: "bumper pressed?"</p>
+                    </div>
+                    <div class="block-type-card">
+                        <h4 style="color: #2ecc71;">Reporter Blocks</h4>
+                        <p>Report values (rounded). Example: "distance in mm"</p>
+                    </div>
+                    <div class="block-type-card">
+                        <h4 style="color: #e74c3c;">C Blocks</h4>
+                        <p>Control flow (C-shaped). Example: "repeat" or "if then"</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Shape Matters!</strong> Blocks only fit where their shapes match. This prevents coding errors!
+                </div>
+            </section>
+
+            <section id="project">
+                <h2 class="section-title">
+                    <i class="bi bi-code-slash"></i> Your First Project
+                </h2>
+
+                <p>Let's create a simple program to make the robot move and draw a square:</p>
+
+                <ol class="step-list">
+                    <li>Drag a <strong>"when started"</strong> block from Events to the workspace</li>
+                    <li>From the Pen category, add <strong>"pen down"</strong></li>
+                    <li>From Control, add a <strong>"repeat 4"</strong> block</li>
+                    <li>Inside the repeat block, add:
+                        <ul>
+                            <li><strong>"drive forward for 200 mm"</strong> (from Drivetrain)</li>
+                            <li><strong>"turn right for 90 degrees"</strong> (from Drivetrain)</li>
+                        </ul>
+                    </li>
+                    <li>Click the <strong>Playground</strong> button to see your robot</li>
+                    <li>Click <strong>Start</strong> to run your program!</li>
+                </ol>
+
+                <div class="code-block">
+                    when started<br>
+                    &nbsp;&nbsp;pen down<br>
+                    &nbsp;&nbsp;repeat 4<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;drive forward for 200 mm<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;turn right for 90 degrees
+                </div>
+
+                <div class="button-group">
+                    <a href="https://vr.vex.com" target="_blank" class="action-button">
+                        <i class="bi bi-play-fill"></i> Try It Now
+                    </a>
+                </div>
+            </section>
+
+            <section id="tips">
+                <h2 class="section-title">
+                    <i class="bi bi-magic"></i> Tips & Tricks
+                </h2>
+
+                <h3 class="subsection-title">Working with Blocks</h3>
+                <ul>
+                    <li><strong>Delete blocks:</strong> Drag them back to the toolbox or right-click and select delete</li>
+                    <li><strong>Duplicate blocks:</strong> Right-click and select "Duplicate"</li>
+                    <li><strong>Get help:</strong> Click the question mark on any block to learn more</li>
+                    <li><strong>Undo/Redo:</strong> Use Ctrl+Z (Cmd+Z on Mac) and Ctrl+Y (Cmd+Y on Mac)</li>
+                </ul>
+
+                <h3 class="subsection-title">Saving Your Work</h3>
+                <ol>
+                    <li>Click on the project name at the top (default: "VEXcode Project")</li>
+                    <li>Type a new name for your project</li>
+                    <li>Go to File menu → "Save to Your Device"</li>
+                    <li>Your project downloads to your computer</li>
+                </ol>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Important:</strong> VEXcode VR doesn't auto-save. Remember to save your work before closing the browser!
+                </div>
+
+                <h3 class="subsection-title">Switch Blocks (Advanced)</h3>
+                <p>As you advance, you can use Switch blocks to transition from visual blocks to Python code:</p>
+
+                <div class="image-container">
+                    <img src="images/switch-blocks.png" alt="Switch Blocks Example">
+                    <p class="image-caption">Switch blocks show Python code inside visual blocks</p>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Not ready for Switch blocks?</strong> No problem! Master regular blocks first, then explore Switch blocks when you're ready for Python.
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Check Your Knowledge
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What shape are Boolean blocks?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> Rectangular</label>
+                            <label><input type="radio" name="q1" value="b"> Hexagonal</label>
+                            <label><input type="radio" name="q1" value="c"> Circular</label>
+                            <label><input type="radio" name="q1" value="d"> C-shaped</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. Which block always starts a VEXcode VR program?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> drive forward</label>
+                            <label><input type="radio" name="q2" value="b"> when started</label>
+                            <label><input type="radio" name="q2" value="c"> repeat forever</label>
+                            <label><input type="radio" name="q2" value="d"> pen down</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. How do you save your project in VEXcode VR?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> It saves automatically</label>
+                            <label><input type="radio" name="q3" value="b"> Press Ctrl+S</label>
+                            <label><input type="radio" name="q3" value="c"> File menu → Save to Your Device</label>
+                            <label><input type="radio" name="q3" value="d"> Click the save icon</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="button-group">
+                <a href="./" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Back to Lessons
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <button class="action-button" onclick="markComplete()">
+                    <i class="bi bi-check2-square"></i> Mark as Complete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'c'
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! Boolean blocks are hexagonal shaped.",
+                    incorrect: "Not quite. Boolean blocks are hexagonal (six-sided) shaped."
+                },
+                q2: {
+                    correct: "Correct! Every VEXcode VR program starts with the 'when started' block.",
+                    incorrect: "Not quite. Programs always begin with the 'when started' block."
+                },
+                q3: {
+                    correct: "Correct! Use File menu → Save to Your Device to save your project.",
+                    incorrect: "Not quite. VEXcode VR requires manual saving through the File menu."
+                }
+            };
+
+            let allCorrect = true;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+                
+                if (selected) {
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (allCorrect) {
+                setTimeout(() => {
+                    alert("Great job! You've mastered the basics of VEXcode VR!");
+                }, 500);
+            }
+        }
+
+        // Mark lesson as complete
+        function markComplete() {
+            let progress = JSON.parse(localStorage.getItem('vexBlocksProgress') || '[]');
+            if (!progress.includes('getting-started')) {
+                progress.push('getting-started');
+                localStorage.setItem('vexBlocksProgress', JSON.stringify(progress));
+                alert('Lesson marked as complete! Great work!');
+            } else {
+                alert('You have already completed this lesson!');
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['launch', 'interface', 'blocks', 'project', 'tips', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Challenges - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .programming-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .programming-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .programming-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .programming-card.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .programming-card.disabled:hover {
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .blocks-icon {
+            color: #4CAF50;
+        }
+
+        .python-icon {
+            color: #3776AB;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .feature-list {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .beginner {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .intermediate {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .coming-soon-banner {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .info-alert {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .info-alert i {
+            color: #2196f3;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Programming Challenges</span>
+        </nav>
+
+        <div class="header-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-code-slash text-primary"></i>
+                Programming Challenges
+            </h1>
+            <p class="lead">
+                Master robotics programming through interactive challenges and hands-on projects. 
+                Choose your programming language and start building your skills!
+            </p>
+        </div>
+
+        <div class="info-alert">
+            <i class="bi bi-info-circle"></i>
+            <strong>Getting Started:</strong> New to VEX robotics? Start with Block Coding to learn the fundamentals, 
+            then advance to Python when you're ready for text-based programming.
+        </div>
+
+        <div class="programming-cards">
+            <a href="blocks/" class="programming-card">
+                <div class="card-icon blocks-icon">
+                    <i class="bi bi-puzzle-fill"></i>
+                </div>
+                <h2 class="card-title">Block Coding</h2>
+                <p class="card-description">
+                    Visual programming with VEXcode VR Blocks. Perfect for beginners!
+                </p>
+                <ul class="feature-list">
+                    <li>Drag-and-drop interface</li>
+                    <li>No syntax errors</li>
+                    <li>Instant visual feedback</li>
+                    <li>Built-in tutorials</li>
+                </ul>
+                <div class="difficulty-badge beginner">
+                    Beginner Friendly
+                </div>
+            </a>
+
+            <div class="programming-card disabled">
+                <div class="coming-soon-banner">Coming Soon</div>
+                <div class="card-icon python-icon">
+                    <i class="bi bi-braces"></i>
+                </div>
+                <h2 class="card-title">Python Coding</h2>
+                <p class="card-description">
+                    Text-based programming with Python. For advanced students!
+                </p>
+                <ul class="feature-list">
+                    <li>Real programming language</li>
+                    <li>Industry standard</li>
+                    <li>Advanced algorithms</li>
+                    <li>Competition ready</li>
+                </ul>
+                <div class="difficulty-badge intermediate">
+                    Intermediate to Advanced
+                </div>
+            </div>
+        </div>
+
+        <div class="header-card" style="background: #f8f9fa;">
+            <h3 class="mb-4">
+                <i class="bi bi-trophy-fill text-warning"></i>
+                Why Learn Robotics Programming?
+            </h3>
+            <div class="row text-start">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-lightbulb text-primary"></i> Problem Solving</h5>
+                    <p>Develop critical thinking and logical reasoning skills through coding challenges.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="bi bi-people text-success"></i> Collaboration</h5>
+                    <p>Work with teammates to solve complex problems and build amazing robots.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="bi bi-rocket text-danger"></i> Future Ready</h5>
+                    <p>Learn skills that are essential for careers in STEM and technology.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="bi bi-controller text-info"></i> Have Fun</h5>
+                    <p>Programming robots is exciting and rewarding - see your code come to life!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
