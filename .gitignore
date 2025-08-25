@@ -1,5 +1,7 @@
 # File: classroom/.gitignore
 
+.venv/
+
 # VSCode
 .vscode/
 *.code-workspace
