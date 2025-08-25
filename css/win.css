@@ -1,0 +1,256 @@
+/* File: classroom/css/win.css */
+/* WIN (What I Need) Robotics Section - Blue/Green Theme */
+
+/* ==========================================
+   WIN COLOR PALETTE
+   ========================================== */
+
+:root {
+  /* Primary colors - Blues and Greens */
+  --win-primary: #4caf50;        /* Green */
+  --win-primary-dark: #388e3c;   /* Dark Green */
+  --win-primary-light: #81c784;  /* Light Green */
+  
+  --win-secondary: #2196f3;      /* Blue */
+  --win-secondary-dark: #1976d2; /* Dark Blue */
+  --win-secondary-light: #64b5f6;/* Light Blue */
+  
+  /* Accent colors */
+  --win-accent: #00bcd4;         /* Cyan */
+  --win-accent-light: #4dd0e1;   /* Light Cyan */
+  
+  /* Background gradients */
+  --win-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --win-gradient-2: linear-gradient(135deg, #2196f3 0%, #4caf50 100%);
+  --win-gradient-3: linear-gradient(135deg, #00bcd4 0%, #4caf50 100%);
+}
+
+/* ==========================================
+   WIN BODY & BACKGROUND
+   ========================================== */
+
+.win-page {
+  background: var(--win-gradient-1);
+  min-height: 100vh;
+}
+
+/* Alternative backgrounds */
+.win-bg-primary {
+  background: var(--win-gradient-2);
+}
+
+.win-bg-secondary {
+  background: var(--win-gradient-3);
+}
+
+/* ==========================================
+   WIN SPECIFIC COMPONENTS
+   ========================================== */
+
+/* WIN Cards */
+.win-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 45px 30px;
+  margin: 20px 0;
+  transition: transform 0.3s ease;
+}
+
+.win-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+/* WIN Info Cards */
+.win-info-card {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 25px;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.win-info-card:hover {
+  border-color: var(--win-primary);
+  box-shadow: 0 5px 20px rgba(76, 175, 80, 0.1);
+}
+
+/* WIN Special Card */
+.win-special-card {
+  background: #e8f5e9;
+  border: 2px solid var(--win-primary);
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.win-special-card h2 {
+  color: var(--win-primary-dark);
+}
+
+/* WIN Buttons */
+.win-btn {
+  background: var(--win-primary);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.win-btn:hover {
+  background: var(--win-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+  text-decoration: none;
+  color: white;
+}
+
+.win-btn-secondary {
+  background: var(--win-secondary);
+}
+
+.win-btn-secondary:hover {
+  background: var(--win-secondary-dark);
+  box-shadow: 0 10px 30px rgba(33, 150, 243, 0.3);
+}
+
+/* WIN Activity Cards */
+.win-activity-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.win-activity-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(76, 175, 80, 0.2);
+}
+
+.win-activity-card .card-header {
+  background: var(--win-gradient-2);
+  color: white;
+  padding: 20px;
+}
+
+/* WIN Tables */
+.win-table th {
+  background: var(--win-primary);
+  color: white;
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.win-table tr:hover {
+  background: #e8f5e9;
+}
+
+/* WIN Badges/Pills */
+.win-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--win-primary);
+  color: white;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  margin-right: 8px;
+}
+
+.win-pill-secondary {
+  background: var(--win-secondary);
+}
+
+/* WIN Type indicators for grading */
+.win-type {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.win-type-eng {
+  background: #e3f2fd;
+  color: var(--win-secondary-dark);
+}
+
+.win-type-und {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.win-type-mas {
+  background: #e8f5e9;
+  color: var(--win-primary-dark);
+}
+
+/* WIN Links */
+.win-link {
+  color: var(--win-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.win-link:hover {
+  color: var(--win-primary-dark);
+  text-decoration: underline;
+}
+
+/* WIN Headers */
+.win-header {
+  color: var(--win-primary-dark);
+  margin-bottom: 20px;
+}
+
+.win-subheader {
+  color: var(--win-secondary-dark);
+  margin-bottom: 15px;
+}
+
+/* WIN Icons */
+.win-icon {
+  color: var(--win-primary);
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+/* WIN Summary Box */
+.win-summary-box {
+  background: #f0f8ff;
+  border-left: 4px solid var(--win-primary);
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+/* WIN Course Card Hover Effects */
+.win-course-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.win-course-card:hover {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(33, 150, 243, 0.1) 100%);
+  transform: scale(1.02);
+}
+
+/* WIN Responsive adjustments */
+@media (max-width: 768px) {
+  .win-card {
+    padding: 30px 20px;
+  }
+  
+  .win-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
