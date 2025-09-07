@@ -1,0 +1,339 @@
+---
+---
+<!-- File: classroom/pae/study/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Guides - PAE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .study-guide-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .chapter-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            min-height: 150px;
+        }
+        
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .chapter-card.available {
+            cursor: pointer;
+        }
+        
+        .chapter-card.available .chapter-number {
+            background: #667eea;
+            color: white;
+        }
+        
+        .chapter-card.coming-soon {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .chapter-card.coming-soon .chapter-number {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+        
+        .chapter-number {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .chapter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        
+        .chapter-description {
+            font-size: 0.9rem;
+            color: #6c757d;
+            flex-grow: 1;
+        }
+        
+        .chapter-status {
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .status-available {
+            color: #28a745;
+        }
+        
+        .status-coming {
+            color: #6c757d;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .info-box h5 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    {% include navigation.html %}
+    
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav">
+            <a href="../../" class="text-white">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../" class="text-white">Principles of Applied Engineering</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Study Guides</span>
+        </nav>
+        
+        <!-- Header -->
+        <div class="study-guide-header">
+            <h1 class="display-5 mb-3">
+                <i class="bi bi-journal-text"></i> Interactive Study Guides
+            </h1>
+            <p class="lead mb-0">
+                Complete these fillable study guides to prepare for tests. Each guide auto-saves your work and can be printed for use during the test.
+            </p>
+        </div>
+        
+        <!-- Info Box -->
+        <div class="info-box">
+            <h5><i class="bi bi-info-circle"></i> How to Use Study Guides</h5>
+            <ul>
+                <li>Click on any available chapter to open the interactive study guide</li>
+                <li>Your work automatically saves to your browser as you type</li>
+                <li>Use the <strong>Download</strong> button to save your progress as a file</li>
+                <li>Use the <strong>Print PDF</strong> button to create a physical copy for test use</li>
+                <li>Completed study guides earn <strong>+10 extra points</strong> (up to 100 max)</li>
+            </ul>
+        </div>
+        
+        <!-- Chapters Grid -->
+        <h3 class="mb-4">Select a Chapter</h3>
+        
+        <div class="chapter-grid">
+            <!-- Chapter 4 - Available -->
+            <a href="ch4-study-guide.html" class="chapter-card available">
+                <span class="chapter-number">Chapter 4</span>
+                <div class="chapter-title">Defining Problems & Brainstorming</div>
+                <div class="chapter-description">
+                    Problem identification, criteria, constraints, and brainstorming methods
+                </div>
+                <div class="chapter-status status-available">
+                    <i class="bi bi-check-circle-fill"></i> Available Now
+                </div>
+            </a>
+            
+            <!-- Chapter 5 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 5</span>
+                <div class="chapter-title">Researching Designs</div>
+                <div class="chapter-description">
+                    Research methods and design analysis
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 6 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 6</span>
+                <div class="chapter-title">Communicating Solutions</div>
+                <div class="chapter-description">
+                    Technical drawings and communication
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 7 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 7</span>
+                <div class="chapter-title">Modeling • Testing • Outputs</div>
+                <div class="chapter-description">
+                    Prototyping and testing processes
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 8 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 8</span>
+                <div class="chapter-title">Mechanical Systems</div>
+                <div class="chapter-description">
+                    Mechanical engineering principles
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 9 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 9</span>
+                <div class="chapter-title">Materials</div>
+                <div class="chapter-description">
+                    Material properties and selection
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 10 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 10</span>
+                <div class="chapter-title">Manufacturing</div>
+                <div class="chapter-description">
+                    Manufacturing processes and techniques
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 11 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 11</span>
+                <div class="chapter-title">Electrical Systems</div>
+                <div class="chapter-description">
+                    Electrical engineering fundamentals
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 12 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 12</span>
+                <div class="chapter-title">Control Systems</div>
+                <div class="chapter-description">
+                    Process control and automation
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 13 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 13</span>
+                <div class="chapter-title">Fluid Systems</div>
+                <div class="chapter-description">
+                    Hydraulics and pneumatics
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 14 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 14</span>
+                <div class="chapter-title">Thermal Systems</div>
+                <div class="chapter-description">
+                    Heat transfer and thermodynamics
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 15 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 15</span>
+                <div class="chapter-title">Bio-Engineering</div>
+                <div class="chapter-description">
+                    Biomedical engineering concepts
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 16 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 16</span>
+                <div class="chapter-title">Civil Engineering</div>
+                <div class="chapter-description">
+                    Infrastructure and structural design
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+            
+            <!-- Chapter 17 - Coming Soon -->
+            <div class="chapter-card coming-soon">
+                <span class="chapter-number">Chapter 17</span>
+                <div class="chapter-title">Environmental Engineering</div>
+                <div class="chapter-description">
+                    Sustainable design and environmental impact
+                </div>
+                <div class="chapter-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Note -->
+        <div class="alert alert-info mt-4">
+            <i class="bi bi-lightbulb"></i> <strong>Tip:</strong> Check back regularly for new study guides. They will be released as we progress through each chapter.
+        </div>
+    </div>
+</body>
+</html>
