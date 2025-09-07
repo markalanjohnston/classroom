@@ -1,0 +1,963 @@
+---
+---
+<!-- File: classroom/pae/study/ch5-study-guide.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5 Study Guide - PAE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    
+    <style>
+        /* Screen styles matching your site theme */
+        .study-guide-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .toolbar-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .toolbar-card .btn {
+            margin: 5px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+        
+        .section-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section-card h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .vocab-table {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .vocab-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+            padding: 12px;
+        }
+        
+        .vocab-table td {
+            padding: 10px;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .page-input {
+            width: 80px;
+            display: inline-block;
+        }
+        
+        .badge-page {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+        
+        textarea.form-control {
+            min-height: 60px;
+            resize: vertical;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+        }
+        
+        textarea.form-control:focus {
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        .form-check-input:checked {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+        
+        .save-indicator {
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .save-indicator.saving {
+            color: #ffc107;
+        }
+        
+        .save-indicator.saved {
+            color: #28a745;
+        }
+        
+        .sketching-steps {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                font-size: 11pt;
+            }
+            
+            .main-container {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .study-guide-content {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            .toolbar-card, .breadcrumb-nav, .no-print {
+                display: none !important;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+            
+            h2, h3 {
+                page-break-after: avoid;
+            }
+            
+            .section-card {
+                page-break-inside: avoid;
+                border: 1px solid #000;
+                margin-bottom: 15px;
+            }
+            
+            textarea.form-control, input.form-control {
+                border: 1px solid #000 !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .vocab-table th {
+                background: #ddd !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .study-guide-content {
+                padding: 20px;
+            }
+            
+            .toolbar-card {
+                padding: 15px;
+            }
+            
+            .toolbar-card .btn {
+                font-size: 0.875rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include navigation.html %}
+    
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav">
+            <a href="../../" class="text-white">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../" class="text-white">Principles of Applied Engineering</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./" class="text-white">Study Guides</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Chapter 5</span>
+        </nav>
+        
+        <!-- Toolbar -->
+        <div class="toolbar-card no-print">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="h4 mb-3 mb-lg-0">
+                        <i class="bi bi-journal-text"></i> Chapter 5: Researching Designs
+                    </h2>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <button class="btn btn-light btn-sm" onclick="saveToFile()">
+                        <i class="bi bi-download"></i> Download
+                    </button>
+                    <button class="btn btn-light btn-sm" onclick="loadFromFile()">
+                        <i class="bi bi-upload"></i> Load
+                    </button>
+                    <button class="btn btn-warning btn-sm" onclick="printPDF()">
+                        <i class="bi bi-printer"></i> Print PDF
+                    </button>
+                    <button class="btn btn-outline-light btn-sm" onclick="clearAll()">
+                        <i class="bi bi-trash"></i> Clear
+                    </button>
+                    <div class="save-indicator mt-2">
+                        <span id="saveStatus"><i class="bi bi-check-circle"></i> Auto-saving enabled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hidden file input -->
+        <input type="file" id="fileInput" accept=".json" style="display: none;">
+        
+        <!-- Main Content -->
+        <div class="study-guide-content">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h1 class="display-6">
+                    <i class="bi bi-search text-primary"></i>
+                    Chapter 5 Study Guide
+                </h1>
+                <p class="lead text-muted">Researching Designs</p>
+            </div>
+            
+            <!-- Instructions -->
+            <div class="alert alert-info">
+                <h5 class="alert-heading"><i class="bi bi-info-circle"></i> Instructions</h5>
+                <ul class="mb-0">
+                    <li>A <strong>completed</strong> study guide may be used on the Chapter 5 test</li>
+                    <li>Turn in a fully completed guide for <strong>+10 points</strong> extra (up to 100 points max)</li>
+                    <li>Open book does not mean easy - use this guide to make your own notes</li>
+                    <li class="no-print text-primary">Your work auto-saves to your browser</li>
+                </ul>
+            </div>
+            
+            <!-- Student Info -->
+            <div class="info-card">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Name:</label>
+                        <input type="text" class="form-control" data-save="student-name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Class Period:</label>
+                        <select class="form-select" data-save="student-class">
+                            <option value="">Select...</option>
+                            <option value="3">Period 3</option>
+                            <option value="4">Period 4</option>
+                            <option value="6">Period 6</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Date:</label>
+                        <input type="date" class="form-control" data-save="student-date">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 1: Key Terms -->
+            <div class="section-card">
+                <h3><i class="bi bi-book"></i> Section 1: Key Terms</h3>
+                <p class="text-muted small mb-3">Write the page number, define in your own words, and create a flashcard idea</p>
+                
+                <div class="table-responsive">
+                    <table class="table vocab-table">
+                        <thead>
+                            <tr>
+                                <th width="18%">Term</th>
+                                <th width="8%">Page</th>
+                                <th width="37%">Your Definition</th>
+                                <th width="37%">Flashcard Idea</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>cost feasibility</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-cost-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-cost-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Front/Back" data-save="term-cost-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>discussion forum</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-forum-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-forum-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-forum-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>effectiveness</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-effect-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-effect-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-effect-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>experimental research</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-expres-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-expres-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-expres-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>feasibility</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-feas-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-feas-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-feas-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>library research</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-library-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-library-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-library-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>refined sketch</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-refined-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-refined-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-refined-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>research</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-research-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-research-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-research-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>rough sketch</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-rough-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-rough-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-rough-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>thumbnail sketch</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-thumb-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-thumb-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-thumb-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>trade-off</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-trade-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-trade-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-trade-flash"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Section 2: Sketching Process -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-pencil"></i> Section 2: Sketching & Research Process</h3>
+                <p class="text-muted small mb-3">Understand the design communication process</p>
+                
+                <!-- Sketching Steps -->
+                <div class="info-card">
+                    <h5>a) Four Basic Steps of Sketching 
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="sketch-steps-page"></span>
+                    </h5>
+                    <div class="sketching-steps">
+                        <p class="text-muted small mb-2">List the steps in order and describe each:</p>
+                        <ol>
+                            <li class="mb-2">
+                                <input type="text" class="form-control form-control-sm mb-1" placeholder="Step 1 name" data-save="step1-name">
+                                <textarea class="form-control form-control-sm" rows="2" placeholder="What happens in this step?" data-save="step1-desc"></textarea>
+                            </li>
+                            <li class="mb-2">
+                                <input type="text" class="form-control form-control-sm mb-1" placeholder="Step 2 name" data-save="step2-name">
+                                <textarea class="form-control form-control-sm" rows="2" placeholder="What happens in this step?" data-save="step2-desc"></textarea>
+                            </li>
+                            <li class="mb-2">
+                                <input type="text" class="form-control form-control-sm mb-1" placeholder="Step 3 name" data-save="step3-name">
+                                <textarea class="form-control form-control-sm" rows="2" placeholder="What happens in this step?" data-save="step3-desc"></textarea>
+                            </li>
+                            <li class="mb-2">
+                                <input type="text" class="form-control form-control-sm mb-1" placeholder="Step 4 name" data-save="step4-name">
+                                <textarea class="form-control form-control-sm" rows="2" placeholder="What happens in this step?" data-save="step4-desc"></textarea>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Types of Sketches -->
+                <div class="info-card">
+                    <h5>b) Types of Sketches
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="sketch-types-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Thumbnail Sketch</label>
+                            <textarea class="form-control" rows="3" placeholder="Description and use" data-save="thumb-sketch-desc"></textarea>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Rough Sketch</label>
+                            <textarea class="form-control" rows="3" placeholder="Description and use" data-save="rough-sketch-desc"></textarea>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Refined Sketch</label>
+                            <textarea class="form-control" rows="3" placeholder="Description and use" data-save="refined-sketch-desc"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Types -->
+                <div class="info-card">
+                    <h5>c) Types of Research
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="research-types-page"></span>
+                    </h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="30%">Research Type</th>
+                                <th width="35%">Description</th>
+                                <th width="35%">Examples/Methods</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Historical Research</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" data-save="historical-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Library, field visits, discussions" data-save="historical-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Experimental Research</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" data-save="experimental-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Material properties, feasibility tests" data-save="experimental-examples"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Trade-offs and Selection -->
+                <div class="info-card">
+                    <h5>d) Trade-off Analysis
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="tradeoff-page"></span>
+                    </h5>
+                    <p class="text-muted small">What is a trade-off and how do engineers use trade-off matrices?</p>
+                    <textarea class="form-control" rows="4" placeholder="Explain trade-offs and their importance in design selection" data-save="tradeoff-explanation"></textarea>
+                    
+                    <div class="mt-3">
+                        <label class="form-label fw-bold">Common Trade-off Categories:</label>
+                        <textarea class="form-control" rows="3" placeholder="List categories engineers consider (cost, weight, durability, etc.)" data-save="tradeoff-categories"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 3: Know and Understand -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-question-circle"></i> Section 3: Know and Understand</h3>
+                <p class="text-muted small mb-3">Practice for the test - add page numbers for quick reference</p>
+                
+                <div class="info-card">
+                    <!-- Q1 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. True or False? Rough sketches are the first drawings completed by engineers.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q1" id="q1t" value="true" data-save="q1">
+                                <label class="form-check-label" for="q1t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q1" id="q1f" value="false" data-save="q1">
+                                <label class="form-check-label" for="q1f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q1-page"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Q2 - Ordering -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Place the sketching process steps in order (1-4):</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" style="width: 50px;" maxlength="1" data-save="order-block">
+                                    <span class="input-group-text flex-grow-1">Block out the solution</span>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" style="width: 50px;" maxlength="1" data-save="order-visual">
+                                    <span class="input-group-text flex-grow-1">Visualize the solution</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" style="width: 50px;" maxlength="1" data-save="order-outline">
+                                    <span class="input-group-text flex-grow-1">Outline the solution</span>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control" style="width: 50px;" maxlength="1" data-save="order-detail">
+                                    <span class="input-group-text flex-grow-1">Detail the solution</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q2-page"></span>
+                    </div>
+                    
+                    <!-- Q3 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. The basic shape of an object is called the _____.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3a" value="a" data-save="q3">
+                            <label class="form-check-label" for="q3a">schematic</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3b" value="b" data-save="q3">
+                            <label class="form-check-label" for="q3b">refined sketch</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3c" value="c" data-save="q3">
+                            <label class="form-check-label" for="q3c">outline</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3d" value="d" data-save="q3">
+                            <label class="form-check-label" for="q3d">None of the above</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q3-page"></span>
+                    </div>
+                    
+                    <!-- Q4 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">4. Library research is a type of _____ research.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4a" value="a" data-save="q4">
+                            <label class="form-check-label" for="q4a">historical</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4b" value="b" data-save="q4">
+                            <label class="form-check-label" for="q4b">field</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4c" value="c" data-save="q4">
+                            <label class="form-check-label" for="q4c">experimental</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4d" value="d" data-save="q4">
+                            <label class="form-check-label" for="q4d">materials</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q4-page"></span>
+                    </div>
+                    
+                    <!-- Q5 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">5. Which method of research involves engineers seeing technologies in action?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" id="q5a" value="a" data-save="q5">
+                            <label class="form-check-label" for="q5a">Library research</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" id="q5b" value="b" data-save="q5">
+                            <label class="form-check-label" for="q5b">Discussion forums</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" id="q5c" value="c" data-save="q5">
+                            <label class="form-check-label" for="q5c">Field visit</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" id="q5d" value="d" data-save="q5">
+                            <label class="form-check-label" for="q5d">Experimental research</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q5-page"></span>
+                    </div>
+                    
+                    <!-- Q6 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">6. True or False? Materials have specific properties that must be considered when producing a product.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q6" id="q6t" value="true" data-save="q6">
+                                <label class="form-check-label" for="q6t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q6" id="q6f" value="false" data-save="q6">
+                                <label class="form-check-label" for="q6f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q6-page"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Q7 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">7. The evaluation of the effectiveness of the potential solution from a financial perspective is known as _____.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7a" value="a" data-save="q7">
+                            <label class="form-check-label" for="q7a">marketability</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7b" value="b" data-save="q7">
+                            <label class="form-check-label" for="q7b">cost feasibility</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7c" value="c" data-save="q7">
+                            <label class="form-check-label" for="q7c">trade-off</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7d" value="d" data-save="q7">
+                            <label class="form-check-label" for="q7d">cost analysis</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q7-page"></span>
+                    </div>
+                    
+                    <!-- Q8 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">8. True or False? Effectiveness is the level at which an engineer's design meets the intended outcome or effect.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q8" id="q8t" value="true" data-save="q8">
+                                <label class="form-check-label" for="q8t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q8" id="q8f" value="false" data-save="q8">
+                                <label class="form-check-label" for="q8f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q8-page"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Q9 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">9. A _____ is the consideration that gaining one positive quality in a design means you lose one other quality.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q9" id="q9a" value="a" data-save="q9">
+                            <label class="form-check-label" for="q9a">trade-off</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q9" id="q9b" value="b" data-save="q9">
+                            <label class="form-check-label" for="q9b">substitution</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q9" id="q9c" value="c" data-save="q9">
+                            <label class="form-check-label" for="q9c">trade-in</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q9" id="q9d" value="d" data-save="q9">
+                            <label class="form-check-label" for="q9d">None of the above</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q9-page"></span>
+                    </div>
+                    
+                    <!-- Q10 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">10. True or False? The design that is selected for development is final, meaning it needs no further design or analysis.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q10" id="q10t" value="true" data-save="q10">
+                                <label class="form-check-label" for="q10t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q10" id="q10f" value="false" data-save="q10">
+                                <label class="form-check-label" for="q10f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q10-page"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Q11 -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">11. True or False? A consensus resolution matrix allows team members to vote and rank their preferences.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q11" id="q11t" value="true" data-save="q11">
+                                <label class="form-check-label" for="q11t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q11" id="q11f" value="false" data-save="q11">
+                                <label class="form-check-label" for="q11f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q11-page"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 4: Apply and Analyze -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-pencil-square"></i> Section 4: Apply and Analyze</h3>
+                <p class="text-muted small mb-3">Answer in your own words using the chapter</p>
+                
+                <div class="info-card">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. What is research?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply1-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply1"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. What four considerations are engineers interested in when performing experimental research?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply2-page"></span>
+                        <textarea class="form-control mt-2" rows="4" placeholder="List the four considerations" data-save="apply2"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. When is the feasibility of a potential solution considered most important?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply3-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply3"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">4. What are preferences of a design idea?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply4-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply4"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">5. What is a refined sketch?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply5-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply5"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 5: Critical Thinking -->
+            <div class="section-card">
+                <h3><i class="bi bi-lightbulb"></i> Section 5: Critical Thinking</h3>
+                <p class="text-muted small mb-3">Apply concepts to real-world scenarios</p>
+                
+                <div class="info-card">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. Material Properties Analysis</label>
+                        <p class="text-muted small">What are important material properties that engineers research? Identify an object in your room and discuss the materials used. Select one material and identify properties engineers might test.</p>
+                        <div class="row mt-2">
+                            <div class="col-md-4 mb-2">
+                                <label>Object selected:</label>
+                                <input type="text" class="form-control" data-save="critical1-object">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label>Material to analyze:</label>
+                                <input type="text" class="form-control" data-save="critical1-material">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label>Page reference:</label>
+                                <input type="text" class="form-control page-input" data-save="critical1-page">
+                            </div>
+                        </div>
+                        <label class="mt-2">Properties to test:</label>
+                        <textarea class="form-control" rows="4" placeholder="List and explain material properties engineers would test" data-save="critical1-properties"></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Trade-off Matrix for Car Design</label>
+                        <p class="text-muted small">What are common trade-offs considered by engineers? What categories would be included in a trade-off matrix for a new car design?</p>
+                        <textarea class="form-control" rows="5" placeholder="List categories and explain why each is important" data-save="critical2"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical2-page"></span>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. Reverse Engineering Exercise</label>
+                        <p class="text-muted small">Find an object in your school that can be easily disassembled and reassembled. List the parts and describe assembly.</p>
+                        <div class="row mt-2">
+                            <div class="col-md-6 mb-2">
+                                <label>Object chosen:</label>
+                                <input type="text" class="form-control" data-save="critical3-object">
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label>Number of parts:</label>
+                                <input type="text" class="form-control" data-save="critical3-parts">
+                            </div>
+                        </div>
+                        <label class="mt-2">Parts list and assembly description:</label>
+                        <textarea class="form-control" rows="5" placeholder="List parts and describe how they fit together" data-save="critical3-assembly"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Study Tips -->
+            <div class="alert alert-success">
+                <h5 class="alert-heading"><i class="bi bi-lightbulb"></i> Quick Study Tips</h5>
+                <ul class="mb-0">
+                    <li>Remember the sketching steps order: Visualize → Block out → Outline → Detail</li>
+                    <li>Historical research = looking at past solutions; Experimental = testing new ideas</li>
+                    <li>Trade-offs mean gaining one quality often means losing another</li>
+                    <li>Cost feasibility specifically refers to financial evaluation</li>
+                    <li>Materials have properties that must be tested and considered</li>
+                </ul>
+            </div>
+            
+            <!-- Footer -->
+            <div class="alert alert-warning text-center">
+                <strong>Reminder:</strong> Complete all sections with page references. This guide is worth +10 extra points when fully completed.
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-save functionality
+        let saveTimeout;
+        const STORAGE_KEY = 'pae-ch5-study-guide';
+        
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadFromStorage();
+            
+            // Add event listeners to all form elements
+            document.querySelectorAll('input[data-save], textarea[data-save], select[data-save]').forEach(element => {
+                if (element.type === 'radio' || element.type === 'checkbox') {
+                    element.addEventListener('change', autoSave);
+                } else {
+                    element.addEventListener('input', autoSave);
+                }
+            });
+            
+            // Set today's date if empty
+            const dateInput = document.querySelector('input[type="date"][data-save="student-date"]');
+            if (dateInput && !dateInput.value) {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+        });
+        
+        function autoSave() {
+            clearTimeout(saveTimeout);
+            updateSaveIndicator('saving');
+            
+            saveTimeout = setTimeout(() => {
+                saveToStorage();
+                updateSaveIndicator('saved');
+            }, 500);
+        }
+        
+        function updateSaveIndicator(status) {
+            const indicator = document.getElementById('saveStatus');
+            if (status === 'saving') {
+                indicator.innerHTML = '<i class="bi bi-arrow-repeat"></i> Saving...';
+                indicator.parentElement.className = 'save-indicator saving';
+            } else {
+                indicator.innerHTML = '<i class="bi bi-check-circle"></i> Saved';
+                indicator.parentElement.className = 'save-indicator saved';
+            }
+        }
+        
+        function saveToStorage() {
+            const data = {};
+            
+            // Save all inputs
+            document.querySelectorAll('[data-save]').forEach(element => {
+                const key = element.getAttribute('data-save');
+                
+                if (element.type === 'checkbox') {
+                    data[key] = element.checked;
+                } else if (element.type === 'radio') {
+                    if (element.checked) {
+                        data[key] = element.value;
+                    }
+                } else {
+                    data[key] = element.value;
+                }
+            });
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+        
+        function loadFromStorage() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (!stored) return;
+            
+            try {
+                const data = JSON.parse(stored);
+                
+                Object.keys(data).forEach(key => {
+                    const elements = document.querySelectorAll(`[data-save="${key}"]`);
+                    
+                    elements.forEach(element => {
+                        if (element.type === 'checkbox') {
+                            element.checked = data[key];
+                        } else if (element.type === 'radio') {
+                            if (element.value === data[key]) {
+                                element.checked = true;
+                            }
+                        } else {
+                            element.value = data[key];
+                        }
+                    });
+                });
+            } catch (e) {
+                console.error('Error loading saved data:', e);
+            }
+        }
+        
+        function saveToFile() {
+            saveToStorage();
+            const data = localStorage.getItem(STORAGE_KEY);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const date = new Date().toISOString().split('T')[0];
+            a.download = `ch5-study-guide-${date}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        function loadFromFile() {
+            document.getElementById('fileInput').click();
+        }
+        
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                    loadFromStorage();
+                    updateSaveIndicator('saved');
+                    alert('Study guide loaded successfully!');
+                } catch (error) {
+                    alert('Error loading file. Please ensure it\'s a valid study guide file.');
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset file input
+            e.target.value = '';
+        });
+        
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all your answers? This cannot be undone.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                document.querySelectorAll('[data-save]').forEach(element => {
+                    if (element.type === 'checkbox' || element.type === 'radio') {
+                        element.checked = false;
+                    } else if (element.type !== 'date') {
+                        element.value = '';
+                    }
+                });
+                updateSaveIndicator('saved');
+            }
+        }
+        
+        function printPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
