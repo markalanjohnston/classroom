@@ -1,0 +1,173 @@
+---
+---
+<!-- File: classroom/edp/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDP - Engineering Design Process</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      /* Make cards equal height and width */
+      .activity-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      
+      .activity-col {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        min-width: 280px;
+        display: flex;
+      }
+      
+      .activity-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        min-height: 200px;
+      }
+      
+      .activity-card p {
+        flex-grow: 1;
+      }
+      
+      @media (max-width: 992px) {
+        .activity-col {
+          flex: 1 1 calc(50% - 10px);
+          max-width: calc(50% - 10px);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .activity-col {
+          flex: 1 1 100%;
+          max-width: 100%;
+        }
+      }
+
+      /* Coming Soon Styling */
+      .coming-soon-card {
+        background: linear-gradient(135deg, #fef3c7, #fcd34d);
+        border: 2px dashed #f59e0b;
+        border-radius: 15px;
+        padding: 3rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white"> <i class="bi bi-house"></i> Home </a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Engineering Design Process</span>
+      </nav>
+
+      <div class="class-header">
+        <h1 class="display-5 mb-3">
+          <i class="bi bi-lightbulb text-warning"></i>
+          Engineering Design Process
+        </h1>
+        <p class="lead text-muted">
+          Advanced engineering course with comprehensive design methodology and professional practices
+        </p>
+      </div>
+
+      <!-- Coming Soon Card -->
+      <div class="coming-soon-card mb-4">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">
+          <i class="bi bi-tools text-warning"></i>
+        </div>
+        <h2 class="text-warning mb-3">Coming Soon!</h2>
+        <p class="text-dark mb-3">
+          The Engineering Design Process course page is currently under development. 
+          This advanced engineering course will be available for students who have completed PAE.
+        </p>
+        <div class="row g-3 mt-3">
+          <div class="col-md-6">
+            <div class="bg-white p-3 rounded">
+              <h5 class="text-warning mb-2">
+                <i class="bi bi-gear"></i> What to Expect
+              </h5>
+              <p class="mb-0 small text-muted">
+                Comprehensive design projects, professional presentation skills, and industry partnerships
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="bg-white p-3 rounded">
+              <h5 class="text-warning mb-2">
+                <i class="bi bi-check-circle"></i> Prerequisites
+              </h5>
+              <p class="mb-0 small text-muted">
+                Successful completion of Principles of Applied Engineering (PAE)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder activity cards -->
+      <div class="activity-row">
+        <div class="activity-col">
+          <div class="activity-card" style="opacity: 0.6; cursor: not-allowed;">
+            <div class="activity-icon text-secondary">
+              <i class="bi bi-calendar-week"></i>
+            </div>
+            <h3>Weekly Agenda</h3>
+            <p class="text-muted mb-2">
+              Weekly course plans and project timelines
+            </p>
+            <small class="text-muted">
+              <i class="bi bi-clock"></i> Available when course starts
+            </small>
+          </div>
+        </div>
+
+        <div class="activity-col">
+          <div class="activity-card" style="opacity: 0.6; cursor: not-allowed;">
+            <div class="activity-icon text-secondary">
+              <i class="bi bi-diagram-3"></i>
+            </div>
+            <h3>Project Portfolio</h3>
+            <p class="text-muted mb-2">
+              Design project galleries and documentation
+            </p>
+            <small class="text-muted">
+              <i class="bi bi-clock"></i> Under Development
+            </small>
+          </div>
+        </div>
+
+        <div class="activity-col">
+          <div class="activity-card" style="opacity: 0.6; cursor: not-allowed;">
+            <div class="activity-icon text-secondary">
+              <i class="bi bi-presentation"></i>
+            </div>
+            <h3>Resources</h3>
+            <p class="text-muted mb-2">
+              Design tools, templates, and industry resources
+            </p>
+            <small class="text-muted">
+              <i class="bi bi-clock"></i> Coming Soon
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
