@@ -26,8 +26,8 @@
       }
       
       .activity-col {
-        flex: 1 1 calc(33.333% - 14px);
-        max-width: calc(33.333% - 14px);
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
         min-width: 280px;
         display: flex;
       }
@@ -78,33 +78,37 @@
         </p>
       </div>
 
-      <!-- Course Information Card -->
-      <div class="mb-4">
-        <a href="syllabus.html" class="text-decoration-none">
-          <div class="activity-card p-4" style="width: 100%; max-width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-            <div class="row align-items-center">
-              <div class="col-auto">
-                <div class="activity-icon text-white" style="font-size: 3rem;">
-                  <i class="bi bi-info-circle"></i>
-                </div>
-              </div>
-              <div class="col">
-                <h3 class="text-white mb-2">Course Information</h3>
-                <p class="text-white-50 mb-0">
-                  View the course syllabus, grading policies, and important dates
-                </p>
-              </div>
-              <div class="col-auto">
-                <div class="text-white" style="font-size: 2rem;">
-                  <i class="bi bi-arrow-right-circle"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
       <div class="activity-row">
+        <div class="activity-col">
+          <a href="syllabus.html" class="activity-card">
+            <div class="activity-icon text-primary">
+              <i class="bi bi-info-circle"></i>
+            </div>
+            <h3>Course Information</h3>
+            <p class="text-muted mb-2">
+              View the course syllabus, grading policies, and important dates
+            </p>
+            <small class="text-primary">
+              <i class="bi bi-arrow-right-circle"></i> View Syllabus
+            </small>
+          </a>
+        </div>
+
+        <div class="activity-col">
+          <a href="weekly-agenda-iframe.html" class="activity-card">
+            <div class="activity-icon text-info">
+              <i class="bi bi-calendar-week"></i>
+            </div>
+            <h3>Weekly Agenda</h3>
+            <p class="text-muted mb-2">
+              Current week plans, assignments, and important dates
+            </p>
+            <small class="text-success">
+              <i class="bi bi-check-circle"></i> Updated Weekly
+            </small>
+          </a>
+        </div>
+
         <div class="activity-col">
           <a href="vocab/" class="activity-card">
             <div class="activity-icon text-warning">
