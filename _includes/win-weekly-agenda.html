@@ -27,11 +27,110 @@
   .activity-list li { margin-bottom: 0.25rem; line-height: 1.4; }
 </style>
 
+<!-- Week 7 -->
+<div class="week-section">
+  <div class="week-header" data-bs-toggle="collapse" data-bs-target="#week7" aria-expanded="true" aria-controls="week7">
+    <div class="week-title">
+      Week 7 (9/15 - 9/19) <span class="badge bg-success ms-2">Current Week</span>
+      <i class="bi bi-chevron-down float-end"></i>
+    </div>
+  </div>
+  <div class="collapse show" id="week7">
+    <table class="table agenda-table">
+      <thead><tr><th scope="col">Day</th><th scope="col">In Class Plan</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="day-cell">Mon 9/15</td>
+          <td>
+            <span class="topic-badge topic-intro">📗 Binary Sensing & Output</span><br>
+            <strong>We Will:</strong> Use the Down Eye Sensor to collect 1s and 0s from grid tiles.<br>
+            <strong>I Will:</strong> Write a loop that prints out the binary pattern from a single column.<br>
+            <strong>EQ:</strong> How can color sensors help us understand digital data?
+            <ul class="activity-list">
+              <li>Launch <a href="https://vr.vex.com" rel="noreferrer noopener" target="_blank">vr.vex.com</a> and select "Encoded Message" playground</li>
+              <li>Build a loop to drive and check for green (Green = 1, Blue = 0)</li>
+              <li>Print 1s/0s as binary and discuss binary place values (base-2)</li>
+              <li>Repeat 8x to get full 8-bit binary pattern</li>
+              <li><strong>Deliverable:</strong> Screenshot of printed binary string from column 1</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="day-cell">Tue 9/16</td>
+          <td>
+            <span class="topic-badge topic-practice">📗 Decimal Conversion & ASCII Table</span><br>
+            <strong>We Will:</strong> Convert binary values into decimal and decode with ASCII.<br>
+            <strong>I Will:</strong> Add up binary values based on place and find their ASCII character.<br>
+            <strong>EQ:</strong> What is ASCII and how do computers use it?
+            <ul class="activity-list">
+              <li>Extend yesterday's program to compute decimal value (bit-weighted sum)</li>
+              <li>Reference ASCII table (PDF) to decode to a letter</li>
+              <li>Use .print() block to output decimal value</li>
+              <li>Learn binary place values (1, 2, 4, 8, ...)</li>
+              <li><strong>Deliverable:</strong> Screenshot of decimal + ASCII printout for first column</li>
+              <li>Annotated code (comment which row = which bit value)</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="day-cell">Wed 9/17</td>
+          <td>
+            <span class="topic-badge topic-challenge">📙 Full Word Decoding & List Storage</span><br>
+            <strong>We Will:</strong> Store each letter's decimal value and decode the full message.<br>
+            <strong>I Will:</strong> Use a list to hold letters and decode all 5 columns.<br>
+            <strong>EQ:</strong> How do we store multiple characters to reveal a message?
+            <ul class="activity-list">
+              <li>Add loop for robot to traverse all 5 columns</li>
+              <li>Store values in a list (word_decimal_numbers)</li>
+              <li>Reset variables for each column</li>
+              <li>Print full word at the end OR as each letter is decoded</li>
+              <li>Optional: Subtract 32 if value > 90 (lowercase → uppercase)</li>
+              <li><strong>Deliverable:</strong> Complete program decoding all 5 letters</li>
+              <li>Screenshot of console output showing full message</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="day-cell">Thu 9/18</td>
+          <td>
+            <span class="topic-badge topic-assessment">🧪 Challenge Day: Encoded Message Mastery Grade</span><br>
+            <strong>Challenge Title:</strong> "The Secret Message"<br>
+            <strong>Instructions:</strong> Select a new starting location, decode all 5 columns using full solution, output full word in console
+            <ul class="activity-list">
+              <li>Students select a new starting location</li>
+              <li>Decode all 5 columns using full solution</li>
+              <li>Output full word in console</li>
+              <li>Upload screenshot of console and program</li>
+              <li><strong>Graded Assignment:</strong> Mastery Grade <em>(Rubric: Correct logic 30pts, Full word decoded 20pts, Efficient code 20pts, Clear output 10pts, Bonus: My Blocks/List +10pts)</em></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="day-cell">Fri 9/19</td>
+          <td>
+            <span class="topic-badge topic-special">🧩 Fun with Python + Minecraft!</span><br>
+            <strong>Quick recap:</strong> "What did we learn from VEX VR this week?"<br>
+            <strong>Transition to lighthearted coding activity:</strong>
+            <ul class="activity-list">
+              <li>Launch Minecraft Education</li>
+              <li>Use makecode or Python editor</li>
+              <li>Build a word in blocks</li>
+              <li>Animate letters with Redstone</li>
+              <li>Build a binary decoder with switches</li>
+              <li><em>Goal:</em> Apply binary concepts in a creative, fun environment</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <!-- Week 6 -->
 <div class="week-section">
-  <div class="week-header" data-bs-toggle="collapse" data-bs-target="#week6" aria-expanded="true" aria-controls="week6">
+  <div class="week-header" data-bs-toggle="collapse" data-bs-target="#week6" aria-expanded="false" aria-controls="week6">
     <div class="week-title">
-      Week 6 (9/8 - 9/12) <span class="badge bg-success ms-2">Current Week</span>
+      Week 6 (9/8 - 9/12)
       <i class="bi bi-chevron-down float-end"></i>
     </div>
   </div>
