@@ -1,0 +1,646 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Binary Place‑Value Visualizer</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .binary-container {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin: 20px auto;
+        max-width: 900px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .bit-grid {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 15px;
+        margin: 30px 0;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .bit-column {
+        text-align: center;
+      }
+
+      .place-value {
+        background: #3498db;
+        color: white;
+        padding: 8px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .bit-toggle {
+        width: 60px;
+        height: 60px;
+        border: 3px solid #34495e;
+        border-radius: 10px;
+        background: #ecf0f1;
+        color: #2c3e50;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+      }
+
+      .bit-toggle.active {
+        background: #27ae60;
+        color: white;
+        border-color: #27ae60;
+        transform: scale(1.1);
+      }
+
+      .bit-toggle:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+
+      .equation-display {
+        background: #f8f9fa;
+        border: 2px solid #dee2e6;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 30px 0;
+        font-size: 1.3rem;
+        text-align: center;
+        font-family: 'Courier New', monospace;
+        line-height: 1.8;
+      }
+
+      .decimal-result {
+        background: #e8f5e9;
+        border: 2px solid #4caf50;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #2e7d32;
+      }
+
+      .instructions {
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+
+      .binary-display {
+        font-family: 'Courier New', monospace;
+        font-size: 2rem;
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px;
+        background: #2c3e50;
+        color: #ecf0f1;
+        border-radius: 10px;
+        letter-spacing: 8px;
+      }
+
+      .reset-btn {
+        background: #e74c3c;
+        border: none;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 20px;
+      }
+
+      .reset-btn:hover {
+        background: #c0392b;
+      }
+
+      .active-value {
+        color: #27ae60;
+        font-weight: bold;
+      }
+
+      .converter-section {
+        border-top: 3px solid #3498db;
+        margin-top: 40px;
+        padding-top: 40px;
+      }
+
+      .input-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin: 25px 0;
+      }
+
+      .decimal-input {
+        width: 100px;
+        height: 50px;
+        font-size: 1.5rem;
+        text-align: center;
+        border: 2px solid #3498db;
+        border-radius: 8px;
+        padding: 10px;
+        font-weight: bold;
+      }
+
+      .convert-btn {
+        background: #3498db;
+        border: none;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .convert-btn:hover {
+        background: #2980b9;
+      }
+
+      .binary-result-display {
+        font-family: 'Courier New', monospace;
+        font-size: 2rem;
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px;
+        background: #8e44ad;
+        color: #ecf0f1;
+        border-radius: 10px;
+        letter-spacing: 8px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .converter-equation {
+        background: #f8f9fa;
+        border: 2px solid #8e44ad;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 20px 0;
+        font-size: 1.3rem;
+        text-align: center;
+        font-family: 'Courier New', monospace;
+        line-height: 1.8;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .decimal-place-section {
+        background: #e8f4f8;
+        border: 2px solid #17a2b8;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+
+      .decimal-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin: 30px 0;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .decimal-column {
+        text-align: center;
+      }
+
+      .decimal-place-label {
+        background: #17a2b8;
+        color: white;
+        padding: 8px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      .decimal-input-box {
+        width: 80px;
+        height: 80px;
+        border: 3px solid #17a2b8;
+        border-radius: 10px;
+        background: white;
+        color: #2c3e50;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 0 auto 15px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .decimal-input-box:focus {
+        outline: none;
+        border-color: #138496;
+        box-shadow: 0 0 10px rgba(23, 162, 184, 0.3);
+        transform: scale(1.05);
+      }
+
+      .decimal-breakdown {
+        font-size: 0.9rem;
+        color: #495057;
+        margin-top: 10px;
+      }
+
+      .decimal-equation {
+        background: #f8f9fa;
+        border: 2px solid #17a2b8;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 20px 0;
+        font-size: 1.3rem;
+        text-align: center;
+        font-family: 'Courier New', monospace;
+        line-height: 1.8;
+      }
+
+      .decimal-result {
+        background: #d4edda;
+        border: 2px solid #28a745;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #155724;
+      }
+
+      .section-divider {
+        border-top: 3px solid #dee2e6;
+        margin: 50px 0;
+        position: relative;
+      }
+
+      .section-divider::after {
+        content: "Now Let's Try Binary Place Values!";
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 0 20px;
+        color: #6c757d;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white">W.I.N. Robotics</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Binary Visualizer</span>
+      </nav>
+
+      <div class="binary-container">
+        <h1 class="display-5 mb-4 text-center">
+          <i class="bi bi-toggles text-primary"></i>
+          Interactive Binary Place‑Value Visualizer
+        </h1>
+
+        <!-- Decimal Place Value Review Section -->
+        <div class="decimal-place-section">
+          <h2 class="text-center mb-4">
+            <i class="bi bi-123 text-info"></i>
+            Let's Review: Decimal Place Values
+          </h2>
+
+          <div class="instructions">
+            <h5><i class="bi bi-info-circle text-info"></i> How to Use:</h5>
+            <p class="mb-0">
+              Enter any single digit (0-9) in each box below. Watch how the total value is calculated using place values: hundreds (×100), tens (×10), and ones (×1).
+            </p>
+          </div>
+
+          <div class="decimal-grid" id="decimalGrid">
+            <div class="decimal-column">
+              <div class="decimal-place-label">Hundreds</div>
+              <input type="number" class="decimal-input-box" id="hundreds" min="0" max="9" value="0" oninput="updateDecimalCalculation()">
+              <div class="decimal-breakdown" id="hundredsBreakdown">0 × 100 = 0</div>
+            </div>
+            <div class="decimal-column">
+              <div class="decimal-place-label">Tens</div>
+              <input type="number" class="decimal-input-box" id="tens" min="0" max="9" value="0" oninput="updateDecimalCalculation()">
+              <div class="decimal-breakdown" id="tensBreakdown">0 × 10 = 0</div>
+            </div>
+            <div class="decimal-column">
+              <div class="decimal-place-label">Ones</div>
+              <input type="number" class="decimal-input-box" id="ones" min="0" max="9" value="0" oninput="updateDecimalCalculation()">
+              <div class="decimal-breakdown" id="onesBreakdown">0 × 1 = 0</div>
+            </div>
+          </div>
+
+          <div class="decimal-equation" id="decimalEquation">
+            (0 × 100 = 0) + (0 × 10 = 0) + (0 × 1 = 0) = 0
+          </div>
+
+          <div class="decimal-result" id="decimalResultDisplay">
+            Decimal Value: 0
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="instructions">
+          <h5><i class="bi bi-info-circle text-warning"></i> Now Try Binary:</h5>
+          <p class="mb-0">
+            Click on any bit below to toggle it between 0 and 1. Watch how the decimal value changes in real-time!
+            Each position represents a power of 2, starting from 2⁰ = 1 on the right up to 2⁷ = 128 on the left.
+          </p>
+        </div>
+
+        <div class="bit-grid" id="bitGrid">
+          <!-- Bit columns will be generated by JavaScript -->
+        </div>
+
+        <div class="binary-display" id="binaryDisplay">
+          00000000
+        </div>
+
+        <div class="equation-display" id="equationDisplay">
+          0 + 0 + 0 + 0 + 0 + 0 + 0 + 0 = 0
+        </div>
+
+        <div class="decimal-result" id="decimalResult">
+          Decimal Value: 0
+        </div>
+
+        <div class="text-center">
+          <button class="reset-btn" onclick="resetAllBits()">
+            <i class="bi bi-arrow-clockwise"></i> Reset All Bits
+          </button>
+        </div>
+
+        <!-- Decimal to Binary Converter Section -->
+        <div class="converter-section">
+          <h2 class="text-center mb-4">
+            <i class="bi bi-arrow-down-circle text-primary"></i>
+            Decimal to Binary Converter
+          </h2>
+
+          <div class="instructions">
+            <h5><i class="bi bi-info-circle text-warning"></i> How to Use:</h5>
+            <p class="mb-0">
+              Enter any number between 0 and 255 in the input field below, then click "Convert" to see its binary representation and the breakdown of place values.
+            </p>
+          </div>
+
+          <div class="input-group">
+            <label for="decimalInput" class="form-label h5 mb-0">Enter Decimal Number (0-255):</label>
+            <input type="number" class="decimal-input" id="decimalInput" min="0" max="255" placeholder="65">
+            <button class="convert-btn" onclick="convertDecimalToBinary()">
+              <i class="bi bi-arrow-right"></i> Convert
+            </button>
+          </div>
+
+          <div class="binary-result-display" id="binaryResultDisplay">
+            Enter a number and click Convert
+          </div>
+
+          <div class="converter-equation" id="converterEquation">
+            Equation will appear here
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Decimal Place Value Calculator Functions
+      function updateDecimalCalculation() {
+        const hundreds = parseInt(document.getElementById('hundreds').value) || 0;
+        const tens = parseInt(document.getElementById('tens').value) || 0;
+        const ones = parseInt(document.getElementById('ones').value) || 0;
+
+        // Validate inputs (0-9 only)
+        if (hundreds > 9) document.getElementById('hundreds').value = 9;
+        if (tens > 9) document.getElementById('tens').value = 9;
+        if (ones > 9) document.getElementById('ones').value = 9;
+        if (hundreds < 0) document.getElementById('hundreds').value = 0;
+        if (tens < 0) document.getElementById('tens').value = 0;
+        if (ones < 0) document.getElementById('ones').value = 0;
+
+        // Recalculate with corrected values
+        const correctedHundreds = parseInt(document.getElementById('hundreds').value) || 0;
+        const correctedTens = parseInt(document.getElementById('tens').value) || 0;
+        const correctedOnes = parseInt(document.getElementById('ones').value) || 0;
+
+        // Calculate individual contributions
+        const hundredsValue = correctedHundreds * 100;
+        const tensValue = correctedTens * 10;
+        const onesValue = correctedOnes * 1;
+        const total = hundredsValue + tensValue + onesValue;
+
+        // Update breakdown displays
+        document.getElementById('hundredsBreakdown').textContent = `${correctedHundreds} × 100 = ${hundredsValue}`;
+        document.getElementById('tensBreakdown').textContent = `${correctedTens} × 10 = ${tensValue}`;
+        document.getElementById('onesBreakdown').textContent = `${correctedOnes} × 1 = ${onesValue}`;
+
+        // Update equation display
+        document.getElementById('decimalEquation').innerHTML =
+          `(${correctedHundreds} × 100 = <span class="active-value">${hundredsValue}</span>) + (${correctedTens} × 10 = <span class="active-value">${tensValue}</span>) + (${correctedOnes} × 1 = <span class="active-value">${onesValue}</span>) = ${total}`;
+
+        // Update result display
+        document.getElementById('decimalResultDisplay').textContent = `Decimal Value: ${total}`;
+      }
+
+      // Initialize the binary visualizer
+      const bitPositions = [128, 64, 32, 16, 8, 4, 2, 1];
+      let bitStates = [0, 0, 0, 0, 0, 0, 0, 0];
+
+      function initializeBitGrid() {
+        const bitGrid = document.getElementById('bitGrid');
+
+        bitPositions.forEach((value, index) => {
+          const bitColumn = document.createElement('div');
+          bitColumn.className = 'bit-column';
+
+          bitColumn.innerHTML = `
+            <div class="place-value">${value}</div>
+            <div class="bit-toggle" id="bit-${index}" onclick="toggleBit(${index})">
+              0
+            </div>
+          `;
+
+          bitGrid.appendChild(bitColumn);
+        });
+      }
+
+      function toggleBit(position) {
+        // Toggle the bit state
+        bitStates[position] = bitStates[position] === 0 ? 1 : 0;
+
+        // Update the visual toggle
+        const bitToggle = document.getElementById(`bit-${position}`);
+        bitToggle.textContent = bitStates[position];
+
+        if (bitStates[position] === 1) {
+          bitToggle.classList.add('active');
+        } else {
+          bitToggle.classList.remove('active');
+        }
+
+        // Update displays
+        updateBinaryDisplay();
+        updateEquationDisplay();
+        updateDecimalResult();
+      }
+
+      function updateBinaryDisplay() {
+        const binaryDisplay = document.getElementById('binaryDisplay');
+        binaryDisplay.textContent = bitStates.join('');
+      }
+
+      function updateEquationDisplay() {
+        const equationDisplay = document.getElementById('equationDisplay');
+        let equation = [];
+
+        bitStates.forEach((bit, index) => {
+          const value = bit * bitPositions[index];
+          if (bit === 1) {
+            equation.push(`<span class="active-value">${value}</span>`);
+          } else {
+            equation.push(`${value}`);
+          }
+        });
+
+        const total = calculateDecimalValue();
+        equationDisplay.innerHTML = equation.join(' + ') + ` = ${total}`;
+      }
+
+      function updateDecimalResult() {
+        const decimalResult = document.getElementById('decimalResult');
+        const total = calculateDecimalValue();
+        decimalResult.textContent = `Decimal Value: ${total}`;
+      }
+
+      function calculateDecimalValue() {
+        let total = 0;
+        bitStates.forEach((bit, index) => {
+          total += bit * bitPositions[index];
+        });
+        return total;
+      }
+
+      function resetAllBits() {
+        bitStates = [0, 0, 0, 0, 0, 0, 0, 0];
+
+        // Update all bit toggles
+        bitStates.forEach((bit, index) => {
+          const bitToggle = document.getElementById(`bit-${index}`);
+          bitToggle.textContent = '0';
+          bitToggle.classList.remove('active');
+        });
+
+        // Update displays
+        updateBinaryDisplay();
+        updateEquationDisplay();
+        updateDecimalResult();
+      }
+
+      // Decimal to Binary Converter Functions
+      function convertDecimalToBinary() {
+        const decimalInput = document.getElementById('decimalInput');
+        const binaryResultDisplay = document.getElementById('binaryResultDisplay');
+        const converterEquation = document.getElementById('converterEquation');
+
+        const decimal = parseInt(decimalInput.value);
+
+        // Validate input
+        if (isNaN(decimal) || decimal < 0 || decimal > 255) {
+          binaryResultDisplay.textContent = 'Invalid Input';
+          converterEquation.innerHTML = 'Please enter a number between 0 and 255';
+          return;
+        }
+
+        // Convert decimal to binary array
+        const binaryArray = [];
+        let tempDecimal = decimal;
+
+        // Calculate each bit
+        for (let i = 0; i < 8; i++) {
+          const placeValue = bitPositions[i];
+          if (tempDecimal >= placeValue) {
+            binaryArray[i] = 1;
+            tempDecimal -= placeValue;
+          } else {
+            binaryArray[i] = 0;
+          }
+        }
+
+        // Display binary result
+        binaryResultDisplay.textContent = binaryArray.join('');
+
+        // Create equation display
+        let equation = [];
+        binaryArray.forEach((bit, index) => {
+          const value = bit * bitPositions[index];
+          if (bit === 1) {
+            equation.push(`<span class="active-value">${value}</span>`);
+          } else {
+            equation.push(`${value}`);
+          }
+        });
+
+        converterEquation.innerHTML = equation.join(' + ') + ` = ${decimal}`;
+      }
+
+      // Allow Enter key to convert
+      document.addEventListener('DOMContentLoaded', function() {
+        const decimalInput = document.getElementById('decimalInput');
+        if (decimalInput) {
+          decimalInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+              convertDecimalToBinary();
+            }
+          });
+        }
+      });
+
+      // Initialize the tool when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        initializeBitGrid();
+        updateEquationDisplay();
+      });
+    </script>
+  </body>
+</html>
