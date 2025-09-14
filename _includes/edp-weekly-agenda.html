@@ -1,139 +1,144 @@
-<!-- File: classroom/_includes/edp-weekly-agenda.html -->
-<div class="weekly-agenda">
-  <div class="week-card">
-    <div class="week-header">
-      <h3><i class="bi bi-calendar3"></i> Week 7: September 15–19</h3>
-      <p class="week-theme">Ethics & Professionalism in Engineering + Teamwork Expectations</p>
-    </div>
+<!-- EDP Weekly Agenda Content -->
+<style>
+  .week-section { margin-bottom: 2rem; }
+  .week-header {
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+  .week-title {
+    background: #2c3e50;
+    color: white; padding: 1rem; text-align: center;
+    font-size: 1.25rem; font-weight: 500;
+    border-radius: 10px 10px 0 0;
+    margin: 0;
+  }
+  .week-header:hover .week-title {
+    background: #34495e;
+  }
+  .agenda-table { border-radius: 0 0 10px 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 0; }
+  .agenda-table th { background-color: #2c3e50; color: white; font-weight: 600; border: none; padding: 1rem; }
+  .agenda-table td { padding: 1rem; vertical-align: top; border-color: #dee2e6; }
+  .day-cell { font-weight: 600; text-align: center; background-color: #f8f9fa; color: #2c3e50; width: 15%; }
+  .topic-badge { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; color: white; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; }
+  .topic-ethics { background-color: #8e44ad; } .topic-professional { background-color: #27ae60; }
+  .topic-teamwork { background-color: #3498db; } .topic-reflection { background-color: #e67e22; }
+  .topic-assess { background-color: #c0392b; } .topic-communication { background-color: #16a085; }
+  .activity-list { margin: 0.5rem 0; padding-left: 1.25rem; }
+  .activity-list li { margin-bottom: 0.25rem; line-height: 1.4; }
+  .objectives-section { background-color: #f8f9fa; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem; }
+  .objective-item { margin-bottom: 0.25rem; font-size: 0.9rem; }
+  .objective-item strong { color: #2c3e50; }
+</style>
 
-    <div class="daily-schedule">
-      <div class="day-item">
-        <div class="day-header">
-          <h4><i class="bi bi-circle-fill text-primary"></i> Monday, Sep 15</h4>
-        </div>
-        <div class="day-content">
-          <div class="lesson-section">
-            <h5>Mini-lesson:</h5>
-            <p>What does professionalism mean for engineers?</p>
-          </div>
-          <div class="activity-section">
-            <h5>Brainstorm:</h5>
-            <p>"3 ways to be professional on a robotics team."</p>
-            <p>Teams record notes in notebooks.</p>
-          </div>
-          <div class="build-section">
-            <h5>Build time:</h5>
-            <p>Organize workspace, review robot progress.</p>
-          </div>
-          <div class="objectives">
-            <div class="we-will"><strong>We Will:</strong> Define professionalism and identify how it applies to robotics.</div>
-            <div class="i-will"><strong>I Will:</strong> Record three professional behaviors in my team notebook.</div>
-            <div class="eq"><strong>EQ:</strong> Why does professionalism matter for robotics teams?</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="day-item">
-        <div class="day-header">
-          <h4><i class="bi bi-circle-fill text-success"></i> Tuesday, Sep 16</h4>
-        </div>
-        <div class="day-content">
-          <div class="lesson-section">
-            <h5>Mini-lesson:</h5>
-            <p>What is engineering ethics?</p>
-          </div>
-          <div class="activity-section">
-            <h5>Case scenario:</h5>
-            <p>Bending rules in scoring.</p>
-            <p>Teams write one example of a potential ethical issue.</p>
-          </div>
-          <div class="build-section">
-            <h5>Build time:</h5>
-            <p>Continue robot design & coding.</p>
-          </div>
-          <div class="objectives">
-            <div class="we-will"><strong>We Will:</strong> Discuss ethical responsibilities engineers have in their work.</div>
-            <div class="i-will"><strong>I Will:</strong> Identify one ethical situation that could impact my robotics team.</div>
-            <div class="eq"><strong>EQ:</strong> How do ethics guide engineers in making responsible decisions?</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="day-item">
-        <div class="day-header">
-          <h4><i class="bi bi-circle-fill text-warning"></i> Wednesday, Sep 17</h4>
-        </div>
-        <div class="day-content">
-          <div class="lesson-section">
-            <h5>Mini-lesson:</h5>
-            <p>Role-play poor vs. good team communication.</p>
-          </div>
-          <div class="activity-section">
-            <h5>Activity:</h5>
-            <p>Teams draft Teamwork Agreements.</p>
-          </div>
-          <div class="build-section">
-            <h5>Build time:</h5>
-            <p>Apply agreements while working on robot.</p>
-          </div>
-          <div class="objectives">
-            <div class="we-will"><strong>We Will:</strong> Identify effective teamwork behaviors and create a team agreement.</div>
-            <div class="i-will"><strong>I Will:</strong> Contribute to my team's teamwork agreement.</div>
-            <div class="eq"><strong>EQ:</strong> What makes teamwork successful in engineering projects?</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="day-item">
-        <div class="day-header">
-          <h4><i class="bi bi-circle-fill text-info"></i> Thursday, Sep 18</h4>
-        </div>
-        <div class="day-content">
-          <div class="lesson-section">
-            <h5>Mini-lesson:</h5>
-            <p>How professionalism & ethics show up at competitions (safety, respect, helping others).</p>
-          </div>
-          <div class="activity-section">
-            <h5>Notebook entry:</h5>
-            <p>Teams write notebook entries: "How professionalism and ethics apply to our team at competition."</p>
-          </div>
-          <div class="build-section">
-            <h5>Build time:</h5>
-            <p>Subsystem testing & troubleshooting.</p>
-          </div>
-          <div class="objectives">
-            <div class="we-will"><strong>We Will:</strong> Connect professionalism and ethics to robotics competitions.</div>
-            <div class="i-will"><strong>I Will:</strong> Write how professionalism and ethics apply to me at competition.</div>
-            <div class="eq"><strong>EQ:</strong> How do professionalism and ethics affect how others see our team at competition?</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="day-item">
-        <div class="day-header">
-          <h4><i class="bi bi-circle-fill text-danger"></i> Friday, Sep 19</h4>
-        </div>
-        <div class="day-content">
-          <div class="lesson-section">
-            <h5>Reflection prompt:</h5>
-            <p>"Why do professionalism & ethics matter to ME?"</p>
-          </div>
-          <div class="activity-section">
-            <h5>Assessment:</h5>
-            <p>Students complete Team Reflection (graded).</p>
-            <p>Quick share-out from each team.</p>
-          </div>
-          <div class="build-section">
-            <h5>Build time:</h5>
-            <p>Open session for robot progress.</p>
-          </div>
-          <div class="objectives">
-            <div class="we-will"><strong>We Will:</strong> Reflect on the importance of ethics and professionalism in engineering.</div>
-            <div class="i-will"><strong>I Will:</strong> Explain one way I will demonstrate professionalism and ethics in my role.</div>
-            <div class="eq"><strong>EQ:</strong> How do professionalism and ethics help us succeed as individuals and as a team?</div>
-          </div>
-        </div>
-      </div>
+<!-- Week 7 -->
+<div class="week-section">
+  <div class="week-header" data-bs-toggle="collapse" data-bs-target="#week7" aria-expanded="true" aria-controls="week7">
+    <div class="week-title">
+      Week 7 (9/15 - 9/19): Ethics & Professionalism <span class="badge bg-success ms-2">Current Week</span>
+      <i class="bi bi-chevron-down float-end"></i>
     </div>
   </div>
+  <div class="collapse show" id="week7">
+    <table class="table agenda-table">
+      <thead><tr><th scope="col">Day</th><th scope="col">In Class Plan</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="day-cell">Mon 9/15</td>
+          <td>
+            <span class="topic-badge topic-professional">What Does Professionalism Mean for Engineers?</span><br>
+            <strong>TEKS:</strong> 1A, 3D<br>
+            <strong>Unit:</strong> Ethics & Professionalism in Engineering
+            <ul class="activity-list">
+              <li><strong>Mini-lesson:</strong> What does professionalism mean for engineers?</li>
+              <li><strong>Brainstorm:</strong> "3 ways to be professional on a robotics team" - Teams record notes in notebooks</li>
+              <li><strong>Build time:</strong> Organize workspace, review robot progress</li>
+            </ul>
+            <div class="objectives-section">
+              <div class="objective-item"><strong>We Will:</strong> Define professionalism and identify how it applies to robotics.</div>
+              <div class="objective-item"><strong>I Will:</strong> Record three professional behaviors in my team notebook.</div>
+              <div class="objective-item"><strong>EQ:</strong> Why does professionalism matter for robotics teams?</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="day-cell">Tue 9/16</td>
+          <td>
+            <span class="topic-badge topic-ethics">What is Engineering Ethics?</span><br>
+            <strong>TEKS:</strong> 1A<br>
+            <strong>Focus:</strong> Ethical responsibilities in engineering work
+            <ul class="activity-list">
+              <li><strong>Mini-lesson:</strong> What is engineering ethics?</li>
+              <li><strong>Case scenario:</strong> Bending rules in scoring</li>
+              <li><strong>Team activity:</strong> Teams write one example of a potential ethical issue</li>
+              <li><strong>Build time:</strong> Continue robot design & coding</li>
+            </ul>
+            <div class="objectives-section">
+              <div class="objective-item"><strong>We Will:</strong> Discuss ethical responsibilities engineers have in their work.</div>
+              <div class="objective-item"><strong>I Will:</strong> Identify one ethical situation that could impact my robotics team.</div>
+              <div class="objective-item"><strong>EQ:</strong> How do ethics guide engineers in making responsible decisions?</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="day-cell">Wed 9/17</td>
+          <td>
+            <span class="topic-badge topic-teamwork">Effective Teamwork & Communication</span><br>
+            <strong>TEKS:</strong> 3D<br>
+            <strong>Focus:</strong> Creating successful team agreements
+            <ul class="activity-list">
+              <li><strong>Mini-lesson:</strong> Role-play poor vs. good team communication</li>
+              <li><strong>Team activity:</strong> Teams draft Teamwork Agreements</li>
+              <li><strong>Build time:</strong> Apply agreements while working on robot</li>
+            </ul>
+            <div class="objectives-section">
+              <div class="objective-item"><strong>We Will:</strong> Identify effective teamwork behaviors and create a team agreement.</div>
+              <div class="objective-item"><strong>I Will:</strong> Contribute to my team's teamwork agreement.</div>
+              <div class="objective-item"><strong>EQ:</strong> What makes teamwork successful in engineering projects?</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="day-cell">Thu 9/18</td>
+          <td>
+            <span class="topic-badge topic-professional">Professionalism & Ethics at Competitions</span><br>
+            <strong>TEKS:</strong> 1A, 3D<br>
+            <strong>Focus:</strong> Competition behavior and team representation
+            <ul class="activity-list">
+              <li><strong>Mini-lesson:</strong> How professionalism & ethics show up at competitions (safety, respect, helping others)</li>
+              <li><strong>Notebook entry:</strong> "How professionalism and ethics apply to our team at competition"</li>
+              <li><strong>Build time:</strong> Subsystem testing & troubleshooting</li>
+            </ul>
+            <div class="objectives-section">
+              <div class="objective-item"><strong>We Will:</strong> Connect professionalism and ethics to robotics competitions.</div>
+              <div class="objective-item"><strong>I Will:</strong> Write how professionalism and ethics apply to me at competition.</div>
+              <div class="objective-item"><strong>EQ:</strong> How do professionalism and ethics affect how others see our team at competition?</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="day-cell">Fri 9/19</td>
+          <td>
+            <span class="topic-badge topic-assess">Team Reflection Assessment</span><br>
+            <strong>Assessment:</strong> Team Reflection (Mastery Grade)<br>
+            <strong>TEKS:</strong> 1A, 3D, 5D
+            <ul class="activity-list">
+              <li><strong>Reflection prompt:</strong> "Why do professionalism & ethics matter to ME?"</li>
+              <li><strong>Assessment:</strong> Students complete Team Reflection (graded)</li>
+              <li><strong>Share-out:</strong> Quick share-out from each team</li>
+              <li><strong>Build time:</strong> Open session for robot progress</li>
+            </ul>
+            <div class="objectives-section">
+              <div class="objective-item"><strong>We Will:</strong> Reflect on the importance of ethics and professionalism in engineering.</div>
+              <div class="objective-item"><strong>I Will:</strong> Explain one way I will demonstrate professionalism and ethics in my role.</div>
+              <div class="objective-item"><strong>EQ:</strong> How do professionalism and ethics help us succeed as individuals and as a team?</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="text-center text-muted mt-4 mb-3">
+  <small><i class="bi bi-clock"></i> Last updated: September 13, 2025</small>
 </div>
