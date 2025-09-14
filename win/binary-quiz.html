@@ -1,0 +1,1031 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binary Challenge Quiz</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+      .quiz-container {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin: 20px auto;
+        max-width: 800px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .progress-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+
+      .round-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .round-badge {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .points-display {
+        background: #28a745;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+
+      .score-display {
+        background: #ffc107;
+        color: #212529;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+
+      .question-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+        color: white;
+        margin: 30px 0;
+      }
+
+      .question-text {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      .answer-input {
+        width: 200px;
+        height: 70px;
+        font-size: 2rem;
+        text-align: center;
+        border: 3px solid white;
+        border-radius: 10px;
+        margin: 0 auto 20px auto;
+        display: block;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      .answer-input:focus {
+        outline: none;
+        border-color: #ffc107;
+        box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+        transform: scale(1.05);
+      }
+
+      .submit-btn {
+        background: #ffc107;
+        border: none;
+        color: #212529;
+        padding: 15px 40px;
+        border-radius: 10px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 20px;
+      }
+
+      .submit-btn:hover {
+        background: #e0a800;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      }
+
+      .feedback-section {
+        padding: 30px;
+        border-radius: 15px;
+        margin: 30px 0;
+        text-align: center;
+        font-size: 1.2rem;
+        display: none;
+      }
+
+      .feedback-correct {
+        background: #d4edda;
+        border: 2px solid #28a745;
+        color: #155724;
+      }
+
+      .feedback-incorrect {
+        background: #f8d7da;
+        border: 2px solid #dc3545;
+        color: #721c24;
+      }
+
+      .next-btn {
+        background: #28a745;
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: background 0.3s;
+      }
+
+      .next-btn:hover {
+        background: #218838;
+      }
+
+      .mode-selection {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .mode-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 15px;
+        color: white;
+        padding: 30px;
+        margin: 15px;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        min-width: 250px;
+      }
+
+      .mode-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        color: white;
+        text-decoration: none;
+      }
+
+      .mode-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .mode-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .mode-description {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 15px;
+      }
+
+      .mode-features {
+        font-size: 0.85rem;
+        opacity: 0.8;
+      }
+
+      .timer-display {
+        background: #dc3545;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: none;
+      }
+
+      .timer-warning {
+        background: #ff6b6b !important;
+        animation: pulse-warning 1s infinite;
+      }
+
+      @keyframes pulse-warning {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+      }
+
+      .final-results {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+        display: none;
+      }
+
+      .certificate-section {
+        background: linear-gradient(135deg, #ffd700, #ffed4e);
+        border-radius: 15px;
+        padding: 30px;
+        margin-top: 30px;
+        text-align: center;
+        display: none;
+      }
+
+      .certificate-section.show {
+        display: block;
+      }
+
+      .certificate-form {
+        max-width: 400px;
+        margin: 20px auto 0;
+      }
+
+      .certificate-input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #fff;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+      }
+
+      .certificate-btn {
+        background: white;
+        color: #ff9800;
+        border: 2px solid white;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .certificate-btn:hover {
+        transform: scale(1.05);
+      }
+
+      .final-score {
+        font-size: 4rem;
+        font-weight: bold;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        margin: 20px 0;
+      }
+
+      .restart-btn, .back-btn {
+        background: white;
+        color: #28a745;
+        border: 2px solid white;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 10px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s;
+      }
+
+      .restart-btn:hover, .back-btn:hover {
+        background: #f8f9fa;
+        transform: translateY(-2px);
+      }
+
+      .difficulty-indicator {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+      }
+
+      .quiz-section {
+        position: relative;
+      }
+
+      .binary-display {
+        font-family: 'Courier New', monospace;
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      }
+
+      @media (max-width: 768px) {
+        .question-text {
+          font-size: 1.5rem;
+        }
+
+        .binary-display {
+          font-size: 1.8rem;
+          letter-spacing: 2px;
+        }
+
+        .answer-input {
+          width: 160px;
+          height: 60px;
+          font-size: 1.5rem;
+        }
+
+        .final-score {
+          font-size: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white">W.I.N. Robotics</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="binary-visualizer.html" class="text-white">Binary Visualizer</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Binary Challenge</span>
+      </nav>
+
+      <!-- Timer Display (fixed position) -->
+      <div class="timer-display" id="timerDisplay">
+        ⏱️ 5:00
+      </div>
+
+      <div class="quiz-container">
+        <h1 class="display-5 mb-4 text-center">
+          <i class="bi bi-trophy-fill text-warning"></i>
+          Binary Challenge Quiz
+        </h1>
+
+        <!-- Mode Selection Screen -->
+        <div class="mode-selection" id="modeSelection">
+          <h2 class="mb-4">Choose Your Challenge Mode</h2>
+          <p class="text-muted mb-4">Select how you want to take the Binary Challenge Quiz</p>
+
+          <div class="d-flex flex-wrap justify-content-center">
+            <div class="mode-card" onclick="startQuiz(false)">
+              <div class="mode-icon">
+                <i class="bi bi-hourglass-split"></i>
+              </div>
+              <div class="mode-title">Untimed Mode</div>
+              <div class="mode-description">Take your time to think through each question</div>
+              <div class="mode-features">
+                • No time pressure<br>
+                • Perfect for learning<br>
+                • Any wrong answer restarts
+              </div>
+            </div>
+
+            <div class="mode-card" onclick="startQuiz(true)">
+              <div class="mode-icon">
+                <i class="bi bi-stopwatch"></i>
+              </div>
+              <div class="mode-title">Timed Challenge</div>
+              <div class="mode-description">Complete all 8 rounds in 5 minutes</div>
+              <div class="mode-features">
+                • 5 minute time limit<br>
+                • Extra challenge mode<br>
+                • Any wrong answer restarts
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-section" id="progressSection" style="display: none;">
+          <div class="round-info">
+            <div class="round-badge" id="roundDisplay">Round 1 of 8</div>
+            <div class="points-display" id="pointsDisplay">Worth: 1 points</div>
+            <div class="score-display" id="scoreDisplay">Score: 0 / 255</div>
+          </div>
+        </div>
+
+        <div class="quiz-section" id="quizSection">
+          <div class="difficulty-indicator" id="difficultyIndicator">Beginner</div>
+          <div class="question-card">
+            <div class="question-text" id="questionText">Loading...</div>
+            <input type="text" class="answer-input" id="answerInput" placeholder="?" autocomplete="off">
+            <button class="submit-btn" onclick="checkAnswer()">
+              <i class="bi bi-check-circle"></i> Submit Answer
+            </button>
+          </div>
+        </div>
+
+        <div class="feedback-section" id="feedbackSection">
+          <div id="feedbackText"></div>
+          <div id="explanationText"></div>
+
+          <!-- Certificate option for wrong answers with points -->
+          <div class="certificate-section" id="feedbackCertificateSection">
+            <div class="text-dark">
+              <div style="font-size: 2rem; margin-bottom: 15px;">
+                <i class="bi bi-award-fill"></i>
+              </div>
+              <h4 style="margin-bottom: 15px;">🌟 Great Progress! 🌟</h4>
+              <p style="margin-bottom: 15px;">You earned <strong id="partialScoreDisplay">0</strong> points! Download a certificate to show your binary skills progress.</p>
+
+              <div class="certificate-form">
+                <input type="text" class="certificate-input" id="feedbackStudentName" placeholder="Enter your name for certificate">
+                <button class="certificate-btn" onclick="generatePartialCertificate()" style="margin-right: 10px;">
+                  <i class="bi bi-download"></i> Download Certificate
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button class="next-btn" onclick="nextQuestion()">
+            <i class="bi bi-arrow-right"></i> Next Question
+          </button>
+        </div>
+
+        <div class="final-results" id="finalResults">
+          <h2><i class="bi bi-star-fill"></i> Quiz Complete!</h2>
+          <div class="final-score" id="finalScore">0 / 255</div>
+          <div id="performanceMessage"></div>
+          <div id="timeMessage"></div>
+          <div class="mt-4">
+            <button class="restart-btn" onclick="restartQuiz()">
+              <i class="bi bi-arrow-clockwise"></i> Try Again
+            </button>
+            <a href="binary-visualizer.html" class="back-btn">
+              <i class="bi bi-arrow-left"></i> Back to Visualizer
+            </a>
+          </div>
+
+          <!-- Certificate Section -->
+          <div class="certificate-section" id="certificateSection">
+            <div class="text-dark">
+              <div style="font-size: 4rem; margin-bottom: 20px;">
+                <i class="bi bi-award-fill"></i>
+              </div>
+              <h2 style="margin-bottom: 20px;">🎉 Congratulations! 🎉</h2>
+              <p style="margin-bottom: 20px;">You've mastered binary conversions! Download your certificate to celebrate this achievement.</p>
+
+              <div class="certificate-form">
+                <input type="text" class="certificate-input" id="studentName" placeholder="Enter your name for certificate">
+                <button class="certificate-btn" onclick="generateCertificate()">
+                  <i class="bi bi-download"></i> Download Certificate
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Quiz configuration
+      const rounds = [
+        { points: 1, difficulty: "Beginner", minValue: 1, maxValue: 7 },
+        { points: 2, difficulty: "Easy", minValue: 8, maxValue: 15 },
+        { points: 4, difficulty: "Easy+", minValue: 16, maxValue: 31 },
+        { points: 8, difficulty: "Medium", minValue: 32, maxValue: 63 },
+        { points: 16, difficulty: "Medium+", minValue: 64, maxValue: 127 },
+        { points: 32, difficulty: "Hard", minValue: 128, maxValue: 191 },
+        { points: 64, difficulty: "Hard+", minValue: 192, maxValue: 239 },
+        { points: 128, difficulty: "Expert", minValue: 240, maxValue: 255 }
+      ];
+
+      let currentRound = 0;
+      let totalScore = 0;
+      let currentQuestion = {};
+      let isTimedMode = false;
+      let timeRemaining = 300; // 5 minutes in seconds
+      let timerInterval = null;
+      let quizStartTime = null;
+      let quizEndTime = null;
+
+      // Convert decimal to 8-bit binary string
+      function decimalToBinary(decimal) {
+        return decimal.toString(2).padStart(8, '0');
+      }
+
+      // Convert binary string to decimal
+      function binaryToDecimal(binary) {
+        return parseInt(binary, 2);
+      }
+
+      // Generate a random question for current round
+      function generateQuestion() {
+        const round = rounds[currentRound];
+        const questionTypes = ['binToDec', 'decToBin'];
+        const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+
+        // Generate random number within round's range
+        const randomNum = Math.floor(Math.random() * (round.maxValue - round.minValue + 1)) + round.minValue;
+
+        if (questionType === 'binToDec') {
+          const binary = decimalToBinary(randomNum);
+          currentQuestion = {
+            type: 'binToDec',
+            question: `What is this binary number in decimal?`,
+            display: binary,
+            answer: randomNum.toString(),
+            explanation: `${binary} = ${randomNum} in decimal`
+          };
+        } else {
+          const binary = decimalToBinary(randomNum);
+          currentQuestion = {
+            type: 'decToBin',
+            question: `What is ${randomNum} in binary? (8 bits)`,
+            display: randomNum.toString(),
+            answer: binary,
+            explanation: `${randomNum} = ${binary} in binary`
+          };
+        }
+      }
+
+      // Update display with current question
+      function updateDisplay() {
+        const round = rounds[currentRound];
+
+        document.getElementById('roundDisplay').textContent = `Round ${currentRound + 1} of 8`;
+        document.getElementById('pointsDisplay').textContent = `Worth: ${round.points} points`;
+        document.getElementById('scoreDisplay').textContent = `Score: ${totalScore} / 255`;
+        document.getElementById('difficultyIndicator').textContent = round.difficulty;
+
+        document.getElementById('questionText').innerHTML = `
+          ${currentQuestion.question}<br>
+          <span class="binary-display">${currentQuestion.display}</span>
+        `;
+
+        document.getElementById('answerInput').value = '';
+        document.getElementById('answerInput').focus();
+      }
+
+      // Check if the submitted answer is correct
+      function checkAnswer() {
+        const userAnswer = document.getElementById('answerInput').value.trim();
+        const correctAnswer = currentQuestion.answer;
+        const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+
+        const feedbackSection = document.getElementById('feedbackSection');
+        const feedbackText = document.getElementById('feedbackText');
+        const explanationText = document.getElementById('explanationText');
+
+        feedbackSection.style.display = 'block';
+
+        if (isCorrect) {
+          const points = rounds[currentRound].points;
+          totalScore += points;
+
+          feedbackSection.className = 'feedback-section feedback-correct';
+          feedbackText.innerHTML = `<i class="bi bi-check-circle-fill"></i> Correct! +${points} points`;
+          explanationText.textContent = currentQuestion.explanation;
+
+          // Hide certificate section for correct answers
+          const feedbackCertificateSection = document.getElementById('feedbackCertificateSection');
+          feedbackCertificateSection.classList.remove('show');
+
+          // Set button text for next question
+          const nextBtn = feedbackSection.querySelector('.next-btn');
+          if (currentRound === rounds.length - 1) {
+            nextBtn.innerHTML = '<i class="bi bi-flag-fill"></i> Finish Quiz';
+          } else {
+            nextBtn.innerHTML = '<i class="bi bi-arrow-right"></i> Next Question';
+          }
+        } else {
+          feedbackSection.className = 'feedback-section feedback-incorrect';
+          feedbackText.innerHTML = `<i class="bi bi-x-circle-fill"></i> Incorrect! Starting over from Round 1.`;
+          explanationText.innerHTML = `
+            <strong>Correct Answer:</strong> ${correctAnswer}<br>
+            <strong>Explanation:</strong> ${currentQuestion.explanation}<br>
+            <em class="text-muted">💡 Study the explanation and try the challenge again!</em>
+          `;
+
+          // Show certificate option if they have earned points
+          const feedbackCertificateSection = document.getElementById('feedbackCertificateSection');
+          if (totalScore > 0) {
+            document.getElementById('partialScoreDisplay').textContent = totalScore;
+            feedbackCertificateSection.classList.add('show');
+          } else {
+            feedbackCertificateSection.classList.remove('show');
+          }
+
+          // Reset progress
+          currentRound = 0;
+          totalScore = 0;
+
+          // Reset timer for timed mode
+          if (isTimedMode) {
+            stopTimer();
+            timeRemaining = 300; // Reset to 5 minutes
+            document.getElementById('timerDisplay').classList.remove('timer-warning');
+            updateTimerDisplay();
+          }
+
+          // Update button text for restart
+          const nextBtn = feedbackSection.querySelector('.next-btn');
+          nextBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Start Over';
+        }
+
+        // Hide quiz section
+        document.getElementById('quizSection').style.display = 'none';
+      }
+
+      // Move to next question or show final results
+      function nextQuestion() {
+        // Check if we need to restart (wrong answer) or continue
+        if (currentRound === 0 && totalScore === 0 && document.getElementById('feedbackSection').classList.contains('feedback-incorrect')) {
+          // This was a wrong answer, restart from Round 1
+          if (isTimedMode) {
+            startTimer(); // Restart timer for timed mode
+          }
+          generateQuestion();
+          updateDisplay();
+        } else {
+          // This was a correct answer, move to next round
+          currentRound++;
+
+          if (currentRound >= rounds.length) {
+            showFinalResults();
+            return;
+          } else {
+            generateQuestion();
+            updateDisplay();
+          }
+        }
+
+        // Show quiz section, hide feedback
+        document.getElementById('quizSection').style.display = 'block';
+        document.getElementById('feedbackSection').style.display = 'none';
+      }
+
+      // Show final results
+      function showFinalResults(timeExpired = false) {
+        stopTimer();
+        quizEndTime = new Date();
+
+        document.getElementById('quizSection').style.display = 'none';
+        document.getElementById('feedbackSection').style.display = 'none';
+
+        const finalResults = document.getElementById('finalResults');
+        const finalScore = document.getElementById('finalScore');
+        const performanceMessage = document.getElementById('performanceMessage');
+        const timeMessage = document.getElementById('timeMessage');
+        const certificateSection = document.getElementById('certificateSection');
+
+        finalScore.textContent = `${totalScore} / 255`;
+
+        // Calculate completion time
+        let timeText = '';
+        if (quizStartTime && quizEndTime) {
+          const timeDiff = (quizEndTime - quizStartTime) / 1000; // seconds
+          const minutes = Math.floor(timeDiff / 60);
+          const seconds = Math.floor(timeDiff % 60);
+          timeText = `⏱️ Completed in ${minutes}:${seconds.toString().padStart(2, '0')}`;
+          if (isTimedMode) {
+            timeText += ' (Timed Mode)';
+          }
+        }
+
+        let message = '';
+        let percentage = (totalScore / 255) * 100;
+
+        if (timeExpired) {
+          message = '⏰ Time\'s up! You can try again to improve your score.';
+          timeText = '⏰ Time expired after 5:00 (Timed Mode)';
+        } else if (percentage === 100) {
+          message = '🎉 Perfect Score! You\'re a binary master!';
+          certificateSection.classList.add('show');
+        } else if (percentage >= 90) {
+          message = '🌟 Excellent work! You really understand binary!';
+        } else if (percentage >= 75) {
+          message = '👍 Great job! You\'ve got a solid grasp of binary!';
+        } else if (percentage >= 60) {
+          message = '📚 Good effort! Keep practicing to improve!';
+        } else if (percentage >= 40) {
+          message = '💪 Nice try! Review the concepts and try again!';
+        } else {
+          message = '🎯 Keep learning! Practice makes perfect!';
+        }
+
+        performanceMessage.innerHTML = `<strong>${Math.round(percentage)}% Score</strong><br>${message}`;
+        timeMessage.innerHTML = `<small class="text-muted">${timeText}</small>`;
+        finalResults.style.display = 'block';
+      }
+
+      // Restart the quiz
+      function restartQuiz() {
+        stopTimer();
+        currentRound = 0;
+        totalScore = 0;
+        timeRemaining = 300;
+        quizStartTime = null;
+        quizEndTime = null;
+
+        // Hide all sections and show mode selection
+        document.getElementById('finalResults').style.display = 'none';
+        document.getElementById('progressSection').style.display = 'none';
+        document.getElementById('quizSection').style.display = 'none';
+        document.getElementById('feedbackSection').style.display = 'none';
+        document.getElementById('timerDisplay').style.display = 'none';
+        document.getElementById('certificateSection').classList.remove('show');
+        document.getElementById('feedbackCertificateSection').classList.remove('show');
+
+        // Show mode selection again
+        document.getElementById('modeSelection').style.display = 'block';
+      }
+
+      // Generate certificate
+      function generateCertificate() {
+        const name = document.getElementById('studentName').value.trim();
+        if (!name) {
+          alert('Please enter your name for the certificate.');
+          return;
+        }
+
+        // Create PDF using jsPDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+          orientation: 'landscape',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        // Background gradient effect (simplified)
+        doc.setFillColor(102, 126, 234);
+        doc.rect(0, 0, 297, 210, 'F');
+
+        // White certificate area
+        doc.setFillColor(255, 255, 255);
+        doc.roundedRect(20, 20, 257, 170, 5, 5, 'F');
+
+        // Border
+        doc.setDrawColor(102, 126, 234);
+        doc.setLineWidth(2);
+        doc.roundedRect(25, 25, 247, 160, 3, 3, 'S');
+
+        // Title
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(36);
+        doc.setTextColor(102, 126, 234);
+        doc.text('Certificate of Achievement', 148.5, 55, { align: 'center' });
+
+        // Subtitle
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.setTextColor(100, 100, 100);
+        doc.text('This certifies that', 148.5, 75, { align: 'center' });
+
+        // Student name
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(28);
+        doc.setTextColor(0, 0, 0);
+        doc.text(name, 148.5, 95, { align: 'center' });
+
+        // Achievement text
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.setTextColor(100, 100, 100);
+        doc.text('has successfully completed the', 148.5, 110, { align: 'center' });
+
+        // Course name
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(20);
+        doc.setTextColor(76, 175, 80);
+        doc.text('Binary Challenge Quiz', 148.5, 125, { align: 'center' });
+
+        // Score and mode info
+        const timeModeText = isTimedMode ? 'Timed Mode (5 minutes)' : 'Untimed Mode';
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(12);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`Score: ${totalScore}/255 points • ${timeModeText}`, 148.5, 135, { align: 'center' });
+
+        // Program name
+        doc.text('W.I.N. Robotics Binary Mastery Program', 148.5, 145, { align: 'center' });
+
+        // Date and time
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        let timeInfo = `Awarded on ${dateStr}`;
+        if (quizStartTime && quizEndTime) {
+          const timeDiff = (quizEndTime - quizStartTime) / 1000;
+          const minutes = Math.floor(timeDiff / 60);
+          const seconds = Math.floor(timeDiff % 60);
+          timeInfo += ` • Completion Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(10);
+        doc.text(timeInfo, 148.5, 160, { align: 'center' });
+
+        // Signature line
+        doc.setDrawColor(0, 0, 0);
+        doc.setLineWidth(0.5);
+        doc.line(100, 170, 197, 170);
+
+        // Signature
+        doc.setFont('times', 'italic');
+        doc.setFontSize(22);
+        doc.setTextColor(25, 25, 80);
+        doc.text('Mark Johnston', 148.5, 185, { align: 'center' });
+
+        // Save the PDF
+        doc.save(`${name.replace(/[^a-zA-Z0-9]/g, '_')}_Binary_Challenge_Certificate.pdf`);
+      }
+
+      // Generate partial certificate for progress
+      function generatePartialCertificate() {
+        const name = document.getElementById('feedbackStudentName').value.trim();
+        if (!name) {
+          alert('Please enter your name for the certificate.');
+          return;
+        }
+
+        // Get the current partial score before it was reset
+        const partialScore = document.getElementById('partialScoreDisplay').textContent;
+
+        // Create PDF using jsPDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({
+          orientation: 'landscape',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        // Background gradient effect (slightly different color for partial)
+        doc.setFillColor(76, 175, 80); // Green background for progress
+        doc.rect(0, 0, 297, 210, 'F');
+
+        // White certificate area
+        doc.setFillColor(255, 255, 255);
+        doc.roundedRect(20, 20, 257, 170, 5, 5, 'F');
+
+        // Border
+        doc.setDrawColor(76, 175, 80);
+        doc.setLineWidth(2);
+        doc.roundedRect(25, 25, 247, 160, 3, 3, 'S');
+
+        // Title
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(32);
+        doc.setTextColor(76, 175, 80);
+        doc.text('Certificate of Progress', 148.5, 55, { align: 'center' });
+
+        // Subtitle
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.setTextColor(100, 100, 100);
+        doc.text('This certifies that', 148.5, 75, { align: 'center' });
+
+        // Student name
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(28);
+        doc.setTextColor(0, 0, 0);
+        doc.text(name, 148.5, 95, { align: 'center' });
+
+        // Achievement text
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(14);
+        doc.setTextColor(100, 100, 100);
+        doc.text('has demonstrated binary conversion skills in the', 148.5, 110, { align: 'center' });
+
+        // Course name
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(20);
+        doc.setTextColor(102, 126, 234);
+        doc.text('Binary Challenge Quiz', 148.5, 125, { align: 'center' });
+
+        // Score and mode info
+        const timeModeText = isTimedMode ? 'Timed Mode (5 minutes)' : 'Untimed Mode';
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(12);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`Progress Score: ${partialScore}/255 points • ${timeModeText}`, 148.5, 135, { align: 'center' });
+
+        // Program name
+        doc.text('W.I.N. Robotics Binary Learning Program', 148.5, 145, { align: 'center' });
+
+        // Date and encouragement
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        let timeInfo = `Awarded on ${dateStr}`;
+
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(10);
+        doc.text(timeInfo, 148.5, 160, { align: 'center' });
+        doc.text('Keep practicing to reach the perfect score of 255!', 148.5, 167, { align: 'center' });
+
+        // Signature line
+        doc.setDrawColor(0, 0, 0);
+        doc.setLineWidth(0.5);
+        doc.line(100, 175, 197, 175);
+
+        // Signature
+        doc.setFont('times', 'italic');
+        doc.setFontSize(22);
+        doc.setTextColor(25, 25, 80);
+        doc.text('Mark Johnston', 148.5, 185, { align: 'center' });
+
+        // Save the PDF
+        doc.save(`${name.replace(/[^a-zA-Z0-9]/g, '_')}_Binary_Progress_Certificate.pdf`);
+      }
+
+      // Timer functions
+      function startTimer() {
+        if (!isTimedMode) return;
+
+        document.getElementById('timerDisplay').style.display = 'block';
+        timerInterval = setInterval(function() {
+          timeRemaining--;
+          updateTimerDisplay();
+
+          if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            timeExpired();
+          }
+        }, 1000);
+      }
+
+      function updateTimerDisplay() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        const display = `⏱️ ${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        const timerElement = document.getElementById('timerDisplay');
+        timerElement.textContent = display;
+
+        // Add warning animation when time is running out
+        if (timeRemaining <= 60) {
+          timerElement.classList.add('timer-warning');
+        }
+      }
+
+      function timeExpired() {
+        document.getElementById('quizSection').style.display = 'none';
+        document.getElementById('feedbackSection').style.display = 'none';
+
+        // Show time up message
+        quizEndTime = new Date();
+        showFinalResults(true);
+      }
+
+      function stopTimer() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }
+
+      // Start the quiz
+      function startQuiz(timed = false) {
+        isTimedMode = timed;
+        quizStartTime = new Date();
+
+        // Hide mode selection, show quiz
+        document.getElementById('modeSelection').style.display = 'none';
+        document.getElementById('progressSection').style.display = 'block';
+        document.getElementById('quizSection').style.display = 'block';
+
+        if (isTimedMode) {
+          timeRemaining = 300; // Reset to 5 minutes
+          startTimer();
+        }
+
+        generateQuestion();
+        updateDisplay();
+      }
+
+      // Allow Enter key to submit answer
+      document.addEventListener('DOMContentLoaded', function() {
+        const answerInput = document.getElementById('answerInput');
+        if (answerInput) {
+          answerInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+              checkAnswer();
+            }
+          });
+        }
+
+        // Show mode selection on load (don't auto-start)
+        document.getElementById('modeSelection').style.display = 'block';
+      });
+    </script>
+  </body>
+</html>
