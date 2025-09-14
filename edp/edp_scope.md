@@ -20,20 +20,27 @@
 
 **Quarter Grade Balance:** Engagement 4 · Understanding 4 · Mastery 4
 
-### Weekly Overview
+### Weekly Overview (Adjusted for Actual Grades)
 
 | Week | Dates | Focus | TEKS Alignment | Planned Assessment | Type |
 |------|-------|-------|----------------|-------------------|------|
-| 1 | Aug 4–8 | W.I.N. Robotics (Pre-transition) | — | 8/6 Engineering Notebook Setup ✅ | Engagement |
-| 2 | Aug 11–15 | W.I.N. Robotics (Pre-transition) | — | Quick Check (8/12–13) ✅; Vocab Exit Ticket (8/15) ✅ | Engagement |
-| 3 | Aug 18–22 | W.I.N. Robotics (Pre-transition) | — | Team Reflection | Engagement |
-| 4 | Aug 25–29 | W.I.N. Robotics (Pre-transition) | — | Subsystem Quiz | Mastery |
-| 5 | Sep 2–5 | W.I.N. Robotics (Pre-transition) | — | Constraints Worksheet | Understanding |
-| 6 | Sep 8–12 | W.I.N. Robotics (Pre-transition) | — | 9/12 V5 Scoring Quiz ✅ | Understanding |
-| 7 | Sep 15–19 | Ethics & professionalism in engineering + Teamwork expectations | 1A, 3D | Team Reflection | Engagement |
-| 8 | Sep 22–26 | Engineering problem statements & constraints | 2A, 3A, 3B, 7A–7C | Problem Statement Draft | Understanding |
-| 9 | Sep 29–Oct 3 | Research in design process; citing sources | 6A–6F | Research Exit Ticket; Unit Test (Rules + Design Process) | Understanding · Mastery |
-| 10 | Oct 6–7 | Documentation & engineering notebooks | 5A–5C | Notebook Check | Mastery |
+| 1 | Aug 4–8 | W.I.N. Robotics (Pre-transition) | — | 8/6 Notebook Setup | Engagement |
+| 2 | Aug 11–15 | W.I.N. Robotics (Pre-transition) | — | 8/13 Quick Check; 8/15 Vocab Exit Ticket; 8/15 VEX VR Blocks | Engagement · Engagement · Understanding |
+| 3 | Aug 18–22 | W.I.N. Robotics (Pre-transition) | — | — | — |
+| 4 | Aug 25–29 | W.I.N. Robotics (Pre-transition) | — | — | — |
+| 5 | Sep 2–5 | W.I.N. Robotics (Pre-transition) | — | 9/3 EDP Conversation | Mastery |
+| 6 | Sep 8–12 | W.I.N. Robotics (Pre-transition) | — | 9/12 V5 Scoring Quiz | Engagement |
+| 7 | Sep 15–19 | Ethics & Professionalism | 1A, 3D | Team Reflection | Mastery |
+| 8 | Sep 22–26 | Problem Statements & Constraints | 2A, 3A, 3B, 7A–7C | Problem Statement Draft | Understanding |
+| 9 | Sep 29–Oct 3 | Research in Design Process | 6A–6F | Research Exit Ticket; Unit Test (Rules + Design Process) | Understanding · Mastery |
+| 10 | Oct 6–7 | Documentation & Engineering Notebooks | 5A–5C | Notebook Check | Mastery |
+
+**Balance at End of Q1:**
+- **Engagement = 4** (done)
+- **Understanding = 4** (1 done + 3 planned)
+- **Mastery = 4** (1 done + 3 planned)
+
+✔️ **Balanced at 12 total grades (4/4/4)**
 
 ## Quarter 2 (Oct 20 – Dec 19)
 
