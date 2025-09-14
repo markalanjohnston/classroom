@@ -1,0 +1,553 @@
+---
+---
+<!-- File: classroom/edp/syllabus.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDP - Syllabus</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .syllabus-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .info-card {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        border: 1px solid #e9ecef;
+      }
+
+      .info-card h2 {
+        color: #495057;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+      }
+
+      .info-card h3 {
+        color: #495057;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+      }
+
+      .info-card h4 {
+        color: #6c757d;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .warning-card {
+        background: #fff8e9;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .teks-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 20px;
+      }
+
+      details {
+        margin-bottom: 10px;
+        background: white;
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #e9ecef;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #495057;
+        padding: 5px;
+      }
+
+      summary:hover {
+        color: #667eea;
+      }
+
+      .teks-content {
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      .teks-item {
+        padding: 8px 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .teks-item:last-child {
+        border-bottom: none;
+      }
+
+      .schedule-table {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      th {
+        background: #667eea;
+        color: white;
+        padding: 10px;
+        text-align: left;
+        font-weight: 600;
+      }
+
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      tr:hover {
+        background: #f8f9fa;
+      }
+
+      .type {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .t-eng {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+
+      .t-und {
+        background: #f3e5f5;
+        color: #7b1fa2;
+      }
+
+      .t-mas {
+        background: #e8f5e9;
+        color: #388e3c;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 4px 12px;
+        background: #667eea;
+        color: white;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        margin-right: 8px;
+      }
+
+      .foot {
+        text-align: center;
+        color: #6c757d;
+        padding: 20px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white">Engineering Design Process</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Syllabus</span>
+      </nav>
+
+      <div class="syllabus-content">
+        <h1 class="display-5 mb-4">
+          <i class="bi bi-tools text-primary"></i>
+          Engineering Design Process – Fall 2025
+        </h1>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3><i class="bi bi-person-badge"></i> Instructor</h3>
+            <p><strong>Mark Johnston, MBA</strong><br>
+            <em class="text-muted">Texas Certified STEM Educator</em><br>
+            Email: <a href="mailto:majohnst@episd.org">majohnst@episd.org</a><br>
+            Class site: <a href="https://classroom.mjstem.com/edp" target="_blank" rel="noopener">classroom.mjstem.com/edp</a></p>
+            <p><span class="pill">High School Credit (CTE)</span><span class="pill">Period 1</span></p>
+          </div>
+          <div class="info-card">
+            <h3><i class="bi bi-clock"></i> After-School Availability (3:00–3:30 PM)</h3>
+            <p>
+              <strong>Monday:</strong> General help / tutoring<br>
+              <strong>Tuesday:</strong> Robotics Club (6th-8th Grade)<br>
+              <strong>Wednesday:</strong> Test retakes / redos<br>
+              <strong>Thursday:</strong> Robotics Club (8th Grade Only)<br>
+              <strong>Friday:</strong> Not available
+            </p>
+          </div>
+        </div>
+
+        <div class="warning-card">
+          <h2><i class="bi bi-exclamation-triangle-fill text-warning"></i> Important: High School Credit Course</h2>
+          <p><strong>This is a high school credit course that counts toward your official transcript and GPA calculation.</strong> While offered to middle school students, EDP carries the same weight and academic expectations as if taken at the freshman or sophomore level in high school. This Career & Technical Education (CTE) credit will appear on your permanent high school transcript.</p>
+          <p class="text-muted"><strong>All students, including 7th graders, are held to high school academic standards.</strong> Accountability is essential – meet deadlines and follow submission requirements.</p>
+        </div>
+
+        <div class="info-card">
+          <h2><i class="bi bi-book"></i> Course Overview</h2>
+          <p><strong>What is EDP?</strong></p>
+          <p>Engineering Design Process introduces students to the fundamental engineering design cycle through practical application in robotics and STEM challenges. Students develop critical engineering thinking skills, learn professional standards of conduct and ethics, and gain hands-on experience with the iterative nature of engineering problem-solving.</p>
+          <p>Throughout the year, students work through complete design cycles including problem identification, research, ideation, prototyping, testing, and communication. We emphasize documentation through engineering notebooks, technical drawing and modeling, and the importance of effective teamwork and communication in professional engineering settings.</p>
+          <p>The course emphasizes occupational safety, project management skills, and the ethical responsibilities of engineers while preparing students for advanced engineering coursework and potential STEM careers.</p>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h2><i class="bi bi-clipboard-check"></i> Grading Policy (Semester)</h2>
+            <ul>
+              <li>Eight <strong>Engagement</strong> grades – 18% (2.25% each)</li>
+              <li>Eight <strong>Understanding</strong> grades – 36%</li>
+              <li>Eight <strong>Mastery</strong> grades – 36%</li>
+              <li>One <strong>Semester Test</strong> – 10%</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h2><i class="bi bi-shield-check"></i> Policies</h2>
+            <h4>Late Work</h4>
+            <p>All assignments have at least two days' notice. Day 1 late: max 70. Day 2 late: NHI. Excused absences: one extra day per day absent.</p>
+            <h4>Academic Integrity</h4>
+            <p>No sharing/copying work, plagiarism, or unauthorized communication during assessments. Violations earn a zero (no redo) and may include a referral.</p>
+          </div>
+        </div>
+
+        <div class="teks-section">
+          <h2><i class="bi bi-list-check"></i> Texas Essential Knowledge and Skills (TEKS) – §127.I</h2>
+          <p class="text-muted mb-3">Click on each standard to view specific expectations</p>
+
+      <details>
+        <summary>(1) Ethics and Professionalism</summary>
+        <div class="teks-content">
+          <div class="teks-item">The student discusses ethics pertaining to engineering. The student is expected to identify and discuss the importance of professionalism, standards of conduct, and ethics as defined by the Texas Engineering Practice Act and rules concerning the practice of engineering and surveying.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(2) Engineering Design Process</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) explain the importance of defining an engineering problem as an initial step in the engineering design process</div>
+          <div class="teks-item">(B) describe the research stage of the engineering design process</div>
+          <div class="teks-item">(C) define and discuss the roles of ideation and conceptualization in innovation and problem solving</div>
+          <div class="teks-item">(D) explain the criteria for selecting an idea or concept for detailed prototype design, development, and testing</div>
+          <div class="teks-item">(E) explain the purpose of non-technical drawings, technical drawings, models, and prototypes in designing a solution to an engineering problem</div>
+          <div class="teks-item">(F) describe the relevance of experimental design, conducting tests, collecting data, and analyzing data to evaluate potential solutions</div>
+          <div class="teks-item">(G) explain how the engineering design process is iterative and the role reflection plays in developing an optimized engineering solution</div>
+          <div class="teks-item">(H) explain the purpose of effective communication throughout the entirety of the engineering design process to various audiences</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(3) Problem Solving and Project Management</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) discuss strategies for managing time, setting deadlines, and prioritizing to accomplish goals</div>
+          <div class="teks-item">(B) identify constraints and describe the importance of planning around constraints, including budgets, resources, and materials</div>
+          <div class="teks-item">(C) define milestones and deliverables and explain the advantages of dividing a large project into smaller milestones and deliverables</div>
+          <div class="teks-item">(D) identify different types of communication and explain how different types of communication lead to successful teamwork on a shared project in a professional setting</div>
+          <div class="teks-item">(E) identify strategies to solve problems and describe how problem solving is utilized to accomplish personal and team objectives</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(4) Occupational Safety and Health</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) explain and discuss the responsibilities of workers and employers to promote safety and health in the workplace and the rights of workers to a secure workplace</div>
+          <div class="teks-item">(B) explain the role industrial hygiene plays in occupational safety and explain various types of industrial hygiene hazards, including physical, chemical, biological, and ergonomic</div>
+          <div class="teks-item">(C) identify and explain the appropriate use of types of personal protective equipment used in industry</div>
+          <div class="teks-item">(D) demonstrate safe practices for preventing or reducing slips, trips, and falls in the workplace</div>
+          <div class="teks-item">(E) describe types of risks of and control methods to prevent electrical hazards in the workplace</div>
+          <div class="teks-item">(F) identify workplace health and safety resources, including emergency plans and Safety Data Sheets, and discuss how these resources are used to make decisions in the workplace</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(5) Engineering Notebook Documentation</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) explain the purpose and legal value of maintaining an engineering notebook as intellectual property</div>
+          <div class="teks-item">(B) describe the proper implementation of an engineering notebook, including notebook type, documentation, signatures, adding external materials, sealing, and dating</div>
+          <div class="teks-item">(C) create and maintain an engineering notebook by recording ideas, notes, decisions, findings, deficiencies, and corrections throughout the entire design process</div>
+          <div class="teks-item">(D) communicate progress during the engineering design process at regular intervals using various methods such as written reports, informal presentations, and formal presentations</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(6) Research in Engineering Design</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) describe the advantages and disadvantages of emerging technologies and practices in the research process</div>
+          <div class="teks-item">(B) explain the importance of identifying and synthesizing information from a variety of sources in the research process</div>
+          <div class="teks-item">(C) explain the ethical acquisition and use of digital information</div>
+          <div class="teks-item">(D) demonstrate use and citation of source material ethically and appropriately</div>
+          <div class="teks-item">(E) define and discuss intellectual property laws such as patent, copyright, and trade secret law and their role in protecting proprietary information in the research process</div>
+          <div class="teks-item">(F) identify limitations in information and research such as outdated, conflicting, proprietary, or limited access</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(7) Problem Statement Development</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) explain the essential components of a problem statement such as who the problem affects, when it is a problem, where the problem happens, and the magnitude of the problem</div>
+          <div class="teks-item">(B) describe different methods for creating and refining a problem statement such as questioning, observation, and client needs</div>
+          <div class="teks-item">(C) create a problem statement that is concise, specific, and measurable</div>
+          <div class="teks-item">(D) collect, analyze, and interpret information relevant to a problem statement</div>
+          <div class="teks-item">(E) modify a problem statement based on information acquired from using processes or various analysis tools such as fishbone charts, root-cause analysis, 80-20 rule, heat maps, survey results, and end-user input</div>
+          <div class="teks-item">(F) explain the purpose of a technical document such as a design brief or design basis that compiles the objectives, constraints, data, alternatives, and design solutions in the engineering design process</div>
+          <div class="teks-item">(G) compile a technical document that includes a problem statement, constraints, resources, budget, timeline, deliverables, and solution criteria such as quality, risk, and extent to which problem is solved</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(8) Solution Conceptualization</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) discuss the importance of creativity in engineering, innovation, and problem solving</div>
+          <div class="teks-item">(B) explain and use various techniques for idea generation such as brainstorming, mapping, storyboarding, sketching, questioning, reverse engineering, and natural solutions to create solution concepts</div>
+          <div class="teks-item">(C) explain the similarities and differences between designing a solution in the classroom versus designing a solution in the real world</div>
+          <div class="teks-item">(D) analyze and evaluate solutions using established criteria such as structured techniques, design matrix, or cost-benefit analysis</div>
+          <div class="teks-item">(E) explain the importance of capturing client feedback to refine solution concepts</div>
+          <div class="teks-item">(F) explain and use various techniques for gathering end-user input such as focus groups, interviews, and surveys to refine solution concepts</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(9) Technical Drawings</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) explain the role of freehand sketching, freehand modeling, technical drawing, and technical modeling in the development of a prototype or solution</div>
+          <div class="teks-item">(B) create nontechnical representations such as sketches, drawings, or models of a solution with relevant annotations</div>
+          <div class="teks-item">(C) develop a technical model of the solution using a nontechnical representation of a solution</div>
+          <div class="teks-item">(D) create technical drawings, including single-view projections, multi-view projections, and orthographic views, using industry standards</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(10) Prototyping</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) identify different types of prototypes and explain the role of a prototype in the development of a solution</div>
+          <div class="teks-item">(B) identify and describe the steps needed to produce a prototype</div>
+          <div class="teks-item">(C) identify and use appropriate tools, equipment, machines, and materials to produce a prototype</div>
+          <div class="teks-item">(D) present a prototype using presentation software</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(11) Testing and Evaluation</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) explain the purpose of conducting tests on a prototype or solution</div>
+          <div class="teks-item">(B) design appropriate protocols for testing a prototype or solution</div>
+          <div class="teks-item">(C) analyze, evaluate, and critique a prototype or solution by using observational testing, experimental testing, empirical evidence, and statistical analysis</div>
+          <div class="teks-item">(D) collect end-user feedback using appropriate protocols such as focus groups, interviews, and surveys to evaluate a prototype or solution</div>
+          <div class="teks-item">(E) identify the successes and failures of a prototype or solution based on the criteria established in the testing protocols and technical document to determine next steps in the engineering design process</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(12) Iterative Design Process</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) analyze design flaws of a prototype or solution using various tools such as fishbone charts, root-cause analysis, 80-20 rule, heat maps, survey results, and end-user feedback</div>
+          <div class="teks-item">(B) iterate steps of the design process, as necessary, to improve and optimize a solution</div>
+          <div class="teks-item">(C) evaluate the potential impact of a solution on the original problem identified during the design process</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(13) Professional Presentation</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) prepare and deliver a presentation detailing the experience of working through each step of the engineering design process to create a viable solution</div>
+          <div class="teks-item">(B) solicit and evaluate feedback on implementation of the design process and the presentation</div>
+          <div class="teks-item">(C) present learning experiences such as essential skills gained, areas of personal growth, and challenges encountered throughout the design process</div>
+        </div>
+      </details>
+        </div>
+
+        <div class="info-card">
+          <h2><i class="bi bi-calendar3"></i> Fall 2025 Semester Schedule</h2>
+          <h3>First Quarter (August 4 – October 7)</h3>
+          <p class="text-muted">Theme: Transition from W.I.N. Robotics into Engineering Design Process foundations</p>
+
+          <div class="schedule-table">
+            <table>
+        <thead>
+          <tr><th>Week</th><th>Dates</th><th>Focus</th><th>Planned Assessment</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td><td>Aug 4–8</td>
+            <td>W.I.N. Robotics (Pre-transition)</td>
+            <td>8/6 Engineering Notebook Setup</td>
+            <td><span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td><td>Aug 11–15</td>
+            <td>W.I.N. Robotics (Pre-transition)</td>
+            <td>Quick Check (8/12–13); Vocab Exit Ticket (8/15)</td>
+            <td><span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td><td>Aug 18–22</td>
+            <td>W.I.N. Robotics (Pre-transition)</td>
+            <td>Team Reflection</td>
+            <td><span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td><td>Aug 25–29</td>
+            <td>W.I.N. Robotics (Pre-transition)</td>
+            <td>Subsystem Quiz</td>
+            <td><span class="type t-mas">Mastery</span></td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td><td>Sep 2–5</td>
+            <td>W.I.N. Robotics (Pre-transition)</td>
+            <td>Constraints Worksheet</td>
+            <td><span class="type t-und">Understanding</span></td>
+          </tr>
+          <tr>
+            <td><strong>6</strong></td><td>Sep 8–12</td>
+            <td>W.I.N. Robotics (Pre-transition)</td>
+            <td>9/12 V5 Scoring Quiz</td>
+            <td><span class="type t-und">Understanding</span></td>
+          </tr>
+          <tr>
+            <td><strong>7</strong></td><td>Sep 15–19</td>
+            <td>Ethics & professionalism in engineering + Teamwork expectations</td>
+            <td>Team Reflection</td>
+            <td><span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>8</strong></td><td>Sep 22–26</td>
+            <td>Engineering problem statements & constraints</td>
+            <td>Problem Statement Draft</td>
+            <td><span class="type t-und">Understanding</span></td>
+          </tr>
+          <tr>
+            <td><strong>9</strong></td><td>Sep 29–Oct 3</td>
+            <td>Research in design process; citing sources</td>
+            <td>Research Exit Ticket; Unit Test (Rules + Design Process)</td>
+            <td><span class="type t-und">Understanding</span> · <span class="type t-mas">Mastery</span></td>
+          </tr>
+          <tr>
+            <td><strong>10</strong></td><td>Oct 6–7</td>
+            <td>Documentation & engineering notebooks</td>
+            <td>Notebook Check</td>
+            <td><span class="type t-mas">Mastery</span></td>
+          </tr>
+        </tbody>
+            </table>
+          </div>
+          <p class="text-muted"><em>First Quarter Grade Balance:</em> Engagement 4 · Understanding 4 · Mastery 4</p>
+
+          <h3>Second Quarter (October 20 – December 19)</h3>
+          <p class="text-muted">Theme: Design, build, and communicate solutions through VEX competition prep</p>
+
+          <div class="schedule-table">
+            <table>
+        <thead>
+          <tr><th>Week</th><th>Dates</th><th>Focus</th><th>Planned Assessment</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>11</strong></td><td>Oct 20–24</td>
+            <td>Sketching & communicating solutions (freehand, CAD basics)</td>
+            <td>Technical Sketch Packet; Class Discussion Reflection</td>
+            <td><span class="type t-mas">Mastery</span> · <span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>12</strong></td><td>Oct 27–31</td>
+            <td>Safety: shop, electrical, PPE, slips/falls</td>
+            <td>Safety Quiz; Safety Reflection Write-up</td>
+            <td><span class="type t-und">Understanding</span> · <span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>13</strong></td><td>Nov 3–7</td>
+            <td>Subsystem brainstorming & early prototypes</td>
+            <td>Subsystem Concept Sketches; Prototype Peer Feedback</td>
+            <td><span class="type t-mas">Mastery</span> · <span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>14</strong></td><td>Nov 10–14</td>
+            <td>Build sprint + communication practice</td>
+            <td>Competition Prep Reflection</td>
+            <td><span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>15</strong></td><td>Nov 17–21</td>
+            <td>Competition performance analysis (Nov 14/15)</td>
+            <td>Competition Report</td>
+            <td><span class="type t-mas">Mastery</span></td>
+          </tr>
+          <tr style="background:#f9f9f9">
+            <td><strong>16</strong></td><td>Nov 24–28</td>
+            <td colspan="3"><em>Thanksgiving Break</em></td>
+          </tr>
+          <tr>
+            <td><strong>17</strong></td><td>Dec 1–5</td>
+            <td>Testing protocols & iteration planning</td>
+            <td>Testing Protocol Write-up; Data Analysis Exit Ticket</td>
+            <td><span class="type t-und">Understanding</span> · <span class="type t-und">Understanding</span></td>
+          </tr>
+          <tr>
+            <td><strong>18</strong></td><td>Dec 8–12</td>
+            <td>Team presentations (progress update)</td>
+            <td>Mini Team Presentation</td>
+            <td><span class="type t-eng">Engagement</span></td>
+          </tr>
+          <tr>
+            <td><strong>19</strong></td><td>Dec 15–19</td>
+            <td>Notebook check; semester wrap-up</td>
+            <td>Technical Notebook Check</td>
+            <td><span class="type t-mas">Mastery</span></td>
+          </tr>
+        </tbody>
+            </table>
+          </div>
+          <p class="text-muted"><em>Second Quarter Grade Balance:</em> Engagement 4 · Understanding 4 · Mastery 4</p>
+        </div>
+
+        <div class="info-card">
+          <h2><i class="bi bi-calendar3"></i> Spring 2026 Semester Schedule</h2>
+          <h3>Third Quarter (January – March)</h3>
+          <p class="text-muted">Theme: Testing and iteration during peak competition season</p>
+
+          <h3>Fourth Quarter (March – May)</h3>
+          <p class="text-muted">Theme: Optimization and professional delivery (post-season projects)</p>
+        </div>
+
+        <div class="foot">Prepared for Fall 2025 · Updated 2025-09-13</div>
+      </div>
+    </div>
+  </body>
+</html>
