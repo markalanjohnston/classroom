@@ -8,12 +8,15 @@ This educational website provides interactive learning experiences for engineeri
 
 ### Courses Offered
 
-- **Principles of Applied Engineering (PAE)** - Comprehensive engineering fundamentals with 17 chapters of interactive content
-- **W.I.N. Robotics** - Robotics programming, competition preparation, and team collaboration tools (coming soon)
+- **Principles of Applied Engineering (PAE)** - Comprehensive engineering fundamentals with 17 chapters of interactive content, vocabulary games, study guides, and weekly agendas
+- **Engineering Design Process (EDP)** - Project-based robotics curriculum focusing on design thinking, problem-solving, and team collaboration
+- **W.I.N. Robotics** - Programming challenges, VEX VR simulations, binary/ASCII activities, and Python in Minecraft
 
 ## 🎮 Features
 
-### Interactive Vocabulary Games
+### Interactive Learning Tools
+
+#### Vocabulary Games (PAE)
 - **Jeopardy-style gameplay** with team-based competition (2-6 teams)
 - **Dynamic board sizing** that adapts to available content (3-5 rows)
 - **Smart question distribution** with MIX categories for incomplete datasets
@@ -22,13 +25,31 @@ This educational website provides interactive learning experiences for engineeri
 - **Certificate generation** for completed games with PDF download
 - **Responsive design** optimized for projectors, tablets, and mobile devices
 
+#### Programming Challenges (W.I.N.)
+- **VEX VR simulations** with block-based programming
+- **Binary/ASCII decoder** with interactive visualizations
+- **Python in Minecraft** coding activities
+- **Progressive difficulty** from basic movement to complex algorithms
+- **Real-world applications** connecting code to robotics
+
+#### Weekly Planning Tools
+- **Interactive weekly agendas** for all three courses
+- **Collapsible week sections** for easy navigation
+- **Color-coded activities** by topic type
+- **Learning objectives** and essential questions for each day
+- **Assessment tracking** with grade categories
+
 ### Technical Features
 - **Jekyll-powered** static site with GitHub Pages compatibility
 - **JSON-based content management** for easy updates
-- **Bootstrap 5** responsive framework
+- **Bootstrap 5** responsive framework with custom styling
 - **Local storage** for game state persistence
 - **Print-friendly** certificates with signature support
 - **Accessibility-focused** design with keyboard navigation
+- **Collapsible interfaces** for organized content navigation
+- **Interactive visualizations** for binary/ASCII learning
+- **Embedded iframe support** for modular weekly agendas
+- **Multi-language support** (English/Spanish) for parent resources
 
 ## 📁 Project Structure
 
@@ -36,8 +57,12 @@ This educational website provides interactive learning experiences for engineeri
 classroom/
 ├── _config.yml                    # Jekyll configuration
 ├── _includes/
-│   └── navigation.html           # Reusable navigation component
+│   ├── navigation.html           # Reusable navigation component
+│   ├── pae-weekly-agenda.html    # PAE weekly planning content
+│   ├── edp-weekly-agenda.html    # EDP weekly planning content
+│   └── win-weekly-agenda.html    # WIN weekly planning content
 ├── index.html                    # Main landing page
+├── about.html                    # Instructor information
 ├── css/
 │   └── styles.css               # Global styles (scaled for optimal viewing)
 ├── images/
@@ -48,23 +73,57 @@ classroom/
 │   ├── correct.mp3              # Sound effects for games
 │   ├── incorrect.mp3
 │   └── ding-ding.mp3
+├── parents/
+│   ├── index.html               # Parent information (English)
+│   └── index-es.html            # Parent information (Spanish)
 ├── pae/                         # Principles of Applied Engineering
 │   ├── index.html              # PAE course hub
+│   ├── syllabus.html           # Course syllabus
+│   ├── weekly-agenda.html      # Weekly planning interface
+│   ├── study/                  # Study guides
+│   │   ├── index.html          # Study guide hub
+│   │   ├── ch4-study-guide.html
+│   │   └── ch5-study-guide.html
 │   └── vocab/                  # Vocabulary game system
 │       ├── index.html          # Chapter selection menu
 │       ├── game.html           # Main game engine
 │       ├── certificate.html    # Certificate generator
 │       └── ch[1-17]vocab.json  # Chapter vocabulary data
+├── edp/                        # Engineering Design Process
+│   ├── index.html              # EDP course hub
+│   ├── syllabus.html           # Course syllabus
+│   ├── edp_scope.md            # Course scope and sequence
+│   └── weekly-agenda-iframe.html
 └── win/                        # W.I.N. Robotics
-    └── index.html              # Robotics course hub (under development)
+    ├── index.html              # Robotics course hub
+    ├── robotics.html           # Robotics overview
+    ├── weekly-agenda.html      # Weekly planning interface
+    ├── binary-quiz.html        # Binary number quiz
+    ├── binary-visualizer.html  # Binary visualization tool
+    └── programming-challenges/  # VEX VR programming activities
+        ├── index.html          # Challenge hub
+        ├── blocks/             # Block-based challenges
+        │   ├── index.html
+        │   ├── getting-started.html
+        │   ├── basic-movement.html
+        │   ├── sensors-detection.html
+        │   ├── loops-patterns.html
+        │   ├── decision-making.html
+        │   ├── rover-rescue.html
+        │   └── challenge-projects.html
+        └── python/             # Python programming challenges
+            └── index.html
 ```
 
 ## 🚀 Getting Started
 
 ### For Students
 1. Visit [classroom.mjstem.com](https://classroom.mjstem.com)
-2. Select your course (PAE or W.I.N. Robotics)
-3. Choose an activity
+2. Select your course (PAE, EDP, or W.I.N. Robotics)
+3. Choose an activity:
+   - **PAE**: Vocabulary games, study guides, or weekly agenda
+   - **EDP**: Weekly agenda and project planning
+   - **W.I.N.**: Programming challenges, binary tools, or weekly agenda
 4. Follow on-screen instructions
 
 ### For Educators (Setup)
@@ -107,12 +166,16 @@ The game automatically adjusts based on available questions:
 ## 🎯 Educational Goals
 
 This platform is designed to:
-- **Reinforce vocabulary** through spaced repetition and gamification
-- **Encourage collaboration** with team-based activities
+- **Reinforce vocabulary** through spaced repetition and gamification (PAE)
+- **Develop computational thinking** through programming challenges (W.I.N.)
+- **Foster design thinking** through project-based robotics (EDP)
+- **Encourage collaboration** with team-based activities and documentation
 - **Provide immediate feedback** for formative assessment
 - **Support diverse learners** with visual, auditory, and kinesthetic elements
-- **Track progress** through certificates and scoring
+- **Track progress** through certificates, scoring, and weekly planning
 - **Prepare students** for technical communication and engineering concepts
+- **Connect theory to practice** through hands-on robotics and programming
+- **Build digital literacy** through modern web-based learning tools
 
 ## 💻 Technical Requirements
 
@@ -145,10 +208,27 @@ jekyll serve
 ```
 
 ### Adding New Content
+
+#### Vocabulary Games (PAE)
 1. Create new JSON file: `ch18vocab.json`
 2. Follow existing structure with 4 categories
 3. Include 5 questions per category (20 total) for optimal gameplay
 4. Test locally before pushing
+
+#### Weekly Agendas
+1. Edit appropriate file in `_includes/`:
+   - `pae-weekly-agenda.html` for PAE
+   - `edp-weekly-agenda.html` for EDP
+   - `win-weekly-agenda.html` for W.I.N.
+2. Add new week section with proper Bootstrap collapse structure
+3. Use appropriate topic badges and activity formatting
+4. Update "Current Week" badge as needed
+
+#### Programming Challenges (W.I.N.)
+1. Create new HTML file in appropriate subdirectory
+2. Follow existing template structure
+3. Include clear objectives and step-by-step instructions
+4. Test with target platform (VEX VR, Minecraft, etc.)
 
 ## 📄 License
 
@@ -179,7 +259,8 @@ For permissions or questions, contact Mark Johnston at El Paso ISD.
 
 ## 📊 Version History
 
-- **v2.0** (Current) - Dynamic board sizing, certificate generation, mobile optimization
+- **v3.0** (Current) - Multi-course platform with EDP and expanded W.I.N. features, weekly planning tools, binary visualizations, parent resources
+- **v2.0** - Dynamic board sizing, certificate generation, mobile optimization
 - **v1.0** - Initial release with basic vocabulary games
 
 ---
