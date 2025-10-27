@@ -221,31 +221,6 @@ jekyll serve
 # Visit http://localhost:4000
 ```
 
-### Adding New Content
-
-#### Vocabulary Games (PAE)
-1. Create new JSON file: `ch18vocab.json`
-2. Follow existing structure with 4 categories
-3. Include 5 questions per category (20 total) for optimal gameplay
-4. Test locally before pushing
-
-#### Weekly Agendas
-1. Download latest Learning Objectives PDF from El Paso ISD system
-2. Edit appropriate file:
-   - `pae/_includes-pae-weekly-agenda.html` for PAE
-   - `win/_includes-win-weekly-agenda.html` for W.I.N.
-3. Add new week section with proper Bootstrap collapse structure
-4. Use appropriate topic badges and activity formatting
-5. Update "Current Week" badge (move to new week, change previous to collapsed)
-6. Update "Last updated" date at bottom
-7. See `WORKFLOW.md` for detailed weekly update procedures
-
-#### Programming Challenges (W.I.N.)
-1. Create new HTML file in appropriate subdirectory
-2. Follow existing template structure
-3. Include clear objectives and step-by-step instructions
-4. Test with target platform (VEX VR, Minecraft, etc.)
-
 ## 📄 License
 
 © 2025 Mark Johnston. All rights reserved.
