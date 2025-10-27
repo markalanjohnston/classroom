@@ -51,16 +51,28 @@ This educational website provides interactive learning experiences for engineeri
 - **Embedded iframe support** for modular weekly agendas
 - **Multi-language support** (English/Spanish) for parent resources
 
+## 🌐 Site Information
+
+**Production URL**: [https://classroom.mjstem.com](https://classroom.mjstem.com)
+**Repository**: GitHub (`mark/classroom`)
+**Deployment**: GitHub Pages with custom domain
+**Framework**: Jekyll static site generator
+**Bootstrap**: v5.3.0 with custom theming
+
+### Weekly Update Process
+- Learning objectives generated from El Paso ISD system
+- PDFs stored in `PDF-Objectives/` (gitignored)
+- Weekly agendas updated in `_includes-*-weekly-agenda.html` files
+- Site automatically deploys on push to `main` branch
+- See `WORKFLOW.md` (gitignored) for detailed weekly update procedures
+
 ## 📁 Project Structure
 
 ```
 classroom/
 ├── _config.yml                    # Jekyll configuration
 ├── _includes/
-│   ├── navigation.html           # Reusable navigation component
-│   ├── pae-weekly-agenda.html    # PAE weekly planning content
-│   ├── edp-weekly-agenda.html    # EDP weekly planning content
-│   └── win-weekly-agenda.html    # WIN weekly planning content
+│   └── navigation.html           # Reusable navigation component
 ├── index.html                    # Main landing page
 ├── about.html                    # Instructor information
 ├── css/
@@ -80,6 +92,7 @@ classroom/
 │   ├── index.html              # PAE course hub
 │   ├── syllabus.html           # Course syllabus
 │   ├── weekly-agenda.html      # Weekly planning interface
+│   ├── _includes-pae-weekly-agenda.html  # Weekly content (updated weekly)
 │   ├── study/                  # Study guides
 │   │   ├── index.html          # Study guide hub
 │   │   ├── ch4-study-guide.html
@@ -98,6 +111,7 @@ classroom/
     ├── index.html              # Robotics course hub
     ├── robotics.html           # Robotics overview
     ├── weekly-agenda.html      # Weekly planning interface
+    ├── _includes-win-weekly-agenda.html  # Weekly content (updated weekly)
     ├── binary-quiz.html        # Binary number quiz
     ├── binary-visualizer.html  # Binary visualization tool
     └── programming-challenges/  # VEX VR programming activities
@@ -216,13 +230,15 @@ jekyll serve
 4. Test locally before pushing
 
 #### Weekly Agendas
-1. Edit appropriate file in `_includes/`:
-   - `pae-weekly-agenda.html` for PAE
-   - `edp-weekly-agenda.html` for EDP
-   - `win-weekly-agenda.html` for W.I.N.
-2. Add new week section with proper Bootstrap collapse structure
-3. Use appropriate topic badges and activity formatting
-4. Update "Current Week" badge as needed
+1. Download latest Learning Objectives PDF from El Paso ISD system
+2. Edit appropriate file:
+   - `pae/_includes-pae-weekly-agenda.html` for PAE
+   - `win/_includes-win-weekly-agenda.html` for W.I.N.
+3. Add new week section with proper Bootstrap collapse structure
+4. Use appropriate topic badges and activity formatting
+5. Update "Current Week" badge (move to new week, change previous to collapsed)
+6. Update "Last updated" date at bottom
+7. See `WORKFLOW.md` for detailed weekly update procedures
 
 #### Programming Challenges (W.I.N.)
 1. Create new HTML file in appropriate subdirectory
