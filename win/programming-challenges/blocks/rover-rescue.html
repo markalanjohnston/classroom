@@ -1076,7 +1076,7 @@
         // Mark lesson as complete
         function markComplete() {
             if (!quizPassed) {
-                alert('Please pass the quiz before marking this lesson as complete.');
+                showModal('Please complete the quiz with 100% before marking as complete!', 'Quiz Required', 'warning');
                 return;
             }
             
@@ -1106,5 +1106,62 @@
             }, 500);
         });
     </script>
-</body>
+
+    <!-- Reusable Modal -->
+    <div class="modal fade" id="customModal" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" id="modalHeader">
+                    <h5 class="modal-title" id="customModalLabel">
+                        <i class="bi bi-info-circle" id="modalIcon"></i>
+                        <span id="modalTitle">Notice</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    Modal message goes here.
+                </div>
+                <div class="modal-footer" id="modalFooter">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="modalOkBtn">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Custom modal functions to replace alert()
+        function showModal(message, title = 'Notice', type = 'info') {
+            const modal = new bootstrap.Modal(document.getElementById('customModal'));
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalHeader = document.getElementById('modalHeader');
+            const modalOkBtn = document.getElementById('modalOkBtn');
+
+            // Set icon and color based on type
+            if (type === 'success') {
+                modalIcon.className = 'bi bi-check-circle-fill';
+                modalHeader.style.borderBottom = '3px solid #4caf50';
+                modalOkBtn.className = 'btn btn-success';
+            } else if (type === 'error') {
+                modalIcon.className = 'bi bi-x-circle-fill';
+                modalHeader.style.borderBottom = '3px solid #f44336';
+                modalOkBtn.className = 'btn btn-danger';
+            } else if (type === 'warning') {
+                modalIcon.className = 'bi bi-exclamation-triangle-fill';
+                modalHeader.style.borderBottom = '3px solid #ff9800';
+                modalOkBtn.className = 'btn btn-warning';
+            } else {
+                modalIcon.className = 'bi bi-info-circle-fill';
+                modalHeader.style.borderBottom = '3px solid #2196f3';
+                modalOkBtn.className = 'btn btn-primary';
+            }
+
+            modalTitle.textContent = title;
+            modalBody.innerHTML = message;
+            modal.show();
+        }
+
+
 </html>
