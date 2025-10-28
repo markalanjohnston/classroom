@@ -239,6 +239,25 @@
             padding: 30px;
             margin: 40px 0;
             border: 3px dashed #ccc;
+            position: relative;
+        }
+
+        .advanced-section.locked {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .advanced-section.locked::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(2px);
+            border-radius: 15px;
+            z-index: 1;
         }
 
         .advanced-badge {
@@ -248,6 +267,51 @@
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: bold;
+        }
+
+        .lock-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+        }
+
+        .lock-icon {
+            font-size: 3rem;
+            color: #ff9800;
+            margin-bottom: 15px;
+        }
+
+        .lock-progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .lock-progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #3776ab, #ffd43b);
+            transition: width 0.3s ease;
+        }
+
+        .completed-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -415,7 +479,19 @@
         </div>
 
         <!-- Advanced Challenges Section -->
-        <div class="advanced-section">
+        <div class="advanced-section locked" id="advancedSection">
+            <div class="lock-overlay" id="lockOverlay">
+                <div class="lock-icon">
+                    <i class="bi bi-lock-fill"></i>
+                </div>
+                <h3>Complete Core Lessons to Unlock</h3>
+                <p>Finish all 5 core Python lessons to access these advanced challenges!</p>
+                <p><strong>Progress: <span id="lockProgress">0 / 5</span></strong></p>
+                <div class="lock-progress-bar">
+                    <div class="lock-progress-fill" id="lockProgressBar" style="width: 0%"></div>
+                </div>
+            </div>
+
             <div class="d-flex align-items-center gap-3 mb-4">
                 <h2 class="mb-0">Advanced Python Challenges</h2>
                 <span class="advanced-badge">BONUS</span>
@@ -491,8 +567,54 @@
     </div>
 
     <script>
-        // Add hover effects and animations
+        // Check for completed lessons in localStorage
         document.addEventListener('DOMContentLoaded', function() {
+            const completedLessons = JSON.parse(localStorage.getItem('vexPythonProgress') || '[]');
+
+            // Core lessons (first 5)
+            const coreLessons = ['getting-started', 'basic-movement', 'loops-patterns', 'sensors-detection', 'decision-making'];
+            const totalCore = coreLessons.length;
+            let coreCount = 0;
+
+            // Add completed badges to lesson cards
+            document.querySelectorAll('.lesson-card').forEach(card => {
+                const href = card.getAttribute('href');
+                if (href) {
+                    const lessonId = href.replace('.html', '');
+                    if (completedLessons.includes(lessonId)) {
+                        const title = card.querySelector('.lesson-title');
+                        if (title && !title.querySelector('.completed-badge')) {
+                            const badge = document.createElement('span');
+                            badge.className = 'completed-badge';
+                            badge.innerHTML = '<i class="bi bi-check-circle-fill"></i> Completed';
+                            title.appendChild(badge);
+                        }
+
+                        // Count completed core lessons
+                        if (coreLessons.includes(lessonId)) {
+                            coreCount++;
+                        }
+                    }
+                }
+            });
+
+            // Check if advanced section should be unlocked
+            const advancedSection = document.getElementById('advancedSection');
+            const lockOverlay = document.getElementById('lockOverlay');
+            const progressPercent = (coreCount / totalCore) * 100;
+
+            if (coreCount === totalCore) {
+                // All core lessons completed - unlock advanced section
+                advancedSection.classList.remove('locked');
+                lockOverlay.style.display = 'none';
+            } else {
+                // Not all core lessons completed - show lock
+                advancedSection.classList.add('locked');
+                lockOverlay.style.display = 'block';
+                document.getElementById('lockProgress').textContent = `${coreCount} / ${totalCore}`;
+                document.getElementById('lockProgressBar').style.width = progressPercent + '%';
+            }
+
             // Animate cards on scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

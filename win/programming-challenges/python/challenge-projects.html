@@ -956,8 +956,15 @@ magnet.<span class="function">energize</span>(<span class="keyword">DROP</span>)
             </section>
 
             <div class="info-box" style="text-align: center; margin-top: 30px;">
-                <i class="bi bi-trophy"></i>
-                <strong>Complete the Quiz:</strong> Answer all questions correctly to unlock the "Next Lesson" button and continue your journey!
+                <i class="bi bi-info-circle"></i>
+                <strong>Note:</strong> Pass the quiz above with 100% to unlock the "Mark as Complete" button.
+            </div>
+
+            <div class="button-group">
+                <button id="completeBtn" class="action-button" onclick="markComplete()" disabled>
+                    <i class="bi bi-check-circle"></i>
+                    Mark Lesson as Complete
+                </button>
             </div>
 
             <div class="button-group">
@@ -1047,6 +1054,9 @@ magnet.<span class="function">energize</span>(<span class="keyword">DROP</span>)
                 nextBtn.style.cursor = 'pointer';
                 nextBtn.style.pointerEvents = 'auto';
 
+                // Enable the complete button
+                document.getElementById('completeBtn').disabled = false;
+
                 // Show success message
                 setTimeout(() => {
                     alert("Perfect score! You've mastered the advanced concepts! You're ready for even bigger challenges. Proceed to the next lesson when you're ready.");
@@ -1091,6 +1101,29 @@ magnet.<span class="function">energize</span>(<span class="keyword">DROP</span>)
                 }
             });
         });
+
+        function markComplete() {
+            // Check if quiz is passed
+            if (!quizPassed) {
+                alert('Please complete the quiz with 100% before marking as complete!');
+                return;
+            }
+
+            let progress = JSON.parse(localStorage.getItem('vexPythonProgress') || '[]');
+            const lessonId = 'challenge-projects';
+
+            if (!progress.includes(lessonId)) {
+                progress.push(lessonId);
+                localStorage.setItem('vexPythonProgress', JSON.stringify(progress));
+                alert('Lesson marked as complete! Great work!');
+                // Redirect back to lessons page after a short delay
+                setTimeout(() => {
+                    window.location.href = './';
+                }, 1500);
+            } else {
+                alert('You have already completed this lesson!');
+            }
+        }
     </script>
 </body>
 </html>

@@ -1204,6 +1204,18 @@ y = rover.<span class="function">location</span>(<span class="keyword">ROVER</sp
                 </div>
             </section>
 
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-info-circle"></i>
+                <strong>Note:</strong> Pass the quiz above with 100% to unlock the "Mark as Complete" button.
+            </div>
+
+            <div class="button-group">
+                <button id="completeBtn" class="action-button" onclick="markComplete()" disabled>
+                    <i class="bi bi-check-circle"></i>
+                    Mark Lesson as Complete
+                </button>
+            </div>
+
             <div class="mission-box" style="text-align: center; margin-top: 30px;">
                 <h3><i class="bi bi-trophy"></i> Mission Complete!</h3>
                 <p>You've reached the end of the Python VR challenges. You now have the skills to create complex, autonomous robotics programs. The rover rescue mission is your final test - make it count!</p>
@@ -1296,6 +1308,9 @@ y = rover.<span class="function">location</span>(<span class="keyword">ROVER</sp
                 nextBtn.style.cursor = 'pointer';
                 nextBtn.style.pointerEvents = 'auto';
 
+                // Enable the complete button
+                document.getElementById('completeBtn').disabled = false;
+
                 // Show success message
                 setTimeout(() => {
                     alert("Outstanding work, Commander! You've completed the Rover Rescue Mission briefing and are ready to tackle the challenge. Good luck on your mission!");
@@ -1340,6 +1355,29 @@ y = rover.<span class="function">location</span>(<span class="keyword">ROVER</sp
                 }
             });
         });
+
+        function markComplete() {
+            // Check if quiz is passed
+            if (!quizPassed) {
+                alert('Please complete the quiz with 100% before marking as complete!');
+                return;
+            }
+
+            let progress = JSON.parse(localStorage.getItem('vexPythonProgress') || '[]');
+            const lessonId = 'rover-rescue';
+
+            if (!progress.includes(lessonId)) {
+                progress.push(lessonId);
+                localStorage.setItem('vexPythonProgress', JSON.stringify(progress));
+                alert('Lesson marked as complete! Great work!');
+                // Redirect back to lessons page after a short delay
+                setTimeout(() => {
+                    window.location.href = './';
+                }, 1500);
+            } else {
+                alert('You have already completed this lesson!');
+            }
+        }
     </script>
 </body>
 </html>
