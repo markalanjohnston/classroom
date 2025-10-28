@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rover Rescue Mission - VEX VR Python - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #c1272d 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #ff6b35;
+            border-bottom: 3px solid #ff6b35;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .mission-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ff6b35;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .badge-advanced {
+            background: linear-gradient(135deg, #ff6b35, #c1272d);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            border: 1px solid #3e4451;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .code-block .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .code-block .function {
+            color: #61afef;
+        }
+
+        .code-block .string {
+            color: #98c379;
+        }
+
+        .code-block .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .code-block .number {
+            color: #d19a66;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #ff6b35;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #ff6b35, #c1272d);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .action-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-button.disabled:hover {
+            transform: none;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #ff6b35;
+            border: 2px solid #ff6b35;
+        }
+
+        .secondary-button:hover {
+            background: #fff3e0;
+            color: #ff6b35;
+        }
+
+        .learning-outcomes {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .learning-outcomes h3 {
+            color: #ff6b35;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .learning-outcomes ul {
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        .learning-outcomes li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .progress-item.completed {
+            color: #4caf50;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #ff6b35;
+            background: #fff3e0;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .command-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .command-card h4 {
+            color: #ff6b35;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .zone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .zone-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .zone-card h5 {
+            color: #ff6b35;
+            margin-top: 0;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border: 3px solid #c1272d;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .challenge-box h3 {
+            color: #c1272d;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Python Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Rover Rescue</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('intro')">Introduction</div>
+            <div class="progress-item" onclick="scrollToSection('objectives')">Mission Objectives</div>
+            <div class="progress-item" onclick="scrollToSection('playground')">The Playground</div>
+            <div class="progress-item" onclick="scrollToSection('commands')">Key Commands</div>
+            <div class="progress-item" onclick="scrollToSection('strategy')">Strategy Guide</div>
+            <div class="progress-item" onclick="scrollToSection('tutorial')">Tutorial</div>
+            <div class="progress-item" onclick="scrollToSection('challenge')">Full Challenge</div>
+            <div class="progress-item" onclick="scrollToSection('optimization')">Optimization</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Quiz</div>
+        </div>
+
+        <div class="lesson-card">
+            <span class="badge-advanced">ADVANCED - BONUS MISSION</span>
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-rocket-takeoff text-danger"></i>
+                Rover Rescue Mission
+            </h1>
+            <p class="lead">
+                Welcome to the ultimate Python programming challenge! In this advanced mission, you'll program a rover on an alien planet to collect minerals, neutralize enemies, and survive in a hostile environment. This is the capstone project that combines everything you've learned!
+            </p>
+
+            <div class="mission-box">
+                <h4><i class="bi bi-broadcast"></i> <strong>Mission Briefing</strong></h4>
+                <p>You are the sole programmer for a research rover stranded on an alien planet. Your mission: program the rover to autonomously collect minerals, manage its battery, avoid hazards, and neutralize radioactive enemies. The fate of the mission depends on your code!</p>
+            </div>
+
+            <section id="intro">
+                <div class="learning-outcomes">
+                    <h3>
+                        <i class="bi bi-trophy"></i>
+                        Mission Outcomes
+                    </h3>
+                    <p>By completing this mission, you will:</p>
+                    <ul>
+                        <li>Master advanced Python commands for autonomous navigation</li>
+                        <li>Implement complex decision-making algorithms</li>
+                        <li>Use AI-powered sensors for object detection and tracking</li>
+                        <li>Optimize code for efficiency and battery management</li>
+                        <li>Create event-driven programs for dynamic responses</li>
+                        <li>Combine all VEX VR Python skills into a comprehensive solution</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="objectives">
+                <h2 class="section-title">
+                    <i class="bi bi-target"></i> Mission Objectives
+                </h2>
+
+                <p>
+                    Your rover must survive on an alien planet by completing the following objectives:
+                </p>
+
+                <div class="zone-grid">
+                    <div class="zone-card">
+                        <h5><i class="bi bi-gem"></i> Collect Minerals</h5>
+                        <p>Find and collect minerals scattered across the terrain. Minerals can be:</p>
+                        <ul>
+                            <li><strong>Transported to Base:</strong> +5 XP each</li>
+                            <li><strong>Consumed for Energy:</strong> +2 XP + Full battery recharge</li>
+                        </ul>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5><i class="bi bi-battery-charging"></i> Manage Battery</h5>
+                        <p>Your rover's battery constantly drains. You must:</p>
+                        <ul>
+                            <li>Monitor battery levels</li>
+                            <li>Use minerals to recharge</li>
+                            <li>Use standby mode strategically</li>
+                        </ul>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5><i class="bi bi-bug"></i> Neutralize Enemies</h5>
+                        <p>Absorb radiation from alien creatures:</p>
+                        <ul>
+                            <li>Alien Spiders: 5 XP</li>
+                            <li>Orange Serpents: 10 XP</li>
+                            <li>Blue Serpents: 10 XP</li>
+                            <li>Purple Serpents: 15 XP</li>
+                        </ul>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5><i class="bi bi-arrow-up-circle"></i> Level Up</h5>
+                        <p>Gain Experience Points (XP) to level up your rover:</p>
+                        <ul>
+                            <li>Higher levels = more storage capacity</li>
+                            <li>Higher levels = tougher enemies</li>
+                            <li>Strategic XP management is key</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Warning:</strong> If your rover's battery reaches 0%, the mission fails! Always keep an eye on your battery level and plan your actions carefully.
+                </div>
+            </section>
+
+            <section id="playground">
+                <h2 class="section-title">
+                    <i class="bi bi-map"></i> The Playground: Alien Terrain
+                </h2>
+
+                <p>
+                    The Rover Rescue Playground is a 12,000mm x 6,000mm alien landscape divided into five distinct zones, each with unique characteristics and challenges.
+                </p>
+
+                <h3 class="subsection-title">Playground Features</h3>
+
+                <ul>
+                    <li><strong>Starting Position:</strong> (-6000, -3000) beside the Research Base</li>
+                    <li><strong>Grid Spacing:</strong> 500mm between grid squares</li>
+                    <li><strong>Hazard:</strong> An impassable river with two bridges</li>
+                    <li><strong>Obstacles:</strong> Scattered rocks and terrain features</li>
+                </ul>
+
+                <h3 class="subsection-title">The Five Zones</h3>
+
+                <div class="zone-grid">
+                    <div class="zone-card">
+                        <h5>Zone A</h5>
+                        <p><strong>Enemies:</strong> Alien Spiders</p>
+                        <p><strong>Minerals:</strong> Do not respawn</p>
+                        <p><strong>Difficulty:</strong> Beginner</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5>Zone B</h5>
+                        <p><strong>Enemies:</strong> Alien Spiders</p>
+                        <p><strong>Minerals:</strong> Do not respawn</p>
+                        <p><strong>Difficulty:</strong> Beginner</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5>Zone C</h5>
+                        <p><strong>Enemies:</strong> Spiders + Orange Serpents</p>
+                        <p><strong>Minerals:</strong> Respawn regularly</p>
+                        <p><strong>Difficulty:</strong> Intermediate</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5>Zone D</h5>
+                        <p><strong>Enemies:</strong> Spiders + Blue Serpents</p>
+                        <p><strong>Minerals:</strong> Respawn frequently</p>
+                        <p><strong>Difficulty:</strong> Advanced</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5>Zone E</h5>
+                        <p><strong>Enemies:</strong> Spiders + Purple Serpents</p>
+                        <p><strong>Minerals:</strong> Respawn very frequently</p>
+                        <p><strong>Difficulty:</strong> Expert</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Strategic Note:</strong> Zones C, D, and E have respawning minerals, making them ideal for long-term survival. However, the enemies are more dangerous in these zones!
+                </div>
+
+                <h3 class="subsection-title">The Research Base</h3>
+                <p>
+                    The Research Base is your home at position (-6000, -3000) in the southwestern corner. The rover always knows where the base is, even when it's not visible. Drop minerals at the base to score 5 XP per mineral.
+                </p>
+            </section>
+
+            <section id="commands">
+                <h2 class="section-title">
+                    <i class="bi bi-code-square"></i> Key Commands for Rescue Operations
+                </h2>
+
+                <p>
+                    The Rover Rescue mission uses specialized Python commands that go beyond basic movement. Here are the critical commands you'll need:
+                </p>
+
+                <h3 class="subsection-title">Advanced Navigation</h3>
+
+                <div class="command-card">
+                    <h4>drivetrain.go_to(object)</h4>
+                    <p>Turn and drive the rover to a specified object in one command.</p>
+                    <div class="code-block">
+<span class="comment"># Go to the nearest mineral</span>
+drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+
+<span class="comment"># Go to the nearest enemy</span>
+drivetrain.<span class="function">go_to</span>(<span class="keyword">ENEMY</span>)
+
+<span class="comment"># Go to the base (always works, even if base is not visible)</span>
+drivetrain.<span class="function">go_to</span>(<span class="keyword">BASE</span>)
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h4>drivetrain.turn_to(object)</h4>
+                    <p>Turn the rover to face a specified object without moving forward.</p>
+                    <div class="code-block">
+<span class="comment"># Turn to face minerals</span>
+drivetrain.<span class="function">turn_to</span>(<span class="keyword">MINERALS</span>)
+
+<span class="comment"># Turn to face the base</span>
+drivetrain.<span class="function">turn_to</span>(<span class="keyword">BASE</span>)
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h4>drivetrain.drive_to(object)</h4>
+                    <p>Drive forward to an object without turning first (rover must already be facing it).</p>
+                    <div class="code-block">
+<span class="comment"># Drive to base (must be facing base first)</span>
+drivetrain.<span class="function">drive_to</span>(<span class="keyword">BASE</span>)
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Mineral Management</h3>
+
+                <div class="command-card">
+                    <h4>rover.pickup(MINERALS)</h4>
+                    <p>Pick up minerals and store them in the rover's cargo.</p>
+                    <div class="code-block">
+<span class="comment"># Navigate to minerals and pick them up</span>
+drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+rover.<span class="function">pickup</span>(<span class="keyword">MINERALS</span>)
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h4>rover.drop(MINERALS)</h4>
+                    <p>Drop minerals from cargo at the current location.</p>
+                    <div class="code-block">
+<span class="comment"># Go to base and drop minerals for XP</span>
+drivetrain.<span class="function">go_to</span>(<span class="keyword">BASE</span>)
+rover.<span class="function">drop</span>(<span class="keyword">MINERALS</span>)  <span class="comment"># +5 XP per mineral</span>
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h4>rover.use(MINERALS)</h4>
+                    <p>Consume minerals on the ground to recharge battery and gain XP.</p>
+                    <div class="code-block">
+<span class="comment"># Use minerals for energy (minerals must be on ground, not in cargo)</span>
+drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+rover.<span class="function">use</span>(<span class="keyword">MINERALS</span>)  <span class="comment"># +2 XP + Full recharge!</span>
+                    </div>
+                    <div class="warning-box">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <strong>Important:</strong> Minerals must be on the ground to use them. You cannot use minerals in your cargo!
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Enemy Interaction</h3>
+
+                <div class="command-card">
+                    <h4>rover.absorb_radiation(ENEMY)</h4>
+                    <p>Absorb radiation from enemies to neutralize them and gain XP.</p>
+                    <div class="code-block">
+<span class="comment"># Approach and neutralize enemy</span>
+drivetrain.<span class="function">go_to</span>(<span class="keyword">ENEMY</span>)
+rover.<span class="function">absorb_radiation</span>(<span class="keyword">ENEMY</span>)
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Power Management</h3>
+
+                <div class="command-card">
+                    <h4>rover.standby(percent)</h4>
+                    <p>Enter standby mode until battery reaches a specified threshold. Conserves battery but increases time counter faster.</p>
+                    <div class="code-block">
+<span class="comment"># Enter standby until battery reaches 50%</span>
+rover.<span class="function">standby</span>(<span class="number">50</span>)
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">AI Sensors</h3>
+
+                <div class="command-card">
+                    <h4>rover.sees(object)</h4>
+                    <p>Check if the rover sees an object within its 40-degree field of view (1000mm range).</p>
+                    <div class="code-block">
+<span class="comment"># Check if minerals are visible</span>
+<span class="keyword">if</span> rover.<span class="function">sees</span>(<span class="keyword">MINERALS</span>):
+    drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+    rover.<span class="function">pickup</span>(<span class="keyword">MINERALS</span>)
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h4>rover.detects(object)</h4>
+                    <p>Check if the rover detects an object within its 800mm detection radius (360-degree range).</p>
+                    <div class="code-block">
+<span class="comment"># Check if enemies are nearby</span>
+<span class="keyword">if</span> rover.<span class="function">detects</span>(<span class="keyword">ENEMY</span>):
+    brain.<span class="function">print</span>(<span class="string">"Enemy detected!"</span>)
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Status Monitoring</h3>
+
+                <div class="command-card">
+                    <h4>Rover Status Commands</h4>
+                    <div class="code-block">
+<span class="comment"># Battery level (0-100)</span>
+battery_level = rover.<span class="function">battery</span>()
+
+<span class="comment"># Minerals in storage</span>
+minerals_count = rover.<span class="function">minerals_stored</span>()
+
+<span class="comment"># Storage capacity</span>
+capacity = rover.<span class="function">storage_capacity</span>()
+
+<span class="comment"># Current rover level</span>
+level = rover.<span class="function">level</span>()
+
+<span class="comment"># Current experience points</span>
+xp = rover.<span class="function">exp</span>()
+
+<span class="comment"># Check if under attack</span>
+<span class="keyword">if</span> rover.<span class="function">under_attack</span>():
+    brain.<span class="function">print</span>(<span class="string">"Under attack!"</span>)
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Event Handlers</h3>
+
+                <div class="command-card">
+                    <h4>Event-Driven Programming</h4>
+                    <p>Create functions that automatically run when certain events occur.</p>
+                    <div class="code-block">
+<span class="comment"># Define function for when under attack</span>
+<span class="keyword">def</span> <span class="function">under_attack</span>():
+    brain.<span class="function">print</span>(<span class="string">"Under attack!"</span>)
+    drivetrain.<span class="function">drive_for</span>(<span class="keyword">REVERSE</span>, <span class="number">500</span>, <span class="keyword">MM</span>)
+
+<span class="comment"># Define function for leveling up</span>
+<span class="keyword">def</span> <span class="function">level_up</span>():
+    brain.<span class="function">print</span>(<span class="string">"Leveled up!"</span>)
+
+<span class="comment"># Register the event handlers</span>
+rover.<span class="function">on_under_attack</span>(under_attack)
+rover.<span class="function">on_level_up</span>(level_up)
+<span class="function">wait</span>(<span class="number">0.15</span>, <span class="keyword">SECONDS</span>)  <span class="comment"># Allow time to register</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="strategy">
+                <h2 class="section-title">
+                    <i class="bi bi-lightbulb"></i> Strategy Guide: Breaking Down the Mission
+                </h2>
+
+                <p>
+                    Success in the Rover Rescue mission requires strategic thinking and efficient code. Here's how to approach this challenge:
+                </p>
+
+                <h3 class="subsection-title">Phase 1: Early Game (Zones A & B)</h3>
+                <div class="tip-box">
+                    <h4><i class="bi bi-check-circle"></i> Survival Strategy</h4>
+                    <ul>
+                        <li><strong>Priority:</strong> Collect minerals and build XP</li>
+                        <li><strong>Battery Management:</strong> Use minerals for energy when battery drops below 30%</li>
+                        <li><strong>Enemy Strategy:</strong> Focus on Alien Spiders (easiest, 5 XP each)</li>
+                        <li><strong>Mineral Strategy:</strong> Use minerals for recharge rather than transport initially</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Phase 2: Mid Game (Zone C)</h3>
+                <div class="tip-box">
+                    <h4><i class="bi bi-check-circle"></i> Growth Strategy</h4>
+                    <ul>
+                        <li><strong>Priority:</strong> Level up and increase storage capacity</li>
+                        <li><strong>Battery Management:</strong> Balance between using and transporting minerals</li>
+                        <li><strong>Enemy Strategy:</strong> Start tackling Orange Serpents (10 XP)</li>
+                        <li><strong>Mineral Strategy:</strong> Minerals respawn here - establish a routine</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Phase 3: Late Game (Zones D & E)</h3>
+                <div class="tip-box">
+                    <h4><i class="bi bi-check-circle"></i> Advanced Strategy</h4>
+                    <ul>
+                        <li><strong>Priority:</strong> Maximize XP per action</li>
+                        <li><strong>Battery Management:</strong> Transport minerals to base when storage is full</li>
+                        <li><strong>Enemy Strategy:</strong> Target Blue and Purple Serpents (10-15 XP)</li>
+                        <li><strong>Mineral Strategy:</strong> Fast respawn rate - create efficient loops</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Key Strategic Decisions</h3>
+
+                <div class="info-box">
+                    <h4><i class="bi bi-diagram-3"></i> Decision Tree</h4>
+                    <p><strong>When you find a mineral, should you use it or transport it?</strong></p>
+                    <ul>
+                        <li><strong>Use if:</strong> Battery < 30% OR not near base</li>
+                        <li><strong>Transport if:</strong> Battery > 70% AND near base AND storage not full</li>
+                        <li><strong>Pick up for later if:</strong> Storage not full and might need energy later</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4><i class="bi bi-diagram-3"></i> Enemy Engagement</h4>
+                    <p><strong>When should you fight enemies?</strong></p>
+                    <ul>
+                        <li><strong>Engage if:</strong> Low-level enemy AND battery > 50%</li>
+                        <li><strong>Avoid if:</strong> High-level enemy AND low battery</li>
+                        <li><strong>Flee if:</strong> Under attack AND battery < 20%</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="tutorial">
+                <h2 class="section-title">
+                    <i class="bi bi-book"></i> Step-by-Step Tutorial
+                </h2>
+
+                <p>
+                    Let's build up your rescue program step by step. Start simple and add features as you go.
+                </p>
+
+                <h3 class="subsection-title">Tutorial 1: Basic Mineral Collection</h3>
+                <div class="command-card">
+                    <h4>Objective: Collect and use a mineral for energy</h4>
+                    <div class="code-block">
+<span class="comment"># Simple mineral collection program</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Go to the nearest mineral</span>
+    drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+
+    <span class="comment"># Use the mineral for energy and XP</span>
+    rover.<span class="function">use</span>(<span class="keyword">MINERALS</span>)
+
+    <span class="comment"># Print status</span>
+    brain.<span class="function">print</span>(<span class="string">"Battery:"</span>, rover.<span class="function">battery</span>())
+    brain.<span class="function">print</span>(<span class="string">"XP:"</span>, rover.<span class="function">exp</span>())
+
+main()
+                    </div>
+                    <p><strong>What it does:</strong> The rover finds the nearest mineral and consumes it for energy and XP.</p>
+                </div>
+
+                <h3 class="subsection-title">Tutorial 2: Mineral Transport</h3>
+                <div class="command-card">
+                    <h4>Objective: Collect minerals and transport them to base</h4>
+                    <div class="code-block">
+<span class="comment"># Mineral transport program</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Go to minerals and pick them up</span>
+    drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+    rover.<span class="function">pickup</span>(<span class="keyword">MINERALS</span>)
+
+    <span class="comment"># Return to base</span>
+    drivetrain.<span class="function">go_to</span>(<span class="keyword">BASE</span>)
+
+    <span class="comment"># Drop minerals at base for 5 XP each</span>
+    rover.<span class="function">drop</span>(<span class="keyword">MINERALS</span>)
+
+    brain.<span class="function">print</span>(<span class="string">"Minerals delivered!"</span>)
+    brain.<span class="function">print</span>(<span class="string">"XP:"</span>, rover.<span class="function">exp</span>())
+
+main()
+                    </div>
+                    <p><strong>What it does:</strong> The rover collects minerals, brings them back to base, and drops them for maximum XP.</p>
+                </div>
+
+                <h3 class="subsection-title">Tutorial 3: Enemy Neutralization</h3>
+                <div class="command-card">
+                    <h4>Objective: Find and neutralize an enemy</h4>
+                    <div class="code-block">
+<span class="comment"># Enemy neutralization program</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Check if we can see an enemy</span>
+    <span class="keyword">if</span> rover.<span class="function">sees</span>(<span class="keyword">ENEMY</span>):
+        <span class="comment"># Go to the enemy</span>
+        drivetrain.<span class="function">go_to</span>(<span class="keyword">ENEMY</span>)
+
+        <span class="comment"># Absorb its radiation</span>
+        rover.<span class="function">absorb_radiation</span>(<span class="keyword">ENEMY</span>)
+
+        brain.<span class="function">print</span>(<span class="string">"Enemy neutralized!"</span>)
+        brain.<span class="function">print</span>(<span class="string">"XP:"</span>, rover.<span class="function">exp</span>())
+    <span class="keyword">else</span>:
+        brain.<span class="function">print</span>(<span class="string">"No enemies visible"</span>)
+
+main()
+                    </div>
+                    <p><strong>What it does:</strong> The rover looks for enemies and neutralizes them if found.</p>
+                </div>
+
+                <h3 class="subsection-title">Tutorial 4: Battery-Aware Collection</h3>
+                <div class="command-card">
+                    <h4>Objective: Make smart decisions based on battery level</h4>
+                    <div class="code-block">
+<span class="comment"># Smart battery management</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Check battery level</span>
+    battery = rover.<span class="function">battery</span>()
+    brain.<span class="function">print</span>(<span class="string">"Battery:"</span>, battery, <span class="string">"%"</span>)
+
+    <span class="comment"># If battery is low, use minerals for energy</span>
+    <span class="keyword">if</span> battery < <span class="number">30</span>:
+        brain.<span class="function">print</span>(<span class="string">"Low battery! Finding minerals..."</span>)
+        drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+        rover.<span class="function">use</span>(<span class="keyword">MINERALS</span>)  <span class="comment"># Full recharge!</span>
+        brain.<span class="function">print</span>(<span class="string">"Battery recharged!"</span>)
+    <span class="keyword">else</span>:
+        <span class="comment"># Battery is good, collect and transport</span>
+        brain.<span class="function">print</span>(<span class="string">"Battery OK. Collecting minerals..."</span>)
+        drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+        rover.<span class="function">pickup</span>(<span class="keyword">MINERALS</span>)
+        drivetrain.<span class="function">go_to</span>(<span class="keyword">BASE</span>)
+        rover.<span class="function">drop</span>(<span class="keyword">MINERALS</span>)
+
+main()
+                    </div>
+                    <p><strong>What it does:</strong> The rover checks its battery and makes smart decisions about whether to use or transport minerals.</p>
+                </div>
+
+                <h3 class="subsection-title">Tutorial 5: Continuous Operation with Loop</h3>
+                <div class="command-card">
+                    <h4>Objective: Create a sustainable collection loop</h4>
+                    <div class="code-block">
+<span class="comment"># Continuous collection loop</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Run 5 collection cycles</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+        brain.<span class="function">print</span>(<span class="string">"Cycle"</span>, i + <span class="number">1</span>)
+
+        <span class="comment"># Check battery</span>
+        <span class="keyword">if</span> rover.<span class="function">battery</span>() < <span class="number">30</span>:
+            <span class="comment"># Need energy - use mineral</span>
+            drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+            rover.<span class="function">use</span>(<span class="keyword">MINERALS</span>)
+        <span class="keyword">else</span>:
+            <span class="comment"># Transport mineral to base</span>
+            drivetrain.<span class="function">go_to</span>(<span class="keyword">MINERALS</span>)
+            rover.<span class="function">pickup</span>(<span class="keyword">MINERALS</span>)
+            drivetrain.<span class="function">go_to</span>(<span class="keyword">BASE</span>)
+            rover.<span class="function">drop</span>(<span class="keyword">MINERALS</span>)
+
+        <span class="comment"># Print status</span>
+        brain.<span class="function">print</span>(<span class="string">"Battery:"</span>, rover.<span class="function">battery</span>())
+        brain.<span class="function">print</span>(<span class="string">"XP:"</span>, rover.<span class="function">exp</span>())
+        brain.<span class="function">print</span>(<span class="string">"---"</span>)
+
+main()
+                    </div>
+                    <p><strong>What it does:</strong> The rover runs multiple collection cycles, always managing its battery intelligently.</p>
+                </div>
+            </section>
+
+            <section id="challenge">
+                <h2 class="section-title">
+                    <i class="bi bi-award"></i> Full Rescue Challenge
+                </h2>
+
+                <div class="challenge-box">
+                    <h3><i class="bi bi-flag"></i> The Complete Mission</h3>
+                    <p><strong>Objective:</strong> Create a fully autonomous rover that can survive indefinitely by:</p>
+                    <ul>
+                        <li>Managing battery levels intelligently</li>
+                        <li>Collecting and using/transporting minerals</li>
+                        <li>Neutralizing enemies when safe to do so</li>
+                        <li>Leveling up by gaining XP</li>
+                        <li>Responding to attacks defensively</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Challenge Requirements</h3>
+                <ol class="step-list">
+                    <li><strong>Battery Management:</strong> Never let battery drop below 10%</li>
+                    <li><strong>Mineral Collection:</strong> Continuously find and collect minerals</li>
+                    <li><strong>Smart Decisions:</strong> Use minerals when battery is low, transport when battery is high</li>
+                    <li><strong>Enemy Engagement:</strong> Fight low-level enemies, avoid high-level ones</li>
+                    <li><strong>Base Return:</strong> Periodically return to base with minerals</li>
+                    <li><strong>Event Handling:</strong> Respond to attacks and level-ups</li>
+                </ol>
+
+                <h3 class="subsection-title">Challenge Starter Code</h3>
+                <div class="command-card">
+                    <h4>Template to Build From</h4>
+                    <div class="code-block">
+<span class="comment"># Rover Rescue - Full Autonomous Mission</span>
+
+<span class="comment"># Event handler for attacks</span>
+<span class="keyword">def</span> <span class="function">under_attack</span>():
+    brain.<span class="function">print</span>(<span class="string">"ALERT: Under attack!"</span>)
+    <span class="comment"># TODO: Add defensive behavior</span>
+
+<span class="comment"># Event handler for level up</span>
+<span class="keyword">def</span> <span class="function">level_up</span>():
+    brain.<span class="function">print</span>(<span class="string">"Level up!"</span>, rover.<span class="function">level</span>())
+    <span class="comment"># TODO: Celebrate or adjust strategy</span>
+
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Register event handlers</span>
+    rover.<span class="function">on_under_attack</span>(under_attack)
+    rover.<span class="function">on_level_up</span>(level_up)
+    <span class="function">wait</span>(<span class="number">0.15</span>, <span class="keyword">SECONDS</span>)
+
+    brain.<span class="function">print</span>(<span class="string">"Mission Start!"</span>)
+
+    <span class="comment"># TODO: Main mission loop</span>
+    <span class="comment"># - Check battery</span>
+    <span class="comment"># - Find minerals</span>
+    <span class="comment"># - Decide: use or transport?</span>
+    <span class="comment"># - Look for enemies</span>
+    <span class="comment"># - Manage storage</span>
+    <span class="comment"># - Return to base</span>
+
+main()
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <h4><i class="bi bi-lightbulb"></i> Tips for Success</h4>
+                    <ul>
+                        <li>Start by getting the basic mineral loop working</li>
+                        <li>Add battery checks before adding enemy combat</li>
+                        <li>Test in Zone A or B first before venturing to harder zones</li>
+                        <li>Use <code>brain.print()</code> liberally to debug your logic</li>
+                        <li>Consider using <code>rover.minerals_stored()</code> to know when to return to base</li>
+                        <li>Remember: <code>rover.storage_capacity()</code> increases as you level up!</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="optimization">
+                <h2 class="section-title">
+                    <i class="bi bi-speedometer"></i> Optimization Challenge
+                </h2>
+
+                <p>
+                    Once you have a working solution, it's time to optimize! Can you make your rover more efficient?
+                </p>
+
+                <h3 class="subsection-title">Optimization Goals</h3>
+
+                <div class="zone-grid">
+                    <div class="zone-card">
+                        <h5><i class="bi bi-clock"></i> Speed</h5>
+                        <p>Minimize time between actions. Can you reach Level 5 in under 5 minutes?</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5><i class="bi bi-graph-up"></i> XP Efficiency</h5>
+                        <p>Maximize XP per action. Target high-value enemies and transport minerals instead of using them.</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5><i class="bi bi-battery-full"></i> Battery Efficiency</h5>
+                        <p>Minimize battery waste. Use standby mode wisely and plan efficient routes.</p>
+                    </div>
+
+                    <div class="zone-card">
+                        <h5><i class="bi bi-infinity"></i> Survival Time</h5>
+                        <p>How long can your rover survive? Create a truly autonomous system that never fails.</p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Advanced Techniques</h3>
+
+                <div class="command-card">
+                    <h4>1. Zone-Based Strategy</h4>
+                    <p>Use <code>rover.location(ROVER, X, MM)</code> and <code>rover.location(ROVER, Y, MM)</code> to determine which zone you're in and adjust strategy accordingly.</p>
+                    <div class="code-block">
+<span class="comment"># Check which zone the rover is in</span>
+x = rover.<span class="function">location</span>(<span class="keyword">ROVER</span>, <span class="keyword">X</span>, <span class="keyword">MM</span>)
+y = rover.<span class="function">location</span>(<span class="keyword">ROVER</span>, <span class="keyword">Y</span>, <span class="keyword">MM</span>)
+
+<span class="comment"># Adjust strategy based on location</span>
+<span class="keyword">if</span> x > <span class="number">0</span>:
+    brain.<span class="function">print</span>(<span class="string">"In advanced zone - be careful!"</span>)
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h4>2. Enemy Level Assessment</h4>
+                    <p>Check enemy levels before engaging to avoid dangerous encounters.</p>
+                    <div class="code-block">
+<span class="comment"># Check enemy level before fighting</span>
+<span class="keyword">if</span> rover.<span class="function">sees</span>(<span class="keyword">ENEMY</span>):
+    enemy_lvl = rover.<span class="function">enemy_level</span>()
+    rover_lvl = rover.<span class="function">level</span>()
+
+    <span class="keyword">if</span> enemy_lvl <= rover_lvl:
+        <span class="comment"># Safe to engage</span>
+        drivetrain.<span class="function">go_to</span>(<span class="keyword">ENEMY</span>)
+        rover.<span class="function">absorb_radiation</span>(<span class="keyword">ENEMY</span>)
+    <span class="keyword">else</span>:
+        brain.<span class="function">print</span>(<span class="string">"Enemy too strong - avoiding"</span>)
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h4>3. Storage Management</h4>
+                    <p>Maximize efficiency by transporting full loads to base.</p>
+                    <div class="code-block">
+<span class="comment"># Only return to base when storage is full</span>
+<span class="keyword">if</span> rover.<span class="function">minerals_stored</span>() >= rover.<span class="function">storage_capacity</span>():
+    brain.<span class="function">print</span>(<span class="string">"Storage full - returning to base"</span>)
+    drivetrain.<span class="function">go_to</span>(<span class="keyword">BASE</span>)
+    rover.<span class="function">drop</span>(<span class="keyword">MINERALS</span>)
+                    </div>
+                </div>
+
+                <div class="command-card">
+                    <h4>4. Infinite Survival Loop</h4>
+                    <p>Create a truly autonomous rover that can run indefinitely.</p>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Setup event handlers</span>
+    rover.<span class="function">on_under_attack</span>(under_attack)
+    rover.<span class="function">on_level_up</span>(level_up)
+    <span class="function">wait</span>(<span class="number">0.15</span>, <span class="keyword">SECONDS</span>)
+
+    <span class="comment"># Infinite mission loop</span>
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)  <span class="comment"># Small delay to prevent freezing</span>
+
+        <span class="comment"># Your mission logic here</span>
+        <span class="comment"># - Battery check</span>
+        <span class="comment"># - Mineral collection</span>
+        <span class="comment"># - Enemy engagement</span>
+        <span class="comment"># - Base return</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Mission Debrief Quiz
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What is the difference between rover.use(MINERALS) and rover.drop(MINERALS)?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> use() gives 5 XP and drop() gives 2 XP</label>
+                            <label><input type="radio" name="q1" value="b"> use() recharges battery and gives 2 XP; drop() gives 5 XP at base</label>
+                            <label><input type="radio" name="q1" value="c"> They do the same thing</label>
+                            <label><input type="radio" name="q1" value="d"> use() requires minerals in cargo; drop() requires minerals on ground</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. Which zones have minerals that respawn?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> Zones A and B</label>
+                            <label><input type="radio" name="q2" value="b"> All zones</label>
+                            <label><input type="radio" name="q2" value="c"> Zones C, D, and E</label>
+                            <label><input type="radio" name="q2" value="d"> Only Zone E</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. What is the detection radius of the rover (for rover.detects())?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> 500 millimeters</label>
+                            <label><input type="radio" name="q3" value="b"> 800 millimeters</label>
+                            <label><input type="radio" name="q3" value="c"> 1000 millimeters</label>
+                            <label><input type="radio" name="q3" value="d"> 40 degrees</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. What does rover.standby(50) do?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> Pauses the rover for 50 seconds</label>
+                            <label><input type="radio" name="q4" value="b"> Sets battery level to 50%</label>
+                            <label><input type="radio" name="q4" value="c"> Enters standby mode until battery reaches 50%</label>
+                            <label><input type="radio" name="q4" value="d"> Recharges battery by 50%</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. How does drivetrain.go_to(BASE) differ from drivetrain.go_to(MINERALS)?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q5" value="a"> They work exactly the same way</label>
+                            <label><input type="radio" name="q5" value="b"> go_to(BASE) always works; go_to(MINERALS) only works if minerals are in vision range</label>
+                            <label><input type="radio" name="q5" value="c"> go_to(BASE) is faster</label>
+                            <label><input type="radio" name="q5" value="d"> go_to(MINERALS) requires rover.pickup() first</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback5"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="mission-box" style="text-align: center; margin-top: 30px;">
+                <h3><i class="bi bi-trophy"></i> Mission Complete!</h3>
+                <p>You've reached the end of the Python VR challenges. You now have the skills to create complex, autonomous robotics programs. The rover rescue mission is your final test - make it count!</p>
+            </div>
+
+            <div class="button-group">
+                <a href="sensors-detection.html" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Previous Lesson
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <a href="./" class="action-button disabled" id="nextBtn" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
+                    <i class="bi bi-award"></i> Course Complete
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizPassed = false;
+
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'b',
+                q4: 'c',
+                q5: 'b'
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! rover.use() consumes minerals on the ground for 2 XP and a full battery recharge. rover.drop() drops minerals at the current location, and if at the base, you get 5 XP per mineral.",
+                    incorrect: "Not quite. rover.use() gives 2 XP and fully recharges battery (minerals must be on ground). rover.drop() drops minerals at current location for 5 XP each if at base."
+                },
+                q2: {
+                    correct: "Correct! Zones C, D, and E have respawning minerals. Zones A and B do not have mineral respawn.",
+                    incorrect: "Not quite. Only Zones C, D, and E have respawning minerals. Zones A and B have limited minerals that don't respawn."
+                },
+                q3: {
+                    correct: "Correct! The rover.detects() command has a detection radius of 800mm in all directions (360 degrees).",
+                    incorrect: "Not quite. The detection radius for rover.detects() is 800 millimeters in all directions."
+                },
+                q4: {
+                    correct: "Correct! rover.standby(50) puts the rover in standby mode where it uses less battery but time passes faster, until the battery naturally recharges to 50%.",
+                    incorrect: "Not quite. standby() enters a low-power mode until battery reaches the specified percentage. The rover uses less battery but time passes faster in this mode."
+                },
+                q5: {
+                    correct: "Correct! go_to(BASE) always works because the rover always knows where base is. go_to(MINERALS) only works if minerals are within the rover's 1000mm vision range.",
+                    incorrect: "Not quite. The rover always knows where the base is (go_to(BASE) always works), but minerals must be within vision range for go_to(MINERALS) to work."
+                }
+            };
+
+            let allCorrect = true;
+            let answeredCount = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (answeredCount < 5) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
+            if (allCorrect) {
+                quizPassed = true;
+                // Enable the Next button (Course Complete)
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.remove('disabled');
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+                nextBtn.style.pointerEvents = 'auto';
+
+                // Show success message
+                setTimeout(() => {
+                    alert("Outstanding work, Commander! You've completed the Rover Rescue Mission briefing and are ready to tackle the challenge. Good luck on your mission!");
+                }, 500);
+            } else {
+                quizPassed = false;
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.add('disabled');
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.cursor = 'not-allowed';
+                nextBtn.style.pointerEvents = 'none';
+                alert("Review the mission briefing for the incorrect answers and try again, Commander!");
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['intro', 'objectives', 'playground', 'commands', 'strategy', 'tutorial', 'challenge', 'optimization', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

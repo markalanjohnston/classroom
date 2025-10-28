@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Projects - VEX VR Python - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-top: 5px solid #f59e0b;
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #d97706;
+            border-bottom: 3px solid #f59e0b;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .advanced-box {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .python-accent-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f7ff 100%);
+            border-left: 4px solid #3776ab;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            border: 1px solid #3e4451;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .code-block .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .code-block .function {
+            color: #61afef;
+        }
+
+        .code-block .string {
+            color: #98c379;
+        }
+
+        .code-block .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .code-block .number {
+            color: #d19a66;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #f59e0b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .action-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-button.disabled:hover {
+            transform: none;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #f59e0b;
+            border: 2px solid #f59e0b;
+        }
+
+        .secondary-button:hover {
+            background: #fff7ed;
+            color: #f59e0b;
+        }
+
+        .learning-outcomes {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .learning-outcomes h3 {
+            color: #d97706;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .learning-outcomes ul {
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        .learning-outcomes li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+
+        .progress-item.completed {
+            color: #4caf50;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #f59e0b;
+            background: #fff7ed;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .challenge-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #f59e0b;
+        }
+
+        .challenge-card h4 {
+            color: #d97706;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .challenge-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+        }
+
+        .difficulty-indicator {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .difficulty-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+
+        .difficulty-dot.filled {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Python Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Challenge Projects</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('intro')">Introduction</div>
+            <div class="progress-item" onclick="scrollToSection('electromagnet')">The Electromagnet</div>
+            <div class="progress-item" onclick="scrollToSection('nested')">Nested Loops</div>
+            <div class="progress-item" onclick="scrollToSection('algorithms')">Advanced Algorithms</div>
+            <div class="progress-item" onclick="scrollToSection('challenge1')">Challenge 1</div>
+            <div class="progress-item" onclick="scrollToSection('challenge2')">Challenge 2</div>
+            <div class="progress-item" onclick="scrollToSection('challenge3')">Challenge 3</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Quiz</div>
+        </div>
+
+        <div class="lesson-card">
+            <div class="text-center mb-4">
+                <span class="challenge-badge">
+                    <i class="bi bi-star-fill"></i> ADVANCED - BONUS LESSON
+                </span>
+            </div>
+
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-trophy text-warning"></i>
+                Challenge Projects - VEX VR Python
+            </h1>
+            <p class="lead">
+                Ready to put all your skills to the test? These advanced challenge projects combine everything you've learned - movement, sensors, loops, decision making, and more - to solve complex robotics problems!
+            </p>
+
+            <div class="advanced-box">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <strong>Advanced Content:</strong> These challenges are designed for students who have mastered all previous lessons. You'll need to combine multiple programming concepts, think algorithmically, and debug complex code. Don't be discouraged if you don't solve them on the first try - persistence and problem-solving are key!
+            </div>
+
+            <section id="intro">
+                <div class="learning-outcomes">
+                    <h3>
+                        <i class="bi bi-journal-check"></i>
+                        Learning Outcomes
+                    </h3>
+                    <p>By completing these challenge projects, you will be able to:</p>
+                    <ul>
+                        <li>Use the electromagnet to pick up and manipulate objects in VEX VR</li>
+                        <li>Implement nested loops to create complex, repetitive behaviors</li>
+                        <li>Combine sensors, decision making, and loops in advanced algorithms</li>
+                        <li>Break down complex problems into smaller, manageable steps</li>
+                        <li>Debug and optimize multi-step robotics programs</li>
+                        <li>Apply computational thinking to solve real-world automation challenges</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="electromagnet">
+                <h2 class="section-title">
+                    <i class="bi bi-magnet"></i> The Electromagnet
+                </h2>
+
+                <p>
+                    The VR Robot has a special tool called an <strong>electromagnet</strong> that can pick up and release metal objects (colored disks) on certain playgrounds. This powerful feature allows your robot to interact with its environment in new ways!
+                </p>
+
+                <h3 class="subsection-title">Electromagnet Commands</h3>
+
+                <p>There are two main electromagnet commands you'll use:</p>
+
+                <div class="code-block">
+<span class="comment"># Energize the electromagnet to pick up a disk</span>
+magnet.<span class="function">energize</span>(<span class="keyword">BOOST</span>)
+
+<span class="comment"># Release the disk</span>
+magnet.<span class="function">energize</span>(<span class="keyword">DROP</span>)
+                </div>
+
+                <h3 class="subsection-title">How the Electromagnet Works</h3>
+
+                <ul>
+                    <li><strong>BOOST:</strong> Turns on the electromagnet, attracting any nearby metal disk to the bottom of the robot</li>
+                    <li><strong>DROP:</strong> Turns off the electromagnet, releasing the disk</li>
+                    <li>The robot can only carry one disk at a time</li>
+                    <li>Use the Down Eye Sensor to detect when you're over a disk</li>
+                </ul>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Practical Example:</strong> To pick up a disk, you need to:
+                    <ol class="mb-0 mt-2">
+                        <li>Drive forward until the Down Eye Sensor detects a disk</li>
+                        <li>Stop the robot</li>
+                        <li>Energize the electromagnet with BOOST</li>
+                        <li>The disk is now attached to your robot!</li>
+                    </ol>
+                </div>
+
+                <h3 class="subsection-title">Example: Pick Up and Drop a Disk</h3>
+
+                <div class="code-block">
+<span class="comment"># Drive to the disk</span>
+<span class="keyword">while not</span> down_eye.<span class="function">near_object</span>():
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+    <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+drivetrain.<span class="function">stop</span>()
+
+<span class="comment"># Pick up the disk</span>
+magnet.<span class="function">energize</span>(<span class="keyword">BOOST</span>)
+
+<span class="comment"># Turn around to face the goal</span>
+drivetrain.<span class="function">turn_to_heading</span>(<span class="number">180</span>, <span class="keyword">DEGREES</span>)
+
+<span class="comment"># Drive to the goal (200mm from wall)</span>
+<span class="keyword">while</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) > <span class="number">200</span>:
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+    <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+drivetrain.<span class="function">stop</span>()
+
+<span class="comment"># Drop the disk in the goal</span>
+magnet.<span class="function">energize</span>(<span class="keyword">DROP</span>)
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Pro Tip:</strong> After dropping a disk, drive in reverse a short distance to avoid colliding with it. This prevents the robot from getting knocked off course!
+                </div>
+            </section>
+
+            <section id="nested">
+                <h2 class="section-title">
+                    <i class="bi bi-arrow-repeat"></i> Nested Loops
+                </h2>
+
+                <p>
+                    <strong>Nested loops</strong> are loops placed inside other loops. They're incredibly powerful for creating complex, repetitive behaviors - like picking up multiple disks or navigating a grid.
+                </p>
+
+                <h3 class="subsection-title">What Are Nested Loops?</h3>
+
+                <p>
+                    In previous lessons, you've used loops to repeat behaviors. When you place one loop <em>inside</em> another loop, it's called "nesting." The outer loop controls how many times the inner loop executes.
+                </p>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Key Concept:</strong> When you nest loops:
+                    <ul class="mb-0 mt-2">
+                        <li>The <strong>outer loop</strong> controls the number of times the inner loop runs</li>
+                        <li>The <strong>inner loops</strong> are executed completely each time the outer loop iterates</li>
+                        <li>Indentation is critical - it shows which code belongs to which loop</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Example: Moving Three Disks</h3>
+
+                <p>
+                    Instead of writing the same code three times to pick up three disks, you can use a for loop to repeat the process:
+                </p>
+
+                <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Outer loop: Repeat the process 3 times</span>
+    <span class="keyword">for</span> repeat_count <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>):
+        <span class="comment"># 1. Drive to the disk (inner while loop)</span>
+        <span class="keyword">while not</span> down_eye.<span class="function">near_object</span>():
+            drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+            <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+        drivetrain.<span class="function">stop</span>()
+
+        <span class="comment"># 2. Pick up the disk</span>
+        magnet.<span class="function">energize</span>(<span class="keyword">BOOST</span>)
+
+        <span class="comment"># 3. Drive to the goal (inner while loop)</span>
+        drivetrain.<span class="function">turn_to_heading</span>(<span class="number">180</span>, <span class="keyword">DEGREES</span>)
+        <span class="keyword">while</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) > <span class="number">200</span>:
+            drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+            <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+        drivetrain.<span class="function">stop</span>()
+
+        <span class="comment"># 4. Drop the disk in the goal</span>
+        magnet.<span class="function">energize</span>(<span class="keyword">DROP</span>)
+
+        <span class="comment"># Return to starting position</span>
+        drivetrain.<span class="function">drive_for</span>(<span class="keyword">REVERSE</span>, <span class="number">100</span>, <span class="keyword">MM</span>)
+        drivetrain.<span class="function">turn_to_heading</span>(<span class="number">0</span>, <span class="keyword">DEGREES</span>)
+                </div>
+
+                <h3 class="subsection-title">Flow of Nested Loops</h3>
+
+                <p>In the example above:</p>
+
+                <ol>
+                    <li><strong>First iteration:</strong> Pick up the first disk, drop it in the goal, return to start</li>
+                    <li><strong>Second iteration:</strong> Pick up the second disk, drop it in the goal, return to start</li>
+                    <li><strong>Third iteration:</strong> Pick up the third disk, drop it in the goal, return to start</li>
+                    <li><strong>Loop complete:</strong> All three disks are moved, program ends</li>
+                </ol>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Watch Your Indentation!</strong> Python uses indentation to determine which code belongs inside loops. Use the gray guide lines in VEXcode VR to help ensure your loops are properly nested. Incorrect indentation will cause errors!
+                </div>
+
+                <h3 class="subsection-title">Why Use Nested Loops?</h3>
+
+                <ul>
+                    <li><strong>Organize code:</strong> Makes complex programs easier to understand</li>
+                    <li><strong>Reduce repetition:</strong> Write code once, execute it many times</li>
+                    <li><strong>Easier debugging:</strong> Fix the code in one place instead of multiple</li>
+                    <li><strong>Real-world applications:</strong> Warehouse robots, assembly lines, sorting systems</li>
+                </ul>
+            </section>
+
+            <section id="algorithms">
+                <h2 class="section-title">
+                    <i class="bi bi-gear-fill"></i> Advanced Algorithms
+                </h2>
+
+                <p>
+                    An <strong>algorithm</strong> is a step-by-step procedure to solve a problem. Advanced algorithms combine all the skills you've learned: movement, sensors, loops, decisions, and the electromagnet.
+                </p>
+
+                <h3 class="subsection-title">Building Complex Algorithms</h3>
+
+                <p>When solving complex challenges, follow this process:</p>
+
+                <ol class="step-list">
+                    <li><strong>Understand the problem:</strong> What needs to happen? What's the end goal?</li>
+                    <li><strong>Break it down:</strong> Divide the problem into smaller, manageable steps</li>
+                    <li><strong>Plan your solution:</strong> Write comments outlining each step</li>
+                    <li><strong>Code one step at a time:</strong> Implement and test each section before moving on</li>
+                    <li><strong>Test and debug:</strong> Run your code frequently, fix errors as you go</li>
+                    <li><strong>Optimize:</strong> Once it works, look for ways to make it better</li>
+                </ol>
+
+                <h3 class="subsection-title">Combining Skills</h3>
+
+                <p>Advanced challenges require you to combine multiple concepts:</p>
+
+                <div class="code-block">
+<span class="comment"># Example: Multi-color disk sorting</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Outer loop: Handle each color (3 colors)</span>
+    <span class="keyword">for</span> color_section <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>):
+
+        <span class="comment"># Inner loop: Move 3 disks of each color</span>
+        <span class="keyword">for</span> disk_count <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>):
+            <span class="comment"># Drive to disk</span>
+            <span class="keyword">while not</span> down_eye.<span class="function">near_object</span>():
+                drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+                <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+            drivetrain.<span class="function">stop</span>()
+
+            <span class="comment"># Pick up disk</span>
+            magnet.<span class="function">energize</span>(<span class="keyword">BOOST</span>)
+
+            <span class="comment"># Navigate to goal and drop</span>
+            <span class="comment"># ... (navigation code here)</span>
+
+        <span class="comment"># Move to next color section</span>
+        <span class="comment"># ... (positioning code here)</span>
+                </div>
+
+                <div class="python-accent-box">
+                    <i class="bi bi-cpu"></i>
+                    <strong>Computational Thinking:</strong> These challenges teach you to think like a computer scientist. You're learning to decompose problems, recognize patterns, abstract details, and design algorithms - skills used in all areas of computer science and engineering!
+                </div>
+            </section>
+
+            <section id="challenge1">
+                <h2 class="section-title">
+                    <i class="bi bi-trophy"></i> Challenge 1: Disk Mover
+                </h2>
+
+                <div class="challenge-card">
+                    <h4>
+                        <i class="bi bi-flag-fill"></i> The Mission
+                    </h4>
+                    <div class="difficulty-indicator">
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot"></div>
+                        <div class="difficulty-dot"></div>
+                        <span class="ms-2"><strong>Difficulty:</strong> Advanced</span>
+                    </div>
+                    <p>
+                        Your robot must pick up and move <strong>nine colored disks</strong> (3 blue, 3 red, 3 green) to their matching colored goals on the Disk Mover Playground. Each disk must be placed in the correct goal!
+                    </p>
+                </div>
+
+                <h3 class="subsection-title">Challenge Requirements</h3>
+
+                <ul>
+                    <li>Use the <strong>Disk Mover Playground</strong></li>
+                    <li>Move all 3 blue disks to the blue goal</li>
+                    <li>Move all 3 red disks to the red goal</li>
+                    <li>Move all 3 green disks to the green goal</li>
+                    <li>Use nested loops to organize your code</li>
+                    <li>Return to the starting position when complete</li>
+                </ul>
+
+                <h3 class="subsection-title">Strategy Tips</h3>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Suggested Approach:</strong>
+                    <ol class="mb-0">
+                        <li>Start by moving all blue disks (you've practiced this!)</li>
+                        <li>Navigate to the red section and move those disks</li>
+                        <li>Navigate to the green section and move those disks</li>
+                        <li>Use a for loop that repeats 3 times for each color</li>
+                        <li>Use another outer loop to handle all 3 colors</li>
+                    </ol>
+                </div>
+
+                <h3 class="subsection-title">Key Commands You'll Need</h3>
+
+                <ul>
+                    <li><code>down_eye.near_object()</code> - Detect disks</li>
+                    <li><code>front_distance.get_distance(MM)</code> - Navigate to goals</li>
+                    <li><code>magnet.energize(BOOST)</code> - Pick up disks</li>
+                    <li><code>magnet.energize(DROP)</code> - Release disks</li>
+                    <li><code>drivetrain.turn_to_heading()</code> - Turn to specific angles</li>
+                    <li><code>for repeat_count in range(3):</code> - Nested loops</li>
+                </ul>
+
+                <h3 class="subsection-title">Planning Template</h3>
+
+                <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># TODO: Outer loop for 3 color sections</span>
+
+        <span class="comment"># TODO: Inner loop for 3 disks per color</span>
+
+            <span class="comment"># TODO: Drive to disk using Down Eye Sensor</span>
+
+            <span class="comment"># TODO: Pick up disk</span>
+
+            <span class="comment"># TODO: Navigate to correct goal</span>
+
+            <span class="comment"># TODO: Drop disk</span>
+
+            <span class="comment"># TODO: Return to starting position for next disk</span>
+
+        <span class="comment"># TODO: Navigate to next color section</span>
+
+    <span class="comment"># TODO: Return to overall starting position</span>
+                </div>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Note:</strong> Your robot may bump into the wall near the green goal - this is okay! In future courses, you'll learn about variables to prevent this. For now, focus on successfully moving all 9 disks to their correct goals.
+                </div>
+
+                <div class="button-group">
+                    <a href="https://vr.vex.com" target="_blank" class="action-button">
+                        <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                    </a>
+                </div>
+            </section>
+
+            <section id="challenge2">
+                <h2 class="section-title">
+                    <i class="bi bi-trophy"></i> Challenge 2: Warehouse Automation
+                </h2>
+
+                <div class="challenge-card">
+                    <h4>
+                        <i class="bi bi-flag-fill"></i> The Mission
+                    </h4>
+                    <div class="difficulty-indicator">
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot"></div>
+                        <span class="ms-2"><strong>Difficulty:</strong> Expert</span>
+                    </div>
+                    <p>
+                        Design an efficient warehouse sorting system! Your robot must pick up disks from a central location and distribute them to multiple zones based on color, all while navigating obstacles and optimizing its path.
+                    </p>
+                </div>
+
+                <h3 class="subsection-title">Challenge Requirements</h3>
+
+                <ul>
+                    <li>Complete the Disk Mover challenge in the <strong>most efficient way possible</strong></li>
+                    <li>Minimize unnecessary movements and turns</li>
+                    <li>Use sensors to navigate precisely</li>
+                    <li>Ensure no disks are left behind</li>
+                    <li>Your solution should be well-organized with clear comments</li>
+                </ul>
+
+                <h3 class="subsection-title">Optimization Goals</h3>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Efficiency Metrics:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li><strong>Time:</strong> Can you reduce the total runtime?</li>
+                        <li><strong>Distance:</strong> Can you minimize the total distance traveled?</li>
+                        <li><strong>Code Length:</strong> Can you accomplish the task with fewer lines of code?</li>
+                        <li><strong>Reliability:</strong> Does your solution work consistently every time?</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Advanced Techniques</h3>
+
+                <ul>
+                    <li>Plan the optimal route before writing code</li>
+                    <li>Use <code>turn_to_heading()</code> for precise navigation</li>
+                    <li>Combine movements to reduce stops</li>
+                    <li>Use nested loops efficiently</li>
+                    <li>Add error handling (what if a sensor fails?)</li>
+                </ul>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Pro Challenge:</strong> Time how long your solution takes to complete. Can you modify it to be faster? Can you explain WHY your optimizations make it faster?
+                </div>
+            </section>
+
+            <section id="challenge3">
+                <h2 class="section-title">
+                    <i class="bi bi-trophy"></i> Challenge 3: Advanced Maze Navigator
+                </h2>
+
+                <div class="challenge-card">
+                    <h4>
+                        <i class="bi bi-flag-fill"></i> The Mission
+                    </h4>
+                    <div class="difficulty-indicator">
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <div class="difficulty-dot filled"></div>
+                        <span class="ms-2"><strong>Difficulty:</strong> Master</span>
+                    </div>
+                    <p>
+                        Combine ALL your skills! Navigate a complex maze using sensors and decision making, collect objects along the way with the electromagnet, and deliver them to specific zones - all in the correct order!
+                    </p>
+                </div>
+
+                <h3 class="subsection-title">Challenge Requirements</h3>
+
+                <ul>
+                    <li>Use <strong>any VEX VR playground</strong> of your choice</li>
+                    <li>Create your own complex challenge that uses:
+                        <ul>
+                            <li>Movement and navigation</li>
+                            <li>Sensor feedback (Eye Sensors, Distance Sensor)</li>
+                            <li>Decision making (if statements, Boolean logic)</li>
+                            <li>Loops (for loops, while loops, nested loops)</li>
+                            <li>The electromagnet (if using Disk Mover Playground)</li>
+                        </ul>
+                    </li>
+                    <li>Write clear comments explaining your algorithm</li>
+                    <li>Test thoroughly and debug any issues</li>
+                </ul>
+
+                <h3 class="subsection-title">Example Challenge Ideas</h3>
+
+                <div class="challenge-card">
+                    <h4>Idea 1: Adaptive Disk Sorter</h4>
+                    <p>
+                        Create a program that checks which colored disks are present on the playground and only moves those colors. Use the Eye Sensor to detect disk colors and make decisions about which goal to navigate to.
+                    </p>
+                </div>
+
+                <div class="challenge-card">
+                    <h4>Idea 2: Maze with Checkpoints</h4>
+                    <p>
+                        Navigate a maze while stopping at specific checkpoints. At each checkpoint, perform a different action (turn in a circle, move backward, etc.) based on sensor readings.
+                    </p>
+                </div>
+
+                <div class="challenge-card">
+                    <h4>Idea 3: Multi-Stage Mission</h4>
+                    <p>
+                        Complete a series of tasks in sequence: navigate a path, collect an object, navigate to a different location, perform a specific action, and return to start - all using different sensors and decisions at each stage.
+                    </p>
+                </div>
+
+                <div class="advanced-box">
+                    <i class="bi bi-star-fill"></i>
+                    <strong>Master Challenge:</strong> Once you complete your custom challenge, explain your algorithm to a classmate or teacher. Can they understand your code? Can they suggest improvements? Collaboration and code review are essential skills in professional programming!
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Advanced Knowledge Check
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What does the electromagnet command <code>magnet.energize(BOOST)</code> do?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> Makes the robot move faster</label>
+                            <label><input type="radio" name="q1" value="b"> Turns on the electromagnet to pick up a disk</label>
+                            <label><input type="radio" name="q1" value="c"> Releases a disk that's being held</label>
+                            <label><input type="radio" name="q1" value="d"> Increases the robot's sensor range</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. In nested loops, what controls how many times the inner loop executes?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> The inner loop controls itself</label>
+                            <label><input type="radio" name="q2" value="b"> The outer loop controls the inner loop</label>
+                            <label><input type="radio" name="q2" value="c"> They both run the same number of times</label>
+                            <label><input type="radio" name="q2" value="d"> Neither loop controls the other</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. Which sensor is best for detecting colored disks on the ground?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> Front Eye Sensor</label>
+                            <label><input type="radio" name="q3" value="b"> Down Eye Sensor</label>
+                            <label><input type="radio" name="q3" value="c"> Distance Sensor</label>
+                            <label><input type="radio" name="q3" value="d"> Gyro Sensor</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. If you have a for loop with <code>range(3)</code> containing a while loop, and the while loop runs 5 times each iteration, how many total times does the while loop execute?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> 3 times</label>
+                            <label><input type="radio" name="q4" value="b"> 5 times</label>
+                            <label><input type="radio" name="q4" value="c"> 8 times</label>
+                            <label><input type="radio" name="q4" value="d"> 15 times</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. What is the main advantage of using nested loops in robotics programming?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q5" value="a"> They make the robot move faster</label>
+                            <label><input type="radio" name="q5" value="b"> They organize and condense repetitive code, making it easier to understand and debug</label>
+                            <label><input type="radio" name="q5" value="c"> They prevent the robot from making errors</label>
+                            <label><input type="radio" name="q5" value="d"> They automatically optimize the robot's path</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback5"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-trophy"></i>
+                <strong>Complete the Quiz:</strong> Answer all questions correctly to unlock the "Next Lesson" button and continue your journey!
+            </div>
+
+            <div class="button-group">
+                <a href="decision-making.html" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Previous Lesson
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <a href="rover-rescue.html" class="action-button disabled" id="nextBtn" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
+                    <i class="bi bi-arrow-right"></i> Next Lesson
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizPassed = false;
+
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'd',
+                q5: 'b'
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! magnet.energize(BOOST) turns on the electromagnet to attract and pick up a metal disk.",
+                    incorrect: "Not quite. BOOST energizes the electromagnet to pick up objects, while DROP releases them."
+                },
+                q2: {
+                    correct: "Correct! The outer loop controls how many times the inner loop executes. Each iteration of the outer loop runs the complete inner loop.",
+                    incorrect: "Not quite. In nested loops, the outer loop determines how many times the inner loop runs completely."
+                },
+                q3: {
+                    correct: "Correct! The Down Eye Sensor points downward and can detect objects (like colored disks) on the ground beneath the robot.",
+                    incorrect: "Not quite. The Down Eye Sensor points downward and is specifically designed to detect objects on the ground."
+                },
+                q4: {
+                    correct: "Correct! The for loop runs 3 times, and each time it runs, the while loop executes 5 times. 3 × 5 = 15 total executions.",
+                    incorrect: "Not quite. Think about it: the for loop runs 3 times, and EACH time, the while loop runs 5 times. Multiply them: 3 × 5 = 15."
+                },
+                q5: {
+                    correct: "Correct! Nested loops organize repetitive code, reduce duplication, and make programs easier to read, understand, and debug.",
+                    incorrect: "Not quite. The main advantage is organization and code reduction - writing complex behaviors in a clear, condensed way that's easier to maintain."
+                }
+            };
+
+            let allCorrect = true;
+            let answeredCount = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (answeredCount < 5) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
+            if (allCorrect) {
+                quizPassed = true;
+                // Enable the Next Lesson button
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.remove('disabled');
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+                nextBtn.style.pointerEvents = 'auto';
+
+                // Show success message
+                setTimeout(() => {
+                    alert("Perfect score! You've mastered the advanced concepts! You're ready for even bigger challenges. Proceed to the next lesson when you're ready.");
+                }, 500);
+            } else {
+                quizPassed = false;
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.add('disabled');
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.cursor = 'not-allowed';
+                nextBtn.style.pointerEvents = 'none';
+                alert("Not quite there yet! Review the incorrect answers and try again. These are advanced concepts - take your time!");
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['intro', 'electromagnet', 'nested', 'algorithms', 'challenge1', 'challenge2', 'challenge3', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

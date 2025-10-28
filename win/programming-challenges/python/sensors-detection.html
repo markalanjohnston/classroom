@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensors & Detection - VEX VR Python - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .python-accent-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f7ff 100%);
+            border-left: 4px solid #3776ab;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            border: 1px solid #3e4451;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .code-block .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .code-block .function {
+            color: #61afef;
+        }
+
+        .code-block .string {
+            color: #98c379;
+        }
+
+        .code-block .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .code-block .number {
+            color: #d19a66;
+        }
+
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .sensor-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .sensor-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .sensor-card i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .sensor-card h4 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .sensor-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .action-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-button.disabled:hover {
+            transform: none;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #f0f7ff;
+            color: #667eea;
+        }
+
+        .learning-outcomes {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .learning-outcomes h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .learning-outcomes ul {
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        .learning-outcomes li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .progress-item.completed {
+            color: #4caf50;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .practice-example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .practice-example h4 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .decision-loop-diagram {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .decision-loop-diagram h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .flow-step {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background: #f0f7ff;
+            border: 2px solid #2196f3;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Python Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Sensors & Detection</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('intro')">Introduction</div>
+            <div class="progress-item" onclick="scrollToSection('bumper')">Bumper Sensor</div>
+            <div class="progress-item" onclick="scrollToSection('distance')">Distance Sensor</div>
+            <div class="progress-item" onclick="scrollToSection('location')">Location Sensor</div>
+            <div class="progress-item" onclick="scrollToSection('eye')">Eye Sensor</div>
+            <div class="progress-item" onclick="scrollToSection('practice')">Practice Examples</div>
+            <div class="progress-item" onclick="scrollToSection('challenge')">Multi-Sensor Challenge</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Quiz</div>
+        </div>
+
+        <div class="lesson-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-radar text-primary"></i>
+                Sensors & Detection - VEX VR Python
+            </h1>
+            <p class="lead">
+                Master the art of robotic sensing! Learn to use all four VR Robot sensors - Bumper, Distance, Location, and Eye - to create intelligent, autonomous navigation programs.
+            </p>
+
+            <div class="python-accent-box">
+                <i class="bi bi-info-circle"></i>
+                <strong>The Sense-Think-Act Loop:</strong> Sensors are essential to robotics. A VR Robot uses sensors to collect data from its surroundings (Sense), make decisions based on this information (Think), and turn that information into instructions for behaviors (Act).
+            </div>
+
+            <section id="intro">
+                <div class="learning-outcomes">
+                    <h3>
+                        <i class="bi bi-journal-check"></i>
+                        Learning Outcomes
+                    </h3>
+                    <p>By the end of this comprehensive lesson, you will be able to:</p>
+                    <ul>
+                        <li>Understand the Sense-Think-Act decision loop in robotics</li>
+                        <li>Use Bumper Sensors with while loops for maze navigation</li>
+                        <li>Implement Distance Sensors for autonomous obstacle avoidance</li>
+                        <li>Navigate using Location Sensors and coordinate systems</li>
+                        <li>Detect colors and objects using Eye Sensors</li>
+                        <li>Combine multiple sensors in complex navigation projects</li>
+                        <li>Apply comparison operators with sensor data</li>
+                        <li>Use conditional statements (if) for sensor-based decision making</li>
+                    </ul>
+                </div>
+
+                <h2 class="section-title">
+                    <i class="bi bi-lightbulb"></i> Introduction to VR Robot Sensors
+                </h2>
+
+                <p>
+                    For a VR Robot to truly be considered a robot, it must be able to <strong>sense and interact with its environment</strong>. Sensors enable a VR Robot to interact with its environment and allow you to create dynamic projects that respond to changing conditions.
+                </p>
+
+                <div class="decision-loop-diagram">
+                    <h4>The Sense-Think-Act Decision Loop</h4>
+                    <div class="my-3">
+                        <span class="flow-step">Sense</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-step">Think</span>
+                        <span class="flow-arrow">→</span>
+                        <span class="flow-step">Act</span>
+                    </div>
+                    <p class="mt-3">This cycle repeats continuously as the robot navigates its environment</p>
+                </div>
+
+                <h3 class="subsection-title">VR Robot Sensors Overview</h3>
+
+                <div class="sensor-grid">
+                    <div class="sensor-card">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        <h4>Bumper Sensor</h4>
+                        <p>Detects physical contact with walls or objects</p>
+                    </div>
+                    <div class="sensor-card">
+                        <i class="bi bi-rulers"></i>
+                        <h4>Distance Sensor</h4>
+                        <p>Measures distance to nearby objects using laser light</p>
+                    </div>
+                    <div class="sensor-card">
+                        <i class="bi bi-geo-alt"></i>
+                        <h4>Location Sensor</h4>
+                        <p>Reports (X,Y) position on coordinate plane</p>
+                    </div>
+                    <div class="sensor-card">
+                        <i class="bi bi-eye"></i>
+                        <h4>Eye Sensor</h4>
+                        <p>Detects object presence and colors (red, green, blue)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bumper">
+                <h2 class="section-title">
+                    <i class="bi bi-hand-thumbs-up"></i> Bumper Sensor - Physical Contact Detection
+                </h2>
+
+                <p>
+                    The <strong>Bumper Sensor</strong> is a switch that detects physical contact. The VR Robot has two Bumper Sensors located on the front (left and right) that can detect when the robot touches an object or wall.
+                </p>
+
+                <h3 class="subsection-title">How Bumper Sensors Work</h3>
+                <ul>
+                    <li><strong>Type:</strong> Switch sensor that reports pressed or not pressed</li>
+                    <li><strong>Returns:</strong> Boolean value (True or False)</li>
+                    <li><strong>True:</strong> When the Bumper Sensor is pressed</li>
+                    <li><strong>False:</strong> When the Bumper Sensor is not pressed</li>
+                </ul>
+
+                <h3 class="subsection-title">Bumper Sensor Commands</h3>
+                <div class="code-block">
+<span class="comment"># Check if left bumper is pressed</span>
+left_bumper.<span class="function">pressed</span>()  <span class="comment"># Returns True/False</span>
+
+<span class="comment"># Check if right bumper is pressed</span>
+right_bumper.<span class="function">pressed</span>()  <span class="comment"># Returns True/False</span>
+                </div>
+
+                <h3 class="subsection-title">Using the NOT Keyword</h3>
+                <p>
+                    The <code>not</code> keyword inverts Boolean values. This is useful for driving while the bumper is <strong>not</strong> pressed:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Drive forward until bumper is pressed</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="keyword">while</span> <span class="keyword">not</span> left_bumper.<span class="function">pressed</span>():
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+    drivetrain.<span class="function">stop</span>()
+                </div>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Understanding the Logic:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li><strong>While NOT pressed (False):</strong> Condition is True, robot drives forward</li>
+                        <li><strong>When pressed (True):</strong> NOT makes it False, exits loop and stops</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Waiting vs. Non-Waiting Commands</h3>
+                <p>Understanding command types is crucial when using sensors:</p>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Waiting Commands:</strong> Complete their behavior before moving to the next command
+                    <div class="code-block" style="margin-top: 10px;">
+drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)  <span class="comment"># Waits until complete</span>
+drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)  <span class="comment"># Waits until complete</span>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <strong>Non-Waiting Commands:</strong> Continue to next command immediately
+                    <div class="code-block" style="margin-top: 10px;">
+drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)  <span class="comment"># Starts driving, continues immediately</span>
+drivetrain.<span class="function">turn</span>(<span class="keyword">RIGHT</span>)     <span class="comment"># Starts turning, continues immediately</span>
+                    </div>
+                    <p class="mb-0 mt-2">Use non-waiting commands with while loops so sensors can be checked continuously!</p>
+                </div>
+
+                <h3 class="subsection-title">Maze Navigation Example</h3>
+                <div class="code-block">
+<span class="comment"># Navigate through a maze using bumper sensors</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Drive forward until hitting a wall</span>
+    <span class="keyword">while</span> <span class="keyword">not</span> left_bumper.<span class="function">pressed</span>():
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Hit a wall, stop and turn</span>
+    drivetrain.<span class="function">stop</span>()
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+    <span class="comment"># Continue navigating</span>
+    <span class="keyword">while</span> <span class="keyword">not</span> left_bumper.<span class="function">pressed</span>():
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    drivetrain.<span class="function">stop</span>()
+                </div>
+            </section>
+
+            <section id="distance">
+                <h2 class="section-title">
+                    <i class="bi bi-rulers"></i> Distance Sensor - Measuring Distance
+                </h2>
+
+                <p>
+                    The <strong>Distance Sensor</strong> uses a pulse of laser light to detect objects and measure how far away they are. This allows the robot to navigate without bumping into walls.
+                </p>
+
+                <h3 class="subsection-title">How the Distance Sensor Works</h3>
+                <ul>
+                    <li><strong>Technology:</strong> Sends laser light pulse, measures reflection time</li>
+                    <li><strong>Location:</strong> Front Eye on the VR Robot</li>
+                    <li><strong>Range:</strong> Can detect objects up to 3000 millimeters away</li>
+                    <li><strong>Returns:</strong> Numeric distance value in mm or inches</li>
+                </ul>
+
+                <h3 class="subsection-title">Distance Sensor Commands</h3>
+                <div class="code-block">
+<span class="comment"># Check if object is detected</span>
+front_distance.<span class="function">found_object</span>()  <span class="comment"># Returns True/False</span>
+
+<span class="comment"># Get distance to object in millimeters</span>
+front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>)  <span class="comment"># Returns numeric value</span>
+
+<span class="comment"># Get distance to object in inches</span>
+front_distance.<span class="function">get_distance</span>(<span class="keyword">INCHES</span>)  <span class="comment"># Returns numeric value</span>
+                </div>
+
+                <h3 class="subsection-title">Comparison Operators</h3>
+                <p>
+                    Use comparison operators to make decisions based on distance values:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Greater than (>): True if left value is larger</span>
+front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) > <span class="number">50</span>  <span class="comment"># True if distance > 50mm</span>
+
+<span class="comment"># Less than (<): True if left value is smaller</span>
+front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) < <span class="number">50</span>  <span class="comment"># True if distance < 50mm</span>
+
+<span class="comment"># Equal to (==): True if values are exactly the same</span>
+front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) == <span class="number">50</span>  <span class="comment"># True if distance exactly 50mm</span>
+                </div>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Avoid Using == with Sensors:</strong> The equal to (==) operator requires an exact match, which is difficult to achieve with fast-moving robots and continuous sensor readings. Use > or < instead for more reliable behavior.
+                </div>
+
+                <h3 class="subsection-title">Distance-Based Navigation</h3>
+                <div class="code-block">
+<span class="comment"># Drive forward while maintaining safe distance from wall</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Drive while distance is greater than 50mm</span>
+    <span class="keyword">while</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) > <span class="number">50</span>:
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Stop before hitting the wall</span>
+    drivetrain.<span class="function">stop</span>()
+
+    <span class="comment"># Turn to continue navigating</span>
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Choosing Comparison Operators:</strong> Use operators that make your code readable. "While distance is greater than 50mm, drive forward" is clearer than "While 50mm is less than distance, drive forward" even though both work the same way.
+                </div>
+
+                <h3 class="subsection-title">Adjusting Detection Distances</h3>
+                <p>You can adjust threshold values to control robot behavior:</p>
+                <div class="code-block">
+<span class="comment"># Stop closer to wall (30mm)</span>
+<span class="keyword">while</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) > <span class="number">30</span>:
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+    <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+<span class="comment"># Stop farther from wall (100mm)</span>
+<span class="keyword">while</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) > <span class="number">100</span>:
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+    <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+                </div>
+            </section>
+
+            <section id="location">
+                <h2 class="section-title">
+                    <i class="bi bi-geo-alt"></i> Location Sensor - Coordinate Navigation
+                </h2>
+
+                <p>
+                    The <strong>Location Sensor</strong> is built into the VR Robot and reports its (X, Y) position on the playground. This enables precise navigation to specific coordinates.
+                </p>
+
+                <h3 class="subsection-title">Understanding the Coordinate System</h3>
+                <ul>
+                    <li><strong>Center Point:</strong> Located at the front-center turning point of the robot</li>
+                    <li><strong>X-Axis:</strong> Horizontal position (-1000mm to +1000mm)</li>
+                    <li><strong>Y-Axis:</strong> Vertical position (-1000mm to +1000mm)</li>
+                    <li><strong>Origin (0, 0):</strong> Center of the playground</li>
+                </ul>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Coordinate Changes:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li>Driving <strong>right</strong> increases X value (becomes more positive)</li>
+                        <li>Driving <strong>left</strong> decreases X value (becomes more negative)</li>
+                        <li>Driving <strong>forward/up</strong> increases Y value (becomes more positive)</li>
+                        <li>Driving <strong>backward/down</strong> decreases Y value (becomes more negative)</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Location Sensor Commands</h3>
+                <div class="code-block">
+<span class="comment"># Get X position in millimeters</span>
+location.<span class="function">position</span>(<span class="keyword">X</span>, <span class="keyword">MM</span>)
+
+<span class="comment"># Get Y position in millimeters</span>
+location.<span class="function">position</span>(<span class="keyword">Y</span>, <span class="keyword">MM</span>)
+
+<span class="comment"># Get X position in inches</span>
+location.<span class="function">position</span>(<span class="keyword">X</span>, <span class="keyword">INCHES</span>)
+
+<span class="comment"># Get Y position in inches</span>
+location.<span class="function">position</span>(<span class="keyword">Y</span>, <span class="keyword">INCHES</span>)
+
+<span class="comment"># Get robot's heading angle</span>
+location.<span class="function">position_angle</span>(<span class="keyword">DEGREES</span>)
+                </div>
+
+                <h3 class="subsection-title">Navigating to Coordinates</h3>
+                <p>
+                    Combine the Location Sensor with comparison operators to navigate to specific positions:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Navigate to the center of the playground (0, 0)</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># First, drive until Y coordinate reaches 0</span>
+    <span class="keyword">while</span> location.<span class="function">position</span>(<span class="keyword">Y</span>, <span class="keyword">MM</span>) < <span class="number">0</span>:
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Turn right to align with X axis</span>
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+    <span class="comment"># Drive until X coordinate reaches 0</span>
+    <span class="keyword">while</span> location.<span class="function">position</span>(<span class="keyword">X</span>, <span class="keyword">MM</span>) < <span class="number">0</span>:
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    drivetrain.<span class="function">stop</span>()
+                </div>
+
+                <h3 class="subsection-title">Navigating to Different Positions</h3>
+                <div class="code-block">
+<span class="comment"># Navigate to position (300, 200)</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Drive until Y = 200mm</span>
+    <span class="keyword">while</span> location.<span class="function">position</span>(<span class="keyword">Y</span>, <span class="keyword">MM</span>) < <span class="number">200</span>:
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Turn to face positive X direction</span>
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+    <span class="comment"># Drive until X = 300mm</span>
+    <span class="keyword">while</span> location.<span class="function">position</span>(<span class="keyword">X</span>, <span class="keyword">MM</span>) < <span class="number">300</span>:
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    drivetrain.<span class="function">stop</span>()
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Pro Tip:</strong> Use the VEXcode VR Dashboard to monitor the robot's current position in real-time. This helps you understand how coordinates change as the robot moves!
+                </div>
+            </section>
+
+            <section id="eye">
+                <h2 class="section-title">
+                    <i class="bi bi-eye"></i> Eye Sensor - Color & Object Detection
+                </h2>
+
+                <p>
+                    The VR Robot has two <strong>Eye Sensors</strong> that can detect objects and identify their colors. These sensors enable color-based navigation and object recognition.
+                </p>
+
+                <h3 class="subsection-title">Eye Sensor Types</h3>
+                <ul>
+                    <li><strong>Front Eye Sensor:</strong> Mounted in front, faces forward - detects raised objects and colored disks ahead</li>
+                    <li><strong>Down Eye Sensor:</strong> Mounted below, faces downward - detects disks on the floor and line markings</li>
+                </ul>
+
+                <h3 class="subsection-title">Detectable Colors</h3>
+                <p>Eye Sensors can detect four color categories:</p>
+                <ul>
+                    <li><strong>RED</strong> - Red objects and disks</li>
+                    <li><strong>GREEN</strong> - Green objects and disks</li>
+                    <li><strong>BLUE</strong> - Blue objects and disks</li>
+                    <li><strong>NONE</strong> - Any color that isn't red, green, or blue</li>
+                </ul>
+
+                <h3 class="subsection-title">Eye Sensor Commands</h3>
+                <div class="code-block">
+<span class="comment"># Check if eye sensor is near an object</span>
+front_eye.<span class="function">near_object</span>()  <span class="comment"># Returns True/False</span>
+down_eye.<span class="function">near_object</span>()   <span class="comment"># Returns True/False</span>
+
+<span class="comment"># Detect specific colors</span>
+front_eye.<span class="function">detect</span>(<span class="keyword">RED</span>)    <span class="comment"># Returns True if red detected</span>
+front_eye.<span class="function">detect</span>(<span class="keyword">GREEN</span>)  <span class="comment"># Returns True if green detected</span>
+front_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>)   <span class="comment"># Returns True if blue detected</span>
+front_eye.<span class="function">detect</span>(<span class="keyword">NONE</span>)   <span class="comment"># Returns True if other color detected</span>
+
+<span class="comment"># Down eye sensor works the same way</span>
+down_eye.<span class="function">detect</span>(<span class="keyword">RED</span>)
+down_eye.<span class="function">detect</span>(<span class="keyword">GREEN</span>)
+down_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>)
+down_eye.<span class="function">detect</span>(<span class="keyword">NONE</span>)
+                </div>
+
+                <h3 class="subsection-title">Using if Statements with Eye Sensors</h3>
+                <p>
+                    <strong>If statements</strong> are conditional statements that execute code only when a condition is True. They're perfect for making decisions based on detected colors:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Basic if statement structure</span>
+<span class="keyword">if</span> condition:
+    <span class="comment"># Code here runs only if condition is True</span>
+    <span class="keyword">pass</span>
+                </div>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>The 'pass' Statement:</strong> When you drag an if statement from the toolbox, it includes <code>pass</code> as a placeholder. Replace <code>pass</code> with your actual commands. The if statement needs at least one command inside it to work properly.
+                </div>
+
+                <h3 class="subsection-title">Color-Based Navigation Example</h3>
+                <div class="code-block">
+<span class="comment"># Navigate a disk maze using color detection</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Drive forward while near an object</span>
+    <span class="keyword">while</span> front_eye.<span class="function">near_object</span>():
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+        <span class="comment"># If green is detected, turn right</span>
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">GREEN</span>):
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="comment"># If blue is detected, turn left</span>
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>):
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">LEFT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="comment"># If red is detected, stop (goal reached)</span>
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+            drivetrain.<span class="function">stop</span>()
+            <span class="keyword">break</span>
+                </div>
+
+                <h3 class="subsection-title">Multiple Conditions Example</h3>
+                <div class="code-block">
+<span class="comment"># Use multiple if statements to check different conditions</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="comment"># Check front eye for colors</span>
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">GREEN</span>):
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>):
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">LEFT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+            <span class="keyword">break</span>  <span class="comment"># Exit the loop</span>
+
+        <span class="comment"># Drive forward if no special action needed</span>
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    drivetrain.<span class="function">stop</span>()
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Real-World Analogy:</strong> If statements work like traffic lights:
+                    <ul class="mt-2 mb-0">
+                        <li><strong>If</strong> the light is green, then go</li>
+                        <li><strong>If</strong> the light is yellow, then slow down</li>
+                        <li><strong>If</strong> the light is red, then stop</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="practice">
+                <h2 class="section-title">
+                    <i class="bi bi-pen"></i> Practice Examples
+                </h2>
+
+                <p>
+                    Test your understanding with these practical examples, one for each sensor type.
+                </p>
+
+                <div class="practice-example">
+                    <h4>Example 1: Bumper Sensor - Simple Wall Detection</h4>
+                    <p><strong>Challenge:</strong> Drive forward until hitting a wall, then back up and turn.</p>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Drive forward until bumper is pressed</span>
+    <span class="keyword">while</span> <span class="keyword">not</span> left_bumper.<span class="function">pressed</span>():
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Back up a bit</span>
+    drivetrain.<span class="function">drive_for</span>(<span class="keyword">REVERSE</span>, <span class="number">100</span>, <span class="keyword">MM</span>)
+
+    <span class="comment"># Turn to avoid obstacle</span>
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+    drivetrain.<span class="function">stop</span>()
+                    </div>
+                    <p><strong>What it does:</strong> Robot drives until it touches a wall, backs up 100mm, turns right 90 degrees, and stops.</p>
+                </div>
+
+                <div class="practice-example">
+                    <h4>Example 2: Distance Sensor - Maintain Safe Distance</h4>
+                    <p><strong>Challenge:</strong> Drive forward but stop 75mm away from any wall.</p>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Drive while distance is greater than 75mm</span>
+    <span class="keyword">while</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) > <span class="number">75</span>:
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Stop without touching the wall</span>
+    drivetrain.<span class="function">stop</span>()
+
+    <span class="comment"># Turn to continue navigating</span>
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">LEFT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+                    </div>
+                    <p><strong>What it does:</strong> Robot approaches wall but stops 75mm away, never making contact. Then turns left to continue exploring.</p>
+                </div>
+
+                <div class="practice-example">
+                    <h4>Example 3: Location Sensor - Navigate to Specific Point</h4>
+                    <p><strong>Challenge:</strong> Navigate to coordinate position (400, 300).</p>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># First navigate to Y = 300</span>
+    <span class="keyword">while</span> location.<span class="function">position</span>(<span class="keyword">Y</span>, <span class="keyword">MM</span>) < <span class="number">300</span>:
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Turn to face positive X direction</span>
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+    <span class="comment"># Navigate to X = 400</span>
+    <span class="keyword">while</span> location.<span class="function">position</span>(<span class="keyword">X</span>, <span class="keyword">MM</span>) < <span class="number">400</span>:
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    drivetrain.<span class="function">stop</span>()
+                    </div>
+                    <p><strong>What it does:</strong> Robot navigates to the precise coordinate (400, 300) by first reaching the Y position, then the X position.</p>
+                </div>
+
+                <div class="practice-example">
+                    <h4>Example 4: Eye Sensor - Follow Color Path</h4>
+                    <p><strong>Challenge:</strong> Follow a path of colored disks, turning based on colors detected.</p>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Drive until reaching red (goal)</span>
+    <span class="keyword">while</span> <span class="keyword">not</span> front_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+        <span class="comment"># Green disk = turn right</span>
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">GREEN</span>):
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="comment"># Blue disk = turn left</span>
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>):
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">LEFT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="comment"># Keep driving forward</span>
+        drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Reached red disk - stop!</span>
+    drivetrain.<span class="function">stop</span>()
+                    </div>
+                    <p><strong>What it does:</strong> Robot follows colored disk path, turning right at green, left at blue, and stopping at red.</p>
+                </div>
+            </section>
+
+            <section id="challenge">
+                <h2 class="section-title">
+                    <i class="bi bi-trophy"></i> Multi-Sensor Challenge
+                </h2>
+
+                <p>
+                    Now combine multiple sensors in one advanced project! This challenge requires you to use bumper, distance, and eye sensors together.
+                </p>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Advanced Challenge:</strong> This project combines concepts from all sensor units. Make sure you understand each sensor individually before attempting this challenge!
+                </div>
+
+                <div class="practice-example">
+                    <h4>Challenge: Intelligent Maze Navigator</h4>
+                    <p><strong>Objective:</strong> Navigate a complex maze using all available sensors for optimal performance.</p>
+
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Use Distance Sensor to maintain safe distance from walls (don't touch)</li>
+                        <li>Use Bumper Sensor as backup collision detection</li>
+                        <li>Use Eye Sensor to detect colored markers for navigation decisions</li>
+                        <li>Stop when red marker is detected (goal reached)</li>
+                    </ul>
+
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Navigate until reaching red goal marker</span>
+    <span class="keyword">while</span> <span class="keyword">not</span> front_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+
+        <span class="comment"># Check for colored navigation markers</span>
+        <span class="keyword">if</span> front_eye.<span class="function">detect</span>(<span class="keyword">GREEN</span>):
+            <span class="comment"># Green = turn right</span>
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="keyword">elif</span> front_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>):
+            <span class="comment"># Blue = turn left</span>
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">LEFT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="comment"># Distance-based wall avoidance</span>
+        <span class="keyword">elif</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) < <span class="number">100</span>:
+            <span class="comment"># Too close to wall, turn right</span>
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="comment"># Bumper sensor backup (emergency stop)</span>
+        <span class="keyword">elif</span> left_bumper.<span class="function">pressed</span>() <span class="keyword">or</span> right_bumper.<span class="function">pressed</span>():
+            <span class="comment"># Hit something, back up and turn</span>
+            drivetrain.<span class="function">drive_for</span>(<span class="keyword">REVERSE</span>, <span class="number">50</span>, <span class="keyword">MM</span>)
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="keyword">else</span>:
+            <span class="comment"># Path is clear, keep driving</span>
+            drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+    <span class="comment"># Red detected - goal reached!</span>
+    drivetrain.<span class="function">stop</span>()
+                    </div>
+
+                    <p><strong>How it works:</strong></p>
+                    <ol>
+                        <li>Continuously checks for red goal marker</li>
+                        <li>Responds to green/blue markers with appropriate turns</li>
+                        <li>Maintains safe distance using Distance Sensor</li>
+                        <li>Uses Bumper Sensor as emergency collision backup</li>
+                        <li>Drives forward when path is clear</li>
+                        <li>Stops when goal is reached</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Debugging Tips:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li>Open the VEXcode VR Dashboard to monitor all sensor values in real-time</li>
+                        <li>Test each sensor condition separately before combining them</li>
+                        <li>Use comments to document which sensor handles which situation</li>
+                        <li>Adjust threshold values (like the 100mm distance) based on your specific maze</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Check Your Knowledge
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What does the Sense-Think-Act decision loop represent in robotics?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> A way to program robots to move in circles</label>
+                            <label><input type="radio" name="q1" value="b"> The process of collecting sensor data, making decisions, and executing behaviors</label>
+                            <label><input type="radio" name="q1" value="c"> A method for turning sensors on and off</label>
+                            <label><input type="radio" name="q1" value="d"> The order in which sensors are installed on the robot</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. What does the 'not' keyword do when used with bumper.pressed()?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> It disables the bumper sensor</label>
+                            <label><input type="radio" name="q2" value="b"> It inverts the Boolean value from True to False or False to True</label>
+                            <label><input type="radio" name="q2" value="c"> It makes the bumper more sensitive</label>
+                            <label><input type="radio" name="q2" value="d"> It checks both bumper sensors at once</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. How does the Distance Sensor measure distance to objects?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> By using sound waves like sonar</label>
+                            <label><input type="radio" name="q3" value="b"> By measuring the time it takes for a pulse of laser light to reflect back</label>
+                            <label><input type="radio" name="q3" value="c"> By physically touching the object with an extendable arm</label>
+                            <label><input type="radio" name="q3" value="d"> By using the robot's camera to estimate distance</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. Why is using the == operator with distance sensors often problematic?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> It causes the robot to move slower</label>
+                            <label><input type="radio" name="q4" value="b"> It requires too much memory</label>
+                            <label><input type="radio" name="q4" value="c"> Getting an exact match is nearly impossible with fast-moving robots and continuous readings</label>
+                            <label><input type="radio" name="q4" value="d"> The sensor can't handle that type of comparison</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. What does location.position(X, MM) return?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q5" value="a"> The robot's heading angle</label>
+                            <label><input type="radio" name="q5" value="b"> The distance to the nearest wall</label>
+                            <label><input type="radio" name="q5" value="c"> The X coordinate position in millimeters</label>
+                            <label><input type="radio" name="q5" value="d"> Both X and Y coordinates together</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback5"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>6. Which colors can the Eye Sensor detect?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q6" value="a"> All colors in the rainbow</label>
+                            <label><input type="radio" name="q6" value="b"> Only red and green</label>
+                            <label><input type="radio" name="q6" value="c"> Red, green, blue, and none (other colors)</label>
+                            <label><input type="radio" name="q6" value="d"> Black and white only</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback6"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>7. What is the purpose of an if statement in sensor programming?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q7" value="a"> To make the robot move faster</label>
+                            <label><input type="radio" name="q7" value="b"> To execute code only when a condition is True</label>
+                            <label><input type="radio" name="q7" value="c"> To repeat code a specific number of times</label>
+                            <label><input type="radio" name="q7" value="d"> To turn sensors on and off</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback7"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-trophy"></i>
+                <strong>Complete the Quiz:</strong> Answer all questions correctly to unlock the "Next Lesson" button.
+            </div>
+
+            <div class="button-group">
+                <a href="loops-patterns.html" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Previous Lesson
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <a href="decision-making.html" class="action-button disabled" id="nextBtn" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
+                    <i class="bi bi-arrow-right"></i> Next Lesson
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizPassed = false;
+
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'c',
+                q5: 'c',
+                q6: 'c',
+                q7: 'b'
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! The Sense-Think-Act loop describes how robots collect data, make decisions, and execute behaviors.",
+                    incorrect: "Not quite. The Sense-Think-Act loop is the fundamental process robots use to interact with their environment."
+                },
+                q2: {
+                    correct: "Correct! The 'not' keyword inverts Boolean values, making True become False and False become True.",
+                    incorrect: "Not quite. The 'not' keyword is a logical operator that inverts Boolean values."
+                },
+                q3: {
+                    correct: "Correct! The Distance Sensor sends out a laser light pulse and calculates distance based on how long it takes to reflect back.",
+                    incorrect: "Not quite. The Distance Sensor uses laser light pulses and measures reflection time."
+                },
+                q4: {
+                    correct: "Correct! The robot moves too quickly for sensors to report exact values, making == unreliable. Use > or < instead.",
+                    incorrect: "Not quite. The issue is that getting exact sensor values with a moving robot is nearly impossible."
+                },
+                q5: {
+                    correct: "Correct! The position command returns the X or Y coordinate based on the first parameter.",
+                    incorrect: "Not quite. The position command with X parameter returns the X coordinate value."
+                },
+                q6: {
+                    correct: "Correct! Eye Sensors can detect RED, GREEN, BLUE, and NONE (for other colors).",
+                    incorrect: "Not quite. Eye Sensors detect four categories: red, green, blue, and none."
+                },
+                q7: {
+                    correct: "Correct! If statements execute code conditionally - only when the specified condition is True.",
+                    incorrect: "Not quite. If statements are used to make decisions by executing code only when conditions are True."
+                }
+            };
+
+            let allCorrect = true;
+            let answeredCount = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (answeredCount < 7) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
+            if (allCorrect) {
+                quizPassed = true;
+                // Enable the Next Lesson button
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.remove('disabled');
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+                nextBtn.style.pointerEvents = 'auto';
+
+                // Show success message
+                setTimeout(() => {
+                    alert("Perfect score! You've mastered sensors and detection! You can now proceed to the next lesson.");
+                }, 500);
+            } else {
+                quizPassed = false;
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.add('disabled');
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.cursor = 'not-allowed';
+                nextBtn.style.pointerEvents = 'none';
+                alert("Not quite there yet! Review the incorrect answers and try again.");
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['intro', 'bumper', 'distance', 'location', 'eye', 'practice', 'challenge', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

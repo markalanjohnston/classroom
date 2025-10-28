@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with Python - VEX VR - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .python-accent-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f7ff 100%);
+            border-left: 4px solid #3776ab;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            border: 1px solid #3e4451;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .code-block .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .code-block .function {
+            color: #61afef;
+        }
+
+        .code-block .string {
+            color: #98c379;
+        }
+
+        .code-block .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .code-block .number {
+            color: #d19a66;
+        }
+
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .comparison-side {
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .blocks-side {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+        }
+
+        .python-side {
+            background: #e8f4f8;
+            border: 2px solid #3776ab;
+        }
+
+        .comparison-side h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .action-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-button.disabled:hover {
+            transform: none;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #f0f7ff;
+            color: #667eea;
+        }
+
+        .learning-outcomes {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .learning-outcomes h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .learning-outcomes ul {
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        .learning-outcomes li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .progress-item.completed {
+            color: #4caf50;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .practice-example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .practice-example h4 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Python Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Getting Started</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('intro')">Introduction</div>
+            <div class="progress-item" onclick="scrollToSection('language')">Programming Language</div>
+            <div class="progress-item" onclick="scrollToSection('behavior')">What is a Behavior?</div>
+            <div class="progress-item" onclick="scrollToSection('syntax')">Python Syntax</div>
+            <div class="progress-item" onclick="scrollToSection('practice')">Practice Examples</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Quiz</div>
+        </div>
+
+        <div class="lesson-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-code-slash text-primary"></i>
+                Getting Started with Python - VEX VR
+            </h1>
+            <p class="lead">
+                Welcome to Python programming with VEX VR! In this lesson, you'll learn the fundamentals of programming languages, understand robot behaviors, and write your first Python commands.
+            </p>
+
+            <div class="python-accent-box">
+                <i class="bi bi-info-circle"></i>
+                <strong>Why Python?</strong> Python is one of the most popular programming languages in the world, used in web development, data science, artificial intelligence, and robotics. Learning Python with VEX VR gives you real-world programming skills!
+            </div>
+
+            <section id="intro">
+                <div class="learning-outcomes">
+                    <h3>
+                        <i class="bi bi-journal-check"></i>
+                        Learning Outcomes
+                    </h3>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Identify that a programming language is a set of rules in which symbols represent actions</li>
+                        <li>Identify that behaviors are actions performed by a robot defined by the programming language</li>
+                        <li>Identify that a robot's behavior is changed by changing the commands in a program</li>
+                        <li>Understand basic Python syntax including indentation, functions, and methods</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="language">
+                <h2 class="section-title">
+                    <i class="bi bi-book"></i> What is a Programming Language?
+                </h2>
+
+                <p>
+                    A <strong>programming language</strong> is a set of rules in which symbols represent actions. Programming languages follow step-by-step instructions that a computer executes in order for a project to run.
+                </p>
+
+                <p>
+                    In this course, <strong>VEXcode VR Python</strong> is the programming language for a VR Robot. Just like English has grammar rules for writing sentences, Python has syntax rules for writing code.
+                </p>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Think About It:</strong> Programming languages are like recipes. Each instruction must be written clearly and in the correct order for the computer to understand what to do.
+                </div>
+
+                <div class="image-container">
+                    <img src="cslevel1-python/scraped_data/001_VEX_CS_-_Unit_2_-_Moving_Your_Robot_-_Lesson_1_Computer_Science_Level_1_-_Python/images/VR_New Project and Castle Crasher.png" alt="VEXcode VR Python Interface">
+                    <p class="image-caption">The VEXcode VR interface with a Python project open showing the toolbox and playground</p>
+                </div>
+
+                <h3 class="subsection-title">Key Characteristics of Programming Languages</h3>
+                <ul>
+                    <li><strong>Precise:</strong> Every character, space, and punctuation mark matters</li>
+                    <li><strong>Logical:</strong> Commands execute in a specific order from top to bottom</li>
+                    <li><strong>Repeatable:</strong> The same code will always produce the same result</li>
+                    <li><strong>Modifiable:</strong> You can change commands to change the robot's behavior</li>
+                </ul>
+            </section>
+
+            <section id="behavior">
+                <h2 class="section-title">
+                    <i class="bi bi-robot"></i> What is a Behavior?
+                </h2>
+
+                <p>
+                    <strong>Behaviors</strong> are the actions performed or to be performed by a robot. Moving forward, stopping, turning, looking for an obstacle - these are all behaviors. Behaviors are defined by the programming language.
+                </p>
+
+                <p>
+                    To change the behaviors of a VR Robot, you can change the commands in the project. Each command you write tells the robot to perform a specific behavior.
+                </p>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Examples of Robot Behaviors:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li>Moving forward or backward</li>
+                        <li>Turning left or right</li>
+                        <li>Stopping at a specific location</li>
+                        <li>Detecting obstacles with sensors</li>
+                        <li>Picking up or releasing objects</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">How Commands Control Behavior</h3>
+                <p>Every line of code you write changes what the robot does. Let's look at a simple example:</p>
+
+                <div class="code-block">
+<span class="comment"># This command makes the robot drive forward</span>
+drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)
+                </div>
+
+                <div class="image-container">
+                    <img src="cslevel1-python/scraped_data/001_VEX_CS_-_Unit_2_-_Moving_Your_Robot_-_Lesson_1_Computer_Science_Level_1_-_Python/images/VR_Drive For Callout.png" alt="Drive For Command in VEXcode VR">
+                    <p class="image-caption">The drivetrain.drive_for command in the toolbox and coding interface</p>
+                </div>
+
+                <p>
+                    In this command, we're telling the drivetrain (the robot's wheels) to drive in the FORWARD direction for 200 millimeters. If we change the number to 400, the robot will drive twice as far. If we change FORWARD to REVERSE, the robot will drive backwards instead!
+                </p>
+            </section>
+
+            <section id="syntax">
+                <h2 class="section-title">
+                    <i class="bi bi-code"></i> Understanding Python Syntax
+                </h2>
+
+                <p>
+                    Now that you understand what programming languages and behaviors are, let's learn the specific rules for writing Python code. Python has some unique features that make it different from other languages.
+                </p>
+
+                <h3 class="subsection-title">1. Indentation Matters</h3>
+                <p>
+                    Unlike many other programming languages that use brackets {}, Python uses <strong>indentation</strong> (spaces at the beginning of lines) to show which code belongs together.
+                </p>
+
+                <div class="comparison-box">
+                    <div class="comparison-side blocks-side">
+                        <h4><i class="bi bi-puzzle"></i> Blocks</h4>
+                        <p>In block coding, blocks fit together like puzzle pieces to show relationships:</p>
+                        <div style="background: white; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                            <div style="color: #333; font-family: monospace;">
+                                when started<br>
+                                &nbsp;&nbsp;repeat 4<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;drive forward<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;turn right
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-side python-side">
+                        <h4><i class="bi bi-code-slash"></i> Python</h4>
+                        <p>In Python, indentation shows which code is inside the loop:</p>
+                        <div class="code-block" style="margin-top: 10px;">
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">4</span>):
+    drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Common Mistake:</strong> Forgetting indentation or using inconsistent spacing will cause errors! VEXcode VR automatically indents for you, but it's important to understand why indentation matters.
+                </div>
+
+                <h3 class="subsection-title">2. Using Methods and Functions</h3>
+                <p>
+                    In Python, we use <strong>methods</strong> to tell objects (like the drivetrain) what to do. A method is called using a dot (.) between the object and the action:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Format: object.method(parameters)</span>
+drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)
+<span class="comment"># ↑         ↑         ↑        ↑      ↑</span>
+<span class="comment"># object    dot    method  parameters</span>
+                </div>
+
+                <h3 class="subsection-title">3. Parameters and Arguments</h3>
+                <p>
+                    <strong>Parameters</strong> are the values inside parentheses that give the method more information. They tell the robot exactly how to perform the behavior.
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Three parameters: direction, distance, and units</span>
+drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)
+
+<span class="comment"># Three parameters: direction, angle, and units</span>
+drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+                </div>
+
+                <h3 class="subsection-title">4. Comments</h3>
+                <p>
+                    Comments are notes you write in your code that Python ignores. They help you and others understand what your code does. In Python, comments start with a # symbol:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># This is a comment - it won't run</span>
+drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)  <span class="comment"># This is also a comment</span>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Best Practice:</strong> Use comments to explain WHY you're doing something, not just WHAT you're doing. This helps when you (or someone else) reads your code later!
+                </div>
+
+                <h3 class="subsection-title">5. Case Sensitivity</h3>
+                <p>
+                    Python is <strong>case sensitive</strong>, which means uppercase and lowercase letters are treated differently. <code>FORWARD</code> is not the same as <code>forward</code> or <code>Forward</code>.
+                </p>
+
+                <div class="code-block">
+<span class="comment"># CORRECT - uses the proper constant</span>
+drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)
+
+<span class="comment"># WRONG - lowercase 'forward' will cause an error</span>
+<span style="color: #e06c75;">drivetrain.drive_for(forward, 200, MM)  # ❌ Error!</span>
+                </div>
+            </section>
+
+            <section id="practice">
+                <h2 class="section-title">
+                    <i class="bi bi-pen"></i> Practice Examples
+                </h2>
+
+                <p>
+                    Now that you understand the basics of Python syntax, let's look at some practical examples you can try in VEXcode VR.
+                </p>
+
+                <div class="practice-example">
+                    <h4>Example 1: Drive Forward and Stop</h4>
+                    <p>The simplest program - just drive forward for a short distance:</p>
+                    <div class="code-block">
+<span class="comment"># Drive forward 300 millimeters</span>
+drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">300</span>, <span class="keyword">MM</span>)
+                    </div>
+                    <p><strong>What it does:</strong> The robot drives forward 300mm (about 12 inches) and stops.</p>
+                </div>
+
+                <div class="practice-example">
+                    <h4>Example 2: Drive and Turn</h4>
+                    <p>Combine two commands to make the robot drive and then turn:</p>
+                    <div class="code-block">
+<span class="comment"># Drive forward</span>
+drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)
+
+<span class="comment"># Turn right 90 degrees</span>
+drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+                    </div>
+                    <p><strong>What it does:</strong> The robot drives forward 200mm, stops, then turns right 90 degrees.</p>
+                </div>
+
+                <div class="practice-example">
+                    <h4>Example 3: Draw a Square</h4>
+                    <p>Use a loop to repeat commands and draw a square shape:</p>
+                    <div class="code-block">
+<span class="comment"># Draw a square with 200mm sides</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">4</span>):
+    drivetrain.<span class="function">drive_for</span>(<span class="keyword">FORWARD</span>, <span class="number">200</span>, <span class="keyword">MM</span>)
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+                    </div>
+                    <p><strong>What it does:</strong> The robot repeats the drive-and-turn sequence 4 times, creating a square path. Notice how the indented lines run 4 times!</p>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Try It Yourself:</strong> Open VEXcode VR and try these examples. Experiment by changing the numbers to see how the robot's behavior changes!
+                </div>
+
+                <div class="button-group">
+                    <a href="https://vr.vex.com" target="_blank" class="action-button">
+                        <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                    </a>
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Check Your Knowledge
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What is a programming language?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> A language that robots speak to each other</label>
+                            <label><input type="radio" name="q1" value="b"> A set of rules in which symbols represent actions</label>
+                            <label><input type="radio" name="q1" value="c"> A type of human language like English or Spanish</label>
+                            <label><input type="radio" name="q1" value="d"> A way to talk to computers using voice commands</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. What are behaviors in robotics programming?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> The physical parts of a robot</label>
+                            <label><input type="radio" name="q2" value="b"> Actions performed or to be performed by a robot</label>
+                            <label><input type="radio" name="q2" value="c"> The speed at which a robot moves</label>
+                            <label><input type="radio" name="q2" value="d"> The color of the robot's body</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. Why is indentation important in Python?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> It makes the code look prettier</label>
+                            <label><input type="radio" name="q3" value="b"> It shows which code belongs together and controls program flow</label>
+                            <label><input type="radio" name="q3" value="c"> It's not important - Python ignores spaces</label>
+                            <label><input type="radio" name="q3" value="d"> It only matters for comments</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. In the code <code>drivetrain.drive_for(FORWARD, 200, MM)</code>, what are FORWARD, 200, and MM called?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> Behaviors</label>
+                            <label><input type="radio" name="q4" value="b"> Comments</label>
+                            <label><input type="radio" name="q4" value="c"> Parameters</label>
+                            <label><input type="radio" name="q4" value="d"> Variables</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-trophy"></i>
+                <strong>Complete the Quiz:</strong> Answer all questions correctly to unlock the "Next Lesson" button.
+            </div>
+
+            <div class="button-group">
+                <button class="action-button secondary-button disabled" style="opacity: 0.5; cursor: not-allowed;" disabled>
+                    <i class="bi bi-arrow-left"></i> Previous Lesson
+                </button>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <a href="basic-movement.html" class="action-button disabled" id="nextBtn" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
+                    <i class="bi bi-arrow-right"></i> Next Lesson
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizPassed = false;
+
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'c'
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! A programming language is a set of rules in which symbols represent actions.",
+                    incorrect: "Not quite. A programming language is a set of rules where symbols represent specific actions that computers can execute."
+                },
+                q2: {
+                    correct: "Correct! Behaviors are the actions performed or to be performed by a robot.",
+                    incorrect: "Not quite. Behaviors are the actions that a robot performs, like moving, turning, or sensing."
+                },
+                q3: {
+                    correct: "Correct! Indentation in Python shows which code belongs together and is essential for the program to work properly.",
+                    incorrect: "Not quite. Indentation is critical in Python - it defines code blocks and controls program flow."
+                },
+                q4: {
+                    correct: "Correct! FORWARD, 200, and MM are parameters that provide specific information to the method.",
+                    incorrect: "Not quite. These are parameters (or arguments) that tell the method exactly what to do and how to do it."
+                }
+            };
+
+            let allCorrect = true;
+            let answeredCount = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (answeredCount < 4) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
+            if (allCorrect) {
+                quizPassed = true;
+                // Enable the Next Lesson button
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.remove('disabled');
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+                nextBtn.style.pointerEvents = 'auto';
+
+                // Show success message
+                setTimeout(() => {
+                    alert("Perfect score! You've mastered the basics of Python programming! You can now proceed to the next lesson.");
+                }, 500);
+            } else {
+                quizPassed = false;
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.add('disabled');
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.cursor = 'not-allowed';
+                nextBtn.style.pointerEvents = 'none';
+                alert("Not quite there yet! Review the incorrect answers and try again.");
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['intro', 'language', 'behavior', 'syntax', 'practice', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

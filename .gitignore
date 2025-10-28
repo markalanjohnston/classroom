@@ -50,3 +50,11 @@ PDF-Objectives/
 
 # Internal workflow documentation
 WORKFLOW.md
+
+cslevel1-python/
+
+# Python scrapers and reference files
+*scraper*.py
+fix_*.py
+*api_reference*.md
+*_backup.md

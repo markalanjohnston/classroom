@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision Making - VEX VR Python - W.I.N. Robotics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .breadcrumb-nav {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .section-title {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .subsection-title {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .python-accent-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f7ff 100%);
+            border-left: 4px solid #3776ab;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            border: 1px solid #3e4451;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', Monaco, monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .code-block .keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+
+        .code-block .function {
+            color: #61afef;
+        }
+
+        .code-block .string {
+            color: #98c379;
+        }
+
+        .code-block .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .code-block .number {
+            color: #d19a66;
+        }
+
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .comparison-side {
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .blocks-side {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+        }
+
+        .python-side {
+            background: #e8f4f8;
+            border: 2px solid #3776ab;
+        }
+
+        .comparison-side h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .action-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-button.disabled:hover {
+            transform: none;
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #f0f7ff;
+            color: #667eea;
+        }
+
+        .learning-outcomes {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .learning-outcomes h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .learning-outcomes ul {
+            margin: 0;
+            padding-left: 25px;
+        }
+
+        .learning-outcomes li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .progress-tracker {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 200px;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .progress-tracker {
+                display: none;
+            }
+        }
+
+        .progress-item {
+            padding: 5px 0;
+            color: #999;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .progress-item.active {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .progress-item.completed {
+            color: #4caf50;
+        }
+
+        .quiz-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-options label:hover {
+            border-color: #667eea;
+            background: #f0f7ff;
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .quiz-feedback {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .practice-example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .practice-example h4 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="breadcrumb-nav">
+            <a href="../../../">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../../">W.I.N. Robotics</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../">Programming Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./">Python Challenges</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Decision Making</span>
+        </nav>
+
+        <div class="progress-tracker">
+            <h6 class="mb-3">On This Page</h6>
+            <div class="progress-item active" onclick="scrollToSection('intro')">Introduction</div>
+            <div class="progress-item" onclick="scrollToSection('if-statements')">If Statements</div>
+            <div class="progress-item" onclick="scrollToSection('else-elif')">Else and Elif</div>
+            <div class="progress-item" onclick="scrollToSection('comparison')">Comparison Operators</div>
+            <div class="progress-item" onclick="scrollToSection('logical')">Logical Operators</div>
+            <div class="progress-item" onclick="scrollToSection('sensors')">Sensors &amp; Decisions</div>
+            <div class="progress-item" onclick="scrollToSection('algorithms')">Algorithm Design</div>
+            <div class="progress-item" onclick="scrollToSection('practice')">Practice Examples</div>
+            <div class="progress-item" onclick="scrollToSection('challenge')">Final Challenge</div>
+            <div class="progress-item" onclick="scrollToSection('quiz')">Quiz</div>
+        </div>
+
+        <div class="lesson-card">
+            <h1 class="display-4 mb-4">
+                <i class="bi bi-diagram-3 text-primary"></i>
+                Decision Making - VEX VR Python
+            </h1>
+            <p class="lead">
+                Learn how to make your robot think and respond to its environment using conditional statements and algorithms. Master if-else statements, comparison operators, and logical operators to create intelligent robot behaviors.
+            </p>
+
+            <div class="python-accent-box">
+                <i class="bi bi-info-circle"></i>
+                <strong>Why Decision Making Matters:</strong> Conditionals allow your robot to make choices based on sensor data and conditions. This is the foundation of intelligent robotics and real-world programming applications!
+            </div>
+
+            <section id="intro">
+                <div class="learning-outcomes">
+                    <h3>
+                        <i class="bi bi-journal-check"></i>
+                        Learning Outcomes
+                    </h3>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Identify that algorithms are made up of sequence, selection, and iteration</li>
+                        <li>Understand how if-else statements control program flow based on Boolean conditions</li>
+                        <li>Use comparison operators (==, !=, &lt;, &gt;, &lt;=, &gt;=) to evaluate conditions</li>
+                        <li>Apply logical operators (and, or, not) to combine multiple conditions</li>
+                        <li>Create algorithms that use sensor data to make decisions</li>
+                        <li>Design and implement complex conditional navigation challenges</li>
+                    </ul>
+                </div>
+
+                <h2 class="section-title">
+                    <i class="bi bi-lightbulb"></i> What are Algorithms?
+                </h2>
+
+                <p>
+                    An <strong>algorithm</strong> is a precise sequence of instructions, implemented using programming languages like Python, for processes to be carried out by a robot. Think of it as a recipe - each step must be clear, in the correct order, and lead to the desired result.
+                </p>
+
+                <p>
+                    Algorithms are built from three basic elements:
+                </p>
+
+                <ul>
+                    <li><strong>Sequence:</strong> The order in which commands are executed to produce a desired result</li>
+                    <li><strong>Selection:</strong> Using conditional statements (like if-else) to make decisions that affect program flow</li>
+                    <li><strong>Iteration:</strong> Using loops to repeat behaviors a specific number of times or until a condition is met</li>
+                </ul>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Real-World Analogy:</strong> Think about leaving your house. You check IF it's raining, THEN take an umbrella; ELSE take sunglasses. This is selection - making a decision based on a condition!
+                </div>
+            </section>
+
+            <section id="if-statements">
+                <h2 class="section-title">
+                    <i class="bi bi-code"></i> If Statements
+                </h2>
+
+                <p>
+                    The <strong>if statement</strong> is the foundation of decision making in Python. It allows your program to execute specific code only when a certain condition is True.
+                </p>
+
+                <h3 class="subsection-title">Basic If Statement Syntax</h3>
+
+                <div class="code-block">
+<span class="comment"># Basic if statement structure</span>
+<span class="keyword">if</span> condition:
+    <span class="comment"># Code to run when condition is True</span>
+    <span class="keyword">pass</span>
+                </div>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Indentation is Critical!</strong> In Python, the indented lines under the if statement only run when the condition is True. Make sure to indent consistently (VEXcode VR does this automatically).
+                </div>
+
+                <h3 class="subsection-title">Using Sensors with If Statements</h3>
+
+                <p>
+                    If statements become powerful when combined with sensor data. Here's an example using the Distance Sensor to detect objects:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Check if the Distance Sensor detects a castle</span>
+<span class="keyword">if</span> front_distance.<span class="function">found_object</span>():
+    <span class="comment"># Drive forward to knock over the castle</span>
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+                </div>
+
+                <p>
+                    In this example, the robot only drives forward when the Distance Sensor detects an object. If no object is detected, the code inside the if statement is skipped.
+                </p>
+            </section>
+
+            <section id="else-elif">
+                <h2 class="section-title">
+                    <i class="bi bi-signpost-split"></i> Else and Elif Statements
+                </h2>
+
+                <h3 class="subsection-title">The Else Branch</h3>
+
+                <p>
+                    An <strong>else statement</strong> provides an alternative path when the if condition is False. Only one branch (if or else) will execute at a time.
+                </p>
+
+                <div class="code-block">
+<span class="comment"># If-else statement</span>
+<span class="keyword">if</span> front_distance.<span class="function">found_object</span>():
+    <span class="comment"># Castle detected - drive forward</span>
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+<span class="keyword">else</span>:
+    <span class="comment"># No castle detected - turn to search</span>
+    drivetrain.<span class="function">turn</span>(<span class="keyword">RIGHT</span>)
+                </div>
+
+                <div class="info-box">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Think of it Like a Fork in the Road:</strong> An if-else statement forces you to make a decision. You can only go one way - either left (if) or right (else). This makes your program more efficient and predictable!
+                </div>
+
+                <h3 class="subsection-title">The Elif Branch (Multiple Conditions)</h3>
+
+                <p>
+                    When you need to check multiple conditions, use <strong>elif</strong> (short for "else if"). This allows you to test several conditions in order:
+                </p>
+
+                <div class="code-block">
+<span class="comment"># Multiple conditions with elif</span>
+<span class="keyword">if</span> down_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+    <span class="comment"># Red detected - stop</span>
+    drivetrain.<span class="function">stop</span>()
+<span class="keyword">elif</span> down_eye.<span class="function">detect</span>(<span class="keyword">GREEN</span>):
+    <span class="comment"># Green detected - drive forward</span>
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+<span class="keyword">elif</span> down_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>):
+    <span class="comment"># Blue detected - turn right</span>
+    drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+<span class="keyword">else</span>:
+    <span class="comment"># No special color - continue current behavior</span>
+    <span class="keyword">pass</span>
+                </div>
+
+                <p>
+                    Python checks each condition in order. As soon as it finds one that's True, it runs that code block and skips the rest.
+                </p>
+            </section>
+
+            <section id="comparison">
+                <h2 class="section-title">
+                    <i class="bi bi-calculator"></i> Comparison Operators
+                </h2>
+
+                <p>
+                    <strong>Comparison operators</strong> allow you to compare values and create conditions. They always return either True or False (Boolean values).
+                </p>
+
+                <h3 class="subsection-title">The Six Comparison Operators</h3>
+
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Operator</th>
+                            <th>Meaning</th>
+                            <th>Example</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>==</code></td>
+                            <td>Equal to</td>
+                            <td><code>distance == 200</code></td>
+                            <td>True if distance is exactly 200</td>
+                        </tr>
+                        <tr>
+                            <td><code>!=</code></td>
+                            <td>Not equal to</td>
+                            <td><code>color != RED</code></td>
+                            <td>True if color is not red</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;</code></td>
+                            <td>Less than</td>
+                            <td><code>distance &lt; 100</code></td>
+                            <td>True if distance is less than 100</td>
+                        </tr>
+                        <tr>
+                            <td><code>&gt;</code></td>
+                            <td>Greater than</td>
+                            <td><code>distance &gt; 500</code></td>
+                            <td>True if distance is more than 500</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;=</code></td>
+                            <td>Less than or equal</td>
+                            <td><code>distance &lt;= 200</code></td>
+                            <td>True if distance is 200 or less</td>
+                        </tr>
+                        <tr>
+                            <td><code>&gt;=</code></td>
+                            <td>Greater than or equal</td>
+                            <td><code>distance &gt;= 300</code></td>
+                            <td>True if distance is 300 or more</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 class="subsection-title">Using Comparison Operators with Sensors</h3>
+
+                <div class="code-block">
+<span class="comment"># Stop when distance is less than 200mm</span>
+<span class="keyword">if</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) &lt; <span class="number">200</span>:
+    drivetrain.<span class="function">stop</span>()
+
+<span class="comment"># Drive until we're close to the goal</span>
+<span class="keyword">while</span> front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) &gt; <span class="number">200</span>:
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+    <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+drivetrain.<span class="function">stop</span>()
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Pro Tip:</strong> The Distance Sensor reports values in millimeters (MM). When no object is detected within range, it reports &gt; 3000 mm.
+                </div>
+            </section>
+
+            <section id="logical">
+                <h2 class="section-title">
+                    <i class="bi bi-bezier2"></i> Logical Operators
+                </h2>
+
+                <p>
+                    <strong>Logical operators</strong> allow you to combine multiple conditions to create more complex decision-making logic.
+                </p>
+
+                <h3 class="subsection-title">The Three Logical Operators</h3>
+
+                <div class="info-box">
+                    <strong>AND Operator (<code>and</code>):</strong> Both conditions must be True
+                    <div class="code-block" style="margin-top: 10px;">
+<span class="comment"># Both conditions must be True</span>
+<span class="keyword">if</span> front_distance.<span class="function">found_object</span>() <span class="keyword">and</span> <span class="keyword">not</span> down_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+    <span class="comment"># Object ahead AND not at red border</span>
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>OR Operator (<code>or</code>):</strong> At least one condition must be True
+                    <div class="code-block" style="margin-top: 10px;">
+<span class="comment"># Either condition can be True</span>
+<span class="keyword">if</span> down_eye.<span class="function">detect</span>(<span class="keyword">RED</span>) <span class="keyword">or</span> down_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>):
+    <span class="comment"># Stop if red OR blue is detected</span>
+    drivetrain.<span class="function">stop</span>()
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>NOT Operator (<code>not</code>):</strong> Reverses the condition
+                    <div class="code-block" style="margin-top: 10px;">
+<span class="comment"># Keep driving while NOT detecting red</span>
+<span class="keyword">while</span> <span class="keyword">not</span> down_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+    <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+drivetrain.<span class="function">stop</span>()
+                    </div>
+                </div>
+
+                <h3 class="subsection-title">Combining Multiple Operators</h3>
+
+                <div class="code-block">
+<span class="comment"># Complex condition with multiple operators</span>
+<span class="keyword">if</span> front_distance.<span class="function">found_object</span>() <span class="keyword">and</span> \
+   <span class="keyword">not</span> down_eye.<span class="function">detect</span>(<span class="keyword">RED</span>) <span class="keyword">and</span> \
+   front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>) &gt; <span class="number">100</span>:
+    <span class="comment"># Object detected, not at border, far enough away</span>
+    drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+                </div>
+            </section>
+
+            <section id="sensors">
+                <h2 class="section-title">
+                    <i class="bi bi-broadcast"></i> Combining Sensors and Decisions
+                </h2>
+
+                <p>
+                    The real power of conditionals comes when combining sensor data with loops and if-else statements to create responsive robot behaviors.
+                </p>
+
+                <h3 class="subsection-title">Using Multiple Sensors Together</h3>
+
+                <p>
+                    In the Dynamic Castle Crasher Challenge, the robot needs to use both the Distance Sensor and Down Eye Sensor to navigate effectively:
+                </p>
+
+                <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="comment"># Look for castles while not at red border</span>
+        <span class="keyword">while</span> <span class="keyword">not</span> down_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+            <span class="comment"># Does the Distance Sensor detect a castle?</span>
+            <span class="keyword">if</span> front_distance.<span class="function">found_object</span>():
+                <span class="comment"># Castle detected - drive forward</span>
+                drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+            <span class="keyword">else</span>:
+                <span class="comment"># No castle - turn to search</span>
+                drivetrain.<span class="function">turn</span>(<span class="keyword">RIGHT</span>)
+
+            <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+
+        <span class="comment"># Red border detected - reverse and turn</span>
+        drivetrain.<span class="function">drive_for</span>(<span class="keyword">REVERSE</span>, <span class="number">300</span>, <span class="keyword">MM</span>)
+        drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+                </div>
+
+                <p>
+                    This algorithm demonstrates:
+                </p>
+                <ul>
+                    <li><strong>Nested loops:</strong> A while loop inside another while loop for multiple levels of decision-making</li>
+                    <li><strong>Multiple sensors:</strong> Distance Sensor for finding castles, Down Eye Sensor for detecting borders</li>
+                    <li><strong>Conditional execution:</strong> Different behaviors based on sensor readings</li>
+                </ul>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Design Pattern:</strong> This nested loop pattern is powerful. The outer loop runs forever, while the inner loop runs until a specific condition is met (detecting red). This allows the robot to continuously search and react to its environment!
+                </div>
+            </section>
+
+            <section id="algorithms">
+                <h2 class="section-title">
+                    <i class="bi bi-gear"></i> Algorithm Design
+                </h2>
+
+                <p>
+                    Designing effective algorithms requires breaking down complex problems into smaller, manageable steps using sequence, selection, and iteration.
+                </p>
+
+                <h3 class="subsection-title">Steps for Algorithm Design</h3>
+
+                <ol class="step-list">
+                    <li><strong>Understand the Problem:</strong> What should the robot accomplish? What are the constraints?</li>
+                    <li><strong>Identify Sensors Needed:</strong> Which sensors provide the data you need to make decisions?</li>
+                    <li><strong>Plan the Sequence:</strong> In what order should actions happen?</li>
+                    <li><strong>Add Selection:</strong> Where do you need to make decisions based on conditions?</li>
+                    <li><strong>Implement Iteration:</strong> What behaviors need to repeat? When should loops end?</li>
+                    <li><strong>Test and Refine:</strong> Run your code and adjust based on results</li>
+                </ol>
+
+                <h3 class="subsection-title">Using Comments to Plan Your Code</h3>
+
+                <p>
+                    Before writing code, use comments to outline your algorithm:
+                </p>
+
+                <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="comment"># Does the Distance Sensor detect a castle?</span>
+
+    <span class="comment"># Crash castle detected by Distance Sensor</span>
+
+    <span class="comment"># Turn to find a castle using the Distance Sensor</span>
+                </div>
+
+                <p>
+                    Then fill in the actual code under each comment. This helps you organize your thoughts and creates self-documenting code!
+                </p>
+
+                <div class="warning-box">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Common Pitfall:</strong> Using multiple separate if statements instead of if-else can cause conflicts. If-else forces a decision - only one path executes - making your code more efficient and predictable.
+                </div>
+            </section>
+
+            <section id="practice">
+                <h2 class="section-title">
+                    <i class="bi bi-pen"></i> Practice Examples
+                </h2>
+
+                <p>
+                    Here are some practical examples to help you understand conditional navigation:
+                </p>
+
+                <div class="practice-example">
+                    <h4>Example 1: Simple Object Detection</h4>
+                    <p>Drive forward when an object is detected, otherwise turn right:</p>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">if</span> front_distance.<span class="function">found_object</span>():
+            drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="keyword">else</span>:
+            drivetrain.<span class="function">turn</span>(<span class="keyword">RIGHT</span>)
+
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+                    </div>
+                    <p><strong>What it does:</strong> The robot continuously scans for objects. When it finds one, it drives forward; otherwise, it turns to search.</p>
+                </div>
+
+                <div class="practice-example">
+                    <h4>Example 2: Color-Based Navigation</h4>
+                    <p>Stop at red borders, go on green, turn on blue:</p>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        <span class="keyword">if</span> down_eye.<span class="function">detect</span>(<span class="keyword">RED</span>):
+            drivetrain.<span class="function">stop</span>()
+        <span class="keyword">elif</span> down_eye.<span class="function">detect</span>(<span class="keyword">GREEN</span>):
+            drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="keyword">elif</span> down_eye.<span class="function">detect</span>(<span class="keyword">BLUE</span>):
+            drivetrain.<span class="function">turn_for</span>(<span class="keyword">RIGHT</span>, <span class="number">90</span>, <span class="keyword">DEGREES</span>)
+
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+                    </div>
+                    <p><strong>What it does:</strong> The robot responds to different colors with different behaviors, creating a color-coded navigation system.</p>
+                </div>
+
+                <div class="practice-example">
+                    <h4>Example 3: Distance-Based Control</h4>
+                    <p>Maintain a safe distance from obstacles:</p>
+                    <div class="code-block">
+<span class="keyword">def</span> <span class="function">main</span>():
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        distance = front_distance.<span class="function">get_distance</span>(<span class="keyword">MM</span>)
+
+        <span class="keyword">if</span> distance &lt; <span class="number">150</span>:
+            <span class="comment"># Too close - back up</span>
+            drivetrain.<span class="function">drive</span>(<span class="keyword">REVERSE</span>)
+        <span class="keyword">elif</span> distance &gt; <span class="number">300</span>:
+            <span class="comment"># Too far - move forward</span>
+            drivetrain.<span class="function">drive</span>(<span class="keyword">FORWARD</span>)
+        <span class="keyword">else</span>:
+            <span class="comment"># Perfect distance - stop</span>
+            drivetrain.<span class="function">stop</span>()
+
+        <span class="function">wait</span>(<span class="number">5</span>, <span class="keyword">MSEC</span>)
+                    </div>
+                    <p><strong>What it does:</strong> The robot maintains a distance between 150mm and 300mm from obstacles by adjusting its position.</p>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Try It Yourself:</strong> Modify these examples in VEXcode VR. Change the distance values, colors, or behaviors to see how it affects the robot's actions!
+                </div>
+            </section>
+
+            <section id="challenge">
+                <h2 class="section-title">
+                    <i class="bi bi-trophy"></i> Final Challenge: Dynamic Castle Crasher
+                </h2>
+
+                <p>
+                    Now it's time to put everything together! The Dynamic Castle Crasher Challenge tests your ability to create an algorithm that works in a changing environment.
+                </p>
+
+                <h3 class="subsection-title">Challenge Requirements</h3>
+
+                <div class="info-box">
+                    <strong>Goal:</strong> Knock ALL castle pieces off the Dynamic Castle Crasher Playground in the shortest time possible.
+
+                    <ul class="mt-3 mb-0">
+                        <li>The playground layout changes with each reset</li>
+                        <li>Your robot must not fall off the edge</li>
+                        <li>Use sensors to detect castles and borders</li>
+                        <li>Create an efficient algorithm that works on any layout</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title">Challenge Steps</h3>
+
+                <ol class="step-list">
+                    <li>Create a new project or load your Unit9Lesson3 project</li>
+                    <li>Select the Dynamic Castle Crasher Playground</li>
+                    <li>Rename your project to Unit9Challenge</li>
+                    <li>Design your algorithm using comments first</li>
+                    <li>Implement the code with if-else statements and loops</li>
+                    <li>Test on multiple playground layouts</li>
+                    <li>Time your solution and optimize for speed</li>
+                    <li>Save your best solution</li>
+                </ol>
+
+                <h3 class="subsection-title">Success Criteria</h3>
+
+                <ul>
+                    <li>All castle pieces are pushed off the playground</li>
+                    <li>The robot stays on the playground (doesn't fall off)</li>
+                    <li>The algorithm works regardless of castle placement</li>
+                    <li>The solution is efficient (minimal time to complete)</li>
+                </ul>
+
+                <div class="button-group">
+                    <a href="https://vr.vex.com" target="_blank" class="action-button">
+                        <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                    </a>
+                </div>
+
+                <div class="tip-box">
+                    <i class="bi bi-lightbulb"></i>
+                    <strong>Optimization Tips:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li>Use appropriate loop types (while vs. for) for different situations</li>
+                        <li>Combine sensor conditions efficiently with logical operators</li>
+                        <li>Minimize unnecessary turns and movements</li>
+                        <li>Test edge cases - what happens when the robot starts near a wall?</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2 class="section-title">
+                    <i class="bi bi-question-circle"></i> Check Your Knowledge
+                </h2>
+
+                <div class="quiz-section">
+                    <div class="quiz-question">
+                        <h4>1. What are the three basic elements of an algorithm?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> Variables, functions, and classes</label>
+                            <label><input type="radio" name="q1" value="b"> Sequence, selection, and iteration</label>
+                            <label><input type="radio" name="q1" value="c"> Input, processing, and output</label>
+                            <label><input type="radio" name="q1" value="d"> Sensors, motors, and controllers</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. What happens when an if-else statement's condition is False?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> The program stops running</label>
+                            <label><input type="radio" name="q2" value="b"> The 'else' branch is executed</label>
+                            <label><input type="radio" name="q2" value="c"> Both if and else branches run</label>
+                            <label><input type="radio" name="q2" value="d"> The program crashes with an error</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. Which comparison operator checks if two values are equal?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> = (single equal sign)</label>
+                            <label><input type="radio" name="q3" value="b"> == (double equal sign)</label>
+                            <label><input type="radio" name="q3" value="c"> != (not equal)</label>
+                            <label><input type="radio" name="q3" value="d"> &lt;= (less than or equal)</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. What does the 'and' logical operator require?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q4" value="a"> At least one condition to be True</label>
+                            <label><input type="radio" name="q4" value="b"> Both conditions to be True</label>
+                            <label><input type="radio" name="q4" value="c"> Both conditions to be False</label>
+                            <label><input type="radio" name="q4" value="d"> Neither condition to be True</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback4"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. Why should you use if-else instead of multiple separate if statements?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q5" value="a"> It makes the code longer</label>
+                            <label><input type="radio" name="q5" value="b"> It forces a decision and only one branch executes, making code more efficient</label>
+                            <label><input type="radio" name="q5" value="c"> It's easier to type</label>
+                            <label><input type="radio" name="q5" value="d"> Multiple if statements are always better</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback5"></div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>6. In the code <code>while not down_eye.detect(RED):</code>, when does the loop run?</h4>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q6" value="a"> Only when red is detected</label>
+                            <label><input type="radio" name="q6" value="b"> When red is NOT detected</label>
+                            <label><input type="radio" name="q6" value="c"> Never - it's an infinite loop</label>
+                            <label><input type="radio" name="q6" value="d"> It runs exactly once</label>
+                        </div>
+                        <div class="quiz-feedback" id="feedback6"></div>
+                    </div>
+
+                    <button class="action-button" onclick="checkAnswers()">
+                        <i class="bi bi-check-circle"></i> Check Answers
+                    </button>
+                </div>
+            </section>
+
+            <div class="info-box" style="text-align: center; margin-top: 30px;">
+                <i class="bi bi-trophy"></i>
+                <strong>Complete the Quiz:</strong> Answer all questions correctly to unlock the "Next Lesson" button.
+            </div>
+
+            <div class="button-group">
+                <a href="sensors-detection.html" class="action-button secondary-button">
+                    <i class="bi bi-arrow-left"></i> Previous Lesson
+                </a>
+                <a href="https://vr.vex.com" target="_blank" class="action-button">
+                    <i class="bi bi-box-arrow-up-right"></i> Launch VEXcode VR
+                </a>
+                <a href="challenge-projects.html" class="action-button disabled" id="nextBtn" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">
+                    <i class="bi bi-arrow-right"></i> Next Lesson
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let quizPassed = false;
+
+        // Quiz functionality
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'b',
+                q5: 'b',
+                q6: 'b'
+            };
+
+            const feedback = {
+                q1: {
+                    correct: "Correct! Algorithms are built from sequence (order), selection (decisions), and iteration (loops).",
+                    incorrect: "Not quite. The three basic elements of an algorithm are sequence, selection, and iteration."
+                },
+                q2: {
+                    correct: "Correct! When the if condition is False, the else branch is executed. Only one branch runs at a time.",
+                    incorrect: "Not quite. When the if condition is False, the program executes the code in the else branch."
+                },
+                q3: {
+                    correct: "Correct! == (double equal sign) checks if two values are equal. A single = is for assignment.",
+                    incorrect: "Not quite. == (double equal sign) is used to check equality. A single = assigns a value."
+                },
+                q4: {
+                    correct: "Correct! The 'and' operator requires both conditions to be True for the overall condition to be True.",
+                    incorrect: "Not quite. The 'and' operator only returns True when both conditions are True."
+                },
+                q5: {
+                    correct: "Correct! If-else ensures only one branch executes, making your code more efficient and preventing conflicts.",
+                    incorrect: "Not quite. If-else is more efficient because it forces a decision - only one branch executes."
+                },
+                q6: {
+                    correct: "Correct! The 'not' keyword reverses the condition, so the loop runs while red is NOT detected.",
+                    incorrect: "Not quite. The 'not' keyword reverses the condition, so the loop continues while red is NOT detected."
+                }
+            };
+
+            let allCorrect = true;
+            let answeredCount = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                const feedbackDiv = document.getElementById(`feedback${q.slice(1)}`);
+
+                if (selected) {
+                    answeredCount++;
+                    if (selected.value === answers[q]) {
+                        feedbackDiv.className = 'quiz-feedback correct';
+                        feedbackDiv.innerHTML = `<i class="bi bi-check-circle"></i> ${feedback[q].correct}`;
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback incorrect';
+                        feedbackDiv.innerHTML = `<i class="bi bi-x-circle"></i> ${feedback[q].incorrect}`;
+                        allCorrect = false;
+                    }
+                    feedbackDiv.style.display = 'block';
+                } else {
+                    allCorrect = false;
+                }
+            }
+
+            if (answeredCount < 6) {
+                alert('Please answer all questions before checking your answers.');
+                return;
+            }
+
+            if (allCorrect) {
+                quizPassed = true;
+                // Enable the Next Lesson button
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.remove('disabled');
+                nextBtn.style.opacity = '1';
+                nextBtn.style.cursor = 'pointer';
+                nextBtn.style.pointerEvents = 'auto';
+
+                // Show success message
+                setTimeout(() => {
+                    alert("Perfect score! You've mastered decision making with conditionals! You can now proceed to the next lesson.");
+                }, 500);
+            } else {
+                quizPassed = false;
+                const nextBtn = document.getElementById('nextBtn');
+                nextBtn.classList.add('disabled');
+                nextBtn.style.opacity = '0.5';
+                nextBtn.style.cursor = 'not-allowed';
+                nextBtn.style.pointerEvents = 'none';
+                alert("Not quite there yet! Review the incorrect answers and try again.");
+            }
+        }
+
+        // Smooth scroll to sections
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+
+            // Update progress tracker
+            document.querySelectorAll('.progress-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Update progress tracker on scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['intro', 'if-statements', 'else-elif', 'comparison', 'logical', 'sensors', 'algorithms', 'practice', 'challenge', 'quiz'];
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition) {
+                    document.querySelectorAll('.progress-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    const activeItem = document.querySelector(`.progress-item[onclick*="${section}"]`);
+                    if (activeItem) {
+                        activeItem.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
