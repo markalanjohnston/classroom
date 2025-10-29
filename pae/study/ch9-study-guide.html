@@ -1,0 +1,1204 @@
+---
+---
+<!-- File: classroom/pae/study/ch9-study-guide.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 9 Study Guide - PAE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <style>
+        /* Screen styles matching your site theme */
+        .study-guide-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .toolbar-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .toolbar-card .btn {
+            margin: 5px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        .section-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-card h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .vocab-table {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .vocab-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+            padding: 12px;
+        }
+
+        .vocab-table td {
+            padding: 10px;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .page-input {
+            width: 80px;
+            display: inline-block;
+        }
+
+        .badge-page {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+
+        textarea.form-control {
+            min-height: 60px;
+            resize: vertical;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+        }
+
+        textarea.form-control:focus {
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .form-check-input:checked {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+
+        .save-indicator {
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .save-indicator.saving {
+            color: #ffc107;
+        }
+
+        .save-indicator.saved {
+            color: #28a745;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                font-size: 11pt;
+            }
+
+            .main-container {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .study-guide-content {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .toolbar-card, .breadcrumb-nav, .no-print {
+                display: none !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            h2, h3 {
+                page-break-after: avoid;
+            }
+
+            .section-card {
+                page-break-inside: avoid;
+                border: 1px solid #000;
+                margin-bottom: 15px;
+            }
+
+            textarea.form-control, input.form-control {
+                border: 1px solid #000 !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .vocab-table th {
+                background: #ddd !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .study-guide-content {
+                padding: 20px;
+            }
+
+            .toolbar-card {
+                padding: 15px;
+            }
+
+            .toolbar-card .btn {
+                font-size: 0.875rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include navigation.html %}
+
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav">
+            <a href="../../" class="text-white">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../" class="text-white">Principles of Applied Engineering</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./" class="text-white">Study Guides</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Chapter 9</span>
+        </nav>
+
+        <!-- Toolbar -->
+        <div class="toolbar-card no-print">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="h4 mb-3 mb-lg-0">
+                        <i class="bi bi-journal-text"></i> Chapter 9: Materials Engineering
+                    </h2>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <button class="btn btn-light btn-sm" onclick="saveToFile()">
+                        <i class="bi bi-download"></i> Download
+                    </button>
+                    <button class="btn btn-light btn-sm" onclick="loadFromFile()">
+                        <i class="bi bi-upload"></i> Load
+                    </button>
+                    <button class="btn btn-warning btn-sm" onclick="printPDF()">
+                        <i class="bi bi-printer"></i> Print PDF
+                    </button>
+                    <button class="btn btn-outline-light btn-sm" onclick="clearAll()">
+                        <i class="bi bi-trash"></i> Clear
+                    </button>
+                    <div class="save-indicator mt-2">
+                        <span id="saveStatus"><i class="bi bi-check-circle"></i> Auto-saving enabled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden file input -->
+        <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+        <!-- Main Content -->
+        <div class="study-guide-content">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h1 class="display-6">
+                    <i class="bi bi-bezier2 text-primary"></i>
+                    Chapter 9 Study Guide
+                </h1>
+                <p class="lead text-muted">Materials Engineering</p>
+            </div>
+
+            <!-- Instructions -->
+            <div class="alert alert-info">
+                <h5 class="alert-heading"><i class="bi bi-info-circle"></i> Instructions</h5>
+                <ul class="mb-0">
+                    <li>A <strong>completed</strong> study guide may be used on the Chapter 9 test</li>
+                    <li>Turn in a fully completed guide for <strong>+10 points</strong> extra (up to 100 points max)</li>
+                    <li>Open book does not mean easy - use this guide to make your own notes</li>
+                    <li class="no-print text-primary">Your work auto-saves to your browser</li>
+                </ul>
+            </div>
+
+            <!-- Student Info -->
+            <div class="info-card">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Name:</label>
+                        <input type="text" class="form-control" data-save="student-name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Class Period:</label>
+                        <select class="form-select" data-save="student-class">
+                            <option value="">Select...</option>
+                            <option value="3">Period 3</option>
+                            <option value="4">Period 4</option>
+                            <option value="6">Period 6</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Date:</label>
+                        <input type="date" class="form-control" data-save="student-date">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: Key Terms -->
+            <div class="section-card">
+                <h3><i class="bi bi-book"></i> Section 1: Key Terms</h3>
+                <p class="text-muted small mb-3">Write the page number, define in your own words, and create a flashcard idea</p>
+
+                <div class="table-responsive">
+                    <table class="table vocab-table">
+                        <thead>
+                            <tr>
+                                <th width="20%">Term</th>
+                                <th width="8%">Page</th>
+                                <th width="36%">Your Definition</th>
+                                <th width="36%">Flashcard Idea</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>materials engineering</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-matseng-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-matseng-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Front/Back" data-save="term-matseng-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>alloy</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-alloy-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-alloy-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-alloy-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>biomaterial</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-bio-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-bio-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-bio-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>composite</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-composite-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-composite-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-composite-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>compression strength</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-compression-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-compression-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-compression-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>conductivity</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-conductivity-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-conductivity-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-conductivity-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>corrosion</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-corrosion-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-corrosion-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-corrosion-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>elasticity</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-elasticity-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-elasticity-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-elasticity-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>flammability</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-flammability-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-flammability-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-flammability-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>graphene</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-graphene-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-graphene-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-graphene-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>manufacturability</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-manuf-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-manuf-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-manuf-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>melting point</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-melting-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-melting-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-melting-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>nanoparticle</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-nanoparticle-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-nanoparticle-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-nanoparticle-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>nanotechnology</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-nanotech-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-nanotech-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-nanotech-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>nanowire</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-nanowire-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-nanowire-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-nanowire-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>plasticity</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-plasticity-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-plasticity-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-plasticity-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>quantum dots</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-quantum-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-quantum-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-quantum-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>strain</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-strain-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-strain-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-strain-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>stress</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-stress-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-stress-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-stress-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>tensile strength</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-tensile-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-tensile-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-tensile-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>thermal conductivity</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-thermal-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-thermal-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-thermal-flash"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 2: Material Categories -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-grid-3x3"></i> Section 2: Material Categories</h3>
+                <p class="text-muted small mb-3">Understand the four main categories of materials</p>
+
+                <div class="info-card">
+                    <h5>Four General Classes of Materials
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="categories-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Metals</label>
+                            <textarea class="form-control" rows="3" placeholder="Describe properties and give examples" data-save="metals-desc"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Ceramics</label>
+                            <textarea class="form-control" rows="3" placeholder="Describe properties and give examples" data-save="ceramics-desc"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Polymers</label>
+                            <textarea class="form-control" rows="3" placeholder="Describe properties and give examples" data-save="polymers-desc"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Composites</label>
+                            <textarea class="form-control" rows="3" placeholder="Describe properties and give examples" data-save="composites-desc"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Material Properties -->
+            <div class="section-card">
+                <h3><i class="bi bi-lightning"></i> Section 3: Material Properties</h3>
+                <p class="text-muted small mb-3">Identify and describe the six categories of material properties</p>
+
+                <div class="info-card">
+                    <h5>Six Categories of Material Properties
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="properties-page"></span>
+                    </h5>
+
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Property Category</th>
+                                <th width="40%">Description</th>
+                                <th width="35%">Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Physical Properties</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="physical-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="e.g., shape, color, density" data-save="physical-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mechanical Properties</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="mechanical-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="e.g., tensile strength, elasticity" data-save="mechanical-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Electrical & Magnetic</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="electrical-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="e.g., conductivity, permeability" data-save="electrical-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chemical Properties</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="chemical-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="e.g., flammability, corrosion" data-save="chemical-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Thermal Properties</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="thermal-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="e.g., melting point, thermal conductivity" data-save="thermal-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Optical & Acoustical</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="optical-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="e.g., transparency, sound absorption" data-save="optical-examples"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Stress vs Strain -->
+                <div class="info-card">
+                    <h5>Stress vs. Strain
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="stress-strain-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Stress (Force Applied)</label>
+                            <textarea class="form-control" rows="3" placeholder="Define and explain" data-save="stress-explain"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Strain (Deformation)</label>
+                            <textarea class="form-control" rows="3" placeholder="Define and explain" data-save="strain-explain"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Material Testing -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-clipboard-check"></i> Section 4: Material Testing</h3>
+                <p class="text-muted small mb-3">Understand destructive and nondestructive testing methods</p>
+
+                <div class="info-card">
+                    <h5>Types of Material Tests
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="testing-page"></span>
+                    </h5>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Destructive Tests</label>
+                        <textarea class="form-control" rows="3" placeholder="What are destructive tests and how do they work?" data-save="destructive-tests"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Nondestructive Tests</label>
+                        <textarea class="form-control" rows="3" placeholder="What are nondestructive tests and how do they work?" data-save="nondestructive-tests"></textarea>
+                    </div>
+
+                    <label class="form-label fw-bold">Nondestructive Test Methods:</label>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="30%">Test Type</th>
+                                <th width="70%">How It Works</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Radiography Tests</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Uses x-rays..." data-save="radiography-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ultrasonic Tests</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Uses sound waves..." data-save="ultrasonic-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Eddy Current Tests</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Uses electromagnetic currents..." data-save="eddycurrent-desc"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Standards Organization -->
+                <div class="info-card">
+                    <h5>Materials Testing Standards
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="standards-page"></span>
+                    </h5>
+                    <p class="text-muted small">Which organization is responsible for developing material testing standards?</p>
+                    <textarea class="form-control" rows="2" placeholder="Organization name and what they do" data-save="standards-org"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 5: Nanotechnology -->
+            <div class="section-card">
+                <h3><i class="bi bi-molecule"></i> Section 5: Nanotechnology</h3>
+                <p class="text-muted small mb-3">Explore materials engineering at the nanoscale</p>
+
+                <div class="info-card">
+                    <h5>Nanotechnology Basics
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="nano-page"></span>
+                    </h5>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">What is Nanotechnology?</label>
+                        <textarea class="form-control" rows="3" data-save="nano-definition"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">What is the most basic component at the nanoscale?</label>
+                        <textarea class="form-control" rows="2" data-save="nano-basic"></textarea>
+                    </div>
+
+                    <label class="form-label fw-bold">Nanostructures - Describe each:</label>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Nanostructure</th>
+                                <th width="75%">Description & Properties</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Nanowire</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Small strand, 1-60 nm wide..." data-save="nanowire-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Buckyballs (Fullerenes)</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Nano-sized spheres of carbon..." data-save="buckyball-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nanotubes</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Nano-sized cylinders of carbon..." data-save="nanotube-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Graphene</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Sheet of carbon atoms, 1 atom thick..." data-save="graphene-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quantum Dots</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Synthetic crystals at nanoscale..." data-save="quantumdots-desc"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h5>Nanoscale Properties</h5>
+                    <p class="text-muted small">Do materials have the same properties at the nanoscale as they normally do?</p>
+                    <textarea class="form-control" rows="3" placeholder="Explain how material properties change at the nanoscale" data-save="nano-properties"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 6: Know and Understand -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-question-circle"></i> Section 6: Know and Understand</h3>
+                <p class="text-muted small mb-3">Practice for the test - add page numbers for quick reference</p>
+
+                <div class="info-card">
+                    <!-- Multiple Choice Questions -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. The understanding and modification of the structure and properties of materials to improve performance and processing is called ____.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1a" value="a" data-save="q1">
+                            <label class="form-check-label" for="q1a">civil engineering</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1b" value="b" data-save="q1">
+                            <label class="form-check-label" for="q1b">a destructive material test</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1c" value="c" data-save="q1">
+                            <label class="form-check-label" for="q1c">manufacturability</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1d" value="d" data-save="q1">
+                            <label class="form-check-label" for="q1d">materials engineering</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q1-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Which category of material is a type of inorganic material with good conductivity to heat and electricity?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2a" value="a" data-save="q2">
+                            <label class="form-check-label" for="q2a">Ceramics</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2b" value="b" data-save="q2">
+                            <label class="form-check-label" for="q2b">Composites</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2c" value="c" data-save="q2">
+                            <label class="form-check-label" for="q2c">Metals</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2d" value="d" data-save="q2">
+                            <label class="form-check-label" for="q2d">Polymers</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q2-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. Which category of material utilizes the advantages of several materials?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q3" id="q3a" value="a" data-save="q3">
+                            <label class="form-check-label" for="q3a">Ceramics</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q3" id="q3b" value="b" data-save="q3">
+                            <label class="form-check-label" for="q3b">Composites</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q3" id="q3c" value="c" data-save="q3">
+                            <label class="form-check-label" for="q3c">Metals</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q3" id="q3d" value="d" data-save="q3">
+                            <label class="form-check-label" for="q3d">Polymers</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q3-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">4. The ability of a material to withstand a load that squeezes the material is called ____.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q4" id="q4a" value="a" data-save="q4">
+                            <label class="form-check-label" for="q4a">compression strength</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q4" id="q4b" value="b" data-save="q4">
+                            <label class="form-check-label" for="q4b">elasticity</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q4" id="q4c" value="c" data-save="q4">
+                            <label class="form-check-label" for="q4c">plasticity</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q4" id="q4d" value="d" data-save="q4">
+                            <label class="form-check-label" for="q4d">tensile strength</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q4-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">5. Which material property is determined by how well heat is transferred through the material?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" id="q5a" value="a" data-save="q5">
+                            <label class="form-check-label" for="q5a">Melting point</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" id="q5b" value="b" data-save="q5">
+                            <label class="form-check-label" for="q5b">Thermal conductivity</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" id="q5c" value="c" data-save="q5">
+                            <label class="form-check-label" for="q5c">Thermal expansion</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q5" id="q5d" value="d" data-save="q5">
+                            <label class="form-check-label" for="q5d">Thermal resistance</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q5-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">6. Which of the following is an application of material engineering?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6a" value="a" data-save="q6">
+                            <label class="form-check-label" for="q6a">Composites</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6b" value="b" data-save="q6">
+                            <label class="form-check-label" for="q6b">Manufacturability</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6c" value="c" data-save="q6">
+                            <label class="form-check-label" for="q6c">Nanotechnology</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6d" value="d" data-save="q6">
+                            <label class="form-check-label" for="q6d">Shear stress</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q6-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">7. Which type of test uses x-rays that pass through the material?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7a" value="a" data-save="q7">
+                            <label class="form-check-label" for="q7a">Destructive material tests</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7b" value="b" data-save="q7">
+                            <label class="form-check-label" for="q7b">Eddy current tests</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7c" value="c" data-save="q7">
+                            <label class="form-check-label" for="q7c">Radiography tests</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7d" value="d" data-save="q7">
+                            <label class="form-check-label" for="q7d">Ultrasonic tests</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q7-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">8. A small strand of material that ranges 1 nm–60 nm in width is a ____.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q8" id="q8a" value="a" data-save="q8">
+                            <label class="form-check-label" for="q8a">buckyball</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q8" id="q8b" value="b" data-save="q8">
+                            <label class="form-check-label" for="q8b">nanoparticle</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q8" id="q8c" value="c" data-save="q8">
+                            <label class="form-check-label" for="q8c">nanotube</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q8" id="q8d" value="d" data-save="q8">
+                            <label class="form-check-label" for="q8d">nanowire</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q8-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">9. A sheet of carbon atoms 1 atom thick is known as ____.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q9" id="q9a" value="a" data-save="q9">
+                            <label class="form-check-label" for="q9a">quantum dots</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q9" id="q9b" value="b" data-save="q9">
+                            <label class="form-check-label" for="q9b">nanowire</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q9" id="q9c" value="c" data-save="q9">
+                            <label class="form-check-label" for="q9c">graphene</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q9" id="q9d" value="d" data-save="q9">
+                            <label class="form-check-label" for="q9d">nanoparticle</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q9-page"></span>
+                    </div>
+
+                    <!-- True/False Section -->
+                    <h5 class="mt-4">True or False:</h5>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">10. The Materials Information Society is responsible for developing material testing standards.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q10" id="q10t" value="true" data-save="q10">
+                                <label class="form-check-label" for="q10t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q10" id="q10f" value="false" data-save="q10">
+                                <label class="form-check-label" for="q10f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q10-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">11. Ceramics are brittle.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q11" id="q11t" value="true" data-save="q11">
+                                <label class="form-check-label" for="q11t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q11" id="q11f" value="false" data-save="q11">
+                                <label class="form-check-label" for="q11f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q11-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">12. Semiconductors are materials that can safely and effectively interact with the human body.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q12" id="q12t" value="true" data-save="q12">
+                                <label class="form-check-label" for="q12t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q12" id="q12f" value="false" data-save="q12">
+                                <label class="form-check-label" for="q12f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q12-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">13. Strain is a bending or twisting force.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q13" id="q13t" value="true" data-save="q13">
+                                <label class="form-check-label" for="q13t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q13" id="q13f" value="false" data-save="q13">
+                                <label class="form-check-label" for="q13f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q13-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">14. Thermal resistance is the reciprocal of thermal conductivity.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q14" id="q14t" value="true" data-save="q14">
+                                <label class="form-check-label" for="q14t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q14" id="q14f" value="false" data-save="q14">
+                                <label class="form-check-label" for="q14f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q14-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">15. Destructive tests and nondestructive tests are the two types of material tests.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q15" id="q15t" value="true" data-save="q15">
+                                <label class="form-check-label" for="q15t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q15" id="q15f" value="false" data-save="q15">
+                                <label class="form-check-label" for="q15f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q15-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">16. A test that uses sound waves that "bounce off" changes in the material to determine the internal composition is a radiography test.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q16" id="q16t" value="true" data-save="q16">
+                                <label class="form-check-label" for="q16t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q16" id="q16f" value="false" data-save="q16">
+                                <label class="form-check-label" for="q16f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q16-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">17. Nano-sized cylinders of carbon are called buckyballs.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q17" id="q17t" value="true" data-save="q17">
+                                <label class="form-check-label" for="q17t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q17" id="q17f" value="false" data-save="q17">
+                                <label class="form-check-label" for="q17f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q17-page"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7: Apply and Analyze -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-pencil-square"></i> Section 7: Apply and Analyze</h3>
+                <p class="text-muted small mb-3">Answer in your own words using the chapter</p>
+
+                <div class="info-card">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. Describe the difference between stress and strain.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply1-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply1"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Explain how a destructive test is used to determine a mechanical property.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply2-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply2"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. Explain the difference between conductivity and resistivity.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply3-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply3"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">4. How might acoustical properties of materials be used in a concert hall?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply4-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply4"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">5. What are four elements that must be considered when selecting materials?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply5-page"></span>
+                        <textarea class="form-control mt-2" rows="3" placeholder="Function, manufacturability, cost, safety..." data-save="apply5"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Critical Thinking -->
+            <div class="section-card">
+                <h3><i class="bi bi-lightbulb"></i> Section 8: Critical Thinking</h3>
+                <p class="text-muted small mb-3">Apply concepts to real-world scenarios</p>
+
+                <div class="info-card">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. Automobile Bumper Material Selection</label>
+                        <p class="text-muted small">If an engineer was determining which material would be best for an automobile bumper, which material properties would they need to consider most? What else might be considered as they choose a material?</p>
+                        <textarea class="form-control" rows="5" placeholder="Think about impact resistance, weight, cost, manufacturability..." data-save="critical1"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical1-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Plastics Trade-offs</label>
+                        <p class="text-muted small">Plastics are a material that are so widely used that it is hard to comprehend what life would be like without plastics. While they are very useful, there are disadvantages to plastics as well. Describe the tradeoffs that exist with plastics.</p>
+                        <textarea class="form-control" rows="5" placeholder="Consider advantages (cost, versatility) vs disadvantages (environmental impact, fossil fuels)" data-save="critical2"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical2-page"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Study Tips -->
+            <div class="alert alert-success">
+                <h5 class="alert-heading"><i class="bi bi-lightbulb"></i> Quick Study Tips</h5>
+                <ul class="mb-0">
+                    <li><strong>Four material categories:</strong> Metals, Ceramics, Polymers, Composites</li>
+                    <li><strong>Metals:</strong> Inorganic, good conductors of heat & electricity</li>
+                    <li><strong>Ceramics:</strong> Inorganic, brittle, good insulators</li>
+                    <li><strong>Composites:</strong> Utilize advantages of several materials</li>
+                    <li><strong>Stress = Force applied</strong>; <strong>Strain = Deformation</strong></li>
+                    <li><strong>Radiography tests</strong> use x-rays; <strong>Ultrasonic tests</strong> use sound waves</li>
+                    <li><strong>Graphene</strong> is 1 atom thick; <strong>Nanowire</strong> is 1-60 nm wide</li>
+                    <li>ASTM creates standards for materials tests (NOT Materials Information Society)</li>
+                    <li>Materials have DIFFERENT properties at the nanoscale</li>
+                    <li>Thermal resistance is the reciprocal of thermal conductivity</li>
+                </ul>
+            </div>
+
+            <!-- Footer -->
+            <div class="alert alert-warning text-center">
+                <strong>Reminder:</strong> Complete all sections with page references. This guide is worth +10 extra points when fully completed.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-save functionality
+        let saveTimeout;
+        const STORAGE_KEY = 'pae-ch9-study-guide';
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadFromStorage();
+
+            // Add event listeners to all form elements
+            document.querySelectorAll('input[data-save], textarea[data-save], select[data-save]').forEach(element => {
+                if (element.type === 'radio' || element.type === 'checkbox') {
+                    element.addEventListener('change', autoSave);
+                } else {
+                    element.addEventListener('input', autoSave);
+                }
+            });
+
+            // Set today's date if empty
+            const dateInput = document.querySelector('input[type="date"][data-save="student-date"]');
+            if (dateInput && !dateInput.value) {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+        });
+
+        function autoSave() {
+            clearTimeout(saveTimeout);
+            updateSaveIndicator('saving');
+
+            saveTimeout = setTimeout(() => {
+                saveToStorage();
+                updateSaveIndicator('saved');
+            }, 500);
+        }
+
+        function updateSaveIndicator(status) {
+            const indicator = document.getElementById('saveStatus');
+            if (status === 'saving') {
+                indicator.innerHTML = '<i class="bi bi-arrow-repeat"></i> Saving...';
+                indicator.parentElement.className = 'save-indicator saving';
+            } else {
+                indicator.innerHTML = '<i class="bi bi-check-circle"></i> Saved';
+                indicator.parentElement.className = 'save-indicator saved';
+            }
+        }
+
+        function saveToStorage() {
+            const data = {};
+
+            // Save all inputs
+            document.querySelectorAll('[data-save]').forEach(element => {
+                const key = element.getAttribute('data-save');
+
+                if (element.type === 'checkbox') {
+                    data[key] = element.checked;
+                } else if (element.type === 'radio') {
+                    if (element.checked) {
+                        data[key] = element.value;
+                    }
+                } else {
+                    data[key] = element.value;
+                }
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function loadFromStorage() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (!stored) return;
+
+            try {
+                const data = JSON.parse(stored);
+
+                Object.keys(data).forEach(key => {
+                    const elements = document.querySelectorAll(`[data-save="${key}"]`);
+
+                    elements.forEach(element => {
+                        if (element.type === 'checkbox') {
+                            element.checked = data[key];
+                        } else if (element.type === 'radio') {
+                            if (element.value === data[key]) {
+                                element.checked = true;
+                            }
+                        } else {
+                            element.value = data[key];
+                        }
+                    });
+                });
+            } catch (e) {
+                console.error('Error loading saved data:', e);
+            }
+        }
+
+        function saveToFile() {
+            saveToStorage();
+            const data = localStorage.getItem(STORAGE_KEY);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const date = new Date().toISOString().split('T')[0];
+            a.download = `ch9-study-guide-${date}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function loadFromFile() {
+            document.getElementById('fileInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                    loadFromStorage();
+                    updateSaveIndicator('saved');
+                    alert('Study guide loaded successfully!');
+                } catch (error) {
+                    alert('Error loading file. Please ensure it\'s a valid study guide file.');
+                }
+            };
+            reader.readAsText(file);
+
+            // Reset file input
+            e.target.value = '';
+        });
+
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all your answers? This cannot be undone.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                document.querySelectorAll('[data-save]').forEach(element => {
+                    if (element.type === 'checkbox' || element.type === 'radio') {
+                        element.checked = false;
+                    } else if (element.type !== 'date') {
+                        element.value = '';
+                    }
+                });
+                updateSaveIndicator('saved');
+            }
+        }
+
+        function printPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
