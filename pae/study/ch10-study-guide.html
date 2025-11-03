@@ -1,0 +1,1359 @@
+---
+---
+<!-- File: classroom/pae/study/ch10-study-guide.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 10 Study Guide - PAE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <style>
+        /* Screen styles matching your site theme */
+        .study-guide-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .toolbar-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .toolbar-card .btn {
+            margin: 5px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        .section-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-card h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .vocab-table {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .vocab-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+            padding: 12px;
+        }
+
+        .vocab-table td {
+            padding: 10px;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .page-input {
+            width: 80px;
+            display: inline-block;
+        }
+
+        .badge-page {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+
+        textarea.form-control {
+            min-height: 60px;
+            resize: vertical;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+        }
+
+        textarea.form-control:focus {
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .form-check-input:checked {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+
+        .save-indicator {
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .save-indicator.saving {
+            color: #ffc107;
+        }
+
+        .save-indicator.saved {
+            color: #28a745;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                font-size: 11pt;
+            }
+
+            .main-container {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .study-guide-content {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .toolbar-card, .breadcrumb-nav, .no-print {
+                display: none !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            h2, h3 {
+                page-break-after: avoid;
+            }
+
+            .section-card {
+                page-break-inside: avoid;
+                border: 1px solid #000;
+                margin-bottom: 15px;
+            }
+
+            textarea.form-control, input.form-control {
+                border: 1px solid #000 !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .vocab-table th {
+                background: #ddd !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .study-guide-content {
+                padding: 20px;
+            }
+
+            .toolbar-card {
+                padding: 15px;
+            }
+
+            .toolbar-card .btn {
+                font-size: 0.875rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include navigation.html %}
+
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav">
+            <a href="../../" class="text-white">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../" class="text-white">Principles of Applied Engineering</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./" class="text-white">Study Guides</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Chapter 10</span>
+        </nav>
+
+        <!-- Toolbar -->
+        <div class="toolbar-card no-print">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="h4 mb-3 mb-lg-0">
+                        <i class="bi bi-journal-text"></i> Chapter 10: Manufacturing Engineering
+                    </h2>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <button class="btn btn-light btn-sm" onclick="saveToFile()">
+                        <i class="bi bi-download"></i> Download
+                    </button>
+                    <button class="btn btn-light btn-sm" onclick="loadFromFile()">
+                        <i class="bi bi-upload"></i> Load
+                    </button>
+                    <button class="btn btn-warning btn-sm" onclick="printPDF()">
+                        <i class="bi bi-printer"></i> Print PDF
+                    </button>
+                    <button class="btn btn-outline-light btn-sm" onclick="clearAll()">
+                        <i class="bi bi-trash"></i> Clear
+                    </button>
+                    <div class="save-indicator mt-2">
+                        <span id="saveStatus"><i class="bi bi-check-circle"></i> Auto-saving enabled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden file input -->
+        <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+        <!-- Main Content -->
+        <div class="study-guide-content">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h1 class="display-6">
+                    <i class="bi bi-gear-fill text-primary"></i>
+                    Chapter 10 Study Guide
+                </h1>
+                <p class="lead text-muted">Manufacturing Engineering</p>
+            </div>
+
+            <!-- Instructions -->
+            <div class="alert alert-info">
+                <h5 class="alert-heading"><i class="bi bi-info-circle"></i> Instructions</h5>
+                <ul class="mb-0">
+                    <li>A <strong>completed</strong> study guide may be used on the Chapter 10 test</li>
+                    <li>Turn in a fully completed guide for <strong>+10 points</strong> extra (up to 100 points max)</li>
+                    <li>Open book does not mean easy - use this guide to make your own notes</li>
+                    <li class="no-print text-primary">Your work auto-saves to your browser</li>
+                </ul>
+            </div>
+
+            <!-- Student Info -->
+            <div class="info-card">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Name:</label>
+                        <input type="text" class="form-control" data-save="student-name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Class Period:</label>
+                        <select class="form-select" data-save="student-class">
+                            <option value="">Select...</option>
+                            <option value="3">Period 3</option>
+                            <option value="4">Period 4</option>
+                            <option value="6">Period 6</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Date:</label>
+                        <input type="date" class="form-control" data-save="student-date">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: Key Terms -->
+            <div class="section-card">
+                <h3><i class="bi bi-book"></i> Section 1: Key Terms</h3>
+                <p class="text-muted small mb-3">Write the page number, define in your own words, and create a flashcard idea</p>
+
+                <div class="table-responsive">
+                    <table class="table vocab-table">
+                        <thead>
+                            <tr>
+                                <th width="22%">Term</th>
+                                <th width="8%">Page</th>
+                                <th width="35%">Your Definition</th>
+                                <th width="35%">Flashcard Idea</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>manufacturing</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-mfg-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-mfg-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Front/Back" data-save="term-mfg-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>manufacturing engineering</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-mfgeng-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-mfgeng-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-mfgeng-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>standard stock</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-stock-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-stock-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-stock-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>primary processing</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-primary-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-primary-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-primary-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>secondary processing</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-secondary-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-secondary-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-secondary-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>separating</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-separating-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-separating-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-separating-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>casting and molding</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-casting-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-casting-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-casting-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>forming</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-forming-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-forming-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-forming-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>combining</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-combining-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-combining-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-combining-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>custom manufacturing</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-custom-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-custom-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-custom-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>intermittent manufacturing</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-intermittent-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-intermittent-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-intermittent-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>continuous manufacturing</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-continuous-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-continuous-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-continuous-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>jigs</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-jigs-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-jigs-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-jigs-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>fixtures</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-fixtures-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-fixtures-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-fixtures-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>quality control</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-qc-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-qc-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-qc-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>lean manufacturing</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-lean-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-lean-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-lean-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>just-in-time (JIT)</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-jit-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-jit-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-jit-flash"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 2: Materials & Raw Materials -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-boxes"></i> Section 2: Materials & Raw Materials</h3>
+                <p class="text-muted small mb-3">Understand the materials used in manufacturing</p>
+
+                <div class="info-card">
+                    <h5>Three Main Categories of Materials
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="materials-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Metals (Inorganic)</label>
+                            <textarea class="form-control" rows="3" placeholder="Properties and examples" data-save="metals-desc"></textarea>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Ceramics (Inorganic)</label>
+                            <textarea class="form-control" rows="3" placeholder="Properties and examples" data-save="ceramics-desc"></textarea>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Polymers (Organic)</label>
+                            <textarea class="form-control" rows="3" placeholder="Properties and examples" data-save="polymers-desc"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Raw Material Harvesting Methods
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="harvesting-page"></span>
+                    </h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Method</th>
+                                <th width="75%">Description & Uses</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Drilling</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="What is drilling used for? (oil, natural gas, water)" data-save="drilling-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mining (Surface & Subsurface)</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Describe both types and what they're used for" data-save="mining-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Harvesting (Forestry)</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Types: clear-cutting, selective cutting, seed tree cutting" data-save="harvesting-desc"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h5>Modern Plastics Source
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="plastics-page"></span>
+                    </h5>
+                    <p class="text-muted small">What are modern plastics made from?</p>
+                    <textarea class="form-control" rows="2" placeholder="Petroleum-based..." data-save="plastics-source"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 3: Processing Methods -->
+            <div class="section-card">
+                <h3><i class="bi bi-arrow-repeat"></i> Section 3: Processing Methods</h3>
+                <p class="text-muted small mb-3">Understand primary and secondary processing</p>
+
+                <div class="info-card">
+                    <h5>Primary vs. Secondary Processing
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="processing-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Primary Processing</label>
+                            <textarea class="form-control" rows="4" placeholder="What is it? What does it produce? (raw materials → standard stock)" data-save="primary-processing"></textarea>
+                            <label class="form-label fw-bold mt-2">Examples:</label>
+                            <textarea class="form-control" rows="2" placeholder="Lumber, ingots, bars, rods..." data-save="primary-examples"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Secondary Processing</label>
+                            <textarea class="form-control" rows="4" placeholder="What is it? What does it produce? (standard stock → useful products)" data-save="secondary-processing"></textarea>
+                            <label class="form-label fw-bold mt-2">Four Main Techniques:</label>
+                            <textarea class="form-control" rows="2" placeholder="Separating, casting/molding, forming, combining" data-save="secondary-techniques"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Four Secondary Processing Techniques</h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Technique</th>
+                                <th width="40%">Description</th>
+                                <th width="35%">Examples/Tools</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Separating</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Cutting materials to desired shape" data-save="separating-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Scissors, saws, drills" data-save="separating-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Casting & Molding</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Shaping liquid materials around a mold" data-save="casting-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Pouring metal, plastic injection" data-save="casting-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Forming</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Compression, bending, stretching" data-save="forming-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Hammering steel, bending metal" data-save="forming-examples"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Combining</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Mechanical assembly and bonding" data-save="combining-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Welding, gluing, fasteners" data-save="combining-examples"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 4: Manufacturing Systems -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-diagram-3"></i> Section 4: Manufacturing Systems</h3>
+                <p class="text-muted small mb-3">Understand the three types of manufacturing systems</p>
+
+                <div class="info-card">
+                    <h5>Three Types of Manufacturing
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="mfg-types-page"></span>
+                    </h5>
+
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Type</th>
+                                <th width="40%">Description & When Used</th>
+                                <th width="35%">Characteristics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Custom Manufacturing</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Single product or small number of products" data-save="custom-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Low volume, high customization" data-save="custom-chars"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Intermittent Manufacturing</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Small batches move through factory together" data-save="intermittent-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Medium volume, batch production" data-save="intermittent-chars"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Continuous Manufacturing</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Highest number at lowest cost per part" data-save="continuous-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="High volume, dedicated plant, high setup cost" data-save="continuous-chars"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h5>Plant Layouts
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="layout-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Process Layout</label>
+                            <textarea class="form-control" rows="3" placeholder="Machines laid out based on kind of work they perform" data-save="process-layout"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Product Layout</label>
+                            <textarea class="form-control" rows="3" placeholder="Machines arranged in sequence for specific product" data-save="product-layout"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Production Tools & Control -->
+            <div class="section-card">
+                <h3><i class="bi bi-tools"></i> Section 5: Production Tools & Control Systems</h3>
+                <p class="text-muted small mb-3">Understand tools and systems used in manufacturing</p>
+
+                <div class="info-card">
+                    <h5>Jigs vs. Fixtures
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="jigs-fixtures-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Jigs</label>
+                            <textarea class="form-control" rows="3" placeholder="Used to guide tools" data-save="jigs-explain"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Fixtures</label>
+                            <textarea class="form-control" rows="3" placeholder="Used to hold parts while work is performed" data-save="fixtures-explain"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Production Documentation
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="docs-page"></span>
+                    </h5>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Specification Sheets</label>
+                        <textarea class="form-control" rows="2" placeholder="What do they include?" data-save="spec-sheets"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Flow Process Charts</label>
+                        <textarea class="form-control" rows="2" placeholder="What are they used for?" data-save="flow-charts"></textarea>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Quality Control
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="qc-page"></span>
+                    </h5>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">What is Quality Control?</label>
+                        <textarea class="form-control" rows="3" placeholder="System to ensure products meet exact specifications" data-save="qc-definition"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Key Elements of Quality Control Programs</label>
+                        <textarea class="form-control" rows="3" placeholder="Worker training, motivation, testing, inspection..." data-save="qc-elements"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Why is Quality Control Important?</label>
+                        <textarea class="form-control" rows="3" placeholder="Customer expectations, returns, reputation..." data-save="qc-importance"></textarea>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Time and Motion Studies
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="time-motion-page"></span>
+                    </h5>
+                    <p class="text-muted small">What are time and motion studies used for?</p>
+                    <textarea class="form-control" rows="2" placeholder="Increase worker productivity..." data-save="time-motion-purpose"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 6: Cost Control & Lean Manufacturing -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-cash-stack"></i> Section 6: Cost Control & Lean Manufacturing</h3>
+                <p class="text-muted small mb-3">Understand manufacturing efficiency and cost management</p>
+
+                <div class="info-card">
+                    <h5>Cost Control
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="cost-page"></span>
+                    </h5>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Three Resources to Control</label>
+                        <textarea class="form-control" rows="3" placeholder="Materials, machine time, labor" data-save="cost-resources"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">How Manufacturing Costs are Controlled</label>
+                        <textarea class="form-control" rows="3" placeholder="Wise material purchases, efficient scheduling..." data-save="cost-control-methods"></textarea>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Lean Manufacturing
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="lean-page"></span>
+                    </h5>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Goals of Lean Manufacturing</label>
+                        <textarea class="form-control" rows="3" placeholder="Increase production & quality, cut costs, ensure worker safety" data-save="lean-goals"></textarea>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Just-In-Time (JIT) Delivery
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="jit-page"></span>
+                    </h5>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">What is JIT?</label>
+                        <textarea class="form-control" rows="2" placeholder="Materials arrive exactly when needed" data-save="jit-definition"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Advantages (Pros)</label>
+                            <textarea class="form-control" rows="3" placeholder="Cuts warehousing costs, reduces inventory..." data-save="jit-pros"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Disadvantages (Cons)</label>
+                            <textarea class="form-control" rows="3" placeholder="Complex to manage, production delays if late..." data-save="jit-cons"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Effective Scheduling
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="scheduling-page"></span>
+                    </h5>
+                    <p class="text-muted small">How does effective scheduling keep production costs down?</p>
+                    <textarea class="form-control" rows="4" placeholder="Materials arrive on time, machines used efficiently, labor maximized..." data-save="scheduling-benefits"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 7: Know and Understand -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-question-circle"></i> Section 7: Know and Understand</h3>
+                <p class="text-muted small mb-3">Practice for the test - add page numbers for quick reference</p>
+
+                <div class="info-card">
+                    <!-- Multiple Choice Questions -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. Inorganic materials with good conductivity to heat and electricity that can be melted are called ____.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1a" value="a" data-save="q1">
+                            <label class="form-check-label" for="q1a">ceramics</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1b" value="b" data-save="q1">
+                            <label class="form-check-label" for="q1b">metals</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1c" value="c" data-save="q1">
+                            <label class="form-check-label" for="q1c">polymers</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1d" value="d" data-save="q1">
+                            <label class="form-check-label" for="q1d">thermoplastics</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q1-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. ____ are organic materials like wood and plastic.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2a" value="a" data-save="q2">
+                            <label class="form-check-label" for="q2a">Ceramics</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2b" value="b" data-save="q2">
+                            <label class="form-check-label" for="q2b">Polymers</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2c" value="c" data-save="q2">
+                            <label class="form-check-label" for="q2c">Metals</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2d" value="d" data-save="q2">
+                            <label class="form-check-label" for="q2d">Glasses</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q2-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. Raw materials are harvested through what process?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3a" value="a" data-save="q3">
+                            <label class="form-check-label" for="q3a">Drilling</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3b" value="b" data-save="q3">
+                            <label class="form-check-label" for="q3b">Mining</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3c" value="c" data-save="q3">
+                            <label class="form-check-label" for="q3c">Harvesting</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3d" value="d" data-save="q3">
+                            <label class="form-check-label" for="q3d">All of the above</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q3-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">4. ____ manufacturing is used to produce a single product or a small number of products.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4a" value="a" data-save="q4">
+                            <label class="form-check-label" for="q4a">Intermittent</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4b" value="b" data-save="q4">
+                            <label class="form-check-label" for="q4b">Custom</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4c" value="c" data-save="q4">
+                            <label class="form-check-label" for="q4c">Continuous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4d" value="d" data-save="q4">
+                            <label class="form-check-label" for="q4d">Repetitive</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q4-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">5. Small batches of parts move together through a factory in ____ manufacturing.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q5" id="q5a" value="a" data-save="q5">
+                            <label class="form-check-label" for="q5a">intermittent</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q5" id="q5b" value="b" data-save="q5">
+                            <label class="form-check-label" for="q5b">custom</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q5" id="q5c" value="c" data-save="q5">
+                            <label class="form-check-label" for="q5c">continuous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q5" id="q5d" value="d" data-save="q5">
+                            <label class="form-check-label" for="q5d">repetitive</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q5-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">6. ____ manufacturing produces the highest number of parts at the lowest cost in plants that are specifically designed to produce these parts.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6a" value="a" data-save="q6">
+                            <label class="form-check-label" for="q6a">Intermittent</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6b" value="b" data-save="q6">
+                            <label class="form-check-label" for="q6b">Custom</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6c" value="c" data-save="q6">
+                            <label class="form-check-label" for="q6c">Continuous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6d" value="d" data-save="q6">
+                            <label class="form-check-label" for="q6d">Repetitive</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q6-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">7. Modern plastics are made from ____.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q7" id="q7a" value="a" data-save="q7">
+                            <label class="form-check-label" for="q7a">wood</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q7" id="q7b" value="b" data-save="q7">
+                            <label class="form-check-label" for="q7b">cellulose</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q7" id="q7c" value="c" data-save="q7">
+                            <label class="form-check-label" for="q7c">petroleum</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q7" id="q7d" value="d" data-save="q7">
+                            <label class="form-check-label" for="q7d">grass</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q7-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">8. Lumber, ingots, bars, and rods are examples of ____.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q8" id="q8a" value="a" data-save="q8">
+                            <label class="form-check-label" for="q8a">secondary stock</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q8" id="q8b" value="b" data-save="q8">
+                            <label class="form-check-label" for="q8b">primary stock</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q8" id="q8c" value="c" data-save="q8">
+                            <label class="form-check-label" for="q8c">standard stock</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q8" id="q8d" value="d" data-save="q8">
+                            <label class="form-check-label" for="q8d">processing stock</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q8-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">9. Heating a piece of steel and hammering it into shape is an example of ____.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q9" id="q9a" value="a" data-save="q9">
+                            <label class="form-check-label" for="q9a">casting and molding</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q9" id="q9b" value="b" data-save="q9">
+                            <label class="form-check-label" for="q9b">separating</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q9" id="q9c" value="c" data-save="q9">
+                            <label class="form-check-label" for="q9c">combining</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q9" id="q9d" value="d" data-save="q9">
+                            <label class="form-check-label" for="q9d">forming</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q9-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">10. Machines, tools, and equipment are laid out based on the kind of work they perform using a ____ layout.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q10" id="q10a" value="a" data-save="q10">
+                            <label class="form-check-label" for="q10a">process</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q10" id="q10b" value="b" data-save="q10">
+                            <label class="form-check-label" for="q10b">product</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q10" id="q10c" value="c" data-save="q10">
+                            <label class="form-check-label" for="q10c">quality</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q10" id="q10d" value="d" data-save="q10">
+                            <label class="form-check-label" for="q10d">production</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q10-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">11. ____ is a system of manufacturers ensuring their products meet exact specifications.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q11" id="q11a" value="a" data-save="q11">
+                            <label class="form-check-label" for="q11a">Accuracy</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q11" id="q11b" value="b" data-save="q11">
+                            <label class="form-check-label" for="q11b">Specification</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q11" id="q11c" value="c" data-save="q11">
+                            <label class="form-check-label" for="q11c">Insurance</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q11" id="q11d" value="d" data-save="q11">
+                            <label class="form-check-label" for="q11d">Quality control</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q11-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">12. Time and motion studies are used to ____.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q12" id="q12a" value="a" data-save="q12">
+                            <label class="form-check-label" for="q12a">decrease scheduling errors</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q12" id="q12b" value="b" data-save="q12">
+                            <label class="form-check-label" for="q12b">increase worker productivity</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q12" id="q12c" value="c" data-save="q12">
+                            <label class="form-check-label" for="q12c">increase product quality</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q12" id="q12d" value="d" data-save="q12">
+                            <label class="form-check-label" for="q12d">decrease back injuries</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q12-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">13. ____ are used to guide tools, while ____ are used to hold parts while work is performed.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q13" id="q13a" value="a" data-save="q13">
+                            <label class="form-check-label" for="q13a">Fixtures, jigs</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q13" id="q13b" value="b" data-save="q13">
+                            <label class="form-check-label" for="q13b">Clamps, guides</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q13" id="q13c" value="c" data-save="q13">
+                            <label class="form-check-label" for="q13c">Jigs, fixtures</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q13" id="q13d" value="d" data-save="q13">
+                            <label class="form-check-label" for="q13d">Guides, clamps</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q13-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">14. ____ include every detail of a part to be made.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q14" id="q14a" value="a" data-save="q14">
+                            <label class="form-check-label" for="q14a">Specifications sheets</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q14" id="q14b" value="b" data-save="q14">
+                            <label class="form-check-label" for="q14b">Production charts</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q14" id="q14c" value="c" data-save="q14">
+                            <label class="form-check-label" for="q14c">Plant layout</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q14" id="q14d" value="d" data-save="q14">
+                            <label class="form-check-label" for="q14d">Product layout</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q14-page"></span>
+                    </div>
+
+                    <!-- True/False Section -->
+                    <h5 class="mt-4">True or False:</h5>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">15. Manufacturing costs are controlled through wise material purchases.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q15" id="q15t" value="true" data-save="q15">
+                                <label class="form-check-label" for="q15t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q15" id="q15f" value="false" data-save="q15">
+                                <label class="form-check-label" for="q15f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q15-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">16. Pouring concrete into a form is an example of the forming process.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q16" id="q16t" value="true" data-save="q16">
+                                <label class="form-check-label" for="q16t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q16" id="q16f" value="false" data-save="q16">
+                                <label class="form-check-label" for="q16f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q16-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">17. Intermittent manufacturing is used to produce a great number of products at the lowest per part cost.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q17" id="q17t" value="true" data-save="q17">
+                                <label class="form-check-label" for="q17t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q17" id="q17f" value="false" data-save="q17">
+                                <label class="form-check-label" for="q17f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q17-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">18. Worker training and motivation are key to the success of a quality control program.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q18" id="q18t" value="true" data-save="q18">
+                                <label class="form-check-label" for="q18t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q18" id="q18f" value="false" data-save="q18">
+                                <label class="form-check-label" for="q18f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q18-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">19. Facility engineering is carried out by manufacturing engineering technicians.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q19" id="q19t" value="true" data-save="q19">
+                                <label class="form-check-label" for="q19t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q19" id="q19f" value="false" data-save="q19">
+                                <label class="form-check-label" for="q19f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q19-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">20. Seed tree cutting cuts all of the trees in a given area.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q20" id="q20t" value="true" data-save="q20">
+                                <label class="form-check-label" for="q20t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q20" id="q20f" value="false" data-save="q20">
+                                <label class="form-check-label" for="q20f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q20-page"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Apply and Analyze -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-pencil-square"></i> Section 8: Apply and Analyze</h3>
+                <p class="text-muted small mb-3">Answer in your own words using the chapter</p>
+
+                <div class="info-card">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. What is manufacturing engineering?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply1-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply1"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Name the two types of mining.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply2-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply2"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. Describe the difference between primary and secondary processing.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply3-page"></span>
+                        <textarea class="form-control mt-2" rows="4" data-save="apply3"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">4. The most common combining technique is ____.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply4-page"></span>
+                        <textarea class="form-control mt-2" rows="2" placeholder="Welding" data-save="apply4"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">5. Describe how and when each type of manufacturing is used.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply5-page"></span>
+                        <textarea class="form-control mt-2" rows="5" placeholder="Custom, Intermittent, Continuous - when is each used?" data-save="apply5"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">6. What is the difference between jigs and fixtures?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply6-page"></span>
+                        <textarea class="form-control mt-2" rows="3" data-save="apply6"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">7. Name three resources that must be controlled in order to control costs.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply7-page"></span>
+                        <textarea class="form-control mt-2" rows="3" placeholder="Materials, machine time, labor" data-save="apply7"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: Critical Thinking -->
+            <div class="section-card">
+                <h3><i class="bi bi-lightbulb"></i> Section 9: Critical Thinking</h3>
+                <p class="text-muted small mb-3">Apply concepts to real-world scenarios</p>
+
+                <div class="info-card">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. Explain why quality control is important.</label>
+                        <textarea class="form-control" rows="5" placeholder="Customer expectations, returns, reputation, cost..." data-save="critical1"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical1-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Explain how effective scheduling can keep production costs down.</label>
+                        <textarea class="form-control" rows="5" placeholder="Materials arrive on time, machines used efficiently, labor scheduled properly..." data-save="critical2"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical2-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. What are the pros and cons of just-in-time (JIT) material delivery systems?</label>
+                        <textarea class="form-control" rows="6" placeholder="Pros: reduces warehousing costs, less inventory... Cons: complex to manage, production delays if materials late..." data-save="critical3"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical3-page"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Study Tips -->
+            <div class="alert alert-success">
+                <h5 class="alert-heading"><i class="bi bi-lightbulb"></i> Quick Study Tips</h5>
+                <ul class="mb-0">
+                    <li><strong>Three materials:</strong> Metals (inorganic), Ceramics (inorganic), Polymers (organic)</li>
+                    <li><strong>Raw material methods:</strong> Drilling, Mining, Harvesting (all of the above)</li>
+                    <li><strong>Primary processing:</strong> Raw materials → Standard stock (lumber, ingots, bars, rods)</li>
+                    <li><strong>Secondary processing:</strong> Standard stock → Useful products (4 techniques)</li>
+                    <li><strong>Four techniques:</strong> Separating (cutting), Casting/Molding (liquid), Forming (bending), Combining (welding)</li>
+                    <li><strong>Pouring concrete = Casting/Molding</strong> (NOT forming)</li>
+                    <li><strong>Hammering steel = Forming</strong> (compression, bending, stretching)</li>
+                    <li><strong>Custom:</strong> Single/small products | <strong>Intermittent:</strong> Small batches | <strong>Continuous:</strong> Highest volume, lowest cost</li>
+                    <li><strong>Process layout:</strong> Based on kind of work | <strong>Product layout:</strong> Based on product sequence</li>
+                    <li><strong>Jigs guide tools</strong> | <strong>Fixtures hold parts</strong></li>
+                    <li><strong>Specification sheets</strong> include every detail of a part</li>
+                    <li><strong>Flow process charts</strong> record order of manufacturing processes</li>
+                    <li><strong>Time & motion studies</strong> increase worker productivity</li>
+                    <li>Modern plastics made from <strong>petroleum</strong></li>
+                    <li>Worker training & motivation key to quality control success</li>
+                    <li>Seed tree cutting leaves SOME trees (NOT all trees)</li>
+                </ul>
+            </div>
+
+            <!-- Footer -->
+            <div class="alert alert-warning text-center">
+                <strong>Reminder:</strong> Complete all sections with page references. This guide is worth +10 extra points when fully completed.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-save functionality
+        let saveTimeout;
+        const STORAGE_KEY = 'pae-ch10-study-guide';
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadFromStorage();
+
+            // Add event listeners to all form elements
+            document.querySelectorAll('input[data-save], textarea[data-save], select[data-save]').forEach(element => {
+                if (element.type === 'radio' || element.type === 'checkbox') {
+                    element.addEventListener('change', autoSave);
+                } else {
+                    element.addEventListener('input', autoSave);
+                }
+            });
+
+            // Set today's date if empty
+            const dateInput = document.querySelector('input[type="date"][data-save="student-date"]');
+            if (dateInput && !dateInput.value) {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+        });
+
+        function autoSave() {
+            clearTimeout(saveTimeout);
+            updateSaveIndicator('saving');
+
+            saveTimeout = setTimeout(() => {
+                saveToStorage();
+                updateSaveIndicator('saved');
+            }, 500);
+        }
+
+        function updateSaveIndicator(status) {
+            const indicator = document.getElementById('saveStatus');
+            if (status === 'saving') {
+                indicator.innerHTML = '<i class="bi bi-arrow-repeat"></i> Saving...';
+                indicator.parentElement.className = 'save-indicator saving';
+            } else {
+                indicator.innerHTML = '<i class="bi bi-check-circle"></i> Saved';
+                indicator.parentElement.className = 'save-indicator saved';
+            }
+        }
+
+        function saveToStorage() {
+            const data = {};
+
+            // Save all inputs
+            document.querySelectorAll('[data-save]').forEach(element => {
+                const key = element.getAttribute('data-save');
+
+                if (element.type === 'checkbox') {
+                    data[key] = element.checked;
+                } else if (element.type === 'radio') {
+                    if (element.checked) {
+                        data[key] = element.value;
+                    }
+                } else {
+                    data[key] = element.value;
+                }
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function loadFromStorage() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (!stored) return;
+
+            try {
+                const data = JSON.parse(stored);
+
+                Object.keys(data).forEach(key => {
+                    const elements = document.querySelectorAll(`[data-save="${key}"]`);
+
+                    elements.forEach(element => {
+                        if (element.type === 'checkbox') {
+                            element.checked = data[key];
+                        } else if (element.type === 'radio') {
+                            if (element.value === data[key]) {
+                                element.checked = true;
+                            }
+                        } else {
+                            element.value = data[key];
+                        }
+                    });
+                });
+            } catch (e) {
+                console.error('Error loading saved data:', e);
+            }
+        }
+
+        function saveToFile() {
+            saveToStorage();
+            const data = localStorage.getItem(STORAGE_KEY);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const date = new Date().toISOString().split('T')[0];
+            a.download = `ch10-study-guide-${date}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function loadFromFile() {
+            document.getElementById('fileInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                    loadFromStorage();
+                    updateSaveIndicator('saved');
+                    alert('Study guide loaded successfully!');
+                } catch (error) {
+                    alert('Error loading file. Please ensure it\'s a valid study guide file.');
+                }
+            };
+            reader.readAsText(file);
+
+            // Reset file input
+            e.target.value = '';
+        });
+
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all your answers? This cannot be undone.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                document.querySelectorAll('[data-save]').forEach(element => {
+                    if (element.type === 'checkbox' || element.type === 'radio') {
+                        element.checked = false;
+                    } else if (element.type !== 'date') {
+                        element.value = '';
+                    }
+                });
+                updateSaveIndicator('saved');
+            }
+        }
+
+        function printPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
