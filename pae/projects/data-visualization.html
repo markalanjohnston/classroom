@@ -308,7 +308,7 @@
                 <li>
                     <strong>Download the dataset</strong>
                     <p>Click this link to download the CSV file (it should download automatically):</p>
-                    <p><a href="https://raw.githubusercontent.com/cs109/2014_data/master/countries.csv" target="_blank" download><strong>countries.csv</strong></a></p>
+                    <p><a href="https://raw.githubusercontent.com/datasets/population/master/data/World-population-by-countries-dataset.csv" target="_blank" download><strong>World-population-by-countries-dataset.csv</strong></a></p>
                     <p>Save it to your Downloads folder. If it opens in your browser instead, right-click on the page and select "Save As..."</p>
                 </li>
 
@@ -330,23 +330,27 @@ uploaded = files.upload()</code></pre>
 import matplotlib.pyplot as plt
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv("countries.csv")
+df = pd.read_csv("World-population-by-countries-dataset.csv")
+
+# Check what columns we have
+print(df.columns)
 
 # Preview the first 5 rows
 df.head()</code></pre>
-                    <p>Run this cell. You should see a table with information about different countries including population and region.</p>
+                    <p>Run this cell. Look at the column names that print out - we'll use those in the next step!</p>
                 </li>
 
                 <li>
                     <strong>Create a basic bar chart</strong>
-                    <p>Let's visualize the top 10 countries by population:</p>
-                    <pre><code># Sort by population and get top 10
-top10 = df.nlargest(10, 'Population')
+                    <p>This dataset has columns for each year (like "2022", "2020", etc). Let's visualize the top 10 countries by 2022 population:</p>
+                    <pre><code># Get top 10 countries by 2022 population
+# Note: Replace "2022" with whatever recent year column you see!
+top10 = df.nlargest(10, '2022')
 
 # Create the plot
 plt.figure(figsize=(10, 6))
-plt.bar(top10['Country'], top10['Population'])
-plt.title("Top 10 Countries by Population")
+plt.bar(top10['Country/Territory'], top10['2022'])
+plt.title("Top 10 Countries by Population (2022)")
 plt.xlabel("Country")
 plt.ylabel("Population")
 plt.xticks(rotation=45, ha='right')  # Rotate labels so they don't overlap
@@ -358,20 +362,20 @@ plt.show()</code></pre>
                 <li>
                     <strong>Customize your chart with colors and styles (REQUIRED for full points)</strong>
                     <p>Now make your chart look professional with custom styling:</p>
-                    <pre><code># Sort by population and get top 10
-top10 = df.nlargest(10, 'Population')
+                    <pre><code># Get top 10 countries by 2022 population
+top10 = df.nlargest(10, '2022')
 
 # Create a customized chart
 plt.figure(figsize=(12, 6), facecolor="lightyellow")  # Background color
 plt.bar(
-    top10['Country'],
-    top10['Population'],
+    top10['Country/Territory'],
+    top10['2022'],
     color='purple',           # Custom bar color
     edgecolor='darkblue',     # Border color
     linewidth=2               # Border thickness
 )
 
-plt.title("Top 10 Countries by Population", fontsize=18, color="darkblue", fontweight='bold')
+plt.title("Top 10 Countries by Population (2022)", fontsize=18, color="darkblue", fontweight='bold')
 plt.xlabel("Country", fontsize=14)
 plt.ylabel("Population", fontsize=14)
 plt.xticks(rotation=45, ha='right')
@@ -385,16 +389,23 @@ plt.show()</code></pre>
                 </li>
 
                 <li>
-                    <strong>Try different visualizations (Optional but fun!)</strong>
-                    <p>Compare regions or try filtering by specific criteria:</p>
-                    <pre><code># Example: Show population by region
-region_pop = df.groupby('Region')['Population'].sum().sort_values(ascending=False)
+                    <strong>Try different years (Optional but fun!)</strong>
+                    <p>Compare population across different years:</p>
+                    <pre><code># Compare 2022 vs 2000 for top 5 countries
+top5 = df.nlargest(5, '2022')
+
+x = range(len(top5))
+width = 0.35
 
 plt.figure(figsize=(12, 6))
-plt.barh(region_pop.index, region_pop.values, color='teal')
-plt.title("Total Population by Region", fontsize=16)
-plt.xlabel("Population", fontsize=12)
-plt.ylabel("Region", fontsize=12)
+plt.bar([i - width/2 for i in x], top5['2000'], width, label='2000', color='lightblue')
+plt.bar([i + width/2 for i in x], top5['2022'], width, label='2022', color='darkblue')
+
+plt.xlabel('Country')
+plt.ylabel('Population')
+plt.title('Population Growth: 2000 vs 2022')
+plt.xticks(x, top5['Country/Territory'], rotation=45, ha='right')
+plt.legend()
 plt.tight_layout()
 plt.show()</code></pre>
                 </li>
@@ -433,10 +444,10 @@ print(os.listdir())</code></pre>
             <p>Then use the exact filename you see in the list.</p>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: Column not found error (KeyError)</h3>
-            <p><strong>Solution:</strong> The column names must match exactly (including capitalization). Check your column names:</p>
+            <p><strong>Solution:</strong> The column names must match exactly. Check your column names:</p>
             <pre><code># Check your column names
 print(df.columns)</code></pre>
-            <p>Make sure you're using 'Country', 'Population', and 'Region' (with capital letters).</p>
+            <p>Make sure you're using 'Country/Territory' for the country name and '2022' (or whatever year) for the population data.</p>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart labels are overlapping</h3>
             <p><strong>Solution:</strong> Add rotation to your labels and use <code>plt.tight_layout()</code>:</p>
