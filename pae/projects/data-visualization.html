@@ -1,0 +1,448 @@
+---
+---
+<!-- File: classroom/pae/projects/data-visualization.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization Project - PAE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .lesson-header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .lesson-header h1 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .badge-custom {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-time {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .badge-submit {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-card h2 {
+            color: #2c3e50;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-card h3 {
+            color: #2e86ab;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .success-box h3 {
+            color: #155724;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .success-box ul {
+            margin-bottom: 0;
+            padding-left: 25px;
+        }
+
+        .success-box li {
+            color: #155724;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .steps-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .steps-list > li {
+            counter-increment: step-counter;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 70px;
+        }
+
+        .steps-list > li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .steps-list > li strong {
+            color: #2c3e50;
+            font-size: 1.15rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .steps-list > li p {
+            color: #495057;
+            margin: 10px 0;
+        }
+
+        pre {
+            background: #0d1117;
+            color: #c9d1d9;
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 12px 0;
+            border: 1px solid #30363d;
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .note-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .note-box p {
+            margin: 0;
+            color: #856404;
+        }
+
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .rubric-table thead {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .rubric-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .rubric-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .rubric-table tr:last-child td {
+            border-bottom: none;
+            font-weight: bold;
+            background: #f8f9fa;
+        }
+
+        .rubric-table .rubric-desc {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .points-col {
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+            width: 100px;
+        }
+
+        .backup-section {
+            background: #f8f9fa;
+            border: 2px dashed #6c757d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .backup-section h2 {
+            color: #495057;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    {% include navigation.html %}
+
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav">
+            <a href="../../" class="text-white">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../" class="text-white">PAE</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./" class="text-white">Projects</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Data Visualization</span>
+        </nav>
+
+        <!-- Lesson Header -->
+        <div class="lesson-header">
+            <h1>
+                <i class="bi bi-graph-up text-primary"></i>
+                Data Visualization Practice: Kaggle + Pandas + Matplotlib
+            </h1>
+            <div>
+                <span class="badge-custom badge-time">
+                    <i class="bi bi-clock"></i> Self-Paced · 20 min
+                </span>
+                <span class="badge-custom badge-submit">
+                    <i class="bi bi-upload"></i> Turn in a screenshot on Schoology
+                </span>
+            </div>
+        </div>
+
+        <!-- Learning Goal -->
+        <div class="section-card">
+            <h2>
+                <i class="bi bi-trophy text-warning"></i>
+                Learning Goal
+            </h2>
+            <p><strong>Use real-world data</strong> in Google Colab to create a chart with:</p>
+            <ul>
+                <li>Data downloaded from Kaggle</li>
+                <li>Pandas for data loading</li>
+                <li>Matplotlib for plotting</li>
+                <li>Custom colors and axis labels</li>
+            </ul>
+        </div>
+
+        <!-- Success Checklist -->
+        <div class="success-box">
+            <h3>✅ Success Checklist (Match the Rubric)</h3>
+            <ul>
+                <li>I downloaded a real dataset</li>
+                <li>I loaded it into Pandas and previewed it</li>
+                <li>I made a chart using Matplotlib</li>
+                <li>I changed the line color and one more style (marker, background, grid, title color, etc.)</li>
+                <li>I labeled both axes and added a title</li>
+                <li>I took a screenshot showing my chart</li>
+            </ul>
+        </div>
+
+        <!-- Steps Section -->
+        <div class="section-card">
+            <h2>
+                <i class="bi bi-list-check text-success"></i>
+                Follow These Steps
+            </h2>
+
+            <ol class="steps-list">
+                <li>
+                    <strong>Open Colab</strong>
+                    <p>Go to <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a></p>
+                </li>
+
+                <li>
+                    <strong>Install Kaggle tool</strong>
+                    <pre><code>!pip install kaggle</code></pre>
+                </li>
+
+                <li>
+                    <strong>Upload Kaggle API key</strong>
+                    <p>Download from Kaggle → Settings → Create API Token</p>
+                    <pre><code>from google.colab import files
+files.upload()</code></pre>
+
+                    <pre><code>!mkdir -p ~/.kaggle
+!cp kaggle.json ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json</code></pre>
+
+                    <div class="note-box">
+                        <p><strong><i class="bi bi-exclamation-triangle"></i> Note:</strong> If this doesn't work, scroll to the "Manual Upload Backup" below.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Download dataset</strong>
+                    <pre><code>!kaggle datasets download -d tanmoyxd/world-population-19602021
+!unzip -o world-population-19602021.zip</code></pre>
+                </li>
+
+                <li>
+                    <strong>Load and preview data</strong>
+                    <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("world_population.csv")
+df.head()</code></pre>
+                </li>
+
+                <li>
+                    <strong>Plot one country's population</strong>
+                    <pre><code>country = "United States"
+
+data = df[df["Country"] == country]
+
+plt.figure()
+plt.plot(data["Year"], data["Population"], marker="o", linewidth=2)
+plt.title(f"Population of {country}")
+plt.xlabel("Year")
+plt.ylabel("Population")
+plt.show()</code></pre>
+                </li>
+
+                <li>
+                    <strong>Customize your chart (Required)</strong>
+                    <pre><code>plt.figure(facecolor="lightyellow")
+plt.plot(
+    data["Year"], data["Population"],
+    color="purple", marker="s", linewidth=3
+)
+
+plt.title(f"Population of {country}", color="darkblue")
+plt.xlabel("Year")
+plt.ylabel("Population")
+plt.grid(True)
+plt.show()</code></pre>
+                </li>
+
+                <li>
+                    <strong>Take a screenshot & submit to Schoology</strong>
+                    <p>Make sure screenshot shows: your chart, custom color, axis labels, title</p>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Backup Section -->
+        <div class="backup-section">
+            <h2>
+                <i class="bi bi-arrow-repeat"></i>
+                Manual Upload Backup (if Kaggle fails)
+            </h2>
+            <pre><code>from google.colab import files
+up = files.upload()
+
+df = pd.read_csv(next(iter(up.keys())))
+df.head()</code></pre>
+        </div>
+
+        <!-- Rubric Section -->
+        <div class="section-card">
+            <h2>
+                <i class="bi bi-clipboard-check text-primary"></i>
+                Rubric (Aligned to Lesson Tasks)
+            </h2>
+
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>What I must show</th>
+                        <th class="points-col">Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Data Acquisition</strong></td>
+                        <td class="rubric-desc">Imported dataset from Kaggle or manually uploaded CSV and previewed with <code>df.head()</code></td>
+                        <td class="points-col">20</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Python + Pandas</strong></td>
+                        <td class="rubric-desc">Loaded data into Pandas and selected a country correctly</td>
+                        <td class="points-col">20</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Matplotlib Chart</strong></td>
+                        <td class="rubric-desc">Plotted a line chart that displays correctly with year vs population</td>
+                        <td class="points-col">25</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customization</strong></td>
+                        <td class="rubric-desc">Custom line color + at least one style change (marker, grid, background, title color, etc.)</td>
+                        <td class="points-col">15</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Labels & Title</strong></td>
+                        <td class="rubric-desc">Clear axis labels and chart title</td>
+                        <td class="points-col">10</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Submission</strong></td>
+                        <td class="rubric-desc">Screenshot clearly shows chart and customizations</td>
+                        <td class="points-col">10</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Total</strong></td>
+                        <td class="points-col"><strong>100</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center" style="padding: 20px 0; opacity: 0.7;">
+            <small>8th Grade Data Science Practice · Pandas · Matplotlib · Kaggle · Google Colab</small>
+        </div>
+    </div>
+</body>
+</html>

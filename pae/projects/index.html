@@ -1,0 +1,286 @@
+---
+---
+<!-- File: classroom/pae/projects/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - PAE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-card.available {
+            cursor: pointer;
+        }
+
+        .project-card.available .project-icon {
+            background: #667eea;
+            color: white;
+        }
+
+        .project-card.coming-soon {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .project-card.coming-soon .project-icon {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+
+        .project-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            color: #6c757d;
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .badge-time {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .badge-type {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .project-status {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .status-available {
+            color: #28a745;
+        }
+
+        .status-coming {
+            color: #6c757d;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .info-box h5 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    {% include navigation.html %}
+
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav">
+            <a href="../../" class="text-white">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../" class="text-white">Principles of Applied Engineering</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Projects</span>
+        </nav>
+
+        <!-- Header -->
+        <div class="project-header">
+            <h1 class="display-5 mb-3">
+                <i class="bi bi-code-square"></i> Hands-On Projects
+            </h1>
+            <p class="lead mb-0">
+                Build practical skills through interactive coding and engineering projects. Each project includes step-by-step instructions and a detailed rubric.
+            </p>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <h5><i class="bi bi-info-circle"></i> How Projects Work</h5>
+            <ul>
+                <li>Follow the step-by-step instructions for each project</li>
+                <li>Complete all required tasks shown in the success checklist</li>
+                <li>Take a screenshot of your final work</li>
+                <li>Submit to Schoology by the due date</li>
+                <li>Review the rubric to ensure you meet all requirements</li>
+            </ul>
+        </div>
+
+        <!-- Projects Grid -->
+        <h3 class="mb-4">Available Projects</h3>
+
+        <div class="project-grid">
+            <!-- Data Visualization Project - Available -->
+            <a href="data-visualization.html" class="project-card available">
+                <div class="project-icon">
+                    <i class="bi bi-graph-up"></i>
+                </div>
+                <div class="project-title">Data Visualization</div>
+                <div class="project-description">
+                    Learn to work with real-world data using Kaggle, Pandas, and Matplotlib in Google Colab. Create customized charts with proper labels and styling.
+                </div>
+                <div class="project-meta">
+                    <span class="project-badge badge-time">
+                        <i class="bi bi-clock"></i> 20 min
+                    </span>
+                    <span class="project-badge badge-type">
+                        <i class="bi bi-laptop"></i> Google Colab
+                    </span>
+                </div>
+                <div class="project-status status-available">
+                    <i class="bi bi-check-circle-fill"></i> Available Now
+                </div>
+            </a>
+
+            <!-- Placeholder for future projects -->
+            <div class="project-card coming-soon">
+                <div class="project-icon">
+                    <i class="bi bi-gear"></i>
+                </div>
+                <div class="project-title">Robotics Programming</div>
+                <div class="project-description">
+                    Program a virtual robot to complete tasks using sensors and control systems.
+                </div>
+                <div class="project-meta">
+                    <span class="project-badge badge-time">
+                        <i class="bi bi-clock"></i> 30 min
+                    </span>
+                    <span class="project-badge badge-type">
+                        <i class="bi bi-cpu"></i> VEX Robotics
+                    </span>
+                </div>
+                <div class="project-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+
+            <div class="project-card coming-soon">
+                <div class="project-icon">
+                    <i class="bi bi-box"></i>
+                </div>
+                <div class="project-title">3D Design Challenge</div>
+                <div class="project-description">
+                    Design a functional engineering part using CAD software and prepare it for 3D printing.
+                </div>
+                <div class="project-meta">
+                    <span class="project-badge badge-time">
+                        <i class="bi bi-clock"></i> 45 min
+                    </span>
+                    <span class="project-badge badge-type">
+                        <i class="bi bi-box"></i> Tinkercad
+                    </span>
+                </div>
+                <div class="project-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+
+            <div class="project-card coming-soon">
+                <div class="project-icon">
+                    <i class="bi bi-lightning"></i>
+                </div>
+                <div class="project-title">Circuit Simulation</div>
+                <div class="project-description">
+                    Build and test virtual circuits to understand electrical engineering principles.
+                </div>
+                <div class="project-meta">
+                    <span class="project-badge badge-time">
+                        <i class="bi bi-clock"></i> 25 min
+                    </span>
+                    <span class="project-badge badge-type">
+                        <i class="bi bi-lightning"></i> Circuit Lab
+                    </span>
+                </div>
+                <div class="project-status status-coming">
+                    <i class="bi bi-clock"></i> Coming Soon
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="alert alert-info mt-4">
+            <i class="bi bi-lightbulb"></i> <strong>Tip:</strong> Check back regularly for new projects. They will be released throughout the semester.
+        </div>
+    </div>
+</body>
+</html>
