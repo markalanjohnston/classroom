@@ -1,198 +1,132 @@
 ---
 ---
-<!-- File: classroom/pae/projects/data-visualization.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Visualization Project - PAE</title>
+    <title>Data Visualization - PAE</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../css/styles.css">
     <style>
-        .lesson-header {
-            background: white;
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             border-radius: 15px;
             padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
-        .lesson-header h1 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        .badge-custom {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-
-        .badge-time {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .badge-submit {
-            background: #fff3e0;
-            color: #e65100;
-        }
-
-        .section-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-card h2 {
-            color: #2c3e50;
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .success-box {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            border: 2px solid #28a745;
-            border-radius: 12px;
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
             padding: 20px;
-            margin-bottom: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
         }
 
-        .success-box h3 {
-            color: #155724;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-        }
-
-        .success-box ul {
-            margin-bottom: 0;
-            padding-left: 25px;
-        }
-
-        .success-box li {
-            color: #155724;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .steps-list {
-            counter-reset: step-counter;
-            list-style: none;
-            padding: 0;
-        }
-
-        .steps-list > li {
-            counter-increment: step-counter;
-            background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 70px;
-        }
-
-        .steps-list > li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .steps-list > li strong {
-            color: #2c3e50;
-            font-size: 1.15rem;
-            display: block;
+        .info-box h5 {
+            color: #495057;
             margin-bottom: 10px;
         }
 
+        .step {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .step p:first-of-type {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
         pre {
-            background: #0d1117;
-            color: #c9d1d9;
-            border-radius: 8px;
-            padding: 16px;
-            overflow-x: auto;
-            margin: 12px 0;
-            border: 1px solid #30363d;
-        }
-
-        code {
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .note-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
+            background: #0b1020;
+            color: #e6edf3;
             padding: 15px;
-            border-radius: 6px;
+            border-radius: 8px;
+            overflow-x: auto;
             margin: 15px 0;
         }
 
-        .note-box p {
-            margin: 0;
-            color: #856404;
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
         }
 
-        .rubric-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
+        .success-checklist {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid #16a34a;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px 0;
         }
 
-        .rubric-table thead {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
-
-        .rubric-table th {
-            padding: 15px;
-            text-align: left;
+        .success-checklist h5 {
+            color: #16a34a;
+            margin-bottom: 15px;
             font-weight: 600;
         }
 
-        .rubric-table td {
-            padding: 15px;
-            border-bottom: 1px solid #e9ecef;
+        .note-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #eab308;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
         }
 
-        .rubric-table tr:last-child td {
-            border-bottom: none;
-            font-weight: bold;
+        .note-box strong {
+            color: #92400e;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #e9ecef;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
             background: #f8f9fa;
         }
 
-        .points-col {
-            text-align: center;
-            font-weight: bold;
-            color: #667eea;
-            width: 100px;
+        h2 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: #495057;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -206,287 +140,203 @@
                 <i class="bi bi-house"></i> Home
             </a>
             <span class="text-white-50 mx-2">/</span>
-            <a href="../" class="text-white">PAE</a>
+            <a href="../" class="text-white">Principles of Applied Engineering</a>
             <span class="text-white-50 mx-2">/</span>
-            <a href="./" class="text-white">Projects</a>
+            <a href="index.html" class="text-white">Projects</a>
             <span class="text-white-50 mx-2">/</span>
             <span class="text-white">Data Visualization</span>
         </nav>
 
-        <!-- Lesson Header -->
-        <div class="lesson-header">
-            <h1>
-                <i class="bi bi-graph-up text-primary"></i>
-                Data Visualization with Python
+        <!-- Header -->
+        <div class="project-header">
+            <h1 class="display-5 mb-3">
+                <i class="bi bi-graph-up"></i> Population Data Visualization
             </h1>
-            <div>
-                <span class="badge-custom badge-time">
-                    <i class="bi bi-clock"></i> 20 minutes
-                </span>
-                <span class="badge-custom badge-submit">
-                    <i class="bi bi-upload"></i> Screenshot to Schoology
-                </span>
-            </div>
+            <p class="lead mb-0">
+                Learn to work with real-world data using Google Colab, Pandas, and Matplotlib
+            </p>
         </div>
 
-        <!-- Learning Goal -->
-        <div class="section-card">
-            <h2>
-                <i class="bi bi-trophy text-warning"></i>
-                Learning Goal
-            </h2>
-            <p>Create a professional data visualization using:</p>
+        <!-- Info Box -->
+        <div class="info-box">
+            <h5><i class="bi bi-list-check"></i> In This Lesson</h5>
             <ul>
-                <li>Google Colab for cloud computing</li>
-                <li>Pandas for data manipulation</li>
-                <li>Matplotlib for creating charts</li>
-                <li>Real population data from GitHub</li>
+                <li>Download population data</li>
+                <li>Upload it into Google Colab</li>
+                <li>Use <b>Pandas</b> to read and prepare the data</li>
+                <li>Use <b>Matplotlib</b> to draw a population line chart</li>
+                <li>Customize the style (colors, markers, labels)</li>
+                <li>Turn in a screenshot on Schoology</li>
             </ul>
+        </div>
+
+        <!-- Download Note -->
+        <div class="note-box">
+            <strong><i class="bi bi-download"></i> First:</strong> Download the file <b>population.csv</b> from the Google Drive folder:<br>
+            <a target="_blank" href="https://drive.google.com/drive/folders/1jvaR6MjrNIrXMHmat4tZtzv3Nz-2b34Q?usp=drive_link" class="btn btn-warning btn-sm mt-2">
+                <i class="bi bi-folder-open"></i> Click here to open the folder and download population.csv
+            </a>
         </div>
 
         <!-- Success Checklist -->
-        <div class="success-box">
-            <h3>✅ Success Checklist</h3>
-            <ul>
-                <li>Downloaded population.csv from GitHub</li>
-                <li>Uploaded file to Google Colab</li>
-                <li>Loaded data into Pandas DataFrame</li>
-                <li>Created a bar chart with the top 10 countries</li>
-                <li>Customized colors and styling</li>
-                <li>Added title and axis labels</li>
-                <li>Took screenshot of final chart</li>
+        <div class="success-checklist">
+            <h5><i class="bi bi-check-circle-fill"></i> Success Checklist</h5>
+            <ul class="mb-0">
+                <li>✅ Data uploaded</li>
+                <li>✅ Chart drawn</li>
+                <li>✅ Custom color + markers</li>
+                <li>✅ Axis labels + title</li>
+                <li>✅ Screenshot submitted</li>
             </ul>
         </div>
 
-        <!-- Steps Section -->
-        <div class="section-card">
-            <h2>
-                <i class="bi bi-list-check text-success"></i>
-                Step-by-Step Instructions
-            </h2>
+        <!-- Step 1 -->
+        <h2><i class="bi bi-1-circle-fill"></i> Step 1 — Upload the file to Colab</h2>
+        <div class="step">
+            <p>This code opens a file browser so you can pick your CSV.</p>
+            <pre><code>from google.colab import files
+files.upload()</code></pre>
+            <p>Select <b>population.csv</b> you just downloaded.</p>
+        </div>
 
-            <ol class="steps-list">
-                <li>
-                    <strong>Open Google Colab</strong>
-                    <p>Go to <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a></p>
-                    <p>Click <strong>+ New Notebook</strong></p>
-                    <p>Rename it to "Population_Visualization"</p>
-                </li>
-
-                <li>
-                    <strong>Download the dataset</strong>
-                    <p>Go to the class Google Drive folder:</p>
-                    <p><a href="https://drive.google.com/drive/folders/1jvaR6MjrNIrXMHmat4tZtzv3Nz-2b34Q?usp=drive_link" target="_blank">
-                        <strong>📁 Open Class Data Folder</strong>
-                    </a></p>
-                    <p>Find <strong>population.csv</strong> and click on it</p>
-                    <p>Click the download button (⬇️) at the top of the screen</p>
-                    <p>The file will save to your Downloads folder</p>
-                </li>
-
-                <li>
-                    <strong>Upload to Colab</strong>
-                    <p>Run this code in a new cell:</p>
-                    <pre><code>from google.colab import files
-uploaded = files.upload()</code></pre>
-                    <p>Click "Choose Files" and select population.csv from Downloads</p>
-                </li>
-
-                <li>
-                    <strong>Load the data</strong>
-                    <p>Create a new cell and run:</p>
-                    <pre><code>import pandas as pd
+        <!-- Step 2 -->
+        <h2><i class="bi bi-2-circle-fill"></i> Step 2 — Load the data</h2>
+        <div class="step">
+            <p>This imports Pandas (data library) and Matplotlib (chart library), then reads your file.</p>
+            <pre><code>import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load the data
-df = pd.read_csv('population.csv')
+df = pd.read_csv("population.csv")
+df.head()  # Shows the first few rows so we know it loaded</code></pre>
+        </div>
 
-# Look at the first few rows
-print(df.head())
-print(f"\nColumns: {df.columns.tolist()}")
-print(f"Shape: {df.shape}")</code></pre>
-                </li>
+        <!-- Step 3 -->
+        <h2><i class="bi bi-3-circle-fill"></i> Step 3 — Reshape the data + plot a country</h2>
+        <div class="step">
+            <p>
+                The dataset is originally in a "wide" format: each year is its own column.<br>
+                We need to "melt" it into a "long" format with 3 columns: Country, Year, Population.
+                This makes it easier to graph.
+            </p>
+            <pre><code>country = "United States"  # Change country if you want
 
-                <li>
-                    <strong>Get the top 10 countries by population</strong>
-                    <p>Run this code:</p>
-                    <pre><code># The dataset has years as columns (1960, 1961, ... 2021)
-# Let's use the most recent year: 2021
-df_2021 = df[['Country Name', '2021']].copy()
+# Reshape from wide format to long format
+data_long = df.melt(id_vars=["Country Name", "Country Code"],
+                    var_name="Year",
+                    value_name="Population")
 
-# Rename the '2021' column to 'Value' for easier use
-df_2021 = df_2021.rename(columns={'2021': 'Value'})
+# Convert Year text → number
+data_long["Year"] = pd.to_numeric(data_long["Year"], errors="coerce")
 
-# Remove rows with missing values
-df_2021 = df_2021.dropna()
+# Filter rows only for our country
+data = data_long[data_long["Country Name"] == country]
 
-# Get top 10 countries by population
-top10 = df_2021.nlargest(10, 'Value')
+import matplotlib.ticker as ticker
 
-# Display the top 10
-print("Top 10 Countries by Population (2021):")
-print(top10)</code></pre>
-                </li>
+plt.figure(figsize=(12,6))
+plt.plot(data["Year"], data["Population"], marker="o", linewidth=2)
 
-                <li>
-                    <strong>Create a basic bar chart</strong>
-                    <p>Run this code:</p>
-                    <pre><code># Create bar chart
-plt.figure(figsize=(10, 6))
-plt.bar(top10['Country Name'], top10['Value'])
-plt.xticks(rotation=45, ha='right')
-plt.title('Top 10 Countries by Population (2021)')
-plt.xlabel('Country')
-plt.ylabel('Population')
-plt.tight_layout()
-plt.show()</code></pre>
-                </li>
+plt.title(f"Population of {country}")
+plt.xlabel("Year")
+plt.ylabel("Population")
 
-                <li>
-                    <strong>Make it beautiful (REQUIRED for full points!)</strong>
-                    <p>Run this customized version:</p>
-                    <pre><code># Create a beautiful chart
-plt.figure(figsize=(12, 7), facecolor='lightblue')
-
-# Create bars with custom colors
-bars = plt.bar(top10['Country Name'], top10['Value'],
-               color='darkblue',
-               edgecolor='navy',
-               linewidth=2)
-
-# Add value labels on top of bars
-for bar in bars:
-    height = bar.get_height()
-    plt.text(bar.get_x() + bar.get_width()/2., height,
-             f'{height/1e9:.1f}B',
-             ha='center', va='bottom', fontsize=10)
-
-# Customize the chart
-plt.title('Top 10 Most Populous Countries (2021)', fontsize=18, fontweight='bold', color='darkblue')
-plt.xlabel('Country', fontsize=14, fontweight='bold')
-plt.ylabel('Population', fontsize=14, fontweight='bold')
-plt.xticks(rotation=45, ha='right')
-
-# Add grid for better readability
-plt.grid(axis='y', alpha=0.3, linestyle='--')
-
-# Format y-axis to show billions
+# Format numbers so they look normal instead of scientific notation
 ax = plt.gca()
-ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e9:.1f}B'))
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 
-plt.tight_layout()
+plt.grid(True)
 plt.show()</code></pre>
-                </li>
+        </div>
 
-                <li>
-                    <strong>Optional: Compare countries over time</strong>
-                    <p>Try this line chart:</p>
-                    <pre><code># Compare USA and China over time
-countries = ['United States', 'China']
-plt.figure(figsize=(12, 6))
+        <!-- Step 4 -->
+        <h2><i class="bi bi-4-circle-fill"></i> Step 4 — Style your graph (Required)</h2>
+        <div class="step">
+            <p>Customize background, color, and marker.</p>
+            <pre><code>import matplotlib.ticker as ticker
 
-for country in countries:
-    # Get the row for this country
-    country_row = df[df['Country Name'] == country].iloc[0]
+plt.figure(figsize=(12,6), facecolor="lightyellow")
+plt.plot(
+    data["Year"], data["Population"],
+    color="purple", marker="s", linewidth=3
+)
 
-    # Extract years and populations
-    years = []
-    populations = []
+plt.title(f"Population of {country}", color="darkblue")
+plt.xlabel("Year")
+plt.ylabel("Population")
 
-    # Loop through year columns (they're strings like '1960', '1961', etc.)
-    for col in df.columns:
-        if col.isdigit() and int(col) >= 1960:  # Only use year columns
-            if pd.notna(country_row[col]):  # Skip missing values
-                years.append(int(col))
-                populations.append(country_row[col])
+ax = plt.gca()
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 
-    # Plot the line
-    plt.plot(years, populations, marker='o', label=country, linewidth=2, markersize=3)
-
-plt.title('Population Growth: USA vs China', fontsize=16, fontweight='bold')
-plt.xlabel('Year', fontsize=12)
-plt.ylabel('Population', fontsize=12)
-plt.legend()
-plt.grid(True, alpha=0.3)
-plt.tight_layout()
+plt.grid(True)
 plt.show()</code></pre>
-                </li>
+        </div>
 
-                <li>
-                    <strong>Take a screenshot</strong>
-                    <p>Screenshot your customized chart showing:</p>
-                    <ul>
-                        <li>The chart with custom colors</li>
-                        <li>Clear title and labels</li>
-                        <li>Value labels on bars (the billions markers)</li>
-                    </ul>
-                    <p><strong>Screenshot shortcuts:</strong></p>
-                    <ul>
-                        <li>Chromebook: Ctrl + Show Windows</li>
-                        <li>Windows: Windows + Shift + S</li>
-                        <li>Mac: Cmd + Shift + 4</li>
-                    </ul>
-                </li>
-            </ol>
+        <!-- Step 5 -->
+        <h2><i class="bi bi-5-circle-fill"></i> Step 5 — Screenshot and submit</h2>
+        <div class="info-box">
+            <ul class="mb-0">
+                <li>Your chart must show your chosen color + markers</li>
+                <li>Title + axis labels required</li>
+                <li>Submit screenshot to Schoology</li>
+            </ul>
         </div>
 
         <!-- Rubric -->
-        <div class="section-card">
-            <h2>
-                <i class="bi bi-clipboard-check text-primary"></i>
-                Grading Rubric
-            </h2>
-            <table class="rubric-table">
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Requirements</th>
-                        <th class="points-col">Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Data Loading</strong></td>
-                        <td>Successfully uploaded and loaded population.csv</td>
-                        <td class="points-col">20</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Data Filtering</strong></td>
-                        <td>Filtered for 2021 and got top 10 countries</td>
-                        <td class="points-col">20</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Basic Chart</strong></td>
-                        <td>Created a working bar chart</td>
-                        <td class="points-col">20</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Customization</strong></td>
-                        <td>Custom colors, edge colors, and value labels on bars</td>
-                        <td class="points-col">20</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Labels</strong></td>
-                        <td>Title, X-axis label, Y-axis label all present</td>
-                        <td class="points-col">10</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Screenshot</strong></td>
-                        <td>Clear screenshot submitted to Schoology</td>
-                        <td class="points-col">10</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><strong>Total</strong></td>
-                        <td class="points-col"><strong>100</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <h2><i class="bi bi-clipboard-check"></i> Rubric</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Upload & load data</td>
+                    <td>CSV uploaded, read with Pandas, previewed</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Reshape data</td>
+                    <td>Melted data + filtered for 1 country</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>Initial line chart</td>
+                    <td>Line chart shows correct population trend</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>Formatting & labels</td>
+                    <td>Title, axis labels, readable numbers</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>Customization</td>
+                    <td>Custom color, marker, background, grid</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Submission</td>
+                    <td>Screenshot uploaded to Schoology</td>
+                    <td>10</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th></th>
+                    <th>100</th>
+                </tr>
+            </tfoot>
+        </table>
 
-        <!-- Footer -->
-        <div class="text-center" style="padding: 20px 0; opacity: 0.7;">
-            <small>Data Science with Python · Google Colab · Pandas · Matplotlib</small>
+        <!-- Footer Note -->
+        <div class="alert alert-info mt-4">
+            <i class="bi bi-lightbulb"></i> <strong>Tip:</strong> Make sure to customize your chart with unique colors and markers before submitting your screenshot!
         </div>
     </div>
 </body>
 </html>
+
