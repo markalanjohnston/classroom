@@ -280,11 +280,11 @@
         <div class="success-box">
             <h3>✅ Success Checklist (Match the Rubric)</h3>
             <ul>
-                <li>I downloaded the world population dataset</li>
+                <li>I downloaded the countries dataset</li>
                 <li>I uploaded it to Google Colab and loaded it into a Pandas DataFrame</li>
                 <li>I previewed the data with <code>df.head()</code></li>
-                <li>I created a line chart using Matplotlib showing year vs population</li>
-                <li>I customized the line color AND added at least one more style (marker, grid, background, or title color)</li>
+                <li>I created a bar chart using Matplotlib showing population data</li>
+                <li>I customized the bar color AND added at least one more style (edgecolor, grid, background, or title color)</li>
                 <li>I added clear labels for both X and Y axes</li>
                 <li>I added a descriptive chart title</li>
                 <li>I took a screenshot showing my final customized chart</li>
@@ -307,9 +307,9 @@
 
                 <li>
                     <strong>Download the dataset</strong>
-                    <p>Right-click this link and select "Save Link As..." to download the CSV file:</p>
-                    <p><a href="https://raw.githubusercontent.com/datasets/population/master/data/World-population-by-countries-dataset.csv" target="_blank" download><strong>World-population-by-countries-dataset.csv</strong></a></p>
-                    <p>Save it to your Downloads folder (or wherever you can easily find it).</p>
+                    <p>Click this link to download the CSV file (it should download automatically):</p>
+                    <p><a href="https://raw.githubusercontent.com/cs109/2014_data/master/countries.csv" target="_blank" download><strong>countries.csv</strong></a></p>
+                    <p>Save it to your Downloads folder. If it opens in your browser instead, right-click on the page and select "Save As..."</p>
                 </li>
 
                 <li>
@@ -330,80 +330,72 @@ uploaded = files.upload()</code></pre>
 import matplotlib.pyplot as plt
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv("World-population-by-countries-dataset.csv")
+df = pd.read_csv("countries.csv")
 
 # Preview the first 5 rows
 df.head()</code></pre>
-                    <p>Run this cell. You should see a table showing the first 5 rows of data with columns like Country Name, Year, and Value.</p>
+                    <p>Run this cell. You should see a table with information about different countries including population and region.</p>
                 </li>
 
                 <li>
-                    <strong>Create a basic chart for one country</strong>
-                    <p>Let's plot the population of the United States over time:</p>
-                    <pre><code># Choose a country
-country = "United States"
-
-# Filter data for just this country
-country_data = df[df["Country Name"] == country]
+                    <strong>Create a basic bar chart</strong>
+                    <p>Let's visualize the top 10 countries by population:</p>
+                    <pre><code># Sort by population and get top 10
+top10 = df.nlargest(10, 'Population')
 
 # Create the plot
 plt.figure(figsize=(10, 6))
-plt.plot(country_data["Year"], country_data["Value"])
-plt.title(f"Population of {country}")
-plt.xlabel("Year")
+plt.bar(top10['Country'], top10['Population'])
+plt.title("Top 10 Countries by Population")
+plt.xlabel("Country")
 plt.ylabel("Population")
+plt.xticks(rotation=45, ha='right')  # Rotate labels so they don't overlap
+plt.tight_layout()
 plt.show()</code></pre>
-                    <p>You should see a basic line chart showing population growth!</p>
+                    <p>You should see a bar chart showing the 10 most populous countries!</p>
                 </li>
 
                 <li>
                     <strong>Customize your chart with colors and styles (REQUIRED for full points)</strong>
                     <p>Now make your chart look professional with custom styling:</p>
-                    <pre><code># Choose your country
-country = "United States"
-
-# Filter the data
-country_data = df[df["Country Name"] == country]
+                    <pre><code># Sort by population and get top 10
+top10 = df.nlargest(10, 'Population')
 
 # Create a customized chart
-plt.figure(figsize=(10, 6), facecolor="lightyellow")
-plt.plot(
-    country_data["Year"],
-    country_data["Value"],
-    color="purple",           # Custom line color
-    marker="o",               # Add circle markers
-    linewidth=2.5,            # Thicker line
-    markersize=5              # Marker size
+plt.figure(figsize=(12, 6), facecolor="lightyellow")  # Background color
+plt.bar(
+    top10['Country'],
+    top10['Population'],
+    color='purple',           # Custom bar color
+    edgecolor='darkblue',     # Border color
+    linewidth=2               # Border thickness
 )
 
-plt.title(f"Population Growth: {country}", fontsize=16, color="darkblue")
-plt.xlabel("Year", fontsize=12)
-plt.ylabel("Population", fontsize=12)
-plt.grid(True, linestyle="--", alpha=0.5)  # Add grid
+plt.title("Top 10 Countries by Population", fontsize=18, color="darkblue", fontweight='bold')
+plt.xlabel("Country", fontsize=14)
+plt.ylabel("Population", fontsize=14)
+plt.xticks(rotation=45, ha='right')
+plt.grid(True, axis='y', linestyle="--", alpha=0.5)  # Add horizontal grid
 plt.tight_layout()
 plt.show()</code></pre>
 
                     <div class="note-box">
-                        <p><strong><i class="bi bi-star-fill"></i> Customization Ideas:</strong> Try changing <code>color</code> to "red", "green", "orange", etc. Change <code>marker</code> to "s" (square), "^" (triangle), or "D" (diamond). Change <code>facecolor</code> to "lightblue" or "lightgray".</p>
+                        <p><strong><i class="bi bi-star-fill"></i> Customization Ideas:</strong> Try changing <code>color</code> to "red", "green", "orange", "teal", etc. Change <code>facecolor</code> to "lightblue" or "lightpink". Try different <code>edgecolor</code> options!</p>
                     </div>
                 </li>
 
                 <li>
-                    <strong>Try different countries (Optional but fun!)</strong>
-                    <p>Change the <code>country</code> variable to compare different countries:</p>
-                    <pre><code># Try these countries:
-# "China", "India", "Brazil", "Mexico", "Japan", "Germany"
+                    <strong>Try different visualizations (Optional but fun!)</strong>
+                    <p>Compare regions or try filtering by specific criteria:</p>
+                    <pre><code># Example: Show population by region
+region_pop = df.groupby('Region')['Population'].sum().sort_values(ascending=False)
 
-country = "China"  # Change this!
-country_data = df[df["Country Name"] == country]
-
-plt.figure(figsize=(10, 6))
-plt.plot(country_data["Year"], country_data["Value"],
-         color="red", marker="s", linewidth=2.5)
-plt.title(f"Population Growth: {country}", fontsize=16)
-plt.xlabel("Year", fontsize=12)
-plt.ylabel("Population", fontsize=12)
-plt.grid(True)
+plt.figure(figsize=(12, 6))
+plt.barh(region_pop.index, region_pop.values, color='teal')
+plt.title("Total Population by Region", fontsize=16)
+plt.xlabel("Population", fontsize=12)
+plt.ylabel("Region", fontsize=12)
+plt.tight_layout()
 plt.show()</code></pre>
                 </li>
 
@@ -441,20 +433,20 @@ print(os.listdir())</code></pre>
             <p>Then use the exact filename you see in the list.</p>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: Column not found error (KeyError)</h3>
-            <p><strong>Solution:</strong> The column names must match exactly (including capitalization and spaces). Check your column names:</p>
+            <p><strong>Solution:</strong> The column names must match exactly (including capitalization). Check your column names:</p>
             <pre><code># Check your column names
 print(df.columns)</code></pre>
-            <p>Look for "Country Name" (not "Country") and "Value" (not "Population").</p>
+            <p>Make sure you're using 'Country', 'Population', and 'Region' (with capital letters).</p>
 
-            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart doesn't show my country</h3>
-            <p><strong>Solution:</strong> Check the spelling and capitalization. See all available countries:</p>
-            <pre><code># See all available countries
-print(df["Country Name"].unique())</code></pre>
+            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart labels are overlapping</h3>
+            <p><strong>Solution:</strong> Add rotation to your labels and use <code>plt.tight_layout()</code>:</p>
+            <pre><code>plt.xticks(rotation=45, ha='right')
+plt.tight_layout()</code></pre>
 
-            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Empty chart or no data</h3>
-            <p><strong>Solution:</strong> Make sure your filtered data has rows. Check how many rows you have:</p>
-            <pre><code>print(f"Found {len(country_data)} rows for {country}")
-print(country_data.head())</code></pre>
+            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart doesn't look good</h3>
+            <p><strong>Solution:</strong> Experiment with different figure sizes and colors:</p>
+            <pre><code>plt.figure(figsize=(12, 6))  # Make it wider
+plt.bar(..., color='steelblue')  # Try different colors</code></pre>
 
             <h3><i class="bi bi-lightbulb text-warning"></i> Want to explore more datasets?</h3>
             <p>After you complete this project, you can find thousands of free datasets on <a href="https://www.kaggle.com/datasets" target="_blank">Kaggle</a>! Search for topics like "temperature", "sports statistics", "video games", or "stock prices". Download any CSV file and upload it to Colab to practice your visualization skills!</p>
@@ -478,22 +470,22 @@ print(country_data.head())</code></pre>
                 <tbody>
                     <tr>
                         <td><strong>Data Acquisition</strong></td>
-                        <td class="rubric-desc">Downloaded population dataset, uploaded to Colab, and previewed with <code>df.head()</code></td>
+                        <td class="rubric-desc">Downloaded countries dataset, uploaded to Colab, and previewed with <code>df.head()</code></td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
                         <td><strong>Python + Pandas</strong></td>
-                        <td class="rubric-desc">Successfully loaded data into Pandas DataFrame and filtered data for a specific country</td>
+                        <td class="rubric-desc">Successfully loaded data into Pandas DataFrame and used <code>nlargest()</code> or similar to select data</td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
                         <td><strong>Matplotlib Chart</strong></td>
-                        <td class="rubric-desc">Plotted a line chart that displays correctly with year vs population</td>
+                        <td class="rubric-desc">Created a bar chart that displays correctly showing population data</td>
                         <td class="points-col">25</td>
                     </tr>
                     <tr>
                         <td><strong>Customization</strong></td>
-                        <td class="rubric-desc">Custom line color + at least one style change (marker, grid, background, title color, etc.)</td>
+                        <td class="rubric-desc">Custom bar color + at least one style change (edgecolor, grid, background, title color/style, etc.)</td>
                         <td class="points-col">15</td>
                     </tr>
                     <tr>
