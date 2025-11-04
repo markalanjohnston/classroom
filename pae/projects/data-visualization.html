@@ -308,7 +308,7 @@
                 <li>
                     <strong>Download the dataset</strong>
                     <p>Click this link to download the CSV file (it should download automatically):</p>
-                    <p><a href="https://raw.githubusercontent.com/datasets/population/master/data/World-population-by-countries-dataset.csv" target="_blank" download><strong>World-population-by-countries-dataset.csv</strong></a></p>
+                    <p><a href="https://raw.githubusercontent.com/datasets/population/master/data/population.csv" target="_blank" download><strong>population.csv</strong></a></p>
                     <p>Save it to your Downloads folder. If it opens in your browser instead, right-click on the page and select "Save As..."</p>
                 </li>
 
@@ -330,65 +330,41 @@ uploaded = files.upload()</code></pre>
 import matplotlib.pyplot as plt
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv("World-population-by-countries-dataset.csv")
-
-# Check what columns we have
-print(df.columns)
+df = pd.read_csv("population.csv")
 
 # Preview the first 5 rows
 df.head()</code></pre>
-                    <p>Run this cell. Look at the column names that print out - we'll use those in the next step!</p>
+                    <p>Run this cell. You should see columns: <strong>Country Name, Country Code, Year, Value</strong></p>
                 </li>
 
                 <li>
                     <strong>Create a basic bar chart</strong>
-                    <p>First, let's see what columns we actually have. The dataset might have 'Year' and 'Value' columns OR year columns like '2022'. Check your columns first:</p>
-                    <pre><code># IMPORTANT: Check your actual column names!
-print("Columns in your dataset:")
-print(df.columns.tolist())
-print("\nFirst few rows:")
-print(df.head())</code></pre>
+                    <p>This dataset has Country Name, Year, and Value (population) columns. Let's visualize the top 10 countries for the most recent year:</p>
+                    <pre><code># Get the most recent year's data
+latest_year = df['Year'].max()
+latest_data = df[df['Year'] == latest_year]
 
-                    <p><strong>Option A:</strong> If you see columns like 'Country Name', 'Year', 'Value':</p>
-                    <pre><code># Filter for most recent year
-latest_data = df[df['Year'] == df['Year'].max()]
+# Get top 10 countries by population
 top10 = latest_data.nlargest(10, 'Value')
 
+# Create the plot
 plt.figure(figsize=(10, 6))
 plt.bar(top10['Country Name'], top10['Value'])
-plt.title(f"Top 10 Countries by Population ({df['Year'].max()})")
+plt.title(f"Top 10 Countries by Population ({latest_year})")
 plt.xlabel("Country")
 plt.ylabel("Population")
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()</code></pre>
-
-                    <p><strong>Option B:</strong> If you see columns like 'Country/Territory' and year columns (numbers):</p>
-                    <pre><code># Find the last numeric column (most recent year)
-year_cols = [col for col in df.columns if col.replace('.','').isdigit()]
-if year_cols:
-    latest_year = year_cols[-1]
-    top10 = df.nlargest(10, latest_year)
-
-    plt.figure(figsize=(10, 6))
-    plt.bar(top10.iloc[:, 0], top10[latest_year])  # First column is country
-    plt.title(f"Top 10 Countries by Population")
-    plt.xlabel("Country")
-    plt.ylabel("Population")
-    plt.xticks(rotation=45, ha='right')
-    plt.tight_layout()
-    plt.show()
-else:
-    print("Could not find year columns!")</code></pre>
+                    <p>You should see a bar chart showing the 10 most populous countries!</p>
                 </li>
 
                 <li>
                     <strong>Customize your chart with colors and styles (REQUIRED for full points)</strong>
-                    <p>Now make your chart look professional with custom styling. Use the same approach as Step 5, but add customizations:</p>
-
-                    <p><strong>For Option A data (Year/Value columns):</strong></p>
-                    <pre><code># Get latest year data
-latest_data = df[df['Year'] == df['Year'].max()]
+                    <p>Now make your chart look professional with custom styling:</p>
+                    <pre><code># Get the most recent year's data
+latest_year = df['Year'].max()
+latest_data = df[df['Year'] == latest_year]
 top10 = latest_data.nlargest(10, 'Value')
 
 # Create a customized chart
@@ -401,38 +377,13 @@ plt.bar(
     linewidth=2               # Border thickness
 )
 
-plt.title(f"Top 10 Countries by Population ({df['Year'].max()})", fontsize=18, color="darkblue", fontweight='bold')
+plt.title(f"Top 10 Countries by Population ({latest_year})", fontsize=18, color="darkblue", fontweight='bold')
 plt.xlabel("Country", fontsize=14)
 plt.ylabel("Population", fontsize=14)
 plt.xticks(rotation=45, ha='right')
 plt.grid(True, axis='y', linestyle="--", alpha=0.5)  # Add horizontal grid
 plt.tight_layout()
 plt.show()</code></pre>
-
-                    <p><strong>For Option B data (year columns):</strong></p>
-                    <pre><code># Use the most recent year column
-year_cols = [col for col in df.columns if col.replace('.','').isdigit()]
-latest_year = year_cols[-1] if year_cols else None
-
-if latest_year:
-    top10 = df.nlargest(10, latest_year)
-
-    plt.figure(figsize=(12, 6), facecolor="lightyellow")
-    plt.bar(
-        top10.iloc[:, 0],  # Country column
-        top10[latest_year],
-        color='purple',
-        edgecolor='darkblue',
-        linewidth=2
-    )
-
-    plt.title(f"Top 10 Countries by Population", fontsize=18, color="darkblue", fontweight='bold')
-    plt.xlabel("Country", fontsize=14)
-    plt.ylabel("Population", fontsize=14)
-    plt.xticks(rotation=45, ha='right')
-    plt.grid(True, axis='y', linestyle="--", alpha=0.5)
-    plt.tight_layout()
-    plt.show()</code></pre>
 
                     <div class="note-box">
                         <p><strong><i class="bi bi-star-fill"></i> Customization Ideas:</strong> Try changing <code>color</code> to "red", "green", "orange", "teal", etc. Change <code>facecolor</code> to "lightblue" or "lightpink". Try different <code>edgecolor</code> options!</p>
@@ -441,7 +392,24 @@ if latest_year:
 
                 <li>
                     <strong>Explore the data further (Optional but fun!)</strong>
-                    <p>Try creating different types of visualizations with your data!</p>
+                    <p>Try comparing a single country's population over time:</p>
+                    <pre><code># Pick a country
+country = "United States"
+country_data = df[df['Country Name'] == country]
+
+# Sort by year
+country_data = country_data.sort_values('Year')
+
+# Create a line chart
+plt.figure(figsize=(12, 6))
+plt.plot(country_data['Year'], country_data['Value'],
+         marker='o', linewidth=2, markersize=4, color='darkgreen')
+plt.title(f"Population Growth: {country}")
+plt.xlabel("Year")
+plt.ylabel("Population")
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()</code></pre>
                 </li>
 
                 <li>
@@ -478,10 +446,14 @@ print(os.listdir())</code></pre>
             <p>Then use the exact filename you see in the list.</p>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: Column not found error (KeyError)</h3>
-            <p><strong>Solution:</strong> The column names must match exactly. Check your column names:</p>
-            <pre><code># Check your column names
-print(df.columns)</code></pre>
-            <p>Make sure you're using 'Country/Territory' for the country name and '2022' (or whatever year) for the population data.</p>
+            <p><strong>Solution:</strong> The column names must match exactly. This dataset has these columns:</p>
+            <ul>
+                <li><code>'Country Name'</code> - the country name</li>
+                <li><code>'Country Code'</code> - 3-letter code</li>
+                <li><code>'Year'</code> - the year (like 2023)</li>
+                <li><code>'Value'</code> - the population count</li>
+            </ul>
+            <p>Make sure you use these exact column names (with capital letters and spaces)!</p>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart labels are overlapping</h3>
             <p><strong>Solution:</strong> Add rotation to your labels and use <code>plt.tight_layout()</code>:</p>
