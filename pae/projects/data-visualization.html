@@ -336,61 +336,24 @@ df.head()  # Shows the first few rows so we know it loaded</code></pre>
 
         <!-- Step 3 -->
         <div class="section-card">
-            <h2><i class="bi bi-3-circle-fill"></i> Step 3 — Reshape the data</h2>
+            <h2><i class="bi bi-3-circle-fill"></i> Step 3 — Prepare the data for graphing</h2>
             <div class="step-content">
-                <p><strong>What's happening here:</strong> Before we can create a chart, we need to transform our data into a format that's easier to graph.</p>
-
-                <p><strong>Understanding "Wide" vs "Long" format:</strong></p>
-                <ul>
-                    <li><strong>Wide format</strong> — What we have now: each year (1960, 1961, 1962...) is its own column. This is hard to graph.</li>
-                    <li><strong>Long format</strong> — What we need: three simple columns (Country, Year, Population). This makes graphing easy!</li>
-                </ul>
-
-                <div class="alert alert-info">
-                    <i class="bi bi-arrow-left-right"></i> <strong>Why reshape?</strong> Imagine trying to graph 60+ columns (one per year). Instead, we "melt" the data so we have one column for Year and one for Population. Now we can easily plot Year on the X-axis and Population on the Y-axis!
-                </div>
+                <p><strong>What's happening here:</strong> Our CSV file has a column called "Value" that contains the population numbers. To make our code clearer, we'll rename it to "Population".</p>
 
                 <p><strong>The code breakdown:</strong></p>
                 <ul>
-                    <li><code>df.melt(...)</code> — The "melt" function transforms wide data into long format:
-                        <ul>
-                            <li><code>id_vars</code> — Columns to keep as-is (Country Name and Country Code)</li>
-                            <li><code>var_name="Year"</code> — All those year columns become one "Year" column</li>
-                            <li><code>value_name="Population"</code> — The population numbers go into a "Population" column</li>
-                        </ul>
-                    </li>
-                    <li><code>pd.to_numeric(...)</code> — Converts year from text (like "1960") to an actual number (1960) so we can plot it</li>
-                    <li><code>data_long.head()</code> — Shows the first 5 rows of the reshaped data so you can see the new format</li>
+                    <li><code>df.rename(...)</code> — Changes the "Value" column name to "Population" for clarity</li>
+                    <li><code>data_long = df.copy()</code> — Creates a working copy of our data</li>
+                    <li><code>data_long.head()</code> — Shows the first 5 rows to verify everything looks correct</li>
                 </ul>
 
-                <pre><code># First, check what format your data is in
-print("Column names:", df.columns.tolist())
+                <pre><code># Rename 'Value' column to 'Population' for clarity
+data_long = df.rename(columns={'Value': 'Population'})
 
-# Check if data is already in long format (has Year and Value/Population columns)
-if 'Year' in df.columns:
-    print("Data is already in long format!")
-    data_long = df.copy()
-    # Rename 'Value' to 'Population' if needed
-    if 'Value' in data_long.columns:
-        data_long = data_long.rename(columns={'Value': 'Population'})
-else:
-    print("Data is in wide format, reshaping...")
-    # Reshape from wide format to long format
-    data_long = df.melt(id_vars=["Country Name", "Country Code"],
-                        var_name="Year",
-                        value_name="Population")
-
-# Make sure Year is a number
-data_long["Year"] = pd.to_numeric(data_long["Year"], errors="coerce")
-
-# View the reshaped data
+# View the data
 data_long.head()</code></pre>
 
-                <p><strong>What you'll see:</strong> A table with three main columns: Country Name, Year, and Population. Each row now represents one country in one year!</p>
-
-                <div class="alert alert-info">
-                    <i class="bi bi-info-circle"></i> <strong>Two data formats:</strong> Some CSV files have years as separate columns (wide format), while others already have a Year column (long format). This code automatically detects which format you have and handles it correctly!
-                </div>
+                <p><strong>What you'll see:</strong> A table with four columns: Country Name, Country Code, Year, and Population. Each row represents one country in one specific year!</p>
             </div>
         </div>
 
