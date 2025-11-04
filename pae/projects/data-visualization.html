@@ -336,61 +336,75 @@ df.head()  # Shows the first few rows so we know it loaded</code></pre>
 
         <!-- Step 3 -->
         <div class="section-card">
-            <h2><i class="bi bi-3-circle-fill"></i> Step 3 — Reshape the data + plot a country</h2>
+            <h2><i class="bi bi-3-circle-fill"></i> Step 3 — Reshape the data</h2>
             <div class="step-content">
-            <p><strong>What's happening here:</strong> This is where things get interesting! We're going to transform our data and create our first chart.</p>
+                <p><strong>What's happening here:</strong> Before we can create a chart, we need to transform our data into a format that's easier to graph.</p>
 
-            <p><strong>Understanding "Wide" vs "Long" format:</strong></p>
-            <ul>
-                <li><strong>Wide format</strong> — What we have now: each year (1960, 1961, 1962...) is its own column. This is hard to graph.</li>
-                <li><strong>Long format</strong> — What we need: three simple columns (Country, Year, Population). This makes graphing easy!</li>
-            </ul>
+                <p><strong>Understanding "Wide" vs "Long" format:</strong></p>
+                <ul>
+                    <li><strong>Wide format</strong> — What we have now: each year (1960, 1961, 1962...) is its own column. This is hard to graph.</li>
+                    <li><strong>Long format</strong> — What we need: three simple columns (Country, Year, Population). This makes graphing easy!</li>
+                </ul>
 
                 <div class="alert alert-info">
-                <i class="bi bi-arrow-left-right"></i> <strong>Why reshape?</strong> Imagine trying to graph 60+ columns (one per year). Instead, we "melt" the data so we have one column for Year and one for Population. Now we can easily plot Year on the X-axis and Population on the Y-axis!
-            </div>
+                    <i class="bi bi-arrow-left-right"></i> <strong>Why reshape?</strong> Imagine trying to graph 60+ columns (one per year). Instead, we "melt" the data so we have one column for Year and one for Population. Now we can easily plot Year on the X-axis and Population on the Y-axis!
+                </div>
 
-            <p><strong>The code breakdown:</strong></p>
-            <ul>
-                <li><code>country = "United States"</code> — Choose which country to graph (you can change this to any country in the dataset!)</li>
-                <li><code>df.melt(...)</code> — The "melt" function transforms wide data into long format:
-                    <ul>
-                        <li><code>id_vars</code> — Columns to keep as-is (Country Name and Country Code)</li>
-                        <li><code>var_name="Year"</code> — All those year columns become one "Year" column</li>
-                        <li><code>value_name="Population"</code> — The population numbers go into a "Population" column</li>
-                    </ul>
-                </li>
-                <li><code>pd.to_numeric(...)</code> — Converts year from text (like "1960") to an actual number (1960) so we can plot it</li>
-                <li><code>data_long[data_long["Country Name"] == country]</code> — Filters the data to only include rows for your chosen country</li>
-            </ul>
+                <p><strong>The code breakdown:</strong></p>
+                <ul>
+                    <li><code>df.melt(...)</code> — The "melt" function transforms wide data into long format:
+                        <ul>
+                            <li><code>id_vars</code> — Columns to keep as-is (Country Name and Country Code)</li>
+                            <li><code>var_name="Year"</code> — All those year columns become one "Year" column</li>
+                            <li><code>value_name="Population"</code> — The population numbers go into a "Population" column</li>
+                        </ul>
+                    </li>
+                    <li><code>pd.to_numeric(...)</code> — Converts year from text (like "1960") to an actual number (1960) so we can plot it</li>
+                    <li><code>data_long.head()</code> — Shows the first 5 rows of the reshaped data so you can see the new format</li>
+                </ul>
 
-            <p><strong>Creating the chart:</strong></p>
-            <ul>
-                <li><code>plt.figure(figsize=(12,6))</code> — Creates a blank chart that's 12 inches wide and 6 inches tall</li>
-                <li><code>plt.plot(...)</code> — Draws a line connecting all the data points
-                    <ul>
-                        <li><code>data["Year"]</code> — X-axis values</li>
-                        <li><code>data["Population"]</code> — Y-axis values</li>
-                        <li><code>marker="o"</code> — Puts a circle at each data point</li>
-                        <li><code>linewidth=2</code> — Makes the line 2 pixels thick</li>
-                    </ul>
-                </li>
-                <li><code>plt.title(...)</code> — Adds a title at the top</li>
-                <li><code>plt.xlabel(...)</code> and <code>plt.ylabel(...)</code> — Labels for the axes</li>
-                <li><code>ax.yaxis.set_major_formatter(...)</code> — Formats large numbers with commas (like 350,000,000 instead of 3.5e8)</li>
-                <li><code>plt.grid(True)</code> — Adds helpful gridlines</li>
-                <li><code>plt.show()</code> — Displays the finished chart!</li>
-            </ul>
-
-            <pre><code>country = "United States"  # Change country if you want
-
-# Reshape from wide format to long format
+                <pre><code># Reshape from wide format to long format
 data_long = df.melt(id_vars=["Country Name", "Country Code"],
                     var_name="Year",
                     value_name="Population")
 
 # Convert Year text → number
 data_long["Year"] = pd.to_numeric(data_long["Year"], errors="coerce")
+
+# View the reshaped data
+data_long.head()</code></pre>
+
+                <p><strong>What you'll see:</strong> A table with three main columns: Country Name, Year, and Population. Each row now represents one country in one year!</p>
+            </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="section-card">
+            <h2><i class="bi bi-4-circle-fill"></i> Step 4 — Plot a country</h2>
+            <div class="step-content">
+                <p><strong>What's happening here:</strong> Now that our data is in the right format, let's create our first chart by selecting one country and plotting its population over time.</p>
+
+                <p><strong>The code breakdown:</strong></p>
+                <ul>
+                    <li><code>country = "United States"</code> — Choose which country to graph (you can change this to any country in the dataset!)</li>
+                    <li><code>data_long[data_long["Country Name"] == country]</code> — Filters the data to only include rows for your chosen country</li>
+                    <li><code>plt.figure(figsize=(12,6))</code> — Creates a blank chart that's 12 inches wide and 6 inches tall</li>
+                    <li><code>plt.plot(...)</code> — Draws a line connecting all the data points
+                        <ul>
+                            <li><code>data["Year"]</code> — X-axis values</li>
+                            <li><code>data["Population"]</code> — Y-axis values</li>
+                            <li><code>marker="o"</code> — Puts a circle at each data point</li>
+                            <li><code>linewidth=2</code> — Makes the line 2 pixels thick</li>
+                        </ul>
+                    </li>
+                    <li><code>plt.title(...)</code> — Adds a title at the top</li>
+                    <li><code>plt.xlabel(...)</code> and <code>plt.ylabel(...)</code> — Labels for the axes</li>
+                    <li><code>ax.yaxis.set_major_formatter(...)</code> — Formats large numbers with commas (like 350,000,000 instead of 3.5e8)</li>
+                    <li><code>plt.grid(True)</code> — Adds helpful gridlines</li>
+                    <li><code>plt.show()</code> — Displays the finished chart!</li>
+                </ul>
+
+                <pre><code>country = "United States"  # Change country if you want
 
 # Filter rows only for our country
 data = data_long[data_long["Country Name"] == country]
@@ -415,27 +429,27 @@ plt.show()</code></pre>
             </div>
         </div>
 
-        <!-- Step 4 -->
+        <!-- Step 5 -->
         <div class="section-card">
-            <h2><i class="bi bi-4-circle-fill"></i> Step 4 — Style your graph (Required)</h2>
+            <h2><i class="bi bi-5-circle-fill"></i> Step 5 — Style your graph (Required)</h2>
             <div class="step-content">
-            <p><strong>What's happening here:</strong> Now let's make your chart unique! Data visualization isn't just about showing data — it's about making it clear, engaging, and visually appealing.</p>
+                <p><strong>What's happening here:</strong> Now let's make your chart unique! Data visualization isn't just about showing data — it's about making it clear, engaging, and visually appealing.</p>
 
-            <p><strong>Why customize?</strong> Professional charts stand out because of thoughtful design choices. Colors can emphasize trends, markers make data points easier to see, and styling can match your presentation theme or brand.</p>
+                <p><strong>Why customize?</strong> Professional charts stand out because of thoughtful design choices. Colors can emphasize trends, markers make data points easier to see, and styling can match your presentation theme or brand.</p>
 
-            <p><strong>The code breakdown:</strong></p>
-            <ul>
-                <li><code>facecolor="lightyellow"</code> — Sets the background color of the entire chart area (try "lightblue", "lavender", "mintcream", etc.)</li>
-                <li><code>color="purple"</code> — Changes the line color from default blue to purple (try "red", "green", "orange", "#FF5733", etc.)</li>
-                <li><code>marker="s"</code> — Changes the data point markers to squares:
-                    <ul>
-                        <li><code>"o"</code> = circle (default)</li>
-                        <li><code>"s"</code> = square</li>
-                        <li><code>"^"</code> = triangle pointing up</li>
-                        <li><code>"D"</code> = diamond</li>
-                        <li><code>"*"</code> = star</li>
-                        <li><code>"x"</code> = x marks</li>
-                    </ul>
+                <p><strong>The code breakdown:</strong></p>
+                <ul>
+                    <li><code>facecolor="lightyellow"</code> — Sets the background color of the entire chart area (try "lightblue", "lavender", "mintcream", etc.)</li>
+                    <li><code>color="purple"</code> — Changes the line color from default blue to purple (try "red", "green", "orange", "#FF5733", etc.)</li>
+                    <li><code>marker="s"</code> — Changes the data point markers to squares:
+                        <ul>
+                            <li><code>"o"</code> = circle (default)</li>
+                            <li><code>"s"</code> = square</li>
+                            <li><code>"^"</code> = triangle pointing up</li>
+                            <li><code>"D"</code> = diamond</li>
+                            <li><code>"*"</code> = star</li>
+                            <li><code>"x"</code> = x marks</li>
+                        </ul>
                     </li>
                     <li><code>linewidth=3</code> — Makes the line thicker (default is 2) so it's more prominent</li>
                     <li><code>color="darkblue"</code> in title — Changes just the title text color to stand out</li>
@@ -445,11 +459,11 @@ plt.show()</code></pre>
                     <i class="bi bi-palette"></i> <strong>Your turn to experiment!</strong> Change the colors and markers to create your own unique style. This customization is <strong>required</strong> for full credit — don't leave it as the default blue!
                 </div>
 
-            <p><strong>Color options:</strong></p>
-            <ul>
-                <li>Named colors: "red", "blue", "green", "purple", "orange", "pink", "brown", "black", etc.</li>
-                <li>Hex codes: "#FF5733", "#3498DB", "#2ECC71" (search "color picker" online to find hex codes)</li>
-            </ul>
+                <p><strong>Color options:</strong></p>
+                <ul>
+                    <li>Named colors: "red", "blue", "green", "purple", "orange", "pink", "brown", "black", etc.</li>
+                    <li>Hex codes: "#FF5733", "#3498DB", "#2ECC71" (search "color picker" online to find hex codes)</li>
+                </ul>
 
             <pre><code>import matplotlib.ticker as ticker
 
@@ -473,41 +487,41 @@ plt.show()</code></pre>
             </div>
         </div>
 
-        <!-- Step 5 -->
+        <!-- Step 6 -->
         <div class="section-card">
-            <h2><i class="bi bi-5-circle-fill"></i> Step 5 — Screenshot and submit</h2>
+            <h2><i class="bi bi-6-circle-fill"></i> Step 6 — Screenshot and submit</h2>
             <div class="step-content">
-            <p><strong>What's happening here:</strong> Time to show off your work! You'll capture your customized chart and submit it for grading.</p>
+                <p><strong>What's happening here:</strong> Time to show off your work! You'll capture your customized chart and submit it for grading.</p>
 
-            <p><strong>How to take a screenshot:</strong></p>
-            <ul>
-                <li><strong>Windows:</strong> Press <code>Windows + Shift + S</code>, then click and drag around your chart</li>
-                <li><strong>Mac:</strong> Press <code>Command + Shift + 4</code>, then click and drag around your chart</li>
-                <li><strong>Chromebook:</strong> Press <code>Ctrl + Shift + Show Windows</code> (the key with a rectangle and two lines), then select area</li>
-                <li><strong>Or:</strong> Right-click on the chart in Colab and select "Save image as..."</li>
-            </ul>
+                <p><strong>How to take a screenshot:</strong></p>
+                <ul>
+                    <li><strong>Windows:</strong> Press <code>Windows + Shift + S</code>, then click and drag around your chart</li>
+                    <li><strong>Mac:</strong> Press <code>Command + Shift + 4</code>, then click and drag around your chart</li>
+                    <li><strong>Chromebook:</strong> Press <code>Ctrl + Shift + Show Windows</code> (the key with a rectangle and two lines), then select area</li>
+                    <li><strong>Or:</strong> Right-click on the chart in Colab and select "Save image as..."</li>
+                </ul>
 
                 <p><strong>Before you submit, verify your chart includes:</strong></p>
                 <div class="alert alert-success">
-                <strong><i class="bi bi-check-circle"></i> Submission Checklist:</strong>
-                <ul class="mb-0">
-                    <li>✓ Custom color (not the default blue)</li>
-                    <li>✓ Custom markers visible on each data point</li>
-                    <li>✓ Chart title clearly visible at the top</li>
-                    <li>✓ X-axis label ("Year")</li>
-                    <li>✓ Y-axis label ("Population")</li>
-                    <li>✓ Data shows a clear population trend line</li>
-                </ul>
-            </div>
+                    <strong><i class="bi bi-check-circle"></i> Submission Checklist:</strong>
+                    <ul class="mb-0">
+                        <li>✓ Custom color (not the default blue)</li>
+                        <li>✓ Custom markers visible on each data point</li>
+                        <li>✓ Chart title clearly visible at the top</li>
+                        <li>✓ X-axis label ("Year")</li>
+                        <li>✓ Y-axis label ("Population")</li>
+                        <li>✓ Data shows a clear population trend line</li>
+                    </ul>
+                </div>
 
-            <p><strong>Submission instructions:</strong></p>
-            <ol>
-                <li>Save your screenshot with a clear filename (like "population_chart_yourname.png")</li>
-                <li>Go to Schoology and find the Data Visualization assignment</li>
-                <li>Upload your screenshot file</li>
-                <li>Add a comment with which country you chose (optional but helpful!)</li>
-                <li>Click Submit!</li>
-            </ol>
+                <p><strong>Submission instructions:</strong></p>
+                <ol>
+                    <li>Save your screenshot with a clear filename (like "population_chart_yourname.png")</li>
+                    <li>Go to Schoology and find the Data Visualization assignment</li>
+                    <li>Upload your screenshot file</li>
+                    <li>Add a comment with which country you chose (optional but helpful!)</li>
+                    <li>Click Submit!</li>
+                </ol>
 
                 <div class="alert alert-warning">
                     <i class="bi bi-exclamation-triangle"></i> <strong>Common mistakes to avoid:</strong>
