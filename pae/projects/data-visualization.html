@@ -375,6 +375,19 @@ data_long["Year"] = pd.to_numeric(data_long["Year"], errors="coerce")
 data_long.head()</code></pre>
 
                 <p><strong>What you'll see:</strong> A table with three main columns: Country Name, Year, and Population. Each row now represents one country in one year!</p>
+
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle"></i> <strong>Troubleshooting:</strong> If the Year column shows <code>NaN</code> (Not a Number) values, it means the year columns in your CSV have extra characters. Add this code to check and fix:
+                    <pre class="mt-2"><code># Check what the Year values look like
+print("Sample Year values:", data_long["Year"].unique()[:5])
+
+# If you see extra spaces or characters, clean them first
+data_long["Year"] = data_long["Year"].str.strip()  # Remove spaces
+data_long["Year"] = pd.to_numeric(data_long["Year"], errors="coerce")
+
+# Verify it worked
+print("After cleaning:", data_long["Year"].unique()[:5])</code></pre>
+                </div>
             </div>
         </div>
 
