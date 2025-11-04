@@ -334,23 +334,19 @@ df = pd.read_csv("population.csv")
 
 # Preview the first 5 rows
 df.head()</code></pre>
-                    <p>Run this cell. You should see columns: <strong>Country Name, Country Code, Year, Value</strong></p>
+                    <p>Run this cell. You should see columns: <strong>Country Name, Country Code, and years from 1960 to 2021</strong> (each year is a separate column)</p>
                 </li>
 
                 <li>
                     <strong>Create a basic bar chart</strong>
-                    <p>This dataset has Country Name, Year, and Value (population) columns. Let's visualize the top 10 countries for the most recent year:</p>
-                    <pre><code># Get the most recent year's data
-latest_year = df['Year'].max()
-latest_data = df[df['Year'] == latest_year]
-
-# Get top 10 countries by population
-top10 = latest_data.nlargest(10, 'Value')
+                    <p>This dataset has years as columns ('1960', '1961', etc.). Let's visualize the top 10 countries for 2021:</p>
+                    <pre><code># Get top 10 countries by 2021 population
+top10 = df.nlargest(10, '2021')
 
 # Create the plot
 plt.figure(figsize=(10, 6))
-plt.bar(top10['Country Name'], top10['Value'])
-plt.title(f"Top 10 Countries by Population ({latest_year})")
+plt.bar(top10['Country Name'], top10['2021'])
+plt.title("Top 10 Countries by Population (2021)")
 plt.xlabel("Country")
 plt.ylabel("Population")
 plt.xticks(rotation=45, ha='right')
@@ -362,22 +358,20 @@ plt.show()</code></pre>
                 <li>
                     <strong>Customize your chart with colors and styles (REQUIRED for full points)</strong>
                     <p>Now make your chart look professional with custom styling:</p>
-                    <pre><code># Get the most recent year's data
-latest_year = df['Year'].max()
-latest_data = df[df['Year'] == latest_year]
-top10 = latest_data.nlargest(10, 'Value')
+                    <pre><code># Get top 10 countries by 2021 population
+top10 = df.nlargest(10, '2021')
 
 # Create a customized chart
 plt.figure(figsize=(12, 6), facecolor="lightyellow")  # Background color
 plt.bar(
     top10['Country Name'],
-    top10['Value'],
+    top10['2021'],
     color='purple',           # Custom bar color
     edgecolor='darkblue',     # Border color
     linewidth=2               # Border thickness
 )
 
-plt.title(f"Top 10 Countries by Population ({latest_year})", fontsize=18, color="darkblue", fontweight='bold')
+plt.title("Top 10 Countries by Population (2021)", fontsize=18, color="darkblue", fontweight='bold')
 plt.xlabel("Country", fontsize=14)
 plt.ylabel("Population", fontsize=14)
 plt.xticks(rotation=45, ha='right')
@@ -395,14 +389,20 @@ plt.show()</code></pre>
                     <p>Try comparing a single country's population over time:</p>
                     <pre><code># Pick a country
 country = "United States"
-country_data = df[df['Country Name'] == country]
+country_row = df[df['Country Name'] == country].iloc[0]
 
-# Sort by year
-country_data = country_data.sort_values('Year')
+# Get years and their values (years 1960-2021 are column names)
+years = []
+populations = []
+for year in range(1960, 2022):
+    year_str = str(year)
+    if year_str in df.columns and pd.notna(country_row[year_str]):
+        years.append(year)
+        populations.append(country_row[year_str])
 
 # Create a line chart
 plt.figure(figsize=(12, 6))
-plt.plot(country_data['Year'], country_data['Value'],
+plt.plot(years, populations,
          marker='o', linewidth=2, markersize=4, color='darkgreen')
 plt.title(f"Population Growth: {country}")
 plt.xlabel("Year")
@@ -431,43 +431,6 @@ plt.show()</code></pre>
             </ol>
         </div>
 
-        <!-- Troubleshooting Section -->
-        <div class="backup-section">
-            <h2>
-                <i class="bi bi-question-circle"></i>
-                Troubleshooting Common Issues
-            </h2>
-
-            <h3><i class="bi bi-x-circle text-danger"></i> Problem: File not found error</h3>
-            <p><strong>Solution:</strong> Make sure you uploaded the file using <code>files.upload()</code> and the filename in your code matches exactly. Check the filename:</p>
-            <pre><code># List uploaded files
-import os
-print(os.listdir())</code></pre>
-            <p>Then use the exact filename you see in the list.</p>
-
-            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Column not found error (KeyError)</h3>
-            <p><strong>Solution:</strong> The column names must match exactly. This dataset has these columns:</p>
-            <ul>
-                <li><code>'Country Name'</code> - the country name</li>
-                <li><code>'Country Code'</code> - 3-letter code</li>
-                <li><code>'Year'</code> - the year (like 2023)</li>
-                <li><code>'Value'</code> - the population count</li>
-            </ul>
-            <p>Make sure you use these exact column names (with capital letters and spaces)!</p>
-
-            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart labels are overlapping</h3>
-            <p><strong>Solution:</strong> Add rotation to your labels and use <code>plt.tight_layout()</code>:</p>
-            <pre><code>plt.xticks(rotation=45, ha='right')
-plt.tight_layout()</code></pre>
-
-            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart doesn't look good</h3>
-            <p><strong>Solution:</strong> Experiment with different figure sizes and colors:</p>
-            <pre><code>plt.figure(figsize=(12, 6))  # Make it wider
-plt.bar(..., color='steelblue')  # Try different colors</code></pre>
-
-            <h3><i class="bi bi-lightbulb text-warning"></i> Want to explore more datasets?</h3>
-            <p>After you complete this project, you can find thousands of free datasets on <a href="https://www.kaggle.com/datasets" target="_blank">Kaggle</a>! Search for topics like "temperature", "sports statistics", "video games", or "stock prices". Download any CSV file and upload it to Colab to practice your visualization skills!</p>
-        </div>
 
         <!-- Rubric Section -->
         <div class="section-card">
