@@ -308,16 +308,24 @@ print(f"Shape: {df.shape}")</code></pre>
                 </li>
 
                 <li>
-                    <strong>Filter for 2018 data (most recent complete year)</strong>
+                    <strong>Get the top 10 countries by population</strong>
                     <p>Run this code:</p>
-                    <pre><code># Get only 2018 data
-df_2018 = df[df['Year'] == 2018]
+                    <pre><code># The dataset has years as columns (1960, 1961, ... 2021)
+# Let's use the most recent year: 2021
+df_2021 = df[['Country Name', '2021']].copy()
+
+# Rename the '2021' column to 'Value' for easier use
+df_2021 = df_2021.rename(columns={'2021': 'Value'})
+
+# Remove rows with missing values
+df_2021 = df_2021.dropna()
 
 # Get top 10 countries by population
-top10 = df_2018.nlargest(10, 'Value')
+top10 = df_2021.nlargest(10, 'Value')
 
 # Display the top 10
-print(top10[['Country Name', 'Value']])</code></pre>
+print("Top 10 Countries by Population (2021):")
+print(top10)</code></pre>
                 </li>
 
                 <li>
@@ -327,7 +335,7 @@ print(top10[['Country Name', 'Value']])</code></pre>
 plt.figure(figsize=(10, 6))
 plt.bar(top10['Country Name'], top10['Value'])
 plt.xticks(rotation=45, ha='right')
-plt.title('Top 10 Countries by Population (2018)')
+plt.title('Top 10 Countries by Population (2021)')
 plt.xlabel('Country')
 plt.ylabel('Population')
 plt.tight_layout()
@@ -354,7 +362,7 @@ for bar in bars:
              ha='center', va='bottom', fontsize=10)
 
 # Customize the chart
-plt.title('Top 10 Most Populous Countries (2018)', fontsize=18, fontweight='bold', color='darkblue')
+plt.title('Top 10 Most Populous Countries (2021)', fontsize=18, fontweight='bold', color='darkblue')
 plt.xlabel('Country', fontsize=14, fontweight='bold')
 plt.ylabel('Population', fontsize=14, fontweight='bold')
 plt.xticks(rotation=45, ha='right')
@@ -378,10 +386,22 @@ countries = ['United States', 'China']
 plt.figure(figsize=(12, 6))
 
 for country in countries:
-    country_data = df[df['Country Name'] == country]
-    country_data = country_data.sort_values('Year')
-    plt.plot(country_data['Year'], country_data['Value'],
-             marker='o', label=country, linewidth=2)
+    # Get the row for this country
+    country_row = df[df['Country Name'] == country].iloc[0]
+
+    # Extract years and populations
+    years = []
+    populations = []
+
+    # Loop through year columns (they're strings like '1960', '1961', etc.)
+    for col in df.columns:
+        if col.isdigit() and int(col) >= 1960:  # Only use year columns
+            if pd.notna(country_row[col]):  # Skip missing values
+                years.append(int(col))
+                populations.append(country_row[col])
+
+    # Plot the line
+    plt.plot(years, populations, marker='o', label=country, linewidth=2, markersize=3)
 
 plt.title('Population Growth: USA vs China', fontsize=16, fontweight='bold')
 plt.xlabel('Year', fontsize=12)
@@ -432,7 +452,7 @@ plt.show()</code></pre>
                     </tr>
                     <tr>
                         <td><strong>Data Filtering</strong></td>
-                        <td>Filtered for 2018 and got top 10 countries</td>
+                        <td>Filtered for 2021 and got top 10 countries</td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
