@@ -61,13 +61,6 @@
             gap: 10px;
         }
 
-        .section-card h3 {
-            color: #2e86ab;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
         .success-box {
             background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             border: 2px solid #28a745;
@@ -134,11 +127,6 @@
             margin-bottom: 10px;
         }
 
-        .steps-list > li p {
-            color: #495057;
-            margin: 10px 0;
-        }
-
         pre {
             background: #0d1117;
             color: #c9d1d9;
@@ -200,30 +188,11 @@
             background: #f8f9fa;
         }
 
-        .rubric-table .rubric-desc {
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
-
         .points-col {
             text-align: center;
             font-weight: bold;
             color: #667eea;
             width: 100px;
-        }
-
-        .backup-section {
-            background: #f8f9fa;
-            border: 2px dashed #6c757d;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .backup-section h2 {
-            color: #495057;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -248,14 +217,14 @@
         <div class="lesson-header">
             <h1>
                 <i class="bi bi-graph-up text-primary"></i>
-                Data Visualization Practice: Kaggle + Pandas + Matplotlib
+                Data Visualization with Python
             </h1>
             <div>
                 <span class="badge-custom badge-time">
-                    <i class="bi bi-clock"></i> Self-Paced · 20 min
+                    <i class="bi bi-clock"></i> 20 minutes
                 </span>
                 <span class="badge-custom badge-submit">
-                    <i class="bi bi-upload"></i> Turn in a screenshot on Schoology
+                    <i class="bi bi-upload"></i> Screenshot to Schoology
                 </span>
             </div>
         </div>
@@ -266,28 +235,26 @@
                 <i class="bi bi-trophy text-warning"></i>
                 Learning Goal
             </h2>
-            <p><strong>Use real-world data</strong> in Google Colab to create a professional chart with:</p>
+            <p>Create a professional data visualization using:</p>
             <ul>
-                <li>Real dataset loaded from Kaggle</li>
+                <li>Google Colab for cloud computing</li>
                 <li>Pandas for data manipulation</li>
-                <li>Matplotlib for creating visualizations</li>
-                <li>Custom colors, markers, and styling</li>
-                <li>Professional labels and titles</li>
+                <li>Matplotlib for creating charts</li>
+                <li>Real population data from GitHub</li>
             </ul>
         </div>
 
         <!-- Success Checklist -->
         <div class="success-box">
-            <h3>✅ Success Checklist (Match the Rubric)</h3>
+            <h3>✅ Success Checklist</h3>
             <ul>
-                <li>I downloaded the World population dataset</li>
-                <li>I uploaded it to Google Colab and loaded it into a Pandas DataFrame</li>
-                <li>I checked my column names with <code>df.columns</code> and previewed data with <code>df.head()</code></li>
-                <li>I created a bar chart using Matplotlib showing population data</li>
-                <li>I customized the bar color AND added at least one more style (edgecolor, grid, background, or title color)</li>
-                <li>I added clear labels for both X and Y axes</li>
-                <li>I added a descriptive chart title</li>
-                <li>I took a screenshot showing my final customized chart</li>
+                <li>Downloaded population.csv from GitHub</li>
+                <li>Uploaded file to Google Colab</li>
+                <li>Loaded data into Pandas DataFrame</li>
+                <li>Created a bar chart with the top 10 countries</li>
+                <li>Customized colors and styling</li>
+                <li>Added title and axis labels</li>
+                <li>Took screenshot of final chart</li>
             </ul>
         </div>
 
@@ -295,187 +262,197 @@
         <div class="section-card">
             <h2>
                 <i class="bi bi-list-check text-success"></i>
-                Follow These Steps
+                Step-by-Step Instructions
             </h2>
 
             <ol class="steps-list">
                 <li>
-                    <strong>Create a new Google Colab notebook</strong>
-                    <p>Go to <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a> and click <strong>+ New Notebook</strong></p>
-                    <p>Rename your notebook to "Data_Visualization_Practice"</p>
+                    <strong>Open Google Colab</strong>
+                    <p>Go to <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a></p>
+                    <p>Click <strong>+ New Notebook</strong></p>
+                    <p>Rename it to "Population_Visualization"</p>
                 </li>
 
                 <li>
                     <strong>Download the dataset</strong>
-                    <p>Click this link to download the CSV file (it should download automatically):</p>
-                    <p><a href="https://raw.githubusercontent.com/datasets/population/master/data/population.csv" target="_blank" download><strong>population.csv</strong></a></p>
-                    <p>Save it to your Downloads folder. If it opens in your browser instead, right-click on the page and select "Save As..."</p>
+                    <p>Go to the class Google Drive folder:</p>
+                    <p><a href="https://drive.google.com/drive/folders/1jvaR6MjrNIrXMHmat4tZtzv3Nz-2b34Q?usp=drive_link" target="_blank">
+                        <strong>📁 Open Class Data Folder</strong>
+                    </a></p>
+                    <p>Find <strong>population.csv</strong> and click on it</p>
+                    <p>Click the download button (⬇️) at the top of the screen</p>
+                    <p>The file will save to your Downloads folder</p>
                 </li>
 
                 <li>
-                    <strong>Upload the dataset to Colab</strong>
-                    <p>In your Colab notebook, run this code to upload the CSV file:</p>
+                    <strong>Upload to Colab</strong>
+                    <p>Run this code in a new cell:</p>
                     <pre><code>from google.colab import files
 uploaded = files.upload()</code></pre>
-                    <p>Click the <strong>Choose Files</strong> button and select your downloaded CSV file.</p>
-                    <div class="note-box">
-                        <p><strong><i class="bi bi-info-circle"></i> Tip:</strong> The file will upload to Colab's temporary storage. It will stay there for your entire session!</p>
-                    </div>
+                    <p>Click "Choose Files" and select population.csv from Downloads</p>
                 </li>
 
                 <li>
-                    <strong>Import libraries and load the data</strong>
-                    <p>Pandas and Matplotlib are already installed in Colab! Just import them and load your data:</p>
+                    <strong>Load the data</strong>
+                    <p>Create a new cell and run:</p>
                     <pre><code>import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load the CSV file into a DataFrame
-df = pd.read_csv("population.csv")
+# Load the data
+df = pd.read_csv('population.csv')
 
-# Preview the first 5 rows
-df.head()</code></pre>
-                    <p>Run this cell. You should see columns: <strong>Country Name, Country Code, and years from 1960 to 2021</strong> (each year is a separate column)</p>
+# Look at the first few rows
+print(df.head())
+print(f"\nColumns: {df.columns.tolist()}")
+print(f"Shape: {df.shape}")</code></pre>
+                </li>
+
+                <li>
+                    <strong>Filter for 2018 data (most recent complete year)</strong>
+                    <p>Run this code:</p>
+                    <pre><code># Get only 2018 data
+df_2018 = df[df['Year'] == 2018]
+
+# Get top 10 countries by population
+top10 = df_2018.nlargest(10, 'Value')
+
+# Display the top 10
+print(top10[['Country Name', 'Value']])</code></pre>
                 </li>
 
                 <li>
                     <strong>Create a basic bar chart</strong>
-                    <p>This dataset has years as columns ('1960', '1961', etc.). Let's visualize the top 10 countries for 2021:</p>
-                    <pre><code># Get top 10 countries by 2021 population
-top10 = df.nlargest(10, '2021')
-
-# Create the plot
+                    <p>Run this code:</p>
+                    <pre><code># Create bar chart
 plt.figure(figsize=(10, 6))
-plt.bar(top10['Country Name'], top10['2021'])
-plt.title("Top 10 Countries by Population (2021)")
-plt.xlabel("Country")
-plt.ylabel("Population")
+plt.bar(top10['Country Name'], top10['Value'])
 plt.xticks(rotation=45, ha='right')
+plt.title('Top 10 Countries by Population (2018)')
+plt.xlabel('Country')
+plt.ylabel('Population')
 plt.tight_layout()
 plt.show()</code></pre>
-                    <p>You should see a bar chart showing the 10 most populous countries!</p>
                 </li>
 
                 <li>
-                    <strong>Customize your chart with colors and styles (REQUIRED for full points)</strong>
-                    <p>Now make your chart look professional with custom styling:</p>
-                    <pre><code># Get top 10 countries by 2021 population
-top10 = df.nlargest(10, '2021')
+                    <strong>Make it beautiful (REQUIRED for full points!)</strong>
+                    <p>Run this customized version:</p>
+                    <pre><code># Create a beautiful chart
+plt.figure(figsize=(12, 7), facecolor='lightblue')
 
-# Create a customized chart
-plt.figure(figsize=(12, 6), facecolor="lightyellow")  # Background color
-plt.bar(
-    top10['Country Name'],
-    top10['2021'],
-    color='purple',           # Custom bar color
-    edgecolor='darkblue',     # Border color
-    linewidth=2               # Border thickness
-)
+# Create bars with custom colors
+bars = plt.bar(top10['Country Name'], top10['Value'],
+               color='darkblue',
+               edgecolor='navy',
+               linewidth=2)
 
-plt.title("Top 10 Countries by Population (2021)", fontsize=18, color="darkblue", fontweight='bold')
-plt.xlabel("Country", fontsize=14)
-plt.ylabel("Population", fontsize=14)
+# Add value labels on top of bars
+for bar in bars:
+    height = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2., height,
+             f'{height/1e9:.1f}B',
+             ha='center', va='bottom', fontsize=10)
+
+# Customize the chart
+plt.title('Top 10 Most Populous Countries (2018)', fontsize=18, fontweight='bold', color='darkblue')
+plt.xlabel('Country', fontsize=14, fontweight='bold')
+plt.ylabel('Population', fontsize=14, fontweight='bold')
 plt.xticks(rotation=45, ha='right')
-plt.grid(True, axis='y', linestyle="--", alpha=0.5)  # Add horizontal grid
+
+# Add grid for better readability
+plt.grid(axis='y', alpha=0.3, linestyle='--')
+
+# Format y-axis to show billions
+ax = plt.gca()
+ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e9:.1f}B'))
+
 plt.tight_layout()
 plt.show()</code></pre>
-
-                    <div class="note-box">
-                        <p><strong><i class="bi bi-star-fill"></i> Customization Ideas:</strong> Try changing <code>color</code> to "red", "green", "orange", "teal", etc. Change <code>facecolor</code> to "lightblue" or "lightpink". Try different <code>edgecolor</code> options!</p>
-                    </div>
                 </li>
 
                 <li>
-                    <strong>Explore the data further (Optional but fun!)</strong>
-                    <p>Try comparing a single country's population over time:</p>
-                    <pre><code># Pick a country
-country = "United States"
-country_row = df[df['Country Name'] == country].iloc[0]
-
-# Get years and their values (years 1960-2021 are column names)
-years = []
-populations = []
-for year in range(1960, 2022):
-    year_str = str(year)
-    if year_str in df.columns and pd.notna(country_row[year_str]):
-        years.append(year)
-        populations.append(country_row[year_str])
-
-# Create a line chart
+                    <strong>Optional: Compare countries over time</strong>
+                    <p>Try this line chart:</p>
+                    <pre><code># Compare USA and China over time
+countries = ['United States', 'China']
 plt.figure(figsize=(12, 6))
-plt.plot(years, populations,
-         marker='o', linewidth=2, markersize=4, color='darkgreen')
-plt.title(f"Population Growth: {country}")
-plt.xlabel("Year")
-plt.ylabel("Population")
+
+for country in countries:
+    country_data = df[df['Country Name'] == country]
+    country_data = country_data.sort_values('Year')
+    plt.plot(country_data['Year'], country_data['Value'],
+             marker='o', label=country, linewidth=2)
+
+plt.title('Population Growth: USA vs China', fontsize=16, fontweight='bold')
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('Population', fontsize=12)
+plt.legend()
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.show()</code></pre>
                 </li>
 
                 <li>
-                    <strong>Take a screenshot and submit to Schoology</strong>
-                    <p>Make sure your screenshot clearly shows:</p>
+                    <strong>Take a screenshot</strong>
+                    <p>Screenshot your customized chart showing:</p>
                     <ul>
-                        <li>Your customized chart with a custom color</li>
-                        <li>At least one additional style (marker, grid, background color, or colored title)</li>
-                        <li>Clear axis labels (X and Y)</li>
-                        <li>A descriptive title</li>
+                        <li>The chart with custom colors</li>
+                        <li>Clear title and labels</li>
+                        <li>Value labels on bars (the billions markers)</li>
                     </ul>
-                    <p><strong>How to screenshot:</strong></p>
+                    <p><strong>Screenshot shortcuts:</strong></p>
                     <ul>
-                        <li><strong>Chromebook:</strong> Press Ctrl + Show Windows key (or Ctrl + F5), then click and drag</li>
-                        <li><strong>Windows:</strong> Press Windows + Shift + S</li>
-                        <li><strong>Mac:</strong> Press Cmd + Shift + 4, then drag to select</li>
+                        <li>Chromebook: Ctrl + Show Windows</li>
+                        <li>Windows: Windows + Shift + S</li>
+                        <li>Mac: Cmd + Shift + 4</li>
                     </ul>
                 </li>
             </ol>
         </div>
 
-
-        <!-- Rubric Section -->
+        <!-- Rubric -->
         <div class="section-card">
             <h2>
                 <i class="bi bi-clipboard-check text-primary"></i>
-                Rubric (Aligned to Lesson Tasks)
+                Grading Rubric
             </h2>
-
             <table class="rubric-table">
                 <thead>
                     <tr>
                         <th>Category</th>
-                        <th>What I must show</th>
+                        <th>Requirements</th>
                         <th class="points-col">Points</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Data Acquisition</strong></td>
-                        <td class="rubric-desc">Downloaded countries dataset, uploaded to Colab, and previewed with <code>df.head()</code></td>
+                        <td><strong>Data Loading</strong></td>
+                        <td>Successfully uploaded and loaded population.csv</td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
-                        <td><strong>Python + Pandas</strong></td>
-                        <td class="rubric-desc">Successfully loaded data into Pandas DataFrame and used <code>nlargest()</code> or similar to select data</td>
+                        <td><strong>Data Filtering</strong></td>
+                        <td>Filtered for 2018 and got top 10 countries</td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
-                        <td><strong>Matplotlib Chart</strong></td>
-                        <td class="rubric-desc">Created a bar chart that displays correctly showing population data</td>
-                        <td class="points-col">25</td>
+                        <td><strong>Basic Chart</strong></td>
+                        <td>Created a working bar chart</td>
+                        <td class="points-col">20</td>
                     </tr>
                     <tr>
                         <td><strong>Customization</strong></td>
-                        <td class="rubric-desc">Custom bar color + at least one style change (edgecolor, grid, background, title color/style, etc.)</td>
-                        <td class="points-col">15</td>
+                        <td>Custom colors, edge colors, and value labels on bars</td>
+                        <td class="points-col">20</td>
                     </tr>
                     <tr>
-                        <td><strong>Labels & Title</strong></td>
-                        <td class="rubric-desc">Clear axis labels and chart title</td>
+                        <td><strong>Labels</strong></td>
+                        <td>Title, X-axis label, Y-axis label all present</td>
                         <td class="points-col">10</td>
                     </tr>
                     <tr>
-                        <td><strong>Submission</strong></td>
-                        <td class="rubric-desc">Screenshot clearly shows chart and customizations</td>
+                        <td><strong>Screenshot</strong></td>
+                        <td>Clear screenshot submitted to Schoology</td>
                         <td class="points-col">10</td>
                     </tr>
                     <tr>
@@ -488,7 +465,7 @@ plt.show()</code></pre>
 
         <!-- Footer -->
         <div class="text-center" style="padding: 20px 0; opacity: 0.7;">
-            <small>8th Grade Data Science Practice · Pandas · Matplotlib · Kaggle · Google Colab</small>
+            <small>Data Science with Python · Google Colab · Pandas · Matplotlib</small>
         </div>
     </div>
 </body>
