@@ -280,8 +280,9 @@
         <div class="success-box">
             <h3>✅ Success Checklist (Match the Rubric)</h3>
             <ul>
-                <li>I downloaded a real dataset from Kaggle using kagglehub</li>
-                <li>I loaded it into a Pandas DataFrame and previewed it with <code>df.head()</code></li>
+                <li>I downloaded the world population dataset</li>
+                <li>I uploaded it to Google Colab and loaded it into a Pandas DataFrame</li>
+                <li>I previewed the data with <code>df.head()</code></li>
                 <li>I created a line chart using Matplotlib showing year vs population</li>
                 <li>I customized the line color AND added at least one more style (marker, grid, background, or title color)</li>
                 <li>I added clear labels for both X and Y axes</li>
@@ -305,32 +306,35 @@
                 </li>
 
                 <li>
-                    <strong>Download the dataset from Kaggle</strong>
-                    <p>Use kagglehub to download the dataset directly in Colab (no manual download needed!):</p>
-                    <pre><code>import kagglehub
+                    <strong>Download the dataset</strong>
+                    <p>Right-click this link and select "Save Link As..." to download the CSV file:</p>
+                    <p><a href="https://raw.githubusercontent.com/datasets/population/master/data/population.csv" target="_blank" download><strong>World-population-by-countries-dataset.csv</strong></a></p>
+                    <p>Save it to your Downloads folder (or wherever you can easily find it).</p>
+                </li>
 
-# Download latest version
-path = kagglehub.dataset_download("kaggleashwin/population-dataset")
-
-print("Path to dataset files:", path)</code></pre>
-                    <p>Run this cell. You'll see the path where the dataset was downloaded.</p>
+                <li>
+                    <strong>Upload the dataset to Colab</strong>
+                    <p>In your Colab notebook, run this code to upload the CSV file:</p>
+                    <pre><code>from google.colab import files
+uploaded = files.upload()</code></pre>
+                    <p>Click the <strong>Choose Files</strong> button and select your downloaded CSV file.</p>
                     <div class="note-box">
-                        <p><strong><i class="bi bi-magic"></i> Cool!</strong> Kagglehub automatically downloads the dataset for you - no need to manually download and upload files!</p>
+                        <p><strong><i class="bi bi-info-circle"></i> Tip:</strong> The file will upload to Colab's temporary storage. It will stay there for your entire session!</p>
                     </div>
                 </li>
 
                 <li>
                     <strong>Import libraries and load the data</strong>
-                    <p>Now load the data with Pandas (already installed in Colab!):</p>
+                    <p>Pandas and Matplotlib are already installed in Colab! Just import them and load your data:</p>
                     <pre><code>import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv(path + "/population_by_country.csv")
+df = pd.read_csv("population.csv")
 
 # Preview the first 5 rows
 df.head()</code></pre>
-                    <p>Run this cell. You should see a table showing the first 5 rows of data with columns like Country, Year, and Population.</p>
+                    <p>Run this cell. You should see a table showing the first 5 rows of data with columns like Country Name, Year, and Value.</p>
                 </li>
 
                 <li>
@@ -340,11 +344,11 @@ df.head()</code></pre>
 country = "United States"
 
 # Filter data for just this country
-country_data = df[df["Country"] == country]
+country_data = df[df["Country Name"] == country]
 
 # Create the plot
 plt.figure(figsize=(10, 6))
-plt.plot(country_data["Year"], country_data["Population"])
+plt.plot(country_data["Year"], country_data["Value"])
 plt.title(f"Population of {country}")
 plt.xlabel("Year")
 plt.ylabel("Population")
@@ -359,13 +363,13 @@ plt.show()</code></pre>
 country = "United States"
 
 # Filter the data
-country_data = df[df["Country"] == country]
+country_data = df[df["Country Name"] == country]
 
 # Create a customized chart
 plt.figure(figsize=(10, 6), facecolor="lightyellow")
 plt.plot(
     country_data["Year"],
-    country_data["Population"],
+    country_data["Value"],
     color="purple",           # Custom line color
     marker="o",               # Add circle markers
     linewidth=2.5,            # Thicker line
@@ -391,10 +395,10 @@ plt.show()</code></pre>
 # "China", "India", "Brazil", "Mexico", "Japan", "Germany"
 
 country = "China"  # Change this!
-country_data = df[df["Country"] == country]
+country_data = df[df["Country Name"] == country]
 
 plt.figure(figsize=(10, 6))
-plt.plot(country_data["Year"], country_data["Population"],
+plt.plot(country_data["Year"], country_data["Value"],
          color="red", marker="s", linewidth=2.5)
 plt.title(f"Population Growth: {country}", fontsize=16)
 plt.xlabel("Year", fontsize=12)
@@ -430,25 +434,30 @@ plt.show()</code></pre>
             </h2>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: File not found error</h3>
-            <p><strong>Solution:</strong> Make sure the <code>path</code> variable is correct. Try printing it first:</p>
-            <pre><code>print(path)
-print(path + "/population_by_country.csv")</code></pre>
-            <p>If the file has a different name, check what files are in the path:</p>
-            <pre><code>import os
-print(os.listdir(path))</code></pre>
+            <p><strong>Solution:</strong> Make sure you uploaded the file using <code>files.upload()</code> and the filename in your code matches exactly. Check the filename:</p>
+            <pre><code># List uploaded files
+import os
+print(os.listdir())</code></pre>
+            <p>Then use the exact filename you see in the list.</p>
 
-            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Column not found error</h3>
-            <p><strong>Solution:</strong> Run <code>df.columns</code> to see the exact column names in your dataset. The column names must match exactly (including capitalization).</p>
+            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Column not found error (KeyError)</h3>
+            <p><strong>Solution:</strong> The column names must match exactly (including capitalization and spaces). Check your column names:</p>
             <pre><code># Check your column names
 print(df.columns)</code></pre>
+            <p>Look for "Country Name" (not "Country") and "Value" (not "Population").</p>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart doesn't show my country</h3>
-            <p><strong>Solution:</strong> Check the spelling and capitalization. Run this code to see all available countries:</p>
+            <p><strong>Solution:</strong> Check the spelling and capitalization. See all available countries:</p>
             <pre><code># See all available countries
-print(df["Country"].unique())</code></pre>
+print(df["Country Name"].unique())</code></pre>
 
-            <h3><i class="bi bi-lightbulb text-warning"></i> Want to use a different dataset?</h3>
-            <p>You can! Search for datasets on <a href="https://www.kaggle.com/datasets" target="_blank">Kaggle</a> and use kagglehub to download them. Just make sure the dataset has at least two columns of numeric data (like Year and Population, or Date and Temperature).</p>
+            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Empty chart or no data</h3>
+            <p><strong>Solution:</strong> Make sure your filtered data has rows. Check how many rows you have:</p>
+            <pre><code>print(f"Found {len(country_data)} rows for {country}")
+print(country_data.head())</code></pre>
+
+            <h3><i class="bi bi-lightbulb text-warning"></i> Want to explore more datasets?</h3>
+            <p>After you complete this project, you can find thousands of free datasets on <a href="https://www.kaggle.com/datasets" target="_blank">Kaggle</a>! Search for topics like "temperature", "sports statistics", "video games", or "stock prices". Download any CSV file and upload it to Colab to practice your visualization skills!</p>
         </div>
 
         <!-- Rubric Section -->
@@ -469,12 +478,12 @@ print(df["Country"].unique())</code></pre>
                 <tbody>
                     <tr>
                         <td><strong>Data Acquisition</strong></td>
-                        <td class="rubric-desc">Downloaded dataset from Kaggle using kagglehub and previewed with <code>df.head()</code></td>
+                        <td class="rubric-desc">Downloaded population dataset, uploaded to Colab, and previewed with <code>df.head()</code></td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
                         <td><strong>Python + Pandas</strong></td>
-                        <td class="rubric-desc">Loaded data into Pandas DataFrame and filtered data for a specific country correctly</td>
+                        <td class="rubric-desc">Successfully loaded data into Pandas DataFrame and filtered data for a specific country</td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
