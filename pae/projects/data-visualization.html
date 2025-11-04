@@ -266,12 +266,13 @@
                 <i class="bi bi-trophy text-warning"></i>
                 Learning Goal
             </h2>
-            <p><strong>Use real-world data</strong> in Google Colab to create a chart with:</p>
+            <p><strong>Use real-world data</strong> in Google Colab to create a professional chart with:</p>
             <ul>
-                <li>Data downloaded from Kaggle</li>
-                <li>Pandas for data loading</li>
-                <li>Matplotlib for plotting</li>
-                <li>Custom colors and axis labels</li>
+                <li>Real dataset loaded from Kaggle</li>
+                <li>Pandas for data manipulation</li>
+                <li>Matplotlib for creating visualizations</li>
+                <li>Custom colors, markers, and styling</li>
+                <li>Professional labels and titles</li>
             </ul>
         </div>
 
@@ -279,12 +280,13 @@
         <div class="success-box">
             <h3>✅ Success Checklist (Match the Rubric)</h3>
             <ul>
-                <li>I downloaded a real dataset</li>
-                <li>I loaded it into Pandas and previewed it</li>
-                <li>I made a chart using Matplotlib</li>
-                <li>I changed the line color and one more style (marker, background, grid, title color, etc.)</li>
-                <li>I labeled both axes and added a title</li>
-                <li>I took a screenshot showing my chart</li>
+                <li>I found and downloaded a real dataset from Kaggle</li>
+                <li>I loaded it into a Pandas DataFrame and previewed it with <code>df.head()</code></li>
+                <li>I created a line chart using Matplotlib showing year vs population</li>
+                <li>I customized the line color AND added at least one more style (marker, grid, background, or title color)</li>
+                <li>I added clear labels for both X and Y axes</li>
+                <li>I added a descriptive chart title</li>
+                <li>I took a screenshot showing my final customized chart</li>
             </ul>
         </div>
 
@@ -297,92 +299,154 @@
 
             <ol class="steps-list">
                 <li>
-                    <strong>Open Colab</strong>
-                    <p>Go to <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a></p>
+                    <strong>Create a new Google Colab notebook</strong>
+                    <p>Go to <a href="https://colab.research.google.com" target="_blank">colab.research.google.com</a> and click <strong>+ New Notebook</strong></p>
+                    <p>Rename your notebook to "Data_Visualization_Practice"</p>
                 </li>
 
                 <li>
-                    <strong>Install Kaggle tool</strong>
-                    <pre><code>!pip install kaggle</code></pre>
-                </li>
-
-                <li>
-                    <strong>Upload Kaggle API key</strong>
-                    <p>Download from Kaggle → Settings → Create API Token</p>
-                    <pre><code>from google.colab import files
-files.upload()</code></pre>
-
-                    <pre><code>!mkdir -p ~/.kaggle
-!cp kaggle.json ~/.kaggle/
-!chmod 600 ~/.kaggle/kaggle.json</code></pre>
-
+                    <strong>Find a dataset on Kaggle</strong>
+                    <p>Go to <a href="https://www.kaggle.com/datasets" target="_blank">kaggle.com/datasets</a> and search for "world population"</p>
+                    <p>Find the dataset: <strong>World Population (1960-2021)</strong> by tanmoyxd</p>
+                    <p>Click the <strong>Download</strong> button to save the <code>world_population.csv</code> file to your computer</p>
                     <div class="note-box">
-                        <p><strong><i class="bi bi-exclamation-triangle"></i> Note:</strong> If this doesn't work, scroll to the "Manual Upload Backup" below.</p>
+                        <p><strong><i class="bi bi-info-circle"></i> Note:</strong> You may need to create a free Kaggle account to download datasets.</p>
                     </div>
                 </li>
 
                 <li>
-                    <strong>Download dataset</strong>
-                    <pre><code>!kaggle datasets download -d tanmoyxd/world-population-19602021
-!unzip -o world-population-19602021.zip</code></pre>
+                    <strong>Upload the dataset to Colab</strong>
+                    <p>In your Colab notebook, run this code to upload the CSV file:</p>
+                    <pre><code>from google.colab import files
+uploaded = files.upload()</code></pre>
+                    <p>Click the <strong>Choose Files</strong> button and select your <code>world_population.csv</code> file</p>
                 </li>
 
                 <li>
-                    <strong>Load and preview data</strong>
+                    <strong>Import libraries and load the data</strong>
+                    <p>Pandas and Matplotlib are already installed in Colab! Just import them:</p>
                     <pre><code>import pandas as pd
 import matplotlib.pyplot as plt
 
+# Load the CSV file into a DataFrame
 df = pd.read_csv("world_population.csv")
+
+# Preview the first 5 rows
 df.head()</code></pre>
+                    <p>Run this cell. You should see a table showing the first 5 rows of data with columns like Country, Year, and Population.</p>
                 </li>
 
                 <li>
-                    <strong>Plot one country's population</strong>
-                    <pre><code>country = "United States"
+                    <strong>Create a basic chart for one country</strong>
+                    <p>Let's plot the population of the United States over time:</p>
+                    <pre><code># Choose a country
+country = "United States"
 
-data = df[df["Country"] == country]
+# Filter data for just this country
+country_data = df[df["Country"] == country]
 
-plt.figure()
-plt.plot(data["Year"], data["Population"], marker="o", linewidth=2)
+# Create the plot
+plt.figure(figsize=(10, 6))
+plt.plot(country_data["Year"], country_data["Population"])
 plt.title(f"Population of {country}")
 plt.xlabel("Year")
 plt.ylabel("Population")
 plt.show()</code></pre>
+                    <p>You should see a basic line chart showing population growth!</p>
                 </li>
 
                 <li>
-                    <strong>Customize your chart (Required)</strong>
-                    <pre><code>plt.figure(facecolor="lightyellow")
+                    <strong>Customize your chart with colors and styles (REQUIRED for full points)</strong>
+                    <p>Now make your chart look professional with custom styling:</p>
+                    <pre><code># Choose your country
+country = "United States"
+
+# Filter the data
+country_data = df[df["Country"] == country]
+
+# Create a customized chart
+plt.figure(figsize=(10, 6), facecolor="lightyellow")
 plt.plot(
-    data["Year"], data["Population"],
-    color="purple", marker="s", linewidth=3
+    country_data["Year"],
+    country_data["Population"],
+    color="purple",           # Custom line color
+    marker="o",               # Add circle markers
+    linewidth=2.5,            # Thicker line
+    markersize=5              # Marker size
 )
 
-plt.title(f"Population of {country}", color="darkblue")
-plt.xlabel("Year")
-plt.ylabel("Population")
+plt.title(f"Population Growth: {country}", fontsize=16, color="darkblue")
+plt.xlabel("Year", fontsize=12)
+plt.ylabel("Population", fontsize=12)
+plt.grid(True, linestyle="--", alpha=0.5)  # Add grid
+plt.tight_layout()
+plt.show()</code></pre>
+
+                    <div class="note-box">
+                        <p><strong><i class="bi bi-star-fill"></i> Customization Ideas:</strong> Try changing <code>color</code> to "red", "green", "orange", etc. Change <code>marker</code> to "s" (square), "^" (triangle), or "D" (diamond). Change <code>facecolor</code> to "lightblue" or "lightgray".</p>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Try different countries (Optional but fun!)</strong>
+                    <p>Change the <code>country</code> variable to compare different countries:</p>
+                    <pre><code># Try these countries:
+# "China", "India", "Brazil", "Mexico", "Japan", "Germany"
+
+country = "China"  # Change this!
+country_data = df[df["Country"] == country]
+
+plt.figure(figsize=(10, 6))
+plt.plot(country_data["Year"], country_data["Population"],
+         color="red", marker="s", linewidth=2.5)
+plt.title(f"Population Growth: {country}", fontsize=16)
+plt.xlabel("Year", fontsize=12)
+plt.ylabel("Population", fontsize=12)
 plt.grid(True)
 plt.show()</code></pre>
                 </li>
 
                 <li>
-                    <strong>Take a screenshot & submit to Schoology</strong>
-                    <p>Make sure screenshot shows: your chart, custom color, axis labels, title</p>
+                    <strong>Take a screenshot and submit to Schoology</strong>
+                    <p>Make sure your screenshot clearly shows:</p>
+                    <ul>
+                        <li>Your customized chart with a custom color</li>
+                        <li>At least one additional style (marker, grid, background color, or colored title)</li>
+                        <li>Clear axis labels (X and Y)</li>
+                        <li>A descriptive title</li>
+                    </ul>
+                    <p><strong>How to screenshot:</strong></p>
+                    <ul>
+                        <li><strong>Chromebook:</strong> Press Ctrl + Show Windows key (or Ctrl + F5), then click and drag</li>
+                        <li><strong>Windows:</strong> Press Windows + Shift + S</li>
+                        <li><strong>Mac:</strong> Press Cmd + Shift + 4, then drag to select</li>
+                    </ul>
                 </li>
             </ol>
         </div>
 
-        <!-- Backup Section -->
+        <!-- Troubleshooting Section -->
         <div class="backup-section">
             <h2>
-                <i class="bi bi-arrow-repeat"></i>
-                Manual Upload Backup (if Kaggle fails)
+                <i class="bi bi-question-circle"></i>
+                Troubleshooting Common Issues
             </h2>
-            <pre><code>from google.colab import files
-up = files.upload()
 
-df = pd.read_csv(next(iter(up.keys())))
-df.head()</code></pre>
+            <h3><i class="bi bi-x-circle text-danger"></i> Problem: File not found error</h3>
+            <p><strong>Solution:</strong> Make sure you uploaded the file using <code>files.upload()</code> and the filename matches exactly (check for spaces or capital letters).</p>
+
+            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Column not found error</h3>
+            <p><strong>Solution:</strong> Run <code>df.columns</code> to see the exact column names in your dataset. The column names must match exactly (including capitalization).</p>
+            <pre><code># Check your column names
+print(df.columns)</code></pre>
+
+            <h3><i class="bi bi-x-circle text-danger"></i> Problem: Chart doesn't show my country</h3>
+            <p><strong>Solution:</strong> Check the spelling and capitalization. Run this code to see all available countries:</p>
+            <pre><code># See all available countries
+print(df["Country"].unique())</code></pre>
+
+            <h3><i class="bi bi-lightbulb text-warning"></i> Want to use a different dataset?</h3>
+            <p>You can! Just make sure it has at least two columns of data (like Year and Population, or Date and Temperature). Download it from Kaggle, upload to Colab, and adjust the column names in your code.</p>
         </div>
 
         <!-- Rubric Section -->
