@@ -280,9 +280,9 @@
         <div class="success-box">
             <h3>✅ Success Checklist (Match the Rubric)</h3>
             <ul>
-                <li>I downloaded the countries dataset</li>
+                <li>I downloaded the World population dataset</li>
                 <li>I uploaded it to Google Colab and loaded it into a Pandas DataFrame</li>
-                <li>I previewed the data with <code>df.head()</code></li>
+                <li>I checked my column names with <code>df.columns</code> and previewed data with <code>df.head()</code></li>
                 <li>I created a bar chart using Matplotlib showing population data</li>
                 <li>I customized the bar color AND added at least one more style (edgecolor, grid, background, or title color)</li>
                 <li>I added clear labels for both X and Y axes</li>
@@ -342,40 +342,66 @@ df.head()</code></pre>
 
                 <li>
                     <strong>Create a basic bar chart</strong>
-                    <p>This dataset has columns for each year (like "2022", "2020", etc). Let's visualize the top 10 countries by 2022 population:</p>
-                    <pre><code># Get top 10 countries by 2022 population
-# Note: Replace "2022" with whatever recent year column you see!
-top10 = df.nlargest(10, '2022')
+                    <p>First, let's see what columns we actually have. The dataset might have 'Year' and 'Value' columns OR year columns like '2022'. Check your columns first:</p>
+                    <pre><code># IMPORTANT: Check your actual column names!
+print("Columns in your dataset:")
+print(df.columns.tolist())
+print("\nFirst few rows:")
+print(df.head())</code></pre>
 
-# Create the plot
+                    <p><strong>Option A:</strong> If you see columns like 'Country Name', 'Year', 'Value':</p>
+                    <pre><code># Filter for most recent year
+latest_data = df[df['Year'] == df['Year'].max()]
+top10 = latest_data.nlargest(10, 'Value')
+
 plt.figure(figsize=(10, 6))
-plt.bar(top10['Country/Territory'], top10['2022'])
-plt.title("Top 10 Countries by Population (2022)")
+plt.bar(top10['Country Name'], top10['Value'])
+plt.title(f"Top 10 Countries by Population ({df['Year'].max()})")
 plt.xlabel("Country")
 plt.ylabel("Population")
-plt.xticks(rotation=45, ha='right')  # Rotate labels so they don't overlap
+plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()</code></pre>
-                    <p>You should see a bar chart showing the 10 most populous countries!</p>
+
+                    <p><strong>Option B:</strong> If you see columns like 'Country/Territory' and year columns (numbers):</p>
+                    <pre><code># Find the last numeric column (most recent year)
+year_cols = [col for col in df.columns if col.replace('.','').isdigit()]
+if year_cols:
+    latest_year = year_cols[-1]
+    top10 = df.nlargest(10, latest_year)
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(top10.iloc[:, 0], top10[latest_year])  # First column is country
+    plt.title(f"Top 10 Countries by Population")
+    plt.xlabel("Country")
+    plt.ylabel("Population")
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.show()
+else:
+    print("Could not find year columns!")</code></pre>
                 </li>
 
                 <li>
                     <strong>Customize your chart with colors and styles (REQUIRED for full points)</strong>
-                    <p>Now make your chart look professional with custom styling:</p>
-                    <pre><code># Get top 10 countries by 2022 population
-top10 = df.nlargest(10, '2022')
+                    <p>Now make your chart look professional with custom styling. Use the same approach as Step 5, but add customizations:</p>
+
+                    <p><strong>For Option A data (Year/Value columns):</strong></p>
+                    <pre><code># Get latest year data
+latest_data = df[df['Year'] == df['Year'].max()]
+top10 = latest_data.nlargest(10, 'Value')
 
 # Create a customized chart
 plt.figure(figsize=(12, 6), facecolor="lightyellow")  # Background color
 plt.bar(
-    top10['Country/Territory'],
-    top10['2022'],
+    top10['Country Name'],
+    top10['Value'],
     color='purple',           # Custom bar color
     edgecolor='darkblue',     # Border color
     linewidth=2               # Border thickness
 )
 
-plt.title("Top 10 Countries by Population (2022)", fontsize=18, color="darkblue", fontweight='bold')
+plt.title(f"Top 10 Countries by Population ({df['Year'].max()})", fontsize=18, color="darkblue", fontweight='bold')
 plt.xlabel("Country", fontsize=14)
 plt.ylabel("Population", fontsize=14)
 plt.xticks(rotation=45, ha='right')
@@ -383,31 +409,39 @@ plt.grid(True, axis='y', linestyle="--", alpha=0.5)  # Add horizontal grid
 plt.tight_layout()
 plt.show()</code></pre>
 
+                    <p><strong>For Option B data (year columns):</strong></p>
+                    <pre><code># Use the most recent year column
+year_cols = [col for col in df.columns if col.replace('.','').isdigit()]
+latest_year = year_cols[-1] if year_cols else None
+
+if latest_year:
+    top10 = df.nlargest(10, latest_year)
+
+    plt.figure(figsize=(12, 6), facecolor="lightyellow")
+    plt.bar(
+        top10.iloc[:, 0],  # Country column
+        top10[latest_year],
+        color='purple',
+        edgecolor='darkblue',
+        linewidth=2
+    )
+
+    plt.title(f"Top 10 Countries by Population", fontsize=18, color="darkblue", fontweight='bold')
+    plt.xlabel("Country", fontsize=14)
+    plt.ylabel("Population", fontsize=14)
+    plt.xticks(rotation=45, ha='right')
+    plt.grid(True, axis='y', linestyle="--", alpha=0.5)
+    plt.tight_layout()
+    plt.show()</code></pre>
+
                     <div class="note-box">
                         <p><strong><i class="bi bi-star-fill"></i> Customization Ideas:</strong> Try changing <code>color</code> to "red", "green", "orange", "teal", etc. Change <code>facecolor</code> to "lightblue" or "lightpink". Try different <code>edgecolor</code> options!</p>
                     </div>
                 </li>
 
                 <li>
-                    <strong>Try different years (Optional but fun!)</strong>
-                    <p>Compare population across different years:</p>
-                    <pre><code># Compare 2022 vs 2000 for top 5 countries
-top5 = df.nlargest(5, '2022')
-
-x = range(len(top5))
-width = 0.35
-
-plt.figure(figsize=(12, 6))
-plt.bar([i - width/2 for i in x], top5['2000'], width, label='2000', color='lightblue')
-plt.bar([i + width/2 for i in x], top5['2022'], width, label='2022', color='darkblue')
-
-plt.xlabel('Country')
-plt.ylabel('Population')
-plt.title('Population Growth: 2000 vs 2022')
-plt.xticks(x, top5['Country/Territory'], rotation=45, ha='right')
-plt.legend()
-plt.tight_layout()
-plt.show()</code></pre>
+                    <strong>Explore the data further (Optional but fun!)</strong>
+                    <p>Try creating different types of visualizations with your data!</p>
                 </li>
 
                 <li>
