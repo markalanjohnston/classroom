@@ -280,7 +280,7 @@
         <div class="success-box">
             <h3>✅ Success Checklist (Match the Rubric)</h3>
             <ul>
-                <li>I found and downloaded a real dataset from Kaggle</li>
+                <li>I downloaded a real dataset from Kaggle using kagglehub</li>
                 <li>I loaded it into a Pandas DataFrame and previewed it with <code>df.head()</code></li>
                 <li>I created a line chart using Matplotlib showing year vs population</li>
                 <li>I customized the line color AND added at least one more style (marker, grid, background, or title color)</li>
@@ -305,31 +305,28 @@
                 </li>
 
                 <li>
-                    <strong>Find a dataset on Kaggle</strong>
-                    <p>Go to <a href="https://www.kaggle.com/datasets" target="_blank">kaggle.com/datasets</a> and search for "world population"</p>
-                    <p>Find the dataset: <strong>World Population (1960-2021)</strong> by tanmoyxd</p>
-                    <p>Click the <strong>Download</strong> button to save the <code>world_population.csv</code> file to your computer</p>
+                    <strong>Download the dataset from Kaggle</strong>
+                    <p>Use kagglehub to download the dataset directly in Colab (no manual download needed!):</p>
+                    <pre><code>import kagglehub
+
+# Download latest version
+path = kagglehub.dataset_download("kaggleashwin/population-dataset")
+
+print("Path to dataset files:", path)</code></pre>
+                    <p>Run this cell. You'll see the path where the dataset was downloaded.</p>
                     <div class="note-box">
-                        <p><strong><i class="bi bi-info-circle"></i> Note:</strong> You may need to create a free Kaggle account to download datasets.</p>
+                        <p><strong><i class="bi bi-magic"></i> Cool!</strong> Kagglehub automatically downloads the dataset for you - no need to manually download and upload files!</p>
                     </div>
                 </li>
 
                 <li>
-                    <strong>Upload the dataset to Colab</strong>
-                    <p>In your Colab notebook, run this code to upload the CSV file:</p>
-                    <pre><code>from google.colab import files
-uploaded = files.upload()</code></pre>
-                    <p>Click the <strong>Choose Files</strong> button and select your <code>world_population.csv</code> file</p>
-                </li>
-
-                <li>
                     <strong>Import libraries and load the data</strong>
-                    <p>Pandas and Matplotlib are already installed in Colab! Just import them:</p>
+                    <p>Now load the data with Pandas (already installed in Colab!):</p>
                     <pre><code>import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the CSV file into a DataFrame
-df = pd.read_csv("world_population.csv")
+df = pd.read_csv(path + "/population_by_country.csv")
 
 # Preview the first 5 rows
 df.head()</code></pre>
@@ -433,7 +430,12 @@ plt.show()</code></pre>
             </h2>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: File not found error</h3>
-            <p><strong>Solution:</strong> Make sure you uploaded the file using <code>files.upload()</code> and the filename matches exactly (check for spaces or capital letters).</p>
+            <p><strong>Solution:</strong> Make sure the <code>path</code> variable is correct. Try printing it first:</p>
+            <pre><code>print(path)
+print(path + "/population_by_country.csv")</code></pre>
+            <p>If the file has a different name, check what files are in the path:</p>
+            <pre><code>import os
+print(os.listdir(path))</code></pre>
 
             <h3><i class="bi bi-x-circle text-danger"></i> Problem: Column not found error</h3>
             <p><strong>Solution:</strong> Run <code>df.columns</code> to see the exact column names in your dataset. The column names must match exactly (including capitalization).</p>
@@ -446,7 +448,7 @@ print(df.columns)</code></pre>
 print(df["Country"].unique())</code></pre>
 
             <h3><i class="bi bi-lightbulb text-warning"></i> Want to use a different dataset?</h3>
-            <p>You can! Just make sure it has at least two columns of data (like Year and Population, or Date and Temperature). Download it from Kaggle, upload to Colab, and adjust the column names in your code.</p>
+            <p>You can! Search for datasets on <a href="https://www.kaggle.com/datasets" target="_blank">Kaggle</a> and use kagglehub to download them. Just make sure the dataset has at least two columns of numeric data (like Year and Population, or Date and Temperature).</p>
         </div>
 
         <!-- Rubric Section -->
@@ -467,12 +469,12 @@ print(df["Country"].unique())</code></pre>
                 <tbody>
                     <tr>
                         <td><strong>Data Acquisition</strong></td>
-                        <td class="rubric-desc">Imported dataset from Kaggle or manually uploaded CSV and previewed with <code>df.head()</code></td>
+                        <td class="rubric-desc">Downloaded dataset from Kaggle using kagglehub and previewed with <code>df.head()</code></td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
                         <td><strong>Python + Pandas</strong></td>
-                        <td class="rubric-desc">Loaded data into Pandas and selected a country correctly</td>
+                        <td class="rubric-desc">Loaded data into Pandas DataFrame and filtered data for a specific country correctly</td>
                         <td class="points-col">20</td>
                     </tr>
                     <tr>
