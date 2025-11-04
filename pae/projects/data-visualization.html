@@ -10,55 +10,74 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../css/styles.css">
     <style>
-        .project-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .info-box {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        .info-box h5 {
-            color: #495057;
-            margin-bottom: 10px;
-        }
-
-        .step {
+        /* White background sections with better contrast */
+        .section-card {
             background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 25px;
             margin: 20px 0;
-            transition: all 0.3s ease;
         }
 
-        .step:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        .section-card h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .step p:first-of-type {
-            color: #6c757d;
-            font-style: italic;
-            margin-bottom: 15px;
+        .section-card h2 i {
+            color: #667eea;
         }
 
+        /* Info boxes within cards */
+        .info-list {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .info-list li {
+            margin: 8px 0;
+            color: #495057;
+        }
+
+        /* Step content */
+        .step-content {
+            margin-top: 20px;
+        }
+
+        .step-content p {
+            color: #495057;
+            line-height: 1.6;
+            margin: 12px 0;
+        }
+
+        .step-content ul {
+            margin: 12px 0;
+            padding-left: 25px;
+        }
+
+        .step-content ul li {
+            margin: 8px 0;
+            color: #495057;
+        }
+
+        .step-content strong {
+            color: #2c3e50;
+        }
+
+        /* Code blocks */
         pre {
             background: #0b1020;
             color: #e6edf3;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 10px;
             overflow-x: auto;
-            margin: 15px 0;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         code {
@@ -66,12 +85,60 @@
             font-size: 0.9rem;
         }
 
-        .success-checklist {
-            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-            border: 2px solid #16a34a;
+        /* Inline code */
+        p code, li code {
+            background: #f1f5f9;
+            color: #667eea;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        /* Alert boxes */
+        .alert {
             border-radius: 10px;
+            border: none;
+            margin: 15px 0;
+            padding: 15px 20px;
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            color: #166534;
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            color: #075985;
+        }
+
+        /* Note box */
+        .note-box {
+            background: white;
+            border: 2px solid #eab308;
+            border-radius: 15px;
             padding: 20px;
             margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(234, 179, 8, 0.1);
+        }
+
+        .note-box strong {
+            color: #92400e;
+        }
+
+        /* Success checklist */
+        .success-checklist {
+            background: white;
+            border: 2px solid #16a34a;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(22, 163, 74, 0.1);
         }
 
         .success-checklist h5 {
@@ -80,18 +147,17 @@
             font-weight: 600;
         }
 
-        .note-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 2px solid #eab308;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+        .success-checklist ul {
+            margin-bottom: 0;
+            padding-left: 25px;
         }
 
-        .note-box strong {
-            color: #92400e;
+        .success-checklist li {
+            color: #166534;
+            margin: 8px 0;
         }
 
+        /* Table styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -99,6 +165,7 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         th, td {
@@ -108,25 +175,45 @@
         }
 
         th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #2c3e50;
             color: white;
             font-weight: 600;
         }
 
-        tr:hover {
+        tbody tr:hover {
             background: #f8f9fa;
         }
 
-        h2 {
-            color: #495057;
-            margin-top: 30px;
-            margin-bottom: 20px;
+        tfoot tr {
+            background: #f1f5f9;
             font-weight: 600;
         }
 
-        h3 {
-            color: #495057;
+        /* Button styling */
+        .btn-warning {
+            background: #eab308;
+            border: none;
+            color: #78350f;
             font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-warning:hover {
+            background: #ca8a04;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(234, 179, 8, 0.3);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-card {
+                padding: 20px 15px;
+            }
+
+            .section-card h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -148,19 +235,19 @@
         </nav>
 
         <!-- Header -->
-        <div class="project-header">
+        <div class="class-header">
             <h1 class="display-5 mb-3">
-                <i class="bi bi-graph-up"></i> Population Data Visualization
+                <i class="bi bi-graph-up text-primary"></i> Population Data Visualization
             </h1>
-            <p class="lead mb-0">
+            <p class="lead text-muted">
                 Learn to work with real-world data using Google Colab, Pandas, and Matplotlib
             </p>
         </div>
 
         <!-- Info Box -->
-        <div class="info-box">
-            <h5><i class="bi bi-list-check"></i> In This Lesson</h5>
-            <ul>
+        <div class="section-card">
+            <h2><i class="bi bi-list-check"></i> In This Lesson</h2>
+            <ul class="info-list">
                 <li>Download population data</li>
                 <li>Upload it into Google Colab</li>
                 <li>Use <b>Pandas</b> to read and prepare the data</li>
@@ -191,61 +278,66 @@
         </div>
 
         <!-- Step 1 -->
-        <h2><i class="bi bi-1-circle-fill"></i> Step 1 — Upload the file to Colab</h2>
-        <div class="step">
-            <p><strong>What's happening here:</strong> Google Colab runs in the cloud, so your files on your computer aren't automatically available. This code creates a button that lets you browse your computer and select a file to upload into Colab's temporary workspace.</p>
+        <div class="section-card">
+            <h2><i class="bi bi-1-circle-fill"></i> Step 1 — Upload the file to Colab</h2>
+            <div class="step-content">
+                <p><strong>What's happening here:</strong> Google Colab runs in the cloud, so your files on your computer aren't automatically available. This code creates a button that lets you browse your computer and select a file to upload into Colab's temporary workspace.</p>
 
-            <p><strong>The code breakdown:</strong></p>
-            <ul>
-                <li><code>from google.colab import files</code> — This imports Google Colab's special file handling tools</li>
-                <li><code>files.upload()</code> — This opens a file browser window on your screen</li>
-            </ul>
+                <p><strong>The code breakdown:</strong></p>
+                <ul>
+                    <li><code>from google.colab import files</code> — This imports Google Colab's special file handling tools</li>
+                    <li><code>files.upload()</code> — This opens a file browser window on your screen</li>
+                </ul>
 
-            <pre><code>from google.colab import files
+                <pre><code>from google.colab import files
 files.upload()</code></pre>
 
-            <p><strong>Action:</strong> When you run this code, click the "Choose Files" button that appears, then select <b>population.csv</b> from your Downloads folder.</p>
+                <p><strong>Action:</strong> When you run this code, click the "Choose Files" button that appears, then select <b>population.csv</b> from your Downloads folder.</p>
 
-            <div class="alert alert-warning mt-2">
-                <i class="bi bi-info-circle"></i> <strong>Note:</strong> Files uploaded to Colab are temporary! They'll disappear when you close your Colab session, so you'll need to re-upload if you come back later.
+                <div class="alert alert-warning">
+                    <i class="bi bi-info-circle"></i> <strong>Note:</strong> Files uploaded to Colab are temporary! They'll disappear when you close your Colab session, so you'll need to re-upload if you come back later.
+                </div>
             </div>
         </div>
 
         <!-- Step 2 -->
-        <h2><i class="bi bi-2-circle-fill"></i> Step 2 — Load the data</h2>
-        <div class="step">
-            <p><strong>What's happening here:</strong> Now that your file is uploaded, we need to load it into Python's memory using specialized tools that can handle large datasets.</p>
+        <div class="section-card">
+            <h2><i class="bi bi-2-circle-fill"></i> Step 2 — Load the data</h2>
+            <div class="step-content">
+                <p><strong>What's happening here:</strong> Now that your file is uploaded, we need to load it into Python's memory using specialized tools that can handle large datasets.</p>
 
-            <p><strong>Understanding the libraries:</strong></p>
-            <ul>
-                <li><strong>Pandas</strong> — A powerful Python library for working with data. Think of it like Excel, but for code! We nickname it <code>pd</code> to save typing.</li>
-                <li><strong>Matplotlib</strong> — A library for creating charts and graphs. We import <code>pyplot</code> (the plotting part) and call it <code>plt</code> for short.</li>
-            </ul>
+                <p><strong>Understanding the libraries:</strong></p>
+                <ul>
+                    <li><strong>Pandas</strong> — A powerful Python library for working with data. Think of it like Excel, but for code! We nickname it <code>pd</code> to save typing.</li>
+                    <li><strong>Matplotlib</strong> — A library for creating charts and graphs. We import <code>pyplot</code> (the plotting part) and call it <code>plt</code> for short.</li>
+                </ul>
 
-            <p><strong>The code breakdown:</strong></p>
-            <ul>
-                <li><code>import pandas as pd</code> — Loads the Pandas library and gives it the shorthand name "pd"</li>
-                <li><code>import matplotlib.pyplot as plt</code> — Loads the charting tools and calls it "plt"</li>
-                <li><code>df = pd.read_csv("population.csv")</code> — This is the magic! It reads your CSV file and creates a <strong>DataFrame</strong> (stored in the variable <code>df</code>)</li>
-                <li><code>df.head()</code> — Shows the first 5 rows of your data so you can see it loaded correctly</li>
-            </ul>
+                <p><strong>The code breakdown:</strong></p>
+                <ul>
+                    <li><code>import pandas as pd</code> — Loads the Pandas library and gives it the shorthand name "pd"</li>
+                    <li><code>import matplotlib.pyplot as plt</code> — Loads the charting tools and calls it "plt"</li>
+                    <li><code>df = pd.read_csv("population.csv")</code> — This is the magic! It reads your CSV file and creates a <strong>DataFrame</strong> (stored in the variable <code>df</code>)</li>
+                    <li><code>df.head()</code> — Shows the first 5 rows of your data so you can see it loaded correctly</li>
+                </ul>
 
-            <div class="alert alert-success mt-2">
-                <i class="bi bi-lightbulb"></i> <strong>What's a DataFrame?</strong> A DataFrame (df for short) is like a spreadsheet inside Python. It has rows and columns, and you can do calculations, sort, filter, and visualize the data. The variable name <code>df</code> is a common convention in data science — you'll see it everywhere!
-            </div>
+                <div class="alert alert-success">
+                    <i class="bi bi-lightbulb"></i> <strong>What's a DataFrame?</strong> A DataFrame (df for short) is like a spreadsheet inside Python. It has rows and columns, and you can do calculations, sort, filter, and visualize the data. The variable name <code>df</code> is a common convention in data science — you'll see it everywhere!
+                </div>
 
-            <pre><code>import pandas as pd
+                <pre><code>import pandas as pd
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("population.csv")
 df.head()  # Shows the first few rows so we know it loaded</code></pre>
 
-            <p><strong>What you'll see:</strong> After running this, you should see a table showing the first 5 rows of population data with countries and years as columns.</p>
+                <p><strong>What you'll see:</strong> After running this, you should see a table showing the first 5 rows of population data with countries and years as columns.</p>
+            </div>
         </div>
 
         <!-- Step 3 -->
-        <h2><i class="bi bi-3-circle-fill"></i> Step 3 — Reshape the data + plot a country</h2>
-        <div class="step">
+        <div class="section-card">
+            <h2><i class="bi bi-3-circle-fill"></i> Step 3 — Reshape the data + plot a country</h2>
+            <div class="step-content">
             <p><strong>What's happening here:</strong> This is where things get interesting! We're going to transform our data and create our first chart.</p>
 
             <p><strong>Understanding "Wide" vs "Long" format:</strong></p>
@@ -254,7 +346,7 @@ df.head()  # Shows the first few rows so we know it loaded</code></pre>
                 <li><strong>Long format</strong> — What we need: three simple columns (Country, Year, Population). This makes graphing easy!</li>
             </ul>
 
-            <div class="alert alert-info mt-2">
+                <div class="alert alert-info">
                 <i class="bi bi-arrow-left-right"></i> <strong>Why reshape?</strong> Imagine trying to graph 60+ columns (one per year). Instead, we "melt" the data so we have one column for Year and one for Population. Now we can easily plot Year on the X-axis and Population on the Y-axis!
             </div>
 
@@ -319,12 +411,14 @@ ax.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 plt.grid(True)
 plt.show()</code></pre>
 
-            <p><strong>What you'll see:</strong> A blue line chart showing how your chosen country's population changed over time. Each point represents one year!</p>
+                <p><strong>What you'll see:</strong> A blue line chart showing how your chosen country's population changed over time. Each point represents one year!</p>
+            </div>
         </div>
 
         <!-- Step 4 -->
-        <h2><i class="bi bi-4-circle-fill"></i> Step 4 — Style your graph (Required)</h2>
-        <div class="step">
+        <div class="section-card">
+            <h2><i class="bi bi-4-circle-fill"></i> Step 4 — Style your graph (Required)</h2>
+            <div class="step-content">
             <p><strong>What's happening here:</strong> Now let's make your chart unique! Data visualization isn't just about showing data — it's about making it clear, engaging, and visually appealing.</p>
 
             <p><strong>Why customize?</strong> Professional charts stand out because of thoughtful design choices. Colors can emphasize trends, markers make data points easier to see, and styling can match your presentation theme or brand.</p>
@@ -342,14 +436,14 @@ plt.show()</code></pre>
                         <li><code>"*"</code> = star</li>
                         <li><code>"x"</code> = x marks</li>
                     </ul>
-                </li>
-                <li><code>linewidth=3</code> — Makes the line thicker (default is 2) so it's more prominent</li>
-                <li><code>color="darkblue"</code> in title — Changes just the title text color to stand out</li>
-            </ul>
+                    </li>
+                    <li><code>linewidth=3</code> — Makes the line thicker (default is 2) so it's more prominent</li>
+                    <li><code>color="darkblue"</code> in title — Changes just the title text color to stand out</li>
+                </ul>
 
-            <div class="alert alert-warning mt-2">
-                <i class="bi bi-palette"></i> <strong>Your turn to experiment!</strong> Change the colors and markers to create your own unique style. This customization is <strong>required</strong> for full credit — don't leave it as the default blue!
-            </div>
+                <div class="alert alert-warning">
+                    <i class="bi bi-palette"></i> <strong>Your turn to experiment!</strong> Change the colors and markers to create your own unique style. This customization is <strong>required</strong> for full credit — don't leave it as the default blue!
+                </div>
 
             <p><strong>Color options:</strong></p>
             <ul>
@@ -375,12 +469,14 @@ ax.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 plt.grid(True)
 plt.show()</code></pre>
 
-            <p><strong>Challenge yourself:</strong> Try different combinations! Maybe a red line with star markers on a light blue background? Get creative and make it your own!</p>
+                <p><strong>Challenge yourself:</strong> Try different combinations! Maybe a red line with star markers on a light blue background? Get creative and make it your own!</p>
+            </div>
         </div>
 
         <!-- Step 5 -->
-        <h2><i class="bi bi-5-circle-fill"></i> Step 5 — Screenshot and submit</h2>
-        <div class="step">
+        <div class="section-card">
+            <h2><i class="bi bi-5-circle-fill"></i> Step 5 — Screenshot and submit</h2>
+            <div class="step-content">
             <p><strong>What's happening here:</strong> Time to show off your work! You'll capture your customized chart and submit it for grading.</p>
 
             <p><strong>How to take a screenshot:</strong></p>
@@ -391,8 +487,8 @@ plt.show()</code></pre>
                 <li><strong>Or:</strong> Right-click on the chart in Colab and select "Save image as..."</li>
             </ul>
 
-            <p><strong>Before you submit, verify your chart includes:</strong></p>
-            <div class="alert alert-success mt-2">
+                <p><strong>Before you submit, verify your chart includes:</strong></p>
+                <div class="alert alert-success">
                 <strong><i class="bi bi-check-circle"></i> Submission Checklist:</strong>
                 <ul class="mb-0">
                     <li>✓ Custom color (not the default blue)</li>
@@ -413,18 +509,20 @@ plt.show()</code></pre>
                 <li>Click Submit!</li>
             </ol>
 
-            <div class="alert alert-warning mt-2">
-                <i class="bi bi-exclamation-triangle"></i> <strong>Common mistakes to avoid:</strong>
-                <ul class="mb-0">
-                    <li>Don't submit a screenshot of your code — we want to see the chart itself!</li>
-                    <li>Make sure the entire chart is visible (not cut off)</li>
-                    <li>Ensure your customizations are clearly visible (colors, markers, labels)</li>
-                </ul>
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle"></i> <strong>Common mistakes to avoid:</strong>
+                    <ul class="mb-0">
+                        <li>Don't submit a screenshot of your code — we want to see the chart itself!</li>
+                        <li>Make sure the entire chart is visible (not cut off)</li>
+                        <li>Ensure your customizations are clearly visible (colors, markers, labels)</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <!-- Rubric -->
-        <h2><i class="bi bi-clipboard-check"></i> Rubric</h2>
+        <div class="section-card">
+            <h2><i class="bi bi-clipboard-check"></i> Rubric</h2>
         <table>
             <thead>
                 <tr>
@@ -473,9 +571,10 @@ plt.show()</code></pre>
                 </tr>
             </tfoot>
         </table>
+        </div>
 
         <!-- Footer Note -->
-        <div class="alert alert-info mt-4">
+        <div class="alert alert-info">
             <i class="bi bi-lightbulb"></i> <strong>Tip:</strong> Make sure to customize your chart with unique colors and markers before submitting your screenshot!
         </div>
     </div>
