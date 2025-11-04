@@ -363,12 +363,24 @@ df.head()  # Shows the first few rows so we know it loaded</code></pre>
                     <li><code>data_long.head()</code> — Shows the first 5 rows of the reshaped data so you can see the new format</li>
                 </ul>
 
-                <pre><code># Reshape from wide format to long format
-data_long = df.melt(id_vars=["Country Name", "Country Code"],
-                    var_name="Year",
-                    value_name="Population")
+                <pre><code># First, check what format your data is in
+print("Column names:", df.columns.tolist())
 
-# Convert Year text → number
+# Check if data is already in long format (has Year and Value/Population columns)
+if 'Year' in df.columns:
+    print("Data is already in long format!")
+    data_long = df.copy()
+    # Rename 'Value' to 'Population' if needed
+    if 'Value' in data_long.columns:
+        data_long = data_long.rename(columns={'Value': 'Population'})
+else:
+    print("Data is in wide format, reshaping...")
+    # Reshape from wide format to long format
+    data_long = df.melt(id_vars=["Country Name", "Country Code"],
+                        var_name="Year",
+                        value_name="Population")
+
+# Make sure Year is a number
 data_long["Year"] = pd.to_numeric(data_long["Year"], errors="coerce")
 
 # View the reshaped data
@@ -376,17 +388,8 @@ data_long.head()</code></pre>
 
                 <p><strong>What you'll see:</strong> A table with three main columns: Country Name, Year, and Population. Each row now represents one country in one year!</p>
 
-                <div class="alert alert-warning">
-                    <i class="bi bi-exclamation-triangle"></i> <strong>Troubleshooting:</strong> If the Year column shows <code>NaN</code> (Not a Number) values, it means the year columns in your CSV have extra characters. Add this code to check and fix:
-                    <pre class="mt-2"><code># Check what the Year values look like
-print("Sample Year values:", data_long["Year"].unique()[:5])
-
-# If you see extra spaces or characters, clean them first
-data_long["Year"] = data_long["Year"].str.strip()  # Remove spaces
-data_long["Year"] = pd.to_numeric(data_long["Year"], errors="coerce")
-
-# Verify it worked
-print("After cleaning:", data_long["Year"].unique()[:5])</code></pre>
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i> <strong>Two data formats:</strong> Some CSV files have years as separate columns (wide format), while others already have a Year column (long format). This code automatically detects which format you have and handles it correctly!
                 </div>
             </div>
         </div>
