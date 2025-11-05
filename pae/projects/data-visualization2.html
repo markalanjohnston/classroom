@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Population Data Visualization — Compare 4 Countries</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        .section-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            margin: 20px 0;
+        }
+        pre {
+            background: #0b1020;
+            color: #e6edf3;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', monospace;
+        }
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+{% include navigation.html %}
+
+<div class="main-container">
+
+<nav class="breadcrumb-nav">
+    <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+    <span class="text-white-50 mx-2">/</span>
+    <a href="../" class="text-white">Principles of Applied Engineering</a>
+    <span class="text-white-50 mx-2">/</span>
+    <a href="index.html" class="text-white">Projects</a>
+    <span class="text-white-50 mx-2">/</span>
+    <span class="text-white">Compare Population Trends</span>
+</nav>
+
+<div class="class-header">
+    <h1 class="display-5 mb-3">
+        <i class="bi bi-graph-up text-primary"></i> Comparing Population Growth — 4 Countries
+    </h1>
+    <p class="lead text-muted">
+        Create a multi-line chart showing population trends for any 4 countries you choose.
+    </p>
+</div>
+
+<!-- Intro -->
+<div class="section-card">
+    <h2><i class="bi bi-info-circle text-primary"></i> What You Will Do</h2>
+    <ul class="info-list">
+        <li>Upload the same <b>population.csv</b></li>
+        <li>Load it into Pandas</li>
+        <li>Pick <b>any 4 countries</b></li>
+        <li>Plot all 4 population lines on one chart</li>
+        <li>Add custom colors, markers, labels & legend</li>
+        <li>Submit your screenshot to Schoology</li>
+    </ul>
+</div>
+
+<!-- Step 1 -->
+<div class="section-card">
+    <h2><i class="bi bi-1-circle-fill text-success"></i> Step 1 — Upload the File Again</h2>
+    <p>Files disappear when Colab resets. Re-upload the CSV:</p>
+
+<pre><code>from google.colab import files
+files.upload()</code></pre>
+
+    <div class="alert alert-warning">
+        <b>Choose:</b> <code>population.csv</code> from your downloads.
+    </div>
+</div>
+
+<!-- Step 2 -->
+<div class="section-card">
+    <h2><i class="bi bi-2-circle-fill text-success"></i> Step 2 — Load the Data</h2>
+    <p>This loads the CSV and reads it into a Pandas DataFrame.</p>
+
+<pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("population.csv")
+df.head()</code></pre>
+
+    <div class="alert alert-success">
+        ✅ You should see rows with years and population numbers.
+    </div>
+</div>
+
+<!-- Step 3 -->
+<div class="section-card">
+    <h2><i class="bi bi-3-circle-fill text-success"></i> Step 3 — Rename Column (Cleaner)</h2>
+    <p>We rename “Value” to “Population” so our code is clear.</p>
+
+<pre><code>data_long = df.rename(columns={'Value': 'Population'})
+data_long.head()</code></pre>
+</div>
+
+<!-- Step 4 -->
+<div class="section-card">
+    <h2><i class="bi bi-4-circle-fill text-success"></i> Step 4 — Pick Your 4 Countries</h2>
+    <p>
+        Replace these placeholders with the real country names exactly as they appear in the data.
+    </p>
+
+<pre><code># Replace these country names with actual countries from the file
+countries = [
+    "Country 1",
+    "Country 2",
+    "Country 3",
+    "Country 4"
+]
+
+countries</code></pre>
+
+    <div class="alert alert-info">
+        💡 Tip: Choose VERY different countries for interesting comparisons (ex: India, Nigeria, U.S., Brazil)
+    </div>
+</div>
+
+<!-- Step 5 -->
+<div class="section-card">
+    <h2><i class="bi bi-5-circle-fill text-success"></i> Step 5 — Plot All 4 Lines</h2>
+    <p>This loop repeats the plotting code for each country automatically.</p>
+
+<pre><code>import matplotlib.ticker as ticker
+
+plt.figure(figsize=(12,7), facecolor="white")
+
+for country in countries:
+    data = data_long[data_long["Country Name"] == country]
+
+    if data.empty:
+        print(f"⚠️ '{country}' not found — check spelling.")
+        continue
+
+    plt.plot(
+        data["Year"],
+        data["Population"],
+        marker="o",
+        linewidth=2,
+        label=country
+    )
+
+plt.title("Population Comparison: 4 Countries", color="darkblue")
+plt.xlabel("Year")
+plt.ylabel("Population")
+
+plt.legend()
+plt.grid(True, alpha=0.3)
+
+ax = plt.gca()
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
+
+plt.show()</code></pre>
+
+    <div class="alert alert-warning">
+        ⚠️ If you see a warning, check your spelling and try again.
+    </div>
+</div>
+
+<!-- Step 6 -->
+<div class="section-card">
+    <h2><i class="bi bi-6-circle-fill text-success"></i> Step 6 — Style It (Required)</h2>
+    <p>Edit the plot code above to change:</p>
+    <ul>
+        <li>Line colors</li>
+        <li>Marker shapes</li>
+        <li>Background colors</li>
+        <li>Line thickness</li>
+    </ul>
+
+    <p>Examples:</p>
+
+<pre><code># marker options: "o", "s", "^", "D", "*", "x"
+# color examples: "red", "orange", "#3498DB", "#2ECC71"
+</code></pre>
+
+    <div class="alert alert-success">
+        ✅ You MUST customize your chart for full credit.
+    </div>
+</div>
+<!-- Optional Step -->
+<div class="section-card">
+    <h2><i class="bi bi-lightning-charge-fill text-warning"></i> Optional Challenge — Compare % Growth Instead of Size</h2>
+
+    <p>
+        When you compare a huge country (like China) to a smaller one (like Germany),
+        the smaller country’s line can look flat or “zero” — even when it’s changing!
+    </p>
+
+    <p>
+        To fix this, we can graph <b>percentage change</b> instead of total population.
+        This shows how fast each country grows, not just how big it is.
+    </p>
+
+    <div class="alert alert-info">
+        <strong>Idea:</strong> We start each country at 100%. If a population rises to 120%, that means it grew 20% from the first year.
+    </div>
+
+    <h5>📊 Code — Plot Percent Change</h5>
+
+<pre><code>import matplotlib.ticker as ticker
+
+plt.figure(figsize=(12,7), facecolor="white")
+
+for country in countries:
+    data = data_long[data_long["Country Name"] == country].copy()
+
+    if data.empty:
+        print(f"⚠️ '{country}' not found — check spelling.")
+        continue
+
+    # Calculate percent change relative to first year
+    start_value = data["Population"].iloc[0]
+    data["Percent"] = (data["Population"] / start_value) * 100
+
+    plt.plot(
+        data["Year"],
+        data["Percent"],
+        marker="o",
+        linewidth=2,
+        label=country
+    )
+
+plt.title("Population Change Over Time (Percent Growth)", color="darkblue")
+plt.xlabel("Year")
+plt.ylabel("Population (% of starting value)")
+
+plt.legend()
+plt.grid(True, alpha=0.3)
+
+ax = plt.gca()
+ax.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}%'))
+
+plt.show()</code></pre>
+
+    <div class="alert alert-success">
+        ✅ Now you can see who is growing faster — not just who has the most people.
+    </div>
+
+    <div class="alert alert-warning">
+        ⚠️ This doesn't show total population — it shows growth <em>trend</em>.
+    </div>
+
+    <p><strong>Challenge:</strong> Which country is growing the fastest?</p>
+</div>
+
+<!-- Submission -->
+<div class="section-card">
+    <h2><i class="bi bi-camera-fill text-primary"></i> Step 7 — Screenshot & Submit</h2>
+    <ol>
+        <li>Take a screenshot of your finished chart</li>
+        <li>Turn it in on Schoology</li>
+        <li>Tell me which 4 countries you picked</li>
+    </ol>
+</div>
+
+<!-- Rubric -->
+<div class="section-card">
+    <h2><i class="bi bi-clipboard-check text-primary"></i> Rubric</h2>
+    <table class="table">
+        <tr><th>Requirement</th><th>Points</th></tr>
+        <tr><td>4 real countries used</td><td>20</td></tr>
+        <tr><td>All 4 lines visible</td><td>30</td></tr>
+        <tr><td>Title, axis labels, legend</td><td>30</td></tr>
+        <tr><td>Custom colors & markers</td><td>20</td></tr>
+        <tr><th>Total</th><th>100</th></tr>
+    </table>
+</div>
+
+</div>
+</body>
+</html>
+

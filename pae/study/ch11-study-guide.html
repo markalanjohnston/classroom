@@ -1,0 +1,1385 @@
+---
+---
+<!-- File: classroom/pae/study/ch11-study-guide.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11 Study Guide - PAE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <style>
+        /* Screen styles matching your site theme */
+        .study-guide-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .toolbar-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .toolbar-card .btn {
+            margin: 5px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        .section-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-card h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .vocab-table {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .vocab-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+            padding: 12px;
+        }
+
+        .vocab-table td {
+            padding: 10px;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .page-input {
+            width: 80px;
+            display: inline-block;
+        }
+
+        .badge-page {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+
+        textarea.form-control {
+            min-height: 60px;
+            resize: vertical;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+        }
+
+        textarea.form-control:focus {
+            background: white;
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .form-check-input:checked {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+
+        .save-indicator {
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .save-indicator.saving {
+            color: #ffc107;
+        }
+
+        .save-indicator.saved {
+            color: #28a745;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                font-size: 11pt;
+            }
+
+            .main-container {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .study-guide-content {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .toolbar-card, .breadcrumb-nav, .no-print {
+                display: none !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            h2, h3 {
+                page-break-after: avoid;
+            }
+
+            .section-card {
+                page-break-inside: avoid;
+                border: 1px solid #000;
+                margin-bottom: 15px;
+            }
+
+            textarea.form-control, input.form-control {
+                border: 1px solid #000 !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .vocab-table th {
+                background: #ddd !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .study-guide-content {
+                padding: 20px;
+            }
+
+            .toolbar-card {
+                padding: 15px;
+            }
+
+            .toolbar-card .btn {
+                font-size: 0.875rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include navigation.html %}
+
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav">
+            <a href="../../" class="text-white">
+                <i class="bi bi-house"></i> Home
+            </a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="../" class="text-white">Principles of Applied Engineering</a>
+            <span class="text-white-50 mx-2">/</span>
+            <a href="./" class="text-white">Study Guides</a>
+            <span class="text-white-50 mx-2">/</span>
+            <span class="text-white">Chapter 11</span>
+        </nav>
+
+        <!-- Toolbar -->
+        <div class="toolbar-card no-print">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="h4 mb-3 mb-lg-0">
+                        <i class="bi bi-lightning-charge"></i> Chapter 11: Electrical Engineering
+                    </h2>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <button class="btn btn-light btn-sm" onclick="saveToFile()">
+                        <i class="bi bi-download"></i> Download
+                    </button>
+                    <button class="btn btn-light btn-sm" onclick="loadFromFile()">
+                        <i class="bi bi-upload"></i> Load
+                    </button>
+                    <button class="btn btn-warning btn-sm" onclick="printPDF()">
+                        <i class="bi bi-printer"></i> Print PDF
+                    </button>
+                    <button class="btn btn-outline-light btn-sm" onclick="clearAll()">
+                        <i class="bi bi-trash"></i> Clear
+                    </button>
+                    <div class="save-indicator mt-2">
+                        <span id="saveStatus"><i class="bi bi-check-circle"></i> Auto-saving enabled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden file input -->
+        <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+        <!-- Main Content -->
+        <div class="study-guide-content">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h1 class="display-6">
+                    <i class="bi bi-lightning-charge-fill text-primary"></i>
+                    Chapter 11 Study Guide
+                </h1>
+                <p class="lead text-muted">Electrical Engineering</p>
+            </div>
+
+            <!-- Instructions -->
+            <div class="alert alert-info">
+                <h5 class="alert-heading"><i class="bi bi-info-circle"></i> Instructions</h5>
+                <ul class="mb-0">
+                    <li>A <strong>completed</strong> study guide may be used on the Chapter 11 test</li>
+                    <li>Turn in a fully completed guide for <strong>+10 points</strong> extra (up to 100 points max)</li>
+                    <li>Open book does not mean easy - use this guide to make your own notes</li>
+                    <li class="no-print text-primary">Your work auto-saves to your browser</li>
+                </ul>
+            </div>
+
+            <!-- Student Info -->
+            <div class="info-card">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Name:</label>
+                        <input type="text" class="form-control" data-save="student-name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Class Period:</label>
+                        <select class="form-select" data-save="student-class">
+                            <option value="">Select...</option>
+                            <option value="3">Period 3</option>
+                            <option value="4">Period 4</option>
+                            <option value="6">Period 6</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Date:</label>
+                        <input type="date" class="form-control" data-save="student-date">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: Key Terms -->
+            <div class="section-card">
+                <h3><i class="bi bi-book"></i> Section 1: Key Terms</h3>
+                <p class="text-muted small mb-3">Write the page number, define in your own words, and create a flashcard idea</p>
+
+                <div class="table-responsive">
+                    <table class="table vocab-table">
+                        <thead>
+                            <tr>
+                                <th width="22%">Term</th>
+                                <th width="8%">Page</th>
+                                <th width="35%">Your Definition</th>
+                                <th width="35%">Flashcard Idea</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>electricity</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-electricity-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-electricity-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Front/Back" data-save="term-electricity-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>electrical engineering</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-eleceng-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-eleceng-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-eleceng-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>atoms</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-atoms-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-atoms-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-atoms-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>valence shell</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-valence-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-valence-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-valence-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>conductors</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-conductors-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-conductors-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-conductors-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>insulators</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-insulators-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-insulators-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-insulators-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>semiconductors</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-semiconductors-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-semiconductors-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-semiconductors-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>static electricity</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-static-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-static-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-static-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>generators</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-generators-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-generators-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-generators-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>primary cells</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-primary-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-primary-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-primary-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>secondary cells</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-secondary-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-secondary-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-secondary-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>voltage</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-voltage-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-voltage-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-voltage-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>current</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-current-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-current-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-current-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>resistance</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-resistance-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-resistance-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-resistance-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>wattage (power)</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-wattage-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-wattage-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-wattage-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>series circuit</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-series-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-series-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-series-flash"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>parallel circuit</strong></td>
+                                <td><input type="text" class="form-control form-control-sm page-input" data-save="term-parallel-page"></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-parallel-def"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" data-save="term-parallel-flash"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 2: Electricity Basics -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-atom"></i> Section 2: Electricity Basics</h3>
+                <p class="text-muted small mb-3">Understand the fundamentals of electricity</p>
+
+                <div class="info-card">
+                    <h5>Atoms and Electricity
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="atoms-page"></span>
+                    </h5>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">What is electricity?</label>
+                        <textarea class="form-control" rows="2" placeholder="Flow of electrons..." data-save="what-electricity"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">What is the valence shell?</label>
+                        <textarea class="form-control" rows="2" placeholder="Outer shell of an atom" data-save="valence-shell"></textarea>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h5>Conductors vs. Insulators
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="conductors-page"></span>
+                    </h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="50%">Conductors (Good)</th>
+                                <th width="50%">Insulators (Good)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><textarea class="form-control form-control-sm" rows="4" placeholder="Copper, Aluminum, Gold, Steel..." data-save="conductor-examples"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="4" placeholder="Rubber, Plastic, Paper..." data-save="insulator-examples"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h5>Static vs. Current Electricity
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="static-page"></span>
+                    </h5>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">What is static electricity?</label>
+                        <textarea class="form-control" rows="2" placeholder="Lightning is an example..." data-save="static-explain"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Sources of Electricity -->
+            <div class="section-card">
+                <h3><i class="bi bi-plug"></i> Section 3: Sources of Electricity</h3>
+                <p class="text-muted small mb-3">Understand how electricity is generated</p>
+
+                <div class="info-card">
+                    <h5>Sources of Electricity
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="sources-page"></span>
+                    </h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Source</th>
+                                <th width="75%">Description & How It Works</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Magnetism (Generators)</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Generators use magnetism to produce most electricity" data-save="magnetism-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chemical Action (Batteries)</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Chemical reactions create electricity" data-save="chemical-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Solar Cells</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Convert light energy to electrical energy" data-save="solar-desc"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h5>Battery Types
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="battery-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Primary Cells</label>
+                            <textarea class="form-control" rows="3" placeholder="Disposable batteries" data-save="primary-cells"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Secondary Cells</label>
+                            <textarea class="form-control" rows="3" placeholder="Rechargeable batteries" data-save="secondary-cells"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Electrical Characteristics -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-speedometer2"></i> Section 4: Electrical Characteristics</h3>
+                <p class="text-muted small mb-3">Understand voltage, current, resistance, and power</p>
+
+                <div class="info-card">
+                    <h5>Four Important Characteristics
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="characteristics-page"></span>
+                    </h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="20%">Characteristic</th>
+                                <th width="15%">Unit</th>
+                                <th width="15%">Symbol</th>
+                                <th width="50%">Definition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Voltage</strong></td>
+                                <td>Volt (V)</td>
+                                <td>V</td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Electromotive force (EMF), electrical pressure" data-save="voltage-def"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Current</strong></td>
+                                <td>Ampere (A)</td>
+                                <td>I</td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Measure of coulombs per second, flow of electrons" data-save="current-def"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Resistance</strong></td>
+                                <td>Ohm (Ω)</td>
+                                <td>R</td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Opposition to electron flow" data-save="resistance-def"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Power (Wattage)</strong></td>
+                                <td>Watt (W)</td>
+                                <td>P</td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Measure of electrical power" data-save="power-def"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h5>Ohm's Law and Watt's Law
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="laws-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Ohm's Law Formulas</label>
+                            <textarea class="form-control" rows="4" placeholder="V = I × R, I = V ÷ R, R = V ÷ I" data-save="ohms-law"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Watt's Law Formulas</label>
+                            <textarea class="form-control" rows="4" placeholder="P = V × I, P = I² × R, P = V² ÷ R" data-save="watts-law"></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Key Relationship: If resistance is held constant and voltage increases, current will ____.</label>
+                        <textarea class="form-control" rows="2" placeholder="increase" data-save="voltage-current-relationship"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Circuit Types -->
+            <div class="section-card">
+                <h3><i class="bi bi-diagram-3"></i> Section 5: Circuit Types</h3>
+                <p class="text-muted small mb-3">Understand series, parallel, and series-parallel circuits</p>
+
+                <div class="info-card">
+                    <h5>Three Types of Circuits
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="circuits-page"></span>
+                    </h5>
+
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Type</th>
+                                <th width="40%">Description & Paths</th>
+                                <th width="35%">Key Characteristics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Series Circuit</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Only one path for current flow" data-save="series-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Current same throughout, voltage divides" data-save="series-chars"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Parallel Circuit</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Multiple paths for current flow" data-save="parallel-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Voltage equal across all loads, current divides" data-save="parallel-chars"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Series-Parallel Circuit</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Combination of series and parallel" data-save="series-parallel-desc"></textarea></td>
+                                <td><textarea class="form-control form-control-sm" rows="3" placeholder="Mix of both types of characteristics" data-save="series-parallel-chars"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 6: Circuit Components -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-cpu"></i> Section 6: Circuit Components</h3>
+                <p class="text-muted small mb-3">Understand input, control, and output components</p>
+
+                <div class="info-card">
+                    <h5>Control Components
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="components-page"></span>
+                    </h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="25%">Component</th>
+                                <th width="75%">Function & Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Resistors</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Control current flow by adding resistance" data-save="resistors-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Switches</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Open or close circuits" data-save="switches-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Diodes</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Allow current flow in only one direction" data-save="diodes-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transistors</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Solid-state switches, amplifiers, no moving parts" data-save="transistors-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Capacitors</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Store and discharge electrical charge quickly, two plates separated by dielectric" data-save="capacitors-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sensors</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Send electrical signals based on environmental conditions" data-save="sensors-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Integrated Circuits (ICs)</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Entire circuits enclosed in plastic case" data-save="ics-desc"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h5>Types of Capacitors
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="capacitor-types-page"></span>
+                    </h5>
+                    <textarea class="form-control" rows="2" placeholder="Ceramic disc, Electrolytic..." data-save="capacitor-types"></textarea>
+                </div>
+
+                <div class="info-card">
+                    <h5>What are semiconductors?
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="semiconductors-page"></span>
+                    </h5>
+                    <textarea class="form-control" rows="3" placeholder="Materials with conductivity between insulators and conductors" data-save="semiconductors-explain"></textarea>
+                </div>
+            </div>
+
+            <!-- Section 7: Output Components -->
+            <div class="section-card">
+                <h3><i class="bi bi-lightbulb"></i> Section 7: Output Components (Lamps & Motors)</h3>
+                <p class="text-muted small mb-3">Understand different types of lamps and motors</p>
+
+                <div class="info-card">
+                    <h5>Types of Lamps
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="lamps-page"></span>
+                    </h5>
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="30%">Lamp Type</th>
+                                <th width="70%">Description & Characteristics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Incandescent</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Tungsten filament in globe with oxygen removed" data-save="incandescent-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Compact Fluorescent (CFL)</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Use 75% less energy than incandescent" data-save="cfl-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gas Discharge</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Neon lamps are an example" data-save="gas-discharge-desc"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><strong>LED (Light-Emitting Diode)</strong></td>
+                                <td><textarea class="form-control form-control-sm" rows="2" placeholder="Very efficient, low-cost, long-lasting, use direct current" data-save="led-desc"></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="info-card">
+                    <h5>Motors
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="motors-page"></span>
+                    </h5>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">What do motors do?</label>
+                        <textarea class="form-control" rows="2" placeholder="Convert electrical energy into mechanical energy" data-save="motors-function"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Control Systems -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-sliders"></i> Section 8: Control Systems</h3>
+                <p class="text-muted small mb-3">Understand open and closed control systems</p>
+
+                <div class="info-card">
+                    <h5>Open vs. Closed Systems
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="control-page"></span>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Open Control Systems</label>
+                            <textarea class="form-control" rows="4" placeholder="No built-in feedback, rely on manual adjustment" data-save="open-systems"></textarea>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Closed Control Systems</label>
+                            <textarea class="form-control" rows="4" placeholder="Include built-in feedback mechanism" data-save="closed-systems"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: Know and Understand -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-question-circle"></i> Section 9: Know and Understand</h3>
+                <p class="text-muted small mb-3">Practice for the test - add page numbers for quick reference</p>
+
+                <div class="info-card">
+                    <!-- Multiple Choice Questions -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. Which of the following is NOT a good conductor?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1a" value="a" data-save="q1">
+                            <label class="form-check-label" for="q1a">Copper</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1b" value="b" data-save="q1">
+                            <label class="form-check-label" for="q1b">Aluminum</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1c" value="c" data-save="q1">
+                            <label class="form-check-label" for="q1c">Rubber</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q1" id="q1d" value="d" data-save="q1">
+                            <label class="form-check-label" for="q1d">Gold</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q1-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Which of the following is NOT a good insulator?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2a" value="a" data-save="q2">
+                            <label class="form-check-label" for="q2a">Plastic</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2b" value="b" data-save="q2">
+                            <label class="form-check-label" for="q2b">Paper</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2c" value="c" data-save="q2">
+                            <label class="form-check-label" for="q2c">Steel</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q2" id="q2d" value="d" data-save="q2">
+                            <label class="form-check-label" for="q2d">Rubber</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q2-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. Generators make use of which of the following sources of electricity?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3a" value="a" data-save="q3">
+                            <label class="form-check-label" for="q3a">Solar cells</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3b" value="b" data-save="q3">
+                            <label class="form-check-label" for="q3b">Magnetism</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3c" value="c" data-save="q3">
+                            <label class="form-check-label" for="q3c">Chemical action</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q3" id="q3d" value="d" data-save="q3">
+                            <label class="form-check-label" for="q3d">All of the above</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q3-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">4. Which electrical devices send electrical signals based on environmental conditions?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4a" value="a" data-save="q4">
+                            <label class="form-check-label" for="q4a">Lights</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4b" value="b" data-save="q4">
+                            <label class="form-check-label" for="q4b">Diodes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4c" value="c" data-save="q4">
+                            <label class="form-check-label" for="q4c">Sensors</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q4" id="q4d" value="d" data-save="q4">
+                            <label class="form-check-label" for="q4d">ICs</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q4-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">5. Neon lamps are an example of a(n) ____ lamp.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q5" id="q5a" value="a" data-save="q5">
+                            <label class="form-check-label" for="q5a">compact fluorescent</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q5" id="q5b" value="b" data-save="q5">
+                            <label class="form-check-label" for="q5b">incandescent</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q5" id="q5c" value="c" data-save="q5">
+                            <label class="form-check-label" for="q5c">LED</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q5" id="q5d" value="d" data-save="q5">
+                            <label class="form-check-label" for="q5d">gas discharge</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q5-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">6. Which of the following converts electrical energy into mechanical energy?</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6a" value="a" data-save="q6">
+                            <label class="form-check-label" for="q6a">Motor</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6b" value="b" data-save="q6">
+                            <label class="form-check-label" for="q6b">Light</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6c" value="c" data-save="q6">
+                            <label class="form-check-label" for="q6c">Solar cell</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q6" id="q6d" value="d" data-save="q6">
+                            <label class="form-check-label" for="q6d">Battery</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q6-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">7. ____ is an example of static electricity.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7a" value="a" data-save="q7">
+                            <label class="form-check-label" for="q7a">A battery</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7b" value="b" data-save="q7">
+                            <label class="form-check-label" for="q7b">Lightning</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7c" value="c" data-save="q7">
+                            <label class="form-check-label" for="q7c">A solar cell</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q7" id="q7d" value="d" data-save="q7">
+                            <label class="form-check-label" for="q7d">All of the above</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q7-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">8. The outer shell of an atom is called the ____ shell.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q8" id="q8a" value="a" data-save="q8">
+                            <label class="form-check-label" for="q8a">last</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q8" id="q8b" value="b" data-save="q8">
+                            <label class="form-check-label" for="q8b">electron</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q8" id="q8c" value="c" data-save="q8">
+                            <label class="form-check-label" for="q8c">valence</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q8" id="q8d" value="d" data-save="q8">
+                            <label class="form-check-label" for="q8d">proton</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q8-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">9. ____ cells are rechargeable and ____ cells are disposable.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q9" id="q9a" value="a" data-save="q9">
+                            <label class="form-check-label" for="q9a">Primary, secondary</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q9" id="q9b" value="b" data-save="q9">
+                            <label class="form-check-label" for="q9b">Chemical, solar</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q9" id="q9c" value="c" data-save="q9">
+                            <label class="form-check-label" for="q9c">Secondary, primary</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q9" id="q9d" value="d" data-save="q9">
+                            <label class="form-check-label" for="q9d">None of the above</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q9-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">10. ____ circuits have only one path for current flow and ____ circuits have multiple paths.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q10" id="q10a" value="a" data-save="q10">
+                            <label class="form-check-label" for="q10a">Series, parallel</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q10" id="q10b" value="b" data-save="q10">
+                            <label class="form-check-label" for="q10b">Complete, incomplete</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q10" id="q10c" value="c" data-save="q10">
+                            <label class="form-check-label" for="q10c">Continuous, short</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q10" id="q10d" value="d" data-save="q10">
+                            <label class="form-check-label" for="q10d">Electron flow, conventional flow</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q10-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">11. Ceramic disc and electrolytic are types of ____.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q11" id="q11a" value="a" data-save="q11">
+                            <label class="form-check-label" for="q11a">capacitors</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q11" id="q11b" value="b" data-save="q11">
+                            <label class="form-check-label" for="q11b">diodes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q11" id="q11c" value="c" data-save="q11">
+                            <label class="form-check-label" for="q11c">resistors</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q11" id="q11d" value="d" data-save="q11">
+                            <label class="form-check-label" for="q11d">transistors</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q11-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">12. ____ are very efficient, low-cost, long-lasting lights that use direct current.</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q12" id="q12a" value="a" data-save="q12">
+                            <label class="form-check-label" for="q12a">Incandescent</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q12" id="q12b" value="b" data-save="q12">
+                            <label class="form-check-label" for="q12b">Compact florescent</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q12" id="q12c" value="c" data-save="q12">
+                            <label class="form-check-label" for="q12c">Gas discharge</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="q12" id="q12d" value="d" data-save="q12">
+                            <label class="form-check-label" for="q12d">Light-emitting diode (LED)</label>
+                        </div>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q12-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">13. Capacitors are made up of two conductive plates separated by a ____.</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q13" id="q13a" value="a" data-save="q13">
+                            <label class="form-check-label" for="q13a">dielectric</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q13" id="q13b" value="b" data-save="q13">
+                            <label class="form-check-label" for="q13b">resistor</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q13" id="q13c" value="c" data-save="q13">
+                            <label class="form-check-label" for="q13c">switch</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="q13" id="q13d" value="d" data-save="q13">
+                            <label class="form-check-label" for="q13d">sensor</label>
+                        </div>
+                        <span class="ms-3">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q13-page"></span>
+                    </div>
+
+                    <!-- True/False Section -->
+                    <h5 class="mt-4">True or False:</h5>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">14. If resistance in a circuit is held constant while voltage is increased, current will increase.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q14" id="q14t" value="true" data-save="q14">
+                                <label class="form-check-label" for="q14t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q14" id="q14f" value="false" data-save="q14">
+                                <label class="form-check-label" for="q14f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q14-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">15. A potentiometer is used to only allow current flow in one direction.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q15" id="q15t" value="true" data-save="q15">
+                                <label class="form-check-label" for="q15t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q15" id="q15f" value="false" data-save="q15">
+                                <label class="form-check-label" for="q15f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q15-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">16. A series-parallel circuit has only one path for current flow.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q16" id="q16t" value="true" data-save="q16">
+                                <label class="form-check-label" for="q16t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q16" id="q16f" value="false" data-save="q16">
+                                <label class="form-check-label" for="q16f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q16-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">17. Incandescent bulbs use a tungsten filament inside a globe where the oxygen has been removed.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q17" id="q17t" value="true" data-save="q17">
+                                <label class="form-check-label" for="q17t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q17" id="q17f" value="false" data-save="q17">
+                                <label class="form-check-label" for="q17f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q17-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">18. Diodes can store and discharge a charge very quickly.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q18" id="q18t" value="true" data-save="q18">
+                                <label class="form-check-label" for="q18t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q18" id="q18f" value="false" data-save="q18">
+                                <label class="form-check-label" for="q18f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q18-page"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">19. Closed systems rely on feedback from outside of the system to operate.</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q19" id="q19t" value="true" data-save="q19">
+                                <label class="form-check-label" for="q19t">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="q19" id="q19f" value="false" data-save="q19">
+                                <label class="form-check-label" for="q19f">False</label>
+                            </div>
+                            <span class="ms-auto">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="q19-page"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 10: Apply and Analyze -->
+            <div class="section-card page-break">
+                <h3><i class="bi bi-pencil-square"></i> Section 10: Apply and Analyze</h3>
+                <p class="text-muted small mb-3">Answer in your own words using the chapter</p>
+
+                <div class="info-card">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. What is electrical engineering?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply1-page"></span>
+                        <textarea class="form-control mt-2" rows="3" placeholder="The design and construction of electrical and electronic components and devices" data-save="apply1"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. What are PCBs and what are they used for?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply2-page"></span>
+                        <textarea class="form-control mt-2" rows="4" placeholder="Printed circuit boards - rigid insulation with copper tracks and components" data-save="apply2"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. What components can serve as solid-state switches?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply3-page"></span>
+                        <textarea class="form-control mt-2" rows="2" placeholder="Transistors" data-save="apply3"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">4. What type of lamp uses about 75% less energy than incandescent bulbs?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply4-page"></span>
+                        <textarea class="form-control mt-2" rows="2" placeholder="Compact fluorescent lamps (CFLs)" data-save="apply4"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">5. Explain the difference between primary and secondary cells.</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply5-page"></span>
+                        <textarea class="form-control mt-2" rows="4" placeholder="Secondary cells are rechargeable, primary cells are disposable" data-save="apply5"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">6. Using Ohm's Law: If voltage is 12V and resistance is 4Ω, what is current?</label>
+                        <span class="badge-page ms-2">Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="apply6-page"></span>
+                        <textarea class="form-control mt-2" rows="3" placeholder="I = V ÷ R = 12V ÷ 4Ω = 3A" data-save="apply6"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 11: Critical Thinking -->
+            <div class="section-card">
+                <h3><i class="bi bi-lightbulb"></i> Section 11: Critical Thinking</h3>
+                <p class="text-muted small mb-3">Apply concepts to real-world scenarios</p>
+
+                <div class="info-card">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">1. Explain some of the ways in which electrical engineers can help in the fight against climate change.</label>
+                        <textarea class="form-control" rows="6" placeholder="Higher efficiency lighting, improved solar/wind generation, hybrid/electric cars, smart power management..." data-save="critical1"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical1-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">2. Describe why ethics must be considered when reverse engineering products and devices.</label>
+                        <textarea class="form-control" rows="6" placeholder="Must not violate patents or steal someone else's work..." data-save="critical2"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical2-page"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">3. How do different types of circuits affect how devices work? Give examples.</label>
+                        <textarea class="form-control" rows="6" placeholder="Series circuits - Christmas lights (one fails, all fail). Parallel circuits - house wiring (devices work independently)..." data-save="critical3"></textarea>
+                        <span>Page: <input type="text" class="form-control form-control-sm page-input d-inline" style="width: 60px;" data-save="critical3-page"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Study Tips -->
+            <div class="alert alert-success">
+                <h5 class="alert-heading"><i class="bi bi-lightbulb"></i> Quick Study Tips</h5>
+                <ul class="mb-0">
+                    <li><strong>Electricity:</strong> Flow of electrons through conductors</li>
+                    <li><strong>Good conductors:</strong> Copper, Aluminum, Gold, Steel</li>
+                    <li><strong>Good insulators:</strong> Rubber, Plastic, Paper</li>
+                    <li><strong>Static electricity:</strong> Lightning is the best example</li>
+                    <li><strong>Generators use magnetism</strong> to produce most electricity</li>
+                    <li><strong>Battery types:</strong> Secondary = Rechargeable, Primary = Disposable</li>
+                    <li><strong>Valence shell:</strong> Outer shell of an atom</li>
+                    <li><strong>Four characteristics:</strong> Voltage (V), Current (I), Resistance (R), Power (P)</li>
+                    <li><strong>Series circuits:</strong> One path for current flow</li>
+                    <li><strong>Parallel circuits:</strong> Multiple paths for current flow, voltage equal across loads</li>
+                    <li><strong>Ohm's Law:</strong> V = I × R (if R constant, V up means I up)</li>
+                    <li><strong>Diodes:</strong> Allow current flow in only ONE direction</li>
+                    <li><strong>Transistors:</strong> Solid-state switches with no moving parts</li>
+                    <li><strong>Capacitors:</strong> Store and discharge charge quickly, two plates separated by dielectric</li>
+                    <li><strong>Ceramic disc & electrolytic = Capacitors</strong> (not resistors)</li>
+                    <li><strong>Sensors:</strong> Send signals based on environmental conditions</li>
+                    <li><strong>Motors:</strong> Convert electrical energy to mechanical energy</li>
+                    <li><strong>LEDs:</strong> Efficient, low-cost, long-lasting, use DC</li>
+                    <li><strong>CFLs:</strong> Use 75% less energy than incandescent</li>
+                    <li><strong>Incandescent bulbs:</strong> Tungsten filament, oxygen removed</li>
+                    <li><strong>Neon lamps = Gas discharge</strong> lamps</li>
+                    <li><strong>Closed systems:</strong> Have built-in feedback</li>
+                    <li><strong>Open systems:</strong> No built-in feedback, need manual adjustment</li>
+                    <li><strong>False:</strong> Potentiometer does NOT control current direction (that's a diode)</li>
+                    <li><strong>False:</strong> Diodes do NOT store charge (capacitors do)</li>
+                    <li><strong>False:</strong> Closed systems do NOT rely on OUTSIDE feedback</li>
+                </ul>
+            </div>
+
+            <!-- Footer -->
+            <div class="alert alert-warning text-center">
+                <strong>Reminder:</strong> Complete all sections with page references. This guide is worth +10 extra points when fully completed.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-save functionality
+        let saveTimeout;
+        const STORAGE_KEY = 'pae-ch11-study-guide';
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadFromStorage();
+
+            // Add event listeners to all form elements
+            document.querySelectorAll('input[data-save], textarea[data-save], select[data-save]').forEach(element => {
+                if (element.type === 'radio' || element.type === 'checkbox') {
+                    element.addEventListener('change', autoSave);
+                } else {
+                    element.addEventListener('input', autoSave);
+                }
+            });
+
+            // Set today's date if empty
+            const dateInput = document.querySelector('input[type="date"][data-save="student-date"]');
+            if (dateInput && !dateInput.value) {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+        });
+
+        function autoSave() {
+            clearTimeout(saveTimeout);
+            updateSaveIndicator('saving');
+
+            saveTimeout = setTimeout(() => {
+                saveToStorage();
+                updateSaveIndicator('saved');
+            }, 500);
+        }
+
+        function updateSaveIndicator(status) {
+            const indicator = document.getElementById('saveStatus');
+            if (status === 'saving') {
+                indicator.innerHTML = '<i class="bi bi-arrow-repeat"></i> Saving...';
+                indicator.parentElement.className = 'save-indicator saving';
+            } else {
+                indicator.innerHTML = '<i class="bi bi-check-circle"></i> Saved';
+                indicator.parentElement.className = 'save-indicator saved';
+            }
+        }
+
+        function saveToStorage() {
+            const data = {};
+
+            // Save all inputs
+            document.querySelectorAll('[data-save]').forEach(element => {
+                const key = element.getAttribute('data-save');
+
+                if (element.type === 'checkbox') {
+                    data[key] = element.checked;
+                } else if (element.type === 'radio') {
+                    if (element.checked) {
+                        data[key] = element.value;
+                    }
+                } else {
+                    data[key] = element.value;
+                }
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function loadFromStorage() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (!stored) return;
+
+            try {
+                const data = JSON.parse(stored);
+
+                Object.keys(data).forEach(key => {
+                    const elements = document.querySelectorAll(`[data-save="${key}"]`);
+
+                    elements.forEach(element => {
+                        if (element.type === 'checkbox') {
+                            element.checked = data[key];
+                        } else if (element.type === 'radio') {
+                            if (element.value === data[key]) {
+                                element.checked = true;
+                            }
+                        } else {
+                            element.value = data[key];
+                        }
+                    });
+                });
+            } catch (e) {
+                console.error('Error loading saved data:', e);
+            }
+        }
+
+        function saveToFile() {
+            saveToStorage();
+            const data = localStorage.getItem(STORAGE_KEY);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const date = new Date().toISOString().split('T')[0];
+            a.download = `ch11-study-guide-${date}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function loadFromFile() {
+            document.getElementById('fileInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                    loadFromStorage();
+                    updateSaveIndicator('saved');
+                    alert('Study guide loaded successfully!');
+                } catch (error) {
+                    alert('Error loading file. Please ensure it\'s a valid study guide file.');
+                }
+            };
+            reader.readAsText(file);
+
+            // Reset file input
+            e.target.value = '';
+        });
+
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all your answers? This cannot be undone.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                document.querySelectorAll('[data-save]').forEach(element => {
+                    if (element.type === 'checkbox' || element.type === 'radio') {
+                        element.checked = false;
+                    } else if (element.type !== 'date') {
+                        element.value = '';
+                    }
+                });
+                updateSaveIndicator('saved');
+            }
+        }
+
+        function printPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
