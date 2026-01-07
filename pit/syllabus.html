@@ -1,0 +1,277 @@
+---
+---
+<!-- File: classroom/pit/syllabus.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIT - Class Information</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .syllabus-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .info-card {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        border: 1px solid #e9ecef;
+      }
+
+      .info-card h2 {
+        color: #495057;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+      }
+
+      .info-card h3 {
+        color: #495057;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+      }
+
+      .info-card h4 {
+        color: #6c757d;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .warning-card {
+        background: #fff8e9;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .teks-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 20px;
+      }
+
+      details {
+        margin-bottom: 10px;
+        background: white;
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #e9ecef;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #495057;
+        padding: 5px;
+      }
+
+      summary:hover {
+        color: #dc3545;
+      }
+
+      .teks-content {
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      .teks-item {
+        padding: 8px 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .teks-item:last-child {
+        border-bottom: none;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 4px 12px;
+        background: #dc3545;
+        color: white;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        margin-right: 8px;
+      }
+
+      .foot {
+        text-align: center;
+        color: #6c757d;
+        padding: 20px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white">Practicum in Information Technology</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Class Information</span>
+      </nav>
+
+      <div class="syllabus-content">
+        <h1 class="display-5 mb-4">
+          <i class="bi bi-laptop text-danger"></i>
+          Practicum in Information Technology <br />(PIT) - Class Information
+        </h1>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3><i class="bi bi-person-badge"></i> Instructor</h3>
+            <p><strong>Mark Johnston, MBA</strong><br>
+            <em class="text-muted">Texas Certified STEM Educator</em><br>
+            Email: <a href="mailto:majohnst@episd.org">majohnst@episd.org</a><br>
+            Class site: <a href="https://classroom.mjstem.com/pit" target="_blank" rel="noopener">classroom.mjstem.com/pit</a></p>
+            <p><span class="pill">High School Credit (CTE)</span></p>
+          </div>
+          <div class="info-card">
+            <h3><i class="bi bi-clock"></i> After-School Availability</h3>
+          </div>
+        </div>
+
+        <div class="warning-card">
+          <h2><i class="bi bi-exclamation-triangle-fill text-warning"></i> Important: High School Credit Course</h2>
+          <p><strong>This is a high school credit course that counts toward your official transcript and GPA calculation.</strong> This Career & Technical Education (CTE) credit will appear on your permanent high school transcript.</p>
+          <p class="text-muted"><strong>This is an advanced capstone course requiring independence and professional responsibility.</strong> Students are expected to demonstrate initiative, meet deadlines, and work at a professional level.</p>
+        </div>
+
+        <div class="info-card">
+          <h2><i class="bi bi-book"></i> Course Overview</h2>
+          <p><strong>What is Practicum in Information Technology?</strong></p>
+          <p>Practicum in Information Technology is an advanced capstone course where students gain advanced knowledge and skills in the application, design, production, implementation, maintenance, evaluation, and assessment of IT products, services, and systems.</p>
+          <p>This course focuses on real-world application through project-based learning. Students will apply analytical skills and IT concepts to solve authentic problems, potentially working with industry mentors, participating in internships, or developing capstone projects that demonstrate professional-level competency.</p>
+          <p>The course emphasizes critical thinking, hands-on IT experience, product development, and career preparation. Students are encouraged to participate in extended learning experiences such as career and technical student organizations and other leadership opportunities.</p>
+        </div>
+
+        <div class="teks-section">
+          <h2><i class="bi bi-list-check"></i> Texas Essential Knowledge and Skills (TEKS) – §130.312</h2>
+          <p class="text-muted mb-3">Practicum in Information Technology (Two Credits), Adopted 2015</p>
+          <p class="text-muted mb-3">Click on each standard to view specific expectations</p>
+
+      <details>
+        <summary>(a) General Requirements</summary>
+        <div class="teks-content">
+          <p>This course is recommended for students in Grade 12. Prerequisite: a minimum of two high school information technology (IT) courses. Students shall be awarded two credits for successful completion of this course. A student may repeat this course once for credit provided that the student is experiencing different aspects of the industry and demonstrating proficiency in additional and more advanced knowledge and skills.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>(b) Introduction</summary>
+        <div class="teks-content">
+          <div class="teks-item">(1) Career and technical education instruction provides content aligned with challenging academic standards and relevant technical knowledge and skills for students to further their education and succeed in current or emerging professions.</div>
+          <div class="teks-item">(2) The Information Technology (IT) Career Cluster focuses on building linkages in IT occupations for entry level, technical, and professional careers related to the design, development, support, and management of hardware, software, multimedia, and systems integration services.</div>
+          <div class="teks-item">(3) In the Practicum in Information Technology, students will gain advanced knowledge and skills in the application, design, production, implementation, maintenance, evaluation, and assessment of products, services, and systems. Knowledge and skills in the proper use of analytical skills and application of IT concepts and standards are essential to prepare students for success in a technology-driven society. Critical thinking, IT experience, and product development may be conducted in a classroom setting with an industry mentor, as an unpaid or paid internship, as part of a capstone project, or as career preparation.</div>
+          <div class="teks-item">(4) Students are encouraged to participate in extended learning experiences such as career and technical student organizations and other leadership or extracurricular organizations.</div>
+          <div class="teks-item">(5) Statements that contain the word "including" reference content that must be mastered, while those containing the phrase "such as" are intended as possible illustrative examples.</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(c)(1) Professional Standards/Employability Skills</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) identify and demonstrate work behaviors that enhance employability and job advancement such as regular attendance, promptness, attention to proper attire, maintenance of a clean and safe work environment, appropriate voice, and pride in work</div>
+          <div class="teks-item">(B) identify and demonstrate qualities such as flexibility, open-mindedness, initiative, listening attentively to speakers, and willingness to learn new knowledge and skills</div>
+          <div class="teks-item">(C) employ effective reading and writing skills</div>
+          <div class="teks-item">(D) employ effective verbal and nonverbal communication skills</div>
+          <div class="teks-item">(E) solve problems and think critically</div>
+          <div class="teks-item">(F) demonstrate leadership skills and function effectively as a team member</div>
+          <div class="teks-item">(G) identify and implement proper safety procedures</div>
+          <div class="teks-item">(H) demonstrate an understanding of legal and ethical responsibilities in relation to the field of IT</div>
+          <div class="teks-item">(I) demonstrate planning and time-management skills such as storyboarding and project management, including initiating, planning, executing, monitoring and controlling, and closing a project</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(c)(2) Employment Opportunities</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) improve on a personal career plan along with education, job skills, and experience necessary to achieve career goals</div>
+          <div class="teks-item">(B) develop a resume that includes letters of recommendation and a portfolio appropriate to a chosen career plan</div>
+          <div class="teks-item">(C) illustrate interview skills for successful job placement</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(c)(3) Academic Knowledge and Skills</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) demonstrate proper use of written, verbal, and visual communication techniques consistent with IT industry standards</div>
+          <div class="teks-item">(B) demonstrate proper use of mathematics concepts in the development of products or services</div>
+          <div class="teks-item">(C) demonstrate proper use of science principles in the development of products or services</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(c)(4) Research and Problem Discovery</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) identify a problem relating to information technology</div>
+          <div class="teks-item">(B) describe and use an approach such as top-down or bottom-up for conducting a research activity</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(c)(5) Technological Solutions</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) apply critical-thinking strategies to develop a solution using appropriate technologies and resources, IT concepts, and industry standards</div>
+          <div class="teks-item">(B) apply decision-making techniques to the selection of technological solutions</div>
+          <div class="teks-item">(C) explain how the proposed technological solution will resolve the problem</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(c)(6) Product or Service Development</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) work closely with a mentor throughout the design, creation, and implementation process</div>
+          <div class="teks-item">(B) develop a product or service that meets a specified need following a problem-solving strategy</div>
+          <div class="teks-item">(C) identify areas where quality, reliability, and safety can be designed into a product or service</div>
+          <div class="teks-item">(D) develop and implement a security management plan to address security requirements</div>
+          <div class="teks-item">(E) develop a sustainability plan for the product or service</div>
+          <div class="teks-item">(F) develop an evaluation method for analyzing the effect of the product or service on client satisfaction and problem resolution</div>
+          <div class="teks-item">(G) develop a project portfolio that documents the research and development process</div>
+          <div class="teks-item">(H) present the portfolio to a panel of professionals using formal presentation skills</div>
+        </div>
+      </details>
+
+      <details>
+        <summary>(c)(7) Personal Portfolio</summary>
+        <div class="teks-content">
+          <div class="teks-item">(A) create a portfolio that documents all projects and accomplishments such as academics, volunteer experience, employment experience, awards, and certifications</div>
+          <div class="teks-item">(B) organize and prioritize information within the portfolio</div>
+          <div class="teks-item">(C) use written, verbal, and visual communication techniques consistent with IT industry standards</div>
+        </div>
+      </details>
+        </div>
+
+        <div class="foot">Prepared for Spring 2026 · Updated 2026-01-07</div>
+      </div>
+    </div>
+  </body>
+</html>
