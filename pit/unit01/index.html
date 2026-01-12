@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
     <style>
       .unit-content {
         background: white;
@@ -218,17 +218,17 @@
     {% include navigation.html %}
     <div class="main-container">
       <nav class="breadcrumb-nav">
-        <a href="../" class="text-white">
+        <a href="../../" class="text-white">
           <i class="bi bi-house"></i> Home
         </a>
         <span class="text-white-50 mx-2">/</span>
-        <a href="./" class="text-white">Practicum in Information Technology</a>
+        <a href="../" class="text-white">Practicum in Information Technology</a>
         <span class="text-white-50 mx-2">/</span>
         <span class="text-white">Unit 1</span>
       </nav>
 
       <div class="unit-content">
-        <a href="./" class="back-button">
+        <a href="../" class="back-button">
           <i class="bi bi-arrow-left"></i> Back to PIT Home
         </a>
 
@@ -398,13 +398,24 @@
 
         <!-- Unit Structure -->
         <div class="section-card">
-          <h2><i class="bi bi-calendar3"></i> Unit Structure</h2>
-          <p>
-            This unit spans multiple extended class sessions and serves as a foundation for future development work. A detailed, day-by-day breakdown of activities, expectations, and deliverables will be provided separately.
+          <h2><i class="bi bi-calendar3"></i> Unit Sessions</h2>
+          <p style="margin-bottom: 20px;">
+            This unit spans multiple extended class sessions. Click on a session below to view detailed activities, expectations, and deliverables.
           </p>
+
+          <div style="display: grid; gap: 15px;">
+            <a href="session01.html" style="background: white; border: 2px solid #dc3545; border-radius: 8px; padding: 20px; text-decoration: none; display: flex; align-items: center; gap: 15px; transition: box-shadow 0.3s;">
+              <div style="background: #dc3545; color: white; width: 50px; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; flex-shrink: 0;">1</div>
+              <div style="flex-grow: 1;">
+                <h3 style="color: #2c3e50; margin: 0 0 5px 0; font-size: 1.2rem;">Session 1: From Passion → Problem → Possibility</h3>
+                <p style="color: #6c757d; margin: 0; font-size: 0.9rem;">Identifying meaningful problems worth solving through information technology (180 minutes)</p>
+              </div>
+              <i class="bi bi-arrow-right-circle" style="font-size: 1.5rem; color: #dc3545;"></i>
+            </a>
+          </div>
         </div>
 
-        <a href="./" class="back-button">
+        <a href="../" class="back-button">
           <i class="bi bi-arrow-left"></i> Back to PIT Home
         </a>
       </div>
