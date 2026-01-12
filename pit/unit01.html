@@ -1,0 +1,413 @@
+---
+---
+<!-- File: classroom/pit/unit01.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIT - Unit 1: Problem Identification & Solution Design</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .unit-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .unit-header {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .unit-header h1 {
+        margin-bottom: 10px;
+        font-size: 2rem;
+      }
+
+      .unit-header .subtitle {
+        font-size: 1.1rem;
+        opacity: 0.95;
+      }
+
+      .section-card {
+        background: #f8f9fa;
+        border-left: 4px solid #dc3545;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 25px;
+      }
+
+      .section-card h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-card h2 i {
+        color: #dc3545;
+      }
+
+      .section-card h3 {
+        color: #34495e;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+      }
+
+      .section-card p {
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+
+      .section-card ul {
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+
+      .section-card ul li {
+        margin-bottom: 8px;
+      }
+
+      .highlight-box {
+        background: white;
+        border: 2px solid #dc3545;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .highlight-box h3 {
+        color: #dc3545;
+        margin-bottom: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .example-domains {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px 20px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .example-domains h4 {
+        color: #856404;
+        font-size: 1rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .example-domains ul {
+        margin-bottom: 0;
+        color: #856404;
+      }
+
+      .teks-alignment {
+        background: #e7f3ff;
+        border-left: 4px solid #0066cc;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .teks-alignment h3 {
+        color: #0066cc;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+      }
+
+      .teks-alignment ul {
+        color: #004080;
+        margin-bottom: 0;
+      }
+
+      .instruction-blocks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .instruction-block {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .instruction-block i {
+        font-size: 2.5rem;
+        color: #dc3545;
+        margin-bottom: 10px;
+      }
+
+      .instruction-block h4 {
+        color: #2c3e50;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .instruction-block p {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .back-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .artifact-list {
+        background: #f0f8f0;
+        border-left: 4px solid #28a745;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .artifact-list h3 {
+        color: #28a745;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+      }
+
+      .artifact-list ul {
+        color: #155724;
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white">Practicum in Information Technology</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Unit 1</span>
+      </nav>
+
+      <div class="unit-content">
+        <a href="./" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to PIT Home
+        </a>
+
+        <div class="unit-header">
+          <h1><i class="bi bi-lightbulb-fill"></i> Unit 1: Problem Identification & Solution Design</h1>
+          <p class="subtitle">Practicum in Information Technology</p>
+        </div>
+
+        <!-- Unit Overview -->
+        <div class="section-card">
+          <h2><i class="bi bi-book"></i> Unit Overview</h2>
+          <p>
+            In this unit, students engage in an extended, project-based experience designed to mirror how real information technology professionals identify problems, research existing systems, collaborate with others, and plan viable technological solutions. Rather than beginning with a predefined project, students start by exploring authentic problems connected to their own interests, experiences, and areas of passion.
+          </p>
+          <p>
+            Students may work individually or in small teams, but all students are required to engage in structured collaboration and feedback cycles. The emphasis of this unit is thinking, planning, and professional reasoning, not simply building a product. The outcome of the unit is a well-documented project plan that can be included in a professional portfolio.
+          </p>
+          <p>
+            This unit establishes the foundation for future development, implementation, and evaluation work later in the course.
+          </p>
+        </div>
+
+        <!-- Purpose & Rationale -->
+        <div class="section-card">
+          <h2><i class="bi bi-bullseye"></i> Purpose & Rationale</h2>
+          <p>
+            Practicum in Information Technology is intended to simulate real-world IT environments. In industry, successful products and services are rarely created by immediately "jumping into coding." Instead, professionals:
+          </p>
+          <ul>
+            <li>Identify meaningful problems</li>
+            <li>Research existing solutions</li>
+            <li>Consider constraints and trade-offs</li>
+            <li>Collaborate with others</li>
+            <li>Plan carefully before implementation</li>
+          </ul>
+          <p>
+            This unit intentionally slows the process down to emphasize problem definition, research, communication, and design thinking, which are critical career skills across all IT pathways.
+          </p>
+        </div>
+
+        <!-- Instructional Focus -->
+        <div class="section-card">
+          <h2><i class="bi bi-compass"></i> Instructional Focus</h2>
+          <p><strong>Students will:</strong></p>
+          <ul>
+            <li>Identify a real-world problem related to an area they are passionate about (e.g., music, gaming, education, productivity, AI tools, or personal workflows)</li>
+            <li>Research existing tools, services, or systems in that domain</li>
+            <li>Clearly articulate why the problem matters and who it affects</li>
+            <li>Propose and justify a potential technological solution</li>
+            <li>Decide whether to work independently or with a small team</li>
+            <li>Receive structured peer and instructor feedback throughout the process</li>
+          </ul>
+
+          <div class="example-domains">
+            <h4><i class="bi bi-star-fill"></i> Example Project Domains</h4>
+            <ul>
+              <li>Music cataloging or recommendation systems</li>
+              <li>Gaming or tabletop (D&D) calculators, trackers, or tools</li>
+              <li>AI-assisted tools such as chatbots or assistants</li>
+              <li>School or community workflow improvements</li>
+              <li>Hobby-related digital services or platforms</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mode of Instruction -->
+        <div class="section-card">
+          <h2><i class="bi bi-mortarboard"></i> Mode of Instruction</h2>
+          <p>
+            This unit uses a <strong>studio-style, project-based instructional model</strong>, appropriate for extended Practicum class periods.
+          </p>
+          <p>Each class session includes intentional blocks of:</p>
+
+          <div class="instruction-blocks">
+            <div class="instruction-block">
+              <i class="bi bi-book-half"></i>
+              <h4>Reading & Research</h4>
+              <p>Exploring existing systems, tools, and user needs</p>
+            </div>
+            <div class="instruction-block">
+              <i class="bi bi-pencil-square"></i>
+              <h4>Writing</h4>
+              <p>Drafting problem statements, design notes, and reflections</p>
+            </div>
+            <div class="instruction-block">
+              <i class="bi bi-people"></i>
+              <h4>Collaboration</h4>
+              <p>Structured peer discussions, idea sharing, and feedback</p>
+            </div>
+            <div class="instruction-block">
+              <i class="bi bi-chat-dots"></i>
+              <h4>Instructor Conferencing</h4>
+              <p>One-on-one or small-group feedback and guidance</p>
+            </div>
+          </div>
+
+          <p>
+            Direct instruction is brief and targeted. Most class time is dedicated to guided independent work, collaboration, and professional feedback.
+          </p>
+        </div>
+
+        <!-- Student Expectations -->
+        <div class="section-card">
+          <h2><i class="bi bi-check-circle"></i> Student Expectations</h2>
+          <p><strong>Students are expected to:</strong></p>
+          <ul>
+            <li>Actively participate during extended class sessions</li>
+            <li>Work independently when appropriate and collaborate respectfully with peers</li>
+            <li>Seek and respond to feedback from classmates and the instructor</li>
+            <li>Document their thinking, research, and decisions clearly</li>
+            <li>Maintain organized digital artifacts suitable for a professional portfolio</li>
+            <li>Take ownership of their learning and project direction</li>
+          </ul>
+          <div class="highlight-box">
+            <h3><i class="bi bi-info-circle-fill"></i> Important Note</h3>
+            <p style="margin-bottom: 0;">
+              Students who choose to work independently are still required to participate in peer feedback and collaboration cycles.
+            </p>
+          </div>
+        </div>
+
+        <!-- Assessment & Artifacts -->
+        <div class="section-card">
+          <h2><i class="bi bi-clipboard-check"></i> Assessment & Artifacts</h2>
+          <p><strong>Assessment in this unit is based on:</strong></p>
+          <ul>
+            <li>Quality and clarity of problem identification</li>
+            <li>Evidence of research and analysis</li>
+            <li>Thoughtfulness of proposed solutions</li>
+            <li>Professional communication and documentation</li>
+            <li>Engagement in collaboration and feedback processes</li>
+          </ul>
+
+          <div class="artifact-list">
+            <h3><i class="bi bi-folder-fill"></i> Artifacts Produced</h3>
+            <p>Artifacts produced during this unit may include:</p>
+            <ul>
+              <li>Problem statements</li>
+              <li>Research notes</li>
+              <li>Solution proposals</li>
+              <li>Planning documents</li>
+              <li>Reflections</li>
+            </ul>
+            <p style="margin-bottom: 0;">
+              These artifacts may be included in a student portfolio demonstrating readiness for advanced coursework, internships, or career pathways.
+            </p>
+          </div>
+        </div>
+
+        <!-- TEKS Alignment -->
+        <div class="section-card">
+          <h2><i class="bi bi-list-check"></i> TEKS Alignment</h2>
+          <div class="teks-alignment">
+            <h3><i class="bi bi-shield-check"></i> Texas Essential Knowledge and Skills</h3>
+            <p>This unit is intentionally aligned to the Texas Essential Knowledge and Skills (TEKS) for Practicum in Information Technology, including but not limited to:</p>
+            <ul>
+              <li><strong>§130.312(c)(4)</strong> – Research and problem identification using appropriate methodologies</li>
+              <li><strong>§130.312(c)(5)</strong> – Evaluation and proposal of technological solutions</li>
+              <li><strong>§130.312(c)(6)</strong> – Development of products or services with attention to sustainability, security, and evaluation</li>
+              <li><strong>§130.312(c)(7)</strong> – Creation and maintenance of a professional portfolio</li>
+            </ul>
+            <p style="margin-bottom: 0;">
+              Supporting employability and professional skills are addressed throughout the unit, including collaboration, communication, and ethical decision-making.
+            </p>
+          </div>
+        </div>
+
+        <!-- Unit Structure -->
+        <div class="section-card">
+          <h2><i class="bi bi-calendar3"></i> Unit Structure</h2>
+          <p>
+            This unit spans multiple extended class sessions and serves as a foundation for future development work. A detailed, day-by-day breakdown of activities, expectations, and deliverables will be provided separately.
+          </p>
+        </div>
+
+        <a href="./" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to PIT Home
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
