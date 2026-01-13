@@ -1,0 +1,100 @@
+---
+---
+
+<!-- File: classroom/fcs/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FCS - Fundamentals of Computer Science</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      /* Make cards equal height and width */
+      .activity-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .activity-col {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        min-width: 280px;
+        display: flex;
+      }
+
+      .activity-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        min-height: 200px;
+      }
+
+      .activity-card p {
+        flex-grow: 1;
+      }
+
+      @media (max-width: 992px) {
+        .activity-col {
+          flex: 1 1 calc(50% - 10px);
+          max-width: calc(50% - 10px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .activity-col {
+          flex: 1 1 100%;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white"> <i class="bi bi-house"></i> Home </a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Fundamentals of Computer Science</span>
+      </nav>
+
+      <div class="class-header">
+        <h1 class="display-5 mb-3">
+          <i class="bi bi-cpu text-success"></i>
+          Fundamentals of Computer Science
+        </h1>
+        <p class="lead text-muted">
+          Interactive learning tools and activities for FCS students
+        </p>
+      </div>
+
+      <div class="activity-row">
+        <div class="activity-col">
+          <a href="syllabus.html" class="activity-card">
+            <div class="activity-icon text-success">
+              <i class="bi bi-info-circle"></i>
+            </div>
+            <h3>Class Information</h3>
+            <p class="text-muted mb-2">
+              View the course information, grading policy, TEKS standards, and other important course details.
+            </p>
+            <small class="text-success">
+              <i class="bi bi-arrow-right-circle"></i> View Class Info
+            </small>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

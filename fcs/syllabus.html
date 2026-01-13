@@ -1,0 +1,429 @@
+---
+---
+<!-- File: classroom/fcs/syllabus.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FCS - Class Information</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .syllabus-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .info-card {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        border: 1px solid #e9ecef;
+      }
+
+      .info-card h2 {
+        color: #495057;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+      }
+
+      .info-card h3 {
+        color: #495057;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+      }
+
+      .info-card h4 {
+        color: #6c757d;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .warning-card {
+        background: #fff8e9;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .teks-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 20px;
+      }
+
+      details {
+        margin-bottom: 10px;
+        background: white;
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #e9ecef;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #495057;
+        padding: 5px;
+      }
+
+      summary:hover {
+        color: #198754;
+      }
+
+      .teks-content {
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      .teks-content ul {
+        margin-bottom: 10px;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 5px 12px;
+        background: #198754;
+        color: white;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .back-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #198754;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .back-button:hover {
+        background: #157347;
+        color: white;
+        transform: translateX(-5px);
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Class Information</span>
+      </nav>
+
+      <div class="syllabus-content">
+        <h1 class="display-5 mb-4">
+          <i class="bi bi-cpu text-success"></i>
+          Fundamentals of Computer Science <br />(FCS) - Class Information
+        </h1>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3><i class="bi bi-person-badge"></i> Instructor</h3>
+            <p><strong>Mark Johnston, MBA</strong><br>
+            <em class="text-muted">Texas Certified STEM Educator</em><br>
+            Email: <a href="mailto:majohnst@episd.org">majohnst@episd.org</a><br>
+            Class site: <a href="https://classroom.mjstem.com/fcs" target="_blank" rel="noopener">classroom.mjstem.com/fcs</a></p>
+            <p><span class="pill">High School Credit (STEM)</span></p>
+          </div>
+          <div class="info-card">
+            <h3><i class="bi bi-clock"></i> Tutoring Availability</h3>
+            <p>By appointment ONLY: 8:10-8:30am or 4:10-4:30pm</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h2><i class="bi bi-book"></i> Course Overview</h2>
+          <p><strong>What is Fundamentals of Computer Science?</strong></p>
+          <p>Fundamentals of Computer Science is intended as a first course for those students just beginning the study of computer science. Students will learn about the computing tools that are used every day. Students will foster their creativity and innovation through opportunities to design, implement, and present solutions to real-world problems.</p>
+          <p>Students will collaborate and use computer science concepts to access, analyze, and evaluate information needed to solve problems. Students will learn computational thinking, problem-solving, and reasoning skills that are the foundation of computer science. By using computer science knowledge and skills that support the work of individuals and groups in solving problems, students will select the technology appropriate for the task, synthesize knowledge, create solutions, and evaluate the results.</p>
+          <p>Students will learn digital citizenship by researching current laws, regulations, and best practices and by practicing integrity and respect. Students will gain an understanding of the principles of computer science through the study of technology operations and concepts.</p>
+        </div>
+
+        <div class="info-card">
+          <h2><i class="bi bi-clipboard-check"></i> Classroom Rules and Expectations</h2>
+          <p class="text-muted mb-3">The following rules and expectations apply to all students in this class. Failure to follow these rules may result in disciplinary action.</p>
+
+          <ul style="line-height: 1.8;">
+            <li><strong><i class="bi bi-phone-slash text-danger"></i> Absolutely NO Cell Phone Use</strong> – For the sake of clarity, no student shall be permitted to access their cell phone in any way within my classroom at any time. If caught accessing a cell phone, the phone will be confiscated, turned off, and turned into the business office. <em>(This is state law.)</em></li>
+
+            <li><strong><i class="bi bi-cup-straw text-warning"></i> No Food</strong> – Primarily because this is a computer lab.</li>
+
+            <li><strong><i class="bi bi-droplet text-info"></i> Liquids Must Be in a Sealable Container</strong> – If you can't hold it upside down without it leaking, it's not sealed! Non-sealable containers can be tipped over and cause damage to equipment. The computer lab is also on a raised floor and there is electrical routed underneath the computer stations.</li>
+
+            <li><strong><i class="bi bi-alarm text-danger"></i> BE ON TIME</strong> – For CTE Classes with TEKS related to punctuality, <strong>tardies may impact your grade.</strong> BE ON TIME!</li>
+
+            <li><strong><i class="bi bi-heart text-primary"></i> Be Respectful</strong> – If you have any issue with a student or teacher, bring it up to the teacher at an appropriate time, in private.</li>
+
+            <li><strong><i class="bi bi-envelope-at text-success"></i> Communicate Important Matters via Email</strong> – This keeps all parties accountable for the communication. Verbal communications can be misunderstood or forgotten and should not be relied upon for critical matters (ex: issues related to grades or time-sensitive matters like reassessments).</li>
+
+            <li><strong><i class="bi bi-exclamation-circle text-warning"></i> Student Accountability</strong> – Students will be held accountable for all policies, deadlines, and other information on this site and any LMS used for the class (ex. Schoology, CMU Academy, Code.org, etc.).</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h2><i class="bi bi-clipboard-check"></i> Grading, Late Work, and Reassessment Policy</h2>
+
+          <h3>Guiding Principles</h3>
+          <ul>
+            <li>Grades are intended to reflect mastery of the TEKS, not effort alone or strategic behavior.</li>
+            <li>Reassessments exist to support learning, not to replace responsibility or deadlines.</li>
+            <li>Any opportunity provided by this policy is available equitably to all students.</li>
+          </ul>
+          <p class="text-muted"><em>Where this policy differs from district policy, district policy supersedes. This policy may be more lenient, but not more strict.</em></p>
+
+          <h3>Assignment Submission & Late Work</h3>
+          <h4>On-Time Work</h4>
+          <p>Assignments are expected to be submitted by the posted due date.</p>
+
+          <h4>Late Work (without a reasonable or excused cause)</h4>
+          <ul>
+            <li>Work submitted up to 1 calendar day late will have 30 points deducted prior to grading.</li>
+            <li>Work submitted more than 1 calendar day late will not be accepted and will be recorded as <strong>NHI (Not Handed In)</strong> and calculated as 0%.</li>
+          </ul>
+
+          <h4>NHI Definition</h4>
+          <p><strong>NHI (Not Handed In)</strong> indicates that the student was present, had access to the assignment, and chose not to submit it within the allowed timeframe.</p>
+          <p>NHI grades represent lack of evidence, not lack of understanding.</p>
+
+          <h3>Absences</h3>
+          <h4>Excused Absences</h4>
+          <ul>
+            <li>Students are allowed one school day per day absent to complete missed work for full credit, per district policy.</li>
+            <li>Once the original attempt is completed, excused-absence work remains eligible for reassessment.</li>
+          </ul>
+
+          <h4>Unexcused Absences</h4>
+          <ul>
+            <li>Work missed due to unexcused absences is subject to late-work rules and may result in NHI.</li>
+            <li>Assignments resulting in NHI due to unexcused absences are not eligible for reassessment.</li>
+          </ul>
+
+          <h3>Reassessments (Redo / Retake Policy)</h3>
+          <h4>Purpose</h4>
+          <p>Reassessments are designed to allow students to demonstrate improved mastery of the same TEKS, not to replace missing work, ignore deadlines, or bypass academic integrity.</p>
+
+          <h4>Eligibility (Equity Rule)</h4>
+          <ul>
+            <li>All students may request reassessment for eligible assignments or tests.</li>
+            <li>This ensures that any benefit of reassessment is available equally and does not advantage one student over another.</li>
+          </ul>
+
+          <h4>Ineligible Situations</h4>
+          <p>Reassessments are not offered when the failing grade resulted from:</p>
+          <ul>
+            <li>Academic dishonesty</li>
+            <li>NHI (Not Handed In) due to student choice</li>
+            <li>Unexcused absences</li>
+          </ul>
+          <p><em>Assignments missed due to excused absences remain eligible after the original attempt is completed.</em></p>
+
+          <h4>Reassessment Structure (District-Compliant)</h4>
+          <ul>
+            <li>Students may complete up to two additional attempts beyond the original.</li>
+            <li>Reassessment tasks may be substantially different in format, but will assess the same content and standards.</li>
+            <li>The final grade recorded will be the average of all completed attempts, per district policy.</li>
+            <li>No attempt is dropped or replaced.</li>
+          </ul>
+          <p><strong>Example:</strong></p>
+          <ul>
+            <li>Original: 70</li>
+            <li>Reassessment: 90</li>
+            <li>→ Final grade = 80</li>
+          </ul>
+
+          <h4>Timeline (Strictly Enforced)</h4>
+          <p>Students have <strong>five school days</strong> from the date a grade is posted to:</p>
+          <ul>
+            <li>Request a reassessment in writing</li>
+            <li>Complete the reassessment</li>
+          </ul>
+          <p>After each reassessment attempt, students have five school days to complete the next attempt (if eligible and if time remains in the grading period).</p>
+          <p>Reassessments close at the end of the grading period unless extenuating circumstances are approved through administration.</p>
+          <p><strong>Failure to act within the timeline constitutes forfeiture of the reassessment opportunity.</strong></p>
+
+          <h4>Reassessment Procedure</h4>
+          <p>To initiate a reassessment, the student must:</p>
+          <ol>
+            <li>Submit a written request (email or form)</li>
+            <li>Schedule a reassessment time within the allowed window</li>
+            <li>Complete any assigned remediation or review activities (strongly encouraged)</li>
+            <li>Complete the reassessment under teacher-determined conditions</li>
+          </ol>
+
+          <h4>Academic Integrity</h4>
+          <p>Reassessments are not permitted for assignments or tests involving cheating, plagiarism, or unauthorized collaboration. This determination is final.</p>
+
+          <h3>Final Notes on Fairness</h3>
+          <ul>
+            <li>This policy does not reward intentional underperformance, as all attempts are averaged.</li>
+            <li>Students who consistently submit work on time are not disadvantaged.</li>
+            <li>Students who delay, miss deadlines, or fail to submit work do not gain an advantage through reassessment.</li>
+            <li>Equal opportunity does not mean unlimited opportunity.</li>
+          </ul>
+
+          <h3>Administrative Clause</h3>
+          <p>All grading decisions are made in accordance with district policy, campus guidelines, and professional judgment. In cases of conflict, district policy prevails.</p>
+
+          <div class="warning-card mt-3" style="background: #fff3cd; border-color: #ffc107;">
+            <p class="mb-0"><strong><i class="bi bi-exclamation-circle"></i> Policy Updates:</strong> I reserve the right to update this grading policy at any time. If updates are made, an email or other notice will be provided with fair advance notice before the changes take effect.</p>
+          </div>
+        </div>
+
+        <div class="teks-section">
+          <h2><i class="bi bi-list-check"></i> Texas Essential Knowledge and Skills (TEKS) – §127.788</h2>
+          <p class="text-muted mb-3">Fundamentals of Computer Science (One Credit), Adopted 2022</p>
+          <p class="text-muted mb-3">Click on each standard to view specific expectations</p>
+
+          <details>
+            <summary>(b) General Requirements</summary>
+            <div class="teks-content">
+              <p>This course is recommended for students in Grades 9-12. Students shall be awarded one credit for successful completion of this course.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>(c) Introduction</summary>
+            <div class="teks-content">
+              <p><strong>(1)</strong> Career and technical education instruction provides content aligned with challenging academic standards, industry-relevant technical knowledge, and college and career readiness skills for students to further their education and succeed in current and emerging professions.</p>
+              <p><strong>(2)</strong> The Science, Technology, Engineering, and Mathematics (STEM) Career Cluster focuses on planning, managing, and providing scientific research and professional and technical services such as laboratory and testing services and research and development services.</p>
+              <p><strong>(3)</strong> Fundamentals of Computer Science is intended as a first course for those students just beginning the study of computer science. Students will learn about the computing tools that are used every day. Students will foster their creativity and innovation through opportunities to design, implement, and present solutions to real-world problems. Students will collaborate and use computer science concepts to access, analyze, and evaluate information needed to solve problems. Students will learn computational thinking, problem-solving, and reasoning skills that are the foundation of computer science. By using computer science knowledge and skills that support the work of individuals and groups in solving problems, students will select the technology appropriate for the task, synthesize knowledge, create solutions, and evaluate the results. Students will learn digital citizenship by researching current laws, regulations, and best practices and by practicing integrity and respect. Students will gain an understanding of the principles of computer science through the study of technology operations and concepts.</p>
+              <p><strong>(4)</strong> Students are encouraged to participate in extended learning experiences such as career and technical student organizations and other leadership or extracurricular organizations.</p>
+              <p><strong>(5)</strong> Statements that contain the word "including" reference content that must be mastered, while those containing the phrase "such as" are intended as possible illustrative examples.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>(d)(1) Employability</summary>
+            <div class="teks-content">
+              <p>The student identifies various employment opportunities in the computer science field. The student is expected to:</p>
+              <ul>
+                <li><strong>(A)</strong> identify job opportunities and accompanying job duties and tasks;</li>
+                <li><strong>(B)</strong> examine the role of certifications, resumes, and portfolios in the computer science profession;</li>
+                <li><strong>(C)</strong> employ effective technical reading and writing skills;</li>
+                <li><strong>(D)</strong> employ effective verbal and non-verbal communication skills;</li>
+                <li><strong>(E)</strong> solve problems and think critically;</li>
+                <li><strong>(F)</strong> demonstrate leadership skills and function effectively as a team member;</li>
+                <li><strong>(G)</strong> demonstrate an understanding of legal and ethical responsibilities in relation to the field of computer science;</li>
+                <li><strong>(H)</strong> demonstrate planning and time-management skills; and</li>
+                <li><strong>(I)</strong> compare university computer science programs.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>(d)(2) Creativity and Innovation</summary>
+            <div class="teks-content">
+              <p>The student develops products and generates new knowledge, understanding, and skills. The student is expected to:</p>
+              <ul>
+                <li><strong>(A)</strong> investigate and explore various career opportunities within the computer science field and report findings through various media;</li>
+                <li><strong>(B)</strong> create algorithms for the solution of various problems;</li>
+                <li><strong>(C)</strong> discuss methods and create and publish web pages using a web-based language such as HTML, Java Script, or XML; and</li>
+                <li><strong>(D)</strong> use generally accepted design standards for spacing, fonts, and color schemes to create functional user interfaces, including static and interactive screens.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>(d)(3) Communication and Collaboration</summary>
+            <div class="teks-content">
+              <p>The student communicates and collaborates with peers to contribute to his or her own learning and the learning of others. The student is expected to:</p>
+              <ul>
+                <li><strong>(A)</strong> seek and respond to advice or feedback from peers, educators, or professionals when evaluating problem solutions;</li>
+                <li><strong>(B)</strong> debug and solve problems using reference materials and effective strategies; and</li>
+                <li><strong>(C)</strong> publish information in a variety of ways such as print, monitor display, web pages, or video.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>(d)(4) Critical Thinking, Problem Solving, and Decision Making</summary>
+            <div class="teks-content">
+              <p>The student uses appropriate strategies to analyze problems and design algorithms. The student is expected to:</p>
+              <ul>
+                <li><strong>(A)</strong> demonstrate the ability to insert external standalone objects such as scripts or widgets into web pages;</li>
+                <li><strong>(B)</strong> communicate an understanding of binary representation of data in computer systems, perform conversions between decimal and binary number systems, and count in binary number systems;</li>
+                <li><strong>(C)</strong> identify a problem's description, purpose, and goals;</li>
+                <li><strong>(D)</strong> demonstrate coding proficiency in a programming language by developing solutions that create stories, games, and animations;</li>
+                <li><strong>(E)</strong> identify and use the appropriate data type to properly represent the data in a program problem solution;</li>
+                <li><strong>(F)</strong> communicate an understanding of and use variables within a programmed story, game, or animation;</li>
+                <li><strong>(G)</strong> use arithmetic operators to create mathematical expressions, including addition, subtraction, multiplication, real division, integer division, and modulus division;</li>
+                <li><strong>(H)</strong> communicate an understanding of and use sequence within a programmed story, game, or animation;</li>
+                <li><strong>(I)</strong> communicate an understanding of and use conditional statements within a programmed story, game, or animation;</li>
+                <li><strong>(J)</strong> communicate an understanding of and use iteration within a programmed story, game, or animation;</li>
+                <li><strong>(K)</strong> use random numbers within a programmed story, game, or animation; and</li>
+                <li><strong>(L)</strong> test program solutions by investigating intended outcomes.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>(d)(5) Digital Citizenship</summary>
+            <div class="teks-content">
+              <p>The student explores and understands safety, legal, cultural, and societal issues relating to the use of technology and information. The student is expected to:</p>
+              <ul>
+                <li><strong>(A)</strong> discuss privacy and copyright laws and model ethical acquisition of digital information by citing sources using established methods;</li>
+                <li><strong>(B)</strong> compare various non-copyright asset sharing options such as open source, freeware, and public domain;</li>
+                <li><strong>(C)</strong> demonstrate proper digital etiquette and knowledge of acceptable use policies when using networks;</li>
+                <li><strong>(D)</strong> explain the value of strong passwords and virus detection and prevention for privacy and security;</li>
+                <li><strong>(E)</strong> discuss and give examples of the impact of computing and computing-related advancements on society; and</li>
+                <li><strong>(F)</strong> analyze how electronic media can affect reliability of information.</li>
+              </ul>
+            </div>
+          </details>
+
+          <details>
+            <summary>(d)(6) Technology Operations and Concepts</summary>
+            <div class="teks-content">
+              <p>The student understands technology concepts, systems, and operations as they apply to computer science. The student is expected to:</p>
+              <ul>
+                <li><strong>(A)</strong> identify and explain the function of basic computer components, including a central processing unit (CPU), storage, and peripheral devices;</li>
+                <li><strong>(B)</strong> use system tools, including appropriate file management;</li>
+                <li><strong>(C)</strong> compare different operating systems;</li>
+                <li><strong>(D)</strong> describe the differences between an application and an operating system; and</li>
+                <li><strong>(E)</strong> use various input, processing, output, and primary/secondary storage devices.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <a href="./" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to FCS Home
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
