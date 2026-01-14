@@ -1,0 +1,225 @@
+---
+---
+<!-- File: classroom/pit/unit01/session03.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIT - Unit 1: Session 3</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .session-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .session-header {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+      }
+
+      .session-header h1 {
+        margin-bottom: 8px;
+        font-size: 2rem;
+      }
+
+      .session-meta {
+        display: flex;
+        gap: 30px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      .session-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+        opacity: 0.95;
+      }
+
+      .session-meta-item i {
+        font-size: 1.2rem;
+      }
+
+      .coming-soon-box {
+        background: linear-gradient(135deg, #fff8e9 0%, #fffbf0 100%);
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .coming-soon-box i {
+        font-size: 4rem;
+        color: #ffc107;
+        margin-bottom: 20px;
+      }
+
+      .coming-soon-box h2 {
+        color: #856404;
+        margin-bottom: 15px;
+        font-size: 1.8rem;
+      }
+
+      .coming-soon-box p {
+        color: #856404;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      .overview-box {
+        background: #f8f9fa;
+        border-left: 4px solid #dc3545;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .overview-box h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      .overview-box p {
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .back-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #dc3545;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        font-weight: 500;
+      }
+
+      .nav-button:hover {
+        background: #c82333;
+        color: white;
+      }
+
+      .nav-button.disabled {
+        background: #e9ecef;
+        color: #6c757d;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Practicum in Information Technology</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white">Unit 1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Session 3</span>
+      </nav>
+
+      <div class="session-content">
+        <a href="./" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to Unit 1 Overview
+        </a>
+
+        <div class="session-header">
+          <h1><i class="bi bi-sliders"></i> Session 3: Constraints, Scope, and MVP Definition</h1>
+          <div class="session-meta">
+            <div class="session-meta-item">
+              <i class="bi bi-clock-fill"></i>
+              <span>Session Length: 180 minutes</span>
+            </div>
+            <div class="session-meta-item">
+              <i class="bi bi-bullseye"></i>
+              <span>Focus: Identifying constraints and defining a realistic, achievable MVP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coming Soon Notice -->
+        <div class="coming-soon-box">
+          <i class="bi bi-hourglass-split"></i>
+          <h2>Session Content Coming Soon</h2>
+          <p>
+            This session is currently under development. Check back soon for detailed activities, assignments, and resources.
+          </p>
+        </div>
+
+        <!-- Preview Overview -->
+        <div class="overview-box">
+          <h2><i class="bi bi-eye"></i> Session Preview</h2>
+          <p>
+            Students identify real-world constraints such as time, users, data, security, and feasibility. They define the project scope and determine a Minimum Viable Product (MVP) that is realistic and achievable.
+          </p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+          <a href="session02.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Previous: Session 2
+          </a>
+          <a href="./" class="back-button">
+            <i class="bi bi-arrow-left"></i> Back to Unit 1 Overview
+          </a>
+          <a href="session04.html" class="nav-button">
+            Next: Session 4 <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
