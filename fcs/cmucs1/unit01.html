@@ -17,152 +17,46 @@
     />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
-      .unit-content {
-        background: white;
-        border-radius: 15px;
-        padding: 40px;
-        margin-bottom: 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      }
-
-      .unit-header {
-        background: linear-gradient(135deg, #28a745 0%, #20883c 100%);
-        color: white;
-        border-radius: 10px;
-        padding: 30px;
-        margin-bottom: 30px;
-      }
-
-      .unit-header h1 {
-        margin-bottom: 8px;
-        font-size: 2rem;
-      }
-
-      .unit-meta {
-        display: flex;
-        gap: 30px;
-        margin-top: 15px;
-        flex-wrap: wrap;
-      }
-
-      .unit-meta-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 1rem;
-        opacity: 0.95;
-      }
-
-      .unit-meta-item i {
-        font-size: 1.2rem;
-      }
-
-      .coming-soon-box {
-        background: linear-gradient(135deg, #fff8e9 0%, #fffbf0 100%);
-        border: 2px solid #ffc107;
-        border-radius: 10px;
-        padding: 40px;
-        text-align: center;
-        margin: 40px 0;
-      }
-
-      .coming-soon-box i {
-        font-size: 4rem;
-        color: #ffc107;
-        margin-bottom: 20px;
-      }
-
-      .coming-soon-box h2 {
-        color: #856404;
-        margin-bottom: 15px;
-        font-size: 1.8rem;
-      }
-
-      .coming-soon-box p {
-        color: #856404;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 0;
-      }
-
-      .overview-box {
-        background: #f8f9fa;
-        border-left: 4px solid #28a745;
-        border-radius: 8px;
-        padding: 25px;
-        margin-bottom: 30px;
-      }
-
-      .overview-box h2 {
-        color: #2c3e50;
-        margin-bottom: 15px;
-        font-size: 1.5rem;
-      }
-
-      .overview-box p {
-        color: #495057;
-        line-height: 1.6;
-        margin-bottom: 0;
-      }
-
-      .back-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: #6c757d;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background 0.3s;
-        margin-bottom: 20px;
-      }
-
-      .back-button:hover {
-        background: #5a6268;
-        color: white;
-      }
-
-      .nav-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
-        gap: 15px;
-        flex-wrap: wrap;
-      }
-
-      .nav-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: #28a745;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background 0.3s;
-        font-weight: 500;
-      }
-
-      .nav-button:hover {
-        background: #218838;
-        color: white;
-      }
-
-      .nav-button.disabled {
-        background: #e9ecef;
-        color: #6c757d;
-        cursor: not-allowed;
-      }
+      .unit-content { background: white; border-radius: 15px; padding: 40px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+      .unit-header { background: linear-gradient(135deg, #28a745 0%, #20883c 100%); color: white; border-radius: 10px; padding: 30px; margin-bottom: 30px; }
+      .unit-header h1 { margin-bottom: 8px; font-size: 2rem; }
+      .section-card { background: #f8f9fa; border-left: 4px solid #28a745; border-radius: 8px; padding: 25px; margin-bottom: 25px; }
+      .section-card h2 { color: #2c3e50; margin-bottom: 15px; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+      .section-card h2 i { color: #28a745; }
+      .section-card h3 { color: #34495e; margin-top: 20px; margin-bottom: 12px; font-size: 1.2rem; }
+      .section-card p { color: #495057; line-height: 1.6; margin-bottom: 12px; }
+      .section-card ul { color: #495057; line-height: 1.8; margin-bottom: 15px; }
+      .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 0.9rem; overflow-x: auto; margin: 15px 0; }
+      .code-inline { background: #e9ecef; color: #c7254e; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em; }
+      .highlight-box { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px 20px; margin: 15px 0; border-radius: 5px; }
+      .highlight-box h4 { color: #856404; font-size: 1rem; margin-bottom: 10px; font-weight: 600; }
+      .highlight-box p, .highlight-box ul { color: #856404; margin-bottom: 8px; }
+      .tip-box { background: #d1ecf1; border-left: 4px solid #17a2b8; padding: 15px 20px; margin: 15px 0; border-radius: 5px; }
+      .tip-box h4 { color: #0c5460; font-size: 1rem; margin-bottom: 10px; font-weight: 600; }
+      .tip-box p, .tip-box ul { color: #0c5460; margin-bottom: 8px; }
+      .shape-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+      .shape-card { background: white; border: 2px solid #e9ecef; border-radius: 8px; padding: 15px; transition: all 0.3s; }
+      .shape-card:hover { border-color: #28a745; box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2); }
+      .shape-card h4 { color: #28a745; font-size: 1rem; margin-bottom: 10px; font-weight: 600; }
+      .shape-card code { background: #f8f9fa; color: #c7254e; padding: 8px; border-radius: 4px; font-size: 0.85rem; display: block; word-wrap: break-word; }
+      .back-button { display: inline-flex; align-items: center; gap: 8px; background: #6c757d; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; transition: background 0.3s; margin-bottom: 20px; }
+      .back-button:hover { background: #5a6268; color: white; }
+      .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 15px; flex-wrap: wrap; }
+      .nav-button { display: inline-flex; align-items: center; gap: 8px; background: #28a745; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; transition: background 0.3s; font-weight: 500; }
+      .nav-button:hover { background: #218838; color: white; }
+      .nav-button.disabled { background: #e9ecef; color: #6c757d; cursor: not-allowed; }
+      .vocabulary-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+      .vocabulary-table th { background: #28a745; color: white; padding: 12px; text-align: left; font-weight: 600; }
+      .vocabulary-table td { padding: 10px 12px; border-bottom: 1px solid #e9ecef; }
+      .vocabulary-table tr:hover { background: #f8f9fa; }
+      .vocabulary-table code { background: #f8f9fa; color: #c7254e; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
     </style>
   </head>
   <body>
     {% include navigation.html %}
     <div class="main-container">
       <nav class="breadcrumb-nav">
-        <a href="../../" class="text-white">
-          <i class="bi bi-house"></i> Home
-        </a>
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
         <span class="text-white-50 mx-2">/</span>
         <a href="../" class="text-white">Fundamentals of Computer Science</a>
         <span class="text-white-50 mx-2">/</span>
@@ -170,51 +64,187 @@
         <span class="text-white-50 mx-2">/</span>
         <span class="text-white">Unit 1</span>
       </nav>
-
       <div class="unit-content">
-        <a href="./" class="back-button">
-          <i class="bi bi-arrow-left"></i> Back to CMU CS1 Overview
-        </a>
-
+        <a href="./" class="back-button"><i class="bi bi-arrow-left"></i> Back to CMU CS1 Overview</a>
         <div class="unit-header">
-          <h1><i class="bi bi-palette-fill"></i> Unit 1: Getting Started</h1>
-          <div class="unit-meta">
-            <div class="unit-meta-item">
-              <i class="bi bi-lightbulb-fill"></i>
-              <span>Focus: Creating drawings, shapes, colors, opacity</span>
-            </div>
+          <h1><i class="bi bi-palette-fill"></i> Unit 1: Creating Drawings</h1>
+        </div>
+
+        <!-- Unit Overview -->
+        <div class="section-card">
+          <h2><i class="bi bi-book"></i> Unit Overview</h2>
+          <p>In this unit, you'll learn the fundamentals of creating visual graphics using shapes, colors, and opacity. You'll explore various shape functions, understand optional parameters, and master the use of the Inspector tool to recreate precise drawings.</p>
+        </div>
+
+        <!-- Shapes You Can Draw -->
+        <div class="section-card">
+          <h2><i class="bi bi-shapes"></i> Shapes You Can Draw</h2>
+          <h3>Shapes with Radius</h3>
+          <div class="shape-grid">
+            <div class="shape-card"><h4>Circle</h4><code>Circle(centerX, centerY, radius)</code></div>
+            <div class="shape-card"><h4>Star</h4><code>Star(centerX, centerY, radius, points)</code></div>
+            <div class="shape-card"><h4>Regular Polygon</h4><code>RegularPolygon(centerX, centerY, radius, points)</code><p style="font-size: 0.85rem; margin-top: 8px; color: #6c757d;">Draws a shape with the specified number of points evenly spaced around the circle.</p></div>
+          </div>
+          <h3>Shapes with Width/Height</h3>
+          <div class="shape-grid">
+            <div class="shape-card"><h4>Rectangle</h4><code>Rect(left, top, width, height)</code><p style="font-size: 0.85rem; margin-top: 8px; color: #6c757d;">Rectangles are drawn from their left-top coordinate by default.</p></div>
+            <div class="shape-card"><h4>Oval</h4><code>Oval(centerX, centerY, width, height)</code></div>
+          </div>
+          <h3>Miscellaneous Shapes</h3>
+          <div class="shape-grid">
+            <div class="shape-card"><h4>Line</h4><code>Line(x1, y1, x2, y2)</code></div>
+            <div class="shape-card"><h4>Label</h4><code>Label(value, centerX, centerY)</code><p style="font-size: 0.85rem; margin-top: 8px; color: #6c757d;">'value' is the text displayed by the label.</p></div>
+            <div class="shape-card"><h4>Polygon</h4><code>Polygon(x1, y1, x2, y2, x3, y3, ...)</code><p style="font-size: 0.85rem; margin-top: 8px; color: #6c757d;">Like connect-the-dots. Each (x, y) pair is a dot. Lines are drawn between consecutive points.</p></div>
+          </div>
+          <div class="highlight-box">
+            <h4><i class="bi bi-info-circle-fill"></i> Polygon Note</h4>
+            <p>There is no upper limit to the number of points in a polygon, but it will not be drawn unless there are at least three points. Having 0, 1, or 2 points will not raise an error.</p>
           </div>
         </div>
 
-        <!-- Coming Soon Notice -->
-        <div class="coming-soon-box">
-          <i class="bi bi-hourglass-split"></i>
-          <h2>Unit Content Coming Soon</h2>
-          <p>
-            This unit is currently under development. Check back soon for lessons, exercises, and projects.
-          </p>
+        <!-- Optional Parameters -->
+        <div class="section-card">
+          <h2><i class="bi bi-sliders"></i> Optional Parameters</h2>
+          <p>In addition to required parameters that determine position (x, y) and size (radius / width, height), shapes have optional parameters that you can use to modify their appearance.</p>
+          <h3>Example: Rectangle with All Optional Parameters</h3>
+          <div class="code-block">Rect(left, top, width, height, fill='black', border=None,
+     borderWidth=2, opacity=100, rotateAngle=0, dashes=False,
+     align='left-top', visible=True)</div>
+          <h3>List of Optional Parameters</h3>
+          <table class="vocabulary-table">
+            <thead>
+              <tr><th>Parameter</th><th>Description</th><th>Default</th><th>Applies To</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>fill</code></td><td>Specifies the color of a shape</td><td>'black'</td><td>All shapes</td></tr>
+              <tr><td><code>border</code></td><td>A shape's enclosing border; can be set to any color</td><td>None</td><td>All except line</td></tr>
+              <tr><td><code>borderWidth</code></td><td>How wide a shape's border is</td><td>2</td><td>All except line</td></tr>
+              <tr><td><code>dashes</code></td><td>Whether a border has dashes. Use <code>(dashWidth, gapWidth)</code></td><td>False</td><td>All except labels</td></tr>
+              <tr><td><code>opacity</code></td><td>How see-through a shape is (0-100 scale)</td><td>100</td><td>All shapes</td></tr>
+              <tr><td><code>rotateAngle</code></td><td>Rotation in degrees (0 is up, increases clockwise)</td><td>0</td><td>All shapes</td></tr>
+              <tr><td><code>align</code></td><td>Changes orientation relative to input point. <strong>Cannot be changed after shape is defined</strong></td><td>Varies</td><td>All except polygons, arcs, lines</td></tr>
+              <tr><td><code>visible</code></td><td>True/False value that determines if shape is drawn</td><td>True</td><td>All shapes</td></tr>
+              <tr><td><code>roundness</code></td><td>How closely a star resembles a circle (0-100)</td><td>~57</td><td>Stars only</td></tr>
+              <tr><td><code>size</code></td><td>Controls font size of text</td><td>12</td><td>Labels only</td></tr>
+              <tr><td><code>font</code></td><td>Changes the font of text</td><td>Arial</td><td>Labels only</td></tr>
+              <tr><td><code>bold</code></td><td>Makes text bold</td><td>False</td><td>Labels only</td></tr>
+              <tr><td><code>italic</code></td><td>Makes text italicized</td><td>False</td><td>Labels only</td></tr>
+              <tr><td><code>lineWidth</code></td><td>Thickness of a line (≥1)</td><td>2</td><td>Lines only</td></tr>
+              <tr><td><code>arrowStart</code></td><td>Line starts with an arrow</td><td>False</td><td>Lines only</td></tr>
+              <tr><td><code>arrowEnd</code></td><td>Line ends with an arrow</td><td>False</td><td>Lines only</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box">
+            <h4><i class="bi bi-lightbulb-fill"></i> Arrow Note</h4>
+            <p><code>arrowStart</code> and <code>arrowEnd</code> aren't introduced until Unit 7 but are included here for completeness.</p>
+          </div>
         </div>
 
-        <!-- Preview Overview -->
-        <div class="overview-box">
-          <h2><i class="bi bi-eye"></i> Unit Preview</h2>
-          <p>
-            In this unit, students will learn the fundamentals of creating visual graphics using shapes, colors, and opacity.
-            This foundation will set the stage for more advanced programming concepts in future units.
-          </p>
+        <!-- Advanced Color Options -->
+        <div class="section-card">
+          <h2><i class="bi bi-palette"></i> Advanced Color Options</h2>
+          <h3>Gradients</h3>
+          <p>Rather than a solid color, <code>fill</code> can also be set equal to a gradient—one color transitioning gradually to one or more other colors. You can change the orientation of the gradient.</p>
+          <h3>RGB Values</h3>
+          <p>While we have many named colors, computers can express many more (16 million actually). To use these other colors, you'll need to use RGB values.</p>
+          <div class="code-block"># RGB value example
+Circle(200, 200, 50, fill=rgb(150, 75, 200))</div>
+          <div class="highlight-box">
+            <h4><i class="bi bi-info-circle-fill"></i> Understanding RGB</h4>
+            <p>An RGB value is composed of three numbers (all between 0 and 255):</p>
+            <ul>
+              <li>First value = intensity of <strong>Red</strong></li>
+              <li>Second value = intensity of <strong>Green</strong></li>
+              <li>Third value = intensity of <strong>Blue</strong></li>
+            </ul>
+            <p style="margin-top: 10px;"><strong>Reference colors:</strong></p>
+            <ul>
+              <li><code>rgb(255, 0, 0)</code> = Pure red</li>
+              <li><code>rgb(0, 255, 0)</code> = Pure green</li>
+              <li><code>rgb(0, 0, 255)</code> = Pure blue</li>
+              <li><code>rgb(0, 0, 0)</code> = Black</li>
+              <li><code>rgb(255, 255, 255)</code> = White</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- The Inspector -->
+        <div class="section-card">
+          <h2><i class="bi bi-search"></i> The Inspector</h2>
+          <p>Once something has been drawn on the canvas, hover your mouse over shapes to see highlighted points and a grey box in the top-right corner with information. This is called the <strong>Inspector</strong> and is vital to CMU CS Academy.</p>
+          <div class="highlight-box">
+            <h4><i class="bi bi-exclamation-triangle-fill"></i> Important</h4>
+            <p>Once we get further into the course and make interactive canvases, hold <strong>Control</strong> to activate the inspector.</p>
+          </div>
+          <h3>Using the Inspector</h3>
+          <p>Students can use the inspector on the solution view of the canvas to gather information about what to code. The limited information provided is meant to promote problem-solving skills rather than feeding answers.</p>
+          <h3>Important Tips</h3>
+          <div class="tip-box">
+            <h4><i class="bi bi-star-fill"></i> Inspector Tips</h4>
+            <ul>
+              <li><strong>All properties are listed from back to front</strong> - The first radius value corresponds to the shape furthest back</li>
+              <li><strong>Pick isolated points when possible</strong> - Points belonging to only one shape avoid confusion</li>
+              <li><strong>The inspector is your best friend</strong> - Use it extensively to match drawings exactly</li>
+            </ul>
+          </div>
+          <p style="margin-top: 15px;">The importance of the inspector cannot be overstated. Without it, many exercises would be nearly impossible to recreate!</p>
+        </div>
+
+        <!-- Vocabulary -->
+        <div class="section-card">
+          <h2><i class="bi bi-journal-text"></i> Vocabulary</h2>
+          <h3>Shapes</h3>
+          <ul>
+            <li><code>Rect(left, top, width, height)</code></li>
+            <li><code>Oval(centerX, centerY, width, height)</code></li>
+            <li><code>Circle(centerX, centerY, radius)</code></li>
+            <li><code>Star(centerX, centerY, radius, points)</code></li>
+            <li><code>RegularPolygon(centerX, centerY, radius, points)</code></li>
+            <li><code>Polygon(x1, y1, x2, y2, x3, y3, ...)</code></li>
+            <li><code>Line(x1, y1, x2, y2)</code></li>
+            <li><code>Label('text', centerX, centerY)</code></li>
+          </ul>
+          <h3>Colors</h3>
+          <p>Go to the <strong>Built-in Colors</strong> page within the docs to view all available colors.</p>
+          <ul><li>You can make any shade using <code>rgb(red, green, blue)</code> values</li></ul>
+          <h3>Common Optional Parameters</h3>
+          <ul>
+            <li><code>fill</code> - The color of the inside of a shape</li>
+            <li><code>opacity</code> - How opaque a shape is (0-100 scale)</li>
+            <li><code>border</code> - The color of a shape's border</li>
+            <li><code>borderWidth</code> - The width of a shape's border, if it has one</li>
+            <li><code>dashes</code> - Whether the border is dashed. False for no dashes, otherwise True or <code>(dashWidth, gapWidth)</code></li>
+          </ul>
+        </div>
+
+        <!-- Troubleshooting -->
+        <div class="section-card">
+          <h2><i class="bi bi-tools"></i> Troubleshooting & Advice</h2>
+          <h3>Exercise Drawing Looks Correct</h3>
+          <p>Drawings must be exact matches. Note that any solution that accomplishes this will pass the autograder. For instance, an identical rectangle may be drawn with both the Rect function and the Polygon function!</p>
+          <div class="highlight-box">
+            <h4><i class="bi bi-bug-fill"></i> Common Problems</h4>
+            <ul>
+              <li>Gradient directions are incorrect</li>
+              <li>Incorrect number of shapes (Are you drawing extra hidden shapes? Redundant shapes?)</li>
+              <li>Points don't match the solution</li>
+              <li>Incorrect colors (spelling and/or RGB values)</li>
+              <li>Incorrect property values (radius, border, etc.)</li>
+            </ul>
+          </div>
+          <h3>Nothing is Happening</h3>
+          <p>Check the console (area underneath the canvas) for an error message. If there is an error, look at that line number, as well as before and after, to see if there are any syntax issues. Make sure your code is not in comments.</p>
+          <h3>Not Sure Where to Start</h3>
+          <p>Try drawing the image on paper, and translate your first steps into code with the inspector.</p>
+          <h3>Not Sure How to Get It to Look Right</h3>
+          <p><strong>Layering</strong> is often used to cover up parts of shapes that aren't wanted. Code runs from top to bottom, so later lines of code get drawn on top of earlier ones.</p>
         </div>
 
         <!-- Navigation Buttons -->
         <div class="nav-buttons">
-          <a href="#" class="nav-button disabled">
-            <i class="bi bi-arrow-left"></i> Previous Unit
-          </a>
-          <a href="./" class="back-button">
-            <i class="bi bi-arrow-left"></i> Back to CMU CS1 Overview
-          </a>
-          <a href="unit02.html" class="nav-button">
-            Next: Unit 2 <i class="bi bi-arrow-right"></i>
-          </a>
+          <a href="#" class="nav-button disabled"><i class="bi bi-arrow-left"></i> Previous Unit</a>
+          <a href="./" class="back-button"><i class="bi bi-arrow-left"></i> Back to CMU CS1 Overview</a>
+          <a href="unit02.html" class="nav-button">Next: Unit 2 <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
     </div>
