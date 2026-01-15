@@ -1,0 +1,71 @@
+---
+---
+<!-- File: classroom/fcs/cmucs1/unit11.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FCS - CMU CS1 Unit 11</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .unit-content { background: white; border-radius: 15px; padding: 40px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+      .unit-header { background: linear-gradient(135deg, #28a745 0%, #20883c 100%); color: white; border-radius: 10px; padding: 30px; margin-bottom: 30px; }
+      .unit-header h1 { margin-bottom: 8px; font-size: 2rem; }
+      .unit-meta { display: flex; gap: 30px; margin-top: 15px; flex-wrap: wrap; }
+      .unit-meta-item { display: flex; align-items: center; gap: 8px; font-size: 1rem; opacity: 0.95; }
+      .unit-meta-item i { font-size: 1.2rem; }
+      .coming-soon-box { background: linear-gradient(135deg, #fff8e9 0%, #fffbf0 100%); border: 2px solid #ffc107; border-radius: 10px; padding: 40px; text-align: center; margin: 40px 0; }
+      .coming-soon-box i { font-size: 4rem; color: #ffc107; margin-bottom: 20px; }
+      .coming-soon-box h2 { color: #856404; margin-bottom: 15px; font-size: 1.8rem; }
+      .coming-soon-box p { color: #856404; font-size: 1.1rem; line-height: 1.6; margin-bottom: 0; }
+      .overview-box { background: #f8f9fa; border-left: 4px solid #28a745; border-radius: 8px; padding: 25px; margin-bottom: 30px; }
+      .overview-box h2 { color: #2c3e50; margin-bottom: 15px; font-size: 1.5rem; }
+      .overview-box p { color: #495057; line-height: 1.6; margin-bottom: 0; }
+      .back-button { display: inline-flex; align-items: center; gap: 8px; background: #6c757d; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; transition: background 0.3s; margin-bottom: 20px; }
+      .back-button:hover { background: #5a6268; color: white; }
+      .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 15px; flex-wrap: wrap; }
+      .nav-button { display: inline-flex; align-items: center; gap: 8px; background: #28a745; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; transition: background 0.3s; font-weight: 500; }
+      .nav-button:hover { background: #218838; color: white; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Fundamentals of Computer Science</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Unit 11</span>
+      </nav>
+      <div class="unit-content">
+        <a href="./" class="back-button"><i class="bi bi-arrow-left"></i> Back to CMU CS1 Overview</a>
+        <div class="unit-header">
+          <h1><i class="bi bi-controller"></i> Unit 11: 2D Lists & Games</h1>
+          <div class="unit-meta">
+            <div class="unit-meta-item"><i class="bi bi-lightbulb-fill"></i><span>Focus: 2D Lists, Games</span></div>
+          </div>
+        </div>
+        <div class="coming-soon-box">
+          <i class="bi bi-hourglass-split"></i>
+          <h2>Unit Content Coming Soon</h2>
+          <p>This unit is currently under development. Check back soon for lessons, exercises, and projects.</p>
+        </div>
+        <div class="overview-box">
+          <h2><i class="bi bi-eye"></i> Unit Preview</h2>
+          <p>Students will learn to work with two-dimensional lists for grid-based data and apply their programming skills to create interactive games.</p>
+        </div>
+        <div class="nav-buttons">
+          <a href="unit10.html" class="nav-button"><i class="bi bi-arrow-left"></i> Previous: Unit 10</a>
+          <a href="./" class="back-button"><i class="bi bi-arrow-left"></i> Back to CMU CS1 Overview</a>
+          <a href="unit12.html" class="nav-button">Next: Unit 12 <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

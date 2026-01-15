@@ -1,0 +1,288 @@
+---
+---
+<!-- File: classroom/fcs/cmucs1/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FCS - CMU CS1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .unit-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .unit-header {
+        background: linear-gradient(135deg, #28a745 0%, #20883c 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .unit-header h1 {
+        margin-bottom: 10px;
+        font-size: 2rem;
+      }
+
+      .unit-header .subtitle {
+        font-size: 1.1rem;
+        opacity: 0.95;
+      }
+
+      .overview-box {
+        background: #f8f9fa;
+        border-left: 4px solid #28a745;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .overview-box h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      .overview-box p {
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      .unit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .unit-card {
+        background: white;
+        border: 2px solid #28a745;
+        border-radius: 8px;
+        padding: 20px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: all 0.3s;
+      }
+
+      .unit-card:hover {
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+        transform: translateY(-2px);
+        text-decoration: none;
+      }
+
+      .unit-number {
+        background: #28a745;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .unit-info {
+        flex-grow: 1;
+      }
+
+      .unit-info h3 {
+        color: #2c3e50;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .unit-info p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .back-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Fundamentals of Computer Science</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">CMU CS1</span>
+      </nav>
+
+      <div class="unit-content">
+        <a href="../" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to FCS Home
+        </a>
+
+        <div class="unit-header">
+          <h1><i class="bi bi-code-square"></i> Carnegie Mellon University Computer Science Academy</h1>
+          <p class="subtitle">CS1: Introduction to Programming with Graphics</p>
+        </div>
+
+        <!-- Overview -->
+        <div class="overview-box">
+          <h2><i class="bi bi-book"></i> Course Overview</h2>
+          <p>
+            CMU CS Academy provides a comprehensive introduction to computer science and programming through interactive graphics.
+            Students learn fundamental programming concepts including shapes, functions, conditionals, loops, lists, and game development
+            using Python. The curriculum emphasizes hands-on learning and creative problem-solving through visual programming projects.
+          </p>
+        </div>
+
+        <!-- Units Grid -->
+        <div class="overview-box">
+          <h2><i class="bi bi-grid-3x3-gap"></i> Course Units</h2>
+          <p style="margin-bottom: 20px;">
+            Click on any unit below to access lessons, exercises, and projects.
+          </p>
+
+          <div class="unit-grid">
+            <a href="unit01.html" class="unit-card">
+              <div class="unit-number">1</div>
+              <div class="unit-info">
+                <h3>Unit 1: Getting Started</h3>
+                <p>Creating drawings, shapes, colors, opacity</p>
+              </div>
+            </a>
+
+            <a href="unit02.html" class="unit-card">
+              <div class="unit-number">2</div>
+              <div class="unit-info">
+                <h3>Unit 2: Functions & Interaction</h3>
+                <p>Functions, onMousePress and onMouseRelease, and shape properties</p>
+              </div>
+            </a>
+
+            <a href="unit03.html" class="unit-card">
+              <div class="unit-number">3</div>
+              <div class="unit-info">
+                <h3>Unit 3: Mouse Events & Conditionals</h3>
+                <p>onMouseMove and onMouseDrag, conditionals, helper functions</p>
+              </div>
+            </a>
+
+            <a href="unit04.html" class="unit-card">
+              <div class="unit-number">4</div>
+              <div class="unit-info">
+                <h3>Unit 4: Keyboard & Shape Methods</h3>
+                <p>elif statements, onKeyPress and onKeyRelease, shape methods</p>
+              </div>
+            </a>
+
+            <a href="unit05.html" class="unit-card">
+              <div class="unit-number">5</div>
+              <div class="unit-info">
+                <h3>Unit 5: Advanced Conditionals</h3>
+                <p>Compound and nested conditionals, onKeyHold</p>
+              </div>
+            </a>
+
+            <a href="unit06.html" class="unit-card">
+              <div class="unit-number">6</div>
+              <div class="unit-info">
+                <h3>Unit 6: Groups & Animation</h3>
+                <p>Groups, onStep, motion</p>
+              </div>
+            </a>
+
+            <a href="unit07.html" class="unit-card">
+              <div class="unit-number">7</div>
+              <div class="unit-info">
+                <h3>Unit 7: Loops & Variables</h3>
+                <p>New Shapes, Local Variables, and For Loops</p>
+              </div>
+            </a>
+
+            <a href="unit08.html" class="unit-card">
+              <div class="unit-number">8</div>
+              <div class="unit-info">
+                <h3>Unit 8: Math & Nested Loops</h3>
+                <p>Math Functions, Random Values, and Nested Loops</p>
+              </div>
+            </a>
+
+            <a href="unit09.html" class="unit-card">
+              <div class="unit-number">9</div>
+              <div class="unit-info">
+                <h3>Unit 9: Data Types & Strings</h3>
+                <p>Types, Strings, and While Loops</p>
+              </div>
+            </a>
+
+            <a href="unit10.html" class="unit-card">
+              <div class="unit-number">10</div>
+              <div class="unit-info">
+                <h3>Unit 10: Lists & Functions</h3>
+                <p>Lists, group.hitTest(), writing functions that return values</p>
+              </div>
+            </a>
+
+            <a href="unit11.html" class="unit-card">
+              <div class="unit-number">11</div>
+              <div class="unit-info">
+                <h3>Unit 11: 2D Lists & Games</h3>
+                <p>2D Lists, Games</p>
+              </div>
+            </a>
+
+            <a href="unit12.html" class="unit-card">
+              <div class="unit-number">12</div>
+              <div class="unit-info">
+                <h3>Unit 12: Final Project</h3>
+                <p>Images, sounds (No CTs for this unit)</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a href="../" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to FCS Home
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
