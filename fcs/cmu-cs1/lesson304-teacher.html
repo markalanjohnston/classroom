@@ -1,0 +1,597 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/lesson304-teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 304 - Teacher Lesson Plan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .course-info {
+        background: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .course-info h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .course-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .course-info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .course-info-item strong {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #6c757d;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #6c757d;
+      }
+
+      .objectives-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .objectives-list li {
+        padding: 8px 0 8px 30px;
+        position: relative;
+      }
+
+      .objectives-list li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #6c757d;
+        font-weight: bold;
+      }
+
+      .materials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .materials-grid li {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .timing-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .timing-table th,
+      .timing-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .timing-table th {
+        background: #6c757d;
+        color: white;
+        font-weight: 600;
+      }
+
+      .timing-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .procedure-section {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #6c757d;
+      }
+
+      .procedure-section h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .procedure-subsection {
+        margin: 15px 0;
+      }
+
+      .procedure-subsection h4 {
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .key-points {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .key-points h4 {
+        color: #0f5132;
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .shapes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+      }
+
+      .shapes-grid li {
+        background: #e7f3ff;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: 500;
+        text-align: center;
+        border: 2px solid #0d6efd;
+      }
+
+      .misconceptions-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .misconceptions-table th,
+      .misconceptions-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .misconceptions-table th {
+        background: #dc3545;
+        color: white;
+        font-weight: 600;
+      }
+
+      .misconceptions-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .assessment-box {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .assessment-box h3 {
+        color: #856404;
+        margin: 0 0 10px 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .student-link {
+        background: #198754;
+      }
+
+      .student-link:hover {
+        background: #157347;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="teacher.html" class="text-white-50">Teacher Resources</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 304 Teacher Plan</span>
+      </nav>
+
+      <div class="teacher-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-person-video3"></i> Teacher Lesson Plan</h1>
+          <p class="mb-0">Lesson 304: Unit 1.3 – Shapes</p>
+        </div>
+
+        <div class="course-info">
+          <h3>Lesson Overview</h3>
+          <div class="course-info-grid">
+            <div class="course-info-item">
+              <strong>Course:</strong>
+              <span>Fundamentals of Computer Science</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Code:</strong>
+              <span>304</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Title:</strong>
+              <span>Unit 1.3 – Shapes</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Class Length:</strong>
+              <span>90 minutes</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Curriculum Source:</strong>
+              <span>CMU CS Academy CS1 – Unit 1</span>
+            </div>
+          </div>
+          <p style="margin-top: 15px; margin-bottom: 0;">
+            This lesson expands student understanding of the core drawing tools available in CMU CS Academy. Students learn additional shape commands, the parameters each shape requires, and how coordinates, width, height, and radius affect the final drawing. The focus is on recognizing when to use different shapes and accurately placing them on the canvas.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Objectives</h2>
+          <p>Students will be able to:</p>
+          <ul class="objectives-list">
+            <li>Identify and use the primary shape-drawing commands in CMU CS Academy.</li>
+            <li>Explain the difference between shapes defined by radius and shapes defined by width and height.</li>
+            <li>Correctly position shapes on the canvas using x and y coordinates.</li>
+            <li>Create simple drawings that combine multiple types of shapes.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-box-seam"></i> Materials & Setup</h2>
+          <ul class="materials-grid">
+            <li>Computers with internet access</li>
+            <li>CMU CS Academy student login credentials</li>
+            <li>Student note-taking materials</li>
+            <li>Projector or teacher computer for demonstrations</li>
+            <li>Access to Unit 1.3 activities in CMU CS Academy</li>
+          </ul>
+
+          <h3 style="margin-top: 20px; color: #6c757d;">Teacher Preparation:</h3>
+          <ul>
+            <li>Confirm all students can log in to CMU CS Academy</li>
+            <li>Open example programs from Unit 1.3 in advance</li>
+            <li>Prepare a sample drawing program for live modeling</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clock"></i> Agenda (90 Minutes)</h2>
+          <table class="timing-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0 – 5 min</td><td>Warm-Up Discussion</td></tr>
+              <tr><td>5 – 40 min</td><td>Direct Instruction and Demonstration</td></tr>
+              <tr><td>40 – 45 min</td><td>Transition to Guided Work</td></tr>
+              <tr><td>45 – 80 min</td><td>Guided CMU Work Time</td></tr>
+              <tr><td>80 – 88 min</td><td>Formative Checks for Understanding</td></tr>
+              <tr><td>88 – 90 min</td><td>Closure and Homework</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-list-ol"></i> Teacher Moves (Scripted Talking Points + Demo Steps)</h2>
+
+          <div class="procedure-section">
+            <h3>Warm-Up (5 minutes)</h3>
+
+            <div class="key-points">
+              <h4>Ask students:</h4>
+              <p style="margin: 0;">"Look around the room. How many everyday objects can you describe using only simple shapes like rectangles, circles, and lines?"</p>
+            </div>
+
+            <p>Allow a few responses.</p>
+
+            <div class="procedure-subsection">
+              <h4>Transition:</h4>
+              <p>"Computer graphics are built the same way. Complex pictures come from combining simple shapes. Today you will learn the main shapes available in CMU CS Academy and how to control them."</p>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Direct Instruction (35 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>1. Introduce Available Shapes</h4>
+              <p>Explain that Unit 1 uses several basic drawing commands, including:</p>
+              <ul class="shapes-grid">
+                <li>Circle</li>
+                <li>Rect</li>
+                <li>Oval</li>
+                <li>Line</li>
+                <li>Polygon</li>
+                <li>Star</li>
+                <li>Label</li>
+              </ul>
+              <div class="key-points">
+                <h4>Clarify:</h4>
+                <p style="margin: 0;">"Every picture you create in CMU CS Academy is built from these basic pieces."</p>
+              </div>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>2. Shapes Defined by Radius</h4>
+              <p><strong>Demonstrate:</strong></p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">Circle(200, 200, 50)
+Star(100, 100, 40, 5)</pre>
+
+              <p><strong>Explain:</strong></p>
+              <ul>
+                <li>These shapes use a center point and a radius</li>
+                <li>The radius controls size in all directions</li>
+              </ul>
+
+              <div class="key-points">
+                <h4>Talking Point:</h4>
+                <p style="margin: 0;">"Radius-based shapes grow outward equally from their center."</p>
+              </div>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>3. Shapes Defined by Width and Height</h4>
+              <p><strong>Demonstrate:</strong></p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">Rect(50, 50, 120, 80)
+Oval(200, 200, 100, 60)</pre>
+
+              <p><strong>Explain:</strong></p>
+              <ul>
+                <li>These shapes start from a corner or center and use width and height</li>
+                <li>Rectangles are drawn from the top-left corner by default</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>4. Coordinate System Review</h4>
+              <p>Use the canvas to remind students:</p>
+              <ul>
+                <li>(0,0) is the top-left corner</li>
+                <li>x increases to the right</li>
+                <li>y increases downward</li>
+              </ul>
+
+              <p><strong>Ask guiding questions:</strong></p>
+              <p>"If I want a shape lower on the screen, which value should I change?"</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>5. Combining Shapes</h4>
+              <p>Model building a simple picture using multiple commands:</p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">Rect(50, 150, 300, 100)
+Circle(200, 150, 40)
+Line(50, 150, 350, 150)</pre>
+
+              <div class="key-points">
+                <h4>Emphasize:</h4>
+                <p style="margin: 0;">"Programs run from top to bottom, so order matters."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-pencil-square"></i> Student Tasks</h2>
+
+          <h3>In-Class Work</h3>
+          <p>Students will:</p>
+          <ul>
+            <li>Log into CMU CS Academy</li>
+            <li>Navigate to Unit 1.3 – Shapes</li>
+            <li>Work through interactive notes and assigned exercises</li>
+            <li>Use multiple shape types to complete the practice tasks</li>
+          </ul>
+
+          <p><strong>Focus areas:</strong></p>
+          <ul>
+            <li>Using correct parameters</li>
+            <li>Positioning shapes accurately</li>
+            <li>Recognizing when to use each type of shape</li>
+          </ul>
+
+          <h3 style="margin-top: 20px;">Homework</h3>
+          <p>Any unfinished Unit 1.3 CMU CS Academy lessons or exercises must be completed before the next class session.</p>
+        </div>
+
+        <div class="assessment-box">
+          <h3><i class="bi bi-clipboard-check"></i> Checks for Understanding (Formative)</h3>
+
+          <h4>During work time, ask:</h4>
+          <ul>
+            <li>"What values does the Rect command need?"</li>
+            <li>"How is a Circle different from an Oval?"</li>
+            <li>"Which part of the screen is coordinate (0,0)?"</li>
+            <li>"How do you control the size of a Star?"</li>
+          </ul>
+
+          <h4 style="margin-top: 15px;">Quick Exit Questions:</h4>
+          <ul style="margin-bottom: 0;">
+            <li>Which shape uses radius instead of width and height?</li>
+            <li>What do the first two numbers in a shape command represent?</li>
+            <li>Why does order matter when drawing shapes?</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-exclamation-triangle"></i> Common Misconceptions & Fixes</h2>
+          <table class="misconceptions-table">
+            <thead>
+              <tr>
+                <th>Misconception</th>
+                <th>Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Students think all shapes start at center</td>
+                <td>Explain that Rect starts at top-left by default</td>
+              </tr>
+              <tr>
+                <td>Confusing width/height with x/y</td>
+                <td>Reinforce that x and y are position, not size</td>
+              </tr>
+              <tr>
+                <td>Belief that order of code doesn't matter</td>
+                <td>Demonstrate layering through examples</td>
+              </tr>
+              <tr>
+                <td>Mixing up radius with diameter</td>
+                <td>Model how radius controls size directly</td>
+              </tr>
+              <tr>
+                <td>Using wrong number of parameters</td>
+                <td>Review required inputs for each shape</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-gear"></i> Differentiation & Accommodations</h2>
+
+          <h3>For students who struggle</h3>
+          <ul>
+            <li>Provide partially completed starter code</li>
+            <li>Allow them to focus on only Circle and Rect first</li>
+            <li>Offer coordinate grid templates</li>
+          </ul>
+
+          <h3>For advanced students</h3>
+          <ul>
+            <li>Challenge them to recreate a complex picture</li>
+            <li>Encourage use of Polygon and Star creatively</li>
+            <li>Ask them to design a custom scene</li>
+          </ul>
+
+          <h3>General supports</h3>
+          <ul>
+            <li>Pair programming</li>
+            <li>Visual coordinate references</li>
+            <li>Step-by-step checklists</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clipboard-data"></i> Assessment Notes</h2>
+          <p>Assessment in this lesson is formative.</p>
+          <p>Evidence of understanding includes:</p>
+          <ul>
+            <li>Correct use of multiple shape commands</li>
+            <li>Accurate placement on canvas</li>
+            <li>Successful completion of CMU exercises</li>
+          </ul>
+          <p>Formal grading will come later through creative tasks and unit assignments.</p>
+        </div>
+
+        <div class="key-points">
+          <h4><i class="bi bi-door-closed"></i> Closure</h4>
+          <p>"Today you learned the building blocks of computer graphics. Every complex image in this course starts with these simple shapes. As you continue, you'll combine them in more creative and powerful ways."</p>
+          <p style="margin: 0;"><strong>Remind students:</strong> "Finish any remaining exercises for homework so you are ready for the next lesson."</p>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="teacher.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Back to Teacher Resources
+          </a>
+          <a href="lesson304.html" class="nav-button student-link">
+            <i class="bi bi-eye"></i> View Student Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
