@@ -1,0 +1,686 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/lesson302-teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 302 - Teacher Lesson Plan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .course-info {
+        background: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .course-info h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .course-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .course-info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .course-info-item strong {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #6c757d;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #6c757d;
+      }
+
+      .objectives-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .objectives-list li {
+        padding: 8px 0 8px 30px;
+        position: relative;
+      }
+
+      .objectives-list li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #6c757d;
+        font-weight: bold;
+      }
+
+      .teks-box {
+        background: #e7f3ff;
+        border: 2px solid #0d6efd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .teks-box h3 {
+        color: #0d6efd;
+        margin: 0 0 10px 0;
+      }
+
+      .materials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .materials-grid li {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .vocab-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+      }
+
+      .vocab-list li {
+        background: #fff3cd;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .timing-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .timing-table th,
+      .timing-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .timing-table th {
+        background: #6c757d;
+        color: white;
+        font-weight: 600;
+      }
+
+      .timing-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .procedure-section {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #6c757d;
+      }
+
+      .procedure-section h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .procedure-subsection {
+        margin: 15px 0;
+      }
+
+      .procedure-subsection h4 {
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .key-points {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .key-points h4 {
+        color: #0f5132;
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .assessment-box {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .assessment-box h3 {
+        color: #856404;
+        margin: 0 0 10px 0;
+      }
+
+      .reflection-box {
+        background: #e7f3ff;
+        border-left: 4px solid #0d6efd;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .reflection-box h3 {
+        color: #084298;
+        margin: 0 0 10px 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .student-link {
+        background: #198754;
+      }
+
+      .student-link:hover {
+        background: #157347;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="teacher.html" class="text-white-50">Teacher Resources</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 302 Teacher Plan</span>
+      </nav>
+
+      <div class="teacher-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-person-video3"></i> Teacher Lesson Plan</h1>
+          <p class="mb-0">Lesson 302: Course Introduction, Digital Citizenship, CMU Setup, Unit 1.1 Basics</p>
+        </div>
+
+        <div class="course-info">
+          <h3>Course Information</h3>
+          <div class="course-info-grid">
+            <div class="course-info-item">
+              <strong>Course:</strong>
+              <span>Fundamentals of Computer Science – Programming Semester</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Class Number:</strong>
+              <span>302</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Length:</strong>
+              <span>90 Minutes</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Curriculum:</strong>
+              <span>CMU CS Academy – CS1</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Focus:</strong>
+              <span>Course Introduction, Digital Citizenship, CMU Setup, Unit 1.1 Basics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-info-circle"></i> Lesson Overview</h2>
+          <p>This lesson serves as the first true instructional day of the programming semester. The purpose is to:</p>
+          <ul>
+            <li>Establish classroom procedures and expectations</li>
+            <li>Introduce digital citizenship and academic integrity</li>
+            <li>Ensure all students can access and use CMU CS Academy</li>
+            <li>Introduce the basic mechanics of programming</li>
+            <li>Begin Unit 1.1: Basics (drawing with code)</li>
+          </ul>
+          <p>The lesson blends direct instruction with hands-on guided practice to set the tone for the semester-long instructional model.</p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Learning Objectives</h2>
+          <p>Students will be able to:</p>
+          <ul class="objectives-list">
+            <li>Explain course expectations and classroom procedures.</li>
+            <li>Demonstrate understanding of digital citizenship and academic integrity in programming.</li>
+            <li>Successfully create and access a CMU CS Academy account and join the class.</li>
+            <li>Navigate the CMU CS Academy programming environment.</li>
+            <li>Write and run basic programs that draw simple shapes.</li>
+          </ul>
+        </div>
+
+        <div class="teks-box">
+          <h3><i class="bi bi-bookmark-check"></i> TEKS Alignment</h3>
+          <p>This lesson directly supports the following Fundamentals of Computer Science TEKS:</p>
+          <ul>
+            <li><strong>(d)(1)(G):</strong> Legal and ethical responsibilities in computer science</li>
+            <li><strong>(d)(3)(B):</strong> Debug and solve problems using effective strategies</li>
+            <li><strong>(d)(4)(D):</strong> Demonstrate coding proficiency in a programming language</li>
+            <li><strong>(d)(6)(B):</strong> Use system tools and technology resources appropriately</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-box-seam"></i> Materials and Technology</h2>
+          <ul class="materials-grid">
+            <li>Student computers with internet access</li>
+            <li>Projector and teacher computer</li>
+            <li>CMU CS Academy class join code</li>
+            <li>Student login credentials</li>
+            <li>LMS access (Schoology/Canvas)</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-book"></i> Vocabulary</h2>
+          <ul class="vocab-list">
+            <li>IDE</li>
+            <li>Canvas</li>
+            <li>Autograder</li>
+            <li>Coordinates</li>
+            <li>Debugging</li>
+            <li>Syntax</li>
+            <li>Digital Citizenship</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clock"></i> Lesson Agenda and Timing</h2>
+          <table class="timing-table">
+            <thead>
+              <tr>
+                <th>Segment</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Welcome and Course Framing</td><td>10 min</td></tr>
+              <tr><td>Digital Citizenship & Academic Integrity</td><td>10 min</td></tr>
+              <tr><td>CMU Account Setup</td><td>15 min</td></tr>
+              <tr><td>IDE Tour and Features Demo</td><td>15 min</td></tr>
+              <tr><td>Unit 1.1 Basics Instruction</td><td>20 min</td></tr>
+              <tr><td>Guided Independent Practice</td><td>15 min</td></tr>
+              <tr><td>Closure and Formative Check</td><td>5 min</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-list-ol"></i> Instructional Procedures</h2>
+
+          <div class="procedure-section">
+            <h3>1. Welcome and Course Framing (10 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Teacher Actions</h4>
+              <ul>
+                <li>Welcome students to the programming semester</li>
+                <li>Explain the purpose of the course</li>
+                <li>Review how this semester fits into the overall Fundamentals of Computer Science class</li>
+                <li>Introduce the daily class structure</li>
+              </ul>
+            </div>
+
+            <div class="key-points">
+              <h4>Key Talking Points</h4>
+              <ul style="margin: 0;">
+                <li>Programming is learned through practice, not memorization</li>
+                <li>Mistakes and debugging are normal and expected</li>
+                <li>Class time will combine instruction and independent coding</li>
+                <li>Homework will be a regular part of the course</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Student Outcomes</h4>
+              <ul>
+                <li>Understand expectations and course purpose</li>
+                <li>Recognize the structure of a typical class period</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>2. Digital Citizenship and Academic Integrity (10 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Mini-Lesson Topics</h4>
+              <ul>
+                <li>Ethical use of online resources</li>
+                <li>Collaboration vs. copying</li>
+                <li>Appropriate help-seeking</li>
+                <li>Plagiarism in coding</li>
+                <li>Respectful online behavior</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Discussion Prompts</h4>
+              <ul>
+                <li>"What is the difference between helping someone and giving them your code?"</li>
+                <li>"Is it okay to search for syntax help online?"</li>
+                <li>"Why is copying code harmful to learning?"</li>
+              </ul>
+            </div>
+
+            <div class="key-points">
+              <h4>Key Expectations to Establish</h4>
+              <ul style="margin: 0;">
+                <li>Students may discuss ideas but must write their own code</li>
+                <li>Copy/paste from classmates or websites is not acceptable</li>
+                <li>Asking for help is encouraged</li>
+                <li>Integrity is essential in computer science</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>3. CMU CS Academy Account Setup (15 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Step-by-Step Process</h4>
+              <ul>
+                <li>Direct students to the CMU CS Academy website</li>
+                <li>Walk students through account creation</li>
+                <li>Provide class join code</li>
+                <li>Verify enrollment on teacher dashboard</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Teacher Responsibilities</h4>
+              <ul>
+                <li>Circulate and assist</li>
+                <li>Troubleshoot login issues</li>
+                <li>Confirm every student can access Unit 1</li>
+              </ul>
+            </div>
+
+            <div class="key-points">
+              <h4>Success Criteria</h4>
+              <ul style="margin: 0;">
+                <li>100% of students logged in</li>
+                <li>All students able to open Unit 1 lessons</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>4. IDE Tour and Demonstration (15 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Demonstrate and Explain</h4>
+              <ul>
+                <li>Code editor window</li>
+                <li>Run button</li>
+                <li>Graphics canvas</li>
+                <li>Autograder feedback</li>
+                <li>Inspector tool</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Emphasize</h4>
+              <ul>
+                <li>Programs are written line by line</li>
+                <li>Output appears visually on the canvas</li>
+                <li>Errors are part of the process</li>
+                <li>The Inspector helps analyze shapes and coordinates</li>
+              </ul>
+            </div>
+
+            <div class="key-points">
+              <h4>Modeling</h4>
+              <p style="margin: 0;">Teacher writes a simple program live and shows:</p>
+              <ul style="margin-top: 8px; margin-bottom: 0;">
+                <li>How changing numbers affects output</li>
+                <li>How to fix simple syntax mistakes</li>
+                <li>How to rerun and test code</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>5. Unit 1.1 Basics Instruction (20 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Core Concepts Introduced</h4>
+              <ul>
+                <li>Coordinates on the canvas</li>
+                <li>Drawing shapes with code</li>
+                <li>Basic shape commands:
+                  <ul>
+                    <li><code>Rect(left, top, width, height)</code></li>
+                    <li><code>Circle(centerX, centerY, radius)</code></li>
+                    <li><code>Oval(centerX, centerY, width, height)</code></li>
+                    <li><code>Line(x1, y1, x2, y2)</code></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="key-points">
+              <h4>Guided Demonstration</h4>
+              <p>Teacher models:</p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">Rect(50, 50, 100, 150)
+Circle(200, 200, 40)</pre>
+              <p style="margin: 10px 0 0 0;">Discuss:</p>
+              <ul style="margin-top: 8px; margin-bottom: 0;">
+                <li>What each number represents</li>
+                <li>How to modify shapes</li>
+                <li>Trial-and-error problem solving</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>6. Guided Independent Practice (15 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Student Tasks</h4>
+              <ul>
+                <li>Begin Unit 1.1 Notes</li>
+                <li>Complete Unit 1.1 Exercises</li>
+                <li>Practice running and modifying code</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Teacher Role</h4>
+              <ul>
+                <li>Circulate actively</li>
+                <li>Provide one-on-one support</li>
+                <li>Encourage use of Inspector tool</li>
+                <li>Reinforce debugging mindset</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>7. Closure and Formative Check (5 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Exit Ticket Questions</h4>
+              <p>Students respond:</p>
+              <ul>
+                <li>What is one shape you learned to draw today?</li>
+                <li>What does the Run button do?</li>
+                <li>What should you do if your code doesn't work?</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Teacher Uses Responses To</h4>
+              <ul>
+                <li>Gauge student understanding</li>
+                <li>Identify students needing extra support</li>
+                <li>Adjust pacing for next lesson</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="assessment-box">
+          <h3><i class="bi bi-clipboard-check"></i> Assessment Strategy</h3>
+          <h4>Formative Assessment</h4>
+          <ul>
+            <li>Observation of student participation</li>
+            <li>Completion of CMU setup</li>
+            <li>Progress in Unit 1.1 exercises</li>
+            <li>Exit ticket responses</li>
+          </ul>
+          <p style="margin: 15px 0 0 0;"><strong>No formal grade is assigned during this lesson.</strong></p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-gear"></i> Differentiation</h2>
+          <ul>
+            <li><strong>Advanced students:</strong> encouraged to explore additional exercises</li>
+            <li><strong>Struggling students:</strong> receive step-by-step scaffolding</li>
+            <li><strong>Peer support:</strong> pair programming for initial help</li>
+            <li><strong>Visual learners:</strong> heavy use of live demonstrations</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-list-check"></i> Classroom Management Considerations</h2>
+          <ul>
+            <li>Establish norms for help-seeking</li>
+            <li>Normalize debugging and mistakes</li>
+            <li>Monitor off-task computer behavior</li>
+            <li>Reinforce procedures for saving work</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-house-door"></i> Homework</h2>
+          <ul>
+            <li>Complete any remaining Unit 1.1 exercises</li>
+            <li>Come prepared to begin Unit 1.2 – Colors next class</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-universal-access"></i> Accommodations and Supports</h2>
+          <ul>
+            <li>Extended time as needed</li>
+            <li>Read-aloud support for instructions</li>
+            <li>One-on-one assistance during work time</li>
+            <li>Alternative seating or grouping as required</li>
+          </ul>
+        </div>
+
+        <div class="reflection-box">
+          <h3><i class="bi bi-journal-text"></i> Teacher Reflection Questions</h3>
+          <p>After class, the teacher should consider:</p>
+          <ul style="margin: 10px 0 0 0;">
+            <li>Were all students able to log in successfully?</li>
+            <li>How many completed Unit 1.1 exercises?</li>
+            <li>Which concepts caused the most confusion?</li>
+            <li>Does pacing need adjustment for Class 303?</li>
+          </ul>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="teacher.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Back to Teacher Resources
+          </a>
+          <a href="lesson302.html" class="nav-button student-link">
+            <i class="bi bi-eye"></i> View Student Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

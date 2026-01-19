@@ -1,0 +1,402 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FCS CMU CS1 - Teacher Resources</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .teacher-header {
+        background: linear-gradient(135deg, #198754 0%, #157347 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .teacher-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .back-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .table-section {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .table-section h3 {
+        color: #198754;
+        margin-bottom: 15px;
+      }
+
+      .resource-link {
+        color: #198754;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .resource-link:hover {
+        color: #157347;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Teacher Resources</span>
+      </nav>
+
+      <div class="teacher-content">
+        <a href="./" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to CMU CS1 Home
+        </a>
+
+        <div class="teacher-header">
+          <h1><i class="bi bi-person-video3"></i> Teacher Resources</h1>
+          <p class="mb-0">Lesson plans and teaching materials for CMU CS Academy</p>
+        </div>
+
+        <div class="table-section">
+          <h3>First Half - Classes 301-321</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Lesson</th>
+                <th>Description</th>
+                <th>Student</th>
+                <th>Teacher</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>301</td>
+                <td>Personal Introduction and class procedures</td>
+                <td><a href="about.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>302</td>
+                <td>Course intro, digital citizenship, CMU setup, Unit 1.1 Basics</td>
+                <td><a href="lesson302.html" class="resource-link">Student Page</a></td>
+                <td><a href="lesson302-teacher.html" class="resource-link">Teacher Page</a></td>
+              </tr>
+              <tr>
+                <td>303</td>
+                <td>Unit 1.2 Colors</td>
+                <td><a href="lesson303.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>304</td>
+                <td>Unit 1.3 Shapes</td>
+                <td><a href="lesson304.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>305</td>
+                <td>FLEX DAY #1 – reteach / catch-up</td>
+                <td><a href="lesson305.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>306</td>
+                <td>Unit 1 Exercises Catch-Up and Support Day</td>
+                <td><a href="lesson306.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>307</td>
+                <td>Unit 1 Creative Mini-Task</td>
+                <td><a href="lesson307.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>308</td>
+                <td>Lecture: 2.1 Functions + 2.2 Mouse Events</td>
+                <td><a href="lesson308.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>309</td>
+                <td>2.3 Properties – guided practice</td>
+                <td><a href="lesson309.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>310</td>
+                <td>Unit 2 Exercises Catch-Up and Support Day</td>
+                <td><a href="lesson310.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>311</td>
+                <td>Collaborative debugging challenge</td>
+                <td><a href="lesson311.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>312</td>
+                <td>3.1 Mouse Motion + 3.2 Conditionals</td>
+                <td><a href="lesson312.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>313</td>
+                <td>3.3 Helper Functions</td>
+                <td><a href="lesson313.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>314</td>
+                <td>Unit 3 Exercises Catch-Up and Support Day</td>
+                <td><a href="lesson314.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>315</td>
+                <td>Assessment + application lab</td>
+                <td><a href="lesson315.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>316</td>
+                <td>4.1 More Conditionals</td>
+                <td><a href="lesson316.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>317</td>
+                <td>4.2 Key Events + 4.3 Methods</td>
+                <td><a href="lesson317.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>318</td>
+                <td>Unit 4 Exercises Catch-Up and Support Day</td>
+                <td><a href="lesson318.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>319</td>
+                <td>5.1 Nested Conditionals</td>
+                <td><a href="lesson319.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>320</td>
+                <td>5.2 onKeyHold and advanced logic</td>
+                <td><a href="lesson320.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>321</td>
+                <td>Consolidation + mini-project</td>
+                <td><a href="lesson321.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-section">
+          <h3>Second Half - Classes 401-421</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Lesson</th>
+                <th>Description</th>
+                <th>Student</th>
+                <th>Teacher</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>401</td>
+                <td>Groups and group methods</td>
+                <td><a href="lesson401.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>402</td>
+                <td>onStep events and motion</td>
+                <td><a href="lesson402.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>403</td>
+                <td>Unit 6 Exercises Catch-Up and Support Day</td>
+                <td><a href="lesson403.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>404</td>
+                <td>Creative application lab</td>
+                <td><a href="lesson404.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>405</td>
+                <td>7.1 New shapes</td>
+                <td><a href="lesson405.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>406</td>
+                <td>7.2 Local variables</td>
+                <td><a href="lesson406.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>407</td>
+                <td>7.3 For loops</td>
+                <td><a href="lesson407.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>408</td>
+                <td>Unit 7 Exercises Catch-Up and Support Day</td>
+                <td><a href="lesson408.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>409</td>
+                <td>Math functions</td>
+                <td><a href="lesson409.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>410</td>
+                <td>Random values</td>
+                <td><a href="lesson410.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>411</td>
+                <td>Nested loops</td>
+                <td><a href="lesson411.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>412</td>
+                <td>Unit 8 Exercises Catch-Up and Support Day</td>
+                <td><a href="lesson412.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>413</td>
+                <td>Unit 10 Lists basics</td>
+                <td><a href="lesson413.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>414</td>
+                <td>Return values</td>
+                <td><a href="lesson414.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>415</td>
+                <td>Unit 10 Exercises Catch-Up and Support Day</td>
+                <td><a href="lesson415.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>416</td>
+                <td>2D Lists</td>
+                <td><a href="lesson416.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>417</td>
+                <td>Writing simple board games</td>
+                <td><a href="lesson417.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>418</td>
+                <td>Game lab / assessment</td>
+                <td><a href="lesson418.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>419</td>
+                <td>Review</td>
+                <td><a href="lesson419.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>420</td>
+                <td>Unit 12 Final Project – Day 1</td>
+                <td><a href="lesson420.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+              <tr>
+                <td>421</td>
+                <td>Unit 12 Final Project – Day 2</td>
+                <td><a href="lesson421.html" class="resource-link">Student Page</a></td>
+                <td><span class="text-muted">—</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <a href="./" class="back-button mt-4">
+          <i class="bi bi-arrow-left"></i> Back to CMU CS1 Home
+        </a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
