@@ -1,0 +1,651 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/lesson308-teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 308 - Teacher Lesson Plan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .course-info {
+        background: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .course-info h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .course-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .course-info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .course-info-item strong {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #6c757d;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #6c757d;
+      }
+
+      .objectives-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .objectives-list li {
+        padding: 8px 0 8px 30px;
+        position: relative;
+      }
+
+      .objectives-list li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #6c757d;
+        font-weight: bold;
+      }
+
+      .materials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .materials-grid li {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .timing-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .timing-table th,
+      .timing-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .timing-table th {
+        background: #6c757d;
+        color: white;
+        font-weight: 600;
+      }
+
+      .timing-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .procedure-section {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #6c757d;
+      }
+
+      .procedure-section h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .procedure-subsection {
+        margin: 15px 0;
+      }
+
+      .procedure-subsection h4 {
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .key-points {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .key-points h4 {
+        color: #0f5132;
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .misconceptions-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .misconceptions-table th,
+      .misconceptions-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .misconceptions-table th {
+        background: #dc3545;
+        color: white;
+        font-weight: 600;
+      }
+
+      .misconceptions-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .assessment-box {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .assessment-box h3 {
+        color: #856404;
+        margin: 0 0 10px 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .student-link {
+        background: #198754;
+      }
+
+      .student-link:hover {
+        background: #157347;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="teacher.html" class="text-white-50">Teacher Resources</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 308 Teacher Plan</span>
+      </nav>
+
+      <div class="teacher-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-person-video3"></i> Teacher Lesson Plan</h1>
+          <p class="mb-0">Lesson 308: 2.1 Functions + 2.2 Mouse Events</p>
+        </div>
+
+        <div class="course-info">
+          <h3>Lesson Overview</h3>
+          <div class="course-info-grid">
+            <div class="course-info-item">
+              <strong>Course:</strong>
+              <span>Fundamentals of Computer Science</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Code:</strong>
+              <span>308</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Title:</strong>
+              <span>2.1 Functions + 2.2 Mouse Events</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Class Length:</strong>
+              <span>90 minutes</span>
+            </div>
+            <div class="course-info-item">
+              <strong>CMU Unit:</strong>
+              <span>Unit 2</span>
+            </div>
+            <div class="course-info-item">
+              <strong>CMU Sections:</strong>
+              <span>2.1, 2.2</span>
+            </div>
+          </div>
+          <p style="margin-top: 15px; margin-bottom: 0;">
+            This lesson introduces students to two foundational programming concepts: functions and mouse events. Students learn how to organize code into reusable functions and make programs interactive by responding to mouse actions. This marks a major shift from static drawings to dynamic, interactive programs. The lesson uses direct instruction followed by guided CMU CS Academy practice.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Objectives</h2>
+          <p>Students will be able to:</p>
+          <ul class="objectives-list">
+            <li>Define and call custom functions to organize code.</li>
+            <li>Explain why functions help make code more readable and reusable.</li>
+            <li>Use <code>onMousePress</code> and <code>onMouseMove</code> to create interactive programs.</li>
+            <li>Understand how event handlers respond to user actions.</li>
+            <li>Combine functions and mouse events to build simple interactive graphics.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-box-seam"></i> Materials & Setup</h2>
+          <ul class="materials-grid">
+            <li>Student computers with internet access</li>
+            <li>CMU CS Academy login credentials</li>
+            <li>Student note-taking materials</li>
+            <li>Projector or teacher computer for live demonstrations</li>
+            <li>Access to CMU CS Academy Unit 2.1 and 2.2 activities</li>
+          </ul>
+
+          <h3 style="margin-top: 20px; color: #6c757d;">Teacher Preparation:</h3>
+          <ul>
+            <li>Review Unit 2.1 and 2.2 content in CMU CS Academy</li>
+            <li>Prepare simple function and mouse event examples to demonstrate</li>
+            <li>Test all code examples in advance</li>
+            <li>Have a plan for students who finish early</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clock"></i> Agenda (90 Minutes)</h2>
+          <table class="timing-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0 – 5 min</td><td>Hook and Introduction to Unit 2</td></tr>
+              <tr><td>5 – 25 min</td><td>Direct Instruction: Functions (2.1)</td></tr>
+              <tr><td>25 – 45 min</td><td>Direct Instruction: Mouse Events (2.2)</td></tr>
+              <tr><td>45 – 50 min</td><td>Guided Practice Setup</td></tr>
+              <tr><td>50 – 85 min</td><td>Independent CMU Work Time</td></tr>
+              <tr><td>85 – 90 min</td><td>Closure and Homework</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-list-ol"></i> Teacher Moves (Scripted Talking Points + Demo Steps)</h2>
+
+          <div class="procedure-section">
+            <h3>Hook and Introduction (5 minutes)</h3>
+
+            <div class="key-points">
+              <h4>Talking Points</h4>
+              <p>"Up until now, your programs have been static—they draw something and that's it. Today we're going to make programs that respond to you."</p>
+              <p>"We're also going to learn how to organize code so it's easier to read and reuse. This is one of the most important skills in programming."</p>
+              <p style="margin: 0;">"By the end of today, you'll be able to create programs that react when you move your mouse or click on the screen."</p>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Direct Instruction: Functions (20 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>1. What is a Function?</h4>
+              <p><strong>Explain:</strong></p>
+              <p>"A function is a named block of code that performs a specific task. Instead of writing the same code over and over, you write it once in a function and call it whenever you need it."</p>
+            </div>
+
+            <div class="key-points">
+              <h4>Live Demo: Creating a Function</h4>
+              <p>Write on the projector:</p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">def drawStar():
+    Star(200, 200, 50, 5, fill='gold')</pre>
+              <p><strong>Explain:</strong></p>
+              <ul style="margin: 0;">
+                <li><code>def</code> means "define a function"</li>
+                <li><code>drawStar</code> is the function name</li>
+                <li>The parentheses <code>()</code> are required</li>
+                <li>The colon <code>:</code> starts the function body</li>
+                <li>Everything indented belongs to the function</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>2. Calling a Function</h4>
+              <p><strong>Add to the demo:</strong></p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">drawStar()  # This runs the function</pre>
+              <p><strong>Key Point:</strong> "Defining a function doesn't run it—you have to call it by writing its name with parentheses."</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>3. Why Use Functions?</h4>
+              <p><strong>Discuss:</strong></p>
+              <ul>
+                <li><strong>Organization:</strong> Keep code clean and readable</li>
+                <li><strong>Reusability:</strong> Use the same code multiple times</li>
+                <li><strong>Maintainability:</strong> Fix bugs in one place instead of many</li>
+              </ul>
+            </div>
+
+            <div class="key-points">
+              <h4>Practice Example Together</h4>
+              <p>Guide students through creating a function that draws a simple house, then calling it three times at different positions (you'll need parameters later, but for now just demonstrate the concept of reuse).</p>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Direct Instruction: Mouse Events (20 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>1. What is an Event?</h4>
+              <p><strong>Explain:</strong></p>
+              <p>"An event is something that happens—like clicking a button, moving a mouse, or pressing a key. Event handlers are special functions that run automatically when an event happens."</p>
+            </div>
+
+            <div class="key-points">
+              <h4>Live Demo: onMousePress</h4>
+              <p>Write on the projector:</p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">def onMousePress(mouseX, mouseY):
+    Circle(mouseX, mouseY, 20, fill='red')</pre>
+              <p><strong>Explain:</strong></p>
+              <ul style="margin: 0;">
+                <li><code>onMousePress</code> is a special function CMU recognizes</li>
+                <li>It runs automatically every time you click</li>
+                <li><code>mouseX</code> and <code>mouseY</code> are the click coordinates</li>
+                <li>You don't call this function—CMU calls it for you</li>
+              </ul>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>2. onMouseMove</h4>
+              <p><strong>Demo a second example:</strong></p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">def onMouseMove(mouseX, mouseY):
+    Circle(mouseX, mouseY, 10, fill='blue')</pre>
+              <p><strong>Explain:</strong> "This runs continuously as you move the mouse—it creates a trail effect."</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>3. Combining Functions and Events</h4>
+              <p><strong>Show how to call a custom function inside an event handler:</strong></p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">def drawStar(x, y):
+    Star(x, y, 30, 5, fill='yellow')
+
+def onMousePress(mouseX, mouseY):
+    drawStar(mouseX, mouseY)</pre>
+              <p><strong>Key Point:</strong> "Now every click draws a star at that location."</p>
+            </div>
+
+            <div class="key-points">
+              <h4>Emphasize</h4>
+              <ul style="margin: 0;">
+                <li>Event handlers must have exact names (<code>onMousePress</code>, <code>onMouseMove</code>)</li>
+                <li>The parameters <code>mouseX</code> and <code>mouseY</code> are provided automatically</li>
+                <li>You can put any code inside an event handler</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Guided Practice Setup (5 minutes)</h3>
+
+            <p><strong>Instructions for students:</strong></p>
+            <ol>
+              <li>Log into CMU CS Academy</li>
+              <li>Navigate to Unit 2.1 and complete the notes and exercises on Functions</li>
+              <li>Then move to Unit 2.2 and complete the Mouse Events activities</li>
+              <li>Work through in order—don't skip ahead</li>
+            </ol>
+
+            <p><strong>Remind students:</strong></p>
+            <ul>
+              <li>Read instructions carefully</li>
+              <li>Test code frequently</li>
+              <li>Ask for help if stuck for more than 5 minutes</li>
+            </ul>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Independent CMU Work Time (35 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Teacher Role:</h4>
+              <ul>
+                <li>Circulate and monitor progress</li>
+                <li>Provide one-on-one support</li>
+                <li>Identify common struggles</li>
+                <li>Encourage pair programming when appropriate</li>
+              </ul>
+            </div>
+
+            <div class="key-points">
+              <h4>Common Questions to Ask Students:</h4>
+              <ul style="margin: 0;">
+                <li>"Why did you choose to make this a function?"</li>
+                <li>"What happens when you click here?"</li>
+                <li>"How does the program know where the mouse is?"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-pencil-square"></i> Student Tasks</h2>
+
+          <h3>In-Class Tasks</h3>
+          <p>Students will:</p>
+          <ul>
+            <li>Complete CMU CS Academy Unit 2.1 (Functions) notes and exercises</li>
+            <li>Complete CMU CS Academy Unit 2.2 (Mouse Events) notes and exercises</li>
+            <li>Create programs that:
+              <ul>
+                <li>Define and call at least one custom function</li>
+                <li>Respond to mouse clicks</li>
+                <li>Respond to mouse movement</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h3 style="margin-top: 20px;">Homework</h3>
+          <p>Any unfinished Unit 2.1 or 2.2 CMU CS Academy lessons and exercises must be completed before the next class.</p>
+        </div>
+
+        <div class="assessment-box">
+          <h3><i class="bi bi-clipboard-check"></i> Checks for Understanding (Formative)</h3>
+
+          <p>During work time, ask students:</p>
+          <ul>
+            <li>"What does it mean to define a function?"</li>
+            <li>"How do you call a function after you've defined it?"</li>
+            <li>"What's the difference between <code>onMousePress</code> and <code>onMouseMove</code>?"</li>
+            <li>"Where do <code>mouseX</code> and <code>mouseY</code> come from?"</li>
+            <li>"Why might you want to put drawing code inside a function?"</li>
+          </ul>
+
+          <h4 style="margin-top: 15px;">Exit Ticket (last 5 minutes):</h4>
+          <p>Students answer:</p>
+          <ul style="margin-bottom: 0;">
+            <li>What is one reason programmers use functions?</li>
+            <li>What happens when you define an <code>onMousePress</code> function?</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-exclamation-triangle"></i> Common Misconceptions & Fixes</h2>
+          <table class="misconceptions-table">
+            <thead>
+              <tr>
+                <th>Misconception</th>
+                <th>Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Thinking defining a function runs it automatically</td>
+                <td>Demonstrate that <code>def</code> creates the function but you must call it to run it</td>
+              </tr>
+              <tr>
+                <td>Forgetting parentheses when calling a function</td>
+                <td>Show error messages and emphasize <code>functionName()</code> syntax</td>
+              </tr>
+              <tr>
+                <td>Forgetting to indent function body</td>
+                <td>Explain Python uses indentation to show what belongs to the function</td>
+              </tr>
+              <tr>
+                <td>Misspelling event handler names</td>
+                <td>Stress that <code>onMousePress</code> must be spelled exactly right</td>
+              </tr>
+              <tr>
+                <td>Trying to call <code>onMousePress</code> manually</td>
+                <td>Explain that event handlers are called automatically by the system</td>
+              </tr>
+              <tr>
+                <td>Not understanding where mouseX/mouseY come from</td>
+                <td>Show that CMU provides these values automatically when events happen</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-gear"></i> Differentiation & Accommodations</h2>
+
+          <h3>For students who struggle</h3>
+          <ul>
+            <li>Provide function templates with clear structure</li>
+            <li>Allow extra time on simpler exercises before moving to events</li>
+            <li>Pair with a peer mentor</li>
+            <li>Focus on one concept at a time (functions OR events, not both immediately)</li>
+          </ul>
+
+          <h3>For advanced students</h3>
+          <ul>
+            <li>Challenge them to create functions with multiple shapes</li>
+            <li>Encourage combining both <code>onMousePress</code> and <code>onMouseMove</code></li>
+            <li>Ask them to create an interactive drawing program</li>
+            <li>Invite them to help struggling peers</li>
+          </ul>
+
+          <h3>General supports</h3>
+          <ul>
+            <li>Visual function syntax reference</li>
+            <li>Event handler cheat sheet</li>
+            <li>Code structure templates</li>
+            <li>Frequent check-ins during work time</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clipboard-data"></i> Assessment Notes</h2>
+          <p>This lesson is primarily formative.</p>
+          <p>Evidence of mastery includes:</p>
+          <ul>
+            <li>Successfully defining and calling custom functions</li>
+            <li>Creating working event handlers that respond to mouse actions</li>
+            <li>Completion of CMU CS Academy Unit 2.1 and 2.2 exercises</li>
+            <li>Verbal explanations during teacher check-ins</li>
+          </ul>
+          <p>Formal assessment will come through upcoming Unit 2 projects and exercises.</p>
+        </div>
+
+        <div class="key-points">
+          <h4><i class="bi bi-door-closed"></i> Closure</h4>
+          <p>"Today you learned two major programming concepts: functions and events. Functions let you organize and reuse code. Events let your programs respond to user actions."</p>
+          <p>"This is a huge step—your programs are now interactive. In the next lessons, we'll build on these skills to create even more complex and interesting programs."</p>
+          <p style="margin: 0;"><strong>Reminder:</strong> "Finish any incomplete Unit 2.1 and 2.2 work for homework."</p>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="teacher.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Back to Teacher Resources
+          </a>
+          <a href="lesson308.html" class="nav-button student-link">
+            <i class="bi bi-eye"></i> View Student Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
