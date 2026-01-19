@@ -102,73 +102,6 @@
         filter: brightness(0) invert(1);
       }
 
-      /* Lesson cards */
-      .lessons-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 15px;
-        margin-top: 20px;
-      }
-
-      .lesson-card {
-        background: white;
-        border: 2px solid #198754;
-        border-radius: 8px;
-        padding: 20px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        transition: all 0.3s;
-      }
-
-      .lesson-card:hover {
-        background: #f0f8f0;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        text-decoration: none;
-      }
-
-      .lesson-number {
-        background: #198754;
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        font-weight: bold;
-        flex-shrink: 0;
-      }
-
-      .lesson-content {
-        flex-grow: 1;
-      }
-
-      .lesson-content h3 {
-        color: #2c3e50;
-        margin: 0 0 5px 0;
-        font-size: 1.1rem;
-      }
-
-      .lesson-content p {
-        color: #6c757d;
-        margin: 0;
-        font-size: 0.9rem;
-      }
-
-      .semester-divider {
-        background: linear-gradient(135deg, #198754 0%, #157347 100%);
-        color: white;
-        padding: 15px 20px;
-        border-radius: 8px;
-        margin: 30px 0 20px 0;
-        text-align: center;
-        font-size: 1.3rem;
-        font-weight: 600;
-      }
 
       .warning-card {
         background: #fff8e9;
@@ -467,354 +400,79 @@
           </div>
         </div>
 
-        <!-- First Semester Lessons -->
-        <div class="semester-divider">
-          <i class="bi bi-calendar2-range"></i> First Semester (Grading Period 1) - Classes 301-321
+        <!-- Lessons Table -->
+        <h2 class="mt-4 mb-3">
+          <i class="bi bi-journal-text text-success"></i> Semester Lessons
+        </h2>
+
+        <div class="table-section">
+          <h3>First Semester (Grading Period 1) - Classes 301-321</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Lesson</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="lesson301.html">301</a></td><td>Personal Introduction and class procedures</td></tr>
+              <tr><td><a href="lesson302.html">302</a></td><td>Course intro, digital citizenship, CMU setup, Unit 1.1 Basics</td></tr>
+              <tr><td><a href="lesson303.html">303</a></td><td>Unit 1.2 Colors</td></tr>
+              <tr><td><a href="lesson304.html">304</a></td><td>Unit 1.3 Shapes</td></tr>
+              <tr><td><a href="lesson305.html">305</a></td><td>FLEX DAY #1 – reteach / catch-up</td></tr>
+              <tr><td><a href="lesson306.html">306</a></td><td>Unit 1 Exercises Catch-Up and Support Day</td></tr>
+              <tr><td><a href="lesson307.html">307</a></td><td>Unit 1 Creative Mini-Task</td></tr>
+              <tr><td><a href="lesson308.html">308</a></td><td>Lecture: 2.1 Functions + 2.2 Mouse Events</td></tr>
+              <tr><td><a href="lesson309.html">309</a></td><td>2.3 Properties – guided practice</td></tr>
+              <tr><td><a href="lesson310.html">310</a></td><td>Unit 2 Exercises Catch-Up and Support Day</td></tr>
+              <tr><td><a href="lesson311.html">311</a></td><td>Collaborative debugging challenge</td></tr>
+              <tr><td><a href="lesson312.html">312</a></td><td>3.1 Mouse Motion + 3.2 Conditionals</td></tr>
+              <tr><td><a href="lesson313.html">313</a></td><td>3.3 Helper Functions</td></tr>
+              <tr><td><a href="lesson314.html">314</a></td><td>Unit 3 Exercises Catch-Up and Support Day</td></tr>
+              <tr><td><a href="lesson315.html">315</a></td><td>Assessment + application lab</td></tr>
+              <tr><td><a href="lesson316.html">316</a></td><td>4.1 More Conditionals</td></tr>
+              <tr><td><a href="lesson317.html">317</a></td><td>4.2 Key Events + 4.3 Methods</td></tr>
+              <tr><td><a href="lesson318.html">318</a></td><td>Unit 4 Exercises Catch-Up and Support Day</td></tr>
+              <tr><td><a href="lesson319.html">319</a></td><td>5.1 Nested Conditionals</td></tr>
+              <tr><td><a href="lesson320.html">320</a></td><td>5.2 onKeyHold and advanced logic</td></tr>
+              <tr><td><a href="lesson321.html">321</a></td><td>Consolidation + mini-project</td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="lessons-grid">
-          <a href="lesson301.html" class="lesson-card">
-            <div class="lesson-number">301</div>
-            <div class="lesson-content">
-              <h3>Class 1</h3>
-              <p>Personal Introduction and class procedures</p>
-            </div>
-          </a>
-
-          <a href="lesson302.html" class="lesson-card">
-            <div class="lesson-number">302</div>
-            <div class="lesson-content">
-              <h3>Class 2</h3>
-              <p>Course intro, digital citizenship, CMU setup, Unit 1.1 Basics</p>
-            </div>
-          </a>
-
-          <a href="lesson303.html" class="lesson-card">
-            <div class="lesson-number">303</div>
-            <div class="lesson-content">
-              <h3>Class 3</h3>
-              <p>Unit 1.2 Colors</p>
-            </div>
-          </a>
-
-          <a href="lesson304.html" class="lesson-card">
-            <div class="lesson-number">304</div>
-            <div class="lesson-content">
-              <h3>Class 4</h3>
-              <p>Unit 1.3 Shapes</p>
-            </div>
-          </a>
-
-          <a href="lesson305.html" class="lesson-card">
-            <div class="lesson-number">305</div>
-            <div class="lesson-content">
-              <h3>Class 5</h3>
-              <p>FLEX DAY #1 – reteach / catch-up</p>
-            </div>
-          </a>
-
-          <a href="lesson306.html" class="lesson-card">
-            <div class="lesson-number">306</div>
-            <div class="lesson-content">
-              <h3>Class 6</h3>
-              <p>Unit 1 Exercises Catch-Up and Support Day</p>
-            </div>
-          </a>
-
-          <a href="lesson307.html" class="lesson-card">
-            <div class="lesson-number">307</div>
-            <div class="lesson-content">
-              <h3>Class 7</h3>
-              <p>Unit 1 Creative Mini-Task</p>
-            </div>
-          </a>
-
-          <a href="lesson308.html" class="lesson-card">
-            <div class="lesson-number">308</div>
-            <div class="lesson-content">
-              <h3>Class 8</h3>
-              <p>Lecture: 2.1 Functions + 2.2 Mouse Events</p>
-            </div>
-          </a>
-
-          <a href="lesson309.html" class="lesson-card">
-            <div class="lesson-number">309</div>
-            <div class="lesson-content">
-              <h3>Class 9</h3>
-              <p>2.3 Properties – guided practice</p>
-            </div>
-          </a>
-
-          <a href="lesson310.html" class="lesson-card">
-            <div class="lesson-number">310</div>
-            <div class="lesson-content">
-              <h3>Class 10</h3>
-              <p>Unit 2 Exercises Catch-Up and Support Day</p>
-            </div>
-          </a>
-
-          <a href="lesson311.html" class="lesson-card">
-            <div class="lesson-number">311</div>
-            <div class="lesson-content">
-              <h3>Class 11</h3>
-              <p>Collaborative debugging challenge</p>
-            </div>
-          </a>
-
-          <a href="lesson312.html" class="lesson-card">
-            <div class="lesson-number">312</div>
-            <div class="lesson-content">
-              <h3>Class 12</h3>
-              <p>3.1 Mouse Motion + 3.2 Conditionals</p>
-            </div>
-          </a>
-
-          <a href="lesson313.html" class="lesson-card">
-            <div class="lesson-number">313</div>
-            <div class="lesson-content">
-              <h3>Class 13</h3>
-              <p>3.3 Helper Functions</p>
-            </div>
-          </a>
-
-          <a href="lesson314.html" class="lesson-card">
-            <div class="lesson-number">314</div>
-            <div class="lesson-content">
-              <h3>Class 14</h3>
-              <p>Unit 3 Exercises Catch-Up and Support Day</p>
-            </div>
-          </a>
-
-          <a href="lesson315.html" class="lesson-card">
-            <div class="lesson-number">315</div>
-            <div class="lesson-content">
-              <h3>Class 15</h3>
-              <p>Assessment + application lab</p>
-            </div>
-          </a>
-
-          <a href="lesson316.html" class="lesson-card">
-            <div class="lesson-number">316</div>
-            <div class="lesson-content">
-              <h3>Class 16</h3>
-              <p>4.1 More Conditionals</p>
-            </div>
-          </a>
-
-          <a href="lesson317.html" class="lesson-card">
-            <div class="lesson-number">317</div>
-            <div class="lesson-content">
-              <h3>Class 17</h3>
-              <p>4.2 Key Events + 4.3 Methods</p>
-            </div>
-          </a>
-
-          <a href="lesson318.html" class="lesson-card">
-            <div class="lesson-number">318</div>
-            <div class="lesson-content">
-              <h3>Class 18</h3>
-              <p>Unit 4 Exercises Catch-Up and Support Day</p>
-            </div>
-          </a>
-
-          <a href="lesson319.html" class="lesson-card">
-            <div class="lesson-number">319</div>
-            <div class="lesson-content">
-              <h3>Class 19</h3>
-              <p>5.1 Nested Conditionals</p>
-            </div>
-          </a>
-
-          <a href="lesson320.html" class="lesson-card">
-            <div class="lesson-number">320</div>
-            <div class="lesson-content">
-              <h3>Class 20</h3>
-              <p>5.2 onKeyHold and advanced logic</p>
-            </div>
-          </a>
-
-          <a href="lesson321.html" class="lesson-card">
-            <div class="lesson-number">321</div>
-            <div class="lesson-content">
-              <h3>Class 21</h3>
-              <p>Consolidation + mini-project</p>
-            </div>
-          </a>
-        </div>
-
-        <!-- Second Semester Lessons -->
-        <div class="semester-divider">
-          <i class="bi bi-calendar2-range"></i> Second Semester (Grading Period 2) - Classes 401-421
-        </div>
-
-        <div class="lessons-grid">
-          <a href="lesson401.html" class="lesson-card">
-            <div class="lesson-number">401</div>
-            <div class="lesson-content">
-              <h3>Class 22</h3>
-              <p>Groups and group methods</p>
-            </div>
-          </a>
-
-          <a href="lesson402.html" class="lesson-card">
-            <div class="lesson-number">402</div>
-            <div class="lesson-content">
-              <h3>Class 23</h3>
-              <p>onStep events and motion</p>
-            </div>
-          </a>
-
-          <a href="lesson403.html" class="lesson-card">
-            <div class="lesson-number">403</div>
-            <div class="lesson-content">
-              <h3>Class 24</h3>
-              <p>Unit 6 Exercises Catch-Up and Support Day</p>
-            </div>
-          </a>
-
-          <a href="lesson404.html" class="lesson-card">
-            <div class="lesson-number">404</div>
-            <div class="lesson-content">
-              <h3>Class 25</h3>
-              <p>Creative application lab</p>
-            </div>
-          </a>
-
-          <a href="lesson405.html" class="lesson-card">
-            <div class="lesson-number">405</div>
-            <div class="lesson-content">
-              <h3>Class 26</h3>
-              <p>7.1 New shapes</p>
-            </div>
-          </a>
-
-          <a href="lesson406.html" class="lesson-card">
-            <div class="lesson-number">406</div>
-            <div class="lesson-content">
-              <h3>Class 27</h3>
-              <p>7.2 Local variables</p>
-            </div>
-          </a>
-
-          <a href="lesson407.html" class="lesson-card">
-            <div class="lesson-number">407</div>
-            <div class="lesson-content">
-              <h3>Class 28</h3>
-              <p>7.3 For loops</p>
-            </div>
-          </a>
-
-          <a href="lesson408.html" class="lesson-card">
-            <div class="lesson-number">408</div>
-            <div class="lesson-content">
-              <h3>Class 29</h3>
-              <p>Unit 7 Exercises Catch-Up and Support Day</p>
-            </div>
-          </a>
-
-          <a href="lesson409.html" class="lesson-card">
-            <div class="lesson-number">409</div>
-            <div class="lesson-content">
-              <h3>Class 30</h3>
-              <p>Math functions</p>
-            </div>
-          </a>
-
-          <a href="lesson410.html" class="lesson-card">
-            <div class="lesson-number">410</div>
-            <div class="lesson-content">
-              <h3>Class 31</h3>
-              <p>Random values</p>
-            </div>
-          </a>
-
-          <a href="lesson411.html" class="lesson-card">
-            <div class="lesson-number">411</div>
-            <div class="lesson-content">
-              <h3>Class 32</h3>
-              <p>Nested loops</p>
-            </div>
-          </a>
-
-          <a href="lesson412.html" class="lesson-card">
-            <div class="lesson-number">412</div>
-            <div class="lesson-content">
-              <h3>Class 33</h3>
-              <p>Unit 8 Exercises Catch-Up and Support Day</p>
-            </div>
-          </a>
-
-          <a href="lesson413.html" class="lesson-card">
-            <div class="lesson-number">413</div>
-            <div class="lesson-content">
-              <h3>Class 34</h3>
-              <p>Unit 10 Lists basics</p>
-            </div>
-          </a>
-
-          <a href="lesson414.html" class="lesson-card">
-            <div class="lesson-number">414</div>
-            <div class="lesson-content">
-              <h3>Class 35</h3>
-              <p>Return values</p>
-            </div>
-          </a>
-
-          <a href="lesson415.html" class="lesson-card">
-            <div class="lesson-number">415</div>
-            <div class="lesson-content">
-              <h3>Class 36</h3>
-              <p>Unit 10 Exercises Catch-Up and Support Day</p>
-            </div>
-          </a>
-
-          <a href="lesson416.html" class="lesson-card">
-            <div class="lesson-number">416</div>
-            <div class="lesson-content">
-              <h3>Class 37</h3>
-              <p>2D Lists</p>
-            </div>
-          </a>
-
-          <a href="lesson417.html" class="lesson-card">
-            <div class="lesson-number">417</div>
-            <div class="lesson-content">
-              <h3>Class 38</h3>
-              <p>Writing simple board games</p>
-            </div>
-          </a>
-
-          <a href="lesson418.html" class="lesson-card">
-            <div class="lesson-number">418</div>
-            <div class="lesson-content">
-              <h3>Class 39</h3>
-              <p>Game lab / assessment</p>
-            </div>
-          </a>
-
-          <a href="lesson419.html" class="lesson-card">
-            <div class="lesson-number">419</div>
-            <div class="lesson-content">
-              <h3>Class 40</h3>
-              <p>Review</p>
-            </div>
-          </a>
-
-          <a href="lesson420.html" class="lesson-card">
-            <div class="lesson-number">420</div>
-            <div class="lesson-content">
-              <h3>Class 41</h3>
-              <p>Unit 12 Final Project – Day 1</p>
-            </div>
-          </a>
-
-          <a href="lesson421.html" class="lesson-card">
-            <div class="lesson-number">421</div>
-            <div class="lesson-content">
-              <h3>Class 42</h3>
-              <p>Unit 12 Final Project – Day 2</p>
-            </div>
-          </a>
+        <div class="table-section">
+          <h3>Second Semester (Grading Period 2) - Classes 401-421</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Lesson</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="lesson401.html">401</a></td><td>Groups and group methods</td></tr>
+              <tr><td><a href="lesson402.html">402</a></td><td>onStep events and motion</td></tr>
+              <tr><td><a href="lesson403.html">403</a></td><td>Unit 6 Exercises Catch-Up and Support Day</td></tr>
+              <tr><td><a href="lesson404.html">404</a></td><td>Creative application lab</td></tr>
+              <tr><td><a href="lesson405.html">405</a></td><td>7.1 New shapes</td></tr>
+              <tr><td><a href="lesson406.html">406</a></td><td>7.2 Local variables</td></tr>
+              <tr><td><a href="lesson407.html">407</a></td><td>7.3 For loops</td></tr>
+              <tr><td><a href="lesson408.html">408</a></td><td>Unit 7 Exercises Catch-Up and Support Day</td></tr>
+              <tr><td><a href="lesson409.html">409</a></td><td>Math functions</td></tr>
+              <tr><td><a href="lesson410.html">410</a></td><td>Random values</td></tr>
+              <tr><td><a href="lesson411.html">411</a></td><td>Nested loops</td></tr>
+              <tr><td><a href="lesson412.html">412</a></td><td>Unit 8 Exercises Catch-Up and Support Day</td></tr>
+              <tr><td><a href="lesson413.html">413</a></td><td>Unit 10 Lists basics</td></tr>
+              <tr><td><a href="lesson414.html">414</a></td><td>Return values</td></tr>
+              <tr><td><a href="lesson415.html">415</a></td><td>Unit 10 Exercises Catch-Up and Support Day</td></tr>
+              <tr><td><a href="lesson416.html">416</a></td><td>2D Lists</td></tr>
+              <tr><td><a href="lesson417.html">417</a></td><td>Writing simple board games</td></tr>
+              <tr><td><a href="lesson418.html">418</a></td><td>Game lab / assessment</td></tr>
+              <tr><td><a href="lesson419.html">419</a></td><td>Review</td></tr>
+              <tr><td><a href="lesson420.html">420</a></td><td>Unit 12 Final Project – Day 1</td></tr>
+              <tr><td><a href="lesson421.html">421</a></td><td>Unit 12 Final Project – Day 2</td></tr>
+            </tbody>
+          </table>
         </div>
 
         <a href="../" class="back-button mt-4">
