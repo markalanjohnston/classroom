@@ -18,20 +18,12 @@
     />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
-      .semester-content {
+      .cmu-content {
         background: white;
         border-radius: 15px;
         padding: 40px;
         margin-bottom: 30px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      }
-
-      .semester-header {
-        background: linear-gradient(135deg, #198754 0%, #157347 100%);
-        color: white;
-        border-radius: 10px;
-        padding: 30px;
-        margin-bottom: 30px;
       }
 
       .info-section {
@@ -55,11 +47,6 @@
         font-size: 1.2rem;
       }
 
-      .info-section ul {
-        line-height: 1.8;
-        margin-bottom: 15px;
-      }
-
       .table-section {
         background: white;
         border: 1px solid #e9ecef;
@@ -68,27 +55,12 @@
         margin: 20px 0;
       }
 
-      .table-section table {
-        margin-bottom: 0;
-      }
-
       .highlight-box {
         background: #d1e7dd;
         border-left: 4px solid #198754;
         padding: 20px;
         margin: 20px 0;
         border-radius: 5px;
-      }
-
-      .highlight-box h3 {
-        color: #198754;
-        margin-bottom: 12px;
-        font-size: 1.1rem;
-      }
-
-      .highlight-box ul {
-        color: #0f5132;
-        margin-bottom: 0;
       }
 
       .back-button {
@@ -108,6 +80,103 @@
         background: #5a6268;
         color: white;
       }
+
+      /* Accordion customization */
+      .accordion-button {
+        background-color: #198754;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .accordion-button:not(.collapsed) {
+        background-color: #157347;
+        color: white;
+      }
+
+      .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+      }
+
+      .accordion-button::after {
+        filter: brightness(0) invert(1);
+      }
+
+      /* Lesson cards */
+      .lessons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .lesson-card {
+        background: white;
+        border: 2px solid #198754;
+        border-radius: 8px;
+        padding: 20px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: all 0.3s;
+      }
+
+      .lesson-card:hover {
+        background: #f0f8f0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        text-decoration: none;
+      }
+
+      .lesson-number {
+        background: #198754;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .lesson-content {
+        flex-grow: 1;
+      }
+
+      .lesson-content h3 {
+        color: #2c3e50;
+        margin: 0 0 5px 0;
+        font-size: 1.1rem;
+      }
+
+      .lesson-content p {
+        color: #6c757d;
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .semester-divider {
+        background: linear-gradient(135deg, #198754 0%, #157347 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin: 30px 0 20px 0;
+        text-align: center;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      .warning-card {
+        background: #fff8e9;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
     </style>
   </head>
   <body>
@@ -123,327 +192,637 @@
         <span class="text-white">CMU CS1 Programming Semester</span>
       </nav>
 
-      <div class="semester-content">
+      <div class="cmu-content">
         <a href="../" class="back-button">
           <i class="bi bi-arrow-left"></i> Back to FCS Home
         </a>
 
-        <div class="semester-header">
-          <h1><i class="bi bi-code-square"></i> Fundamentals of Computer Science</h1>
-          <h2 style="margin-top: 10px; margin-bottom: 0;">Programming Semester Overview</h2>
-        </div>
-
-        <!-- Purpose -->
-        <div class="info-section">
-          <h2><i class="bi bi-bullseye"></i> Purpose of This Semester</h2>
-          <p>
-            This document describes the <strong>programming-focused semester</strong> of the Fundamentals of Computer Science course. This semester uses the <strong>CMU CS Academy CS1: Introduction to Programming</strong> curriculum to address the programming and computational thinking components of the Texas Essential Knowledge and Skills (TEKS) for computer science.
-          </p>
-          <p>
-            The other semester of Fundamentals of Computer Science addresses additional TEKS topics such as digital citizenship, technology operations, hardware concepts, binary representation, and web development.
-          </p>
-          <p style="margin-bottom: 0;">
-            This semester is dedicated specifically to <strong>learning to program.</strong>
+        <div class="class-header">
+          <h1 class="display-5 mb-3">
+            <i class="bi bi-code-square text-success"></i>
+            CMU CS Academy - Programming Semester
+          </h1>
+          <p class="lead text-muted">
+            Semester overview and lesson resources
           </p>
         </div>
 
-        <!-- Semester Description -->
-        <div class="info-section">
-          <h2><i class="bi bi-book"></i> Semester Description</h2>
-          <p>During this semester, students will learn the fundamentals of computer programming through interactive, graphics-based projects. Instruction emphasizes:</p>
-          <ul>
-            <li>Logical problem solving</li>
-            <li>Algorithmic thinking</li>
-            <li>Debugging strategies</li>
-            <li>Writing and organizing code</li>
-            <li>Creating interactive programs</li>
-          </ul>
-          <p><strong>No prior programming experience is required.</strong></p>
-          <p style="margin-bottom: 0;">
-            The semester is designed to prepare students for more advanced computer science courses such as AP Computer Science Principles, AP Computer Science A, or additional programming electives.
-          </p>
-        </div>
+        <!-- Collapsible Semester Overview -->
+        <div class="accordion mb-4" id="semesterOverviewAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#semesterOverview">
+                <i class="bi bi-book me-2"></i> Programming Semester Overview (Grading, Topics, Structure)
+              </button>
+            </h2>
+            <div id="semesterOverview" class="accordion-collapse collapse" data-bs-parent="#semesterOverviewAccordion">
+              <div class="accordion-body">
 
-        <!-- Course Structure -->
-        <div class="info-section">
-          <h2><i class="bi bi-calendar3"></i> Course Structure and Parameters</h2>
-          <ul>
-            <li><strong>Length:</strong> One semester (approximately 40 class meetings)</li>
-            <li><strong>Class Duration:</strong> 90 minutes</li>
-            <li><strong>Curriculum Platform:</strong> CMU CS Academy – CS1</li>
-            <li><strong>Units Covered:</strong> 1–8, 10–11</li>
-            <li><strong>Unit 9:</strong> Omitted</li>
-            <li><strong>Unit 12:</strong> Final Project (semester test)</li>
-            <li><strong>Grading Periods:</strong> Two grading periods of 20 classes each</li>
-            <li><strong>Clean Midpoint Divide:</strong> After Class 20</li>
-          </ul>
-        </div>
+                <!-- Purpose -->
+                <div class="info-section">
+                  <h2><i class="bi bi-bullseye"></i> Purpose of This Semester</h2>
+                  <p>
+                    This document describes the <strong>programming-focused semester</strong> of the Fundamentals of Computer Science course. This semester uses the <strong>CMU CS Academy CS1: Introduction to Programming</strong> curriculum to address the programming and computational thinking components of the Texas Essential Knowledge and Skills (TEKS) for computer science.
+                  </p>
+                  <p>
+                    The other semester of Fundamentals of Computer Science addresses additional TEKS topics such as digital citizenship, technology operations, hardware concepts, binary representation, and web development.
+                  </p>
+                  <p style="margin-bottom: 0;">
+                    This semester is dedicated specifically to <strong>learning to program.</strong>
+                  </p>
+                </div>
 
-        <!-- Semester Narrative -->
-        <div class="info-section">
-          <h2><i class="bi bi-diagram-3"></i> Semester Narrative</h2>
-          <p>The semester is intentionally divided into two distinct phases:</p>
+                <!-- Semester Description -->
+                <div class="info-section">
+                  <h2><i class="bi bi-book"></i> Semester Description</h2>
+                  <p>During this semester, students will learn the fundamentals of computer programming through interactive, graphics-based projects. Instruction emphasizes:</p>
+                  <ul>
+                    <li>Logical problem solving</li>
+                    <li>Algorithmic thinking</li>
+                    <li>Debugging strategies</li>
+                    <li>Writing and organizing code</li>
+                    <li>Creating interactive programs</li>
+                  </ul>
+                  <p><strong>No prior programming experience is required.</strong></p>
+                  <p style="margin-bottom: 0;">
+                    The semester is designed to prepare students for more advanced computer science courses such as AP Computer Science Principles, AP Computer Science A, or additional programming electives.
+                  </p>
+                </div>
 
-          <h3>First Half – "Learn the Core Tools of Programming"</h3>
-          <p>Students develop essential skills:</p>
-          <ul>
-            <li>Variables and functions</li>
-            <li>Conditionals and decision making</li>
-            <li>Mouse and keyboard interaction</li>
-            <li>Building basic interactive programs</li>
-          </ul>
+                <!-- Course Structure -->
+                <div class="info-section">
+                  <h2><i class="bi bi-calendar3"></i> Course Structure and Parameters</h2>
+                  <ul>
+                    <li><strong>Length:</strong> One semester (approximately 40 class meetings)</li>
+                    <li><strong>Class Duration:</strong> 90 minutes</li>
+                    <li><strong>Curriculum Platform:</strong> CMU CS Academy – CS1</li>
+                    <li><strong>Units Covered:</strong> 1–8, 10–11</li>
+                    <li><strong>Unit 9:</strong> Omitted</li>
+                    <li><strong>Unit 12:</strong> Final Project (semester test)</li>
+                    <li><strong>Grading Periods:</strong> Two grading periods of 20 classes each</li>
+                    <li><strong>Clean Midpoint Divide:</strong> After Class 20</li>
+                  </ul>
+                </div>
 
-          <h3>Second Half – "Use Those Tools to Build Bigger Things"</h3>
-          <p>Students apply earlier skills to:</p>
-          <ul>
-            <li>Animation and motion</li>
-            <li>Loops and repetition</li>
-            <li>Randomization</li>
-            <li>Lists and simple games</li>
-            <li>Larger, more complex programs</li>
-          </ul>
+                <!-- Semester Narrative -->
+                <div class="info-section">
+                  <h2><i class="bi bi-diagram-3"></i> Semester Narrative</h2>
+                  <p>The semester is intentionally divided into two distinct phases:</p>
 
-          <p style="margin-bottom: 0;">This structure ensures that students first master the basics before moving into more advanced programming concepts.</p>
-        </div>
+                  <h3>First Half – "Learn the Core Tools of Programming"</h3>
+                  <p>Students develop essential skills:</p>
+                  <ul>
+                    <li>Variables and functions</li>
+                    <li>Conditionals and decision making</li>
+                    <li>Mouse and keyboard interaction</li>
+                    <li>Building basic interactive programs</li>
+                  </ul>
 
-        <!-- Instructional Methodology -->
-        <div class="info-section">
-          <h2><i class="bi bi-easel"></i> Instructional Methodology</h2>
-          <p>This semester uses a blended learning model that combines direct instruction with guided independent practice.</p>
+                  <h3>Second Half – "Use Those Tools to Build Bigger Things"</h3>
+                  <p>Students apply earlier skills to:</p>
+                  <ul>
+                    <li>Animation and motion</li>
+                    <li>Loops and repetition</li>
+                    <li>Randomization</li>
+                    <li>Lists and simple games</li>
+                    <li>Larger, more complex programs</li>
+                  </ul>
 
-          <h3>Typical Class Structure</h3>
-          <ul>
-            <li><strong>35–45 minutes: Teacher-Led Instruction</strong>
-              <ul>
-                <li>Concept introduction</li>
-                <li>Live coding demonstrations</li>
-                <li>Explanation of new programming ideas</li>
-                <li>Modeling problem-solving strategies</li>
-              </ul>
-            </li>
-            <li><strong>45–55 minutes: Student Work Time</strong>
-              <ul>
-                <li>Working through CMU CS Academy lessons and exercises</li>
-                <li>Applying new skills</li>
-                <li>Debugging with teacher support</li>
-              </ul>
-            </li>
-          </ul>
+                  <p style="margin-bottom: 0;">This structure ensures that students first master the basics before moving into more advanced programming concepts.</p>
+                </div>
 
-          <h3>Homework Expectations</h3>
-          <p>Learning to program requires regular practice.</p>
-          <ul>
-            <li>Unfinished CMU lessons and exercises become homework</li>
-            <li>Students are expected to complete assigned coding work outside of class</li>
-            <li>Typical homework expectation: <strong>30–60 minutes between class meetings</strong></li>
-          </ul>
-          <p style="margin-bottom: 0;">This approach mirrors how real-world programming is learned and prepares students for future computer science coursework.</p>
-        </div>
+                <!-- Instructional Methodology -->
+                <div class="info-section">
+                  <h2><i class="bi bi-easel"></i> Instructional Methodology</h2>
+                  <p>This semester uses a blended learning model that combines direct instruction with guided independent practice.</p>
 
-        <!-- Programming Topics -->
-        <div class="info-section">
-          <h2><i class="bi bi-code-slash"></i> Programming Topics Covered</h2>
-          <p>This semester follows the CMU CS Academy CS1 curriculum.</p>
+                  <h3>Typical Class Structure</h3>
+                  <ul>
+                    <li><strong>35–45 minutes: Teacher-Led Instruction</strong>
+                      <ul>
+                        <li>Concept introduction</li>
+                        <li>Live coding demonstrations</li>
+                        <li>Explanation of new programming ideas</li>
+                        <li>Modeling problem-solving strategies</li>
+                      </ul>
+                    </li>
+                    <li><strong>45–55 minutes: Student Work Time</strong>
+                      <ul>
+                        <li>Working through CMU CS Academy lessons and exercises</li>
+                        <li>Applying new skills</li>
+                        <li>Debugging with teacher support</li>
+                      </ul>
+                    </li>
+                  </ul>
 
-          <div class="table-section">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Unit</th>
-                  <th>Major Topics</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Unit 1</td><td>Creating drawings, shapes, colors</td></tr>
-                <tr><td>Unit 2</td><td>Functions, mouse events, object properties</td></tr>
-                <tr><td>Unit 3</td><td>Conditionals and helper functions</td></tr>
-                <tr><td>Unit 4</td><td>Key events and program methods</td></tr>
-                <tr><td>Unit 5</td><td>Nested and complex conditionals</td></tr>
-                <tr><td>Unit 6</td><td>Groups, animation, and motion</td></tr>
-                <tr><td>Unit 7</td><td>Local variables and for loops</td></tr>
-                <tr><td>Unit 8</td><td>Random values and nested loops</td></tr>
-                <tr><td>Unit 10</td><td>Lists and return values</td></tr>
-                <tr><td>Unit 11</td><td>2D lists and simple games</td></tr>
-                <tr><td>Unit 12</td><td>Final programming project</td></tr>
-              </tbody>
-            </table>
+                  <h3>Homework Expectations</h3>
+                  <p>Learning to program requires regular practice.</p>
+                  <ul>
+                    <li>Unfinished CMU lessons and exercises become homework</li>
+                    <li>Students are expected to complete assigned coding work outside of class</li>
+                    <li>Typical homework expectation: <strong>30–60 minutes between class meetings</strong></li>
+                  </ul>
+                  <p style="margin-bottom: 0;">This approach mirrors how real-world programming is learned and prepares students for future computer science coursework.</p>
+                </div>
+
+                <!-- Programming Topics -->
+                <div class="info-section">
+                  <h2><i class="bi bi-code-slash"></i> Programming Topics Covered</h2>
+                  <p>This semester follows the CMU CS Academy CS1 curriculum.</p>
+
+                  <div class="table-section">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Unit</th>
+                          <th>Major Topics</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Unit 1</td><td>Creating drawings, shapes, colors</td></tr>
+                        <tr><td>Unit 2</td><td>Functions, mouse events, object properties</td></tr>
+                        <tr><td>Unit 3</td><td>Conditionals and helper functions</td></tr>
+                        <tr><td>Unit 4</td><td>Key events and program methods</td></tr>
+                        <tr><td>Unit 5</td><td>Nested and complex conditionals</td></tr>
+                        <tr><td>Unit 6</td><td>Groups, animation, and motion</td></tr>
+                        <tr><td>Unit 7</td><td>Local variables and for loops</td></tr>
+                        <tr><td>Unit 8</td><td>Random values and nested loops</td></tr>
+                        <tr><td>Unit 10</td><td>Lists and return values</td></tr>
+                        <tr><td>Unit 11</td><td>2D lists and simple games</td></tr>
+                        <tr><td>Unit 12</td><td>Final programming project</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p style="margin-bottom: 0;">Unit 9 is intentionally omitted to maintain an appropriate semester pace.</p>
+                </div>
+
+                <!-- What Students Will Be Able to Do -->
+                <div class="info-section">
+                  <h2><i class="bi bi-trophy"></i> What Students Will Be Able to Do</h2>
+
+                  <h3>By the Midpoint of the Semester</h3>
+                  <p>Students will be able to:</p>
+                  <ul>
+                    <li>Write basic computer programs</li>
+                    <li>Use functions to organize code</li>
+                    <li>Create interactive graphics</li>
+                    <li>Use conditional logic</li>
+                    <li>Respond to mouse and keyboard input</li>
+                    <li>Debug and improve their own programs</li>
+                  </ul>
+
+                  <h3>By the End of the Semester</h3>
+                  <p>Students will also be able to:</p>
+                  <ul>
+                    <li>Use loops and animation</li>
+                    <li>Work with lists and data structures</li>
+                    <li>Create simple games and simulations</li>
+                    <li>Plan and complete a multi-day programming project</li>
+                  </ul>
+                </div>
+
+                <!-- Grading Plan -->
+                <div class="info-section">
+                  <h2><i class="bi bi-clipboard-check"></i> Grading Plan for This Semester</h2>
+
+                  <h3>Grading Period Structure</h3>
+                  <p>Each grading period (20 classes) follows the same format:</p>
+
+                  <div class="table-section">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Category</th>
+                          <th>Number of Grades</th>
+                          <th>Weight Each</th>
+                          <th>Total Weight</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Mastery / Understanding</td>
+                          <td>8</td>
+                          <td>10%</td>
+                          <td><strong>80%</strong></td>
+                        </tr>
+                        <tr>
+                          <td>Engagement</td>
+                          <td>4</td>
+                          <td>5%</td>
+                          <td><strong>20%</strong></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Total</strong></td>
+                          <td>12 grades</td>
+                          <td></td>
+                          <td><strong>100%</strong></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <h3>Mastery / Understanding Grades (80%)</h3>
+                  <p>These grades measure actual programming knowledge and skills. Examples include:</p>
+                  <ul>
+                    <li>Programming quizzes</li>
+                    <li>Application labs</li>
+                    <li>Mini-projects</li>
+                    <li>Unit assessments</li>
+                    <li>Cumulative programming tasks</li>
+                  </ul>
+
+                  <h3>Engagement Grades (20%)</h3>
+                  <p>Engagement grades reward consistent effort and responsibility, including:</p>
+                  <ul>
+                    <li>Completion of assigned CMU CS Academy exercises</li>
+                    <li>Productive use of class work time</li>
+                    <li>Meeting homework expectations</li>
+                    <li>Regular progress through online lessons</li>
+                  </ul>
+
+                  <h3>Semester Grade Calculation</h3>
+                  <div class="table-section">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Component</th>
+                          <th>Percent of Semester</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>Grading Period 1</td><td><strong>45%</strong></td></tr>
+                        <tr><td>Grading Period 2</td><td><strong>45%</strong></td></tr>
+                        <tr><td>Semester Test – Unit 12 Final Project</td><td><strong>10%</strong></td></tr>
+                        <tr><td><strong>Total</strong></td><td><strong>100%</strong></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p style="margin-bottom: 0;">The <strong>Unit 12 Final Project</strong> serves as the semester test grade and is completed during the final two class meetings.</p>
+                </div>
+
+              </div>
+            </div>
           </div>
-
-          <p style="margin-bottom: 0;">Unit 9 is intentionally omitted to maintain an appropriate semester pace.</p>
         </div>
 
-        <!-- What Students Will Be Able to Do -->
-        <div class="info-section">
-          <h2><i class="bi bi-trophy"></i> What Students Will Be Able to Do</h2>
-
-          <h3>By the Midpoint of the Semester</h3>
-          <p>Students will be able to:</p>
-          <ul>
-            <li>Write basic computer programs</li>
-            <li>Use functions to organize code</li>
-            <li>Create interactive graphics</li>
-            <li>Use conditional logic</li>
-            <li>Respond to mouse and keyboard input</li>
-            <li>Debug and improve their own programs</li>
-          </ul>
-
-          <h3>By the End of the Semester</h3>
-          <p>Students will also be able to:</p>
-          <ul>
-            <li>Use loops and animation</li>
-            <li>Work with lists and data structures</li>
-            <li>Create simple games and simulations</li>
-            <li>Plan and complete a multi-day programming project</li>
-          </ul>
+        <!-- First Semester Lessons -->
+        <div class="semester-divider">
+          <i class="bi bi-calendar2-range"></i> First Semester (Grading Period 1) - Classes 301-321
         </div>
 
-        <!-- Grading Plan -->
-        <div class="info-section">
-          <h2><i class="bi bi-clipboard-check"></i> Grading Plan for This Semester</h2>
+        <div class="lessons-grid">
+          <a href="lesson301.html" class="lesson-card">
+            <div class="lesson-number">301</div>
+            <div class="lesson-content">
+              <h3>Class 1</h3>
+              <p>Personal Introduction and class procedures</p>
+            </div>
+          </a>
 
-          <h3>Grading Period Structure</h3>
-          <p>Each grading period (20 classes) follows the same format:</p>
+          <a href="lesson302.html" class="lesson-card">
+            <div class="lesson-number">302</div>
+            <div class="lesson-content">
+              <h3>Class 2</h3>
+              <p>Course intro, digital citizenship, CMU setup, Unit 1.1 Basics</p>
+            </div>
+          </a>
 
-          <div class="table-section">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>Number of Grades</th>
-                  <th>Weight Each</th>
-                  <th>Total Weight</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mastery / Understanding</td>
-                  <td>8</td>
-                  <td>10%</td>
-                  <td><strong>80%</strong></td>
-                </tr>
-                <tr>
-                  <td>Engagement</td>
-                  <td>4</td>
-                  <td>5%</td>
-                  <td><strong>20%</strong></td>
-                </tr>
-                <tr>
-                  <td><strong>Total</strong></td>
-                  <td>12 grades</td>
-                  <td></td>
-                  <td><strong>100%</strong></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <a href="lesson303.html" class="lesson-card">
+            <div class="lesson-number">303</div>
+            <div class="lesson-content">
+              <h3>Class 3</h3>
+              <p>Unit 1.2 Colors</p>
+            </div>
+          </a>
 
-          <h3>Mastery / Understanding Grades (80%)</h3>
-          <p>These grades measure actual programming knowledge and skills. Examples include:</p>
-          <ul>
-            <li>Programming quizzes</li>
-            <li>Application labs</li>
-            <li>Mini-projects</li>
-            <li>Unit assessments</li>
-            <li>Cumulative programming tasks</li>
-          </ul>
-          <p>These grades reflect how well a student understands and can apply what has been learned.</p>
+          <a href="lesson304.html" class="lesson-card">
+            <div class="lesson-number">304</div>
+            <div class="lesson-content">
+              <h3>Class 4</h3>
+              <p>Unit 1.3 Shapes</p>
+            </div>
+          </a>
 
-          <h3>Engagement Grades (20%)</h3>
-          <p>Engagement grades reward consistent effort and responsibility, including:</p>
-          <ul>
-            <li>Completion of assigned CMU CS Academy exercises</li>
-            <li>Productive use of class work time</li>
-            <li>Meeting homework expectations</li>
-            <li>Regular progress through online lessons</li>
-          </ul>
-          <p>Programming skill grows through practice; these grades encourage strong learning habits.</p>
+          <a href="lesson305.html" class="lesson-card">
+            <div class="lesson-number">305</div>
+            <div class="lesson-content">
+              <h3>Class 5</h3>
+              <p>FLEX DAY #1 – reteach / catch-up</p>
+            </div>
+          </a>
 
-          <h3>Semester Grade Calculation</h3>
-          <div class="table-section">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Component</th>
-                  <th>Percent of Semester</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Grading Period 1</td><td><strong>45%</strong></td></tr>
-                <tr><td>Grading Period 2</td><td><strong>45%</strong></td></tr>
-                <tr><td>Semester Test – Unit 12 Final Project</td><td><strong>10%</strong></td></tr>
-                <tr><td><strong>Total</strong></td><td><strong>100%</strong></td></tr>
-              </tbody>
-            </table>
-          </div>
+          <a href="lesson306.html" class="lesson-card">
+            <div class="lesson-number">306</div>
+            <div class="lesson-content">
+              <h3>Class 6</h3>
+              <p>Unit 1 Exercises Catch-Up and Support Day</p>
+            </div>
+          </a>
 
-          <p style="margin-bottom: 0;">The <strong>Unit 12 Final Project</strong> serves as the semester test grade and is completed during the final two class meetings.</p>
+          <a href="lesson307.html" class="lesson-card">
+            <div class="lesson-number">307</div>
+            <div class="lesson-content">
+              <h3>Class 7</h3>
+              <p>Unit 1 Creative Mini-Task</p>
+            </div>
+          </a>
+
+          <a href="lesson308.html" class="lesson-card">
+            <div class="lesson-number">308</div>
+            <div class="lesson-content">
+              <h3>Class 8</h3>
+              <p>Lecture: 2.1 Functions + 2.2 Mouse Events</p>
+            </div>
+          </a>
+
+          <a href="lesson309.html" class="lesson-card">
+            <div class="lesson-number">309</div>
+            <div class="lesson-content">
+              <h3>Class 9</h3>
+              <p>2.3 Properties – guided practice</p>
+            </div>
+          </a>
+
+          <a href="lesson310.html" class="lesson-card">
+            <div class="lesson-number">310</div>
+            <div class="lesson-content">
+              <h3>Class 10</h3>
+              <p>Unit 2 Exercises Catch-Up and Support Day</p>
+            </div>
+          </a>
+
+          <a href="lesson311.html" class="lesson-card">
+            <div class="lesson-number">311</div>
+            <div class="lesson-content">
+              <h3>Class 11</h3>
+              <p>Collaborative debugging challenge</p>
+            </div>
+          </a>
+
+          <a href="lesson312.html" class="lesson-card">
+            <div class="lesson-number">312</div>
+            <div class="lesson-content">
+              <h3>Class 12</h3>
+              <p>3.1 Mouse Motion + 3.2 Conditionals</p>
+            </div>
+          </a>
+
+          <a href="lesson313.html" class="lesson-card">
+            <div class="lesson-number">313</div>
+            <div class="lesson-content">
+              <h3>Class 13</h3>
+              <p>3.3 Helper Functions</p>
+            </div>
+          </a>
+
+          <a href="lesson314.html" class="lesson-card">
+            <div class="lesson-number">314</div>
+            <div class="lesson-content">
+              <h3>Class 14</h3>
+              <p>Unit 3 Exercises Catch-Up and Support Day</p>
+            </div>
+          </a>
+
+          <a href="lesson315.html" class="lesson-card">
+            <div class="lesson-number">315</div>
+            <div class="lesson-content">
+              <h3>Class 15</h3>
+              <p>Assessment + application lab</p>
+            </div>
+          </a>
+
+          <a href="lesson316.html" class="lesson-card">
+            <div class="lesson-number">316</div>
+            <div class="lesson-content">
+              <h3>Class 16</h3>
+              <p>4.1 More Conditionals</p>
+            </div>
+          </a>
+
+          <a href="lesson317.html" class="lesson-card">
+            <div class="lesson-number">317</div>
+            <div class="lesson-content">
+              <h3>Class 17</h3>
+              <p>4.2 Key Events + 4.3 Methods</p>
+            </div>
+          </a>
+
+          <a href="lesson318.html" class="lesson-card">
+            <div class="lesson-number">318</div>
+            <div class="lesson-content">
+              <h3>Class 18</h3>
+              <p>Unit 4 Exercises Catch-Up and Support Day</p>
+            </div>
+          </a>
+
+          <a href="lesson319.html" class="lesson-card">
+            <div class="lesson-number">319</div>
+            <div class="lesson-content">
+              <h3>Class 19</h3>
+              <p>5.1 Nested Conditionals</p>
+            </div>
+          </a>
+
+          <a href="lesson320.html" class="lesson-card">
+            <div class="lesson-number">320</div>
+            <div class="lesson-content">
+              <h3>Class 20</h3>
+              <p>5.2 onKeyHold and advanced logic</p>
+            </div>
+          </a>
+
+          <a href="lesson321.html" class="lesson-card">
+            <div class="lesson-number">321</div>
+            <div class="lesson-content">
+              <h3>Class 21</h3>
+              <p>Consolidation + mini-project</p>
+            </div>
+          </a>
         </div>
 
-        <!-- Classroom Expectations -->
-        <div class="info-section">
-          <h2><i class="bi bi-list-check"></i> Classroom Expectations</h2>
-          <p>Students are expected to:</p>
-          <ul>
-            <li>Participate actively in lessons</li>
-            <li>Use class time productively</li>
-            <li>Complete assigned coding work</li>
-            <li>Ask for help when needed</li>
-            <li>Practice good digital citizenship</li>
-            <li>Demonstrate academic integrity</li>
-          </ul>
-          <p style="margin-bottom: 0;">Programming is a skill learned through consistent effort, problem solving, and persistence.</p>
+        <!-- Second Semester Lessons -->
+        <div class="semester-divider">
+          <i class="bi bi-calendar2-range"></i> Second Semester (Grading Period 2) - Classes 401-421
         </div>
 
-        <!-- Support for Students -->
-        <div class="info-section">
-          <h2><i class="bi bi-people"></i> Support for Students</h2>
-          <p>To help all students succeed, the semester includes:</p>
-          <ul>
-            <li>Regular support and catch-up days</li>
-            <li>Collaborative debugging activities</li>
-            <li>Individualized assistance</li>
-            <li>Multiple opportunities to demonstrate mastery</li>
-          </ul>
-          <p style="margin-bottom: 0;">Students are encouraged to communicate early if they need additional help.</p>
+        <div class="lessons-grid">
+          <a href="lesson401.html" class="lesson-card">
+            <div class="lesson-number">401</div>
+            <div class="lesson-content">
+              <h3>Class 22</h3>
+              <p>Groups and group methods</p>
+            </div>
+          </a>
+
+          <a href="lesson402.html" class="lesson-card">
+            <div class="lesson-number">402</div>
+            <div class="lesson-content">
+              <h3>Class 23</h3>
+              <p>onStep events and motion</p>
+            </div>
+          </a>
+
+          <a href="lesson403.html" class="lesson-card">
+            <div class="lesson-number">403</div>
+            <div class="lesson-content">
+              <h3>Class 24</h3>
+              <p>Unit 6 Exercises Catch-Up and Support Day</p>
+            </div>
+          </a>
+
+          <a href="lesson404.html" class="lesson-card">
+            <div class="lesson-number">404</div>
+            <div class="lesson-content">
+              <h3>Class 25</h3>
+              <p>Creative application lab</p>
+            </div>
+          </a>
+
+          <a href="lesson405.html" class="lesson-card">
+            <div class="lesson-number">405</div>
+            <div class="lesson-content">
+              <h3>Class 26</h3>
+              <p>7.1 New shapes</p>
+            </div>
+          </a>
+
+          <a href="lesson406.html" class="lesson-card">
+            <div class="lesson-number">406</div>
+            <div class="lesson-content">
+              <h3>Class 27</h3>
+              <p>7.2 Local variables</p>
+            </div>
+          </a>
+
+          <a href="lesson407.html" class="lesson-card">
+            <div class="lesson-number">407</div>
+            <div class="lesson-content">
+              <h3>Class 28</h3>
+              <p>7.3 For loops</p>
+            </div>
+          </a>
+
+          <a href="lesson408.html" class="lesson-card">
+            <div class="lesson-number">408</div>
+            <div class="lesson-content">
+              <h3>Class 29</h3>
+              <p>Unit 7 Exercises Catch-Up and Support Day</p>
+            </div>
+          </a>
+
+          <a href="lesson409.html" class="lesson-card">
+            <div class="lesson-number">409</div>
+            <div class="lesson-content">
+              <h3>Class 30</h3>
+              <p>Math functions</p>
+            </div>
+          </a>
+
+          <a href="lesson410.html" class="lesson-card">
+            <div class="lesson-number">410</div>
+            <div class="lesson-content">
+              <h3>Class 31</h3>
+              <p>Random values</p>
+            </div>
+          </a>
+
+          <a href="lesson411.html" class="lesson-card">
+            <div class="lesson-number">411</div>
+            <div class="lesson-content">
+              <h3>Class 32</h3>
+              <p>Nested loops</p>
+            </div>
+          </a>
+
+          <a href="lesson412.html" class="lesson-card">
+            <div class="lesson-number">412</div>
+            <div class="lesson-content">
+              <h3>Class 33</h3>
+              <p>Unit 8 Exercises Catch-Up and Support Day</p>
+            </div>
+          </a>
+
+          <a href="lesson413.html" class="lesson-card">
+            <div class="lesson-number">413</div>
+            <div class="lesson-content">
+              <h3>Class 34</h3>
+              <p>Unit 10 Lists basics</p>
+            </div>
+          </a>
+
+          <a href="lesson414.html" class="lesson-card">
+            <div class="lesson-number">414</div>
+            <div class="lesson-content">
+              <h3>Class 35</h3>
+              <p>Return values</p>
+            </div>
+          </a>
+
+          <a href="lesson415.html" class="lesson-card">
+            <div class="lesson-number">415</div>
+            <div class="lesson-content">
+              <h3>Class 36</h3>
+              <p>Unit 10 Exercises Catch-Up and Support Day</p>
+            </div>
+          </a>
+
+          <a href="lesson416.html" class="lesson-card">
+            <div class="lesson-number">416</div>
+            <div class="lesson-content">
+              <h3>Class 37</h3>
+              <p>2D Lists</p>
+            </div>
+          </a>
+
+          <a href="lesson417.html" class="lesson-card">
+            <div class="lesson-number">417</div>
+            <div class="lesson-content">
+              <h3>Class 38</h3>
+              <p>Writing simple board games</p>
+            </div>
+          </a>
+
+          <a href="lesson418.html" class="lesson-card">
+            <div class="lesson-number">418</div>
+            <div class="lesson-content">
+              <h3>Class 39</h3>
+              <p>Game lab / assessment</p>
+            </div>
+          </a>
+
+          <a href="lesson419.html" class="lesson-card">
+            <div class="lesson-number">419</div>
+            <div class="lesson-content">
+              <h3>Class 40</h3>
+              <p>Review</p>
+            </div>
+          </a>
+
+          <a href="lesson420.html" class="lesson-card">
+            <div class="lesson-number">420</div>
+            <div class="lesson-content">
+              <h3>Class 41</h3>
+              <p>Unit 12 Final Project – Day 1</p>
+            </div>
+          </a>
+
+          <a href="lesson421.html" class="lesson-card">
+            <div class="lesson-number">421</div>
+            <div class="lesson-content">
+              <h3>Class 42</h3>
+              <p>Unit 12 Final Project – Day 2</p>
+            </div>
+          </a>
         </div>
 
-        <!-- Technology Requirements -->
-        <div class="info-section">
-          <h2><i class="bi bi-laptop"></i> Technology Requirements</h2>
-          <p>Students will need:</p>
-          <ul>
-            <li>Regular access to a computer with internet access</li>
-            <li>Access to the CMU CS Academy website</li>
-            <li>Ability to complete online assignments outside of class</li>
-          </ul>
-        </div>
-
-        <!-- Preparing for the Future -->
-        <div class="highlight-box">
-          <h3><i class="bi bi-rocket-takeoff"></i> Preparing for the Future</h3>
-          <p>This programming semester is designed to serve as a strong foundation for:</p>
-          <ul>
-            <li>Advanced computer science courses</li>
-            <li>AP Computer Science Principles</li>
-            <li>AP Computer Science A</li>
-            <li>Robotics and engineering pathways</li>
-            <li>College-level programming study</li>
-          </ul>
-          <p style="margin-bottom: 0;">Students who fully engage with this semester will finish with practical, transferable programming skills.</p>
-        </div>
-
-        <!-- Summary -->
-        <div class="info-section">
-          <h2><i class="bi bi-journal-text"></i> Summary</h2>
-          <p style="margin-bottom: 0;">
-            This semester focuses specifically on <strong>learning to program</strong> using a nationally recognized curriculum and a hands-on, project-based approach. Through consistent practice, guided instruction, and real coding experiences, students will develop the computational thinking skills needed for future success in computer science and technology.
-          </p>
-        </div>
-
-        <a href="../" class="back-button">
+        <a href="../" class="back-button mt-4">
           <i class="bi bi-arrow-left"></i> Back to FCS Home
         </a>
       </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
