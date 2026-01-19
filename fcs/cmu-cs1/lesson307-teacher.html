@@ -1,0 +1,652 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/lesson307-teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 307 - Teacher Lesson Plan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .course-info {
+        background: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .course-info h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .course-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .course-info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .course-info-item strong {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #6c757d;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #6c757d;
+      }
+
+      .objectives-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .objectives-list li {
+        padding: 8px 0 8px 30px;
+        position: relative;
+      }
+
+      .objectives-list li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #6c757d;
+        font-weight: bold;
+      }
+
+      .materials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .materials-grid li {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .link-box {
+        background: #e7f3ff;
+        border: 2px solid #0d6efd;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+      }
+
+      .link-box a {
+        color: #0d6efd;
+        word-break: break-all;
+      }
+
+      .timing-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .timing-table th,
+      .timing-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .timing-table th {
+        background: #6c757d;
+        color: white;
+        font-weight: 600;
+      }
+
+      .timing-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .procedure-section {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #6c757d;
+      }
+
+      .procedure-section h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .procedure-subsection {
+        margin: 15px 0;
+      }
+
+      .procedure-subsection h4 {
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .key-points {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .key-points h4 {
+        color: #0f5132;
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 0.95rem;
+      }
+
+      .rubric-table th,
+      .rubric-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .rubric-table th {
+        background: #198754;
+        color: white;
+        font-weight: 600;
+      }
+
+      .rubric-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .rubric-table td:first-child {
+        font-weight: 600;
+        background: #e7f3ff;
+      }
+
+      .misconceptions-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .misconceptions-table th,
+      .misconceptions-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .misconceptions-table th {
+        background: #dc3545;
+        color: white;
+        font-weight: 600;
+      }
+
+      .misconceptions-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .assessment-box {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .assessment-box h3 {
+        color: #856404;
+        margin: 0 0 15px 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .student-link {
+        background: #198754;
+      }
+
+      .student-link:hover {
+        background: #157347;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="teacher.html" class="text-white-50">Teacher Resources</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 307 Teacher Plan</span>
+      </nav>
+
+      <div class="teacher-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-person-video3"></i> Teacher Lesson Plan</h1>
+          <p class="mb-0">Lesson 307: Unit 1 Creative Mini-Task</p>
+        </div>
+
+        <div class="course-info">
+          <h3>Lesson Overview</h3>
+          <div class="course-info-grid">
+            <div class="course-info-item">
+              <strong>Course:</strong>
+              <span>Fundamentals of Computer Science</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Code:</strong>
+              <span>307</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Title:</strong>
+              <span>Unit 1 Creative Mini-Task</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Class Length:</strong>
+              <span>90 minutes</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Curriculum Source:</strong>
+              <span>CMU CS Academy CS1 – Unit 1 Creative Task</span>
+            </div>
+          </div>
+          <p style="margin-top: 15px; margin-bottom: 0;">
+            This lesson launches the first Creative Task in CMU CS Academy CS1. Students design and build an original program using the drawing and color concepts learned in Unit 1. The focus is on creativity, problem solving, and demonstrating understanding of Unit 1 skills such as shapes, coordinates, colors, and optional parameters. Students follow a structured design–code–reflect process.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Objectives</h2>
+          <p>Students will:</p>
+          <ul class="objectives-list">
+            <li>Plan and design an original drawing-based program using Unit 1 concepts.</li>
+            <li>Create a working CMU CS Academy program that demonstrates use of shapes, colors, and properties.</li>
+            <li>Apply the design process to move from idea to finished product.</li>
+            <li>Reflect on their coding process and explain how Unit 1 concepts were used.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-box-seam"></i> Materials & Setup</h2>
+          <ul class="materials-grid">
+            <li>Student computers with internet access</li>
+            <li>CMU CS Academy login credentials</li>
+            <li>Student notes from Unit 1</li>
+            <li>Optional planning paper or digital planning document</li>
+          </ul>
+
+          <div class="link-box">
+            <strong>Access to Creative Task examples:</strong><br>
+            <a href="https://docs.google.com/presentation/d/1dKGibUmqX1838aNFhgsEd-uNVmveXLnOwDxAcrOiG_U/" target="_blank">
+              https://docs.google.com/presentation/d/1dKGibUmqX1838aNFhgsEd-uNVmveXLnOwDxAcrOiG_U/
+            </a>
+          </div>
+
+          <h3 style="margin-top: 20px; color: #6c757d;">Teacher Preparation:</h3>
+          <ul>
+            <li>Review Creative Task expectations and rubric</li>
+            <li>Be ready to show sample projects for inspiration</li>
+            <li>Prepare to model brainstorming and planning</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clock"></i> Agenda (90 Minutes)</h2>
+          <table class="timing-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0 – 10 min</td><td>Introduction to Creative Task</td></tr>
+              <tr><td>10 – 25 min</td><td>Review of Expectations and Rubric</td></tr>
+              <tr><td>25 – 40 min</td><td>Idea Brainstorming and Planning</td></tr>
+              <tr><td>40 – 80 min</td><td>Student Work Time (Design and Coding)</td></tr>
+              <tr><td>80 – 87 min</td><td>Reflection Writing</td></tr>
+              <tr><td>87 – 90 min</td><td>Closure and Homework</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-list-ol"></i> Teacher Moves (Scripted Talking Points + Demo Steps)</h2>
+
+          <div class="procedure-section">
+            <h3>Introduction (10 minutes)</h3>
+
+            <div class="key-points">
+              <h4>Talking Points</h4>
+              <p>"Up to this point you have followed guided lessons and exercises. Today you get to create something of your own."</p>
+              <p>"This Creative Mini-Task is your chance to show what you can do with the skills from Unit 1."</p>
+              <p style="margin: 0;">"You may design a scene, picture, logo, or any visual idea you choose—as long as it uses Unit 1 concepts."</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Emphasize:</h4>
+              <ul>
+                <li>There is not one "correct" answer</li>
+                <li>Creativity is encouraged</li>
+                <li>The project must still meet clear requirements</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Review Expectations and Rubric (15 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Explain:</h4>
+              <p>"Your project will be graded using a rubric. You are not only graded on code, but also on planning and reflection."</p>
+
+              <p><strong>Walk through rubric categories:</strong></p>
+              <ul>
+                <li>Program Design</li>
+                <li>Program Development</li>
+                <li>Reflection</li>
+              </ul>
+            </div>
+
+            <div class="key-points">
+              <h4>Model what a strong project includes:</h4>
+              <ul style="margin: 0;">
+                <li>Multiple shapes</li>
+                <li>Use of colors and properties</li>
+                <li>Clear purpose</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Brainstorming and Planning (15 minutes)</h3>
+
+            <p>Guide students through planning steps:</p>
+            <ol>
+              <li>Decide what they want to create</li>
+              <li>Sketch the design</li>
+              <li>Identify which shapes and colors they will need</li>
+              <li>Think about layering and order</li>
+            </ol>
+
+            <div class="key-points">
+              <h4>Teacher demo:</h4>
+              <ul style="margin: 0;">
+                <li>Quickly sketch an example on the board</li>
+                <li>Translate the sketch into simple CMU commands</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Work Time (40 minutes)</h3>
+
+            <p><strong>Teacher circulates and supports:</strong></p>
+            <ul>
+              <li>Help students break big ideas into small steps</li>
+              <li>Encourage starting simple</li>
+              <li>Remind students to test frequently</li>
+            </ul>
+
+            <div class="key-points">
+              <h4>Key reminders to students:</h4>
+              <ul style="margin: 0;">
+                <li>Build one piece at a time</li>
+                <li>Use the Inspector tool</li>
+                <li>Save work often</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Reflection (7 minutes)</h3>
+
+            <p>Students complete a short written reflection describing:</p>
+            <ul style="margin: 0;">
+              <li>What they built</li>
+              <li>A challenge they faced</li>
+              <li>How Unit 1 concepts were used</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-pencil-square"></i> Student Tasks</h2>
+
+          <h3>In-Class Tasks</h3>
+          <p>Students will:</p>
+          <ul>
+            <li>Brainstorm and plan an original program idea</li>
+            <li>Sketch or outline their design</li>
+            <li>Build the program in CMU CS Academy using Unit 1 tools</li>
+            <li>Write a brief reflection explaining their process</li>
+          </ul>
+
+          <h3 style="margin-top: 20px;">Homework</h3>
+          <p>Students who do not finish must complete:</p>
+          <ul>
+            <li>Their Creative Mini-Task program</li>
+            <li>The required reflection component</li>
+          </ul>
+        </div>
+
+        <div class="assessment-box">
+          <h3><i class="bi bi-clipboard-check"></i> Checks for Understanding (Formative)</h3>
+
+          <p>During work time, ask students:</p>
+          <ul>
+            <li>"What is the purpose of your program?"</li>
+            <li>"Which Unit 1 concepts are you using?"</li>
+            <li>"How did you decide which shapes to use?"</li>
+            <li>"What problem are you trying to solve right now?"</li>
+          </ul>
+
+          <h4 style="margin-top: 15px;">At the end:</h4>
+          <ul style="margin-bottom: 0;">
+            <li>Quick share-out of a few student ideas</li>
+            <li>Ask students to self-rate readiness</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-exclamation-triangle"></i> Common Misconceptions & Fixes</h2>
+          <table class="misconceptions-table">
+            <thead>
+              <tr>
+                <th>Misconception</th>
+                <th>Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Students try to include features not taught</td>
+                <td>Remind them to stay within Unit 1 tools</td>
+              </tr>
+              <tr>
+                <td>Students start coding without a plan</td>
+                <td>Require a quick sketch first</td>
+              </tr>
+              <tr>
+                <td>Belief that more code automatically means better grade</td>
+                <td>Emphasize quality and rubric</td>
+              </tr>
+              <tr>
+                <td>Students get stuck on perfection</td>
+                <td>Encourage incremental progress</td>
+              </tr>
+              <tr>
+                <td>Ignoring reflection requirement</td>
+                <td>Remind that reflection is part of grade</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-gear"></i> Differentiation & Accommodations</h2>
+
+          <h3>For students needing support</h3>
+          <ul>
+            <li>Provide simple starter templates</li>
+            <li>Suggest easier project ideas</li>
+            <li>Allow pair brainstorming</li>
+          </ul>
+
+          <h3>For advanced students</h3>
+          <ul>
+            <li>Encourage complex scenes</li>
+            <li>Allow optional advanced creativity</li>
+            <li>Invite them to help peers</li>
+          </ul>
+
+          <h3>General supports</h3>
+          <ul>
+            <li>Visual planning organizers</li>
+            <li>Checklists of required elements</li>
+            <li>Flexible pacing</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clipboard-data"></i> Assessment Notes</h2>
+          <p>This lesson results in a graded Creative Mini-Task using the rubric below.</p>
+
+          <h3 style="margin-top: 25px; color: #198754;">Creative Task Grading Rubric (Unit 1)</h3>
+          <table class="rubric-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Strong Evidence (100%)</th>
+                <th>Inconsistent Evidence (70%)</th>
+                <th>Weak/No Evidence (35%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Program Design<br>(30%)</td>
+                <td>Program clearly demonstrates purpose and incorporates Unit 1 concepts</td>
+                <td>Program shows purpose OR uses Unit 1 concepts, but not both</td>
+                <td>Program does not show purpose or Unit 1 concepts</td>
+              </tr>
+              <tr>
+                <td>Program Development<br>(35%)</td>
+                <td>Student identifies a difficulty or opportunity and explains how it was resolved</td>
+                <td>Student identifies a difficulty but does not explain resolution</td>
+                <td>Student does not identify any difficulty</td>
+              </tr>
+              <tr>
+                <td>Reflection<br>(35%)</td>
+                <td>Student explains at least two Unit 1 concepts and how they were used</td>
+                <td>Student explains one concept</td>
+                <td>Student cannot explain any concepts</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top: 15px;"><strong>Bonus:</strong> Extra points may be awarded for originality, complexity, and creativity.</p>
+        </div>
+
+        <div class="key-points">
+          <h4><i class="bi bi-door-closed"></i> Closure</h4>
+          <p>"You have moved from learning to follow instructions to creating your own program. That is a huge step as a programmer."</p>
+          <p style="margin: 0;">"Finish your project and reflection if needed. Next class we will move on to the next unit and build even more powerful programs."</p>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="teacher.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Back to Teacher Resources
+          </a>
+          <a href="lesson307.html" class="nav-button student-link">
+            <i class="bi bi-eye"></i> View Student Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
