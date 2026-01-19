@@ -1,0 +1,230 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/lesson305.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 305 - FLEX DAY #1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .flex-header {
+        background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+        color: white;
+        padding: 40px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .flex-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2.5rem;
+      }
+
+      .flex-header .subtitle {
+        font-size: 1.3rem;
+        opacity: 0.95;
+        margin: 0;
+      }
+
+      .info-box {
+        background: #fff8e9;
+        border: 3px solid #ffc107;
+        border-radius: 10px;
+        padding: 30px;
+        margin: 30px 0;
+        text-align: center;
+      }
+
+      .info-box h2 {
+        color: #856404;
+        margin: 0 0 20px 0;
+        font-size: 1.8rem;
+      }
+
+      .info-box p {
+        font-size: 1.1rem;
+        color: #2c3e50;
+        margin-bottom: 0;
+        line-height: 1.8;
+      }
+
+      .purpose-section {
+        background: #f8f9fa;
+        border-left: 4px solid #ffc107;
+        padding: 25px;
+        margin: 30px 0;
+        border-radius: 5px;
+      }
+
+      .purpose-section h3 {
+        color: #856404;
+        margin: 0 0 15px 0;
+        font-size: 1.3rem;
+      }
+
+      .purpose-section ul {
+        margin: 0;
+        padding-left: 25px;
+      }
+
+      .purpose-section li {
+        margin: 10px 0;
+        font-size: 1.05rem;
+      }
+
+      .instruction-box {
+        background: #e7f3ff;
+        border: 2px solid #0d6efd;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 30px 0;
+      }
+
+      .instruction-box h3 {
+        color: #084298;
+        margin: 0 0 15px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .instruction-box p {
+        font-size: 1.05rem;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .nav-button.primary {
+        background: #198754;
+      }
+
+      .nav-button.primary:hover {
+        background: #157347;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 305</span>
+      </nav>
+
+      <div class="lesson-content">
+        <div class="flex-header">
+          <h1><i class="bi bi-arrows-angle-expand"></i> FLEX DAY #1</h1>
+          <p class="subtitle">Reteach / Catch-Up / Practice</p>
+        </div>
+
+        <div class="info-box">
+          <h2><i class="bi bi-info-circle"></i> What is a Flex Day?</h2>
+          <p>
+            Flex days are scheduled throughout the semester to give you time to catch up on assignments,
+            get extra help, review difficult concepts, or practice skills you've been learning.
+          </p>
+        </div>
+
+        <div class="purpose-section">
+          <h3>Purpose of Today's Class</h3>
+          <p>Today's flex day allows you to:</p>
+          <ul>
+            <li>Complete any unfinished exercises from Unit 1.1, 1.2, or 1.3</li>
+            <li>Review concepts you found challenging (basics, colors, or shapes)</li>
+            <li>Get one-on-one help from your teacher</li>
+            <li>Practice programming skills at your own pace</li>
+            <li>Ask questions about anything you didn't understand</li>
+          </ul>
+        </div>
+
+        <div class="instruction-box">
+          <h3>
+            <i class="bi bi-exclamation-circle"></i>
+            Follow Teacher Instructions
+          </h3>
+          <p>
+            Your teacher will provide specific instructions for today's class activities.
+            Check for announcements in your Learning Management System (Schoology, Google Classroom, etc.)
+            or listen carefully to directions given in class.
+          </p>
+        </div>
+
+        <div class="purpose-section">
+          <h3>Make the Most of This Time</h3>
+          <ul>
+            <li>Log into CMU CS Academy and check your progress</li>
+            <li>Identify exercises that need completion</li>
+            <li>Ask for help when you're stuck</li>
+            <li>Work productively and stay on task</li>
+            <li>Use this time to strengthen your foundation before moving forward</li>
+          </ul>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="lesson304.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Previous: Lesson 304
+          </a>
+          <a href="./" class="nav-button">
+            <i class="bi bi-grid"></i> All Lessons
+          </a>
+          <a href="lesson306.html" class="nav-button primary">
+            Next: Lesson 306 <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

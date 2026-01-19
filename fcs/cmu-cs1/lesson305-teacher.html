@@ -1,0 +1,382 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/lesson305-teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 305 - Teacher Resource</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .overview-box {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .overview-box h3 {
+        color: #856404;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #ffc107;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ffc107;
+      }
+
+      .suggestion-card {
+        background: #f8f9fa;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .suggestion-card h3 {
+        color: #856404;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .suggestion-card h4 {
+        color: #6c757d;
+        font-size: 1rem;
+        margin: 15px 0 8px 0;
+        font-weight: 600;
+      }
+
+      .suggestion-card ul {
+        margin: 0;
+      }
+
+      .suggestion-card li {
+        margin: 8px 0;
+      }
+
+      .timing-note {
+        background: #e7f3ff;
+        border-left: 4px solid #0d6efd;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .timing-note strong {
+        color: #084298;
+      }
+
+      .assessment-box {
+        background: #d1e7dd;
+        border: 2px solid #198754;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .assessment-box h3 {
+        color: #0f5132;
+        margin: 0 0 15px 0;
+      }
+
+      .reflection-box {
+        background: #e7f3ff;
+        border-left: 4px solid #0d6efd;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .reflection-box h3 {
+        color: #084298;
+        margin: 0 0 10px 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .student-link {
+        background: #198754;
+      }
+
+      .student-link:hover {
+        background: #157347;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="teacher.html" class="text-white-50">Teacher Resources</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 305 Teacher Resource</span>
+      </nav>
+
+      <div class="teacher-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-arrows-angle-expand"></i> FLEX DAY #1 - Teacher Resource</h1>
+          <p class="mb-0">Reteach / Catch-Up / Practice Suggestions</p>
+        </div>
+
+        <div class="overview-box">
+          <h3>Purpose of This Flex Day</h3>
+          <p>
+            This is the first scheduled flex day of the semester. At this point, students have completed:
+          </p>
+          <ul>
+            <li><strong>Unit 1.1 – Basics:</strong> Drawing basic shapes (Rect, Circle, Oval, Line)</li>
+            <li><strong>Unit 1.2 – Colors:</strong> Using fill, opacity, and RGB values</li>
+            <li><strong>Unit 1.3 – Shapes:</strong> Additional shapes (Star, Polygon, Label) and coordinate placement</li>
+          </ul>
+          <p style="margin-top: 15px; margin-bottom: 0;">
+            Use this day strategically to ensure all students have a solid foundation before moving into functions and interactivity in Unit 2.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-lightbulb"></i> Suggested Uses for This Class Period</h2>
+
+          <div class="suggestion-card">
+            <h3><i class="bi bi-clipboard-check"></i> Option 1: Catch-Up Day</h3>
+            <p><strong>Best for:</strong> Classes where many students have incomplete exercises</p>
+
+            <h4>Structure:</h4>
+            <ul>
+              <li><strong>5 min:</strong> Review expectations and check CMU CS Academy progress</li>
+              <li><strong>75 min:</strong> Independent work time on incomplete Unit 1 exercises</li>
+              <li><strong>10 min:</strong> Progress check and closure</li>
+            </ul>
+
+            <h4>Teacher Actions:</h4>
+            <ul>
+              <li>Pull up CMU CS Academy teacher dashboard</li>
+              <li>Identify students with incomplete exercises</li>
+              <li>Circulate and provide one-on-one support</li>
+              <li>Prioritize students who are furthest behind</li>
+            </ul>
+          </div>
+
+          <div class="suggestion-card">
+            <h3><i class="bi bi-person-raised-hand"></i> Option 2: Reteach Struggling Concepts</h3>
+            <p><strong>Best for:</strong> Classes where specific concepts caused widespread confusion</p>
+
+            <h4>Common Struggle Areas:</h4>
+            <ul>
+              <li><strong>Coordinates:</strong> Students confusing x/y or not understanding (0,0) placement</li>
+              <li><strong>RGB Values:</strong> Confusion about 0-255 range or mixing colors</li>
+              <li><strong>Shape Parameters:</strong> Using wrong number of arguments or mixing radius with width/height</li>
+              <li><strong>Opacity:</strong> Not understanding 0 (invisible) vs 100 (solid)</li>
+              <li><strong>Code Order:</strong> Not recognizing that shapes layer from top to bottom</li>
+            </ul>
+
+            <h4>Mini-Lesson Structure (20-30 min):</h4>
+            <ul>
+              <li>Re-explain the concept with visual examples</li>
+              <li>Model common mistakes and how to fix them</li>
+              <li>Do 2-3 guided practice problems together</li>
+              <li>Release students to independent practice</li>
+            </ul>
+          </div>
+
+          <div class="suggestion-card">
+            <h3><i class="bi bi-people"></i> Option 3: Small Group Differentiation</h3>
+            <p><strong>Best for:</strong> Classes with varying skill levels</p>
+
+            <h4>Group 1 – Struggling Students:</h4>
+            <ul>
+              <li>Teacher-led reteach session</li>
+              <li>Simplified starter code templates</li>
+              <li>Focus on Unit 1.1 and 1.2 only</li>
+            </ul>
+
+            <h4>Group 2 – On-Track Students:</h4>
+            <ul>
+              <li>Independent catch-up and practice</li>
+              <li>Complete all Unit 1 exercises</li>
+              <li>Peer support encouraged</li>
+            </ul>
+
+            <h4>Group 3 – Advanced Students:</h4>
+            <ul>
+              <li>Creative challenge: "Recreate a famous painting using only basic shapes"</li>
+              <li>Extension: Explore advanced shape combinations</li>
+              <li>Peer tutoring role for struggling classmates</li>
+            </ul>
+          </div>
+
+          <div class="suggestion-card">
+            <h3><i class="bi bi-bug"></i> Option 4: Collaborative Debugging Practice</h3>
+            <p><strong>Best for:</strong> Building problem-solving skills</p>
+
+            <h4>Activity Structure:</h4>
+            <ul>
+              <li>Provide students with intentionally broken programs (5-7 bugs each)</li>
+              <li>Students work in pairs to find and fix all bugs</li>
+              <li>Common bugs to include:
+                <ul>
+                  <li>Missing quotes around color names</li>
+                  <li>Swapped x and y values</li>
+                  <li>RGB values over 255</li>
+                  <li>Missing or extra parentheses</li>
+                  <li>Shapes drawn in wrong order</li>
+                </ul>
+              </li>
+              <li>Debrief as a class: What strategies helped you find bugs?</li>
+            </ul>
+
+            <div class="timing-note">
+              <strong>Timing:</strong> 15 min setup + 50 min practice + 15 min debrief
+            </div>
+          </div>
+
+          <div class="suggestion-card">
+            <h3><i class="bi bi-palette"></i> Option 5: Creative Application Task</h3>
+            <p><strong>Best for:</strong> Classes where most students are caught up</p>
+
+            <h4>Mini-Project Ideas:</h4>
+            <ul>
+              <li><strong>"Design Your Emoji":</strong> Create a custom emoji face using shapes</li>
+              <li><strong>"Scene Creator":</strong> Draw a simple landscape or room</li>
+              <li><strong>"Logo Design":</strong> Create a logo using only shapes and colors</li>
+              <li><strong>"Abstract Art":</strong> Make an interesting abstract composition</li>
+            </ul>
+
+            <h4>Requirements:</h4>
+            <ul>
+              <li>Use at least 5 different shapes</li>
+              <li>Use at least 3 colors (including one RGB custom color)</li>
+              <li>Use opacity on at least one shape</li>
+              <li>Code must be organized and easy to read</li>
+            </ul>
+
+            <div class="timing-note">
+              <strong>Grading:</strong> This could serve as an informal formative check or a small completion grade
+            </div>
+          </div>
+        </div>
+
+        <div class="assessment-box">
+          <h3><i class="bi bi-clipboard-data"></i> Data to Collect Today</h3>
+          <p>Use this flex day to gather information about student progress:</p>
+          <ul>
+            <li>How many students completed all Unit 1 exercises?</li>
+            <li>Which specific lessons have the most incomplete work?</li>
+            <li>What concepts are students still struggling with?</li>
+            <li>Who needs extra support moving forward?</li>
+            <li>Is the class ready to move into Unit 2, or does pacing need adjustment?</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-check-circle"></i> Before Moving to Lesson 306</h2>
+          <p>By the end of today's flex day, students should ideally:</p>
+          <ul>
+            <li>Have completed all assigned Unit 1.1, 1.2, and 1.3 exercises</li>
+            <li>Be comfortable with basic shapes, colors, and coordinate placement</li>
+            <li>Understand how to read error messages and debug simple programs</li>
+            <li>Feel confident and ready to move into functions and mouse events</li>
+          </ul>
+          <p style="margin-top: 15px;">
+            <strong>Note:</strong> It's okay if a few students still have minor gaps, but the majority should have a solid Unit 1 foundation before starting Unit 2.
+          </p>
+        </div>
+
+        <div class="reflection-box">
+          <h3><i class="bi bi-journal-text"></i> Teacher Reflection Questions</h3>
+          <p>After today's flex day, consider:</p>
+          <ul style="margin: 10px 0 0 0;">
+            <li>Did this flex day accomplish its purpose?</li>
+            <li>Are students ready to move forward, or do we need another catch-up session?</li>
+            <li>What patterns emerged in student struggles?</li>
+            <li>Should I adjust my pacing or instructional approach for future units?</li>
+            <li>Which students need targeted intervention before Unit 2?</li>
+          </ul>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="teacher.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Back to Teacher Resources
+          </a>
+          <a href="lesson305.html" class="nav-button student-link">
+            <i class="bi bi-eye"></i> View Student Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
