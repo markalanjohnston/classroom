@@ -1,0 +1,596 @@
+---
+---
+
+<!-- File: classroom/apcsp/cmu-csp/lesson707-teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 707 - Teacher Lesson Plan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .course-info {
+        background: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .course-info h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .course-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .course-info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .course-info-item strong {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #6c757d;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #6c757d;
+      }
+
+      .objectives-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .objectives-list li {
+        padding: 8px 0 8px 30px;
+        position: relative;
+      }
+
+      .objectives-list li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #6c757d;
+        font-weight: bold;
+      }
+
+      .materials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .materials-grid li {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .timing-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .timing-table th,
+      .timing-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .timing-table th {
+        background: #6c757d;
+        color: white;
+        font-weight: 600;
+      }
+
+      .timing-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .procedure-section {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #6c757d;
+      }
+
+      .procedure-section h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .procedure-subsection {
+        margin: 15px 0;
+      }
+
+      .procedure-subsection h4 {
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .key-points {
+        background: #cfe2ff;
+        border-left: 4px solid #0d6efd;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .key-points h4 {
+        color: #084298;
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .code-example {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 15px;
+        font-family: monospace;
+        margin: 10px 0;
+        overflow-x: auto;
+      }
+
+      .code-example pre {
+        margin: 0;
+      }
+
+      .misconceptions-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .misconceptions-table th,
+      .misconceptions-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .misconceptions-table th {
+        background: #dc3545;
+        color: white;
+        font-weight: 600;
+      }
+
+      .misconceptions-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .assessment-box {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .assessment-box h3 {
+        color: #856404;
+        margin: 0 0 15px 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .student-link {
+        background: #0d6efd;
+      }
+
+      .student-link:hover {
+        background: #0b5ed7;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">APCSP</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU AP CSP</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="teacher.html" class="text-white-50">Teacher Resources</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 707 Teacher Plan</span>
+      </nav>
+
+      <div class="teacher-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-person-video3"></i> Teacher Lesson Plan</h1>
+          <p class="mb-0">Lesson 707: Multiple Parameters + Functions Practice</p>
+        </div>
+
+        <div class="course-info">
+          <h3>Lesson Overview</h3>
+          <div class="course-info-grid">
+            <div class="course-info-item">
+              <strong>Course:</strong>
+              <span>AP Computer Science Principles</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Unit:</strong>
+              <span>Unit 2 – Functions, Mouse Events, and Conditionals</span>
+            </div>
+            <div class="course-info-item">
+              <strong>CMU Section:</strong>
+              <span>2.1</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Code:</strong>
+              <span>707</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Title:</strong>
+              <span>Multiple Parameters + Functions Practice</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Class Length:</strong>
+              <span>90 minutes</span>
+            </div>
+          </div>
+          <p style="margin-top: 15px; margin-bottom: 0;">
+            This lesson builds directly on the previous introduction to functions. Students extend their understanding by writing functions that use multiple parameters instead of a single input. Emphasis is placed on structured program design, reusability, and using parameters to control position, size, and other properties in graphics programs. The skills in this lesson directly support later AP CSP Create Performance Task work by helping students write modular, flexible code that can be reused in larger projects.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Objectives</h2>
+          <p>By the end of this lesson, students will be able to:</p>
+          <ul class="objectives-list">
+            <li>Explain how functions can accept more than one parameter.</li>
+            <li>Write functions that use multiple parameters to control behavior.</li>
+            <li>Call functions with different sets of arguments.</li>
+            <li>Convert repeated code into structured multi-parameter functions.</li>
+            <li>Debug errors related to parameters and function calls.</li>
+            <li>Apply multi-parameter functions in CMU CS Academy practice exercises.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-box-seam"></i> Materials & Setup</h2>
+          <ul class="materials-grid">
+            <li>Student computers</li>
+            <li>Internet access</li>
+            <li>CMU CS Academy student accounts</li>
+            <li>Projector for teacher demonstrations</li>
+            <li>Student note-taking materials</li>
+          </ul>
+
+          <h3 style="margin-top: 20px; color: #6c757d;">Teacher Preparation:</h3>
+          <ul>
+            <li>Log into CMU CS Academy and open the parameter-based function exercises</li>
+            <li>Prepare a short example program that would benefit from multiple parameters</li>
+            <li>Confirm that all students can access the assigned CMU lessons</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clock"></i> Agenda (90 Minutes)</h2>
+          <table class="timing-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0–5 min</td><td>Welcome and lesson objectives</td></tr>
+              <tr><td>5–15 min</td><td>Review: single-parameter functions</td></tr>
+              <tr><td>15–35 min</td><td>Direct instruction: multiple parameters</td></tr>
+              <tr><td>35–45 min</td><td>Teacher demonstration and guided example</td></tr>
+              <tr><td>45–85 min</td><td>Guided and independent CMU CS Academy practice</td></tr>
+              <tr><td>85–90 min</td><td>Closure and homework directions</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-list-ol"></i> Teacher Moves (Scripted Talking Points + Demo Steps)</h2>
+
+          <div class="procedure-section">
+            <h3>1. Warm-Up Review</h3>
+
+            <div class="key-points">
+              <h4>Ask students:</h4>
+              <p>"What problem do functions solve for programmers?"</p>
+              <p style="margin: 0;">"How did we use parameters in the last lesson?"</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Guide students to recall:</h4>
+              <ul>
+                <li>Functions prevent repeated code.</li>
+                <li>Parameters let us change how a function behaves.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>2. Introduce Multiple Parameters</h3>
+
+            <div class="key-points">
+              <h4>Explain:</h4>
+              <p style="margin: 0;">"A function does not have to be limited to one piece of information. Real programs often need several inputs to do useful work."</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Show a simple transition:</h4>
+
+              <p><strong>Single parameter example:</strong></p>
+              <div class="code-example">
+                <pre>def drawBox(x):
+    Rect(x, 100, 40, 60)</pre>
+              </div>
+
+              <p style="margin-top: 15px;"><strong>Multiple parameter version:</strong></p>
+              <div class="code-example">
+                <pre>def drawBox(x, y):
+    Rect(x, y, 40, 60)</pre>
+              </div>
+
+              <h4 style="margin-top: 15px;">Point out:</h4>
+              <ul>
+                <li>Parameters are separated by commas.</li>
+                <li>Arguments must be provided in the same order.</li>
+                <li>More parameters mean more flexibility.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>3. Demonstration Activity</h3>
+
+            <p><strong>Model a practical example:</strong></p>
+
+            <div class="procedure-subsection">
+              <h4>Start with repeated code:</h4>
+              <div class="code-example">
+                <pre>Rect(50, 80, 30, 30)
+Rect(150, 120, 30, 30)
+Rect(250, 200, 30, 30)</pre>
+              </div>
+
+              <h4 style="margin-top: 15px;">Convert to a structured function:</h4>
+              <div class="code-example">
+                <pre>def drawSquare(x, y, size):
+    Rect(x, y, size, size)
+
+drawSquare(50, 80, 30)
+drawSquare(150, 120, 30)
+drawSquare(250, 200, 30)</pre>
+              </div>
+
+              <h4 style="margin-top: 15px;">Ask guiding questions:</h4>
+              <ul>
+                <li>"Which parts of the original code changed each time?"</li>
+                <li>"How do parameters help us control those parts?"</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>4. Connect to AP CSP Skills</h3>
+
+            <div class="key-points">
+              <h4>Remind students:</h4>
+              <ul style="margin: 0;">
+                <li>Functions with parameters are a key requirement for the AP CSP Create Task.</li>
+                <li>Writing flexible, reusable code now will make their projects easier later.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-pencil-square"></i> Student Tasks</h2>
+
+          <h3>In-Class Work</h3>
+          <p>Students will:</p>
+          <ul>
+            <li>Complete the CMU CS Academy exercises focused on functions with multiple parameters.</li>
+            <li>Practice writing small drawing functions that accept several inputs.</li>
+            <li>Debug parameter-related errors in provided practice problems.</li>
+          </ul>
+
+          <h3 style="margin-top: 20px;">Teacher circulates to assist with:</h3>
+          <ul>
+            <li>Correct argument order</li>
+            <li>Proper function definitions</li>
+            <li>Debugging syntax and indentation</li>
+          </ul>
+
+          <h3 style="margin-top: 20px;">Homework</h3>
+          <p>Any unfinished CMU CS Academy parameter exercises must be completed before the next class meeting.</p>
+        </div>
+
+        <div class="assessment-box">
+          <h3><i class="bi bi-clipboard-check"></i> Checks for Understanding (Formative)</h3>
+
+          <p>Use quick informal checks such as:</p>
+          <ul>
+            <li>"What is the difference between a parameter and an argument?"</li>
+            <li>"How many arguments does this function call need?"</li>
+            <li>"What will happen if the arguments are given in the wrong order?"</li>
+          </ul>
+
+          <h4 style="margin-top: 15px;">Observe students during practice:</h4>
+          <ul>
+            <li>Are they defining functions correctly?</li>
+            <li>Are they calling functions with the correct number of arguments?</li>
+            <li>Can they explain what each parameter controls?</li>
+          </ul>
+
+          <h4 style="margin-top: 15px;">Exit prompt:</h4>
+          <ul style="margin-bottom: 0;">
+            <li>"Explain in one sentence why multiple parameters make functions more useful."</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-exclamation-triangle"></i> Common Misconceptions & Fixes</h2>
+          <table class="misconceptions-table">
+            <thead>
+              <tr>
+                <th>Misconception</th>
+                <th>Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Students mix up the order of arguments</td>
+                <td>Emphasize that argument order must match parameter order</td>
+              </tr>
+              <tr>
+                <td>Forgetting commas between parameters</td>
+                <td>Model proper function syntax repeatedly</td>
+              </tr>
+              <tr>
+                <td>Calling a function with too few arguments</td>
+                <td>Review error messages and match calls to definitions</td>
+              </tr>
+              <tr>
+                <td>Trying to use variables that are not parameters</td>
+                <td>Clarify scope and the purpose of parameters</td>
+              </tr>
+              <tr>
+                <td>Believing parameters keep values between calls</td>
+                <td>Reinforce that parameters are temporary placeholders</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-gear"></i> Differentiation & Accommodations</h2>
+
+          <h3>For Struggling Students</h3>
+          <ul>
+            <li>Provide partially completed function templates.</li>
+            <li>Offer step-by-step checklists for writing functions.</li>
+            <li>Pair with a peer tutor for guided practice.</li>
+          </ul>
+
+          <h3>For Advanced Students</h3>
+          <ul>
+            <li>Encourage functions with four or more parameters.</li>
+            <li>Ask students to design a "drawHouse(x, y, size, color)" style function.</li>
+            <li>Challenge them to refactor earlier programs using multi-parameter functions.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clipboard-data"></i> Assessment Notes</h2>
+          <ul>
+            <li>No formal graded assessment today.</li>
+            <li>Progress measured through CMU CS Academy completion and accuracy.</li>
+            <li>Mastery of multi-parameter functions is essential for later units and AP Create Task success.</li>
+          </ul>
+        </div>
+
+        <div class="key-points">
+          <h4><i class="bi bi-door-closed"></i> Closure</h4>
+          <p>"Today you moved from simple functions to professional-style functions with multiple inputs."</p>
+          <p><strong>Ask:</strong></p>
+          <ul>
+            <li>"How do multiple parameters make your programs more flexible?"</li>
+            <li>"Where might you use this idea in your own Create Task project?"</li>
+          </ul>
+          <p style="margin: 0;"><strong>Preview:</strong> "Next, we will use functions together with events and conditionals to make interactive programs."</p>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="teacher.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Back to Teacher Resources
+          </a>
+          <a href="lesson707.html" class="nav-button student-link">
+            <i class="bi bi-eye"></i> View Student Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
