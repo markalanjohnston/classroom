@@ -1,0 +1,629 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/lesson310-teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 310 - Teacher Lesson Plan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .course-info {
+        background: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .course-info h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .course-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .course-info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .course-info-item strong {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #6c757d;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #6c757d;
+      }
+
+      .objectives-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .objectives-list li {
+        padding: 8px 0 8px 30px;
+        position: relative;
+      }
+
+      .objectives-list li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #6c757d;
+        font-weight: bold;
+      }
+
+      .materials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .materials-grid li {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .timing-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .timing-table th,
+      .timing-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .timing-table th {
+        background: #6c757d;
+        color: white;
+        font-weight: 600;
+      }
+
+      .timing-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .procedure-section {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #6c757d;
+      }
+
+      .procedure-section h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .procedure-subsection {
+        margin: 15px 0;
+      }
+
+      .procedure-subsection h4 {
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .key-points {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .key-points h4 {
+        color: #0f5132;
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .misconceptions-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .misconceptions-table th,
+      .misconceptions-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .misconceptions-table th {
+        background: #dc3545;
+        color: white;
+        font-weight: 600;
+      }
+
+      .misconceptions-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .assessment-box {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .assessment-box h3 {
+        color: #856404;
+        margin: 0 0 10px 0;
+      }
+
+      .warning-box {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .warning-box h4 {
+        color: #842029;
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .student-link {
+        background: #198754;
+      }
+
+      .student-link:hover {
+        background: #157347;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="teacher.html" class="text-white-50">Teacher Resources</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 310 Teacher Plan</span>
+      </nav>
+
+      <div class="teacher-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-person-video3"></i> Teacher Lesson Plan</h1>
+          <p class="mb-0">Lesson 310: Unit 2 Exercises Catch-Up and Support Day</p>
+        </div>
+
+        <div class="course-info">
+          <h3>Lesson Overview</h3>
+          <div class="course-info-grid">
+            <div class="course-info-item">
+              <strong>Course:</strong>
+              <span>Fundamentals of Computer Science</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Code:</strong>
+              <span>310</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Title:</strong>
+              <span>Unit 2 Exercises Catch-Up and Support Day</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Class Length:</strong>
+              <span>90 minutes</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Curriculum Focus:</strong>
+              <span>CMU CS Academy CS1 – Unit 2 (Functions, Mouse Events, Properties)</span>
+            </div>
+          </div>
+          <p style="margin-top: 15px; margin-bottom: 0;">
+            This lesson provides dedicated time for students to complete all Unit 2 exercises in CMU CS Academy. The focus is on consolidating understanding of functions, mouse events, and properties through practice and individualized support. The teacher provides brief review, troubleshooting assistance, and checks for understanding while students work independently on exercises. This catch-up day ensures all students complete Unit 2 before moving forward.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Objectives</h2>
+          <p>Students will be able to:</p>
+          <ul class="objectives-list">
+            <li>Complete all assigned Unit 2 exercises in CMU CS Academy.</li>
+            <li>Apply knowledge of functions to organize code.</li>
+            <li>Use mouse events to create interactive programs.</li>
+            <li>Modify shape properties to change graphics after creation.</li>
+            <li>Debug common errors in Unit 2 concepts with increasing independence.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-box-seam"></i> Materials & Setup</h2>
+          <ul class="materials-grid">
+            <li>Computers with internet access</li>
+            <li>CMU CS Academy login credentials</li>
+            <li>Student note-taking materials</li>
+            <li>Teacher computer for quick demos</li>
+            <li>Whiteboard or projector for brief review</li>
+          </ul>
+
+          <h3 style="margin-top: 20px; color: #6c757d;">Teacher Preparation:</h3>
+          <ul>
+            <li>Review Unit 2 exercises to anticipate common issues</li>
+            <li>Check CMU CS Academy dashboard to identify students who are behind</li>
+            <li>Prepare quick review slides or notes for Unit 2 concepts</li>
+            <li>Have example solutions ready for common stuck points</li>
+            <li>Set expectations for work time behavior and help-seeking</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clock"></i> Agenda (90 Minutes)</h2>
+          <table class="timing-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0 – 5 min</td><td>Attendance and set expectations for the work day</td></tr>
+              <tr><td>5 – 15 min</td><td>Brief Review of Unit 2 Key Concepts</td></tr>
+              <tr><td>15 – 80 min</td><td>Independent Work Time with Teacher Support</td></tr>
+              <tr><td>80 – 87 min</td><td>Quick Checks for Understanding</td></tr>
+              <tr><td>87 – 90 min</td><td>Closure and Homework Reminder</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-list-ol"></i> Teacher Moves (Scripted Talking Points + Demo Steps)</h2>
+
+          <div class="procedure-section">
+            <h3>Opening and Expectations (5 minutes)</h3>
+
+            <div class="key-points">
+              <h4>Set the Purpose:</h4>
+              <p>"Today is a catch-up and work day. You will have most of the class to complete all Unit 2 exercises. This is your chance to finish strong and get help where you need it."</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Explain the Structure:</h4>
+              <ul>
+                <li>"I will do a quick 10-minute review of Unit 2 concepts."</li>
+                <li>"Then you will work independently on CMU CS Academy for about an hour."</li>
+                <li>"I will be circulating to answer questions and help you debug."</li>
+                <li>"At the end, we'll do a quick check for understanding."</li>
+              </ul>
+            </div>
+
+            <div class="warning-box">
+              <h4>Behavioral Expectations:</h4>
+              <p>"This is not free time. You should be actively working. If you finish early, help a classmate or work ahead. Stay focused and use this time well."</p>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Brief Review of Unit 2 (10 minutes)</h3>
+
+            <p><strong>Quickly review the three main topics:</strong></p>
+
+            <div class="procedure-subsection">
+              <h4>1. Functions (Unit 2.1)</h4>
+              <p><strong>Key idea:</strong> Functions organize code into reusable pieces.</p>
+              <p><strong>Show quick example:</strong></p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">def drawStar():
+    # code to draw a star
+
+drawStar()  # Call the function to run it</pre>
+              <p><strong>Remind:</strong> Use <code>def</code> to define, then call by name.</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>2. Mouse Events (Unit 2.2)</h4>
+              <p><strong>Key idea:</strong> Programs can respond to mouse actions.</p>
+              <p><strong>Show quick example:</strong></p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">def onMousePress(mouseX, mouseY):
+    # code runs when mouse is clicked</pre>
+              <p><strong>Remind:</strong> These functions are automatically called by CMU.</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>3. Properties (Unit 2.3)</h4>
+              <p><strong>Key idea:</strong> Store shapes in variables and change them using properties.</p>
+              <p><strong>Show quick example:</strong></p>
+              <pre style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 10px 0;">circle = Circle(200, 200, 50)
+circle.fill = 'blue'
+circle.centerX = 300</pre>
+              <p><strong>Remind:</strong> Must store in a variable first, then use dot notation.</p>
+            </div>
+
+            <div class="key-points">
+              <h4>Transition to Work Time:</h4>
+              <p style="margin: 0;">"Those are the big ideas from Unit 2. Now you have time to practice and finish all the exercises. Raise your hand if you get stuck."</p>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Independent Work Time (65 minutes)</h3>
+
+            <div class="procedure-subsection">
+              <h4>Student Task:</h4>
+              <p>Students work independently on CMU CS Academy Unit 2 exercises (2.1, 2.2, and 2.3).</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Teacher Role During Work Time:</h4>
+              <ol>
+                <li><strong>Circulate actively</strong> – Monitor student progress, check screens, identify students who are stuck or off-task.</li>
+                <li><strong>Answer questions</strong> – Respond to raised hands, guide debugging, ask probing questions instead of giving answers directly.</li>
+                <li><strong>Offer targeted mini-lessons</strong> – If multiple students struggle with the same concept, pull a small group for a 3-minute reteach.</li>
+                <li><strong>Track completion</strong> – Use CMU dashboard to monitor which students are progressing and which need intervention.</li>
+                <li><strong>Encourage peer support</strong> – Students who finish early can help classmates (without doing the work for them).</li>
+              </ol>
+            </div>
+
+            <div class="key-points">
+              <h4>Debugging Support Strategy:</h4>
+              <p>When a student asks for help, use this approach:</p>
+              <ol style="margin: 0;">
+                <li>Ask: "What were you trying to do?"</li>
+                <li>Ask: "What happened instead?"</li>
+                <li>Ask: "What have you already tried?"</li>
+                <li>Guide them to the error or issue rather than fixing it directly</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Quick Checks for Understanding (7 minutes)</h3>
+
+            <p><strong>Before closure, ask a few quick review questions to the class:</strong></p>
+            <ul>
+              <li>"Why do we use functions?" (Organize code, reuse code)</li>
+              <li>"What does <code>onMousePress</code> do?" (Runs code when mouse is clicked)</li>
+              <li>"How do you change the color of a shape after it's created?" (Store in variable, use <code>.fill</code> property)</li>
+            </ul>
+
+            <p><strong>Call on individual students or use random selection.</strong> This helps reinforce key ideas.</p>
+          </div>
+
+          <div class="procedure-section">
+            <h3>Closure (3 minutes)</h3>
+
+            <div class="key-points">
+              <h4>Wrap-Up Message:</h4>
+              <p>"Unit 2 is a foundation for everything we do next. If you didn't finish all the exercises today, you must complete them as homework so you're ready for the next lesson."</p>
+            </div>
+
+            <p><strong>Homework reminder:</strong> Any incomplete Unit 2 exercises must be finished before the next class.</p>
+            <p style="margin: 0;"><strong>Preview:</strong> "Next class, we'll move into a collaborative debugging challenge to strengthen your problem-solving skills."</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-pencil-square"></i> Student Tasks</h2>
+
+          <h3>In-Class Tasks</h3>
+          <p>Students will:</p>
+          <ul>
+            <li>Log into CMU CS Academy</li>
+            <li>Navigate to Unit 2 and check completion status</li>
+            <li>Work through all incomplete or incorrect exercises in:
+              <ul>
+                <li>Unit 2.1 – Functions</li>
+                <li>Unit 2.2 – Mouse Events</li>
+                <li>Unit 2.3 – Properties</li>
+              </ul>
+            </li>
+            <li>Test code frequently and debug errors</li>
+            <li>Seek help when stuck for more than 5 minutes</li>
+            <li>If finished early, help peers or begin Unit 3</li>
+          </ul>
+
+          <h3 style="margin-top: 20px;">Homework</h3>
+          <p>Complete any remaining Unit 2 exercises not finished during class. All Unit 2 work must be done before the next lesson.</p>
+        </div>
+
+        <div class="assessment-box">
+          <h3><i class="bi bi-clipboard-check"></i> Checks for Understanding (Formative)</h3>
+
+          <p>During work time, monitor for:</p>
+          <ul>
+            <li>Can students define and call functions correctly?</li>
+            <li>Do students use event functions appropriately?</li>
+            <li>Can students modify shape properties after creation?</li>
+            <li>Are students testing and debugging their code?</li>
+          </ul>
+
+          <h4 style="margin-top: 15px;">Exit Questions (Oral or Written):</h4>
+          <ul style="margin-bottom: 0;">
+            <li>What is one thing you struggled with today, and how did you solve it?</li>
+            <li>Write the line of code to move a shape named <code>box</code> to x-coordinate 100.</li>
+            <li>Why must a shape be stored in a variable to change its properties later?</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-exclamation-triangle"></i> Common Misconceptions & Fixes</h2>
+          <table class="misconceptions-table">
+            <thead>
+              <tr>
+                <th>Misconception</th>
+                <th>Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Students call a function before defining it</td>
+                <td>Reinforce that definitions must come first</td>
+              </tr>
+              <tr>
+                <td>Students misspell event function names</td>
+                <td>Check spelling and capitalization carefully</td>
+              </tr>
+              <tr>
+                <td>Students try to change properties without storing shape</td>
+                <td>Emphasize need for variable assignment</td>
+              </tr>
+              <tr>
+                <td>Students confuse = (assignment) with == (comparison)</td>
+                <td>Clarify difference with examples</td>
+              </tr>
+              <tr>
+                <td>Students copy code without understanding it</td>
+                <td>Ask them to explain what each line does</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-gear"></i> Differentiation & Accommodations</h2>
+
+          <h3>For students who struggle</h3>
+          <ul>
+            <li>Provide extra scaffolding: starter code or step-by-step checklists</li>
+            <li>Break exercises into smaller sub-tasks</li>
+            <li>Allow pair programming with a stronger student</li>
+            <li>Offer extended time or reduce number of required exercises</li>
+            <li>Use visual aids and reference sheets</li>
+          </ul>
+
+          <h3>For advanced students</h3>
+          <ul>
+            <li>Encourage creative extensions to exercises</li>
+            <li>Assign peer tutoring or helper role</li>
+            <li>Allow them to begin Unit 3 if Unit 2 is complete</li>
+            <li>Challenge them to solve exercises in multiple ways</li>
+          </ul>
+
+          <h3>General supports</h3>
+          <ul>
+            <li>Circulate frequently to catch issues early</li>
+            <li>Provide immediate, specific feedback</li>
+            <li>Remind students to take breaks if frustrated</li>
+            <li>Normalize mistakes as part of learning to program</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clipboard-data"></i> Assessment Notes</h2>
+          <p>This lesson is primarily formative.</p>
+          <p>Evidence of progress includes:</p>
+          <ul>
+            <li>Completion of Unit 2 exercises in CMU CS Academy</li>
+            <li>Correct use of functions, events, and properties</li>
+            <li>Ability to debug simple errors independently</li>
+          </ul>
+          <p>Consider recording an engagement or completion grade based on student productivity during work time.</p>
+          <p style="margin-bottom: 0;">No formal assessment is given today, but monitor which students are falling behind and may need additional intervention.</p>
+        </div>
+
+        <div class="key-points">
+          <h4><i class="bi bi-door-closed"></i> Closure</h4>
+          <p>"Today you had time to catch up and solidify your understanding of Unit 2. These concepts—functions, events, and properties—are the building blocks for everything we do next in this course."</p>
+          <p>"If you still have unfinished exercises, complete them tonight. Falling behind makes the next lessons much harder."</p>
+          <p style="margin: 0;">"Next class, we'll work together on a collaborative debugging challenge to strengthen your problem-solving skills."</p>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="teacher.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Back to Teacher Resources
+          </a>
+          <a href="lesson310.html" class="nav-button student-link">
+            <i class="bi bi-eye"></i> View Student Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

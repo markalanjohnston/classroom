@@ -1,0 +1,326 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/lesson310.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 310 - Unit 2 Exercises</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #198754 0%, #157347 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .lesson-header .focus {
+        font-size: 1.2rem;
+        opacity: 0.95;
+        margin: 0;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #198754;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #198754;
+      }
+
+      .goals-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .goals-list li {
+        padding: 10px 0 10px 35px;
+        position: relative;
+      }
+
+      .goals-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #198754;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .agenda-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .agenda-table th,
+      .agenda-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .agenda-table th {
+        background: #198754;
+        color: white;
+        font-weight: 600;
+      }
+
+      .agenda-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .must-finish-box {
+        background: #d1e7dd;
+        border: 2px solid #198754;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .must-finish-box h3 {
+        color: #0f5132;
+        margin: 0 0 15px 0;
+      }
+
+      .homework-box {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .homework-box h3 {
+        color: #856404;
+        margin: 0 0 10px 0;
+      }
+
+      .reminder-box {
+        background: #e7f3ff;
+        border-left: 4px solid #0d6efd;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .reminder-box h3 {
+        color: #084298;
+        margin: 0 0 10px 0;
+      }
+
+      .reminder-box ul {
+        margin: 0;
+      }
+
+      .checkpoint-list {
+        background: #f8f9fa;
+        border-left: 4px solid #198754;
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .checkpoint-list h4 {
+        color: #198754;
+        margin: 0 0 10px 0;
+        font-size: 1.1rem;
+      }
+
+      .checkpoint-list ul {
+        margin: 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .nav-button.primary {
+        background: #198754;
+      }
+
+      .nav-button.primary:hover {
+        background: #157347;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">FCS</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU CS1</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 310</span>
+      </nav>
+
+      <div class="lesson-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-tools"></i> Class 310 – Unit 2 Exercises Catch-Up and Support Day</h1>
+          <p class="focus">Finish Unit 2 exercises and get help where you need it</p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Today's Goals</h2>
+          <ul class="goals-list">
+            <li><strong>We Will:</strong> Complete all Unit 2 exercises (Functions, Mouse Events, and Properties)</li>
+            <li><strong>I Will:</strong> Catch up on any unfinished Unit 2 work and get help with concepts I'm struggling with</li>
+            <li><strong>Essential Question:</strong> Can I use functions, events, and properties to create interactive programs?</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clock"></i> Agenda (90 Minutes)</h2>
+          <table class="agenda-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0 – 5 min</td><td>Attendance and quick review of Unit 2 expectations</td></tr>
+              <tr><td>5 – 15 min</td><td>Brief review of Unit 2 key concepts: functions, events, properties</td></tr>
+              <tr><td>15 – 80 min</td><td>Independent work time: Complete Unit 2 exercises in CMU CS Academy</td></tr>
+              <tr><td>80 – 87 min</td><td>Quick checks and troubleshooting</td></tr>
+              <tr><td>87 – 90 min</td><td>Wrap-up and homework reminder</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-journal-text"></i> Direct Instruction Notes</h2>
+          <p>Today is a work day. Your teacher will do a brief review, then you will have most of the class to work on Unit 2 exercises. This is your chance to catch up and ask for help.</p>
+
+          <h3 style="color: #2c3e50; margin-top: 20px; font-size: 1.2rem;">Quick Unit 2 Review:</h3>
+          <ul>
+            <li><strong>2.1 Functions:</strong> Use <code>def</code> to organize your code into reusable pieces</li>
+            <li><strong>2.2 Mouse Events:</strong> Respond to clicks and movement with <code>onMousePress</code> and <code>onMouseMove</code></li>
+            <li><strong>2.3 Properties:</strong> Store shapes in variables and change them using the dot operator (e.g., <code>shape.fill = 'red'</code>)</li>
+          </ul>
+
+          <p><strong>Ask for help if you're stuck.</strong> This class is designed for you to get support and finish strong.</p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-laptop"></i> CMU Work Time</h2>
+          <p>Today you will work independently on CMU CS Academy. Your goal is to complete all exercises from Unit 2.</p>
+
+          <div class="checkpoint-list">
+            <h4><i class="bi bi-list-check"></i> What You Should Be Working On:</h4>
+            <ul>
+              <li>Unit 2.1 – Functions exercises</li>
+              <li>Unit 2.2 – Mouse Events exercises</li>
+              <li>Unit 2.3 – Properties exercises</li>
+              <li>Any incomplete or incorrect submissions from previous classes</li>
+            </ul>
+          </div>
+
+          <p><strong>How to work effectively today:</strong></p>
+          <ol>
+            <li>Log into CMU CS Academy and open Unit 2</li>
+            <li>Check which exercises you have not completed</li>
+            <li>Start with the earliest incomplete exercise</li>
+            <li>Test your code frequently</li>
+            <li>If you get stuck, raise your hand or use debugging strategies</li>
+            <li>Keep track of your progress</li>
+          </ol>
+        </div>
+
+        <div class="must-finish-box">
+          <h3><i class="bi bi-check-circle"></i> What You Must Finish Today</h3>
+          <ul>
+            <li>Make significant progress on Unit 2 exercises</li>
+            <li>Attempt all incomplete exercises from sections 2.1, 2.2, and 2.3</li>
+            <li>Get help on any concepts that are blocking your progress</li>
+            <li>If you finish early, help a classmate or work ahead into Unit 3</li>
+          </ul>
+          <p style="margin: 10px 0 0 0;"><strong>Goal:</strong> Be ready to move forward after today with all Unit 2 exercises completed or nearly complete.</p>
+        </div>
+
+        <div class="homework-box">
+          <h3><i class="bi bi-pencil-square"></i> Homework</h3>
+          <p>Complete any remaining Unit 2 exercises that you did not finish during class. All Unit 2 work must be completed before the next lesson so you can move forward with the class.</p>
+        </div>
+
+        <div class="reminder-box">
+          <h3><i class="bi bi-lightbulb"></i> Quick Reminder</h3>
+          <ul>
+            <li><strong>Debugging is normal.</strong> When code doesn't work, read the error message carefully and test small changes.</li>
+            <li><strong>Ask questions.</strong> If you've been stuck for more than 5 minutes, ask for help.</li>
+            <li><strong>Stay on pace.</strong> Falling behind in programming class makes it harder to keep up later. Use today to catch up.</li>
+            <li><strong>Academic integrity matters.</strong> Don't copy code from classmates. It's okay to discuss ideas, but write your own solutions.</li>
+          </ul>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="lesson309.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Previous: Lesson 309
+          </a>
+          <a href="./" class="nav-button">
+            <i class="bi bi-grid"></i> All Lessons
+          </a>
+          <a href="lesson311.html" class="nav-button primary">
+            Next: Lesson 311 <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

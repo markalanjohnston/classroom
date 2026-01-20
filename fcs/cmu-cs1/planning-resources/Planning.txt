@@ -1,0 +1,50 @@
+﻿Practicum of Information Technology
+
+
+Brief description of each meeting:
+
+
+
+
+301
+	Self Introduction / TEKS Review
+	302
+	Unit 1-1 Identifying meaningful problems worth solving through information technology
+	303
+	Unit 1-2 Evaluating existing solutions and proposing a justified technological approach
+	304
+	Unit 1-2checkpoint Real problems first. Clear problems win.
+	305
+	Unit 1-3 Identifying constraints and defining a realistic, achievable MVP
+	306
+	Unit 1-4 Creating visual or functional representations of the solution
+	307
+	Unit 1-5 Refining prototypes and preparing professional presentations
+	308
+	Unit 1-6 Professional presentations and portfolio finalization
+	309
+	Unit 2-1 Project Launch + Foundations: Introduce the Internet-connected clock project, explain learning goals and safety, form teams, create group contracts, review electronics basics (voltage, current, polarity), and complete a short written plan outlining what “success” looks like.
+	310
+	Unit 2-2 Hardware Deep Dive: Hands-on exploration of all components (microcontroller, LED matrix, power, resistors, wiring), reading schematics, labeling parts, practicing breadboard connections, and completing a guided “component identification lab.”
+	311
+	Unit 2-3 Programming Environment Bootcamp: Install and configure the IDE, learn to compile and upload code, practice editing simple variables in a starter sketch, and complete a mini-assignment modifying display text or colors.
+	312
+	Unit 2-4 Soldering Training + Certification: Direct instruction on soldering safety and technique, guided practice on test boards, individual skill checks, and beginning soldering of real project components.
+	313
+	Unit 2-5 Core Hardware Assembly: Complete soldering and physical assembly of the clock hardware, wire the LED matrix to the microcontroller, test power circuits, and troubleshoot basic connection issues as a team.
+	314
+	Unit 2-6 Code Walkthrough + Display Logic: Step-by-step lesson through the provided clock program, explanation of how time is calculated and displayed, small coding exercises, and teams documenting how the software interacts with the hardware.
+	315
+	FLEX DAY: Dedicated time for teams to catch up, re-solder, rewire, fix broken code, get one-on-one help, or redo earlier steps as needed.
+	316
+	Unit 2-7 Networking Concepts + Wi-Fi Setup: Mini-lessons on IP addresses and networks, configuring the device to join Wi-Fi, testing connectivity, and learning how the clock retrieves time from the internet.
+	317
+	Unit 2-8 Remote Control Interface: Guided lesson on simple web interfaces or control commands, teams implementing basic remote features (change colors, set brightness, display messages), and testing functionality from a phone or laptop.
+	318
+	Unit 2-9 Troubleshooting & Reliability Testing: Systematic debugging day where teams diagnose hardware and software issues, stress-test their builds, learn to use multimeters, and document fixes in a technical log.
+	319
+	Unit 2-10 Customization & Documentation: Teams add one approved custom feature, finalize wiring and enclosure, write a build guide explaining their process, and prepare presentation materials.
+	320
+	Unit 2-11 Presentation, Demo, and Reflection: Formal team demonstrations of the working clocks, peer feedback, written technical reflections, and discussion connecting the project to real-world IT and engineering practices.
+	321
+	Unit 2-12 FLEX DAY
