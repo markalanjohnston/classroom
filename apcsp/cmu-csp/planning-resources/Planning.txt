@@ -1,0 +1,68 @@
+﻿701 - 1/7 - A1 / 1/8 - B1 - Self Introduction
+702 - 1/9 - A2 / 1/12 - B2 - CMU Academy (setup, introduction)
+703 - 1/13 - A3 / 1/14 - B3 - Unit 1
+704 - 1/15 - A4 / 1/16 - B4 - Unit 1
+705 - 1/20 - A5 / 1/21 - B5 - Unit 1 Creative Task 1 DUE TOMORROW (Class time given today to work on it)
+
+
+706 - 1/22 - A6 / 1/23 - B6 - 3rd 9 Weeks Day 6 - Unit 2: Function Basics
+Introduce the concept of functions, parameters, and test cases, and practice converting repeated code into reusable functions. Students complete the Function Basics and Debugging lessons and begin independent practice.
+
+
+707 - 1/26 - A7 / 1/27 - B7 - Unit 2: Multiple Parameters + Functions Practice
+Extend functions to include multiple parameters and structured design, and guide students in building small multi-parameter drawing functions. Students complete CMU exercises on parameters with remaining work assigned as homework.
+
+
+708 - 1/28 - A8 / 1/29 - B8 - Unit 2: Mouse Events (onMousePress / onMouseRelease)
+Introduce event-driven programming with mouse events and practice creating programs that respond to user clicks. Students build simple interactive drawings using onMousePress and onMouseRelease.
+
+
+709 - 1/30 - A9 / 2/2 - B9 - Unit 2: Variables + Shape Properties
+Teach how to store shapes in variables and modify their properties dynamically, including position, size, and appearance. Students practice modifying objects in response to mouse input.
+
+
+710 - 2/3 - A10 / 2/4 - B10 - Unit 2: Conditionals (if / if-else)
+Introduce conditional logic and decision making using if and if-else statements. Students complete exercises that change program behavior based on conditions.
+
+
+711 - 2/5 - A11 / 2/6 - B11 - Unit 2: Custom Properties, Shape Methods, if-elif-else
+Combine conditionals with custom properties and shape methods to create more complex interactions. Students practice using toFront, toBack, hits, and conditional chains.
+
+
+712 - 2/9 - A12 / 2/10 - B12 - Unit 2: Practice Exercises + Unit 2 Creative Task
+Students review major Unit 2 concepts through guided practice and begin the Unit 2 Creative Task, applying functions, events, and conditionals in an open-ended project.
+
+
+713 - 2/11 - A13 / 2/12 - B13 - Unit 3: Groups and Traversing Groups
+Introduce Groups as collections of shapes and show how to traverse groups using loops. Students practice modifying multiple objects efficiently with for-loops.
+
+
+714 - 2/13 - A14 / 2/16 - B14 - Unit 3: Lists and Traversing Lists
+Teach lists as general-purpose collections and practice looping through lists and groups to control many elements at once. Students complete core list exercises.
+
+
+715 - 2/17 - A15 / 2/18 - B15 - Unit 3: Traversing with len/range + List Methods
+Expand list skills with indexing, range, len, and list methods such as append, insert, and pop. Students complete combined list and loop activities.
+
+
+716 - 2/19 - A16 / 2/20 - B16 - Unit 3: Unit 3 Practice + Mini Creative Task
+Students review and apply groups, lists, and loops through practice exercises and begin a short Unit 3 Creative Task to reinforce concepts.
+
+
+717 - 2/23 - A17 / 2/24 - B17 - Unit 4: Complex Conditionals + Key Events
+Introduce compound and nested conditionals along with keyboard events to allow richer user interaction. Students practice onKeyPress and onKeyHold.
+
+
+718 - 2/25 - A18 / 2/26 - B18 - Unit 4: onStep Events + Strings
+Teach onStep for animations and introduce strings and basic string manipulation. Students build small programs using animation and text processing.
+
+
+719 - 2/27 - A19 / 3/2 - B19 - Unit 4: Libraries + Random + Images (Wrap Up)
+Finish with libraries, random numbers, and using images and media, then complete final Unit 4 exercises and review how all concepts connect for future CPT work.
+
+
+720 - 3/3 - A20 / 3/4 - B20 - Introduce Create Performance Task
+721 - 3/5 - A21 / 3/6 - B21 - Review/Plan Create Performance Task
+
+
+(END 9WKS)
