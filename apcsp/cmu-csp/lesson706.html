@@ -187,45 +187,155 @@
         </div>
 
         <div class="section">
-          <h2><i class="bi bi-trophy"></i> Today's Goals</h2>
+          <h2><i class="bi bi-info-circle"></i> What Are Functions?</h2>
+          <p>Functions are one of the most powerful tools in programming. They allow you to <strong>write code once and reuse it many times</strong>, which makes your programs:</p>
+          <ul>
+            <li><strong>More efficient</strong> - Less code to write and maintain</li>
+            <li><strong>Easier to read</strong> - Named functions describe what the code does</li>
+            <li><strong>Easier to debug</strong> - Fix problems in one place instead of many</li>
+            <li><strong>More flexible</strong> - Use parameters to customize behavior</li>
+          </ul>
+
+          <div style="background: #f8f9fa; border-left: 4px solid #0d6efd; padding: 15px; margin: 20px 0; border-radius: 5px;">
+            <strong>Key Concept:</strong> If you find yourself copying and pasting code, you probably need a function!
+          </div>
+
+          <p><strong>IMAGE PLACEHOLDER:</strong> [Side-by-side comparison showing repeated code vs. a function call - show the same drawing code written 3 times on the left, and on the right show a function definition with 3 short function calls]</p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Today's Learning Objectives</h2>
           <ul class="goals-list">
-            <li>Understand what a function is</li>
-            <li>Learn how to write and call functions</li>
-            <li>Use parameters to make code reusable</li>
-            <li>Practice debugging function errors</li>
+            <li>Understand what functions are and why they make programming more efficient</li>
+            <li>Write function definitions with clear, descriptive names</li>
+            <li>Call functions to execute their code</li>
+            <li>Use parameters to pass information into functions</li>
+            <li>Understand and use test cases to verify function behavior</li>
+            <li>Convert repeated code into reusable functions</li>
+            <li>Debug common function errors (incorrect parameters, missing definitions)</li>
           </ul>
         </div>
 
         <div class="section">
-          <h2><i class="bi bi-list-check"></i> Agenda</h2>
+          <h2><i class="bi bi-list-check"></i> Lesson Agenda (90 minutes)</h2>
           <ul class="agenda-list">
-            <li>Quick lesson on function basics</li>
-            <li>Teacher demo: turning repeated code into a function</li>
-            <li>CMU CS Academy practice</li>
-            <li>Independent work time</li>
+            <li><strong>Introduction (5 min):</strong> What are functions and why do we need them?</li>
+            <li><strong>Direct Instruction (15 min):</strong> Function syntax, parameters, and calling functions</li>
+            <li><strong>Teacher Demo (15 min):</strong> Live coding - converting repeated drawing code into a reusable function</li>
+            <li><strong>Guided Practice (10 min):</strong> Work through CMU Function Basics lesson together</li>
+            <li><strong>Independent Practice (40 min):</strong> Complete CMU exercises on functions, parameters, and debugging</li>
+            <li><strong>Wrap-Up (5 min):</strong> Review key concepts and assign homework</li>
           </ul>
         </div>
 
+        <div class="section">
+          <h2><i class="bi bi-code-square"></i> Key Programming Concepts</h2>
+
+          <h3 style="color: #084298; font-size: 1.2rem; margin-top: 20px;">Function Definition</h3>
+          <p>Creating a function that can be used later:</p>
+          <pre style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 4px solid #0d6efd;"><code>def drawStar(x, y):
+    Star(x, y, 30, 5, fill='gold')
+    # This function draws a star at position (x, y)</code></pre>
+
+          <h3 style="color: #084298; font-size: 1.2rem; margin-top: 20px;">Function Call</h3>
+          <p>Using the function you created:</p>
+          <pre style="background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 4px solid #0d6efd;"><code>drawStar(100, 200)  # Draws a star at (100, 200)
+drawStar(300, 150)  # Draws another star at (300, 150)</code></pre>
+
+          <h3 style="color: #084298; font-size: 1.2rem; margin-top: 20px;">Parameters</h3>
+          <p>Parameters are variables that let you pass information into a function. They make functions flexible and reusable for different situations.</p>
+          <p><strong>IMAGE PLACEHOLDER:</strong> [Diagram showing a function definition with labeled arrows pointing to the parameter names, and a function call with arrows showing how arguments are passed to parameters]</p>
+
+          <h3 style="color: #084298; font-size: 1.2rem; margin-top: 20px;">Test Cases</h3>
+          <p>Test cases help you verify that your function works correctly with different inputs. In CMU CS Academy, you'll use test cases to check your work before submitting.</p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-lightbulb"></i> Teaching Strategy</h2>
+
+          <h3 style="color: #084298; font-size: 1.2rem; margin-top: 15px;">The "Repeated Code Problem"</h3>
+          <p>Start by showing students code that draws the same shape multiple times with only slight variations. Ask: <em>"What's inefficient about this code?"</em></p>
+
+          <h3 style="color: #084298; font-size: 1.2rem; margin-top: 15px;">Live Coding Demo</h3>
+          <p>Show students how to:</p>
+          <ol style="margin-left: 20px;">
+            <li>Identify repeated code patterns</li>
+            <li>Create a function definition with a clear name</li>
+            <li>Add parameters for the parts that change</li>
+            <li>Replace repeated code with function calls</li>
+            <li>Test the function with different arguments</li>
+          </ol>
+
+          <p><strong>Suggested Demo:</strong> Draw three different snowmen by writing the code three times, then refactor into a <code>drawSnowman(x, y)</code> function.</p>
+
+          <p><strong>IMAGE PLACEHOLDER:</strong> [Example screenshot of a canvas with 3 snowmen drawn at different positions, with code showing the function that creates them]</p>
+        </div>
+
         <div class="must-finish-box">
-          <h3><i class="bi bi-check-circle"></i> What You Must Finish Today</h3>
+          <h3><i class="bi bi-check-circle"></i> What You Must Complete Today</h3>
+          <p style="margin-bottom: 10px;">During today's 90-minute class, you should finish:</p>
           <ul>
-            <li>Complete the Function Basics lesson in CMU CS Academy</li>
-            <li>Complete the Debugging exercises</li>
-            <li>Begin the assigned practice problems</li>
+            <li><strong>CMU CS Academy: Function Basics lesson</strong> - Learn to define and call functions</li>
+            <li><strong>CMU CS Academy: Debugging lesson</strong> - Practice fixing function errors</li>
+            <li><strong>Start practice problems</strong> - Begin assigned exercises (unfinished work becomes homework)</li>
+          </ul>
+          <p style="margin: 10px 0 0 0; font-size: 0.95rem;"><em>Remember: Programming requires regular practice. Use your class time productively!</em></p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-bug"></i> Common Mistakes to Watch For</h2>
+          <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0; border-radius: 5px;">
+            <strong>Calling a function before defining it</strong><br>
+            <span style="font-size: 0.9rem;">Functions must be defined before they are called. Always write your <code>def</code> statements at the top of your program.</span>
+          </div>
+          <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0; border-radius: 5px;">
+            <strong>Wrong number of parameters</strong><br>
+            <span style="font-size: 0.9rem;">If a function expects 2 parameters, you must pass exactly 2 arguments when calling it.</span>
+          </div>
+          <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0; border-radius: 5px;">
+            <strong>Forgetting the parentheses</strong><br>
+            <span style="font-size: 0.9rem;">To call a function, you need parentheses: <code>drawStar(100, 200)</code> not <code>drawStar</code></span>
+          </div>
+          <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0; border-radius: 5px;">
+            <strong>Indentation errors</strong><br>
+            <span style="font-size: 0.9rem;">The code inside a function must be indented. Python uses indentation to know what belongs to the function.</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-question-circle"></i> Discussion Questions</h2>
+          <p>Use these to check student understanding during or after the lesson:</p>
+          <ul style="line-height: 1.8;">
+            <li>Why would a programmer choose to use a function instead of copying code?</li>
+            <li>What is the difference between defining a function and calling a function?</li>
+            <li>How do parameters make functions more flexible?</li>
+            <li>When you see the same code repeated multiple times, what should you do?</li>
           </ul>
         </div>
 
         <div class="homework-box">
           <h3><i class="bi bi-pencil-square"></i> Homework</h3>
-          <p style="margin: 0;">Finish any unfinished CMU CS Academy exercises from today</p>
+          <p style="margin-bottom: 10px;"><strong>Complete any unfinished CMU CS Academy exercises from today's lesson.</strong></p>
+          <p style="margin: 0; font-size: 0.95rem;">Expected time: 30-60 minutes. Functions are a foundational concept - make sure you understand them before moving forward!</p>
         </div>
 
         <div class="reminder-box">
-          <h3><i class="bi bi-lightbulb"></i> Quick Reminder</h3>
-          <ul>
-            <li><strong>Functions let programmers write code once and reuse it many times.</strong></li>
-            <li>If you see repeated code, it's probably a job for a function!</li>
+          <h3><i class="bi bi-stars"></i> Why This Matters</h3>
+          <p style="margin-bottom: 10px;"><strong>Functions are one of the most important programming concepts you'll learn.</strong></p>
+          <ul style="margin: 0;">
+            <li>Functions make code more efficient and easier to understand</li>
+            <li>You'll use functions in every program you write from now on</li>
+            <li>The AP Create Performance Task requires you to write and use functions</li>
+            <li>Professional programmers use functions to organize complex programs</li>
           </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-map"></i> Looking Ahead</h2>
+          <p><strong>Next class (Lesson 707):</strong> We'll extend what you learned today by adding <strong>multiple parameters</strong> to functions and practicing structured design with more complex drawing functions.</p>
+          <p style="margin: 15px 0 0 0; padding: 15px; background: #e7f3ff; border-radius: 5px;">
+            <strong>Unit 2 Journey:</strong> Functions → Mouse Events → Variables → Conditionals → Creative Task
+          </p>
         </div>
 
         <div class="nav-buttons">
