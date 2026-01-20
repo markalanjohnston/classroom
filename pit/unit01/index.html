@@ -212,6 +212,27 @@
         color: #155724;
         margin-bottom: 0;
       }
+
+      /* Accordion customization */
+      .accordion-button {
+        background-color: #dc3545;
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      .accordion-button:not(.collapsed) {
+        background-color: #bb2d3b;
+        color: white;
+      }
+
+      .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+      }
+
+      .accordion-button::after {
+        filter: brightness(0) invert(1);
+      }
     </style>
   </head>
   <body>
@@ -236,6 +257,17 @@
           <h1><i class="bi bi-lightbulb-fill"></i> Unit 1: Problem Identification & Solution Design</h1>
           <p class="subtitle">Practicum in Information Technology</p>
         </div>
+
+        <!-- Collapsible Unit Information Section -->
+        <div class="accordion mb-4" id="unitInfoAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingUnitInfo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#unitInfoCollapse" aria-expanded="false" aria-controls="unitInfoCollapse">
+                <i class="bi bi-info-circle me-2"></i> Unit Information (Overview, Purpose, Focus, Instruction, Assessment, TEKS)
+              </button>
+            </h2>
+            <div id="unitInfoCollapse" class="accordion-collapse collapse" data-bs-parent="#unitInfoAccordion">
+              <div class="accordion-body">
 
         <!-- Unit Overview -->
         <div class="section-card">
@@ -396,6 +428,11 @@
           </div>
         </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Unit Structure -->
         <div class="section-card">
           <h2><i class="bi bi-calendar3"></i> Unit Sessions</h2>
@@ -480,5 +517,6 @@
         </a>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
