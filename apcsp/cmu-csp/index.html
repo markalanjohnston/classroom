@@ -1,0 +1,436 @@
+---
+---
+
+<!-- File: classroom/apcsp/cmu-csp/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APCSP - CMU AP CSP Programming Quarter</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .cmu-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .info-section {
+        background: #f8f9fa;
+        border-left: 4px solid #0d6efd;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .info-section h2 {
+        color: #0d6efd;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      .info-section h3 {
+        color: #2c3e50;
+        margin-bottom: 12px;
+        margin-top: 20px;
+        font-size: 1.2rem;
+      }
+
+      .table-section {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .highlight-box {
+        background: #cfe2ff;
+        border-left: 4px solid #0d6efd;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .back-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      /* Accordion customization */
+      .accordion-button {
+        background-color: #0d6efd;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .accordion-button:not(.collapsed) {
+        background-color: #0b5ed7;
+        color: white;
+      }
+
+      .accordion-button:focus {
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+      }
+
+      .accordion-button::after {
+        filter: brightness(0) invert(1);
+      }
+
+      .warning-card {
+        background: #fff8e9;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">APCSP</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">CMU AP CSP Programming Quarter</span>
+      </nav>
+
+      <div class="cmu-content">
+        <a href="../" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to APCSP Home
+        </a>
+
+        <div class="class-header">
+          <h1 class="display-5 mb-3">
+            <i class="bi bi-code-square text-primary"></i>
+            CMU CS Academy - Programming Quarter
+          </h1>
+          <p class="lead text-muted">
+            Quarter overview and lesson resources
+          </p>
+        </div>
+
+        <!-- Collapsible Quarter Overview -->
+        <div class="accordion mb-4" id="quarterOverviewAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#quarterOverview">
+                <i class="bi bi-book me-2"></i> Programming Quarter Overview (Grading, Topics, Structure)
+              </button>
+            </h2>
+            <div id="quarterOverview" class="accordion-collapse collapse" data-bs-parent="#quarterOverviewAccordion">
+              <div class="accordion-body">
+
+                <!-- Purpose -->
+                <div class="info-section">
+                  <h2><i class="bi bi-bullseye"></i> Purpose of This Quarter</h2>
+                  <p>
+                    This document describes the third nine-weeks grading period for AP Computer Science Principles. During this quarter, students will complete the core programming portion of the course using the <strong>CMU CS Academy AP CSP Python curriculum</strong>.
+                  </p>
+                  <p style="margin-bottom: 0;">
+                    The focus of this quarter is on learning how to design, write, and understand interactive computer programs that meet the College Board expectations for the AP CSP Create Performance Task.
+                  </p>
+                </div>
+
+                <!-- Quarter Description -->
+                <div class="info-section">
+                  <h2><i class="bi bi-book"></i> Quarter Description</h2>
+                  <p>Throughout this quarter, students will learn how to:</p>
+                  <ul>
+                    <li>Write and organize Python programs</li>
+                    <li>Create interactive graphics</li>
+                    <li>Use functions and parameters</li>
+                    <li>Respond to user input</li>
+                    <li>Apply conditionals and decision making</li>
+                    <li>Work with lists, loops, and events</li>
+                    <li>Build larger programs using structured design</li>
+                  </ul>
+                  <p style="margin-bottom: 0;">
+                    The quarter is designed to prepare students to successfully begin and complete the AP CSP Create Performance Task, which is submitted to the College Board later in the course.
+                  </p>
+                </div>
+
+                <!-- Course Structure -->
+                <div class="info-section">
+                  <h2><i class="bi bi-calendar3"></i> Course Structure and Parameters</h2>
+                  <ul>
+                    <li><strong>Length:</strong> One grading period (approximately 21 class meetings)</li>
+                    <li><strong>Class Duration:</strong> 90 minutes</li>
+                    <li><strong>Curriculum Platform:</strong> CMU CS Academy – AP CSP Python</li>
+                    <li><strong>Units Covered:</strong> CMU Units 2, 3, and 4</li>
+                    <li><strong>Final Outcome:</strong> Readiness for the AP Create Performance Task</li>
+                  </ul>
+                </div>
+
+                <!-- Instructional Methodology -->
+                <div class="info-section">
+                  <h2><i class="bi bi-easel"></i> Instructional Methodology</h2>
+                  <p>This quarter follows a blended learning model that combines:</p>
+                  <ul>
+                    <li>Direct instruction</li>
+                    <li>Guided coding practice</li>
+                    <li>Independent problem solving</li>
+                    <li>Project-based creative tasks</li>
+                  </ul>
+
+                  <h3>Typical Class Structure</h3>
+                  <ul>
+                    <li><strong>30–45 minutes: Teacher-Led Instruction</strong>
+                      <ul>
+                        <li>New programming concepts</li>
+                        <li>Live coding demonstrations</li>
+                        <li>Explanation of syntax and logic</li>
+                        <li>Guided examples</li>
+                      </ul>
+                    </li>
+                    <li><strong>45–60 minutes: Independent Practice</strong>
+                      <ul>
+                        <li>Working through CMU CS Academy lessons</li>
+                        <li>Completing exercises and projects</li>
+                        <li>Debugging with teacher support</li>
+                      </ul>
+                    </li>
+                  </ul>
+
+                  <h3>Homework Expectations</h3>
+                  <p>Programming requires regular practice.</p>
+                  <ul>
+                    <li>Unfinished CMU lessons become homework</li>
+                    <li>Students are expected to continue assignments outside of class</li>
+                    <li>Typical expectation: <strong>30–60 minutes between class meetings</strong></li>
+                  </ul>
+                </div>
+
+                <!-- Programming Topics -->
+                <div class="info-section">
+                  <h2><i class="bi bi-code-slash"></i> Topics Covered This Quarter</h2>
+                  <p>This quarter focuses on three major units of the CMU AP CSP curriculum.</p>
+
+                  <div class="table-section">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Unit</th>
+                          <th>Core Topics</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><strong>Unit 2</strong></td><td>Functions, mouse events, variables, conditionals</td></tr>
+                        <tr><td><strong>Unit 3</strong></td><td>Groups, lists, loops, traversing collections</td></tr>
+                        <tr><td><strong>Unit 4</strong></td><td>Complex conditionals, keyboard events, animation, libraries</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p style="margin-bottom: 0;">By the end of this quarter, students will have learned all programming concepts required for the AP Create Performance Task.</p>
+                </div>
+
+                <!-- Quarter Narrative -->
+                <div class="info-section">
+                  <h2><i class="bi bi-diagram-3"></i> Quarter Narrative</h2>
+                  <p>The quarter progresses in three major phases:</p>
+
+                  <h3>Phase 1 – Interactive Programming Foundations</h3>
+                  <p>Students learn to write reusable functions, respond to mouse input, and make decisions using conditionals.</p>
+
+                  <h3>Phase 2 – Managing Collections of Data</h3>
+                  <p>Students learn to work with groups, lists, and loops to control many objects efficiently.</p>
+
+                  <h3>Phase 3 – Advanced Interactivity</h3>
+                  <p>Students add keyboard controls, animation, strings, and libraries to build more sophisticated programs.</p>
+
+                  <p style="margin-bottom: 0;">Each phase includes guided instruction, practice exercises, and creative tasks that allow students to apply what they have learned.</p>
+                </div>
+
+                <!-- Learning Goals -->
+                <div class="info-section">
+                  <h2><i class="bi bi-trophy"></i> Learning Goals</h2>
+                  <p>By the end of this quarter, students will be able to:</p>
+                  <ul>
+                    <li>Design and write custom functions</li>
+                    <li>Create programs that react to user input</li>
+                    <li>Use conditional logic to control program behavior</li>
+                    <li>Store and manipulate collections of data</li>
+                    <li>Use loops to process groups and lists</li>
+                    <li>Build structured, multi-feature programs</li>
+                    <li>Explain how their code works using correct AP terminology</li>
+                  </ul>
+                  <p style="margin-bottom: 0;">These skills directly prepare students for success on the AP CSP Create Performance Task.</p>
+                </div>
+
+                <!-- Major Assessments -->
+                <div class="info-section">
+                  <h2><i class="bi bi-clipboard-check"></i> Major Assessments</h2>
+                  <p>During this quarter, students will complete several key graded tasks:</p>
+                  <ul>
+                    <li>Unit 2 Creative Task</li>
+                    <li>Unit 3 Creative Task</li>
+                    <li>Unit 4 programming assignments</li>
+                    <li>Regular mastery checks</li>
+                    <li>CMU exercise completion grades</li>
+                  </ul>
+                  <p style="margin-bottom: 0;">These assessments measure both programming skill and conceptual understanding.</p>
+                </div>
+
+                <!-- Grading Plan -->
+                <div class="info-section">
+                  <h2><i class="bi bi-clipboard-check"></i> Grading Approach for This Quarter</h2>
+                  <p>Student grades reflect two main areas:</p>
+
+                  <h3>Mastery and Understanding</h3>
+                  <ul>
+                    <li>Programming projects</li>
+                    <li>Concept checks</li>
+                    <li>Creative tasks</li>
+                    <li>Demonstrations of coding skills</li>
+                  </ul>
+
+                  <h3>Engagement and Progress</h3>
+                  <ul>
+                    <li>Completion of CMU lessons</li>
+                    <li>Productive use of class time</li>
+                    <li>Consistent effort and practice</li>
+                  </ul>
+
+                  <p style="margin-bottom: 0;">Programming is a skill learned through doing, so regular completion of exercises is essential.</p>
+                </div>
+
+                <!-- End of Quarter Outcome -->
+                <div class="info-section">
+                  <h2><i class="bi bi-flag-fill"></i> End of Quarter Outcome</h2>
+                  <p>The final two class meetings of the quarter will focus on:</p>
+                  <ul>
+                    <li>Introduction to the AP Create Performance Task</li>
+                    <li>Planning and brainstorming project ideas</li>
+                    <li>Understanding College Board requirements</li>
+                  </ul>
+                  <p style="margin-bottom: 0;">Students will leave this quarter ready to begin their official AP project with confidence.</p>
+                </div>
+
+                <!-- Classroom Expectations -->
+                <div class="info-section">
+                  <h2><i class="bi bi-person-check"></i> Classroom Expectations</h2>
+                  <p>Students are expected to:</p>
+                  <ul>
+                    <li>Participate actively in lessons</li>
+                    <li>Work consistently on CMU assignments</li>
+                    <li>Ask questions when confused</li>
+                    <li>Practice problem-solving and debugging</li>
+                    <li>Maintain academic integrity</li>
+                  </ul>
+                  <p style="margin-bottom: 0;">Success in this course depends on persistence, curiosity, and regular practice.</p>
+                </div>
+
+                <!-- Technology Requirements -->
+                <div class="info-section">
+                  <h2><i class="bi bi-laptop"></i> Technology Requirements</h2>
+                  <p>Students will need:</p>
+                  <ul>
+                    <li>Reliable access to a computer</li>
+                    <li>Internet access to CMU CS Academy</li>
+                    <li>Ability to complete online coding work outside of class</li>
+                  </ul>
+                </div>
+
+                <!-- Preparing for the AP Exam -->
+                <div class="info-section">
+                  <h2><i class="bi bi-mortarboard"></i> Preparing for the AP Exam</h2>
+                  <p>This quarter builds the exact programming foundation needed for:</p>
+                  <ul>
+                    <li>The AP CSP Create Performance Task</li>
+                    <li>Understanding AP programming concepts</li>
+                    <li>Future computer science courses</li>
+                    <li>Real-world problem solving</li>
+                  </ul>
+                  <p style="margin-bottom: 0;">Students who engage fully with the material will be well prepared for the major AP requirements that follow.</p>
+                </div>
+
+                <!-- Summary -->
+                <div class="highlight-box">
+                  <h3><i class="bi bi-star-fill text-primary"></i> Summary</h3>
+                  <p style="margin-bottom: 0;">This quarter represents the core programming heart of AP Computer Science Principles. Through structured lessons, guided practice, and creative projects, students develop the skills needed to think computationally and to design meaningful software solutions.</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lessons Table -->
+        <h2 class="mt-4 mb-3">
+          <i class="bi bi-journal-text text-primary"></i> Quarter Lessons
+        </h2>
+
+        <div class="table-section">
+          <h3>Programming Quarter - Classes 701-721</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Lesson</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="lesson701.html">Class 701 – A1 / B1</a></td><td>Course Introduction and Expectations</td></tr>
+              <tr><td><a href="lesson702.html">Class 702 – A2 / B2</a></td><td>CMU CS Academy Setup and Orientation</td></tr>
+              <tr><td><a href="lesson703.html">Class 703 – A3 / B3</a></td><td>Unit 1 Foundations Review</td></tr>
+              <tr><td><a href="lesson704.html">Class 704 – A4 / B4</a></td><td>Unit 1 Practice and Skill Building</td></tr>
+              <tr><td><a href="lesson705.html">Class 705 – A5 / B5</a></td><td>Unit 1 Creative Task 1 Work Day (Due Next Class)</td></tr>
+              <tr><td><a href="lesson706.html">Class 706 – A6 / B6</a></td><td>Unit 2: Function Basics</td></tr>
+              <tr><td><a href="lesson707.html">Class 707 – A7 / B7</a></td><td>Multiple Parameters and Function Practice</td></tr>
+              <tr><td><a href="lesson708.html">Class 708 – A8 / B8</a></td><td>Mouse Events (onMousePress / onMouseRelease)</td></tr>
+              <tr><td><a href="lesson709.html">Class 709 – A9 / B9</a></td><td>Variables and Shape Properties</td></tr>
+              <tr><td><a href="lesson710.html">Class 710 – A10 / B10</a></td><td>Conditionals (if / if-else)</td></tr>
+              <tr><td><a href="lesson711.html">Class 711 – A11 / B11</a></td><td>Custom Properties and Shape Methods</td></tr>
+              <tr><td><a href="lesson712.html">Class 712 – A12 / B12</a></td><td>Unit 2 Practice and Creative Task</td></tr>
+              <tr><td><a href="lesson713.html">Class 713 – A13 / B13</a></td><td>Unit 3: Groups and Traversing Groups</td></tr>
+              <tr><td><a href="lesson714.html">Class 714 – A14 / B14</a></td><td>Lists and Traversing Lists</td></tr>
+              <tr><td><a href="lesson715.html">Class 715 – A15 / B15</a></td><td>Traversing with len/range and List Methods</td></tr>
+              <tr><td><a href="lesson716.html">Class 716 – A16 / B16</a></td><td>Unit 3 Practice and Mini Creative Task</td></tr>
+              <tr><td><a href="lesson717.html">Class 717 – A17 / B17</a></td><td>Complex Conditionals and Key Events</td></tr>
+              <tr><td><a href="lesson718.html">Class 718 – A18 / B18</a></td><td>onStep Events and Strings</td></tr>
+              <tr><td><a href="lesson719.html">Class 719 – A19 / B19</a></td><td>Libraries, Random, and Images (Wrap Up)</td></tr>
+              <tr><td><a href="lesson720.html">Class 720 – A20 / B20</a></td><td>Introduction to the Create Performance Task</td></tr>
+              <tr><td><a href="lesson721.html">Class 721 – A21 / B21</a></td><td>Create Performance Task Planning and Review</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <a href="../" class="back-button mt-4">
+          <i class="bi bi-arrow-left"></i> Back to APCSP Home
+        </a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
