@@ -1,0 +1,579 @@
+---
+---
+
+<!-- File: classroom/apcsp/cmu-csp/lesson706-teacher.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 706 - Teacher Lesson Plan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .teacher-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        margin: 0 0 10px 0;
+        font-size: 2rem;
+      }
+
+      .course-info {
+        background: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+      }
+
+      .course-info h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .course-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .course-info-item {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .course-info-item strong {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #6c757d;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #6c757d;
+      }
+
+      .objectives-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .objectives-list li {
+        padding: 8px 0 8px 30px;
+        position: relative;
+      }
+
+      .objectives-list li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #6c757d;
+        font-weight: bold;
+      }
+
+      .materials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .materials-grid li {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .timing-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .timing-table th,
+      .timing-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .timing-table th {
+        background: #6c757d;
+        color: white;
+        font-weight: 600;
+      }
+
+      .timing-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .procedure-section {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #6c757d;
+      }
+
+      .procedure-section h3 {
+        color: #2c3e50;
+        margin: 0 0 15px 0;
+        font-size: 1.2rem;
+      }
+
+      .procedure-subsection {
+        margin: 15px 0;
+      }
+
+      .procedure-subsection h4 {
+        color: #6c757d;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .key-points {
+        background: #cfe2ff;
+        border-left: 4px solid #0d6efd;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+      }
+
+      .key-points h4 {
+        color: #084298;
+        margin: 0 0 10px 0;
+        font-size: 1rem;
+      }
+
+      .code-example {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 15px;
+        font-family: monospace;
+        margin: 10px 0;
+        overflow-x: auto;
+      }
+
+      .code-example pre {
+        margin: 0;
+      }
+
+      .misconceptions-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .misconceptions-table th,
+      .misconceptions-table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+      }
+
+      .misconceptions-table th {
+        background: #dc3545;
+        color: white;
+        font-weight: 600;
+      }
+
+      .misconceptions-table tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      .assessment-box {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      .assessment-box h3 {
+        color: #856404;
+        margin: 0 0 15px 0;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 10px;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .nav-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      .student-link {
+        background: #0d6efd;
+      }
+
+      .student-link:hover {
+        background: #0b5ed7;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white-50">APCSP</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="./" class="text-white-50">CMU AP CSP</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="teacher.html" class="text-white-50">Teacher Resources</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 706 Teacher Plan</span>
+      </nav>
+
+      <div class="teacher-content">
+        <div class="lesson-header">
+          <h1><i class="bi bi-person-video3"></i> Teacher Lesson Plan</h1>
+          <p class="mb-0">Lesson 706: Unit 2 – Function Basics</p>
+        </div>
+
+        <div class="course-info">
+          <h3>Lesson Overview</h3>
+          <div class="course-info-grid">
+            <div class="course-info-item">
+              <strong>Course:</strong>
+              <span>AP Computer Science Principles</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Unit:</strong>
+              <span>Unit 2 – Functions, Mouse Events, and Conditionals</span>
+            </div>
+            <div class="course-info-item">
+              <strong>CMU Section:</strong>
+              <span>2.1</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Code:</strong>
+              <span>706</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Lesson Title:</strong>
+              <span>Function Basics</span>
+            </div>
+            <div class="course-info-item">
+              <strong>Class Length:</strong>
+              <span>90 minutes</span>
+            </div>
+          </div>
+          <p style="margin-top: 15px; margin-bottom: 0;">
+            This lesson introduces one of the most important ideas in programming: functions. Students learn how to identify repeated code, convert it into reusable functions, and use parameters to make code flexible. They also practice debugging and begin independent CMU CS Academy exercises focused on writing and calling functions. The lesson supports long-term preparation for the AP CSP Create Performance Task by helping students write organized, modular, and reusable code.
+          </p>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-trophy"></i> Objectives</h2>
+          <p>By the end of this lesson, students will be able to:</p>
+          <ul class="objectives-list">
+            <li>Explain what a function is and why programmers use functions.</li>
+            <li>Identify repeated code that can be replaced with a function.</li>
+            <li>Write basic Python functions using parameters.</li>
+            <li>Call functions with different arguments to produce different results.</li>
+            <li>Debug common function-related errors.</li>
+            <li>Apply functions within CMU CS Academy exercises.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-box-seam"></i> Materials & Setup</h2>
+          <ul class="materials-grid">
+            <li>Student computers</li>
+            <li>Internet access</li>
+            <li>CMU CS Academy student accounts</li>
+            <li>Projector for demonstrations</li>
+            <li>Student note-taking materials</li>
+            <li>Access to the CMU CS Academy "Function Basics" and "Debugging" lessons</li>
+          </ul>
+
+          <h3 style="margin-top: 20px; color: #6c757d;">Teacher Preparation:</h3>
+          <ul>
+            <li>Log into CMU CS Academy and open the Function Basics lesson</li>
+            <li>Prepare a short example program that repeats code so students can see how a function improves it</li>
+            <li>Verify all student accounts can log in before class</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clock"></i> Agenda (90 Minutes)</h2>
+          <table class="timing-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0–5 min</td><td>Welcome, objectives, and agenda overview</td></tr>
+              <tr><td>5–15 min</td><td>Warm-up: "What is repeated code?" discussion</td></tr>
+              <tr><td>15–35 min</td><td>Direct instruction: Introduction to functions</td></tr>
+              <tr><td>35–45 min</td><td>Teacher demonstration: Converting repeated code to a function</td></tr>
+              <tr><td>45–85 min</td><td>Guided and independent CMU CS Academy work</td></tr>
+              <tr><td>85–90 min</td><td>Closure and homework directions</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-list-ol"></i> Teacher Moves (Scripted Talking Points + Demo Steps)</h2>
+
+          <div class="procedure-section">
+            <h3>1. Opening Discussion</h3>
+
+            <div class="key-points">
+              <h4>Say to students:</h4>
+              <p>"Imagine you had to draw the same shape ten times in a program. Would it make sense to write the same code ten times?"</p>
+              <p style="margin: 0;">"Programmers use functions so they can write code once and reuse it many times."</p>
+            </div>
+
+            <div class="procedure-subsection">
+              <h4>Explain that functions help with:</h4>
+              <ul>
+                <li><strong>Organization</strong></li>
+                <li><strong>Reusability</strong></li>
+                <li><strong>Debugging</strong></li>
+                <li><strong>Efficiency</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>2. Key Concepts to Emphasize</h3>
+
+            <p>On the board or projector, introduce:</p>
+
+            <ul>
+              <li>A <strong>function</strong> is a named block of code.</li>
+              <li>Functions may have <strong>parameters</strong>.</li>
+              <li>Functions must be <strong>defined</strong> before they are <strong>called</strong>.</li>
+              <li><strong>Arguments</strong> are the values passed into parameters.</li>
+            </ul>
+
+            <div class="key-points">
+              <h4>Example talking script:</h4>
+              <p style="margin: 0;">"Think of a function like a recipe. The recipe has steps written once, but you can follow it with different ingredients each time."</p>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>3. Live Coding Demonstration</h3>
+
+            <p><strong>Show students a simple example:</strong></p>
+
+            <div class="procedure-subsection">
+              <h4>Before functions (repeated code):</h4>
+              <div class="code-example">
+                <pre>Rect(50, 100, 40, 60)
+Rect(120, 100, 40, 60)
+Rect(190, 100, 40, 60)</pre>
+              </div>
+
+              <h4>Ask:</h4>
+              <ul>
+                <li>"What is similar about these lines?"</li>
+                <li>"What is different?"</li>
+              </ul>
+
+              <h4 style="margin-top: 20px;">Convert to a function:</h4>
+              <div class="code-example">
+                <pre>def drawBox(x):
+    Rect(x, 100, 40, 60)
+
+drawBox(50)
+drawBox(120)
+drawBox(190)</pre>
+              </div>
+
+              <h4>Highlight:</h4>
+              <ul>
+                <li>Parameters make the function flexible.</li>
+                <li>The body of the function is reused.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="procedure-section">
+            <h3>4. Transition to CMU Work</h3>
+
+            <div class="key-points">
+              <h4>Explain:</h4>
+              <p style="margin: 0;">"Now you will practice this same idea in the CMU CS Academy Function Basics lesson."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-pencil-square"></i> Student Tasks</h2>
+
+          <h3>In-Class Work</h3>
+          <p>Students will:</p>
+          <ul>
+            <li>Complete the Function Basics lesson in CMU CS Academy.</li>
+            <li>Work through the Debugging exercises related to functions.</li>
+            <li>Begin independent practice problems assigned in the CMU platform.</li>
+          </ul>
+
+          <h3 style="margin-top: 20px;">Expect students to:</h3>
+          <ul>
+            <li>Define functions with parameters.</li>
+            <li>Call functions multiple times with different arguments.</li>
+            <li>Fix syntax and logic errors involving functions.</li>
+          </ul>
+
+          <h3 style="margin-top: 20px;">Homework</h3>
+          <p>Any unfinished CMU CS Academy exercises from today must be completed before the next class meeting.</p>
+        </div>
+
+        <div class="assessment-box">
+          <h3><i class="bi bi-clipboard-check"></i> Checks for Understanding (Formative)</h3>
+
+          <p>Use the following strategies:</p>
+
+          <h4>Ask students to explain in their own words:</h4>
+          <ul>
+            <li>"What is a parameter?"</li>
+            <li>"What is the difference between defining and calling a function?"</li>
+          </ul>
+
+          <h4 style="margin-top: 15px;">During independent work, ask:</h4>
+          <ul>
+            <li>"How could you turn this repeated code into a function?"</li>
+            <li>"What value is being passed into this parameter?"</li>
+          </ul>
+
+          <h4 style="margin-top: 15px;">Quick exit question:</h4>
+          <ul style="margin-bottom: 0;">
+            <li>"Name one reason functions make programs better."</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-exclamation-triangle"></i> Common Misconceptions & Fixes</h2>
+          <table class="misconceptions-table">
+            <thead>
+              <tr>
+                <th>Misconception</th>
+                <th>Fix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Students think a function runs automatically</td>
+                <td>Remind them functions must be called explicitly</td>
+              </tr>
+              <tr>
+                <td>Confusing parameters with arguments</td>
+                <td>Use the phrase: "parameters are placeholders; arguments are actual values"</td>
+              </tr>
+              <tr>
+                <td>Forgetting to define functions before calling them</td>
+                <td>Reinforce top-to-bottom execution order</td>
+              </tr>
+              <tr>
+                <td>Indentation errors in function bodies</td>
+                <td>Review Python indentation rules</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-gear"></i> Differentiation & Accommodations</h2>
+
+          <h3>For Struggling Students</h3>
+          <ul>
+            <li>Provide a partially written function template.</li>
+            <li>Pair-program with a peer helper.</li>
+            <li>Focus on calling existing functions before writing new ones.</li>
+          </ul>
+
+          <h3>For Advanced Students</h3>
+          <ul>
+            <li>Challenge them to write functions with multiple parameters.</li>
+            <li>Ask them to refactor a larger program using several functions.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><i class="bi bi-clipboard-data"></i> Assessment Notes</h2>
+          <ul>
+            <li>No formal grade today.</li>
+            <li>Progress will be monitored through CMU CS Academy completion data.</li>
+            <li>Mastery of functions is critical for later units and for the AP CSP Create Task.</li>
+          </ul>
+        </div>
+
+        <div class="key-points">
+          <h4><i class="bi bi-door-closed"></i> Closure</h4>
+          <p>"Today you learned how to make your programs cleaner and more powerful using functions."</p>
+          <p><strong>Preview:</strong> "Next lesson we will build on this by adding mouse events and conditionals."</p>
+          <p style="margin: 0;"><strong>Ask:</strong> "How do functions help programmers avoid repeated work?"</p>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="teacher.html" class="nav-button">
+            <i class="bi bi-arrow-left"></i> Back to Teacher Resources
+          </a>
+          <a href="lesson706.html" class="nav-button student-link">
+            <i class="bi bi-eye"></i> View Student Page
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
