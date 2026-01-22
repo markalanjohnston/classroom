@@ -8,292 +8,282 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lesson 307 - Unit 1 Creative Mini-Task</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <style>
-      .lesson-content {
-        background: white;
-        border-radius: 15px;
-        padding: 40px;
-        margin-bottom: 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      }
-
-      .lesson-header {
-        background: linear-gradient(135deg, #7952b3 0%, #6610f2 100%);
-        color: white;
-        padding: 30px;
-        border-radius: 10px;
-        margin-bottom: 30px;
-      }
-
-      .lesson-header h1 {
-        margin: 0 0 10px 0;
-        font-size: 2rem;
-      }
-
-      .lesson-header .focus {
-        font-size: 1.2rem;
-        opacity: 0.95;
-        margin: 0;
-      }
-
-      .section {
-        margin-bottom: 30px;
-      }
-
-      .section h2 {
-        color: #7952b3;
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #7952b3;
-      }
-
-      .goals-list {
-        list-style: none;
-        padding: 0;
-      }
-
-      .goals-list li {
-        padding: 10px 0 10px 35px;
-        position: relative;
-      }
-
-      .goals-list li:before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: #7952b3;
-        font-weight: bold;
-        font-size: 1.2rem;
-      }
-
-      .agenda-list {
-        list-style: none;
-        padding: 0;
-      }
-
-      .agenda-list li {
-        background: #f8f9fa;
-        padding: 15px;
-        margin-bottom: 10px;
-        border-radius: 8px;
-        border-left: 4px solid #7952b3;
-      }
-
-      .must-finish-box {
-        background: #e7e3fc;
-        border: 2px solid #7952b3;
-        border-radius: 10px;
-        padding: 20px;
-        margin: 20px 0;
-      }
-
-      .must-finish-box h3 {
-        color: #3d2465;
-        margin: 0 0 15px 0;
-      }
-
-      .homework-box {
-        background: #fff3cd;
-        border: 2px solid #ffc107;
-        border-radius: 10px;
-        padding: 20px;
-        margin: 20px 0;
-      }
-
-      .homework-box h3 {
-        color: #856404;
-        margin: 0 0 10px 0;
-      }
-
-      .reminder-box {
-        background: #e7f3ff;
-        border-left: 4px solid #0d6efd;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 5px;
-      }
-
-      .reminder-box h3 {
-        color: #084298;
-        margin: 0 0 10px 0;
-      }
-
-      .reminder-box ul {
-        margin: 0;
-      }
-
-      .rubric-box {
-        background: #f8f9fa;
-        border: 2px solid #198754;
-        border-radius: 10px;
-        padding: 25px;
-        margin: 25px 0;
-      }
-
-      .rubric-box h3 {
-        color: #198754;
-        margin: 0 0 20px 0;
-        text-align: center;
-      }
-
-      .rubric-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0;
-      }
-
-      .rubric-table th,
-      .rubric-table td {
-        padding: 12px;
-        text-align: left;
-        border: 1px solid #dee2e6;
-      }
-
-      .rubric-table th {
-        background: #198754;
-        color: white;
-        font-weight: 600;
-      }
-
-      .rubric-table tr:nth-child(even) {
-        background: white;
-      }
-
-      .nav-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
-        gap: 10px;
-      }
-
-      .nav-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: #6c757d;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background 0.3s;
-      }
-
-      .nav-button:hover {
-        background: #5a6268;
-        color: white;
-      }
-
-      .nav-button.primary {
-        background: #198754;
-      }
-
-      .nav-button.primary:hover {
-        background: #157347;
-      }
+      .assignment-content { background: white; border-radius: 15px; padding: 40px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+      .assignment-header { background: linear-gradient(135deg, #7952b3 0%, #6610f2 100%); color: white; border-radius: 10px; padding: 30px; margin-bottom: 30px; text-align: center; }
+      .assignment-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .assignment-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .back-button { display: inline-flex; align-items: center; gap: 8px; background: #6c757d; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; transition: background 0.3s; margin-bottom: 20px; }
+      .back-button:hover { background: #5a6268; color: white; }
+      .assignment-section { background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%); border: 2px solid #7952b3; border-radius: 10px; padding: 30px; margin-bottom: 30px; }
+      .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+      .section-icon { background: #7952b3; color: white; width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+      .section-header h2 { color: #5a3d8a; margin: 0; font-size: 1.6rem; }
+      .assignment-body h3 { color: #5a3d8a; margin-top: 25px; margin-bottom: 12px; font-size: 1.2rem; }
+      .assignment-body h4 { color: #5a3d8a; margin-top: 15px; margin-bottom: 10px; font-size: 1rem; font-weight: 600; }
+      .assignment-body p, .assignment-body li { color: #495057; line-height: 1.6; }
+      .assignment-body ul, .assignment-body ol { margin: 10px 0; padding-left: 25px; }
+      .assignment-body li { margin-bottom: 8px; }
+      .highlight-box { background: #e7e3fc; border-left: 4px solid #7952b3; padding: 15px 20px; margin: 15px 0; border-radius: 5px; }
+      .highlight-box h4 { color: #5a3d8a; font-size: 1rem; margin-bottom: 10px; font-weight: 600; }
+      .highlight-box p, .highlight-box ul { color: #5a3d8a; margin-bottom: 8px; }
+      .rubric-table { width: 100%; margin: 20px 0; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+      .rubric-table th { background: #7952b3; color: white; padding: 12px; text-align: left; font-weight: 600; font-size: 0.95rem; }
+      .rubric-table td { padding: 12px; border-bottom: 1px solid #e9ecef; color: #495057; font-size: 0.9rem; vertical-align: top; }
+      .rubric-table tr:last-child td { border-bottom: none; }
+      .rubric-table tr:hover { background: #f8f9fa; }
+      .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 0.9rem; overflow-x: auto; margin: 15px 0; }
+      .exemplar-box { background: #e7f3ff; border-left: 4px solid #0066cc; padding: 20px; margin: 20px 0; border-radius: 5px; }
+      .exemplar-box h3 { color: #0066cc; font-size: 1.3rem; margin-bottom: 15px; }
+      .exemplar-box h4 { color: #004080; font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px; }
+      .exemplar-box p, .exemplar-box li { color: #004080; line-height: 1.6; }
+      .exemplar-box ul, .exemplar-box ol { margin: 10px 0; padding-left: 25px; }
+      .important-note { background: #dc3545; color: white; padding: 15px 20px; border-radius: 8px; margin: 20px 0; }
+      .important-note strong { display: block; margin-bottom: 5px; }
+      .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 10px; }
+      .nav-button { display: inline-flex; align-items: center; gap: 8px; background: #6c757d; color: white; padding: 12px 20px; border-radius: 5px; text-decoration: none; transition: background 0.3s; }
+      .nav-button:hover { background: #5a6268; color: white; }
+      .nav-button.primary { background: #7952b3; }
+      .nav-button.primary:hover { background: #6610f2; }
     </style>
   </head>
   <body>
     {% include navigation.html %}
     <div class="main-container">
       <nav class="breadcrumb-nav">
-        <a href="../../" class="text-white">
-          <i class="bi bi-house"></i> Home
-        </a>
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
         <span class="text-white-50 mx-2">/</span>
-        <a href="../" class="text-white-50">FCS</a>
+        <a href="../" class="text-white">Fundamentals of CS</a>
         <span class="text-white-50 mx-2">/</span>
-        <a href="./" class="text-white-50">CMU CS1</a>
+        <a href="./" class="text-white">CMU CS1</a>
         <span class="text-white-50 mx-2">/</span>
-        <span class="text-white">Lesson 307</span>
+        <span class="text-white">Unit 1 Creative Mini-Task</span>
       </nav>
-
-      <div class="lesson-content">
-        <div class="lesson-header">
-          <h1><i class="bi bi-lightbulb"></i> Class 307 – Unit 1 Creative Mini-Task</h1>
-          <p class="focus">Design and build your own original program</p>
+      <div class="assignment-content">
+        <a href="./" class="back-button"><i class="bi bi-arrow-left"></i> Back to Lessons</a>
+        <div class="assignment-header">
+          <h1><i class="bi bi-lightbulb-fill"></i> Unit 1 Creative Mini-Task</h1>
+          <p class="subtitle">Create an original visual scene using what you learned in Unit 1</p>
         </div>
 
-        <div class="section">
-          <h2><i class="bi bi-trophy"></i> Today's Goals</h2>
-          <ul class="goals-list">
-            <li>Design and build your own original CMU CS Academy program</li>
-            <li>Use the skills from Unit 1 in a creative way</li>
-            <li>Explain your thinking through a short reflection</li>
-          </ul>
-        </div>
+        <div class="assignment-section">
+          <div class="section-header">
+            <div class="section-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
+            <h2>Unit 1 Creative Mini-Task</h2>
+          </div>
 
-        <div class="section">
-          <h2><i class="bi bi-list-check"></i> Agenda</h2>
-          <ul class="agenda-list">
-            <li>Introduction to the Creative Mini-Task</li>
-            <li>Review rubric and expectations</li>
-            <li>Plan your idea</li>
-            <li>Code your project</li>
-            <li>Write reflection</li>
-          </ul>
-        </div>
+          <div class="assignment-body">
+            <p><strong>Build in CMU:</strong> 1.4.3 Creative Task 1 (CMU CS Academy)<br>
+            <strong>Submit in CMU:</strong> Click Submit when finished<br>
+            <strong>Submit Reflection:</strong> Complete reflection questions (paper or digital as directed by teacher)</p>
 
-        <div class="must-finish-box">
-          <h3><i class="bi bi-check-circle"></i> What You Must Finish Today</h3>
-          <ul>
-            <li>Create an original drawing program in CMU CS Academy</li>
-            <li>Use Unit 1 skills: shapes, colors, and properties</li>
-            <li>Write a short reflection about your project</li>
-          </ul>
-        </div>
+            <h3><i class="bi bi-bullseye"></i> Purpose</h3>
+            <p>This is your first chance to create something <strong>completely your own</strong> using code. You will design and build an original visual scene or picture using only the Unit 1 concepts you have learned: drawing shapes, positioning, colors, and styling.</p>
+            <p>Creative Tasks help you practice thinking like a programmer: planning before coding, solving problems as they come up, and reflecting on your work.</p>
 
-        <div class="homework-box">
-          <h3><i class="bi bi-pencil-square"></i> Homework</h3>
-          <p style="margin: 0;">Finish your Creative Mini-Task and reflection if not completed in class</p>
-        </div>
+            <h3><i class="bi bi-palette-fill"></i> What You Will Create</h3>
+            <p>Choose one idea to build:</p>
+            <ul>
+              <li>A scene from real life (park, room, city, classroom, sports field, etc.)</li>
+              <li>A nature picture (sunset, forest, ocean, mountains, garden, etc.)</li>
+              <li>An object or character (robot, animal, vehicle, building, etc.)</li>
+              <li>A simple design or logo</li>
+              <li>Anything else you can imagine using shapes and colors!</li>
+            </ul>
+            <div class="highlight-box">
+              <h4><i class="bi bi-exclamation-circle-fill"></i> Unit 1 Concepts Only</h4>
+              <p><strong>Your project should only use what we learned in Unit 1:</strong></p>
+              <ul style="margin-bottom: 0;">
+                <li>Shapes: <code>Circle</code>, <code>Rect</code>, <code>Oval</code>, <code>Line</code>, <code>Star</code>, <code>Polygon</code>, <code>Label</code></li>
+                <li>Positioning: <code>centerX</code>, <code>centerY</code>, coordinates</li>
+                <li>Styling: <code>fill</code>, <code>border</code>, <code>borderWidth</code>, <code>opacity</code></li>
+                <li>Colors: named colors and <code>rgb(r, g, b)</code></li>
+                <li>Layering: shapes drawn later appear on top</li>
+              </ul>
+              <p style="margin: 10px 0 0 0;"><strong>Not used yet:</strong> functions, events, variables, animation, conditionals.</p>
+            </div>
 
-        <div class="reminder-box">
-          <h3><i class="bi bi-lightbulb"></i> Quick Reminder</h3>
-          <ul>
-            <li>Start with a <strong>plan</strong> before coding</li>
-            <li>Build your project <strong>step by step</strong></li>
-            <li>Creativity matters, but meeting the rubric matters more</li>
-          </ul>
-        </div>
+            <h3><i class="bi bi-code-square"></i> Program Requirements</h3>
+            <p>Your program must include:</p>
+            <ul>
+              <li>At least <strong>6 total shapes</strong></li>
+              <li>At least <strong>3 different shape types</strong> (e.g., Circle, Rect, Line)</li>
+              <li>At least <strong>2 different styling options</strong> used intentionally (e.g., <code>fill</code>, <code>border</code>, <code>opacity</code>)</li>
+              <li><strong>Layering</strong> (shapes overlapping to create depth)</li>
+              <li><strong>A clear purpose</strong> (someone looking at it should understand what it is)</li>
+            </ul>
 
-        <div class="rubric-box">
-          <h3><i class="bi bi-star"></i> Grading Rubric</h3>
-          <table class="rubric-table">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>What You Need</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Program Design – 30%</strong></td>
-                <td>Clear purpose and good use of Unit 1 concepts</td>
-              </tr>
-              <tr>
-                <td><strong>Program Development – 35%</strong></td>
-                <td>Explain a challenge you faced and how you solved it</td>
-              </tr>
-              <tr>
-                <td><strong>Reflection – 35%</strong></td>
-                <td>Describe at least two Unit 1 concepts used in your project</td>
-              </tr>
-              <tr>
-                <td><strong>Bonus</strong></td>
-                <td>Extra creativity and originality</td>
-              </tr>
-            </tbody>
-          </table>
+            <h3><i class="bi bi-list-ol"></i> Step-by-Step: What To Do</h3>
+            <ol>
+              <li><strong>Plan your idea</strong> – Decide what you want to create. Sketch it on paper if helpful.</li>
+              <li><strong>Think about shapes</strong> – What shapes will you need? Where will they go?</li>
+              <li><strong>Open CMU CS Academy</strong> – Go to <strong>1.4.3 Creative Task 1</strong>.</li>
+              <li><strong>Build your program</strong> – Code your scene one shape at a time. Test frequently!</li>
+              <li><strong>Submit in CMU</strong> – Click the <strong>Submit</strong> button when finished.</li>
+              <li><strong>Complete your reflection</strong> – Answer the reflection questions below.</li>
+            </ol>
+
+            <h3><i class="bi bi-pencil-square"></i> Planning Questions (Think Before You Code)</h3>
+            <p>Answer these questions before or while you build:</p>
+            <ol>
+              <li><strong>Description:</strong> What are you creating? What is the purpose or theme?</li>
+              <li><strong>Objects:</strong> List at least 4 objects or elements you will include.</li>
+              <li><strong>Shapes:</strong> What shapes will you use for each object?</li>
+              <li><strong>Colors:</strong> What colors will you use and why?</li>
+              <li><strong>Layering:</strong> What should be in the background vs. foreground?</li>
+            </ol>
+
+            <h3><i class="bi bi-chat-left-text"></i> Reflection Questions (After You Finish)</h3>
+            <p>Answer these questions after completing your program:</p>
+            <ol>
+              <li><strong>Difficulties & Opportunities:</strong> Describe one challenge you faced while coding OR one improvement you added that wasn't in your original plan. How did you handle it?</li>
+              <li><strong>Unit 1 Concepts:</strong> Identify and explain at least <strong>two Unit 1 concepts</strong> you used in your program. What did each concept do in your project?</li>
+              <li><strong>Future Goals:</strong> If you had more time, what would you add or improve?</li>
+            </ol>
+
+            <h3><i class="bi bi-bar-chart"></i> Grading Rubric</h3>
+            <p>Your Creative Mini-Task will be graded using this rubric:</p>
+
+            <table class="rubric-table">
+              <thead>
+                <tr>
+                  <th style="width: 22%;">Category</th>
+                  <th style="width: 26%;">Strong Evidence (100%)</th>
+                  <th style="width: 26%;">Inconsistent Evidence (70%)</th>
+                  <th style="width: 26%;">Weak/No Evidence (35%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Program Design</strong><br>30%</td>
+                  <td>Program clearly demonstrates its purpose and incorporates concepts from Unit 1.</td>
+                  <td>Program does not clearly demonstrate its purpose OR does not incorporate Unit 1 concepts.</td>
+                  <td>Program does not use concepts from Unit 1.</td>
+                </tr>
+                <tr>
+                  <td><strong>Program Development</strong><br>35%</td>
+                  <td>Student identifies at least one difficulty or opportunity AND explains how they resolved or incorporated it.</td>
+                  <td>Student identifies a difficulty or opportunity but does not explain the resolution.</td>
+                  <td>Student does not identify any difficulty or opportunity.</td>
+                </tr>
+                <tr>
+                  <td><strong>Reflection</strong><br>35%</td>
+                  <td>Student identifies and explains at least two coding concepts from Unit 1 and how they are applied in the program.</td>
+                  <td>Student identifies at least one coding concept and how it is applied.</td>
+                  <td>Student is not able to identify any coding concepts from Unit 1 in their program.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bonus</strong></td>
+                  <td colspan="3">Extra points may be awarded for originality, cleverness, complexity, and an engaging or compelling project.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="important-note">
+              <strong><i class="bi bi-shield-check"></i> Academic Integrity</strong>
+              Your code and design must be your own. You may get help and learn from examples, but you must be able to explain what every part of your code does.
+            </div>
+
+            <!-- Exemplar -->
+            <div class="exemplar-box">
+              <h3><i class="bi bi-star-fill"></i> EXEMPLAR: Unit 1 Creative Mini-Task</h3>
+              <p>Below is an example of a project that would meet expectations for the Unit 1 Creative Mini-Task.</p>
+
+              <h4>PART 1 – PLANNING</h4>
+
+              <p><strong>1. Description</strong></p>
+              <p>I am creating a simple house scene. The purpose is to show a house with a yard on a sunny day. I want it to look cheerful and colorful.</p>
+
+              <p><strong>2. Objects</strong></p>
+              <ul>
+                <li>Sky background</li>
+                <li>Sun</li>
+                <li>Grass</li>
+                <li>House (walls and roof)</li>
+                <li>Door and windows</li>
+                <li>Tree</li>
+              </ul>
+
+              <p><strong>3. Shapes</strong></p>
+              <ul>
+                <li>Sky: large <code>Rect</code></li>
+                <li>Sun: <code>Circle</code></li>
+                <li>Grass: <code>Rect</code></li>
+                <li>House walls: <code>Rect</code></li>
+                <li>Roof: <code>Polygon</code> (triangle)</li>
+                <li>Door: <code>Rect</code></li>
+                <li>Windows: <code>Rect</code></li>
+                <li>Tree trunk: <code>Rect</code></li>
+                <li>Tree leaves: <code>Circle</code></li>
+              </ul>
+
+              <p><strong>4. Colors</strong></p>
+              <ul>
+                <li>Sky: lightBlue</li>
+                <li>Sun: yellow</li>
+                <li>Grass: green</li>
+                <li>House: tan walls, darkRed roof</li>
+                <li>Door: brown</li>
+                <li>Windows: lightBlue with black border</li>
+                <li>Tree: brown trunk, green leaves</li>
+              </ul>
+
+              <p><strong>5. Layering</strong></p>
+              <ul>
+                <li>Background: sky, then sun</li>
+                <li>Middle: grass, house, tree trunk</li>
+                <li>Foreground: door, windows, tree leaves</li>
+              </ul>
+
+              <h4>PART 2 – SAMPLE CODE</h4>
+              <p>Here is what the code might look like:</p>
+<pre class="code-block"><code># Sky background
+Rect(0, 0, 400, 250, fill='lightBlue')
+
+# Sun
+Circle(350, 60, 40, fill='yellow')
+
+# Grass
+Rect(0, 250, 400, 150, fill='green')
+
+# House walls
+Rect(100, 180, 150, 120, fill='tan')
+
+# Roof (triangle)
+Polygon(90, 180, 175, 100, 260, 180, fill='darkRed')
+
+# Door
+Rect(155, 240, 40, 60, fill='brown')
+
+# Windows
+Rect(115, 200, 30, 30, fill='lightBlue', border='black', borderWidth=2)
+Rect(205, 200, 30, 30, fill='lightBlue', border='black', borderWidth=2)
+
+# Tree trunk
+Rect(310, 260, 20, 80, fill='brown')
+
+# Tree leaves
+Circle(320, 230, 45, fill='forestGreen')</code></pre>
+
+              <h4>PART 3 – REFLECTION</h4>
+
+              <p><strong>1. Difficulties & Opportunities</strong></p>
+              <p>One difficulty I faced was getting the roof to line up with the house walls. At first my triangle was in the wrong place. I had to use the Inspector tool to find the exact coordinates for the corners of the house, then I adjusted my Polygon coordinates to match. This took some trial and error but I figured it out.</p>
+
+              <p><strong>2. Unit 1 Concepts</strong></p>
+              <p>Two Unit 1 concepts I used:</p>
+              <ul>
+                <li><strong>Layering:</strong> I drew the sky first, then the grass, then the house and tree on top. This makes the background appear behind everything else.</li>
+                <li><strong>Border styling:</strong> I used <code>border='black'</code> and <code>borderWidth=2</code> on the windows to make them look more like real windows with frames.</li>
+              </ul>
+
+              <p><strong>3. Future Goals</strong></p>
+              <p>If I had more time, I would add clouds in the sky using Ovals, flowers in the grass using small Circles, and maybe a path leading to the door.</p>
+            </div>
+          </div>
         </div>
 
         <div class="nav-buttons">
@@ -309,7 +299,5 @@
         </div>
       </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
