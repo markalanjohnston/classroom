@@ -200,7 +200,56 @@
             <strong>Key Concept:</strong> If you find yourself copying and pasting code, you probably need a function!
           </div>
 
-          <p><strong>IMAGE PLACEHOLDER:</strong> [Side-by-side comparison showing repeated code vs. a function call - show the same drawing code written 3 times on the left, and on the right show a function definition with 3 short function calls]</p>
+          <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6">
+              <div style="background: #f8d7da; border: 2px solid #dc3545; border-radius: 8px; padding: 15px;">
+                <h4 style="color: #dc3545; margin: 0 0 10px 0; font-size: 1rem;"><i class="bi bi-x-circle"></i> Without Functions (Repeated Code)</h4>
+<pre style="background: #2d2d2d; color: #f8f8f2; padding: 12px; border-radius: 5px; font-size: 0.85rem; margin: 0; overflow-x: auto;"><code># Draw first flower
+Circle(100, 300, 20, fill='red')
+Circle(80, 280, 15, fill='pink')
+Circle(120, 280, 15, fill='pink')
+Circle(80, 320, 15, fill='pink')
+Circle(120, 320, 15, fill='pink')
+Line(100, 320, 100, 380, fill='green')
+
+# Draw second flower
+Circle(200, 300, 20, fill='red')
+Circle(180, 280, 15, fill='pink')
+Circle(220, 280, 15, fill='pink')
+Circle(180, 320, 15, fill='pink')
+Circle(220, 320, 15, fill='pink')
+Line(200, 320, 200, 380, fill='green')
+
+# Draw third flower
+Circle(300, 300, 20, fill='red')
+Circle(280, 280, 15, fill='pink')
+Circle(320, 280, 15, fill='pink')
+Circle(280, 320, 15, fill='pink')
+Circle(320, 320, 15, fill='pink')
+Line(300, 320, 300, 380, fill='green')</code></pre>
+                <p style="margin: 10px 0 0 0; font-size: 0.85rem; color: #842029;"><strong>21 lines</strong> - Same code copied 3 times!</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div style="background: #d1e7dd; border: 2px solid #198754; border-radius: 8px; padding: 15px;">
+                <h4 style="color: #198754; margin: 0 0 10px 0; font-size: 1rem;"><i class="bi bi-check-circle"></i> With Functions (Reusable Code)</h4>
+<pre style="background: #2d2d2d; color: #f8f8f2; padding: 12px; border-radius: 5px; font-size: 0.85rem; margin: 0; overflow-x: auto;"><code># Define the function once
+def drawFlower(x, y):
+    Circle(x, y, 20, fill='red')
+    Circle(x-20, y-20, 15, fill='pink')
+    Circle(x+20, y-20, 15, fill='pink')
+    Circle(x-20, y+20, 15, fill='pink')
+    Circle(x+20, y+20, 15, fill='pink')
+    Line(x, y+20, x, y+80, fill='green')
+
+# Call the function 3 times
+drawFlower(100, 300)
+drawFlower(200, 300)
+drawFlower(300, 300)</code></pre>
+                <p style="margin: 10px 0 0 0; font-size: 0.85rem; color: #0f5132;"><strong>12 lines</strong> - Write once, use many times!</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="section">
@@ -244,7 +293,44 @@ drawStar(300, 150)  # Draws another star at (300, 150)</code></pre>
 
           <h3 style="color: #084298; font-size: 1.2rem; margin-top: 20px;">Parameters</h3>
           <p>Parameters are variables that let you pass information into a function. They make functions flexible and reusable for different situations.</p>
-          <p><strong>IMAGE PLACEHOLDER:</strong> [Diagram showing a function definition with labeled arrows pointing to the parameter names, and a function call with arrows showing how arguments are passed to parameters]</p>
+
+          <!-- Color-coded parameter diagram -->
+          <div style="background: #1e1e1e; border-radius: 10px; padding: 25px; margin: 20px 0;">
+            <p style="color: #888; margin: 0 0 15px 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Function Definition</p>
+            <div style="font-family: 'Courier New', monospace; font-size: 1.1rem; line-height: 2;">
+              <span style="color: #569cd6;">def</span> <span style="color: #dcdcaa;">drawCircle</span><span style="color: #fff;">(</span><span style="color: #ff6b6b; background: rgba(255,107,107,0.2); padding: 2px 6px; border-radius: 3px;">x</span><span style="color: #fff;">,</span> <span style="color: #4ecdc4; background: rgba(78,205,196,0.2); padding: 2px 6px; border-radius: 3px;">y</span><span style="color: #fff;">,</span> <span style="color: #ffe66d; background: rgba(255,230,109,0.2); padding: 2px 6px; border-radius: 3px;">size</span><span style="color: #fff;">):</span>
+            </div>
+            <div style="font-family: 'Courier New', monospace; font-size: 1.1rem; color: #9cdcfe; padding-left: 30px;">
+              Circle(<span style="color: #ff6b6b;">x</span>, <span style="color: #4ecdc4;">y</span>, <span style="color: #ffe66d;">size</span>, fill='blue')
+            </div>
+
+            <div style="border-top: 1px dashed #444; margin: 20px 0; padding-top: 20px;">
+              <p style="color: #888; margin: 0 0 15px 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Function Call</p>
+              <div style="font-family: 'Courier New', monospace; font-size: 1.1rem;">
+                <span style="color: #dcdcaa;">drawCircle</span><span style="color: #fff;">(</span><span style="color: #ff6b6b; background: rgba(255,107,107,0.2); padding: 2px 6px; border-radius: 3px;">100</span><span style="color: #fff;">,</span> <span style="color: #4ecdc4; background: rgba(78,205,196,0.2); padding: 2px 6px; border-radius: 3px;">200</span><span style="color: #fff;">,</span> <span style="color: #ffe66d; background: rgba(255,230,109,0.2); padding: 2px 6px; border-radius: 3px;">50</span><span style="color: #fff;">)</span>
+              </div>
+              <p style="color: #6a9955; margin: 10px 0 0 0; font-family: 'Courier New', monospace; font-size: 0.9rem;"># Draws a circle at (100, 200) with size 50</p>
+            </div>
+
+            <!-- Color Key -->
+            <div style="background: #2d2d2d; border-radius: 8px; padding: 15px; margin-top: 20px;">
+              <p style="color: #fff; margin: 0 0 10px 0; font-weight: bold; font-size: 0.9rem;"><i class="bi bi-key" style="margin-right: 5px;"></i> Color Key</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="background: #ff6b6b; width: 16px; height: 16px; border-radius: 3px; display: inline-block;"></span>
+                  <span style="color: #ccc; font-size: 0.85rem;"><strong style="color: #ff6b6b;">x</strong> parameter → receives <strong style="color: #ff6b6b;">100</strong></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="background: #4ecdc4; width: 16px; height: 16px; border-radius: 3px; display: inline-block;"></span>
+                  <span style="color: #ccc; font-size: 0.85rem;"><strong style="color: #4ecdc4;">y</strong> parameter → receives <strong style="color: #4ecdc4;">200</strong></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="background: #ffe66d; width: 16px; height: 16px; border-radius: 3px; display: inline-block;"></span>
+                  <span style="color: #ccc; font-size: 0.85rem;"><strong style="color: #ffe66d;">size</strong> parameter → receives <strong style="color: #ffe66d;">50</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <h3 style="color: #084298; font-size: 1.2rem; margin-top: 20px;">Test Cases</h3>
           <p>Test cases help you verify that your function works correctly with different inputs. In CMU CS Academy, you'll use test cases to check your work before submitting.</p>
@@ -267,8 +353,6 @@ drawStar(300, 150)  # Draws another star at (300, 150)</code></pre>
           </ol>
 
           <p><strong>Suggested Demo:</strong> Draw three different snowmen by writing the code three times, then refactor into a <code>drawSnowman(x, y)</code> function.</p>
-
-          <p><strong>IMAGE PLACEHOLDER:</strong> [Example screenshot of a canvas with 3 snowmen drawn at different positions, with code showing the function that creates them]</p>
         </div>
 
         <div class="must-finish-box">
