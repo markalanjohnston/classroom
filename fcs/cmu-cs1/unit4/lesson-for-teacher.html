@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>90-Minute Observation Lesson — 3/5/26</title>
+  <style>
+    :root{
+      --ink:#111;
+      --muted:#555;
+      --line:#d9d9d9;
+      --panel:#f7f7f7;
+      --panel2:#fbfbfb;
+      --accent:#0b57d0;
+    }
+    @page { margin: 0.6in; }
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      line-height: 1.25;
+      font-size: 11pt;
+      margin: 0;
+      background: white;
+    }
+    .wrap{ max-width: 900px; margin: 0 auto; }
+    header{
+      border-bottom: 2px solid var(--line);
+      padding: 0 0 10px 0;
+      margin-bottom: 14px;
+    }
+    h1{
+      margin: 0;
+      font-size: 18pt;
+      letter-spacing: 0.2px;
+    }
+    .subtitle{
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 10.5pt;
+    }
+    .pillrow{
+      margin-top: 10px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill{
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 10pt;
+      color: var(--muted);
+    }
+    h2{
+      margin: 18px 0 8px;
+      font-size: 13.5pt;
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+    }
+    h3{
+      margin: 14px 0 6px;
+      font-size: 12pt;
+    }
+    .toc{
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+    .toc ul{
+      margin: 0;
+      padding-left: 18px;
+      columns: 1;
+    }
+    .toc li{
+      margin: 4px 0;
+    }
+    .time{
+      color: var(--muted);
+      font-weight: normal;
+    }
+    .section{
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 10px 0 14px;
+      background: white;
+      break-inside: avoid;
+    }
+    .sectionhead{
+      display:flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+    .sectiontitle{
+      font-size: 12.5pt;
+      margin: 0;
+    }
+    .sectiontime{
+      font-size: 10pt;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .label{
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .quote{
+      border-left: 4px solid var(--accent);
+      padding: 8px 10px;
+      margin: 8px 0;
+      background: #f3f7ff;
+      border-radius: 6px;
+      font-style: italic;
+    }
+    pre{
+      margin: 10px 0;
+      padding: 10px 12px;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 10pt;
+      line-height: 1.25;
+    }
+    .tight p{ margin: 6px 0; }
+    ul{
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+    .twocol{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .callout{
+      border: 1px dashed var(--line);
+      background: var(--panel2);
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .small{
+      font-size: 10pt;
+      color: var(--muted);
+    }
+    .hr{
+      height: 1px;
+      background: var(--line);
+      margin: 12px 0;
+    }
+    @media print{
+      .toc{ background: white; }
+      .pill{ background: white; }
+      pre{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .quote{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section{ box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>90-Minute Observation Lesson — 3/5/26</h1>
+      <div class="subtitle">Lesson Outline — Conditional Statements (90 minutes)</div>
+      <div class="pillrow">
+        <div class="pill"><strong>Total:</strong> 90 minutes</div>
+        <div class="pill"><strong>Topic:</strong> if / elif / else</div>
+        <div class="pill"><strong>Platform:</strong> CMU Academy (Unit 4.1)</div>
+      </div>
+    </header>
+
+    <div class="toc">
+      <h2 style="margin-top:0;">Table of Contents</h2>
+      <ul>
+        <li>Warm-Up / Hook / Attendance <span class="time">— 5 min</span></li>
+        <li>Objective / Essential Question <span class="time">— 2 min</span></li>
+        <li>Follow Along Part 1 (if / else / elif examples) <span class="time">— 10 min</span></li>
+        <li>Checkpoint 1 (ABCD Cards) <span class="time">— 3 min</span></li>
+        <li>Kinesthetic Conditional Activity <span class="time">— 10 min</span></li>
+        <li>Follow Along Part 2 (multiple elif examples) <span class="time">— 10 min</span></li>
+        <li>Checkpoint 2 + Think–Pair–Share <span class="time">— 5 min</span></li>
+        <li>ABCD Formative Assessment Part 1 <span class="time">— 5 min</span></li>
+        <li>Short Group Activity: Human Algorithm <span class="time">— 7 min</span></li>
+        <li>Stoplight Coding Exercise <span class="time">— 20 min</span></li>
+        <li>ABCD Check Part 2 <span class="time">— 3 min</span></li>
+        <li>Optional Activities (if time permits) <span class="time">— 5–10 min</span></li>
+        <li>Exit Ticket: Quick Write + Confidence Survey <span class="time">— 5 min</span></li>
+      </ul>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">Warm-Up / Hook / Attendance</h3>
+        <div class="sectiontime">5 minutes</div>
+      </div>
+
+      <div class="label">Question</div>
+      <p>Computers can only follow instructions.<br/>How can a computer decide between multiple choices?</p>
+
+      <p>Students discuss briefly with a partner.</p>
+      <p>Call on 1–2 students (pre-warn them).</p>
+
+      <div class="label">Transition</div>
+      <div class="quote">“Programmers solve this problem using something called conditional statements.”</div>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">Objective / Essential Question (state aloud)</h3>
+        <div class="sectiontime">2 minutes</div>
+      </div>
+
+      <div class="label">We Will:</div>
+      <p>Use if, elif, and else statements to control program behavior.</p>
+
+      <div class="label">I Will:</div>
+      <p>Write a program that changes what happens based on different conditions.</p>
+
+      <div class="label">Essential Question:</div>
+      <p>How can a computer make decisions based on conditions?</p>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">FOLLOW ALONG</h3>
+        <div class="sectiontime">10 minutes</div>
+      </div>
+
+      <p>Log into CMU Academy and open Unit 4.1 Notes - We will go through this together</p>
+
+      <h3>Using "else"</h3>
+      <p>Let's start with this example for review:</p>
+
+      <pre>Label("Using 'else' demo #2", 200, 20, size=20, bold=True)
+Label('Cyan on left, gold on right', 200, 40, size=16)
+Line(200, 50, 200, 400, fill='lightGray')
+
+def onMousePress(x, y):
+    if (x &lt; 200):
+        Circle(x, y, 30, fill='cyan')
+    else:
+        Circle(x, y, 30, fill='gold')</pre>
+
+      <p>Run the code and see how you get cyan circles on the left, and gold circles on the right. Look closely at line 8 (the else statement). We use else after an if to run code if the previous test was False. In this example, since the previous if tested if the click was on the left, the else tests if the click was on the right.</p>
+
+      <h3>Using "elif"</h3>
+      <p>Right after we use if, we can use elif to add another test that will only be tested if the first test was False. For example:</p>
+
+      <pre>Label('Using "elif" demo #1', 200, 20, size=20, bold=True)
+Label('Cyan on left, black in middle, gold on right', 200, 40, size=16)
+Line(100, 50, 100, 400, fill='lightGray')
+Line(300, 50, 300, 400, fill='lightGray')
+
+def onMousePress(x, y):
+    if (x &lt; 100):
+        Circle(x, y, 30, fill='cyan')
+    elif (x &lt; 300):
+        Circle(x, y, 30, fill=None, border='black')
+    else:
+        Circle(x, y, 30, fill='gold')</pre>
+
+      <p>Run the code and see how you get cyan circles on the left, black rings in the middle, and gold circles on the right. Look closely at line 9 (the elif statement). This test only happens if the first test is False. So we can only get black rings if we do not get cyan circles.</p>
+
+      <p>elif is a short form of saying "else if". This is similar to what we do in real life if we have more than 2 choices. For example, since there are more than 2 types of weather, we might want to program something like this:</p>
+
+      <pre>if (isSnowing == True):
+    bring('jacket')
+elif (isRaining == True):
+    bring('umbrella')
+else:
+    wear('sunglasses')</pre>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">Checkpoint 1</h3>
+        <div class="sectiontime">3 minutes</div>
+      </div>
+
+      <p><strong>What happens in the previous example if we used if instead of elif?</strong></p>
+      <p><strong>USE ABCD CARDS</strong></p>
+      <ul>
+        <li>The cyan circles are drawn with a black ring. (CORRECT!)</li>
+        <li>Only black rings are drawn.</li>
+        <li>Both the cyan circles and the gold circles are drawn with black rings.</li>
+        <li>Nothing changes.</li>
+      </ul>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">Kinesthetic Conditional Activity</h3>
+        <div class="sectiontime">10 minutes</div>
+      </div>
+
+      <p><strong>Explain:</strong> “We’re going to act like a computer program.” Students stand.</p>
+
+      <h3>Prompt 1 (Birth Months)</h3>
+      <ul>
+        <li><strong>IF</strong> you were born before March → move to the left side of the room.</li>
+        <li><strong>ELIF</strong> you were born in April, May, or June → move to the middle.</li>
+        <li><strong>ELSE</strong> → move to the right side.</li>
+      </ul>
+
+      <div class="label">Ask:</div>
+      <ul>
+        <li>“Which group was the IF group?”</li>
+        <li>“Which group was ELIF?”</li>
+        <li>“Who ended up in ELSE?”</li>
+      </ul>
+
+      <div class="label">Explain:</div>
+      <div class="quote">“The computer checks conditions in order.”</div>
+
+      <h3>Prompt 2 (Clothing Example)</h3>
+      <p>Students reset.</p>
+      <ul>
+        <li><strong>IF</strong> you are wearing black shoes → move left</li>
+        <li><strong>ELIF</strong> you are wearing white shoes → move center</li>
+        <li><strong>ELSE</strong> → move right</li>
+      </ul>
+
+      <div class="label">Ask:</div>
+      <div class="quote">“Why didn't the computer check the second condition for some of you?”</div>
+
+      <p class="small">Goal: reinforce conditional order.</p>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">FOLLOW ALONG PART 2</h3>
+        <div class="sectiontime">10 minutes</div>
+      </div>
+
+      <h3>Using more than one "elif"</h3>
+      <p>We can use as many elif's as we need. Each elif is only tested if none of the previous tests were True. For example:</p>
+
+      <pre>Label("Using 'elif' demo #2", 200, 20, size=20, bold=True)
+Label('Now with 4 colors!', 200, 40, size=16)
+Line(100, 50, 100, 400, fill='lightGray')
+Line(200, 50, 200, 400, fill='lightGray')
+Line(300, 50, 300, 400, fill='lightGray')
+
+def onMousePress(x, y):
+    if (x &lt; 100):
+        Circle(x, y, 30, fill='cyan')
+    elif (x &lt; 200):
+        Circle(x, y, 30, fill='plum')
+    elif (x &lt; 300):
+        Circle(x, y, 30, fill='teal')
+    else:
+        Circle(x, y, 30, fill='gold')</pre>
+
+      <h3>Another example</h3>
+      <p>Let's look at one more example:</p>
+
+      <pre>Label("Using 'elif' demo #3", 200, 20, size=20, bold=True)
+Label('Click in each of the 4 squares', 200, 40, size=16)
+Line(200, 50, 200, 400, fill='lightGray')
+Line(0, 200, 400, 200, fill='lightGray')
+
+def onMousePress(x, y):
+    if (x &lt; 200):
+        Circle(x, y, 30, fill='cyan')
+    elif (y &lt; 200):
+        Circle(x, y, 30, fill=None, border='black')</pre>
+
+      <div class="label">Question:</div>
+      <p>Why do we only get black rings in the top-right and not in the top-left?</p>
+
+      <div class="label">Answer:</div>
+      <p>The if tests if the click is on the left, and we can only get to the elif if that test was False, so only if the click was on the right. Then the elif tests if the click is on the top, so that test only passes if the click is both on the right and on the top.</p>
+
+      <div class="label">Checkpoint 2</div>
+      <p>In the previous example, which of the four squares changes behavior if we used if instead of elif? (Try it first!)</p>
+      <ul>
+        <li>The bottom-right square (black rings are drawn).</li>
+        <li>Nothing changes.</li>
+        <li>The top-left square (the cyan circles are drawn with a black ring). (CORRECT!)</li>
+        <li>The top-right square (black rings are not drawn).</li>
+      </ul>
+
+      <div class="label">Think–Pair–Share</div>
+      <p>Why does the order of IF → ELIF → ELSE matter in a program?</p>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">ABCD Card Formative Assessment Part 1</h3>
+        <div class="sectiontime">5 minutes</div>
+      </div>
+
+      <div class="label">Display question:</div>
+
+      <h3>Question 1</h3>
+      <p>What does elif mean?</p>
+      <ul>
+        <li>A - Run code when the condition is true</li>
+        <li>B - Another condition checked only if previous ones are false</li>
+        <li>C - A loop</li>
+        <li>D - A variable</li>
+      </ul>
+      <p><strong>Correct answer:</strong> B</p>
+
+      <div class="hr"></div>
+
+      <h3>Question 2</h3>
+      <p>What happens if we replace elif with if?</p>
+      <ul>
+        <li>A - Nothing changes</li>
+        <li>B - Multiple conditions may run</li>
+        <li>C - The program crashes</li>
+        <li>D - The program runs faster</li>
+      </ul>
+      <p><strong>Correct answer:</strong> B</p>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">Short Group Activity</h3>
+        <div class="sectiontime">5–7 minutes</div>
+      </div>
+
+      <p>This works well right before the Stoplight coding activity.</p>
+      <p><strong>Activity: Human Algorithm</strong></p>
+      <p>Put students into groups of 3–4.</p>
+      <p>Give each group this scenario:</p>
+      <p>Create a conditional algorithm for deciding what to wear.</p>
+
+      <div class="label">Example structure:</div>
+      <pre>IF ______
+ELIF ______
+ELSE ______</pre>
+
+      <div class="label">Example responses students might produce:</div>
+      <pre>IF temperature &lt; 40 → wear a jacket
+ELIF temperature &lt; 70 → wear a hoodie
+ELSE → wear a t-shirt</pre>
+
+      <p>Groups share one example.</p>
+      <p>Quickly connect:</p>
+      <div class="quote">"You just wrote a real-world algorithm using conditionals."</div>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">Stoplight Coding Exercise</h3>
+        <div class="sectiontime">20 minutes</div>
+      </div>
+
+      <p>Students complete the exercise.</p>
+      <p><strong>Unit 4.1.2 “Stoplight” Exercise:</strong></p>
+
+      <p><strong>Red light! Green light!</strong><br/>
+      Press the mouse to change the stoplight. Notice how after three mouse presses, it ends up at a red light again.</p>
+
+      <div class="label">Students are given:</div>
+      <pre>app.background = 'deepSkyBlue'
+
+Line(0, 120, 400, 120, fill='darkGrey', lineWidth=90)
+Rect(85, 20, 230, 360, fill=rgb(30, 30, 30))
+
+redLight = Circle(200, 90, 50, fill='red')
+yellowLight = Circle(200, 200, 50, fill='gold', opacity=30)
+greenLight = Circle(200, 310, 50, fill='limeGreen', opacity=30)
+
+def onMousePress(mouseX, mouseY):
+    # Change the opacity of the lights so that the stoplight changes color when
+    # the mouse is pressed!
+    ### Place Your Code Here ###
+    pass</pre>
+
+      <div class="label">They must add:</div>
+      <pre>if (redLight.opacity == 100):
+    redLight.opacity = 30
+    greenLight.opacity = 100
+elif (greenLight.opacity == 100):
+    greenLight.opacity = 30
+    yellowLight.opacity = 100
+else:
+    yellowLight.opacity = 30
+    redLight.opacity = 100</pre>
+
+      <p>Circulate giving feedback.</p>
+
+      <div class="callout">
+        <p><strong>Early Finisher Challenge (optional)</strong></p>
+        <p>Use “Docs + Colors” and modify the program so that the light changes automatically</p>
+        <p class="small">Hint: Look up “onStep()” and “sleep()”</p>
+      </div>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">ABCD Check Part 2</h3>
+        <div class="sectiontime">3 minutes</div>
+      </div>
+
+      <p><strong>Display:</strong></p>
+      <p>Which part of a conditional always runs if none of the conditions are true?</p>
+      <ul>
+        <li>A - if</li>
+        <li>B - elif</li>
+        <li>C - else</li>
+        <li>D - loop</li>
+      </ul>
+      <p><strong>Correct answer:</strong> C</p>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">TIME PERMITTING: Optional Activity #1 (Fun + Fast)</h3>
+        <div class="sectiontime">5 minutes</div>
+      </div>
+
+      <p><strong>Conditional Guessing Game (5 minutes) USE ABCD CARDS</strong></p>
+      <p><strong>Display this:</strong></p>
+
+      <pre>if (x &lt; 10):
+   result = "BLUE TRIANGLE"
+elif (x &lt; 50):
+   result = "RED RECTANGLE"
+else:
+   result = "GREEN OVAL"</pre>
+
+      <div class="label">Ask:</div>
+      <ul>
+        <li>"What would the program output if x = 45?"  ANSWER: GREEN OVAL</li>
+        <li>"What would the program output if x = 10?"  ANSWER: RED TRIANGLE</li>
+        <li>"What would the program output if x = 50?"  ANSWER: GREEN OVAL</li>
+      </ul>
+
+      <p>Students hold up ABCD cards.</p>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">Optional Activity #2 (Very Quick)</h3>
+        <div class="sectiontime">3 minutes</div>
+      </div>
+
+      <p><strong>Bug Finder</strong></p>
+      <p><strong>Display broken code:</strong></p>
+
+      <pre>if (x &lt; 100):
+   color = 'red'
+if (x &lt; 200):
+   color = 'blue'
+else:
+   color = 'green'</pre>
+
+      <div class="label">Ask:</div>
+      <p>What is the bug?</p>
+
+      <p>Students discuss with partner.</p>
+
+      <div class="label">Answer:</div>
+      <p>elif should be used instead of the second if.</p>
+
+      <p>This reinforces the key concept.</p>
+    </div>
+
+    <div class="section tight">
+      <div class="sectionhead">
+        <h3 class="sectiontitle">Exit Ticket</h3>
+        <div class="sectiontime">5 minutes</div>
+      </div>
+
+      <p><strong>Quick Write and Confidence Survey Exit Ticket (Fundamental 5)</strong></p>
+      <p>Students write on paper.</p>
+
+      <div class="label">Students write on paper.</div>
+      <p>Why do programmers use elif instead of multiple if statements?<br/>
+      <strong>or</strong><br/>
+      Describe a real-world situation that could be represented with if, elif, and else.</p>
+
+      <p>Students write 3–4 sentences.</p>
+      <p>Collect or randomly call on students if time permits.</p>
+    </div>
+
+    <div class="small" style="margin: 12px 0 30px;">
+      Print tip: Use your browser’s print dialog and choose “Save as PDF” if you want a clean printable copy.
+    </div>
+  </div>
+</body>
+</html>
