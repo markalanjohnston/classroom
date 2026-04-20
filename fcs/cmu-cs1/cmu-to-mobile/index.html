@@ -1,0 +1,956 @@
+---
+---
+
+<!-- File: classroom/fcs/cmu-cs1/cmu-to-mobile/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refactoring a Python Graphics Project into a Mobile App — FCS</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+  />
+  <style>
+    /* Reset & Base */
+    article *, article *::before, article *::after { box-sizing: border-box; }
+
+    :root {
+      --ink:       #1a1208;
+      --body:      #3b2f1e;
+      --muted:     #7a6650;
+      --rule:      #e0d6c8;
+      --bg:        #faf8f4;
+      --card:      #ffffff;
+      --accent:    #b85c1a;
+      --accent-lt: #fdf0e6;
+      --code-bg:   #f0ece6;
+      --tag-bg:    #e8f0e8;
+      --tag-fg:    #2a5c2a;
+      --max:       780px;
+      --font:      Georgia, 'Times New Roman', serif;
+      --mono:      'Menlo', 'Consolas', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--body);
+      line-height: 1.75;
+      font-size: 18px;
+    }
+
+    /* Layout */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Breadcrumb */
+    .breadcrumb-strip {
+      background: #34495e;
+      color: #fff;
+      padding: 0.6rem 1.25rem;
+      font-family: sans-serif;
+      font-size: 0.85rem;
+    }
+    .breadcrumb-strip a { color: #c8bfb0; text-decoration: none; }
+    .breadcrumb-strip a:hover { color: #fff; }
+    .breadcrumb-strip .sep { margin: 0 0.5rem; color: rgba(255,255,255,0.5); }
+
+    /* Hero */
+    .site-header {
+      background: var(--ink);
+      color: #f5ede0;
+      padding: 3rem 1.25rem 2.5rem;
+      text-align: center;
+    }
+    .site-header .kicker {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c8a87a;
+      margin-bottom: 0.9rem;
+    }
+    .site-header h1 {
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: normal;
+      line-height: 1.25;
+      max-width: 640px;
+      margin: 0 auto 1rem;
+    }
+    .site-header .deck {
+      font-size: 1rem;
+      color: #c8bfb0;
+      max-width: 560px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+    .tag {
+      font-family: sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.12);
+      color: #e8d8c0;
+      border-radius: 3px;
+      padding: 0.2em 0.6em;
+    }
+
+    /* TOC */
+    .toc-bar {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 0.75rem 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .toc-bar nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1.25rem;
+    }
+    .toc-bar a {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      color: #c8bfb0;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .toc-bar a:hover { color: #fff; }
+
+    /* Article body */
+    article { padding: 3rem 0 4rem; }
+    section { margin-bottom: 3.5rem; }
+
+    article h2 {
+      font-size: 1.45rem;
+      font-weight: normal;
+      color: var(--ink);
+      border-bottom: 2px solid var(--rule);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.1rem;
+      margin-top: 0;
+    }
+    article h3 {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: var(--ink);
+      margin: 1.5rem 0 0.5rem;
+    }
+    article p { margin: 0 0 1rem; }
+    article ul, article ol { padding-left: 1.5rem; margin: 0 0 1rem; }
+    article li { margin-bottom: 0.35rem; }
+    article a { color: var(--accent); }
+    article a:hover { text-decoration: underline; }
+    article strong { color: var(--ink); }
+
+    /* Callout boxes */
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: var(--accent-lt);
+      padding: 0.9rem 1.1rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    .callout.tip { border-color: #2a7a2a; background: var(--tag-bg); }
+    .callout p:last-child { margin-bottom: 0; }
+    .callout-label {
+      font-family: sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .callout .callout-label { color: var(--accent); }
+    .callout.tip .callout-label { color: #2a7a2a; }
+
+    /* Screenshots */
+    .screenshot-wide {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      display: block;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .caption {
+      font-family: sans-serif;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .phone-row {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      margin: 1.25rem 0 0.5rem;
+      justify-content: center;
+    }
+    .phone-row figure { flex: 0 1 220px; text-align: center; margin: 0; }
+    .phone-row img {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+    }
+    .phone-row figcaption {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.25rem 0 0.5rem;
+      align-items: start;
+    }
+    .compare figure { text-align: center; margin: 0; }
+    .compare img {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+    }
+    .compare figcaption {
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      font-style: italic;
+    }
+
+    /* Concept table */
+    .concept-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0 1.5rem;
+      font-size: 0.9rem;
+    }
+    .concept-table thead tr { background: var(--ink); color: #f5ede0; }
+    .concept-table th {
+      text-align: left;
+      padding: 0.65rem 0.9rem;
+      font-family: sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .concept-table td {
+      padding: 0.55rem 0.9rem;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .concept-table tr:nth-child(even) td { background: #f7f3ee; }
+    .concept-table code {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      background: var(--code-bg);
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+    }
+
+    /* Error log */
+    .error-log { margin: 1.25rem 0; }
+    .error-round {
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .error-round-header {
+      background: var(--code-bg);
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .round-num {
+      font-family: sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .error-msg {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: #8b1a1a;
+      background: none;
+    }
+    .error-round-body {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+    .error-round-body p { margin-bottom: 0.4rem; }
+    .error-round-body p:last-child { margin-bottom: 0; }
+    .lesson-tag {
+      font-family: sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--tag-fg);
+      background: var(--tag-bg);
+      padding: 0.15em 0.5em;
+      border-radius: 3px;
+      margin-right: 0.35rem;
+    }
+
+    /* Phases */
+    .phases { display: flex; flex-direction: column; gap: 0; margin: 1.25rem 0; }
+    .phase {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .phase:last-child { border-bottom: none; }
+    .phase-num {
+      flex-shrink: 0;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #f5ede0;
+      font-family: sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+    }
+    .phase-content h3 { margin: 0 0 0.35rem; font-size: 1rem; }
+    .phase-content p { margin: 0; font-size: 0.92rem; }
+    .phase-content ul { margin: 0.35rem 0 0; font-size: 0.92rem; }
+
+    /* Tool chain */
+    .tool-chain {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+      justify-content: center;
+    }
+    .tool-pill {
+      background: var(--ink);
+      color: #f5ede0;
+      font-family: sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .tool-pill .tool-name { font-size: 1rem; display: block; }
+    .tool-pill .tool-sub { font-size: 0.65rem; color: #c8bfb0; letter-spacing: 0.04em; display: block; margin-top: 0.1rem; }
+    .arrow { font-size: 1.5rem; color: var(--muted); font-family: sans-serif; }
+
+    /* Objectives grid */
+    .obj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+    .obj-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      font-size: 0.88rem;
+    }
+    .obj-card .obj-icon {
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .obj-card p { margin: 0; line-height: 1.5; }
+
+    /* Lesson footer (keep distinct from global site footer) */
+    .lesson-footer {
+      background: var(--ink);
+      color: #9a8878;
+      font-family: sans-serif;
+      font-size: 0.78rem;
+      text-align: center;
+      padding: 2rem 1.25rem;
+      line-height: 1.7;
+    }
+    .lesson-footer a { color: #c8a87a; }
+
+    /* Code blocks */
+    article pre {
+      background: var(--code-bg);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      margin: 1rem 0 1.5rem;
+    }
+    article code { font-family: var(--mono); font-size: 0.82rem; }
+
+    /* Responsive */
+    @media (max-width: 540px) {
+      .compare { grid-template-columns: 1fr; }
+      .phone-row { flex-direction: column; align-items: center; }
+      .phone-row figure { flex: 0 1 280px; }
+      .toc-bar nav { gap: 0.15rem 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+{% include navigation.html %}
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-strip">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <a href="../../../"><i class="bi bi-house"></i> Home</a>
+    <span class="sep">/</span>
+    <a href="../../">FCS</a>
+    <span class="sep">/</span>
+    <a href="../">CMU CS1</a>
+    <span class="sep">/</span>
+    <span>CMU Graphics → Mobile App</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="site-header">
+  <div class="kicker">Enrichment Activity &nbsp;·&nbsp; Fundamentals of Computer Science</div>
+  <h1>Refactoring a Python Graphics Project into a Mobile App</h1>
+  <p class="deck">
+    Translate a CMU Graphics project into a working React Native mobile app — with help from AI.
+  </p>
+  <div class="tags">
+    <span class="tag">High School</span>
+    <span class="tag">Python → JavaScript</span>
+    <span class="tag">CMU CS Academy</span>
+    <span class="tag">CodeHS</span>
+    <span class="tag">React Native</span>
+    <span class="tag">AI-Assisted</span>
+  </div>
+</header>
+
+<!-- STICKY TOC -->
+<div class="toc-bar">
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#original">Original Project</a>
+    <a href="#toolchain">Tool Chain</a>
+    <a href="#concepts">Concept Map</a>
+    <a href="#ai-process">AI Process</a>
+    <a href="#finished-app">Finished App</a>
+    <a href="#classroom">Classroom Use</a>
+    <a href="#objectives">Objectives</a>
+    <a href="#resources">Resources</a>
+  </nav>
+</div>
+
+<!-- ARTICLE -->
+<article>
+<div class="wrap">
+
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>
+      This enrichment activity extends the CMU CS Academy programming semester by asking students to take an
+      existing interactive Python program — one they have already written in CMU CS Academy — and
+      <strong>refactor it into a mobile app</strong> using React Native in CodeHS. The refactoring is done
+      collaboratively with an AI assistant, making the activity also a lesson in how to work with AI tools
+      effectively.
+    </p>
+    <div class="callout">
+      <div class="callout-label">Key idea</div>
+      <p>
+        The goal is not to memorize new syntax. It is to recognize that
+        <strong>the same programming concepts — events, state, conditionals, loops —
+        exist across every language and platform.</strong> Refactoring makes that
+        visible in a concrete, hands-on way.
+      </p>
+    </div>
+    <p>
+      This lesson works especially well for classes that use tablets, since the finished app runs in the
+      Expo Go mobile app and students can see their code on a real device.
+    </p>
+  </section>
+
+  <section id="original">
+    <h2>The Original CMU Project</h2>
+    <p>
+      The example project is a CMU CS Academy drawing exercise called <strong>Mickey Mouse</strong>.
+      The project draws two versions of Mickey stacked on top of each other: a retro black-and-white version on top,
+      and a modern colorful version underneath. Clicking any retro body part removes it, revealing the modern
+      version piece by piece.
+    </p>
+    <p>This project is a great candidate for refactoring because it uses several foundational concepts that translate directly to mobile:</p>
+    <ul>
+      <li>Drawing with basic shapes (ovals, circles, rectangles)</li>
+      <li>Grouping shapes into logical parts</li>
+      <li>Event handling (<code>onMousePress</code>)</li>
+      <li>State — which parts are visible or hidden</li>
+      <li>Layering — drawing order determines what appears on top</li>
+    </ul>
+
+    <img src="assets/CMUSANDBOX.png" alt="CMU CS Academy IDE showing the Mickey Mouse project" class="screenshot-wide" />
+    <p class="caption">
+      The CMU CS Academy IDE — Python code on the left, interactive canvas on the right.
+      The retro black-and-white Mickey is drawn on top of the modern colorful version.
+    </p>
+
+    <div class="callout tip">
+      <div class="callout-label">For teachers</div>
+      <p>
+        The CMU project starter in <a href="examples/cmu-starter.py"><code>examples/cmu-starter.py</code></a>
+        has the solution code <strong>redacted</strong>. The key logic (<code>onMousePress</code> handler and the
+        <code>retroParts</code> list) is replaced with a stub so you can work through it before sharing with students.
+        The drawing setup and shape definitions are left intact.
+      </p>
+    </div>
+
+    <div class="compare">
+      <figure>
+        <img src="assets/cmu-canvas-original.png" alt="CMU CS Academy canvas output — colorful modern Mickey" />
+        <figcaption>CMU CS Academy canvas output — the modern colorful Mickey revealed</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/app-codehs-modern-revealed.png" alt="React Native app — modern Mickey revealed after tapping" />
+        <figcaption>React Native app — the same moment, on mobile</figcaption>
+      </figure>
+    </div>
+    <p class="caption">Same concept, two platforms. The drawing logic is the same; only the framework changed.</p>
+  </section>
+
+  <section id="toolchain">
+    <h2>The Tool Chain</h2>
+    <p>The activity uses three tools in sequence. Each tool has a specific role.</p>
+
+    <div class="tool-chain">
+      <div class="tool-pill">
+        <span class="tool-name">CMU CS Academy</span>
+        <span class="tool-sub">Write &amp; run original Python project</span>
+      </div>
+      <span class="arrow">→</span>
+      <div class="tool-pill">
+        <span class="tool-name">Claude.ai</span>
+        <span class="tool-sub">Paste code · Prompt to refactor · Debug errors</span>
+      </div>
+      <span class="arrow">→</span>
+      <div class="tool-pill">
+        <span class="tool-name">CodeHS Sandbox</span>
+        <span class="tool-sub">Paste JSX · Run · Test on device via Expo Go</span>
+      </div>
+    </div>
+
+    <p>
+      Students copy their finished Python code from CMU CS Academy and paste it into
+      <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a> with a prompt asking it to refactor
+      the code into a React Native mobile app for CodeHS. They then paste the generated JSX into the
+      <a href="https://codehs.com/sandbox" target="_blank" rel="noopener">CodeHS sandbox</a>, run it, and debug any
+      errors — copying each error message back to Claude for help.
+    </p>
+
+    <div class="callout tip">
+      <div class="callout-label">For teachers</div>
+      <p>
+        This activity works well on <strong>tablets</strong>. Students can write the original project on any
+        device with a browser, then view the finished mobile app in the <strong>Expo Go</strong> app on their
+        tablet using the shareable CodeHS link.
+      </p>
+    </div>
+  </section>
+
+  <section id="concepts">
+    <h2>Concept Mapping: Python → React Native</h2>
+    <p>
+      The core insight of this activity is that every CMU Graphics concept has a direct equivalent in React
+      Native. The syntax looks completely different, but the underlying idea is the same.
+    </p>
+
+    <table class="concept-table">
+      <thead>
+        <tr>
+          <th>CMU Graphics (Python)</th>
+          <th>React Native (JavaScript)</th>
+          <th>The Idea</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>Oval(cx, cy, w, h)</code></td><td><code>&lt;View&gt;</code> with <code>borderRadius</code></td><td>Draw an oval / ellipse shape</td></tr>
+        <tr><td><code>Rect(x, y, w, h)</code></td><td><code>&lt;View&gt;</code> (no borderRadius)</td><td>Draw a rectangle</td></tr>
+        <tr><td><code>Group(...)</code></td><td>Component wrapping child views</td><td>Group related shapes together</td></tr>
+        <tr><td><code>shape.clear()</code></td><td><code>this.setState({ part: false })</code></td><td>Remove / hide a shape or group</td></tr>
+        <tr><td><code>def onMousePress(mouseX, mouseY):</code></td><td><code>onPress</code> on <code>TouchableWithoutFeedback</code></td><td>Respond to a click / tap</td></tr>
+        <tr><td>Variable storing shape visibility</td><td><code>this.state</code> boolean flags</td><td>Track which parts are visible</td></tr>
+        <tr><td>Drawing order (first = bottom)</td><td>Component order (first = bottom layer)</td><td>Control layering / z-order</td></tr>
+        <tr><td>Canvas background color</td><td><code>backgroundColor</code> on container <code>View</code></td><td>Set the background</td></tr>
+        <tr><td><code>app.background = 'lightYellow'</code></td><td><code>backgroundColor: 'lightyellow'</code></td><td>Same color, different syntax</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">Discussion prompt</div>
+      <p>
+        Ask students: <em>"Which concepts transferred directly? Which ones required a workaround? Why might a
+        mobile app handle events differently than a desktop canvas?"</em>
+      </p>
+    </div>
+
+    <h3>One concept that required a workaround</h3>
+    <p>
+      The CMU project uses <code>react-native-svg</code> — a library for drawing mathematically precise ellipses —
+      but that library is not available in the CodeHS sandbox. The workaround: React Native's core
+      <code>&lt;View&gt;</code> component can be made oval-shaped using <code>borderRadius</code>. It is not a
+      perfect ellipse, but it is close enough for this project and requires zero external dependencies. This is a
+      great example of a real engineering trade-off to discuss with students.
+    </p>
+  </section>
+
+  <section id="ai-process">
+    <h2>The AI Refactoring Process</h2>
+    <p>
+      The React Native version of this project was not written by hand. It was produced by pasting the Python
+      code into <a href="https://claude.ai" target="_blank" rel="noopener">Claude.ai</a> and iteratively debugging
+      the output until it ran correctly in CodeHS. The process took about
+      <strong>30 minutes and six rounds of error-fixing</strong>.
+    </p>
+    <p>
+      This is the most important thing for students to understand:
+      <strong>AI-generated code is a starting point, not a finished product.</strong>
+      Every round of debugging required reading an error, understanding it, and describing it clearly to the AI.
+      That is a real and valuable skill.
+    </p>
+
+    <div class="error-log">
+
+      <div class="error-round">
+        <div class="error-round-header">
+          <span class="round-num">Round 1</span>
+          <span class="error-msg">"Looks like you forgot to import AppRegistry on line 2!"</span>
+        </div>
+        <div class="error-round-body">
+          <p>CodeHS requires <code>AppRegistry.registerComponent()</code> to identify the root component. The initial output didn't include it.</p>
+          <p><span class="lesson-tag">Lesson</span> Platform-specific requirements aren't always obvious and may need to be discovered by running the code.</p>
+        </div>
+      </div>
+
+      <div class="error-round">
+        <div class="error-round-header">
+          <span class="round-num">Round 2</span>
+          <span class="error-msg">ReferenceError: App is not defined (275)</span>
+        </div>
+        <div class="error-round-body">
+          <p>The component was named <code>MickeyScreen</code>, but CodeHS expects the root component to be called <code>App</code>.</p>
+          <p><span class="lesson-tag">Lesson</span> Naming conventions matter. Always check platform documentation for required identifiers.</p>
+        </div>
+      </div>
+
+      <div class="error-round">
+        <div class="error-round-header">
+          <span class="round-num">Round 3</span>
+          <span class="error-msg">TypeError: _react2.default.useState is not a function (240)</span>
+        </div>
+        <div class="error-round-body">
+          <p>CodeHS runs an older React environment that does not support hooks at all. The entire component had to be rewritten using ES5 class syntax with <code>this.state</code> and <code>this.setState</code>.</p>
+          <p><span class="lesson-tag">Lesson</span> AI tools generate modern code. The target environment may have constraints. Understanding <em>why</em> an error occurs matters more than just accepting the fix.</p>
+        </div>
+      </div>
+
+      <div class="error-round">
+        <div class="error-round-header">
+          <span class="round-num">Round 4</span>
+          <span class="error-msg">Invariant Violation: Minified React error #130</span>
+        </div>
+        <div class="error-round-body">
+          <p>The initial version used <code>react-native-svg</code> to draw shapes. That library is not available in the CodeHS sandbox. All shapes were rewritten using core <code>&lt;View&gt;</code> components.</p>
+          <p><span class="lesson-tag">Lesson</span> When a dependency isn't available, look for what <em>is</em> available. Core platform primitives can often approximate the same result.</p>
+        </div>
+      </div>
+
+      <div class="error-round">
+        <div class="error-round-header">
+          <span class="round-num">Round 5</span>
+          <span class="error-msg">"No default export of 'app.js' to render"</span>
+        </div>
+        <div class="error-round-body">
+          <p>The CodeHS browser preview worked, but loading in the Expo app on a real device failed. The file was missing a proper module export. Both <code>module.exports = App</code> and <code>module.exports.default = App</code> were added to cover both CommonJS and ES module import styles.</p>
+          <p><span class="lesson-tag">Lesson</span> Browser previews and real device environments can have different requirements. Always test in the actual deployment context.</p>
+        </div>
+      </div>
+
+      <div class="error-round">
+        <div class="error-round-header">
+          <span class="round-num">Round 6</span>
+          <span class="error-msg">Layout works on phone but breaks in CodeHS preview</span>
+        </div>
+        <div class="error-round-body">
+          <p><code>Dimensions.get('window')</code> reads the physical device screen size at startup — not the CodeHS preview pane size. Switching to <code>onLayout</code> made the app respond to whatever container it is actually rendered inside.</p>
+          <p><span class="lesson-tag">Lesson</span> When building for multiple environments, measure the actual rendered container rather than assuming the screen size.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">Teaching tip</div>
+      <p>
+        Walk through this error log with students before they start their own refactoring. Set the expectation
+        that 5–6 rounds of debugging is <em>normal</em>, not a sign of failure. The skill being practiced is
+        reading an error message and describing it clearly — not getting it right on the first try.
+      </p>
+    </div>
+
+    <p>
+      The full conversation log is documented in
+      <a href="lesson/ai-refactoring-process.md"><code>lesson/ai-refactoring-process.md</code></a>.
+    </p>
+  </section>
+
+  <section id="finished-app">
+    <h2>The Finished App</h2>
+    <p>
+      The finished React Native app recreates the CMU project interaction on mobile: tap each retro
+      black-and-white body part to reveal the modern colorful Mickey underneath. A Reset button restores all the
+      retro parts so students can tap through again.
+    </p>
+
+    <img src="assets/CODEHS_SANDBOX.png" alt="CodeHS sandbox showing the finished React Native app" class="screenshot-wide" />
+    <p class="caption">
+      The CodeHS sandbox — React Native code on the left, the finished app preview on the right.
+      The Share button generates a link that opens in the Expo Go mobile app.
+    </p>
+
+    <div class="phone-row">
+      <figure>
+        <img src="assets/app-phone-retro-full.png" alt="App on phone — retro Mickey, all parts visible" />
+        <figcaption>Starting state — retro overlay fully intact</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/app-codehs-retro-overlay.png" alt="App in CodeHS preview — retro overlay" />
+        <figcaption>CodeHS preview — retro overlay</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/app-codehs-modern-revealed.png" alt="App in CodeHS preview — modern Mickey revealed" />
+        <figcaption>Modern colorful face revealed after tapping</figcaption>
+      </figure>
+    </div>
+
+    <div class="callout tip">
+      <div class="callout-label">Live demo</div>
+      <p>
+        The finished app is publicly viewable at:
+        <a href="https://codehs.com/sandbox/id/mickeyscreen-AtogQW" target="_blank" rel="noopener">codehs.com/sandbox/id/mickeyscreen-AtogQW</a>
+        — open this link in the Expo Go app on a tablet or phone to run it on a device.
+      </p>
+    </div>
+
+    <h3>What the code looks like</h3>
+    <p>
+      The complete, heavily commented React Native source is in
+      <a href="examples/react-native-example.jsx"><code>examples/react-native-example.jsx</code></a>. Every
+      section includes inline comments explaining the React Native concept being used and how it maps back to
+      the original CMU Graphics equivalent. It is designed to be readable by students who have never seen
+      JavaScript before.
+    </p>
+
+    <pre>
+// In CMU Graphics (starter — your code goes here):
+def onMousePress(mouseX, mouseY):
+    ### Solution code redacted — fill in your logic here ###
+    pass
+
+// In React Native — same idea, different syntax:
+App.prototype.clear = function(part) {
+    var u = {};
+    u[part] = false;       // e.g. u['face'] = false
+    this.setState(u);      // triggers a re-render with that part hidden
+};</pre>
+  </section>
+
+  <section id="classroom">
+    <h2>Classroom Implementation</h2>
+
+    <p><strong>Course:</strong> Fundamentals of Computer Science &nbsp;·&nbsp; <strong>Grade:</strong> 9–10</p>
+
+    <div class="phases">
+
+      <div class="phase">
+        <div class="phase-num">1</div>
+        <div class="phase-content">
+          <h3>Explore the Original Project</h3>
+          <p>Students run and analyze the CMU CS Academy project using the starter file (solution redacted). They identify:</p>
+          <ul>
+            <li>What variables track state</li>
+            <li>What event triggers the interaction</li>
+            <li>How shapes are grouped</li>
+            <li>What draw order controls layering</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">2</div>
+        <div class="phase-content">
+          <h3>Plan the Mobile Version</h3>
+          <p>Before opening Claude, students sketch out how the program should behave as a mobile app:</p>
+          <ul>
+            <li>What UI components are needed?</li>
+            <li>What replaces <code>onMousePress</code> on a touchscreen?</li>
+            <li>What state needs to be tracked?</li>
+            <li>How will the layout change from a square canvas to a phone screen?</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">3</div>
+        <div class="phase-content">
+          <h3>Refactor with AI</h3>
+          <p>Students paste their Python code into Claude.ai and prompt it to refactor for CodeHS React Native. They then:</p>
+          <ul>
+            <li>Paste the output into the CodeHS sandbox</li>
+            <li>Run it and read any errors</li>
+            <li>Copy each error back to Claude for help</li>
+            <li>Repeat until the app runs correctly</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-num">4</div>
+        <div class="phase-content">
+          <h3>Reflect</h3>
+          <p>Students discuss or write about:</p>
+          <ul>
+            <li>Which concepts transferred directly? Which required a workaround?</li>
+            <li>What did the AI get right on the first try? What did it get wrong?</li>
+            <li>What decisions did <em>you</em> make that the AI could not?</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Starter prompt for students</div>
+      <p>Give students this as a starting point for their Claude.ai conversation:</p>
+      <pre style="margin-top:0.5rem">Can you refactor this CMU CS Academy Python project into a React
+Native app for CodeHS? The app should run in the CodeHS sandbox
+using the Expo Go app. Here is the code:
+
+[paste code here]</pre>
+      <p>
+        Tell students to include the error message verbatim when debugging.
+        "It didn't work" is not enough — "Here is the exact error:" is.
+      </p>
+    </div>
+  </section>
+
+  <section id="objectives">
+    <h2>Learning Objectives</h2>
+    <div class="obj-grid">
+      <div class="obj-card">
+        <span class="obj-icon">🔁</span>
+        <p>Recognize how programming concepts translate across languages and platforms</p>
+      </div>
+      <div class="obj-card">
+        <span class="obj-icon">🐛</span>
+        <p>Practice debugging and iterative development in a real environment</p>
+      </div>
+      <div class="obj-card">
+        <span class="obj-icon">📱</span>
+        <p>Build and run a basic mobile application interface</p>
+      </div>
+      <div class="obj-card">
+        <span class="obj-icon">🤖</span>
+        <p>Collaborate effectively with an AI coding assistant</p>
+      </div>
+      <div class="obj-card">
+        <span class="obj-icon">🎨</span>
+        <p>Reflect on how design decisions change across platforms</p>
+      </div>
+      <div class="obj-card">
+        <span class="obj-icon">💬</span>
+        <p>Communicate technical problems clearly and precisely</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <h2>Resources &amp; Files</h2>
+    <ul>
+      <li>
+        <strong>CMU Python starter file (redacted)</strong> —
+        <a href="examples/cmu-starter.py"><code>examples/cmu-starter.py</code></a><br />
+        The original project with solution code stubbed out for teacher use.
+      </li>
+      <li>
+        <strong>Finished React Native app</strong> —
+        <a href="examples/react-native-example.jsx"><code>examples/react-native-example.jsx</code></a><br />
+        Fully commented JSX, ready to paste into the CodeHS sandbox.
+      </li>
+      <li>
+        <strong>AI collaboration log</strong> —
+        <a href="lesson/ai-refactoring-process.md"><code>lesson/ai-refactoring-process.md</code></a><br />
+        A walk-through of every error encountered during the refactoring, with lessons drawn from each one.
+      </li>
+      <li>
+        <strong>Live CodeHS demo</strong> —
+        <a href="https://codehs.com/sandbox/id/mickeyscreen-AtogQW" target="_blank" rel="noopener">codehs.com/sandbox/id/mickeyscreen-AtogQW</a>
+      </li>
+      <li>
+        <strong>CMU CS Academy</strong> —
+        <a href="https://academy.cs.cmu.edu/" target="_blank" rel="noopener">academy.cs.cmu.edu</a>
+      </li>
+      <li>
+        <strong>Claude.ai</strong> —
+        <a href="https://claude.ai/" target="_blank" rel="noopener">claude.ai</a>
+      </li>
+      <li>
+        <strong>CodeHS</strong> —
+        <a href="https://codehs.com/" target="_blank" rel="noopener">codehs.com</a>
+      </li>
+    </ul>
+  </section>
+
+</div>
+</article>
+
+<footer class="lesson-footer">
+  <p>
+    Created as part of the <em>Computing Skills for Today's Middle School and High School Classrooms Workshop</em>.
+  </p>
+  <p style="margin-top:0.5rem;">
+    Questions or feedback? Email <a href="mailto:majohnst@episd.org">majohnst@episd.org</a>
+  </p>
+</footer>
+
+</body>
+</html>

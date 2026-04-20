@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp ../cmu-graphics-to-mobile-app/docs/assets/*.png fcs/cmu-cs1/cmu-to-mobile/assets/)",
+      "Bash(cp ../cmu-graphics-to-mobile-app/examples/cmu-starter.py fcs/cmu-cs1/cmu-to-mobile/examples/)",
+      "Bash(cp ../cmu-graphics-to-mobile-app/examples/react-native-example.jsx fcs/cmu-cs1/cmu-to-mobile/examples/)",
+      "Bash(cp ../cmu-graphics-to-mobile-app/lesson/ai-refactoring-process.md fcs/cmu-cs1/cmu-to-mobile/lesson/)"
+    ]
+  }
+}
