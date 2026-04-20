@@ -466,7 +466,7 @@
             <li><a href="#start"><span class="num">0</span> Start Here</a></li>
             <li><a href="#step1"><span class="num">1</span> Pick Your Project</a></li>
             <li><a href="#step2"><span class="num">2</span> Set Up Accounts</a></li>
-            <li><a href="#step3"><span class="num">3</span> Prompt Claude</a></li>
+            <li><a href="#step3"><span class="num">3</span> Prompt the AI</a></li>
             <li><a href="#step4"><span class="num">4</span> Run in CodeHS</a></li>
             <li><a href="#step5"><span class="num">5</span> Debug</a></li>
             <li><a href="#step6"><span class="num">6</span> Test on Phone</a></li>
@@ -483,7 +483,7 @@
 
           <p>You've spent a whole semester writing Python programs in CMU CS Academy — drawing shapes, responding to mouse clicks, tracking state with variables. In this project, you'll take one of those programs and <strong>turn it into a real mobile app</strong> that runs on your phone or tablet.</p>
 
-          <p>You will NOT be writing JavaScript by hand. Instead, you'll use <strong>Claude.ai</strong> (an AI assistant) to refactor your Python code into mobile code, then fix errors together until the app runs.</p>
+          <p>You will NOT be writing JavaScript by hand. Instead, you'll use an <strong>AI assistant of your choice</strong> — Claude, ChatGPT, Gemini, Microsoft Copilot, or whatever else is available on your network — to refactor your Python code into mobile code, then fix errors together until the app runs.</p>
 
           <h3>Here's what the finished thing looks like</h3>
           <img src="assets/app-phone-retro-full.png" alt="Finished app running on a phone" class="step-screenshot small" style="display: block; margin: 15px auto;" />
@@ -492,9 +492,9 @@
           <h3>What you're going to do</h3>
           <ul>
             <li>Pick a CMU CS Academy project you've already written (or use the example provided)</li>
-            <li>Copy it into Claude.ai and ask it to rebuild the project as a mobile app</li>
+            <li>Copy it into an AI assistant and ask it to rebuild the project as a mobile app</li>
             <li>Paste the new code into the <a href="https://codehs.com/sandbox" target="_blank" rel="noopener">CodeHS sandbox</a></li>
-            <li>When the code has errors (it will!), copy the error back to Claude and keep going</li>
+            <li>When the code has errors (it will!), paste the error back to the AI and keep going</li>
             <li>Once it runs, open it on your phone or tablet using the Expo Go app</li>
             <li>Write a short reflection about what transferred and what didn't</li>
           </ul>
@@ -506,7 +506,7 @@
 
           <div class="stuck-box">
             <h4><i class="bi bi-exclamation-triangle"></i> Warning: the AI will make mistakes</h4>
-            <p>Claude will not get it right on the first try. When I built the example project, it took <strong>6 rounds of fixing errors</strong>. That's normal. Your job is to read each error, describe it to Claude, and keep going. This is how real programmers work with AI.</p>
+            <p>The AI will not get it right on the first try. When I built the example project, it took <strong>6 rounds of fixing errors</strong>. That's normal. Your job is to read each error, describe it to the AI, and keep going. This is how real programmers work with AI.</p>
           </div>
 
           <div class="step-footer-nav">
@@ -593,9 +593,9 @@
             </div>
             <div class="tool-card">
               <div class="tool-icon"><i class="bi bi-robot"></i></div>
-              <h4>Claude.ai</h4>
-              <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 8px;">The AI that will refactor your code</p>
-              <a href="https://claude.ai" target="_blank" rel="noopener">Open Claude <i class="bi bi-box-arrow-up-right"></i></a>
+              <h4>An AI Assistant</h4>
+              <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 8px;">Your choice — pick one that works on your network</p>
+              <a href="#ai-options">See options below ↓</a>
             </div>
             <div class="tool-card">
               <div class="tool-icon"><i class="bi bi-box"></i></div>
@@ -603,6 +603,46 @@
               <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 8px;">Where your mobile app will run</p>
               <a href="https://codehs.com/sandbox" target="_blank" rel="noopener">Open CodeHS <i class="bi bi-box-arrow-up-right"></i></a>
             </div>
+          </div>
+
+          <h3 id="ai-options">Pick an AI assistant</h3>
+          <p>You can use any AI assistant for this project — they're all capable of the refactoring task. Which one you pick comes down to <strong>what's actually available on your school network</strong>. If one is blocked, try another.</p>
+
+          <div class="tool-grid">
+            <div class="tool-card">
+              <div class="tool-icon"><i class="bi bi-stars"></i></div>
+              <h4>Claude</h4>
+              <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 8px;">Anthropic. What the example in this lesson was built with.</p>
+              <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon"><i class="bi bi-chat-dots"></i></div>
+              <h4>ChatGPT</h4>
+              <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 8px;">OpenAI. Widely used and very capable.</p>
+              <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon"><i class="bi bi-google"></i></div>
+              <h4>Gemini</h4>
+              <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 8px;">Google. Often accessible if you have a Google account.</p>
+              <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon"><i class="bi bi-microsoft"></i></div>
+              <h4>Microsoft Copilot</h4>
+              <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 8px;">Often approved on school networks that use Microsoft 365.</p>
+              <a href="https://copilot.microsoft.com" target="_blank" rel="noopener">copilot.microsoft.com <i class="bi bi-box-arrow-up-right"></i></a>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <h4><i class="bi bi-info-circle"></i> If one is blocked, try another</h4>
+            <p>Different networks block different AI tools. You only need <strong>one</strong> to work. If your first choice loads a "blocked" page, move to the next one on the list. If all of them are blocked, ask your teacher which one to use.</p>
+          </div>
+
+          <div class="stuck-box">
+            <h4><i class="bi bi-shield-check"></i> Use the free / school-approved version</h4>
+            <p>You do not need a paid account. The free tier of any of these is plenty for this project. Do not pay for anything to complete this assignment.</p>
           </div>
 
           <h3>Create a React Native sandbox</h3>
@@ -631,7 +671,7 @@
 
           <div class="step-footer-nav">
             <a href="#step1" class="prev"><i class="bi bi-arrow-left"></i> Back</a>
-            <a href="#step3">Next: Prompt Claude <i class="bi bi-arrow-right"></i></a>
+            <a href="#step3">Next: Prompt the AI <i class="bi bi-arrow-right"></i></a>
           </div>
         </section>
 
@@ -639,17 +679,17 @@
              STEP 3 — PROMPT CLAUDE
         ═════════════════════════════════════════════════════════════ -->
         <section class="step-card" id="step3">
-          <h2><span class="step-badge">3</span> Ask Claude to Rebuild It as a Mobile App</h2>
+          <h2><span class="step-badge">3</span> Ask the AI to Rebuild It as a Mobile App</h2>
           <p class="step-time">⏱️ 5 minutes</p>
 
-          <p>This is where the magic starts. You're going to copy your CMU Python code and paste it into Claude with a specific prompt.</p>
+          <p>This is where the magic starts. You're going to copy your CMU Python code and paste it into the AI assistant you picked in Step 2, along with a specific prompt.</p>
 
           <ul class="do-list">
             <li>
               <strong>Copy all of your Python code</strong> from CMU CS Academy (Ctrl+A then Ctrl+C, or Cmd+A then Cmd+C on Mac)
             </li>
             <li>
-              <strong>Open Claude.ai</strong> and start a new chat
+              <strong>Open your AI assistant</strong> (Claude, ChatGPT, Gemini, Copilot — whichever one you're using) and start a new chat
             </li>
             <li>
               <strong>Paste this prompt</strong>, then paste your code at the end where it says <code>[paste your code here]</code>:
@@ -674,22 +714,22 @@ Here is my Python code:
 
           <div class="tip-box">
             <h4><i class="bi bi-magic"></i> Why this prompt is specific</h4>
-            <p>The constraints in this prompt come from 6 rounds of debugging I already did for you. Including them upfront saves Claude (and you) a lot of back-and-forth. If you skip them, you'll just hit those same errors yourself.</p>
+            <p>The constraints in this prompt come from 6 rounds of debugging I already did for you. Including them upfront saves the AI (and you) a lot of back-and-forth. If you skip them, you'll just hit those same errors yourself — no matter which AI you use.</p>
           </div>
 
           <ul class="do-list">
             <li>
-              <strong>Wait for Claude to respond.</strong> It will output a big block of JavaScript/JSX code.
+              <strong>Wait for the AI to respond.</strong> It will output a big block of JavaScript/JSX code.
             </li>
             <li>
-              <strong>Copy Claude's code</strong> (not the Python, the JSX it just wrote). Click the copy icon on Claude's code block, or select it all and copy.
+              <strong>Copy the AI's code</strong> (not the Python, the JSX it just wrote). Click the copy icon on the code block, or select it all and copy.
             </li>
           </ul>
 
           <div class="checkpoint">
             <h4><i class="bi bi-check2-square"></i> Before moving on — make sure:</h4>
             <ul>
-              <li>Claude has given you a big block of React Native code</li>
+              <li>The AI has given you a big block of React Native code</li>
               <li>You can see <code>class App extends React.Component</code> somewhere in the code</li>
               <li>You've copied the code to your clipboard</li>
             </ul>
@@ -716,7 +756,7 @@ Here is my Python code:
               <strong>Delete all the starter code</strong> that's already there (Ctrl+A, Delete)
             </li>
             <li>
-              <strong>Paste Claude's code</strong>
+              <strong>Paste the AI's code</strong>
             </li>
             <li>
               <strong>Click the Run button</strong> (usually a ▶ play icon at the top of the editor)
@@ -753,17 +793,17 @@ Here is my Python code:
              STEP 5 — DEBUG
         ═════════════════════════════════════════════════════════════ -->
         <section class="step-card" id="step5">
-          <h2><span class="step-badge">5</span> Debug With Claude (the Main Skill)</h2>
+          <h2><span class="step-badge">5</span> Debug With Your AI (the Main Skill)</h2>
           <p class="step-time">⏱️ 20–40 minutes (most of the project happens here)</p>
 
-          <p>This step is the real skill of the whole project. You're going to have a conversation with Claude where you describe problems and it suggests fixes.</p>
+          <p>This step is the real skill of the whole project. You're going to have a conversation with your AI assistant where you describe problems and it suggests fixes.</p>
 
           <h3>The debugging loop</h3>
           <p>Repeat this until the app works:</p>
 
           <ul class="do-list">
             <li><strong>Read the exact error message</strong> in CodeHS. Copy the full error — don't paraphrase.</li>
-            <li><strong>Go back to the Claude chat</strong> (same conversation, not a new one)</li>
+            <li><strong>Go back to your AI chat</strong> (same conversation as Step 3, not a new one)</li>
             <li><strong>Paste the error like this:</strong>
               <div class="copy-box" id="err-prompt">
 <button class="copy-btn" onclick="copyPrompt(this, 'err-prompt-text')">Copy</button><span id="err-prompt-text">I pasted your code into CodeHS and got this exact error:
@@ -773,14 +813,14 @@ Here is my Python code:
 Can you fix it?</span>
               </div>
             </li>
-            <li><strong>Copy the updated code</strong> Claude gives you</li>
+            <li><strong>Copy the updated code</strong> the AI gives you</li>
             <li><strong>Replace everything</strong> in CodeHS with the new code</li>
             <li><strong>Run it again</strong></li>
           </ul>
 
           <div class="tip-box">
             <h4><i class="bi bi-lightbulb"></i> Include the WHOLE error message, word for word</h4>
-            <p>"It didn't work" is not enough. "Here is the exact error: <em>TypeError: _react2.default.useState is not a function (240)</em>" gives Claude something to actually work with.</p>
+            <p>"It didn't work" is not enough. "Here is the exact error: <em>TypeError: _react2.default.useState is not a function (240)</em>" gives the AI something to actually work with.</p>
           </div>
 
           <h3>Errors you might see (and roughly what they mean)</h3>
@@ -788,37 +828,37 @@ Can you fix it?</span>
 
           <div class="error-example">
             <span class="err-msg">"Looks like you forgot to import AppRegistry"</span>
-            <p class="err-fix">Missing the line that tells CodeHS what to run. Ask Claude to add <code>AppRegistry.registerComponent</code>.</p>
+            <p class="err-fix">Missing the line that tells CodeHS what to run. Ask the AI to add <code>AppRegistry.registerComponent</code>.</p>
           </div>
 
           <div class="error-example">
             <span class="err-msg">ReferenceError: App is not defined</span>
-            <p class="err-fix">The main component is called something else (like <code>MickeyScreen</code>). Ask Claude to rename it to <code>App</code>.</p>
+            <p class="err-fix">The main component is called something else (like <code>MickeyScreen</code>). Ask the AI to rename it to <code>App</code>.</p>
           </div>
 
           <div class="error-example">
             <span class="err-msg">TypeError: _react2.default.useState is not a function</span>
-            <p class="err-fix">CodeHS doesn't support modern React hooks. Ask Claude to rewrite using ES5 class syntax with <code>this.state</code>.</p>
+            <p class="err-fix">CodeHS doesn't support modern React hooks. Ask the AI to rewrite using ES5 class syntax with <code>this.state</code>.</p>
           </div>
 
           <div class="error-example">
             <span class="err-msg">Invariant Violation: Minified React error #130</span>
-            <p class="err-fix">Code is using <code>react-native-svg</code>, which isn't available. Ask Claude to use <code>&lt;View&gt;</code> with <code>borderRadius</code> instead.</p>
+            <p class="err-fix">Code is using <code>react-native-svg</code>, which isn't available. Ask the AI to use <code>&lt;View&gt;</code> with <code>borderRadius</code> instead.</p>
           </div>
 
           <div class="error-example">
             <span class="err-msg">"No default export of 'app.js' to render"</span>
-            <p class="err-fix">Works in the CodeHS preview but not on a real phone. Ask Claude to add <code>module.exports.default = App</code>.</p>
+            <p class="err-fix">Works in the CodeHS preview but not on a real phone. Ask the AI to add <code>module.exports.default = App</code>.</p>
           </div>
 
           <div class="error-example">
             <span class="err-msg">Looks right on phone, wrong in CodeHS preview (or vice versa)</span>
-            <p class="err-fix">Hard-coded screen sizes. Ask Claude to use <code>onLayout</code> instead of <code>Dimensions.get</code>.</p>
+            <p class="err-fix">Hard-coded screen sizes. Ask the AI to use <code>onLayout</code> instead of <code>Dimensions.get</code>.</p>
           </div>
 
           <div class="stuck-box">
             <h4><i class="bi bi-question-circle"></i> If you're really stuck after 8+ rounds</h4>
-            <p>Try starting a fresh Claude chat with your ORIGINAL Python code and an even more specific prompt. Sometimes the conversation gets tangled and a clean restart helps. You can also compare against the <a href="examples/react-native-example.jsx" target="_blank">known-working example</a> to see what the final code should roughly look like.</p>
+            <p>Try starting a fresh chat with your ORIGINAL Python code and an even more specific prompt. Sometimes the conversation gets tangled and a clean restart helps. You can also try a <strong>different AI tool</strong> — sometimes one AI gets stuck on a problem another one solves easily. And you can compare against the <a href="examples/react-native-example.jsx" target="_blank">known-working example</a> to see what the final code should roughly look like.</p>
           </div>
 
           <div class="checkpoint">
@@ -873,7 +913,7 @@ Can you fix it?</span>
 
           <div class="stuck-box">
             <h4><i class="bi bi-exclamation-triangle"></i> Works in CodeHS preview but not on phone?</h4>
-            <p>This was "Round 5" and "Round 6" in the debugging log. Go back to Step 5 and tell Claude: <em>"It works in the CodeHS preview but not in Expo Go on my phone."</em></p>
+            <p>This was "Round 5" and "Round 6" in the debugging log. Go back to Step 5 and tell your AI: <em>"It works in the CodeHS preview but not in Expo Go on my phone."</em></p>
           </div>
 
           <div class="checkpoint">
@@ -914,12 +954,12 @@ Can you fix it?</span>
           </div>
 
           <div class="reflection-field">
-            <div class="q">3. What did Claude get WRONG on the first try, and how did you know it was wrong?</div>
-            <p style="margin: 0; font-size: 0.9rem; color: #6c757d;"><em>Describe at least one specific error, what the error message said, and how you figured out what to ask Claude to fix it.</em></p>
+            <div class="q">3. What did the AI get WRONG on the first try, and how did you know it was wrong?</div>
+            <p style="margin: 0; font-size: 0.9rem; color: #6c757d;"><em>Name which AI you used (Claude, ChatGPT, Gemini, Copilot, etc.). Describe at least one specific error, what the error message said, and how you figured out what to ask the AI to fix it.</em></p>
           </div>
 
           <div class="reflection-field">
-            <div class="q">4. What decision did YOU make during this project that Claude could not have made?</div>
+            <div class="q">4. What decision did YOU make during this project that the AI could not have made?</div>
             <p style="margin: 0; font-size: 0.9rem; color: #6c757d;"><em>What did you contribute that an AI can't? This is the most important question.</em></p>
           </div>
 
