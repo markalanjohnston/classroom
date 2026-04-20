@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conditional Statements — FCS · 3/5/26</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #030a18;
+      color: #fff;
+      font-family: 'Exo 2', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* ── Background ── */
+    #bg {
+      position: fixed;
+      inset: 0;
+      background: url('assets/dark_navy_blue_circuit_board_background.png') center / cover no-repeat;
+      z-index: 0;
+    }
+    #bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 8, 28, 0.74);
+    }
+
+    /* ── Deck ── */
+    #deck {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+    }
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 64px;
+      text-align: center;
+    }
+    .slide.active { display: flex; }
+
+    /* ── Global inline code ── */
+    code {
+      font-family: 'Courier New', 'Consolas', monospace;
+      color: #7dd8f8;
+      background: rgba(0, 80, 180, 0.25);
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-size: 0.88em;
+    }
+
+    /* ── Banner ── */
+    .banner {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.1rem, 2.6vw, 2rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #f5d020;
+      text-shadow: 0 0 16px rgba(245,208,32,.8), 0 0 40px rgba(245,208,32,.3);
+      background: linear-gradient(135deg, rgba(8,18,55,.96) 0%, rgba(4,25,72,.96) 100%);
+      border: 2px solid rgba(0,180,255,.5);
+      box-shadow: 0 0 20px rgba(0,180,255,.25), inset 0 0 30px rgba(0,50,140,.35);
+      border-radius: 8px;
+      padding: 11px 40px;
+      margin-bottom: 32px;
+    }
+
+    /* ── Question text ── */
+    .question {
+      font-size: clamp(1.2rem, 2.8vw, 2.1rem);
+      font-weight: 600;
+      line-height: 1.45;
+      color: #fff;
+      max-width: 900px;
+      margin-bottom: 24px;
+    }
+    .question em { font-style: normal; color: #f5d020; font-weight: 700; }
+
+    /* ── Instruction / sub-text ── */
+    .instruction {
+      font-size: clamp(0.9rem, 1.8vw, 1.25rem);
+      color: #7dd8f8;
+      letter-spacing: 0.03em;
+      opacity: .85;
+      max-width: 820px;
+    }
+
+    /* ── ABCD Answer bars ── */
+    .answer-bars {
+      width: 100%;
+      max-width: 860px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-top: 4px;
+    }
+    .bar {
+      display: flex;
+      align-items: stretch;
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: clamp(0.9rem, 1.85vw, 1.25rem);
+      font-weight: 600;
+      min-height: 56px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.5);
+      transition: box-shadow .3s, filter .3s;
+    }
+    .bar-letter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 62px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: rgba(255,255,255,.95);
+      background: rgba(0,0,0,.28);
+      padding: 0 8px;
+      flex-shrink: 0;
+    }
+    .bar-text {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      flex: 1;
+      text-align: left;
+      color: rgba(255,255,255,.95);
+    }
+    .bar-a { background: linear-gradient(90deg,#124fa0,#1a68d4); border: 1px solid rgba(90,170,255,.35); }
+    .bar-b { background: linear-gradient(90deg,#981515,#c42020); border: 1px solid rgba(255,90,90,.35);  }
+    .bar-c { background: linear-gradient(90deg,#0e6028,#179038); border: 1px solid rgba(90,220,110,.35); }
+    .bar-d { background: linear-gradient(90deg,#836000,#b08400); border: 1px solid rgba(255,210,60,.35); }
+    .bar.correct-reveal {
+      box-shadow: 0 0 0 3px #f5d020, 0 0 22px rgba(245,208,32,.6);
+      filter: brightness(1.25);
+    }
+    .reveal-hint {
+      margin-top: 12px;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      color: rgba(125,216,248,.38);
+    }
+
+    /* ── Time badge (top-right) ── */
+    .time-badge {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      color: #7dd8f8;
+      opacity: .5;
+    }
+
+    /* ── Timer (bottom-left, teacher-only) ── */
+    #timer-wrap {
+      position: fixed;
+      bottom: 18px;
+      left: 22px;
+      z-index: 10;
+    }
+    #timer {
+      font-family: 'Orbitron', sans-serif;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      color: rgba(125,216,248,.4);
+      transition: color .5s;
+    }
+    #timer.over { color: rgba(255,65,65,.7); }
+
+    /* ── Navigation (bottom-right) ── */
+    #nav {
+      position: fixed;
+      bottom: 18px;
+      right: 22px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #nav button {
+      background: rgba(0,30,80,.75);
+      border: 1px solid rgba(0,160,255,.35);
+      color: #7dd8f8;
+      border-radius: 6px;
+      padding: 5px 15px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .15s;
+      line-height: 1;
+    }
+    #nav button:hover  { background: rgba(0,70,180,.85); }
+    #nav button:disabled { opacity: .2; cursor: default; }
+    #counter {
+      color: rgba(125,216,248,.5);
+      font-size: .75rem;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: .08em;
+      min-width: 48px;
+      text-align: center;
+    }
+
+    /* ══════════════════════
+       SLIDE-SPECIFIC STYLES
+    ══════════════════════ */
+
+    /* Objectives */
+    .obj-rows { width: 100%; max-width: 820px; display: flex; flex-direction: column; gap: 12px; }
+    .obj-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(5,20,60,.6);
+      border: 1px solid rgba(0,160,255,.22);
+      border-radius: 10px;
+      padding: 13px 20px;
+      text-align: left;
+    }
+    .obj-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(.6rem,1.2vw,.8rem);
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #7dd8f8;
+      white-space: nowrap;
+      min-width: 106px;
+      padding-top: 3px;
+    }
+    .obj-text {
+      font-size: clamp(.95rem,1.9vw,1.25rem);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .obj-eq .obj-label { color: #f5d020; }
+    .obj-eq .obj-text  { font-style: italic; color: rgba(255,255,255,.9); }
+
+    /* Follow Along topics */
+    .fa-topics { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 12px; }
+    .fa-topic {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(5,20,60,.5);
+      border: 1px solid rgba(0,160,255,.2);
+      border-radius: 8px;
+      padding: 13px 20px;
+      font-size: clamp(.95rem,1.9vw,1.25rem);
+      font-weight: 600;
+      text-align: left;
+    }
+    .fa-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #7dd8f8;
+      box-shadow: 0 0 8px #7dd8f8;
+      flex-shrink: 0;
+    }
+
+    /* Kinesthetic */
+    .kine-section { width: 100%; max-width: 920px; margin-bottom: 14px; }
+    .kine-label {
+      font-size: clamp(.7rem,1.3vw,.9rem);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(125,216,248,.55);
+      margin-bottom: 9px;
+    }
+    .kine-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 11px; }
+    .kine-col { border-radius: 10px; padding: 13px 12px; text-align: center; }
+    .kine-if   { background: rgba(18,79,160,.35);  border: 1px solid rgba(90,170,255,.4); }
+    .kine-elif { background: rgba(100,18,180,.35); border: 1px solid rgba(180,90,255,.4); }
+    .kine-else { background: rgba(140,90,0,.35);   border: 1px solid rgba(255,200,50,.4); }
+    .kine-keyword {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1rem,2.4vw,1.7rem);
+      margin-bottom: 6px;
+    }
+    .kine-if   .kine-keyword { color: #7dd8f8; text-shadow: 0 0 10px rgba(125,216,248,.5); }
+    .kine-elif .kine-keyword { color: #d580ff; text-shadow: 0 0 10px rgba(213,128,255,.5); }
+    .kine-else .kine-keyword { color: #f5d020; text-shadow: 0 0 10px rgba(245,208,32,.5);  }
+    .kine-cond { font-size: clamp(.78rem,1.45vw,1rem); color: rgba(255,255,255,.85); margin-bottom: 6px; line-height: 1.3; }
+    .kine-dir  { font-size: clamp(.82rem,1.5vw,1.05rem); font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .05em; }
+
+    /* Divider */
+    .divider { width: 100%; max-width: 860px; height: 1px; background: rgba(0,160,255,.18); margin: 14px 0; }
+
+    /* Q label (formative) */
+    .q-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(.65rem,1.2vw,.82rem);
+      letter-spacing: .14em;
+      color: rgba(125,216,248,.5);
+      margin-bottom: 7px;
+      align-self: flex-start;
+      max-width: 860px;
+      width: 100%;
+    }
+
+    /* TPS box */
+    .tps-box {
+      width: 100%; max-width: 860px;
+      background: rgba(5,20,60,.5);
+      border: 1px dashed rgba(245,208,32,.3);
+      border-radius: 10px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 12px;
+      text-align: left;
+    }
+    .tps-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: .73rem;
+      letter-spacing: .12em;
+      color: #f5d020;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .tps-text { font-size: clamp(.88rem,1.7vw,1.12rem); color: rgba(255,255,255,.85); }
+
+    /* Code blocks */
+    .code-block {
+      background: rgba(4,9,28,.88);
+      border: 1px solid rgba(0,160,255,.22);
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: clamp(.78rem,1.55vw,1.05rem);
+      line-height: 1.65;
+      text-align: left;
+      white-space: pre;
+      color: #e5e7eb;
+      width: 100%;
+      max-width: 820px;
+      overflow-x: auto;
+    }
+    .kw  { color: #c678dd; }
+    .fn  { color: #61afef; }
+    .str { color: #98c379; }
+    .cmt { color: #5c6370; font-style: italic; }
+    .num { color: #d19a66; }
+    .var { color: #e06c75; }
+
+    /* Group Activity */
+    .group-template { width: 100%; max-width: 620px; display: flex; flex-direction: column; gap: 10px; }
+    .group-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(5,20,60,.5);
+      border-radius: 8px;
+      padding: 11px 18px;
+    }
+    .kw-badge {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: .92rem;
+      min-width: 58px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .kw-if   { background: rgba(18,79,160,.5);  color: #7dd8f8; border: 1px solid rgba(90,170,255,.4); }
+    .kw-elif { background: rgba(100,18,180,.5); color: #d580ff; border: 1px solid rgba(180,90,255,.4); }
+    .kw-else { background: rgba(140,90,0,.5);   color: #f5d020; border: 1px solid rgba(255,200,50,.4); }
+    .group-blank { flex: 1; border-bottom: 2px solid rgba(255,255,255,.2); height: 24px; }
+
+    /* Optional Activities */
+    .opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 100%; max-width: 960px; }
+    .opt-card {
+      background: rgba(5,20,60,.5);
+      border: 1px solid rgba(0,160,255,.22);
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .opt-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(.7rem,1.3vw,.88rem);
+      letter-spacing: .1em;
+      color: #7dd8f8;
+      text-transform: uppercase;
+    }
+
+    /* Exit ticket */
+    .exit-prompts { width: 100%; max-width: 820px; display: flex; flex-direction: column; gap: 16px; }
+    .exit-option {
+      background: rgba(5,20,60,.5);
+      border: 1px solid rgba(0,160,255,.22);
+      border-radius: 10px;
+      padding: 14px 22px;
+      text-align: left;
+    }
+    .exit-option-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      color: rgba(125,216,248,.55);
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .exit-option-text { font-size: clamp(.95rem,1.9vw,1.25rem); font-weight: 600; line-height: 1.4; }
+    .exit-or {
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: .82rem;
+      letter-spacing: .2em;
+      color: rgba(125,216,248,.35);
+    }
+  </style>
+</head>
+<body>
+
+<div id="bg"></div>
+
+<div id="deck">
+
+  <!-- ═══════════════════════════════════════════
+       1 · WARM-UP / HOOK / ATTENDANCE  —  5 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide active" id="s1" data-duration="5">
+    <div class="time-badge">5 min</div>
+    <div class="banner">Warm-Up</div>
+    <p class="question">
+      Computers can only follow instructions.<br />
+      How can a computer <em>decide</em> between multiple choices?
+    </p>
+    <p class="instruction">Discuss briefly with your partner &mdash; we'll share out in 2 minutes.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       2 · OBJECTIVE / ESSENTIAL QUESTION  —  2 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s2" data-duration="2">
+    <div class="time-badge">2 min</div>
+    <div class="banner">Today's Objectives</div>
+    <div class="obj-rows">
+      <div class="obj-row">
+        <div class="obj-label">We Will</div>
+        <div class="obj-text">Use <code>if</code>, <code>elif</code>, and <code>else</code> statements to control program behavior.</div>
+      </div>
+      <div class="obj-row">
+        <div class="obj-label">I Will</div>
+        <div class="obj-text">Write a program that changes what happens based on different conditions.</div>
+      </div>
+      <div class="obj-row obj-eq">
+        <div class="obj-label">Essential&nbsp;Question</div>
+        <div class="obj-text">How can a computer make decisions based on conditions?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       3 · FOLLOW ALONG PART 1  —  10 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s3" data-duration="10">
+    <div class="time-badge">10 min</div>
+    <div class="banner">Follow Along &mdash; Part 1</div>
+    <p class="instruction" style="margin-bottom:26px;">
+      Log into <strong>CMU Academy</strong> &rarr; Unit 4.1 Notes &mdash; follow along as we go through these together.
+    </p>
+    <div class="fa-topics">
+      <div class="fa-topic">
+        <div class="fa-dot"></div>
+        Using <code>else</code> &mdash; running code when a condition is False
+      </div>
+      <div class="fa-topic">
+        <div class="fa-dot"></div>
+        Using <code>elif</code> &mdash; adding a second test that only runs if the first is False
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       4 · CHECKPOINT 1 (ABCD CARDS)  —  3 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s4" data-duration="3" data-correct="a">
+    <div class="time-badge">3 min</div>
+    <div class="banner">Checkpoint 1 &nbsp;&middot;&nbsp; ABCD Cards</div>
+    <p class="question" style="margin-bottom:16px;">
+      What happens in the previous example if we used <em><code>if</code></em> instead of <em><code>elif</code></em>?
+    </p>
+    <div class="answer-bars">
+      <div class="bar bar-a" data-letter="a">
+        <div class="bar-letter">A</div>
+        <div class="bar-text">The cyan circles are drawn with a black ring.</div>
+      </div>
+      <div class="bar bar-b" data-letter="b">
+        <div class="bar-letter">B</div>
+        <div class="bar-text">Only black rings are drawn.</div>
+      </div>
+      <div class="bar bar-c" data-letter="c">
+        <div class="bar-letter">C</div>
+        <div class="bar-text">Both the cyan circles and the gold circles are drawn with black rings.</div>
+      </div>
+      <div class="bar bar-d" data-letter="d">
+        <div class="bar-letter">D</div>
+        <div class="bar-text">Nothing changes.</div>
+      </div>
+    </div>
+    <p class="reveal-hint">press R to reveal answer</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       5 · KINESTHETIC CONDITIONAL ACTIVITY  —  10 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s5" data-duration="10">
+    <div class="time-badge">10 min</div>
+    <div class="banner">Stand Up!</div>
+    <div class="kine-section">
+      <div class="kine-label">Prompt 1 &mdash; Birth Months</div>
+      <div class="kine-grid">
+        <div class="kine-col kine-if">
+          <div class="kine-cond">born before March</div>
+          <div class="kine-dir">&rarr; LEFT</div>
+        </div>
+        <div class="kine-col kine-elif">
+          <div class="kine-cond">born in April, May, or June</div>
+          <div class="kine-dir">&rarr; MIDDLE</div>
+        </div>
+        <div class="kine-col kine-else">
+          <div class="kine-cond">none of those</div>
+          <div class="kine-dir">&rarr; RIGHT</div>
+        </div>
+      </div>
+    </div>
+    <div class="kine-section" style="margin-bottom:0;">
+      <div class="kine-label">Prompt 2 &mdash; Shoes</div>
+      <div class="kine-grid">
+        <div class="kine-col kine-if">
+          <div class="kine-cond">wearing black shoes</div>
+          <div class="kine-dir">&rarr; LEFT</div>
+        </div>
+        <div class="kine-col kine-elif">
+          <div class="kine-cond">wearing white shoes</div>
+          <div class="kine-dir">&rarr; MIDDLE</div>
+        </div>
+        <div class="kine-col kine-else">
+          <div class="kine-cond">any other shoe color</div>
+          <div class="kine-dir">&rarr; RIGHT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       6 · FOLLOW ALONG PART 2  —  10 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s6" data-duration="10">
+    <div class="time-badge">10 min</div>
+    <div class="banner">Follow Along &mdash; Part 2</div>
+    <p class="instruction" style="margin-bottom:26px;">
+      Stay in <strong>CMU Academy</strong> &rarr; Unit 4.1 Notes &mdash; continuing together.
+    </p>
+    <div class="fa-topics">
+      <div class="fa-topic">
+        <div class="fa-dot"></div>
+        Using <em>multiple</em> <code>elif</code> statements &mdash; as many conditions as you need
+      </div>
+      <div class="fa-topic">
+        <div class="fa-dot"></div>
+        Combining <code>x</code> and <code>y</code> conditions in the same chain
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       7 · CHECKPOINT 2 + THINK–PAIR–SHARE  —  5 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s7" data-duration="5" data-correct="c">
+    <div class="time-badge">5 min</div>
+    <div class="banner">Checkpoint 2 &nbsp;&middot;&nbsp; ABCD Cards</div>
+    <p class="question" style="margin-bottom:12px;">
+      Which square changes behavior if we used <em><code>if</code></em> instead of <em><code>elif</code></em>?
+      <br /><span style="font-size:.72em; color:rgba(125,216,248,.55); font-weight:400;">(Try it first!)</span>
+    </p>
+    <div class="answer-bars">
+      <div class="bar bar-a" data-letter="a">
+        <div class="bar-letter">A</div>
+        <div class="bar-text">The bottom-right square &mdash; black rings are drawn.</div>
+      </div>
+      <div class="bar bar-b" data-letter="b">
+        <div class="bar-letter">B</div>
+        <div class="bar-text">Nothing changes.</div>
+      </div>
+      <div class="bar bar-c" data-letter="c">
+        <div class="bar-letter">C</div>
+        <div class="bar-text">The top-left square &mdash; cyan circles are drawn with a black ring.</div>
+      </div>
+      <div class="bar bar-d" data-letter="d">
+        <div class="bar-letter">D</div>
+        <div class="bar-text">The top-right square &mdash; black rings are not drawn.</div>
+      </div>
+    </div>
+    <div class="tps-box">
+      <div class="tps-label">Think&ndash;Pair&ndash;Share</div>
+      <div class="tps-text">Why does the order of IF &rarr; ELIF &rarr; ELSE matter in a program?</div>
+    </div>
+    <p class="reveal-hint">press R to reveal answer</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       8 · ABCD FORMATIVE ASSESSMENT PART 1  —  5 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s8" data-duration="5" data-correct="b" data-correct2="b">
+    <div class="time-badge">5 min</div>
+    <div class="banner">Formative Assessment &nbsp;&middot;&nbsp; ABCD Cards</div>
+
+    <div class="q-label">Question 1 of 2</div>
+    <p class="question" style="font-size:clamp(1rem,2.1vw,1.55rem); margin-bottom:9px;">
+      What does <em><code>elif</code></em> mean?
+    </p>
+    <div class="answer-bars" style="gap:7px;">
+      <div class="bar bar-a" data-letter="a" data-q="1"><div class="bar-letter">A</div><div class="bar-text">Run code when the condition is true</div></div>
+      <div class="bar bar-b" data-letter="b" data-q="1"><div class="bar-letter">B</div><div class="bar-text">Another condition checked only if all previous ones are false</div></div>
+      <div class="bar bar-c" data-letter="c" data-q="1"><div class="bar-letter">C</div><div class="bar-text">A loop</div></div>
+      <div class="bar bar-d" data-letter="d" data-q="1"><div class="bar-letter">D</div><div class="bar-text">A variable</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="q-label">Question 2 of 2</div>
+    <p class="question" style="font-size:clamp(1rem,2.1vw,1.55rem); margin-bottom:9px;">
+      What happens if we replace <em><code>elif</code></em> with <em><code>if</code></em>?
+    </p>
+    <div class="answer-bars" style="gap:7px;">
+      <div class="bar bar-a" data-letter="a" data-q="2"><div class="bar-letter">A</div><div class="bar-text">Nothing changes</div></div>
+      <div class="bar bar-b" data-letter="b" data-q="2"><div class="bar-letter">B</div><div class="bar-text">Multiple conditions may run</div></div>
+      <div class="bar bar-c" data-letter="c" data-q="2"><div class="bar-letter">C</div><div class="bar-text">The program crashes</div></div>
+      <div class="bar bar-d" data-letter="d" data-q="2"><div class="bar-letter">D</div><div class="bar-text">The program runs faster</div></div>
+    </div>
+    <p class="reveal-hint">press R to reveal both answers</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       9 · SHORT GROUP ACTIVITY: HUMAN ALGORITHM  —  7 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s9" data-duration="7">
+    <div class="time-badge">7 min</div>
+    <div class="banner">Group Activity &mdash; Human Algorithm</div>
+    <p class="instruction" style="margin-bottom:20px;">
+      Groups of 3&ndash;4 &mdash; create a conditional algorithm for <strong>deciding what to wear</strong>.
+    </p>
+    <div class="group-template">
+      <div class="group-row">
+        <div class="kw-badge kw-if">IF</div>
+        <div class="group-blank"></div>
+      </div>
+      <div class="group-row">
+        <div class="kw-badge kw-elif">ELIF</div>
+        <div class="group-blank"></div>
+      </div>
+      <div class="group-row">
+        <div class="kw-badge kw-else">ELSE</div>
+        <div class="group-blank"></div>
+      </div>
+    </div>
+    <p class="instruction" style="margin-top:18px; opacity:.55; font-size:clamp(.8rem,1.5vw,1rem);">
+      Example: IF temp &lt; 40 &rarr; wear a jacket &nbsp;/&nbsp;
+      ELIF temp &lt; 70 &rarr; wear a hoodie &nbsp;/&nbsp;
+      ELSE &rarr; wear a t-shirt
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       10 · STOPLIGHT CODING EXERCISE  —  20 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s10" data-duration="20">
+    <div class="time-badge">20 min</div>
+    <div class="banner">Stoplight Coding Exercise</div>
+    <p class="instruction" style="margin-bottom:14px;">
+      Open <strong>Unit 4.1.2</strong> in CMU Academy &mdash; add conditional logic inside <code>onMousePress</code> to cycle the lights.
+    </p>
+    <pre class="code-block"><span class="var">redLight</span>    = <span class="fn">Circle</span>(<span class="num">200</span>, <span class="num">90</span>,  <span class="num">50</span>, fill=<span class="str">'red'</span>)
+<span class="var">yellowLight</span> = <span class="fn">Circle</span>(<span class="num">200</span>, <span class="num">200</span>, <span class="num">50</span>, fill=<span class="str">'gold'</span>,     opacity=<span class="num">30</span>)
+<span class="var">greenLight</span>  = <span class="fn">Circle</span>(<span class="num">200</span>, <span class="num">310</span>, <span class="num">50</span>, fill=<span class="str">'limeGreen'</span>, opacity=<span class="num">30</span>)
+
+<span class="kw">def</span> <span class="fn">onMousePress</span>(mouseX, mouseY):
+    <span class="cmt">### Place Your Code Here ###</span>
+    <span class="kw">pass</span></pre>
+    <div class="tps-box" style="margin-top:12px; border-style:solid; border-color:rgba(125,216,248,.22);">
+      <div class="tps-label" style="color:#7dd8f8;">Early&nbsp;Finisher</div>
+      <div class="tps-text">
+        Use <code>onStep()</code> to make the light cycle automatically.
+        Hint: look up <code>sleep()</code> in the Docs + Colors tab.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       11 · ABCD CHECK PART 2  —  3 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s11" data-duration="3" data-correct="c">
+    <div class="time-badge">3 min</div>
+    <div class="banner">Quick Check &nbsp;&middot;&nbsp; ABCD Cards</div>
+    <p class="question" style="margin-bottom:18px;">
+      Which part of a conditional <em>always</em> runs<br />if none of the conditions are true?
+    </p>
+    <div class="answer-bars">
+      <div class="bar bar-a" data-letter="a"><div class="bar-letter">A</div><div class="bar-text"><code>if</code></div></div>
+      <div class="bar bar-b" data-letter="b"><div class="bar-letter">B</div><div class="bar-text"><code>elif</code></div></div>
+      <div class="bar bar-c" data-letter="c"><div class="bar-letter">C</div><div class="bar-text"><code>else</code></div></div>
+      <div class="bar bar-d" data-letter="d"><div class="bar-letter">D</div><div class="bar-text">loop</div></div>
+    </div>
+    <p class="reveal-hint">press R to reveal answer</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       12 · OPTIONAL ACTIVITIES  —  if time permits
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s12" data-duration="7">
+    <div class="time-badge">if time permits</div>
+    <div class="banner">Bonus Activities</div>
+    <div class="opt-grid">
+      <div class="opt-card">
+        <div class="opt-title">Activity 1 &mdash; Guessing Game &nbsp;(ABCD Cards)</div>
+        <pre class="code-block" style="font-size:clamp(.68rem,1.25vw,.88rem);"><span class="kw">if</span> (x &lt; <span class="num">10</span>):
+   result = <span class="str">"BLUE TRIANGLE"</span>
+<span class="kw">elif</span> (x &lt; <span class="num">50</span>):
+   result = <span class="str">"RED RECTANGLE"</span>
+<span class="kw">else</span>:
+   result = <span class="str">"GREEN OVAL"</span></pre>
+        <div style="font-size:clamp(.78rem,1.4vw,.98rem); color:rgba(255,255,255,.72); line-height:1.5;">
+          What is the output if:<br />
+          x&nbsp;=&nbsp;45? &nbsp;&nbsp;x&nbsp;=&nbsp;10? &nbsp;&nbsp;x&nbsp;=&nbsp;50?
+        </div>
+      </div>
+      <div class="opt-card">
+        <div class="opt-title">Activity 2 &mdash; Bug Finder</div>
+        <pre class="code-block" style="font-size:clamp(.68rem,1.25vw,.88rem);"><span class="kw">if</span> (x &lt; <span class="num">100</span>):
+   color = <span class="str">'red'</span>
+<span class="kw">if</span> (x &lt; <span class="num">200</span>):
+   color = <span class="str">'blue'</span>
+<span class="kw">else</span>:
+   color = <span class="str">'green'</span></pre>
+        <div style="font-size:clamp(.78rem,1.4vw,.98rem); color:rgba(255,255,255,.72); line-height:1.5;">
+          What is the bug?<br />Discuss with a partner.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       13 · EXIT TICKET: QUICK WRITE  —  5 min
+  ═══════════════════════════════════════════ -->
+  <div class="slide" id="s13" data-duration="5">
+    <div class="time-badge">5 min</div>
+    <div class="banner">Quick Write &mdash; Exit Ticket</div>
+    <p class="instruction" style="margin-bottom:20px;">Write 3&ndash;4 sentences on paper. Choose one prompt:</p>
+    <div class="exit-prompts">
+      <div class="exit-option">
+        <div class="exit-option-label">Option A</div>
+        <div class="exit-option-text">
+          Why do programmers use <code>elif</code> instead of multiple <code>if</code> statements?
+        </div>
+      </div>
+      <div class="exit-or">&mdash;&nbsp;OR&nbsp;&mdash;</div>
+      <div class="exit-option">
+        <div class="exit-option-label">Option B</div>
+        <div class="exit-option-text">
+          Describe a real-world situation that could be represented with <code>if</code>, <code>elif</code>, and <code>else</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#deck -->
+
+<!-- Timer: small, bottom-left, teacher-only -->
+<div id="timer-wrap"><span id="timer">00:00</span></div>
+
+<!-- Navigation: bottom-right -->
+<div id="nav">
+  <button id="btn-prev" onclick="go(-1)" disabled>&#9664;</button>
+  <span id="counter">1 / 13</span>
+  <button id="btn-next" onclick="go(1)">&#9654;</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const slides  = Array.from(document.querySelectorAll('.slide'));
+  const counter = document.getElementById('counter');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const timerEl = document.getElementById('timer');
+  let cur = 0;
+
+  /* ── Timer ────────────────────────────── */
+  let timerInterval = null;
+  let elapsed  = 0;
+  let duration = 0;
+
+  function startTimer(minutes) {
+    clearInterval(timerInterval);
+    elapsed  = 0;
+    duration = minutes * 60;
+    renderTimer();
+    timerInterval = setInterval(() => { elapsed++; renderTimer(); }, 1000);
+  }
+
+  function renderTimer() {
+    const remaining = duration - elapsed;
+    if (remaining >= 0) {
+      timerEl.textContent = fmt(Math.floor(remaining / 60)) + ':' + fmt(remaining % 60);
+      timerEl.className = '';
+    } else {
+      const over = -remaining;
+      timerEl.textContent = '+' + fmt(Math.floor(over / 60)) + ':' + fmt(over % 60);
+      timerEl.className = 'over';
+    }
+  }
+
+  function fmt(n) { return String(n).padStart(2, '0'); }
+
+  /* ── Answer reveal ────────────────────── */
+  let revealed = false;
+
+  function toggleReveal() {
+    const slide    = slides[cur];
+    const correct  = slide.dataset.correct;
+    const correct2 = slide.dataset.correct2;
+    if (!correct) return;
+
+    revealed = !revealed;
+    slide.querySelectorAll('.bar').forEach(b => b.classList.remove('correct-reveal'));
+
+    if (revealed) {
+      // Reveal Q1 (bars with no data-q, or data-q="1")
+      slide.querySelectorAll(`.bar[data-letter="${correct}"]`).forEach(b => {
+        if (!b.dataset.q || b.dataset.q === '1') b.classList.add('correct-reveal');
+      });
+      // Reveal Q2 if present
+      if (correct2) {
+        slide.querySelectorAll(`.bar[data-letter="${correct2}"][data-q="2"]`).forEach(b => {
+          b.classList.add('correct-reveal');
+        });
+      }
+    }
+  }
+
+  /* ── Navigation ───────────────────────── */
+  function show(n) {
+    // Clear reveal on current slide
+    slides[cur].querySelectorAll('.bar').forEach(b => b.classList.remove('correct-reveal'));
+    slides[cur].classList.remove('active');
+
+    cur = Math.max(0, Math.min(slides.length - 1, n));
+    slides[cur].classList.add('active');
+
+    counter.textContent = (cur + 1) + ' / ' + slides.length;
+    btnPrev.disabled = cur === 0;
+    btnNext.disabled = cur === slides.length - 1;
+    revealed = false;
+
+    startTimer(parseInt(slides[cur].dataset.duration || 0, 10));
+  }
+
+  function go(dir) { show(cur + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) { e.preventDefault(); go(1);  }
+    if (['ArrowLeft',  'ArrowUp'       ].includes(e.key)) { e.preventDefault(); go(-1); }
+    if (e.key === 'r' || e.key === 'R')                    toggleReveal();
+  });
+
+  show(0);
+</script>
+</body>
+</html>

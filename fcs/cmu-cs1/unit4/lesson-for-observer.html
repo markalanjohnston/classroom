@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Observation Support Guide</title>
+<style>
+:root{
+  --ink:#111;
+  --muted:#666;
+  --line:#dde1e9;
+  --panel:#f4f6fb;
+  --panel2:#fafbfd;
+  --accent:#2563eb;
+
+  /* D1 Planning — blue */
+  --d1:#1d4ed8;
+  --d1bg:#eff6ff;
+  --d1bd:#bfdbfe;
+
+  /* D2 Instruction — teal */
+  --d2:#0f766e;
+  --d2bg:#f0fdfa;
+  --d2bd:#99f6e4;
+
+  /* D3 Learning Environment — violet */
+  --d3:#6d28d9;
+  --d3bg:#faf5ff;
+  --d3bd:#ddd6fe;
+}
+
+@page { margin: 0.65in; }
+
+*{ box-sizing: border-box; }
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  line-height: 1.35;
+  font-size: 11pt;
+  margin: 0;
+  background: #f0f2f7;
+}
+
+.wrap{
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 18px 16px 40px;
+  background: white;
+}
+
+/* ── TOP STRIPE ─────────────────────────────────────── */
+.top-stripe{
+  height: 7px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--d1) 0%, var(--d2) 50%, var(--d3) 100%);
+  margin-bottom: 18px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── HEADER ──────────────────────────────────────────── */
+header{
+  margin-bottom: 16px;
+}
+
+h1{
+  margin: 0 0 2px;
+  font-size: 19pt;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+
+.subtitle{
+  color: var(--muted);
+  font-size: 10.5pt;
+}
+
+/* ── LEGEND ──────────────────────────────────────────── */
+.legend{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 18px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel2);
+  font-size: 9.5pt;
+}
+
+.leg-label{
+  font-weight: bold;
+  color: var(--muted);
+  margin-right: 4px;
+  font-size: 9pt;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.leg-dot{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.leg-dot.p1{ background: var(--d1); }
+.leg-dot.p2{ background: var(--d2); }
+.leg-dot.p3{ background: var(--d3); }
+
+.leg-item{
+  display: flex;
+  align-items: center;
+  color: var(--ink);
+  padding: 0 10px 0 0;
+}
+
+.leg-item + .leg-item{
+  border-left: 1px solid var(--line);
+  padding-left: 10px;
+}
+
+/* ── SECTIONS ─────────────────────────────────────────── */
+.section{
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin: 0 0 14px;
+  background: white;
+  overflow: hidden;          /* keeps header radius clean */
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.sectionhead{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel);
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.sectionbody{
+  padding: 12px 14px;
+}
+
+.sectiontitle{
+  font-size: 12pt;
+  font-weight: 700;
+  margin: 0;
+  color: var(--ink);
+}
+
+/* ── DIMENSION PILLS ─────────────────────────────────── */
+.dims{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dp{
+  font-size: 8.5pt;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.dp.p1{ background: var(--d1bg); color: var(--d1); border: 1px solid var(--d1bd); }
+.dp.p2{ background: var(--d2bg); color: var(--d2); border: 1px solid var(--d2bd); }
+.dp.p3{ background: var(--d3bg); color: var(--d3); border: 1px solid var(--d3bd); }
+
+/* ── CALLOUTS ────────────────────────────────────────── */
+.quote{
+  border-left: 4px solid var(--accent);
+  padding: 9px 12px;
+  background: #eff6ff;
+  border-radius: 0 6px 6px 0;
+  margin: 10px 0;
+  font-style: italic;
+  color: #1e3a8a;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.callout-green{
+  border: 1px solid #86efac;
+  background: #f0fdf4;
+  border-radius: 8px;
+  padding: 9px 13px;
+  margin: 10px 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.callout-green strong{ color: #166534; }
+
+.callout-amber{
+  border: 1px solid #fcd34d;
+  background: #fffbeb;
+  border-radius: 8px;
+  padding: 9px 13px;
+  margin: 10px 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.callout-amber strong{ color: #92400e; }
+
+/* ── TYPOGRAPHY ──────────────────────────────────────── */
+p{ margin: 7px 0; }
+
+ul{
+  margin: 7px 0;
+  padding-left: 20px;
+}
+
+li{ margin-bottom: 4px; }
+
+.small{
+  font-size: 9.5pt;
+  color: var(--muted);
+}
+
+.label{
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+code{
+  background: #f1f5f9;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 10pt;
+  font-family: "Courier New", monospace;
+}
+
+/* ── TABLES ──────────────────────────────────────────── */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5pt;
+  margin: 8px 0;
+}
+
+th{
+  background: var(--accent);
+  color: white;
+  padding: 7px 10px;
+  border: 1px solid #1e40af;
+  font-size: 10pt;
+  font-weight: 600;
+  text-align: left;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+td{
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  vertical-align: top;
+  line-height: 1.35;
+}
+
+tr:nth-child(even) td{
+  background: #f8faff;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── PRINT ───────────────────────────────────────────── */
+@media print{
+  body{ background: white; }
+  .wrap{ padding: 0; }
+  .top-stripe{ margin-bottom: 14px; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<div class="top-stripe"></div>
+
+<header>
+  <h1>Observation Support Guide</h1>
+  <div class="subtitle">Supplement to Lesson Plan — Conditional Statements &nbsp;|&nbsp; 3/5/26</div>
+</header>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span class="leg-label">T-TESS</span>
+  <span class="leg-item"><span class="leg-dot p1"></span>D1 Planning</span>
+  <span class="leg-item"><span class="leg-dot p2"></span>D2 Instruction</span>
+  <span class="leg-item"><span class="leg-dot p3"></span>D3 Learning Environment</span>
+</div>
+
+<!-- CONTEXT -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Context</div>
+</div>
+<div class="sectionbody">
+<p>
+Because we were unable to hold a formal pre-conference prior to this observation,
+this guide is provided to offer the contextual information that would normally be
+discussed during that meeting.
+</p>
+<p>
+This document is not intended to guide or influence the evaluation process.
+Its purpose is to help identify where different instructional strategies
+and student learning activities occur during the lesson so evidence may be easier
+to capture. The full lesson plan contains the detailed script and timing for each activity.
+</p>
+</div>
+</div>
+
+<!-- LESSON SNAPSHOT -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Lesson Snapshot</div>
+  <div class="dims">
+    <span class="dp p1">1.1</span>
+    <span class="dp p1">1.3</span>
+  </div>
+</div>
+<div class="sectionbody">
+<ul>
+  <li><strong>Course:</strong> Fundamentals of Computer Science (9th Grade)</li>
+  <li><strong>Topic:</strong> Conditional Statements — <code>if</code> / <code>elif</code> / <code>else</code></li>
+  <li><strong>Platform:</strong> CMU Academy (Unit 4.1)</li>
+  <li><strong>Lesson Length:</strong> 90 minutes</li>
+  <li><strong>Where This Fits:</strong> Unit 4 builds on Unit 3 variables and program flow; conditionals are the gateway to loops (Unit 5) and all branching logic students will use for the rest of the course</li>
+</ul>
+<p>
+Students explore how computer programs make decisions — predicting outcomes from code,
+physically modeling conditional logic, designing original algorithms, and implementing
+a working program. Everyday real-world scenarios (weather decisions, clothing choices,
+traffic lights) anchor abstract syntax in familiar experience throughout the lesson.
+</p>
+</div>
+</div>
+
+<!-- STANDARDS ALIGNMENT -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Standards Alignment &amp; Curriculum Fit</div>
+  <div class="dims">
+    <span class="dp p1">1.1</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>This lesson is aligned to the following Texas Essential Knowledge and Skills (TEKS):</p>
+<ul>
+  <li><strong>CS TEKS §126.33(c)(3)(A):</strong> Demonstrate the use of programming concepts including variables, expressions, sequences, selection, and iteration</li>
+  <li><strong>CS TEKS §126.33(c)(3)(B):</strong> Implement programs that use selection (conditional statements) to make decisions</li>
+</ul>
+<p>
+Objectives are rigorous, measurable, and logically sequenced to the lesson's goal.
+Students progress from recognizing conditional syntax (<em>understand</em>) to predicting
+program output (<em>apply</em>) to diagnosing logical errors (<em>analyze</em>) to
+generating original real-world algorithms (<em>evaluate/create</em>).
+</p>
+<div class="callout-green">
+  <strong>Vertical alignment note:</strong> This lesson builds directly on Unit 3 (variables, basic program flow)
+  and establishes the conditional logic foundation required for Unit 5 (loops) and all subsequent
+  project-based work in the course. Students are explicitly shown how today's concepts fit within
+  this broader structure.
+</div>
+<p>
+Technology (CMU Academy) is integrated throughout — not as a supplemental tool,
+but as the primary environment where students encounter, test, and implement all examples.
+Students run live code to verify predictions and immediately observe the effect of their changes.
+</p>
+</div>
+</div>
+
+<!-- PRIOR KNOWLEDGE & REAL-WORLD CONNECTIONS -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Prior Knowledge &amp; Real-World Connections</div>
+  <div class="dims">
+    <span class="dp p1">1.3</span>
+    <span class="dp p2">2.2</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+The lesson is designed so that every new concept is first encountered through a
+real-world anchor students already understand, before the abstract syntax is introduced.
+</p>
+<table>
+  <tr>
+    <th>Real-World Anchor</th>
+    <th>CS Concept It Introduces</th>
+    <th>Where in the Lesson</th>
+  </tr>
+  <tr>
+    <td>Warm-up: "How can a computer choose between options?"</td>
+    <td>Motivation for conditional statements</td>
+    <td>Opening hook</td>
+  </tr>
+  <tr>
+    <td>Weather (rain, snow, sun → jacket / umbrella / sunglasses)</td>
+    <td>Multiple <code>elif</code> branches</td>
+    <td>Follow Along Part 1</td>
+  </tr>
+  <tr>
+    <td>Birth months / shoe colors (students themselves)</td>
+    <td>Sequential condition evaluation and the <code>elif</code> short-circuit</td>
+    <td>Kinesthetic activity</td>
+  </tr>
+  <tr>
+    <td>Group designs their own "what to wear" algorithm</td>
+    <td>Student-generated conditional logic</td>
+    <td>Human Algorithm activity</td>
+  </tr>
+  <tr>
+    <td>Traffic stoplight cycle</td>
+    <td>State-based conditional logic in code</td>
+    <td>Stoplight coding exercise</td>
+  </tr>
+</table>
+<p style="margin-top:10px;">
+The kinesthetic activity specifically draws on students' own experiences —
+students sort themselves based on <em>their own</em> birth months and
+<em>the shoes they are actually wearing</em>, grounding the abstract concept
+in immediate, personal reality.
+</p>
+</div>
+</div>
+
+<!-- INSTRUCTIONAL STRUCTURE -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Instructional Structure</div>
+  <div class="dims">
+    <span class="dp p1">1.1</span>
+    <span class="dp p1">1.4</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+The lesson follows a <strong>gradual release model</strong> — a research-based framework
+that moves from teacher-led modeling to collaborative practice to fully independent application.
+Each phase is logically sequenced and provides appropriate time for student work,
+reflection, and lesson closure.
+</p>
+<table>
+  <tr>
+    <th>Phase</th>
+    <th>Activity</th>
+    <th>Time</th>
+  </tr>
+  <tr>
+    <td><strong>Activate</strong></td>
+    <td>Warm-up hook — partner discussion, call on pre-warned students</td>
+    <td>5 min</td>
+  </tr>
+  <tr>
+    <td><strong>I Do</strong></td>
+    <td>Follow Along Part 1 — teacher models <code>if / else / elif</code> in CMU Academy with live code</td>
+    <td>10 min</td>
+  </tr>
+  <tr>
+    <td><strong>Check</strong></td>
+    <td>Checkpoint 1 — ABCD cards; pacing decision made here</td>
+    <td>3 min</td>
+  </tr>
+  <tr>
+    <td><strong>We Do</strong></td>
+    <td>Kinesthetic activity — students physically become the conditional logic</td>
+    <td>10 min</td>
+  </tr>
+  <tr>
+    <td><strong>I Do</strong></td>
+    <td>Follow Along Part 2 — multiple <code>elif</code> branches, cross-axis logic</td>
+    <td>10 min</td>
+  </tr>
+  <tr>
+    <td><strong>Check + Discuss</strong></td>
+    <td>Checkpoint 2 + Think–Pair–Share + ABCD Formative Part 1</td>
+    <td>10 min</td>
+  </tr>
+  <tr>
+    <td><strong>We Do</strong></td>
+    <td>Human Algorithm — groups design an original conditional algorithm</td>
+    <td>7 min</td>
+  </tr>
+  <tr>
+    <td><strong>You Do</strong></td>
+    <td>Stoplight Coding Exercise — independent implementation</td>
+    <td>20 min</td>
+  </tr>
+  <tr>
+    <td><strong>Check</strong></td>
+    <td>ABCD Check Part 2</td>
+    <td>3 min</td>
+  </tr>
+  <tr>
+    <td><strong>Extend</strong> (if time)</td>
+    <td>Guessing Game and/or Bug Finder optional activities</td>
+    <td>5–8 min</td>
+  </tr>
+  <tr>
+    <td><strong>Close</strong></td>
+    <td>Exit ticket: Quick Write + Confidence Survey (Fundamental 5)</td>
+    <td>5 min</td>
+  </tr>
+</table>
+<p class="small" style="margin-top:8px;">
+An enriching extension (Early Finisher Challenge: automating the stoplight with <code>onStep()</code> / <code>sleep()</code>)
+is available for students who reach mastery early. This extends beyond the lesson objective while remaining within the discipline.
+</p>
+</div>
+</div>
+
+<!-- WHAT STUDENTS WILL BE DOING -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">What Students Will Be Doing</div>
+  <div class="dims">
+    <span class="dp p2">2.3</span>
+    <span class="dp p3">3.3</span>
+  </div>
+</div>
+<div class="sectionbody">
+<ul>
+  <li><strong>Discussing</strong> a conceptual warm-up question with a partner before any instruction begins</li>
+  <li><strong>Predicting</strong> code output before running it — forming and testing hypotheses in real time</li>
+  <li><strong>Responding</strong> to formative questions using ABCD cards (all students respond simultaneously)</li>
+  <li><strong>Physically modeling</strong> conditional logic through a whole-class kinesthetic activity</li>
+  <li><strong>Explaining reasoning</strong> to a partner in Think–Pair–Share discussions</li>
+  <li><strong>Generating</strong> an original real-world conditional algorithm in small groups</li>
+  <li><strong>Implementing</strong> a working conditional program independently (Stoplight exercise)</li>
+  <li><strong>Diagnosing</strong> a logical error in broken code (Bug Finder — if time permits)</li>
+  <li><strong>Reflecting</strong> in writing on conceptual understanding and self-assessing confidence</li>
+</ul>
+<div class="callout-green">
+  <strong>Student voice and reasoning are central:</strong> At every major transition, students are asked
+  <em>why</em> — not just what the answer is, but why the logic works the way it does.
+  Think–Pair–Share and group discussion require students to articulate reasoning, not just select answers.
+</div>
+</div>
+</div>
+
+<!-- HIGHER-ORDER THINKING -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Higher-Order Thinking Opportunities</div>
+  <div class="dims">
+    <span class="dp p1">1.4</span>
+    <span class="dp p2">2.3</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+Questions and tasks throughout the lesson are designed to move students well beyond recall.
+The following table identifies the primary higher-order moments an observer may note:
+</p>
+<table>
+  <tr>
+    <th>Activity</th>
+    <th>Thinking Level</th>
+    <th>What Students Are Asked to Do</th>
+  </tr>
+  <tr>
+    <td>Warm-up hook</td>
+    <td>Evaluate</td>
+    <td>"How can a computer decide between multiple choices?" — students reason from first principles before instruction</td>
+  </tr>
+  <tr>
+    <td>Checkpoint 1 (ABCD)</td>
+    <td>Analyze</td>
+    <td>Predict the behavior change if <code>elif</code> is replaced with <code>if</code> — requires tracing conditional logic</td>
+  </tr>
+  <tr>
+    <td>Kinesthetic discussion</td>
+    <td>Analyze</td>
+    <td>"Why didn't the computer check the second condition for some of you?" — requires explaining sequential logic</td>
+  </tr>
+  <tr>
+    <td>Checkpoint 2 + TPS</td>
+    <td>Evaluate / Synthesize</td>
+    <td>"Why does the order of IF → ELIF → ELSE matter?" — requires conceptual synthesis across examples</td>
+  </tr>
+  <tr>
+    <td>Human Algorithm (group)</td>
+    <td>Create</td>
+    <td>Students <em>generate</em> an original real-world conditional algorithm — not prompted with a specific scenario</td>
+  </tr>
+  <tr>
+    <td>Bug Finder (optional)</td>
+    <td>Analyze / Evaluate</td>
+    <td>Students diagnose a logical error in broken code and explain why it is wrong</td>
+  </tr>
+  <tr>
+    <td>Exit ticket</td>
+    <td>Evaluate / Create</td>
+    <td>Explain <em>why</em> programmers use <code>elif</code>, or generate an original real-world conditional scenario</td>
+  </tr>
+</table>
+</div>
+</div>
+
+<!-- ANTICIPATED MISCONCEPTIONS -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Anticipated Misconceptions &amp; How They Are Addressed</div>
+  <div class="dims">
+    <span class="dp p2">2.2</span>
+    <span class="dp p2">2.3</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+The lesson anticipates and proactively addresses the three most common conceptual pitfalls
+for this topic. Misconceptions are not simply corrected — they are used as teaching moments
+to deepen understanding.
+</p>
+<table>
+  <tr>
+    <th style="width:36%">Misconception</th>
+    <th>How It Is Addressed</th>
+  </tr>
+  <tr>
+    <td><strong>"if and elif do the same thing"</strong> — students often assume they are interchangeable</td>
+    <td>
+      Checkpoint 1 asks students to predict what happens when <code>elif</code> is replaced with <code>if</code>,
+      <em>then they run the code to verify</em>. ABCD Formative Q2 revisits this directly.
+      Bug Finder presents broken code where <code>if</code> is incorrectly used in place of <code>elif</code>,
+      and students must identify and explain the error.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>"All conditions are always checked"</strong> — students may not understand that <code>elif</code> short-circuits once a match is found</td>
+    <td>
+      The kinesthetic activity makes this <em>physically tangible</em>: students who match the <code>IF</code> condition stop
+      there and do not evaluate <code>ELIF</code>. The debrief question — "Why didn't the computer check
+      the second condition for some of you?" — targets this directly.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>"else always runs"</strong> — students may believe <code>else</code> executes regardless of other conditions</td>
+    <td>
+      ABCD Check Part 2 directly assesses this. Earlier code examples (only 2–3 of four canvas quadrants produce circles)
+      provide a concrete observable counterexample before the question is posed.
+    </td>
+  </tr>
+</table>
+<div class="quote">
+  Prediction-before-execution is used throughout: students commit to an answer via ABCD cards
+  <em>before</em> the code is run. This creates a self-correcting habit and surfaces misconceptions
+  at the moment they are most teachable.
+</div>
+</div>
+</div>
+
+<!-- FORMATIVE ASSESSMENT -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Formative Assessment &amp; Data Use</div>
+  <div class="dims">
+    <span class="dp p1">1.2</span>
+    <span class="dp p2">2.5</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+Assessment is not a single end-of-lesson event — it is woven throughout to allow
+real-time monitoring and pacing adjustments.
+</p>
+<table>
+  <tr>
+    <th>Checkpoint</th>
+    <th>Method</th>
+    <th>What It Measures</th>
+    <th>How Data Is Used</th>
+  </tr>
+  <tr>
+    <td>Checkpoint 1</td>
+    <td>ABCD cards</td>
+    <td>Predict behavior when <code>elif</code> → <code>if</code></td>
+    <td>Determines whether to linger or move into kinesthetic activity</td>
+  </tr>
+  <tr>
+    <td>Kinesthetic discussion</td>
+    <td>Oral questioning</td>
+    <td>Grasp of sequential condition evaluation</td>
+    <td>Identifies students who may need re-teaching before Part 2</td>
+  </tr>
+  <tr>
+    <td>Checkpoint 2 + TPS</td>
+    <td>ABCD cards + partner discussion</td>
+    <td>Multi-condition logic and order-of-evaluation understanding</td>
+    <td>Determines readiness for group algorithm activity</td>
+  </tr>
+  <tr>
+    <td>ABCD Formative Part 1 (2 Qs)</td>
+    <td>ABCD cards</td>
+    <td>Definition of <code>elif</code>; effect of replacing <code>elif</code> with <code>if</code></td>
+    <td>Informs pacing and whether to re-teach before independent work</td>
+  </tr>
+  <tr>
+    <td>Stoplight circulation</td>
+    <td>Teacher walkthrough + individual feedback</td>
+    <td>Independent implementation and debugging</td>
+    <td>Provides specific, individual academic feedback in real time</td>
+  </tr>
+  <tr>
+    <td>ABCD Check Part 2</td>
+    <td>ABCD cards</td>
+    <td>Role of <code>else</code></td>
+    <td>Final check before optional activities and closure</td>
+  </tr>
+  <tr>
+    <td>Exit ticket (Quick Write)</td>
+    <td>Written response</td>
+    <td>Conceptual understanding at evaluative/synthesis level</td>
+    <td>Provides written artifact for teacher reflection after the lesson</td>
+  </tr>
+</table>
+<p class="small" style="margin-top:8px;">
+ABCD cards allow all students to respond simultaneously — giving the teacher
+a discreet, class-wide snapshot of understanding without cold-calling.
+Pacing decisions throughout the lesson are explicitly contingent on what these checkpoints reveal.
+</p>
+</div>
+</div>
+
+<!-- STUDENT SELF-ASSESSMENT -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Student Self-Assessment &amp; Confidence Monitoring</div>
+  <div class="dims">
+    <span class="dp p1">1.2</span>
+    <span class="dp p2">2.1</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+Several structures in the lesson invite students to evaluate their own understanding
+and build awareness of their strengths and areas for growth:
+</p>
+<ul>
+  <li><strong>Predict-before-run:</strong> Before executing each code example, students
+    commit to a prediction. When output differs from the prediction, students
+    immediately identify a misconception to address — without being told.</li>
+  <li><strong>Two-prompt exit ticket:</strong> Students choose between explaining <em>why</em>
+    programmers use <code>elif</code> (conceptual) or generating an original real-world example (applied).
+    This allows students to self-select the form of demonstration that best reflects
+    their confidence and understanding.</li>
+  <li><strong>Confidence survey (Fundamental 5):</strong> Students rate their own confidence
+    at the close of the lesson, building metacognitive awareness and giving the teacher
+    data beyond the written response.</li>
+</ul>
+</div>
+</div>
+
+<!-- STUDENT ENGAGEMENT STRATEGIES -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Student Engagement Strategies</div>
+  <div class="dims">
+    <span class="dp p3">3.3</span>
+    <span class="dp p2">2.4</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+Strategies are varied throughout the lesson to address multiple learning
+modalities and maintain momentum across 90 minutes:
+</p>
+<ul>
+  <li><strong>Partner discussion</strong> — verbal processing at two points (warm-up, Bug Finder)</li>
+  <li><strong>Whole-class simultaneous response</strong> — ABCD cards hold all students
+    accountable, not just those called on</li>
+  <li><strong>Kinesthetic movement</strong> — students physically model conditional logic
+    using their own attributes (birth month, shoe color), making the concept personal</li>
+  <li><strong>Live, interactive coding</strong> — examples are run in real time; students
+    watch outcomes they predicted become visible on screen</li>
+  <li><strong>Small group collaboration</strong> — groups generate an original algorithm
+    and share with the class</li>
+  <li><strong>Independent coding</strong> — students implement conditionals from scratch
+    in the Stoplight exercise</li>
+  <li><strong>Written reflection</strong> — exit ticket consolidates learning through composition</li>
+</ul>
+<div class="callout-amber">
+  <strong>Relevance by design:</strong> Every engagement activity uses a context students
+  already know — the weather, their own clothing, a traffic light, a guessing game.
+  Content is connected to students' interests, experiences, and daily life
+  throughout, not just at the opening.
+</div>
+</div>
+</div>
+
+<!-- DIFFERENTIATION -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Differentiation &amp; Support</div>
+  <div class="dims">
+    <span class="dp p2">2.4</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+The lesson uses a wide variety of instructional strategies to address the individual
+needs of all learners:
+</p>
+<ul>
+  <li><strong>Multiple modalities:</strong> visual (live code on screen), auditory (teacher explanation and whole-class discussion), kinesthetic (physical movement activity), and written (exit ticket)</li>
+  <li><strong>Scaffolded complexity:</strong> Syntax is introduced incrementally —
+    <code>if/else</code> first (already reviewed), then <code>elif</code>,
+    then multiple <code>elif</code> branches, then logic combining multiple axes —
+    each layer added only after the prior layer is confirmed</li>
+  <li><strong>Real-world anchors before code:</strong> Every new construct is first
+    encountered through a real-world analogy (weather, shoes) before abstract syntax
+    is introduced, lowering the barrier for students who need concrete grounding</li>
+  <li><strong>Structured group scaffolding:</strong> The Human Algorithm prompt provides
+    a clear scaffold (<code>IF ___ / ELIF ___ / ELSE ___</code>) while leaving
+    the content open, allowing all ability levels to participate productively</li>
+  <li><strong>Partner support:</strong> Verbal processors have two structured partner
+    discussion opportunities before independent work</li>
+  <li><strong>Early finisher challenge:</strong> Students who complete the Stoplight
+    exercise early are directed to research and apply <code>onStep()</code> and
+    <code>sleep()</code> independently — an extension requiring self-directed
+    inquiry into new documentation</li>
+  <li><strong>Teacher circulation and individual feedback:</strong> During the 20-minute
+    coding exercise, the teacher circulates and provides specific, individual academic
+    feedback to each student</li>
+</ul>
+</div>
+</div>
+
+<!-- LESSON CLOSURE -->
+<div class="section">
+<div class="sectionhead">
+  <div class="sectiontitle">Lesson Closure</div>
+  <div class="dims">
+    <span class="dp p2">2.1</span>
+    <span class="dp p1">1.2</span>
+  </div>
+</div>
+<div class="sectionbody">
+<p>
+Closure is structured as a <strong>Fundamental 5 Quick Write</strong> —
+students write 3–4 sentences responding to one of two prompts at the evaluative/synthesis level:
+</p>
+<ul>
+  <li><em>Why do programmers use elif instead of multiple if statements?</em></li>
+  <li><em>Describe a real-world situation that could be represented with if, elif, and else.</em></li>
+</ul>
+<p>
+The dual-prompt design allows students to demonstrate understanding in the form
+that best reflects their learning. Students also complete a brief <strong>confidence survey</strong>,
+prompting them to self-evaluate mastery and giving the teacher data on both understanding and affect.
+</p>
+<div class="callout-green">
+  Closure loops back to the <strong>Essential Question</strong> stated at the lesson's opening
+  (<em>"How can a computer make decisions based on conditions?"</em>),
+  giving the lesson a complete arc from question to answer.
+</div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

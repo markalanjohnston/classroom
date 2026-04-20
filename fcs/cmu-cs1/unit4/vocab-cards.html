@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Vocabulary Cards — Conditional Statements · FCS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    @page { size: letter portrait; margin: 0; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { background: #fff; }
+
+    /* ── Card (one per printed page) ── */
+    .card {
+      width: 8.5in;
+      height: 11in;
+      background-color: #030a18;
+      background-image: url('assets/dark_navy_blue_circuit_board_background.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.42in 0.55in 0.38in;
+      break-after: page;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* dark overlay over circuit bg */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 8, 28, 0.8);
+      z-index: 0;
+    }
+
+    .card > * { position: relative; z-index: 1; }
+
+    /* ── Top row: badge + category ── */
+    .card-top {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .badge {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      border: 1.5px solid;
+    }
+    .badge-new {
+      color: #f5d020;
+      border-color: rgba(245, 208, 32, 0.6);
+      background: rgba(245, 208, 32, 0.1);
+      text-shadow: 0 0 10px rgba(245, 208, 32, 0.5);
+    }
+    .badge-review {
+      color: #7dd8f8;
+      border-color: rgba(125, 216, 248, 0.5);
+      background: rgba(125, 216, 248, 0.08);
+      text-shadow: 0 0 10px rgba(125, 216, 248, 0.4);
+    }
+
+    .unit-tag {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 8pt;
+      letter-spacing: 0.12em;
+      color: rgba(125, 216, 248, 0.35);
+    }
+
+    /* ── Term name ── */
+    .term {
+      text-align: center;
+      line-height: 1.15;
+    }
+
+    .term-name {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 44pt;
+      color: #fff;
+      letter-spacing: 0.04em;
+      display: block;
+    }
+
+    /* keyword terms use monospace + cyan */
+    .term-keyword .term-name {
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      font-size: 52pt;
+      color: #7dd8f8;
+      text-shadow: 0 0 24px rgba(125, 216, 248, 0.6), 0 0 60px rgba(125, 216, 248, 0.2);
+      letter-spacing: 0.02em;
+    }
+
+    .term-sub {
+      display: block;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 13pt;
+      font-weight: 600;
+      color: rgba(125, 216, 248, 0.55);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── Image ── */
+    .card-img-wrap {
+      width: 5.6in;
+      height: 5.6in;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(0, 180, 255, 0.35);
+      box-shadow:
+        0 0 30px rgba(0, 180, 255, 0.2),
+        0 0 80px rgba(0, 180, 255, 0.08);
+      flex-shrink: 0;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Definition ── */
+    .definition-wrap {
+      width: 100%;
+      background: rgba(5, 18, 52, 0.75);
+      border: 1px solid rgba(0, 160, 255, 0.22);
+      border-radius: 12px;
+      padding: 16px 22px;
+    }
+
+    .def-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 7.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(125, 216, 248, 0.45);
+      margin-bottom: 6px;
+    }
+
+    .def-text {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 13.5pt;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.45;
+    }
+
+    .def-text code {
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      color: #7dd8f8;
+      background: rgba(0, 100, 200, 0.2);
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 0.9em;
+    }
+
+    /* ── Screen preview (non-print) ── */
+    @media screen {
+      body {
+        background: #888;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+      .card {
+        box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════
+       1 · CONDITIONAL STATEMENT  (NEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-new">New Term</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term">
+      <span class="term-name">Conditional Statement</span>
+      <span class="term-sub">if &nbsp;/&nbsp; elif &nbsp;/&nbsp; else</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_glowing_neon_road_splitting_into_three_separate_paths__db4a6a42-8606-41ed-9f5f-2e3c8283da55_1.png" alt="Conditional Statement" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">A block of code that chooses which branch to execute based on a condition. Uses <code>if</code>, <code>elif</code>, and <code>else</code> to test different cases in order.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       2 · ELIF  (NEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-new">New Term</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term term-keyword">
+      <span class="term-name">elif</span>
+      <span class="term-sub">else if</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_sequence_of_three_glowing_neon_gates_in_a_dark_corrido_cccd80e5-d217-4248-b1f3-78254a4e051b_3.png" alt="elif" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">Short for "else if." Adds another condition that is <em>only tested</em> if all previous conditions were False. You can chain as many <code>elif</code>s as you need.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       3 · ELSE  (NEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-new">New Term</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term term-keyword">
+      <span class="term-name">else</span>
+      <span class="term-sub">catch-all branch</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_two_glowing_doors_in_a_dark_hallway_first_two_doors_se_b6ac425a-dc05-4309-8c31-f172fecd2d23_0.png" alt="else" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">The final branch in a conditional. Runs when <em>none</em> of the conditions above it were True. Does not take a condition — it always catches whatever is left.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       4 · BOOLEAN CONDITION  (NEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-new">New Term</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term">
+      <span class="term-name">Boolean Condition</span>
+      <span class="term-sub">True &nbsp;/&nbsp; False</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_glowing_digital_scale_perfectly_balanced_with_TRUE_on__b969b5e1-7877-4cd8-b158-bfb1911ba5d9_1.png" alt="Boolean Condition" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">A test that evaluates to either <code>True</code> or <code>False</code>. Written inside the parentheses of an <code>if</code> or <code>elif</code> to decide which branch of code runs.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       5 · EVENT-DRIVEN PROGRAMMING  (NEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-new">New Term</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term">
+      <span class="term-name" style="font-size:34pt;">Event-Driven Programming</span>
+      <span class="term-sub">respond to user actions</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_glowing_finger_touching_a_dark_touchscreen_surface_mas_b4c649b3-6097-4fc6-9127-49fdd0fc56a7_3.png" alt="Event-Driven Programming" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">A style of programming where code runs in response to user actions — like mouse clicks or key presses — instead of running line by line from top to bottom.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       6 · VARIABLE  (REVIEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-review">Review</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term">
+      <span class="term-name">Variable</span>
+      <span class="term-sub">named storage</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_glowing_labeled_storage_box_floating_in_dark_digital_s_3d2869e6-0ab6-4b7a-a470-faacaf1a3999_1.png" alt="Variable" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">A named container that stores a value. The value can be read and changed throughout the program. Example: <code>redLight = Circle(...)</code></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       7 · DEF / FUNCTION  (REVIEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-review">Review</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term term-keyword">
+      <span class="term-name">def</span>
+      <span class="term-sub">function definition</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_sleek_futuristic_machine_in_dark_space_with_one_glowin_e064eb37-ce5d-4e96-900a-c4f68000157e_1.png" alt="def / Function" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">A named, reusable block of code created with the <code>def</code> keyword. It runs whenever it is called. Example: <code>def onMousePress(x, y):</code></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       8 · IF STATEMENT  (REVIEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-review">Review</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term term-keyword">
+      <span class="term-name">if</span>
+      <span class="term-sub">conditional branch</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_single_glowing_cyan_gate_in_a_dark_corridor_one_path_c_3d254964-1b51-4b4f-8ac6-ac9641b0e428_2.png" alt="if statement" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">Tests a condition. If the condition is <code>True</code>, the indented block of code runs. If <code>False</code>, it is skipped. Always the first branch in a conditional chain.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       9 · PROPERTY  (REVIEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-review">Review</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term">
+      <span class="term-name">Property</span>
+      <span class="term-sub">.fill &nbsp;·&nbsp; .opacity &nbsp;·&nbsp; .radius</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_glowing_geometric_circle_floating_in_dark_space_with_s_239945f5-943a-48ad-99b4-f6ad789e4a3e_3.png" alt="Property" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">An attribute that belongs to an object. Used to read or change an object's state. Example: <code>redLight.opacity = 100</code> sets the opacity property of a circle.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       10 · ONMOUSEPRESS  (REVIEW)
+  ═══════════════════════════════════ -->
+  <div class="card">
+    <div class="card-top">
+      <span class="badge badge-review">Review</span>
+      <span class="unit-tag">Unit 4.1</span>
+    </div>
+
+    <div class="term term-keyword">
+      <span class="term-name" style="font-size:36pt;">onMousePress</span>
+      <span class="term-sub">mouse event handler</span>
+    </div>
+
+    <div class="card-img-wrap">
+      <img src="assets/mjstem_extreme_close-up_of_a_glowing_computer_mouse_in_dark_s_05a18fdf-3f43-4b1e-9902-7d57f8cc0260_0.png" alt="onMousePress" />
+    </div>
+
+    <div class="definition-wrap">
+      <div class="def-label">Definition</div>
+      <div class="def-text">An event handler that runs automatically every time the user clicks the mouse. Defined with <code>def onMousePress(x, y):</code> — the program calls it for you.</div>
+    </div>
+  </div>
+
+</body>
+</html>
