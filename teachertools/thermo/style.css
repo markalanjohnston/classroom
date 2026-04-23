@@ -111,12 +111,12 @@
   color: var(--ink-soft);
   margin-top: 0 !important;
 }
-dialog.modal h2 {
+dialog.thermo-modal h2 {
   font-size: 18px !important;
   color: #2c3e50;
   margin-top: 0 !important;
 }
-dialog.modal h3.settings-group {
+dialog.thermo-modal h3.settings-group {
   font-size: 12px !important;
   margin-top: 18px !important;
   color: var(--ink-soft);
@@ -149,7 +149,7 @@ dialog.modal h3.settings-group {
 
 .form-area .field { display: block; margin-bottom: 12px; }
 .form-area .field > span,
-.modal .field > span {
+.thermo-modal .field > span {
   display: block;
   font-size: 12px;
   color: var(--ink-soft);
@@ -162,10 +162,10 @@ dialog.modal h3.settings-group {
 .form-area input[type="number"],
 .form-area select,
 .form-area textarea,
-.modal input[type="text"],
-.modal input[type="number"],
-.modal select,
-.modal textarea {
+.thermo-modal input[type="text"],
+.thermo-modal input[type="number"],
+.thermo-modal select,
+.thermo-modal textarea {
   width: 100%;
   padding: 8px 10px;
   font: inherit;
@@ -175,14 +175,14 @@ dialog.modal h3.settings-group {
 }
 
 .form-area .row,
-.modal .row {
+.thermo-modal .row {
   display: flex;
   gap: 6px;
 }
 .form-area .row > input,
 .form-area .row > select,
-.modal .row > input,
-.modal .row > select { flex: 1 1 auto; }
+.thermo-modal .row > input,
+.thermo-modal .row > select { flex: 1 1 auto; }
 
 /* QR preset dropdown — fixed width so long labels don't crowd the input. */
 .field-universal .row > select {
@@ -483,7 +483,7 @@ button.danger {
 
 /* ---------- Modals ---------- */
 
-.modal {
+.thermo-modal {
   border: none;
   border-radius: 10px;
   padding: 0;
@@ -491,13 +491,13 @@ button.danger {
   width: 92vw;
   box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 }
-.modal::backdrop { background: rgba(0,0,0,0.35); }
-.modal-body { padding: 20px 22px; }
-.modal h2 {
+.thermo-modal::backdrop { background: rgba(0,0,0,0.35); }
+.thermo-modal-body { padding: 20px 22px; }
+.thermo-modal h2 {
   margin: 0 0 14px;
   font-size: 18px;
 }
-.modal h3.settings-group {
+.thermo-modal h3.settings-group {
   margin: 18px 0 8px;
   padding-bottom: 4px;
   border-bottom: 1px solid var(--border);
@@ -506,8 +506,8 @@ button.danger {
   text-transform: uppercase;
   color: var(--ink-soft);
 }
-.modal h3.settings-group:first-of-type { margin-top: 6px; }
-.modal .field { margin-bottom: 12px; }
+.thermo-modal h3.settings-group:first-of-type { margin-top: 6px; }
+.thermo-modal .field { margin-bottom: 12px; }
 
 /* Logo upload + list */
 .logo-upload {
@@ -519,7 +519,7 @@ button.danger {
 .logo-upload > input[type="text"]#newLogoLabel { flex: 2 1 160px; }
 .logo-upload > input[type="text"]#newLogoWidth { flex: 0 0 70px; }
 .logo-upload > input[type="file"] { flex: 1 1 180px; font-size: 12px; }
-.modal .logo-upload > input[type="text"] { width: auto; }
+.thermo-modal .logo-upload > input[type="text"] { width: auto; }
 
 .logo-list {
   list-style: none;
