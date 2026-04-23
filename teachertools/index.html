@@ -1,0 +1,177 @@
+---
+---
+
+<!-- File: classroom/teachertools/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Tools — Mr. Johnston's Classroom</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .tools-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .tools-intro {
+        background: #f8f9fa;
+        border-left: 4px solid #0d6efd;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin-bottom: 30px;
+      }
+
+      .tool-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .tool-card {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        padding: 25px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        min-height: 220px;
+      }
+
+      .tool-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        border-color: #0d6efd;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .tool-card .tool-icon {
+        font-size: 2.5rem;
+        color: #0d6efd;
+        margin-bottom: 10px;
+      }
+
+      .tool-card h3 {
+        color: #2c3e50;
+        font-size: 1.3rem;
+        margin: 0 0 5px;
+      }
+
+      .tool-card .tool-tag {
+        display: inline-block;
+        background: #e7f1ff;
+        color: #0a58ca;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+      }
+
+      .tool-card p {
+        color: #6c757d;
+        font-size: 0.95rem;
+        flex-grow: 1;
+        margin: 0 0 15px;
+      }
+
+      .tool-card .tool-open {
+        color: #0d6efd;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .placeholder-card {
+        background: #f8f9fa;
+        border: 2px dashed #dee2e6;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+        color: #adb5bd;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .placeholder-card i { font-size: 2.5rem; margin-bottom: 10px; }
+      .placeholder-card p { margin: 0; font-size: 0.9rem; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Teacher Tools</span>
+      </nav>
+
+      <div class="tools-content">
+        <div class="class-header">
+          <h1 class="display-5 mb-3">
+            <i class="bi bi-tools text-primary"></i>
+            Teacher Tools
+          </h1>
+          <p class="lead text-muted">
+            Small utilities I use for day-to-day classroom work.
+          </p>
+        </div>
+
+        <div class="tools-intro">
+          <p class="mb-2"><strong><i class="bi bi-info-circle"></i> About this page</strong></p>
+          <p class="mb-0">
+            These are lightweight, browser-based tools I've built for my own classroom. They run entirely in the browser — nothing is sent to a server, and no account is needed. Feel free to use them if they help you too.
+          </p>
+        </div>
+
+        <h2 class="h4 mb-3 text-muted">Available Tools</h2>
+
+        <div class="tool-row">
+          <a href="thermo/" class="tool-card">
+            <div class="tool-icon">
+              <i class="bi bi-receipt"></i>
+            </div>
+            <h3>Thermo</h3>
+            <span class="tool-tag">Thermal Printer</span>
+            <p>
+              Prints hall passes, test-print receipts, and other small classroom slips to an 80mm thermal printer. Includes live preview at true paper width, multiple templates, and QR code support.
+            </p>
+            <span class="tool-open">
+              Open Thermo <i class="bi bi-arrow-right"></i>
+            </span>
+          </a>
+
+          <div class="placeholder-card">
+            <i class="bi bi-plus-circle"></i>
+            <p>More tools coming soon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

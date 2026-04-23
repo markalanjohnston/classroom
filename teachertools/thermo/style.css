@@ -1,0 +1,616 @@
+/* =========================================================
+   Thermo — thermal receipts for Chapin HS classroom management
+   Two modes: (1) screen UI, (2) @media print = thermal receipt
+   Paper: 80mm roll, ~72mm printable. Font: Courier New.
+   ========================================================= */
+
+:root {
+  --bg: #f5f3ee;
+  --panel: #ffffff;
+  --ink: #1d1d1b;
+  --ink-soft: #565652;
+  --accent: #1d7874;
+  --accent-ink: #ffffff;
+  --danger: #b3261e;
+  --border: #d7d2c7;
+  --receipt-paper: #fafaf6;
+
+  /* Receipt layout constants (drive both preview and print) */
+  --paper-width: 80mm;
+  --print-width: 72mm;
+  --receipt-font: 'Courier New', 'Consolas', 'Menlo', monospace;
+  --receipt-font-size: 12pt;
+  --receipt-line: 1.3;
+  --receipt-weight: 700;  /* bump to 800 if prints still look light */
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 15px;
+}
+
+/* ---------- Header ---------- */
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.brand-mark {
+  font-family: var(--receipt-font);
+  font-weight: bold;
+  color: var(--accent);
+}
+.brand h1 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+.brand-sub {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.app-nav button {
+  margin-left: 6px;
+}
+
+/* ---------- Main layout: 3 panes ---------- */
+
+.app-main {
+  display: grid;
+  grid-template-columns: 220px 1fr 360px;
+  gap: 16px;
+  padding: 16px;
+  min-height: calc(100vh - 58px);
+}
+
+@media (max-width: 1000px) {
+  .app-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.template-picker,
+.form-area,
+.preview-area {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.template-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.template-picker h2,
+.form-area h2,
+.preview-area h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Template buttons */
+.tpl-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1.3;
+}
+.tpl-btn:hover { border-color: var(--accent); }
+.tpl-btn.active {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+.tpl-btn .tpl-title { font-weight: 600; display: block; }
+.tpl-btn .tpl-sub { font-size: 12px; color: var(--ink-soft); display: block; }
+.tpl-btn.active .tpl-sub { color: rgba(255,255,255,0.85); }
+
+/* ---------- Form area ---------- */
+
+.form-area .field { display: block; margin-bottom: 12px; }
+.form-area .field > span,
+.modal .field > span {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-area input[type="text"],
+.form-area input[type="number"],
+.form-area select,
+.form-area textarea,
+.modal input[type="text"],
+.modal input[type="number"],
+.modal select,
+.modal textarea {
+  width: 100%;
+  padding: 8px 10px;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fff;
+}
+
+.form-area .row,
+.modal .row {
+  display: flex;
+  gap: 6px;
+}
+.form-area .row > input,
+.form-area .row > select,
+.modal .row > input,
+.modal .row > select { flex: 1 1 auto; }
+
+/* QR preset dropdown — fixed width so long labels don't crowd the input. */
+.field-universal .row > select {
+  flex: 0 0 150px;
+}
+
+/* Standalone checkbox field (type: 'checkbox' in form definitions) */
+.field-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.field-checkbox > span {
+  display: inline;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 14px;
+  color: var(--ink);
+}
+.field-checkbox input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Inline checkbox within a field (e.g., "Print text under QR") */
+.field .inline-check {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+.field .inline-check input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+.field .inline-check .inline-hint {
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+button {
+  padding: 8px 14px;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+button:hover { border-color: var(--accent); }
+button.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+button.primary:hover { filter: brightness(1.05); }
+button.danger {
+  color: var(--danger);
+  border-color: #e0b6b3;
+}
+
+.hint {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: #fbf8ef;
+  border: 1px dashed var(--border);
+  border-radius: 5px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+.preview-hint { margin-top: 10px; }
+
+/* ---------- Preview ---------- */
+
+.preview-area { display: flex; flex-direction: column; }
+.preview-shell {
+  flex: 1;
+  padding: 16px;
+  background: #e8e4d9;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: auto;
+}
+.receipt-preview {
+  width: var(--paper-width);
+  min-height: 40mm;
+  padding: 2mm 4mm;
+  background: var(--receipt-paper);
+  color: #000;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  font-family: var(--receipt-font);
+  font-size: var(--receipt-font-size);
+  line-height: var(--receipt-line);
+  font-weight: var(--receipt-weight);
+}
+
+.receipt-placeholder {
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 30px 10px;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+}
+
+/* ---------- Receipt content (shared by preview + print) ---------- */
+
+.receipt-preview .r,
+.print-area .r {
+  width: var(--print-width);
+  margin: 0 auto;
+}
+.receipt-preview .r-logo,
+.print-area .r-logo {
+  text-align: center;
+  margin: 2mm 0 3mm;
+}
+.receipt-preview .r-logo img,
+.print-area .r-logo img {
+  width: 28mm;
+  height: auto;
+  display: inline-block;
+  /* crisp-edges keeps the logo's hard lines sharp through the driver's dither */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+.receipt-preview .r-title,
+.print-area .r-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  margin: 2mm 0 1mm;
+}
+.receipt-preview .r-subtitle,
+.print-area .r-subtitle {
+  text-align: center;
+  font-size: 0.95em;
+  margin-bottom: 2mm;
+}
+.receipt-preview .r-divider,
+.print-area .r-divider {
+  white-space: pre;
+  overflow: hidden;
+  text-align: center;
+  letter-spacing: 0;
+  margin: 1mm 0;
+}
+.receipt-preview .r-name,
+.print-area .r-name {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.35em;
+  margin: 3mm 0;
+  letter-spacing: 1px;
+}
+.receipt-preview .r-msg,
+.print-area .r-msg {
+  text-align: center;
+  margin: 2mm 0;
+}
+.receipt-preview .r-kv,
+.print-area .r-kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 4mm;
+  margin: 0.5mm 0;
+}
+.receipt-preview .r-kv b,
+.print-area .r-kv b { font-weight: bold; }
+.receipt-preview .r-block,
+.print-area .r-block {
+  margin: 2mm 0;
+  text-align: left;
+  white-space: pre-wrap;
+}
+.receipt-preview .r-footer,
+.print-area .r-footer {
+  text-align: center;
+  margin-top: 3mm;
+}
+.receipt-preview .r-sig,
+.print-area .r-sig {
+  text-align: center;
+  font-style: italic;
+  margin: 2mm 0 1mm;
+}
+.receipt-preview .r-tiny,
+.print-area .r-tiny {
+  text-align: center;
+  font-size: 0.8em;
+  color: #222;
+  margin-top: 2mm;
+}
+.receipt-preview .r-serial,
+.print-area .r-serial {
+  text-align: center;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+}
+.receipt-preview .r-feed,
+.print-area .r-feed {
+  /* Tear line + trailing tail so the printer feeds past the last glyph.
+     The dashed content is real text (not CSS whitespace) so the page's
+     auto size accounts for it. */
+  margin-top: 1em;
+  padding-bottom: 6mm;
+}
+.receipt-preview .r-feed::before,
+.print-area .r-feed::before {
+  content: "- - - - - - - - - - - - - -";
+  display: block;
+  text-align: center;
+  white-space: pre;
+}
+
+/* Coupon-style dashed border variant */
+.receipt-preview .r-coupon,
+.print-area .r-coupon {
+  border: 1.5px dashed #000;
+  padding: 3mm 2mm;
+  margin: 2mm 0;
+  border-radius: 1mm;
+}
+
+/* Copy label printed at the top of each copy for multi-copy templates */
+.receipt-preview .r-copy-note,
+.print-area .r-copy-note {
+  text-align: center;
+  font-family: var(--receipt-font);
+  font-weight: var(--receipt-weight);
+  font-size: 0.9em;
+  padding: 2mm 4mm 0;
+}
+
+/* Forces the thermal driver to start a fresh "page" (i.e., a separate
+   receipt with feed + cut) between copies. Zero height on screen. */
+.page-break {
+  display: block;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+@media print {
+  .page-break {
+    page-break-after: always;
+    break-after: page;
+  }
+}
+
+/* QR code block — injected by app.js when state.qrText is set */
+.receipt-preview .r-qr,
+.print-area .r-qr {
+  margin: 3mm auto 0;
+  width: 28mm;
+  height: 28mm;
+}
+.receipt-preview .r-qr svg,
+.print-area .r-qr svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  shape-rendering: crispEdges;  /* keep QR cells sharp, no anti-alias blur */
+}
+.receipt-preview .r-qr-caption,
+.print-area .r-qr-caption {
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 1mm;
+  word-break: break-all;
+}
+.receipt-preview .r-qr-note,
+.print-area .r-qr-note {
+  text-align: center;
+  font-size: 0.75em;
+  font-style: italic;
+  margin-top: 0.5mm;
+}
+
+/* ---------- Modals ---------- */
+
+.modal {
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  max-width: 560px;
+  width: 92vw;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+.modal::backdrop { background: rgba(0,0,0,0.35); }
+.modal-body { padding: 20px 22px; }
+.modal h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+.modal h3.settings-group {
+  margin: 18px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.modal h3.settings-group:first-of-type { margin-top: 6px; }
+.modal .field { margin-bottom: 12px; }
+
+/* Logo upload + list */
+.logo-upload {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.logo-upload > input[type="text"]#newLogoLabel { flex: 2 1 160px; }
+.logo-upload > input[type="text"]#newLogoWidth { flex: 0 0 70px; }
+.logo-upload > input[type="file"] { flex: 1 1 180px; font-size: 12px; }
+.modal .logo-upload > input[type="text"] { width: auto; }
+
+.logo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fcfbf7;
+}
+.logo-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.logo-list li:last-child { border-bottom: none; }
+.logo-list img {
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+.logo-list .logo-label { flex: 1; }
+.logo-list .logo-label small { color: var(--ink-soft); margin-left: 6px; }
+.logo-list li button {
+  padding: 3px 8px;
+  font-size: 12px;
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+}
+.logo-list .empty {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 14px;
+  justify-content: center;
+  display: block;
+}
+
+.roster {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #fcfbf7;
+}
+.roster li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.roster li:last-child { border-bottom: none; }
+.roster .roster-class { color: var(--ink-soft); font-size: 12px; }
+.roster button {
+  padding: 3px 8px;
+  font-size: 12px;
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+}
+
+/* =========================================================
+   PRINT MODE — the thermal receipt
+   ========================================================= */
+
+/* On screen the print-area is hidden. */
+.print-area { display: none; }
+
+@page {
+  size: 80mm auto;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  body > *:not(.print-area) { display: none !important; }
+  .print-area {
+    display: block;
+    width: 80mm;
+    padding: 2mm 4mm;
+    color: #000;
+    font-family: var(--receipt-font);
+    font-size: var(--receipt-font-size);
+    line-height: var(--receipt-line);
+    font-weight: var(--receipt-weight);
+  }
+  .print-area .r { width: var(--print-width); margin: 0 auto; }
+}

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thermo — Chapin HS Computer Science</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-mark">[ = ]</span>
+      <h1>Thermo</h1>
+      <span class="brand-sub">Chapin HS Computer Science</span>
+    </div>
+    <nav class="app-nav">
+      <button type="button" id="btnStudents">Manage students</button>
+      <button type="button" id="btnSettings">Settings</button>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <aside class="template-picker" id="templatePicker" aria-label="Receipt templates">
+      <!-- populated by app.js -->
+    </aside>
+
+    <section class="form-area">
+      <h2 id="formTitle">Pick a template</h2>
+      <form id="templateForm" autocomplete="off">
+        <div id="formFields"></div>
+
+        <div class="actions" id="actions">
+          <!-- Print buttons are injected here per-template by app.js -->
+          <button type="button" id="btnTestPrint">Test print (alignment)</button>
+          <button type="button" id="btnShuffle" title="Randomize any variable fields">Shuffle preview</button>
+        </div>
+
+        <p class="hint">
+          First print: in the browser dialog, pick your thermal printer, set
+          paper size to 80mm (or custom 80mm width), margins to None. Chrome
+          remembers the settings after that.
+        </p>
+      </form>
+    </section>
+
+    <section class="preview-area">
+      <h2>Live preview</h2>
+      <div class="preview-shell">
+        <div class="receipt-preview" id="receiptPreview">
+          <div class="receipt-placeholder">Select a template on the left.</div>
+        </div>
+      </div>
+      <p class="hint preview-hint">
+        Preview renders at true 80mm width. What you see is what prints.
+      </p>
+    </section>
+  </main>
+
+  <!-- This node is the only thing visible when the browser prints. -->
+  <div class="print-area" id="printArea" aria-hidden="true"></div>
+
+  <!-- Students modal -->
+  <dialog id="studentsModal" class="modal">
+    <form method="dialog" class="modal-body">
+      <h2>Manage students</h2>
+
+      <label class="field">
+        <span>Add a student</span>
+        <div class="row">
+          <input type="text" id="studentNameInput" placeholder="First name or Firstname Lastname" />
+          <select id="studentClassInput">
+            <!-- populated from settings.classes -->
+          </select>
+          <button type="button" id="btnAddStudent">Add</button>
+        </div>
+      </label>
+
+      <label class="field">
+        <span>Bulk paste (one name per line, optional "Name, Class")</span>
+        <textarea id="studentBulkInput" rows="5" placeholder="Stephano, AP CSP&#10;Jordan, Fundamentals of CS&#10;Alex"></textarea>
+        <button type="button" id="btnBulkAdd">Import pasted list</button>
+      </label>
+
+      <div class="field">
+        <span>Current roster (<span id="rosterCount">0</span>)</span>
+        <ul id="rosterList" class="roster"></ul>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="btnClearRoster" class="danger">Clear all</button>
+        <button value="close">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Settings modal -->
+  <dialog id="settingsModal" class="modal">
+    <form method="dialog" class="modal-body">
+      <h2>Settings</h2>
+
+      <h3 class="settings-group">Your info</h3>
+      <label class="field">
+        <span>Teacher signature</span>
+        <input type="text" id="settingsTeacher" placeholder="Mr. Teacher" />
+      </label>
+
+      <label class="field">
+        <span>School name (shown under the app title)</span>
+        <input type="text" id="settingsSchoolName" placeholder="Your High School" />
+      </label>
+
+      <label class="field">
+        <span>Room number</span>
+        <input type="text" id="settingsRoom" placeholder="101" />
+      </label>
+
+      <label class="field">
+        <span>Contact email (shown on phone-confiscation notices)</span>
+        <input type="text" id="settingsEmail" placeholder="teacher@yourschool.edu" />
+      </label>
+
+      <label class="field">
+        <span>Footer line (printed under the signature on every receipt)</span>
+        <input type="text" id="settingsFooter" placeholder="Your School — Department" />
+      </label>
+
+      <h3 class="settings-group">Classes &amp; counters</h3>
+      <label class="field">
+        <span>Classes (one per line)</span>
+        <textarea id="settingsClasses" rows="4" placeholder="Period 1&#10;Period 2&#10;Period 3"></textarea>
+      </label>
+
+      <label class="field">
+        <span>Default class period</span>
+        <select id="settingsDefaultClass"></select>
+      </label>
+
+      <label class="field">
+        <span>Quarter expiry label (for homework pass)</span>
+        <input type="text" id="settingsExpiry" placeholder="End of Quarter" />
+      </label>
+
+      <label class="field">
+        <span>Serial counter (tickets / coupons)</span>
+        <div class="row">
+          <input type="number" id="settingsSerial" min="0" />
+          <button type="button" id="btnResetSerial">Reset to 1</button>
+        </div>
+      </label>
+
+      <h3 class="settings-group">Logos</h3>
+
+      <div class="field">
+        <span>Add a logo from your computer</span>
+        <div class="logo-upload">
+          <input type="text" id="newLogoLabel" placeholder="Name (e.g., School Mascot)" />
+          <input type="text" id="newLogoWidth" placeholder="28mm" value="28mm" />
+          <input type="file" id="newLogoFile" accept="image/png,image/jpeg,image/gif,image/webp" />
+          <button type="button" id="btnAddLogo">Add</button>
+        </div>
+        <p class="inline-hint">Uploads are auto-resized to ~800px and saved in this browser.</p>
+      </div>
+
+      <div class="field">
+        <span>Your logos</span>
+        <ul id="logoList" class="logo-list"></ul>
+      </div>
+
+      <label class="field">
+        <span>Active header logo</span>
+        <select id="settingsLogo"></select>
+      </label>
+
+      <h3 class="settings-group">QR codes</h3>
+      <label class="field">
+        <span>Saved QR codes (one per line: <code>Label, Content</code>)</span>
+        <textarea id="settingsQRPresets" rows="4"
+          placeholder="Class website, https://yourschool.edu/class&#10;Contact me, mailto:teacher@yourschool.edu"></textarea>
+      </label>
+
+      <label class="field">
+        <span>QR note (small italic line printed under every QR code)</span>
+        <input type="text" id="settingsQRNote" placeholder="(use phone for this after school)" />
+      </label>
+
+      <h3 class="settings-group">Phone-confiscation template</h3>
+      <label class="field">
+        <span>Policy citation body</span>
+        <textarea id="settingsPhonePolicy" rows="3"
+          placeholder="Per [state law/code]: personal devices prohibited during class. Full policy: yourschool.edu/policy"></textarea>
+      </label>
+
+      <label class="field">
+        <span>Escalation section label</span>
+        <input type="text" id="settingsPhoneEscalationLabel" placeholder="DISTRICT ESCALATION" />
+      </label>
+
+      <label class="field">
+        <span>Escalation body</span>
+        <textarea id="settingsPhoneEscalation" rows="5"
+          placeholder="1. Warning&#10;2. Confiscated, returned EOD&#10;3. Parent pickup + conference&#10;4. Progressive discipline"></textarea>
+      </label>
+
+      <label class="field">
+        <span>Default pickup instructions</span>
+        <textarea id="settingsPhonePickup" rows="3"
+          placeholder="Pick up at the main office after final period."></textarea>
+      </label>
+
+      <div class="actions">
+        <button value="close">Done</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="vendor/qrcode.min.js"></script>
+  <script src="templates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -4,7 +4,10 @@
       "Bash(cp ../cmu-graphics-to-mobile-app/docs/assets/*.png fcs/cmu-cs1/cmu-to-mobile/assets/)",
       "Bash(cp ../cmu-graphics-to-mobile-app/examples/cmu-starter.py fcs/cmu-cs1/cmu-to-mobile/examples/)",
       "Bash(cp ../cmu-graphics-to-mobile-app/examples/react-native-example.jsx fcs/cmu-cs1/cmu-to-mobile/examples/)",
-      "Bash(cp ../cmu-graphics-to-mobile-app/lesson/ai-refactoring-process.md fcs/cmu-cs1/cmu-to-mobile/lesson/)"
+      "Bash(cp ../cmu-graphics-to-mobile-app/lesson/ai-refactoring-process.md fcs/cmu-cs1/cmu-to-mobile/lesson/)",
+      "Read(//c/Users/mark/workspace/passprinter/**)",
+      "Bash(cp ../passprinter/index.html ../passprinter/app.js ../passprinter/templates.js ../passprinter/style.css ../passprinter/Chapin_High_School_logo.png ../passprinter/ptech.png teachertools/thermo/)",
+      "Bash(cp ../passprinter/vendor/qrcode.min.js teachertools/thermo/vendor/)"
     ]
   }
 }
