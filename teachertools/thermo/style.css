@@ -111,16 +111,6 @@
   color: var(--ink-soft);
   margin-top: 0 !important;
 }
-dialog.thermo-modal h2 {
-  font-size: 18px !important;
-  color: #2c3e50;
-  margin-top: 0 !important;
-}
-dialog.thermo-modal h3.settings-group {
-  font-size: 12px !important;
-  margin-top: 18px !important;
-  color: var(--ink-soft);
-}
 
 /* Template buttons */
 .tpl-btn {
@@ -148,8 +138,7 @@ dialog.thermo-modal h3.settings-group {
 /* ---------- Form area ---------- */
 
 .form-area .field { display: block; margin-bottom: 12px; }
-.form-area .field > span,
-.thermo-modal .field > span {
+.form-area .field > span {
   display: block;
   font-size: 12px;
   color: var(--ink-soft);
@@ -161,11 +150,7 @@ dialog.thermo-modal h3.settings-group {
 .form-area input[type="text"],
 .form-area input[type="number"],
 .form-area select,
-.form-area textarea,
-.thermo-modal input[type="text"],
-.thermo-modal input[type="number"],
-.thermo-modal select,
-.thermo-modal textarea {
+.form-area textarea {
   width: 100%;
   padding: 8px 10px;
   font: inherit;
@@ -174,15 +159,12 @@ dialog.thermo-modal h3.settings-group {
   background: #fff;
 }
 
-.form-area .row,
-.thermo-modal .row {
+.form-area .row {
   display: flex;
   gap: 6px;
 }
 .form-area .row > input,
-.form-area .row > select,
-.thermo-modal .row > input,
-.thermo-modal .row > select { flex: 1 1 auto; }
+.form-area .row > select { flex: 1 1 auto; }
 
 /* QR preset dropdown — fixed width so long labels don't crowd the input. */
 .field-universal .row > select {
@@ -481,117 +463,258 @@ button.danger {
   margin-top: 0.5mm;
 }
 
-/* ---------- Modals ---------- */
+/* =========================================================
+   Modals — native <dialog> styled to match the classroom site
+   ========================================================= */
 
 .thermo-modal {
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   padding: 0;
-  max-width: 560px;
+  max-width: 640px;
   width: 92vw;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  max-height: 88vh;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  background: #fff;
+  overflow: hidden;
+  color: #2c3e50;
 }
-.thermo-modal::backdrop { background: rgba(0,0,0,0.35); }
-.thermo-modal-body { padding: 20px 22px; }
-.thermo-modal h2 {
-  margin: 0 0 14px;
-  font-size: 18px;
-}
-.thermo-modal h3.settings-group {
-  margin: 18px 0 8px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--border);
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.thermo-modal h3.settings-group:first-of-type { margin-top: 6px; }
-.thermo-modal .field { margin-bottom: 12px; }
 
-/* Logo upload + list */
-.logo-upload {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
+.thermo-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
 }
-.logo-upload > input[type="text"]#newLogoLabel { flex: 2 1 160px; }
-.logo-upload > input[type="text"]#newLogoWidth { flex: 0 0 70px; }
-.logo-upload > input[type="file"] { flex: 1 1 180px; font-size: 12px; }
-.thermo-modal .logo-upload > input[type="text"] { width: auto; }
+
+.thermo-modal-body {
+  display: flex;
+  flex-direction: column;
+  max-height: 88vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Header bar (gradient matches the Teacher Tools accent) ---- */
+
+.tm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  color: #fff;
+  flex-shrink: 0;
+}
+.tm-header h2 {
+  margin: 0 !important;
+  font-size: 1.25rem !important;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tm-header h2 i { font-size: 1.35rem; }
+
+.tm-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  padding: 0;
+  font-size: 0.95rem;
+}
+.tm-close-btn:hover { background: rgba(255, 255, 255, 0.3); }
+.tm-close-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ---- Scrollable body ---- */
+
+.tm-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 20px 24px;
+}
+
+.tm-section {
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #e9ecef;
+}
+.tm-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.tm-section h3 {
+  font-size: 1rem !important;
+  font-weight: 600;
+  color: #495057;
+  margin: 0 0 14px !important;
+  margin-top: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.tm-section h3 i {
+  color: #0d6efd;
+  font-size: 1.1rem;
+}
+
+/* Bootstrap form-label tweak for modal density */
+.thermo-modal .form-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.thermo-modal .form-label code {
+  background: #f1f3f5;
+  color: #c7254e;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+.thermo-modal .form-text {
+  font-size: 0.78rem;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ---- Footer action bar ---- */
+
+.tm-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 22px;
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  flex-shrink: 0;
+}
+
+/* Roster count pill */
+.roster-count-badge {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0a58ca;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-left: auto;
+  min-width: 32px;
+  text-align: center;
+}
+
+/* ---- Logo list (rendered by app.js) ---- */
 
 .logo-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 200px;
+  max-height: 220px;
   overflow-y: auto;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: #fcfbf7;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: #fff;
 }
 .logo-list li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 10px;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.9rem;
 }
 .logo-list li:last-child { border-bottom: none; }
 .logo-list img {
-  max-width: 40px;
-  max-height: 40px;
+  max-width: 44px;
+  max-height: 44px;
   object-fit: contain;
   background: #fff;
-  border: 1px solid var(--border);
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
 }
-.logo-list .logo-label { flex: 1; }
-.logo-list .logo-label small { color: var(--ink-soft); margin-left: 6px; }
+.logo-list .logo-label { flex: 1; color: #2c3e50; }
+.logo-list .logo-label small { color: #6c757d; margin-left: 6px; }
 .logo-list li button {
-  padding: 3px 8px;
-  font-size: 12px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
   background: transparent;
-  border: none;
-  color: var(--danger);
+  border: 1px solid transparent;
+  color: #dc3545;
   cursor: pointer;
+  border-radius: 4px;
+}
+.logo-list li button:hover {
+  background: #f8d7da;
+  border-color: #f1aeb5;
 }
 .logo-list .empty {
-  text-align: center;
-  color: var(--ink-soft);
-  padding: 14px;
-  justify-content: center;
   display: block;
+  text-align: center;
+  color: #6c757d;
+  padding: 20px;
+  font-style: italic;
 }
+
+/* ---- Roster list (rendered by app.js) ---- */
 
 .roster {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 180px;
+  max-height: 240px;
   overflow-y: auto;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  background: #fcfbf7;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: #fff;
 }
 .roster li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 10px;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.92rem;
+  color: #2c3e50;
 }
 .roster li:last-child { border-bottom: none; }
-.roster .roster-class { color: var(--ink-soft); font-size: 12px; }
+.roster .roster-class {
+  color: #6c757d;
+  font-size: 0.82rem;
+  margin-left: 6px;
+}
 .roster button {
-  padding: 3px 8px;
-  font-size: 12px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
   background: transparent;
-  border: none;
-  color: var(--danger);
+  border: 1px solid transparent;
+  color: #dc3545;
   cursor: pointer;
+  border-radius: 4px;
+}
+.roster button:hover {
+  background: #f8d7da;
+  border-color: #f1aeb5;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 540px) {
+  .tm-scroll { padding: 16px 18px; }
+  .tm-header, .tm-footer { padding-left: 18px; padding-right: 18px; }
+  .thermo-modal { width: 96vw; max-height: 92vh; }
 }
 
 /* =========================================================

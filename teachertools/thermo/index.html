@@ -99,154 +99,212 @@
   <!-- Students modal -->
   <dialog id="studentsModal" class="thermo-modal">
     <form method="dialog" class="thermo-modal-body">
-      <h2>Manage students</h2>
+      <header class="tm-header">
+        <h2><i class="bi bi-people"></i> Manage Students</h2>
+        <button type="submit" class="tm-close-btn" value="close" aria-label="Close dialog">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </header>
 
-      <label class="field">
-        <span>Add a student</span>
-        <div class="row">
-          <input type="text" id="studentNameInput" placeholder="First name or Firstname Lastname" />
-          <select id="studentClassInput">
-            <!-- populated from settings.classes -->
-          </select>
-          <button type="button" id="btnAddStudent">Add</button>
-        </div>
-      </label>
+      <div class="tm-scroll">
+        <section class="tm-section">
+          <h3><i class="bi bi-person-plus"></i> Add a student</h3>
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-7">
+              <label for="studentNameInput" class="form-label">Name</label>
+              <input type="text" class="form-control" id="studentNameInput" placeholder="First name or Firstname Lastname" />
+            </div>
+            <div class="col-sm-3">
+              <label for="studentClassInput" class="form-label">Class</label>
+              <select class="form-select" id="studentClassInput"></select>
+            </div>
+            <div class="col-sm-2">
+              <button type="button" id="btnAddStudent" class="btn btn-primary w-100">
+                <i class="bi bi-plus-lg"></i> Add
+              </button>
+            </div>
+          </div>
+        </section>
 
-      <label class="field">
-        <span>Bulk paste (one name per line, optional "Name, Class")</span>
-        <textarea id="studentBulkInput" rows="5" placeholder="Stephano, AP CSP&#10;Jordan, Fundamentals of CS&#10;Alex"></textarea>
-        <button type="button" id="btnBulkAdd">Import pasted list</button>
-      </label>
+        <section class="tm-section">
+          <h3><i class="bi bi-clipboard"></i> Bulk import</h3>
+          <p class="text-muted small mb-2">
+            One name per line. Optional <code>Name, Class</code> to assign a period.
+          </p>
+          <textarea class="form-control mb-2" id="studentBulkInput" rows="5"
+            placeholder="Stephano, AP CSP&#10;Jordan, Fundamentals of CS&#10;Alex"></textarea>
+          <button type="button" id="btnBulkAdd" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-clipboard-plus"></i> Import pasted list
+          </button>
+        </section>
 
-      <div class="field">
-        <span>Current roster (<span id="rosterCount">0</span>)</span>
-        <ul id="rosterList" class="roster"></ul>
+        <section class="tm-section">
+          <h3>
+            <i class="bi bi-list-ul"></i> Current roster
+            <span id="rosterCount" class="roster-count-badge">0</span>
+          </h3>
+          <ul id="rosterList" class="roster"></ul>
+        </section>
       </div>
 
-      <div class="actions">
-        <button type="button" id="btnClearRoster" class="danger">Clear all</button>
-        <button value="close">Close</button>
-      </div>
+      <footer class="tm-footer">
+        <button type="button" id="btnClearRoster" class="btn btn-outline-danger">
+          <i class="bi bi-trash"></i> Clear all
+        </button>
+        <button type="submit" value="close" class="btn btn-primary">Close</button>
+      </footer>
     </form>
   </dialog>
 
   <!-- Settings modal -->
   <dialog id="settingsModal" class="thermo-modal">
     <form method="dialog" class="thermo-modal-body">
-      <h2>Settings</h2>
+      <header class="tm-header">
+        <h2><i class="bi bi-gear"></i> Settings</h2>
+        <button type="submit" class="tm-close-btn" value="close" aria-label="Close dialog">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </header>
 
-      <h3 class="settings-group">Your info</h3>
-      <label class="field">
-        <span>Teacher signature</span>
-        <input type="text" id="settingsTeacher" placeholder="Mr. Teacher" />
-      </label>
+      <div class="tm-scroll">
+        <section class="tm-section">
+          <h3><i class="bi bi-person-badge"></i> Your info</h3>
+          <div class="mb-3">
+            <label for="settingsTeacher" class="form-label">Teacher signature</label>
+            <input type="text" class="form-control" id="settingsTeacher" placeholder="Mr. Teacher" />
+          </div>
+          <div class="mb-3">
+            <label for="settingsSchoolName" class="form-label">
+              School name <span class="text-muted fw-normal">(shown under the app title)</span>
+            </label>
+            <input type="text" class="form-control" id="settingsSchoolName" placeholder="Your High School" />
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-sm-4">
+              <label for="settingsRoom" class="form-label">Room number</label>
+              <input type="text" class="form-control" id="settingsRoom" placeholder="101" />
+            </div>
+            <div class="col-sm-8">
+              <label for="settingsEmail" class="form-label">Contact email</label>
+              <input type="text" class="form-control" id="settingsEmail" placeholder="teacher@yourschool.edu" />
+            </div>
+          </div>
+          <div class="mb-1">
+            <label for="settingsFooter" class="form-label">
+              Footer line <span class="text-muted fw-normal">(printed under the signature)</span>
+            </label>
+            <input type="text" class="form-control" id="settingsFooter" placeholder="Your School — Department" />
+          </div>
+        </section>
 
-      <label class="field">
-        <span>School name (shown under the app title)</span>
-        <input type="text" id="settingsSchoolName" placeholder="Your High School" />
-      </label>
+        <section class="tm-section">
+          <h3><i class="bi bi-calendar3"></i> Classes &amp; counters</h3>
+          <div class="mb-3">
+            <label for="settingsClasses" class="form-label">
+              Classes <span class="text-muted fw-normal">(one per line)</span>
+            </label>
+            <textarea class="form-control" id="settingsClasses" rows="4"
+              placeholder="Period 1&#10;Period 2&#10;Period 3"></textarea>
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-sm-6">
+              <label for="settingsDefaultClass" class="form-label">Default class period</label>
+              <select class="form-select" id="settingsDefaultClass"></select>
+            </div>
+            <div class="col-sm-6">
+              <label for="settingsExpiry" class="form-label">Quarter expiry label</label>
+              <input type="text" class="form-control" id="settingsExpiry" placeholder="End of Quarter" />
+            </div>
+          </div>
+          <div class="mb-1">
+            <label for="settingsSerial" class="form-label">
+              Serial counter <span class="text-muted fw-normal">(tickets / coupons)</span>
+            </label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="settingsSerial" min="0" />
+              <button type="button" id="btnResetSerial" class="btn btn-outline-secondary">Reset to 1</button>
+            </div>
+          </div>
+        </section>
 
-      <label class="field">
-        <span>Room number</span>
-        <input type="text" id="settingsRoom" placeholder="101" />
-      </label>
+        <section class="tm-section">
+          <h3><i class="bi bi-image"></i> Logos</h3>
+          <div class="mb-3">
+            <label class="form-label">Add a logo from your computer</label>
+            <div class="row g-2 align-items-center">
+              <div class="col-sm-5">
+                <input type="text" class="form-control form-control-sm" id="newLogoLabel" placeholder="Name (e.g., School Mascot)" />
+              </div>
+              <div class="col-sm-2">
+                <input type="text" class="form-control form-control-sm" id="newLogoWidth" placeholder="28mm" value="28mm" />
+              </div>
+              <div class="col-sm-4">
+                <input type="file" class="form-control form-control-sm" id="newLogoFile"
+                  accept="image/png,image/jpeg,image/gif,image/webp" />
+              </div>
+              <div class="col-sm-1">
+                <button type="button" id="btnAddLogo" class="btn btn-sm btn-primary w-100">Add</button>
+              </div>
+            </div>
+            <p class="form-text">Uploads are auto-resized to ~800px and saved in this browser.</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Your logos</label>
+            <ul id="logoList" class="logo-list"></ul>
+          </div>
+          <div class="mb-1">
+            <label for="settingsLogo" class="form-label">Active header logo</label>
+            <select class="form-select" id="settingsLogo"></select>
+          </div>
+        </section>
 
-      <label class="field">
-        <span>Contact email (shown on phone-confiscation notices)</span>
-        <input type="text" id="settingsEmail" placeholder="teacher@yourschool.edu" />
-      </label>
+        <section class="tm-section">
+          <h3><i class="bi bi-qr-code"></i> QR codes</h3>
+          <div class="mb-3">
+            <label for="settingsQRPresets" class="form-label">
+              Saved QR codes
+              <span class="text-muted fw-normal">(one per line: <code>Label, Content</code>)</span>
+            </label>
+            <textarea class="form-control" id="settingsQRPresets" rows="4"
+              placeholder="Class website, https://yourschool.edu/class&#10;Contact me, mailto:teacher@yourschool.edu"></textarea>
+          </div>
+          <div class="mb-1">
+            <label for="settingsQRNote" class="form-label">
+              QR note <span class="text-muted fw-normal">(small italic line under every QR)</span>
+            </label>
+            <input type="text" class="form-control" id="settingsQRNote" placeholder="(use phone for this after school)" />
+          </div>
+        </section>
 
-      <label class="field">
-        <span>Footer line (printed under the signature on every receipt)</span>
-        <input type="text" id="settingsFooter" placeholder="Your School — Department" />
-      </label>
-
-      <h3 class="settings-group">Classes &amp; counters</h3>
-      <label class="field">
-        <span>Classes (one per line)</span>
-        <textarea id="settingsClasses" rows="4" placeholder="Period 1&#10;Period 2&#10;Period 3"></textarea>
-      </label>
-
-      <label class="field">
-        <span>Default class period</span>
-        <select id="settingsDefaultClass"></select>
-      </label>
-
-      <label class="field">
-        <span>Quarter expiry label (for homework pass)</span>
-        <input type="text" id="settingsExpiry" placeholder="End of Quarter" />
-      </label>
-
-      <label class="field">
-        <span>Serial counter (tickets / coupons)</span>
-        <div class="row">
-          <input type="number" id="settingsSerial" min="0" />
-          <button type="button" id="btnResetSerial">Reset to 1</button>
-        </div>
-      </label>
-
-      <h3 class="settings-group">Logos</h3>
-
-      <div class="field">
-        <span>Add a logo from your computer</span>
-        <div class="logo-upload">
-          <input type="text" id="newLogoLabel" placeholder="Name (e.g., School Mascot)" />
-          <input type="text" id="newLogoWidth" placeholder="28mm" value="28mm" />
-          <input type="file" id="newLogoFile" accept="image/png,image/jpeg,image/gif,image/webp" />
-          <button type="button" id="btnAddLogo">Add</button>
-        </div>
-        <p class="inline-hint">Uploads are auto-resized to ~800px and saved in this browser.</p>
+        <section class="tm-section">
+          <h3><i class="bi bi-phone-vibrate"></i> Phone-confiscation template</h3>
+          <div class="mb-3">
+            <label for="settingsPhonePolicy" class="form-label">Policy citation body</label>
+            <textarea class="form-control" id="settingsPhonePolicy" rows="3"
+              placeholder="Per [state law/code]: personal devices prohibited during class. Full policy: yourschool.edu/policy"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="settingsPhoneEscalationLabel" class="form-label">Escalation section label</label>
+            <input type="text" class="form-control" id="settingsPhoneEscalationLabel" placeholder="DISTRICT ESCALATION" />
+          </div>
+          <div class="mb-3">
+            <label for="settingsPhoneEscalation" class="form-label">Escalation body</label>
+            <textarea class="form-control" id="settingsPhoneEscalation" rows="5"
+              placeholder="1. Warning&#10;2. Confiscated, returned EOD&#10;3. Parent pickup + conference&#10;4. Progressive discipline"></textarea>
+          </div>
+          <div class="mb-1">
+            <label for="settingsPhonePickup" class="form-label">Default pickup instructions</label>
+            <textarea class="form-control" id="settingsPhonePickup" rows="3"
+              placeholder="Pick up at the main office after final period."></textarea>
+          </div>
+        </section>
       </div>
 
-      <div class="field">
-        <span>Your logos</span>
-        <ul id="logoList" class="logo-list"></ul>
-      </div>
-
-      <label class="field">
-        <span>Active header logo</span>
-        <select id="settingsLogo"></select>
-      </label>
-
-      <h3 class="settings-group">QR codes</h3>
-      <label class="field">
-        <span>Saved QR codes (one per line: <code>Label, Content</code>)</span>
-        <textarea id="settingsQRPresets" rows="4"
-          placeholder="Class website, https://yourschool.edu/class&#10;Contact me, mailto:teacher@yourschool.edu"></textarea>
-      </label>
-
-      <label class="field">
-        <span>QR note (small italic line printed under every QR code)</span>
-        <input type="text" id="settingsQRNote" placeholder="(use phone for this after school)" />
-      </label>
-
-      <h3 class="settings-group">Phone-confiscation template</h3>
-      <label class="field">
-        <span>Policy citation body</span>
-        <textarea id="settingsPhonePolicy" rows="3"
-          placeholder="Per [state law/code]: personal devices prohibited during class. Full policy: yourschool.edu/policy"></textarea>
-      </label>
-
-      <label class="field">
-        <span>Escalation section label</span>
-        <input type="text" id="settingsPhoneEscalationLabel" placeholder="DISTRICT ESCALATION" />
-      </label>
-
-      <label class="field">
-        <span>Escalation body</span>
-        <textarea id="settingsPhoneEscalation" rows="5"
-          placeholder="1. Warning&#10;2. Confiscated, returned EOD&#10;3. Parent pickup + conference&#10;4. Progressive discipline"></textarea>
-      </label>
-
-      <label class="field">
-        <span>Default pickup instructions</span>
-        <textarea id="settingsPhonePickup" rows="3"
-          placeholder="Pick up at the main office after final period."></textarea>
-      </label>
-
-      <div class="actions">
-        <button value="close">Done</button>
-      </div>
+      <footer class="tm-footer">
+        <button type="submit" value="close" class="btn btn-primary">
+          <i class="bi bi-check-lg"></i> Done
+        </button>
+      </footer>
     </form>
   </dialog>
 
