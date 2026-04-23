@@ -1,60 +1,97 @@
+---
+---
+
+<!-- File: classroom/teachertools/thermo/index.html -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thermo — Chapin HS Computer Science</title>
+  <title>Thermo — Mr. Johnston's Classroom</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+  />
+  <link rel="stylesheet" href="../../css/styles.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="app-header">
-    <div class="brand">
-      <span class="brand-mark">[ = ]</span>
-      <h1>Thermo</h1>
-      <span class="brand-sub">Chapin HS Computer Science</span>
-    </div>
-    <nav class="app-nav">
-      <button type="button" id="btnStudents">Manage students</button>
-      <button type="button" id="btnSettings">Settings</button>
+  {% include navigation.html %}
+
+  <div class="thermo-container">
+    <nav class="breadcrumb-nav">
+      <a href="../../" class="text-white">
+        <i class="bi bi-house"></i> Home
+      </a>
+      <span class="text-white-50 mx-2">/</span>
+      <a href="../" class="text-white-50">Teacher Tools</a>
+      <span class="text-white-50 mx-2">/</span>
+      <span class="text-white">Thermo</span>
     </nav>
-  </header>
 
-  <main class="app-main">
-    <aside class="template-picker" id="templatePicker" aria-label="Receipt templates">
-      <!-- populated by app.js -->
-    </aside>
-
-    <section class="form-area">
-      <h2 id="formTitle">Pick a template</h2>
-      <form id="templateForm" autocomplete="off">
-        <div id="formFields"></div>
-
-        <div class="actions" id="actions">
-          <!-- Print buttons are injected here per-template by app.js -->
-          <button type="button" id="btnTestPrint">Test print (alignment)</button>
-          <button type="button" id="btnShuffle" title="Randomize any variable fields">Shuffle preview</button>
+    <div class="thermo-shell">
+      <header class="thermo-header">
+        <div class="thermo-title">
+          <h1>
+            <i class="bi bi-receipt text-primary"></i> Thermo
+            <span class="brand-sub" aria-live="polite"></span>
+          </h1>
+          <p class="lead text-muted mb-0">
+            Thermal-printer receipts for hall passes, tickets, and classroom notices.
+          </p>
         </div>
+        <nav class="thermo-actions">
+          <button type="button" id="btnStudents" class="btn btn-outline-secondary">
+            <i class="bi bi-people"></i> Manage students
+          </button>
+          <button type="button" id="btnSettings" class="btn btn-outline-secondary">
+            <i class="bi bi-gear"></i> Settings
+          </button>
+        </nav>
+      </header>
 
-        <p class="hint">
-          First print: in the browser dialog, pick your thermal printer, set
-          paper size to 80mm (or custom 80mm width), margins to None. Chrome
-          remembers the settings after that.
-        </p>
-      </form>
-    </section>
+      <main class="app-main">
+        <aside class="template-picker" id="templatePicker" aria-label="Receipt templates">
+          <!-- populated by app.js -->
+        </aside>
 
-    <section class="preview-area">
-      <h2>Live preview</h2>
-      <div class="preview-shell">
-        <div class="receipt-preview" id="receiptPreview">
-          <div class="receipt-placeholder">Select a template on the left.</div>
-        </div>
-      </div>
-      <p class="hint preview-hint">
-        Preview renders at true 80mm width. What you see is what prints.
-      </p>
-    </section>
-  </main>
+        <section class="form-area">
+          <h2 id="formTitle">Pick a template</h2>
+          <form id="templateForm" autocomplete="off">
+            <div id="formFields"></div>
+
+            <div class="actions" id="actions">
+              <!-- Print buttons are injected here per-template by app.js -->
+              <button type="button" id="btnTestPrint">Test print (alignment)</button>
+              <button type="button" id="btnShuffle" title="Randomize any variable fields">Shuffle preview</button>
+            </div>
+
+            <p class="hint">
+              First print: in the browser dialog, pick your thermal printer, set
+              paper size to 80mm (or custom 80mm width), margins to None. Chrome
+              remembers the settings after that.
+            </p>
+          </form>
+        </section>
+
+        <section class="preview-area">
+          <h2>Live preview</h2>
+          <div class="preview-shell">
+            <div class="receipt-preview" id="receiptPreview">
+              <div class="receipt-placeholder">Select a template on the left.</div>
+            </div>
+          </div>
+          <p class="hint preview-hint">
+            Preview renders at true 80mm width. What you see is what prints.
+          </p>
+        </section>
+      </main>
+    </div>
+  </div>
 
   <!-- This node is the only thing visible when the browser prints. -->
   <div class="print-area" id="printArea" aria-hidden="true"></div>
@@ -213,6 +250,7 @@
     </form>
   </dialog>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/qrcode.min.js"></script>
   <script src="templates.js"></script>
   <script src="app.js"></script>
