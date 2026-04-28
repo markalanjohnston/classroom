@@ -334,6 +334,12 @@ function renderForm() {
 }
 
 function renderField(f) {
+  // Section dividers are pure layout — no value, no listener, no name.
+  // Used by the Custom template to keep its long checkbox list scannable.
+  if (f.type === 'section') {
+    return `<div class="form-section"><h3>${escapeHTML(f.label)}</h3></div>`;
+  }
+
   const v = state.formData[f.name] ?? '';
   const common = `name="${f.name}" id="fld-${f.name}"`;
 

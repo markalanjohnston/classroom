@@ -310,4 +310,234 @@ TEMPLATES.phone = {
   }
 };
 
-const TEMPLATE_ORDER = ['praise', 'pass', 'homework', 'phone'];
+/* -------------------- 5. Custom (kitchen sink) ---------- */
+TEMPLATES.custom = {
+  id: 'custom',
+  label: 'Custom',
+  sub: 'Mix-and-match any pieces from the other templates.',
+  // Only burns a serial if the user opted into a serial number on this print.
+  usesSerial: (data) => data.includeSerial === true,
+
+  fields: (ctx) => ([
+    { type: 'section', label: 'Title' },
+    { name: 'title',             label: 'Title text',                 type: 'text',     default: 'NOTICE' },
+    { name: 'titleStarBorders',  label: 'Star dividers around title', type: 'checkbox', default: true },
+
+    { type: 'section', label: 'Who' },
+    { name: 'includeStudent', label: 'Print student name',  type: 'checkbox', default: true },
+    { name: 'student',        label: 'Student',             type: 'student-picker' },
+    { name: 'studentBig',     label: 'Display name BIG (centered, large)', type: 'checkbox', default: true },
+    { name: 'includeClass',   label: 'Print class period',  type: 'checkbox', default: true },
+    { name: 'classPeriod',    label: 'Class',               type: 'class-select' },
+
+    { type: 'section', label: 'When' },
+    { name: 'dateMode', label: 'Date / time', type: 'select',
+      options: [
+        { value: 'none',     label: 'Neither' },
+        { value: 'date',     label: 'Date only' },
+        { value: 'time',     label: 'Time only' },
+        { value: 'datetime', label: 'Date + time' }
+      ],
+      default: 'datetime' },
+    { name: 'dateStyle', label: 'Style', type: 'select',
+      options: [
+        { value: 'centered', label: 'Centered line' },
+        { value: 'kv',       label: 'Key-value rows (Date: ..., Time: ...)' }
+      ],
+      default: 'centered' },
+
+    { type: 'section', label: 'Message / body' },
+    { name: 'shortMessage', label: 'Short message (centered, one line)', type: 'text',
+      placeholder: 'e.g., Keep it up!' },
+    { name: 'bodyText',     label: 'Body / long text (left-aligned block)', type: 'textarea',
+      placeholder: 'A longer paragraph, e.g., a pass body sentence.' },
+
+    { type: 'section', label: 'Detail rows' },
+    { name: 'includeDestination', label: 'Print "Destination: ..."', type: 'checkbox' },
+    { name: 'destination',        label: 'Destination',              type: 'text',
+      placeholder: 'Library, Nurse, Room 204, ...' },
+    { name: 'includeValid',       label: 'Print "Valid for X minutes"', type: 'checkbox' },
+    { name: 'validMinutes',       label: 'Minutes', type: 'number', placeholder: '10' },
+    { name: 'includeDevice',      label: 'Print "Device: ..."', type: 'checkbox' },
+    { name: 'device',             label: 'Device', type: 'text', placeholder: 'Cell phone' },
+
+    { type: 'section', label: 'Coupon block (dashed border)' },
+    { name: 'includeCoupon', label: 'Wrap content in a coupon block', type: 'checkbox' },
+    { name: 'couponLine1',   label: 'Coupon line 1', type: 'text', default: 'GOOD FOR ONE (1)' },
+    { name: 'couponLine2',   label: 'Coupon line 2', type: 'text', default: 'LATE ASSIGNMENT' },
+    { name: 'includeExpiry', label: 'Print expiry date', type: 'checkbox' },
+    { name: 'expiry',        label: 'Expiry text', type: 'text', default: ctx.settings.expiryLabel },
+
+    { type: 'section', label: 'Long sectioned blocks' },
+    { name: 'includePickup', label: 'Print PICKUP block', type: 'checkbox' },
+    { name: 'pickupLabel',   label: 'Section label', type: 'text', default: 'PICKUP' },
+    { name: 'pickupText',    label: 'Body text', type: 'textarea',
+      default: ctx.settings.phonePickupDefault || '' },
+    { name: 'includePolicy', label: 'Print POLICY block', type: 'checkbox' },
+    { name: 'policyLabel',   label: 'Section label', type: 'text', default: 'POLICY' },
+    { name: 'policyText',    label: 'Body text', type: 'textarea',
+      default: ctx.settings.phonePolicyText || '' },
+    { name: 'includeEscalation', label: 'Print ESCALATION block', type: 'checkbox' },
+    { name: 'escalationLabel',   label: 'Section label', type: 'text',
+      default: ctx.settings.phoneEscalationLabel || 'ESCALATION' },
+    { name: 'escalationText',    label: 'Body text', type: 'textarea',
+      default: ctx.settings.phoneEscalationText || '' },
+
+    { type: 'section', label: 'Closing' },
+    { name: 'includeSignatureLine', label: 'Print blank signature line', type: 'checkbox' },
+    { name: 'signatureLabel',       label: 'Signature label', type: 'text', default: 'Student signature:' },
+    { name: 'includeSerial', label: 'Print serial / record number', type: 'checkbox' },
+    { name: 'serialLabel',   label: 'Serial label', type: 'text', default: 'TICKET' },
+    { name: 'includeTeacher',         label: 'Print teacher signature', type: 'checkbox', default: true },
+    { name: 'includeClosingDivider',  label: 'Print "===" divider above closing', type: 'checkbox', default: true }
+  ]),
+
+  render: (data, ctx) => {
+    const e = ctx.escape;
+    const out = [];
+
+    // Header logo (always available — pulls from settings if set)
+    if (ctx.logo) out.push(ctx.logo);
+
+    // Title block
+    if (data.titleStarBorders) out.push(`<div class="r-divider">${ctx.divider('*')}</div>`);
+    if (data.title && data.title.trim()) {
+      out.push(`<div class="r-title">${e(data.title)}</div>`);
+    }
+    if (data.titleStarBorders) out.push(`<div class="r-divider">${ctx.divider('*')}</div>`);
+
+    // Recipient
+    const showStudent = data.includeStudent !== false && data.student && data.student.trim();
+    const showClass   = data.includeClass   !== false && data.classPeriod;
+    if (showStudent) {
+      const name = data.student.trim();
+      if (data.studentBig) {
+        out.push(`<div class="r-name">${e(name.toUpperCase())}</div>`);
+      } else {
+        out.push(`<div class="r-kv"><b>Student:</b> <span>${e(name)}</span></div>`);
+      }
+    }
+    if (showClass) {
+      // If we displayed the name BIG, follow with a centered class line; otherwise key-value.
+      if (data.studentBig && showStudent) {
+        out.push(`<div class="r-msg">${e(data.classPeriod)}</div>`);
+      } else {
+        out.push(`<div class="r-kv"><b>Class:</b> <span>${e(data.classPeriod)}</span></div>`);
+      }
+    }
+
+    // Date / time
+    const mode  = data.dateMode  || 'datetime';
+    const style = data.dateStyle || 'centered';
+    if (mode !== 'none') {
+      const date = ctx.fmtDate(ctx.now);
+      const time = ctx.fmtTime(ctx.now);
+      const dt   = ctx.fmtDateTime(ctx.now);
+      if (style === 'kv') {
+        if (mode === 'date' || mode === 'datetime') {
+          out.push(`<div class="r-kv"><b>Date:</b> <span>${e(date)}</span></div>`);
+        }
+        if (mode === 'time' || mode === 'datetime') {
+          out.push(`<div class="r-kv"><b>Time:</b> <span>${e(time)}</span></div>`);
+        }
+      } else {
+        const text = mode === 'date' ? date : mode === 'time' ? time : dt;
+        out.push(`<div class="r-msg">${e(text)}</div>`);
+      }
+    }
+
+    // Message + body
+    if (data.shortMessage && data.shortMessage.trim()) {
+      out.push(`<div class="r-msg">${e(data.shortMessage)}</div>`);
+    }
+    if (data.bodyText && data.bodyText.trim()) {
+      out.push(`<div class="r-block">${e(data.bodyText)}</div>`);
+    }
+
+    // Detail key/value rows
+    const details = [];
+    if (data.includeDestination && data.destination && data.destination.trim()) {
+      details.push(`<div class="r-kv"><b>Destination:</b> <span>${e(data.destination)}</span></div>`);
+    }
+    if (data.includeValid) {
+      const mins = parseInt(data.validMinutes, 10);
+      if (!isNaN(mins) && mins > 0) {
+        const until = new Date(ctx.now.getTime() + mins * 60000);
+        details.push(`<div class="r-kv"><b>Valid:</b> <span>${e(`${mins} min (until ${ctx.fmtTime(until)})`)}</span></div>`);
+      }
+    }
+    if (data.includeDevice && data.device && data.device.trim()) {
+      details.push(`<div class="r-kv"><b>Device:</b> <span>${e(data.device)}</span></div>`);
+    }
+    if (details.length) {
+      out.push(`<div class="r-divider">${ctx.divider('-')}</div>`);
+      out.push(...details);
+    }
+
+    // Coupon block (wraps lines + optional expiry in a dashed border)
+    if (data.includeCoupon) {
+      const couponBits = [];
+      if (data.couponLine1 && data.couponLine1.trim()) {
+        couponBits.push(`<div class="r-msg"><b>${e(data.couponLine1)}</b></div>`);
+      }
+      if (data.couponLine2 && data.couponLine2.trim()) {
+        couponBits.push(`<div class="r-msg"><b>${e(data.couponLine2)}</b></div>`);
+      }
+      if (data.includeExpiry && data.expiry && data.expiry.trim()) {
+        couponBits.push(`<div class="r-kv"><b>Expires:</b> <span>${e(data.expiry)}</span></div>`);
+      }
+      if (couponBits.length) {
+        out.push(`<div class="r-coupon">${couponBits.join('')}</div>`);
+      }
+    } else if (data.includeExpiry && data.expiry && data.expiry.trim()) {
+      // Expiry alone, not wrapped in a coupon
+      out.push(`<div class="r-kv"><b>Expires:</b> <span>${e(data.expiry)}</span></div>`);
+    }
+
+    // Long sectioned text blocks (-- LABEL -- followed by body)
+    const sectionBlock = (label, body) => {
+      const l = (label || '').trim();
+      const b = (body  || '').trim();
+      if (!b) return;
+      out.push(`<div class="r-divider">${ctx.divider('-')}</div>`);
+      if (l) out.push(`<div class="r-msg">--- ${e(l)} ---</div>`);
+      out.push(`<div class="r-block">${e(b)}</div>`);
+    };
+    if (data.includePickup)     sectionBlock(data.pickupLabel,     data.pickupText);
+    if (data.includePolicy)     sectionBlock(data.policyLabel,     data.policyText);
+    if (data.includeEscalation) sectionBlock(data.escalationLabel, data.escalationText);
+
+    // Blank signature line
+    if (data.includeSignatureLine) {
+      out.push(`<div class="r-divider">${ctx.divider('-')}</div>`);
+      const lbl = (data.signatureLabel || '').trim();
+      if (lbl) out.push(`<div class="r-msg">${e(lbl)}</div>`);
+      out.push(`<div class="r-msg">${'_'.repeat(28)}</div>`);
+    }
+
+    // Serial number
+    if (data.includeSerial) {
+      const lbl = (data.serialLabel || 'TICKET').trim().toUpperCase();
+      out.push(`<div class="r-divider">${ctx.divider('-')}</div>`);
+      out.push(`<div class="r-serial">${e(lbl)} #${ctx.pad4(ctx.settings.serial)}</div>`);
+    }
+
+    // Closing — divider, teacher sig, footer line from settings
+    const showTeacher = data.includeTeacher !== false;
+    const hasClosing  = showTeacher || (ctx.footer && ctx.footer.trim());
+    if (hasClosing) {
+      if (data.includeClosingDivider !== false) {
+        out.push(`<div class="r-divider">${ctx.divider('=')}</div>`);
+      }
+      if (showTeacher) {
+        out.push(`<div class="r-sig">${e(ctx.settings.teacher)}</div>`);
+      }
+      if (ctx.footer) out.push(ctx.footer);
+    }
+
+    out.push(`<div class="r-feed"></div>`);
+    return `<div class="r">${out.filter(Boolean).join('')}</div>`;
+  }
+};
+
+const TEMPLATE_ORDER = ['praise', 'pass', 'homework', 'phone', 'custom'];
