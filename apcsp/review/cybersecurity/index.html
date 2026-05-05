@@ -1,0 +1,751 @@
+---
+---
+<!-- File: classroom/apcsp/review/cybersecurity/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APCSP Review - Cybersecurity &amp; Encryption</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../../css/styles.css" />
+    <style>
+      .review-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .review-header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #4b6cb7 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .review-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .review-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+      .topic-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+        border: 1px solid #e9ecef;
+      }
+      .topic-section h2 {
+        color: #1e3a8a;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .topic-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.15rem; }
+      .topic-section p, .topic-section li { line-height: 1.6; }
+
+      .ek-tag {
+        display: inline-block;
+        background: #e3e9f7;
+        color: #1e3a8a;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .definition-table {
+        width: 100%;
+        margin: 15px 0;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .definition-table th {
+        background: #1e3a8a;
+        color: white;
+        padding: 10px 14px;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      .definition-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e9ecef;
+        vertical-align: top;
+        font-size: 0.95rem;
+      }
+      .definition-table tr:last-child td { border-bottom: none; }
+      .definition-table code {
+        background: #e3e9f7;
+        color: #1e3a8a;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-weight: 600;
+      }
+
+      /* Two-column compare cards (symmetric vs. asymmetric) */
+      .compare-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin: 18px 0;
+      }
+      .compare-card {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 18px 20px;
+      }
+      .compare-card h4 {
+        color: #1e3a8a;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .compare-card ul { padding-left: 20px; margin-bottom: 0; }
+      .compare-card li { margin-bottom: 6px; font-size: 0.95rem; line-height: 1.5; }
+      @media (max-width: 768px) {
+        .compare-grid { grid-template-columns: 1fr; }
+      }
+
+      /* MCQ component */
+      .mcq {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 18px 0 0 0;
+      }
+      .mcq-label {
+        display: inline-block;
+        background: #1e3a8a;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+      .mcq-question { font-weight: 600; margin-bottom: 14px; color: #212529; }
+      .choices { display: flex; flex-direction: column; gap: 8px; }
+      .choice {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 10px 14px;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        font-size: 0.95rem;
+        color: #212529;
+      }
+      .choice:hover:not(:disabled) { background: #e3e9f7; border-color: #1e3a8a; }
+      .choice:disabled { cursor: default; }
+      .choice-correct {
+        background: #d1e7dd !important;
+        border-color: #198754 !important;
+        color: #0f5132 !important;
+        font-weight: 600;
+      }
+      .choice-correct::before { content: "\2713  "; font-weight: 700; }
+      .choice-wrong {
+        background: #f8d7da !important;
+        border-color: #dc3545 !important;
+        color: #842029 !important;
+      }
+      .choice-wrong::before { content: "\2717  "; font-weight: 700; }
+      .feedback {
+        margin-top: 14px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 0.95rem;
+      }
+      .feedback.correct { background: #d1e7dd; color: #0f5132; border-left: 4px solid #198754; }
+      .feedback.wrong { background: #fff3cd; color: #664d03; border-left: 4px solid #ffc107; }
+
+      /* Out-of-scope callout */
+      .out-of-scope {
+        background: linear-gradient(135deg, #f8d7da 0%, #f5c2c7 100%);
+        border-left: 5px solid #dc3545;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin: 25px 0;
+      }
+      .out-of-scope h3 { color: #842029; margin-top: 0; }
+      .out-of-scope p, .out-of-scope li { color: #58151c; }
+
+      /* More info / sources */
+      .more-info {
+        background: #e3e9f7;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 20px;
+      }
+      .more-info h3 { color: #1e3a8a; margin-bottom: 12px; }
+      .more-info ul { margin-bottom: 0; padding-left: 20px; }
+      .more-info li { margin-bottom: 8px; line-height: 1.5; }
+      .more-info a { color: #1e3a8a; text-decoration: none; font-weight: 600; }
+      .more-info a:hover { text-decoration: underline; }
+      .source-note { font-size: 0.88rem; color: #495057; }
+
+      /* Misconception toggle */
+      .misconception {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 12px 0;
+      }
+      .misconception .statement { font-weight: 600; margin-bottom: 10px; color: #212529; }
+      .tf-buttons { display: flex; gap: 10px; }
+      .tf-btn {
+        flex: 0 0 auto;
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 6px 18px;
+        font-weight: 600;
+        cursor: pointer;
+        min-width: 70px;
+      }
+      .tf-btn:hover:not(:disabled) { background: #e3e9f7; border-color: #1e3a8a; }
+      .tf-btn:disabled { cursor: default; }
+
+      .scope-pill {
+        display: inline-block;
+        background: #198754;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+      .scope-pill.out { background: #dc3545; }
+
+      .factor-badge {
+        display: inline-block;
+        background: #1e3a8a;
+        color: white;
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 2px 10px;
+        border-radius: 12px;
+        margin-right: 6px;
+      }
+      .factor-badge.know { background: #0d6efd; }
+      .factor-badge.have { background: #fd7e14; }
+      .factor-badge.are  { background: #20c997; }
+
+      .threat-badge {
+        display: inline-block;
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: #1e3a8a;
+        color: white;
+        margin-right: 6px;
+      }
+
+      ul.tight li { margin-bottom: 6px; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../../" class="text-white">AP Computer Science Principles</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Exam Review</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Cybersecurity &amp; Encryption</span>
+      </nav>
+
+      <div class="review-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+
+        <div class="review-header">
+          <h1><i class="bi bi-shield-lock-fill"></i> Cybersecurity &amp; Encryption</h1>
+          <p class="subtitle">Big Idea 4 (CSN-1.D) &amp; Big Idea 5 (IOC-2) · ~6–10 questions on the AP exam</p>
+        </div>
+
+        <div class="topic-section" style="background: #fff8e9; border-color: #ffc107;">
+          <h2 style="color: #856404;"><i class="bi bi-bullseye"></i> What This Lesson Covers</h2>
+          <p>This is one of the highest-yield topics on the AP CSP MCQ. The questions are mostly <strong>vocabulary</strong> and <strong>scenario matching</strong>, not math. The wrong-answer choices are built from common misconceptions &mdash; we'll target those directly.</p>
+          <ul class="tight">
+            <li>Symmetric vs. asymmetric (public-key) encryption</li>
+            <li>Digital certificates and HTTPS</li>
+            <li>Authentication and Multi-Factor Authentication (MFA)</li>
+            <li>Threat vocabulary: phishing, keylogger, rogue access point, virus / worm / malware</li>
+            <li>Personally Identifiable Information (PII) and aggregation</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 1. Symmetric vs Asymmetric -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-key-fill"></i> 1. Encryption: Symmetric vs. Asymmetric<span class="ek-tag">EK CSN-1.D / IOC-2.B</span></h2>
+          <p><strong>Encryption</strong> is encoding data so that only authorized parties can read it. <strong>Decryption</strong> reverses the process. The AP exam tests two flavors:</p>
+
+          <div class="compare-grid">
+            <div class="compare-card">
+              <h4><i class="bi bi-key"></i> Symmetric</h4>
+              <ul>
+                <li><strong>One shared key</strong> both encrypts and decrypts.</li>
+                <li>Fast and efficient.</li>
+                <li><strong>The problem:</strong> how do you safely share the key in the first place if your channel isn't already secure?</li>
+                <li>Analogy: a single padlock with one key &mdash; you and the recipient must each have a copy.</li>
+              </ul>
+            </div>
+            <div class="compare-card">
+              <h4><i class="bi bi-key-fill"></i> Asymmetric (Public-Key)</h4>
+              <ul>
+                <li>A <strong>key pair</strong>: a <strong>public key</strong> (shared openly) and a <strong>private key</strong> (kept secret by the owner).</li>
+                <li>The public key <strong>encrypts</strong>; only the matching private key can <strong>decrypt</strong>.</li>
+                <li><strong>Solves the key-sharing problem</strong> &mdash; you can send a message securely without first exchanging a secret.</li>
+                <li>Analogy: Bob hands out open padlocks (public key); only Bob has the key (private key) to unlock them.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="key-fact">
+            <strong>The single most-tested fact:</strong> In public-key encryption, you encrypt with the <em>recipient's public key</em>, and only the <em>recipient's private key</em> can decrypt. The public key cannot decrypt &mdash; that's the whole point.
+          </div>
+
+          <div class="mcq" data-id="cq1a">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Alice wants to send Bob an encrypted message using public-key encryption. Which key does Bob use to <em>decrypt</em> the message?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Alice's public key</button>
+              <button class="choice" data-correct="false">B. Alice's private key</button>
+              <button class="choice" data-correct="false">C. Bob's public key</button>
+              <button class="choice" data-correct="true">D. Bob's private key</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Recipient's private key.</strong> Alice encrypts with Bob's <em>public</em> key (which is, well, public). Only Bob can decrypt because only Bob holds the matching <em>private</em> key. The classic distractor is "Alice's private key" &mdash; that's used for signing, not for receiving.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="cq1b">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">What is the primary advantage of public-key (asymmetric) encryption compared to symmetric encryption?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. It is mathematically faster than symmetric encryption.</button>
+              <button class="choice" data-correct="true">B. Two parties can communicate securely without first exchanging a secret key.</button>
+              <button class="choice" data-correct="false">C. It produces shorter encrypted messages.</button>
+              <button class="choice" data-correct="false">D. It cannot be broken by any computer, no matter how powerful.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>It solves the key-distribution problem.</strong> With symmetric encryption, you can't safely send a message until you've already shared a secret key &mdash; which is hard over an open channel. Public-key encryption removes that requirement: you publish your public key, and anyone can encrypt to you. (Symmetric is actually <em>faster</em>, by the way &mdash; that's why HTTPS uses public-key just to set up a symmetric session key.)
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 2. Certificates & HTTPS -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-patch-check-fill"></i> 2. Digital Certificates &amp; HTTPS<span class="ek-tag">EK CSN-1.D / IOC-2.B</span></h2>
+          <p>Public-key encryption has one remaining problem: <em>how do you know the public key really belongs to the website you think it does?</em> An attacker could publish their own key and pretend to be your bank.</p>
+
+          <div class="key-fact">
+            <strong>Digital certificates</strong> solve this. A trusted third party called a <strong>Certificate Authority (CA)</strong> issues a certificate that vouches: "This public key really does belong to <code>bank.com</code>." Your browser checks the certificate before encrypting anything.
+          </div>
+
+          <h3>HTTPS in one sentence</h3>
+          <p><strong>HTTPS</strong> is HTTP over an encrypted connection. The certificate establishes the server's identity, and the encryption protects the data in transit between your browser and the server.</p>
+
+          <div class="key-fact" style="background: #f8d7da; border-left-color: #dc3545;">
+            <strong style="color: #842029;">Big misconception alert:</strong> HTTPS does <em>not</em> mean a website is trustworthy or safe. Scam sites can &mdash; and do &mdash; have valid HTTPS certificates. The padlock means "no one can eavesdrop on this connection," not "this site is honest."
+          </div>
+
+          <div class="mcq" data-id="cq2">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">A user notices a padlock icon and "https://" in their browser. Which of the following is guaranteed by HTTPS?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. The website's content is accurate and trustworthy.</button>
+              <button class="choice" data-correct="false">B. The website cannot have been hacked or compromised.</button>
+              <button class="choice" data-correct="true">C. Data exchanged between the browser and the server is encrypted in transit.</button>
+              <button class="choice" data-correct="false">D. The user's identity is hidden from the website's owner.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>HTTPS = encrypted connection.</strong> It guarantees privacy and integrity of data <em>in transit</em>, plus the server's identity (via the certificate). It guarantees nothing about whether the site is trustworthy, safe to use, or honest. A phishing site can have valid HTTPS.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 3. Authentication & MFA -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-fingerprint"></i> 3. Authentication &amp; Multi-Factor Authentication<span class="ek-tag">EK IOC-2.B</span></h2>
+          <p><strong>Authentication</strong> is the process of verifying that someone is who they claim to be. The AP exam tests one specific concept very heavily: <strong>Multi-Factor Authentication (MFA)</strong>.</p>
+
+          <h3>The three authentication factors</h3>
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 30%;">Factor</th><th>Examples</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="factor-badge know">Something you KNOW</span></td><td>Password, PIN, security question answer</td></tr>
+              <tr><td><span class="factor-badge have">Something you HAVE</span></td><td>Phone receiving a code, hardware security key (YubiKey), authenticator app</td></tr>
+              <tr><td><span class="factor-badge are">Something you ARE</span></td><td>Fingerprint, face scan, voice, iris (biometrics)</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>MFA = at least two factors from <em>different</em> categories.</strong> Two passwords is <em>not</em> MFA. A password plus a CAPTCHA is <em>not</em> MFA. A password plus account lockout after failed attempts is <em>not</em> MFA. Those are all just additional security &mdash; not a second <em>factor</em>.
+          </div>
+
+          <div class="mcq" data-id="cq3a">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Which of the following is NOT an example of multi-factor authentication?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Entering a password and then approving a notification on a phone app.</button>
+              <button class="choice" data-correct="false">B. Entering a PIN and then scanning a fingerprint.</button>
+              <button class="choice" data-correct="true">C. Entering a password and then waiting through a 30-second account-lockout delay after typos.</button>
+              <button class="choice" data-correct="false">D. Inserting a USB security key and then typing a password.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>The lockout delay is the trap.</strong> A, B, and D each combine two <em>different</em> factor categories (know + have, know + are, have + know). C is just one factor (a password) plus a delay timer &mdash; the timer isn't a separate factor at all. This is the most common MFA distractor pattern on the AP exam.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="cq3b">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">A student logs into a website by typing their password and then entering a 6-digit code that was sent as a text to their phone. Which two MFA factors are being used?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Something you know + something you are</button>
+              <button class="choice" data-correct="true">B. Something you know + something you have</button>
+              <button class="choice" data-correct="false">C. Something you have + something you are</button>
+              <button class="choice" data-correct="false">D. Something you know + something you know</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Know + Have.</strong> The password is something you know. The phone receiving the code is something you have. Note that D ("two passwords") wouldn't be MFA at all, even if it were the answer &mdash; that's the same factor twice.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 4. Threat Vocabulary -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-bug-fill"></i> 4. Threat Vocabulary<span class="ek-tag">EK IOC-2.C</span></h2>
+          <p>The AP exam tests these terms by giving you a scenario and asking you to name the threat. Memorize the <em>distinguishing feature</em> of each:</p>
+
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 25%;">Threat</th><th>What it is &mdash; and what makes it different</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="threat-badge">Phishing</span></td>
+                <td><strong>Social engineering</strong> via fake messages (email, text) that trick a user into giving up credentials or clicking a malicious link. The attack is on the <em>person</em>, not the system.</td>
+              </tr>
+              <tr>
+                <td><span class="threat-badge">Keylogger</span></td>
+                <td>Software (or hardware) that secretly <strong>records every keystroke</strong>, including passwords, as the user types. Often installed via malware or a compromised device.</td>
+              </tr>
+              <tr>
+                <td><span class="threat-badge">Rogue Access Point</span></td>
+                <td>An <strong>unauthorized Wi-Fi hotspot</strong> set up by an attacker, often impersonating a legitimate network (e.g., "FreeCoffeeWiFi"). When users connect, the attacker can intercept their traffic.</td>
+              </tr>
+              <tr>
+                <td><span class="threat-badge">Virus</span></td>
+                <td>A type of malware that attaches to a <strong>host file or program</strong> and spreads when the host is run by the user. Requires user action to propagate.</td>
+              </tr>
+              <tr>
+                <td><span class="threat-badge">Worm</span></td>
+                <td>Malware that <strong>self-replicates and spreads autonomously</strong> across networks, without needing a host file or user action.</td>
+              </tr>
+              <tr>
+                <td><span class="threat-badge">Malware</span></td>
+                <td>The <strong>umbrella term</strong> for any malicious software &mdash; viruses, worms, ransomware, spyware, adware. Defenses: antivirus software and keeping systems updated to patch vulnerabilities.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="mcq" data-id="cq4a">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">An attacker sets up a Wi-Fi hotspot in an airport and names it "Airport_Free_WiFi" so travelers connect to it instead of the real airport network. The attacker then captures and reads any unencrypted data those users send. This attack is best described as:</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Phishing</button>
+              <button class="choice" data-correct="false">B. A keylogger</button>
+              <button class="choice" data-correct="true">C. A rogue access point</button>
+              <button class="choice" data-correct="false">D. A computer virus</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Rogue access point.</strong> The attacker isn't running software on the victim's computer (so it's not a virus or keylogger), and there's no fake email or message tricking the user (so it's not phishing). The attack is the unauthorized Wi-Fi network itself, mimicking a legitimate one.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="cq4b">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">A user receives an email that looks like it's from their bank, warning of "suspicious activity" and asking them to click a link to log in and verify their account. The link leads to a convincing fake site that captures their username and password. This is an example of:</p>
+            <div class="choices">
+              <button class="choice" data-correct="true">A. Phishing</button>
+              <button class="choice" data-correct="false">B. A worm</button>
+              <button class="choice" data-correct="false">C. A rogue access point</button>
+              <button class="choice" data-correct="false">D. A digital certificate failure</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Phishing.</strong> The defining feature is <em>social engineering</em> &mdash; tricking the human into giving up their credentials voluntarily, by impersonating a trusted source. No malware is needed. (And note: a strong password doesn't help here at all &mdash; the user hands it over.)
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 5. PII -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-person-vcard-fill"></i> 5. Personally Identifiable Information (PII)<span class="ek-tag">EK IOC-2.A</span></h2>
+          <p><strong>PII</strong> is any information that can be used to identify, contact, or locate a specific individual &mdash; either on its own, or in combination with other information.</p>
+
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 50%;">Generally PII (alone)</th><th>Not PII alone &mdash; but PII in <em>combination</em></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Social Security number, full legal name, driver's license #, passport #, biometric data, financial account #, medical records, exact home address</td>
+                <td>ZIP code, date of birth, gender, browsing history, search history, cookies, geolocation data, IP address</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Aggregation is the AP exam's favorite trick.</strong> A single piece of "harmless" data may not identify you &mdash; but combine ZIP code + date of birth + gender, and research has shown that's enough to uniquely identify the majority of Americans. Cookies + browsing history + login times can do the same. <em>The combination is what makes data sensitive.</em>
+          </div>
+
+          <p>Two more things the exam expects you to know about PII:</p>
+          <ul class="tight">
+            <li><strong>Once posted online, PII is hard to delete</strong> &mdash; copies, screenshots, archives, and search engines can preserve it indefinitely.</li>
+            <li><strong>Cookies are not malware.</strong> They're small data files used for tracking and remembering session/login state. Tracking is a privacy concern, not a malware concern.</li>
+          </ul>
+
+          <div class="mcq" data-id="cq5">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Which combination of data is most likely to uniquely identify a specific individual, even though no single item is by itself a strong identifier?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. A list of websites the person visits most often.</button>
+              <button class="choice" data-correct="false">B. The user's preferred display language and time zone.</button>
+              <button class="choice" data-correct="true">C. The person's ZIP code, date of birth, and gender.</button>
+              <button class="choice" data-correct="false">D. The user's screen resolution and device type.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>ZIP + DOB + gender.</strong> A famous study by Latanya Sweeney showed this trio uniquely identifies roughly 87% of Americans. Each item alone seems harmless, but the combination is highly identifying. This is the canonical "aggregation makes data sensitive" example, and it's a recurring AP exam scenario.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Misconceptions lightning round -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-lightning-charge-fill"></i> Misconception Lightning Round</h2>
+          <p>These are the false statements the AP exam builds its wrong-answer choices from. Click True or False:</p>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"Multi-factor authentication just means using two strong passwords."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> MFA requires factors from <em>different categories</em>: know + have, know + are, etc. Two passwords are the same category twice &mdash; that's not multi-<em>factor</em>, just multiple credentials.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"If a website uses HTTPS, the website itself is safe and trustworthy."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> HTTPS only encrypts the connection between you and the server. A scam or phishing site can have a perfectly valid HTTPS certificate. The padlock means "private connection," not "honest website."
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"In public-key encryption, the public key can both encrypt and decrypt messages."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> The public key only encrypts. Only the matching private key can decrypt. If the public key could decrypt too, the system would be useless &mdash; everyone has the public key.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"A long, complex password is enough to defeat phishing attacks."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> Phishing tricks the user into <em>handing over</em> the password to an attacker. Password length is irrelevant if you give it away. The mitigation for phishing is user awareness and MFA &mdash; not password strength.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"Cookies are a type of malware."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> Cookies are small data files that store session/login state and tracking info. They are a <em>privacy</em> concern, not a malware concern. Cookies cannot execute code or infect a system.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"A virus, a worm, and malware are three names for the same thing."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> <em>Malware</em> is the umbrella term for any malicious software. A <em>virus</em> is a type of malware that needs a host file and user action to spread. A <em>worm</em> is a type of malware that spreads on its own across networks. Different things.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Out-of-scope reassurance -->
+        <!-- ============================================================ -->
+        <div class="topic-section" style="background: #f0f7ff;">
+          <h2 style="color: #1e3a8a;"><i class="bi bi-check2-circle"></i> What's NOT on the AP CSP Exam</h2>
+          <p>Don't waste study time on these &mdash; they sound security-related, but the AP CSP exam doesn't test them:</p>
+          <ul class="tight">
+            <li>The math behind encryption (modular arithmetic, XOR, prime factoring) <span class="scope-pill out">Out of scope</span></li>
+            <li>Specific algorithm names (AES, DES, RSA, ECC, SHA) <span class="scope-pill out">Out of scope</span></li>
+            <li>Hashing and hash functions <span class="scope-pill out">Out of scope</span></li>
+            <li>The TLS handshake, cipher suites, TLS versions <span class="scope-pill out">Out of scope</span></li>
+            <li>OWASP Top 10, SQL injection, XSS, buffer overflows <span class="scope-pill out">Out of scope</span></li>
+            <li>DoS / DDoS attack mechanics <span class="scope-pill out">Out of scope</span></li>
+            <li>Firewalls, IDS/IPS, VPN internals <span class="scope-pill out">Out of scope</span></li>
+            <li>Specific named historical attacks (WannaCry, Stuxnet, etc.) as testable items <span class="scope-pill out">Out of scope</span></li>
+          </ul>
+          <p class="mb-0"><strong>Translation:</strong> If a question seems to be asking you for the name of a cryptographic algorithm or the steps of a TLS handshake, you've misread the question. The AP CSP exam stays at the conceptual level.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- More info / trusted sources -->
+        <!-- ============================================================ -->
+        <div class="more-info">
+          <h3><i class="bi bi-bookmark-star-fill"></i> More Info — Trusted Sources to Verify or Go Deeper</h3>
+          <p class="source-note">Everything on this page is drawn from these sources. They are the references the College Board, your teachers, and federal cybersecurity agencies treat as authoritative.</p>
+          <ul>
+            <li>
+              <a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles" target="_blank" rel="noopener">College Board AP Central — AP CSP Course Page</a>
+              — The official source. Look for the Course and Exam Description (CED).
+            </li>
+            <li>
+              <a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf" target="_blank" rel="noopener">AP CSP Course and Exam Description (PDF)</a>
+              — Official curriculum framework. CSN-1.D covers encryption; IOC-2.A/B/C cover PII, authentication, and threats.
+            </li>
+            <li>
+              <a href="https://www.khanacademy.org/computing/ap-computer-science-principles/x2d2f703b37b450a3:online-data-security" target="_blank" rel="noopener">Khan Academy — AP CSP: Online Data Security</a>
+              — Free video lessons and practice questions on encryption, authentication, and privacy.
+            </li>
+            <li>
+              <a href="https://runestone.academy/ns/books/published/mobilecsp/Unit6-Communication-Through-Internet/Cybersecurity.html" target="_blank" rel="noopener">Mobile CSP Textbook — Cybersecurity</a>
+              — Open-source AP CSP textbook chapter on cybersecurity, written for AP CSP teachers and students.
+            </li>
+            <li>
+              <a href="https://www.cisa.gov/secure-our-world" target="_blank" rel="noopener">CISA — Secure Our World</a>
+              — The U.S. Cybersecurity &amp; Infrastructure Security Agency's plain-language guide to phishing, MFA, and password safety.
+            </li>
+            <li>
+              <a href="https://www.nist.gov/itl/smallbusinesscyber/cybersecurity-basics" target="_blank" rel="noopener">NIST — Cybersecurity Basics</a>
+              — From the U.S. National Institute of Standards and Technology, the agency that defines cybersecurity standards.
+            </li>
+            <li>
+              <a href="https://www.ftc.gov/business-guidance/privacy-security/protecting-personal-information" target="_blank" rel="noopener">FTC — Protecting Personal Information</a>
+              — The Federal Trade Commission's guide to PII and what counts as personal information.
+            </li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Multiple-choice questions
+      document.querySelectorAll('.mcq').forEach(q => {
+        const feedback = q.querySelector('.feedback');
+        q.querySelectorAll('.choice').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const isCorrect = btn.dataset.correct === 'true';
+            q.querySelectorAll('.choice').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.correct === 'true') b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+          });
+        });
+      });
+
+      // True/False misconception toggles
+      document.querySelectorAll('.misconception').forEach(m => {
+        const correctValue = m.dataset.correct;
+        const feedback = m.querySelector('.feedback');
+        m.querySelectorAll('.tf-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const picked = btn.dataset.value;
+            const isCorrect = picked === correctValue;
+            m.querySelectorAll('.tf-btn').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.value === correctValue) b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
