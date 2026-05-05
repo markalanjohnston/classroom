@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Internet Basics Review Quiz — Answer Key</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      color: #000;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-header img {
+      width: 90px;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .quiz-header .quiz-title h1,
+    .quiz-header .quiz-title h2 {
+      text-align: left;
+      margin: 0;
+    }
+
+    .key-banner {
+      background: #b3261e;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 4px;
+      font-weight: 700;
+      padding: 8px 0;
+      margin: 20px 0 25px 0;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    .directions {
+      border: 1px solid #000;
+      padding: 10px;
+      margin: 20px 0;
+      background: #f7f3e8;
+    }
+
+    .question {
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+
+    .question p.prompt {
+      margin-bottom: 8px;
+    }
+
+    .answer {
+      background: #eef5ff;
+      border-left: 4px solid #0d6efd;
+      padding: 10px 14px;
+      margin: 6px 0 4px 0;
+      border-radius: 4px;
+      font-size: 0.97rem;
+    }
+
+    .answer .label {
+      font-weight: 700;
+      color: #0a3a7a;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .answer ul {
+      margin: 4px 0 0 0;
+      padding-left: 20px;
+    }
+
+    .answer li { margin-bottom: 3px; }
+
+    .scoring {
+      background: #fff8e9;
+      border-left: 4px solid #ffc107;
+      padding: 8px 14px;
+      margin: 4px 0 0 0;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #5d4500;
+    }
+
+    .scoring .label {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      color: #856404;
+    }
+
+    code {
+      background: #f1f3f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 0.92em;
+    }
+
+    @media print {
+      body {
+        padding: 0.5in;
+        max-width: none;
+      }
+
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="quiz-header">
+    <img src="../../../APCSP_Badge.png" alt="AP Computer Science Principles badge">
+    <div class="quiz-title">
+      <h1>AP Computer Science Principles</h1>
+      <h2>Internet Basics Review Quiz</h2>
+    </div>
+  </div>
+
+  <div class="key-banner">ANSWER KEY &mdash; TEACHER USE ONLY</div>
+
+  <div class="directions">
+    <strong>About this key:</strong> Student wording will vary. The answers below describe the
+    <em>concepts</em> that should appear for full credit, drawn directly from the language used in
+    the Internet Basics review lesson. Anything substantively equivalent counts. Watch for the
+    listed misconceptions &mdash; those are the most common partial-credit traps.
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>1.</strong> Explain the difference between the Internet and the World Wide Web.</p>
+    <div class="answer">
+      <span class="label">Look for both ideas:</span>
+      <ul>
+        <li><strong>Internet</strong> = the global network of networks &mdash; the underlying infrastructure of cables, routers, and standardized protocols that lets computers communicate.</li>
+        <li><strong>World Wide Web</strong> = a <em>service that runs on</em> the Internet &mdash; a system of linked pages, programs, and files accessed via web browsers using HTTP/HTTPS.</li>
+      </ul>
+      Bonus credit if they note that other things <em>also</em> use the Internet without being the Web (email, streaming, gaming, messaging, file transfer).
+    </div>
+    <div class="scoring">
+      <span class="label">Common partial-credit error:</span>
+      Treating the two as synonyms, or saying the Internet is software / Web is hardware. The key relationship is that <strong>the Web runs on top of the Internet</strong>.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>2.</strong> What is the main job of DNS?</p>
+    <div class="answer">
+      <span class="label">Look for:</span>
+      DNS translates human-readable <strong>domain names</strong> (like <code>wikipedia.org</code>) into <strong>IP addresses</strong> so that browsers and other software can locate the actual server.
+    </div>
+    <div class="scoring">
+      <span class="label">Don't accept:</span>
+      "DNS delivers the webpage" or "DNS is what loads the site." DNS only does the lookup &mdash; HTTP/HTTPS and TCP/IP do the actual delivery.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>3.</strong> When data is sent over the Internet, it is broken into smaller pieces called ______________________________.</p>
+    <div class="answer">
+      <span class="label">Answer:</span>
+      <strong>packets</strong>
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>4.</strong> Name two pieces of information, or metadata, that are included in each packet.</p>
+    <div class="answer">
+      <span class="label">Any two of:</span>
+      <ul>
+        <li>Source address (sender's IP)</li>
+        <li>Destination address (receiver's IP)</li>
+        <li>Sequence number (so packets can be reassembled in order)</li>
+        <li>Other control / routing information</li>
+      </ul>
+    </div>
+    <div class="scoring">
+      <span class="label">Don't accept:</span>
+      "A copy of the entire file" or "a copy of every other packet" &mdash; those are common distractors. Each packet only carries its own chunk plus the addressing/sequencing metadata.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>5.</strong> Do packets always travel along the same path from sender to receiver? Explain.</p>
+    <div class="answer">
+      <span class="label">Look for:</span>
+      <strong>No.</strong> Packets travel <strong>independently</strong> and may take <strong>different paths</strong> through the network. They can arrive <strong>out of order</strong>, and the receiving device <strong>reassembles</strong> them in the correct order using the sequence information in each packet.
+    </div>
+    <div class="scoring">
+      <span class="label">Full credit needs:</span>
+      both the "no" and at least a brief explanation of independent routing / reassembly. Just "no" without explanation is partial credit.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>6.</strong> What is fault tolerance, and how does the Internet achieve it?</p>
+    <div class="answer">
+      <span class="label">Look for both parts:</span>
+      <ul>
+        <li><strong>Fault tolerance</strong> = the ability of a system to <strong>continue functioning when some of its components fail</strong>.</li>
+        <li><strong>How:</strong> through <strong>redundancy</strong> (multiple/alternate paths between points) and <strong>dynamic routing</strong> (routers find new paths in real time when one fails or becomes congested), so traffic re-routes around the failure.</li>
+      </ul>
+    </div>
+    <div class="scoring">
+      <span class="label">Don't accept:</span>
+      "Every device has backup power," "every packet is duplicated," or "one company monitors everything 24/7." Those are the distractor answers from the lesson.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>7.</strong> Which protocol ensures that packets are delivered in the correct order and resends missing packets?</p>
+    <div class="answer">
+      <span class="label">Answer:</span>
+      <strong>TCP</strong> (Transmission Control Protocol). Reliable delivery &mdash; reassembles packets in order and resends any that are lost.
+    </div>
+    <div class="scoring">
+      <span class="label">Note:</span>
+      Accept "TCP/IP" as well; technically IP handles the routing and TCP handles the ordered/reliable part, but the pair is commonly named together.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>8.</strong> What is the difference between HTTP and HTTPS?</p>
+    <div class="answer">
+      <span class="label">Look for:</span>
+      <strong>HTTPS = HTTP + encryption</strong> (via TLS). HTTPS protects the data in transit between the browser and the server so that someone intercepting the connection can't read it. Plain HTTP sends data unencrypted.
+    </div>
+    <div class="scoring">
+      <span class="label">Watch for the misconception:</span>
+      "HTTPS means the site is trustworthy / safe / not a scam." HTTPS only guarantees the <em>connection</em> is encrypted &mdash; not that the website is honest.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>9.</strong> Define <strong>bandwidth</strong> and <strong>latency</strong>. You must define both.</p>
+    <div class="answer">
+      <span class="label">Both definitions required:</span>
+      <ul>
+        <li><strong>Bandwidth</strong> = the maximum amount of data that can be transmitted per unit of time (capacity). Pipe-width analogy.</li>
+        <li><strong>Latency</strong> = the delay between sending and receiving &mdash; how long one piece of data takes to arrive. Pipe-length analogy.</li>
+      </ul>
+    </div>
+    <div class="scoring">
+      <span class="label">Common error:</span>
+      Conflating the two ("they're both about speed"). Award full credit only when each term has a distinct, accurate definition.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>10.</strong> A video takes a long time to start playing, but once it starts, it plays smoothly in high quality. Is this a problem with bandwidth or latency? Explain.</p>
+    <div class="answer">
+      <span class="label">Answer:</span>
+      <strong>Latency.</strong>
+      <br><br>
+      <span class="label">Reasoning to look for:</span>
+      Bandwidth must be fine because the video plays <em>smoothly in high quality</em> once it starts &mdash; that means lots of data is flowing. The <em>delay before</em> playback begins is a latency symptom: the round-trip / startup delay before any data starts arriving.
+    </div>
+    <div class="scoring">
+      <span class="label">Full credit needs:</span>
+      both the correct identification (latency) <em>and</em> reasoning that ties the smooth playback to adequate bandwidth and the startup delay to latency. "Latency" alone is partial credit.
+    </div>
+  </div>
+
+</body>
+</html>
