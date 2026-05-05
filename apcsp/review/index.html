@@ -1,0 +1,214 @@
+---
+---
+<!-- File: classroom/apcsp/review/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APCSP - Exam Review</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .review-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .review-header {
+        background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .review-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .review-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .info-card {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 25px;
+        border: 1px solid #e9ecef;
+        margin-bottom: 20px;
+      }
+      .info-card h2 { color: #495057; margin-bottom: 15px; font-size: 1.4rem; }
+      .priority-list { margin: 15px 0; padding-left: 0; list-style: none; }
+      .priority-list li {
+        padding: 10px 15px;
+        margin-bottom: 8px;
+        background: white;
+        border-left: 4px solid #198754;
+        border-radius: 4px;
+      }
+      .priority-list .priority-num {
+        display: inline-block;
+        background: #198754;
+        color: white;
+        width: 28px; height: 28px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 28px;
+        margin-right: 10px;
+        font-weight: 700;
+      }
+      .priority-list li.covered { border-left-color: #6c757d; opacity: 0.65; }
+      .priority-list li.covered .priority-num { background: #6c757d; }
+      .priority-list li.high-yield { border-left-color: #fd7e14; background: #fff8f0; }
+      .priority-list li.high-yield .priority-num { background: #fd7e14; }
+
+      .activity-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .activity-col {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        min-width: 280px;
+        display: flex;
+      }
+      .activity-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        min-height: 200px;
+      }
+      .activity-card p { flex-grow: 1; }
+      .activity-card.coming-soon {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+      .activity-card.coming-soon:hover { transform: none; }
+      .yield-pill {
+        display: inline-block;
+        padding: 3px 10px;
+        background: #fd7e14;
+        color: white;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+      .yield-pill.medium { background: #0dcaf0; color: #055160; }
+      @media (max-width: 768px) {
+        .activity-col { flex: 1 1 100%; max-width: 100%; }
+      }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">AP Computer Science Principles</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Exam Review</span>
+      </nav>
+
+      <div class="review-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to APCSP</a>
+
+        <div class="review-header">
+          <h1><i class="bi bi-mortarboard-fill"></i> AP CSP Exam Review</h1>
+          <p class="subtitle">Targeted review for the topics that matter most on the AP exam</p>
+        </div>
+
+        <div class="info-card">
+          <h2><i class="bi bi-bar-chart-fill text-success"></i> How These Priorities Were Chosen</h2>
+          <p>This review focuses on the topics you identified in the AP CSP Exam Review Survey, weighted so that students who reported lower confidence carry more influence. The list below shows the top topics in order, with notes on what we'll focus on in the remaining classes.</p>
+          <ol class="priority-list">
+            <li class="covered">
+              <span class="priority-num">1</span>
+              <strong>Binary numbers / data representation</strong>
+              <span class="text-muted">— Already covered (binary notetaker handout)</span>
+            </li>
+            <li class="covered">
+              <span class="priority-num">2</span>
+              <strong>Writing algorithms</strong>
+              <span class="text-muted">— Skipped: Create Performance Task already complete</span>
+            </li>
+            <li class="high-yield">
+              <span class="priority-num">3</span>
+              <strong>Cybersecurity &amp; encryption</strong>
+              <span class="yield-pill">High Yield (~6–10 MCQs)</span>
+            </li>
+            <li class="high-yield">
+              <span class="priority-num">4</span>
+              <strong>Internet basics (IP, DNS, packets)</strong>
+              <span class="yield-pill">High Yield (~8–11 MCQs)</span>
+            </li>
+          </ol>
+        </div>
+
+        <h2 class="h4 mb-3 text-muted">Review Lessons</h2>
+        <div class="activity-row">
+          <div class="activity-col">
+            <a href="internet/" class="activity-card">
+              <div class="activity-icon text-primary">
+                <i class="bi bi-globe2"></i>
+              </div>
+              <h3>Internet Basics
+                <span class="yield-pill medium">~8–11 MCQs</span>
+              </h3>
+              <p class="text-muted mb-2">
+                Internet vs. Web, packet switching, fault tolerance, protocols (TCP/IP/UDP/HTTP/HTTPS/DNS), IPv4 → IPv6, and the misconceptions that show up as wrong answers.
+              </p>
+              <small class="text-success">
+                <i class="bi bi-check-circle"></i> Class 1 — Available Now
+              </small>
+            </a>
+          </div>
+          <div class="activity-col">
+            <span class="activity-card coming-soon">
+              <div class="activity-icon text-secondary">
+                <i class="bi bi-shield-lock-fill"></i>
+              </div>
+              <h3>Cybersecurity &amp; Encryption
+                <span class="yield-pill">~6–10 MCQs</span>
+              </h3>
+              <p class="text-muted mb-2">
+                Symmetric vs. asymmetric encryption, certificates, multi-factor authentication, threat vocabulary (phishing, keyloggers, rogue access points, malware), and PII aggregation.
+              </p>
+              <small class="text-secondary">
+                <i class="bi bi-clock-history"></i> Class 2 — Coming soon
+              </small>
+            </span>
+          </div>
+        </div>
+
+        <div class="info-card mt-4">
+          <h2><i class="bi bi-calendar-week text-success"></i> 4-Class Review Plan</h2>
+          <ul style="line-height: 1.8;">
+            <li><strong>Class 1:</strong> Internet basics review + targeted MCQ practice</li>
+            <li><strong>Class 2:</strong> Cybersecurity &amp; encryption review + targeted MCQ practice</li>
+            <li><strong>Class 3:</strong> Mixed timed MCQ practice (released exam set via AP Classroom)</li>
+            <li><strong>Class 4:</strong> Wrong-answer review, vocabulary lightning round, exam logistics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

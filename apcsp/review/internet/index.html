@@ -1,0 +1,689 @@
+---
+---
+<!-- File: classroom/apcsp/review/internet/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APCSP Review - Internet Basics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../../css/styles.css" />
+    <style>
+      .review-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .review-header {
+        background: linear-gradient(135deg, #0d6efd 0%, #4dabf7 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .review-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .review-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+      .topic-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+        border: 1px solid #e9ecef;
+      }
+      .topic-section h2 {
+        color: #0d6efd;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .topic-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.15rem; }
+      .topic-section p, .topic-section li { line-height: 1.6; }
+
+      .ek-tag {
+        display: inline-block;
+        background: #e7f1ff;
+        color: #0d6efd;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .definition-table {
+        width: 100%;
+        margin: 15px 0;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .definition-table th {
+        background: #0d6efd;
+        color: white;
+        padding: 10px 14px;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      .definition-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e9ecef;
+        vertical-align: top;
+        font-size: 0.95rem;
+      }
+      .definition-table tr:last-child td { border-bottom: none; }
+      .definition-table code {
+        background: #e7f1ff;
+        color: #0d6efd;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-weight: 600;
+      }
+
+      /* MCQ component */
+      .mcq {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 18px 0 0 0;
+      }
+      .mcq-label {
+        display: inline-block;
+        background: #0d6efd;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+      .mcq-question { font-weight: 600; margin-bottom: 14px; color: #212529; }
+      .choices { display: flex; flex-direction: column; gap: 8px; }
+      .choice {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 10px 14px;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        font-size: 0.95rem;
+        color: #212529;
+      }
+      .choice:hover:not(:disabled) { background: #e7f1ff; border-color: #0d6efd; }
+      .choice:disabled { cursor: default; }
+      .choice-correct {
+        background: #d1e7dd !important;
+        border-color: #198754 !important;
+        color: #0f5132 !important;
+        font-weight: 600;
+      }
+      .choice-correct::before { content: "\2713  "; font-weight: 700; }
+      .choice-wrong {
+        background: #f8d7da !important;
+        border-color: #dc3545 !important;
+        color: #842029 !important;
+      }
+      .choice-wrong::before { content: "\2717  "; font-weight: 700; }
+      .feedback {
+        margin-top: 14px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 0.95rem;
+      }
+      .feedback.correct { background: #d1e7dd; color: #0f5132; border-left: 4px solid #198754; }
+      .feedback.wrong { background: #fff3cd; color: #664d03; border-left: 4px solid #ffc107; }
+
+      /* Out-of-scope callout */
+      .out-of-scope {
+        background: linear-gradient(135deg, #f8d7da 0%, #f5c2c7 100%);
+        border-left: 5px solid #dc3545;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin: 25px 0;
+      }
+      .out-of-scope h3 { color: #842029; margin-top: 0; }
+      .out-of-scope p, .out-of-scope li { color: #58151c; }
+
+      /* More info / sources */
+      .more-info {
+        background: #e7f1ff;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 20px;
+      }
+      .more-info h3 { color: #0d6efd; margin-bottom: 12px; }
+      .more-info ul { margin-bottom: 0; padding-left: 20px; }
+      .more-info li { margin-bottom: 8px; line-height: 1.5; }
+      .more-info a { color: #0a58ca; text-decoration: none; font-weight: 600; }
+      .more-info a:hover { text-decoration: underline; }
+      .source-note { font-size: 0.88rem; color: #495057; }
+
+      /* Misconception toggle */
+      .misconception {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 12px 0;
+      }
+      .misconception .statement { font-weight: 600; margin-bottom: 10px; color: #212529; }
+      .tf-buttons { display: flex; gap: 10px; }
+      .tf-btn {
+        flex: 0 0 auto;
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 6px 18px;
+        font-weight: 600;
+        cursor: pointer;
+        min-width: 70px;
+      }
+      .tf-btn:hover:not(:disabled) { background: #e7f1ff; border-color: #0d6efd; }
+      .tf-btn:disabled { cursor: default; }
+
+      .scope-pill {
+        display: inline-block;
+        background: #198754;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+      .scope-pill.out { background: #dc3545; }
+
+      .protocol-badge {
+        display: inline-block;
+        background: #0d6efd;
+        color: white;
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-right: 6px;
+      }
+
+      ul.tight li { margin-bottom: 6px; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../../" class="text-white">AP Computer Science Principles</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Exam Review</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Internet Basics</span>
+      </nav>
+
+      <div class="review-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+
+        <div class="review-header">
+          <h1><i class="bi bi-globe2"></i> Internet Basics</h1>
+          <p class="subtitle">Big Idea 4 — Computing Systems &amp; Networks · ~8–11 questions on the AP exam</p>
+        </div>
+
+        <div class="topic-section" style="background: #fff8e9; border-color: #ffc107;">
+          <h2 style="color: #856404;"><i class="bi bi-bullseye"></i> What This Lesson Covers</h2>
+          <p>This is the highest-yield Internet content on the AP CSP MCQ. Click through each section, try the practice questions, and pay attention to the <strong>misconceptions</strong> &mdash; those are exactly what the wrong-answer choices test.</p>
+          <ul class="tight">
+            <li>Internet vs. World Wide Web (most-tested distinction in this unit)</li>
+            <li>Packet switching &amp; routing metadata</li>
+            <li>Fault tolerance &amp; redundancy</li>
+            <li>Protocols: TCP, IP, UDP, HTTP/HTTPS, DNS</li>
+            <li>IPv4 → IPv6 and scalability</li>
+            <li>Bandwidth vs. latency, open standards</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 1. Internet vs WWW -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-diagram-3"></i> 1. Internet vs. World Wide Web<span class="ek-tag">EK CSN-1.D</span></h2>
+          <p>This is the single most-tested distinction in Big Idea 4. They are <strong>not</strong> the same thing.</p>
+
+          <div class="key-fact">
+            <strong>The Internet</strong> is the global network of networks &mdash; the underlying infrastructure of cables, routers, and standardized protocols that lets computers communicate.<br><br>
+            <strong>The World Wide Web</strong> is a <em>service that runs on</em> the Internet &mdash; a system of linked pages, programs, and files accessed via web browsers using HTTP/HTTPS.
+          </div>
+
+          <h3>Other things that use the Internet (but are not the Web)</h3>
+          <ul class="tight">
+            <li>Email (SMTP, IMAP)</li>
+            <li>Video streaming and gaming services</li>
+            <li>Messaging apps</li>
+            <li>File transfer (FTP)</li>
+          </ul>
+
+          <div class="mcq" data-id="q1">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Which best describes the relationship between the Internet and the World Wide Web?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. They are two different names for the same global network.</button>
+              <button class="choice" data-correct="true">B. The World Wide Web is a service that runs on top of the Internet.</button>
+              <button class="choice" data-correct="false">C. The Internet is a service that runs on top of the World Wide Web.</button>
+              <button class="choice" data-correct="false">D. The Internet is the software, and the World Wide Web is the hardware.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>The Web is built on the Internet.</strong> The Internet is the infrastructure (networks + protocols). The Web is one specific application that uses it &mdash; same way email and online gaming use the Internet without being "the Web."
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 2. Packet switching -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-boxes"></i> 2. Packet Switching<span class="ek-tag">EK CSN-1.C</span></h2>
+          <p>When data is sent over the Internet, it does <strong>not</strong> travel as one continuous stream along a fixed path. It is split into <strong>packets</strong> that travel independently.</p>
+
+          <h3>How it works (and what the exam tests)</h3>
+          <ol>
+            <li>Data is broken into small <strong>packets</strong>.</li>
+            <li>Each packet carries <strong>routing metadata</strong> — source address, destination address, sequence number, and other control info — alongside its chunk of data.</li>
+            <li>Packets travel <strong>independently</strong>, possibly along <strong>different paths</strong>.</li>
+            <li>They may arrive <strong>out of order</strong>.</li>
+            <li>The receiver <strong>reassembles</strong> them in the correct order using the sequence info.</li>
+          </ol>
+
+          <div class="key-fact">
+            <strong>Why this matters for the exam:</strong> Almost every "how does data travel" question on the MCQ has a wrong answer that says packets all follow the same path or arrive in order. They don't.
+          </div>
+
+          <div class="mcq" data-id="q2a">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">A large file is sent from one computer to another over the Internet. Which best describes how the data travels?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. The file is sent as one continuous stream that follows a single fixed path.</button>
+              <button class="choice" data-correct="false">B. The file is broken into packets that all follow the same path and arrive in order.</button>
+              <button class="choice" data-correct="true">C. The file is broken into packets that may take different paths and arrive in any order, then are reassembled at the destination.</button>
+              <button class="choice" data-correct="false">D. The file is copied to every router on the network so the destination can pick it up.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Packets travel independently.</strong> They may take different paths through the network and arrive out of order; the receiving device uses sequence info in each packet to reassemble the data correctly.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="q2b">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">In addition to the chunk of data being sent, what does each packet contain?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. A complete copy of the entire file the data belongs to.</button>
+              <button class="choice" data-correct="true">B. Routing metadata such as source address, destination address, and sequence information.</button>
+              <button class="choice" data-correct="false">C. A copy of every other packet in the same transmission.</button>
+              <button class="choice" data-correct="false">D. The user's name and password, encrypted with the recipient's public key.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Metadata is the key word.</strong> Each packet carries the addressing and sequencing info needed to route it through the network and reassemble it at the destination. The full file isn't duplicated &mdash; that's the whole point of packet switching.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 3. Fault tolerance -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-shield-check"></i> 3. Fault Tolerance &amp; Redundancy<span class="ek-tag">EK CSN-1.E</span></h2>
+          <p>The Internet is designed to keep working when parts of it fail. Two terms you must know <em>verbatim</em>:</p>
+
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 30%;">Term</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Fault tolerance</strong></td><td>The ability of a system to continue functioning when some of its components fail.</td></tr>
+              <tr><td><strong>Redundancy</strong></td><td>Including extra components (such as alternate paths) that can be used if a primary component fails.</td></tr>
+              <tr><td><strong>Dynamic routing</strong></td><td>Routers find new paths in real time when a path fails or becomes congested.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Cause and effect:</strong> The Internet is fault tolerant <em>because of</em> redundant routing paths and dynamic routing. If one router or cable fails, packets reroute through another path.
+          </div>
+
+          <div class="mcq" data-id="q3">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Which of the following best explains why the Internet is considered fault tolerant?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Every device on the Internet is required to have backup power.</button>
+              <button class="choice" data-correct="true">B. There are multiple redundant paths between most points, and routing can adapt when a path fails.</button>
+              <button class="choice" data-correct="false">C. Every packet is duplicated, so if one is lost the other arrives.</button>
+              <button class="choice" data-correct="false">D. The Internet is owned by a single organization that monitors all hardware 24/7.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Redundancy + dynamic routing = fault tolerance.</strong> The Internet has many possible paths between any two endpoints; if a section goes down, traffic re-routes around it. (Note: D is also wrong because the Internet is <em>not</em> owned or controlled by any single organization.)
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 4. Protocols speed-round -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-stack"></i> 4. Protocols Speed-Round<span class="ek-tag">EK CSN-1.B / CSN-1.C</span></h2>
+          <p>A <strong>protocol</strong> is an agreed-upon set of rules for how computers communicate. The exam expects you to recognize each of these by name and one-line job:</p>
+
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 22%;">Protocol</th><th>One-line job</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="protocol-badge">IP</span></td><td>Addresses each device and routes packets from source to destination across networks.</td></tr>
+              <tr><td><span class="protocol-badge">TCP</span></td><td>Splits data into packets, reassembles them in order at the destination, and re-sends any that are lost. <em>Reliable.</em></td></tr>
+              <tr><td><span class="protocol-badge">UDP</span></td><td>Faster, lighter alternative to TCP that doesn't guarantee order or delivery. Used for streaming/gaming where speed > reliability.</td></tr>
+              <tr><td><span class="protocol-badge">HTTP</span></td><td>The application protocol used by the World Wide Web to request and serve web pages.</td></tr>
+              <tr><td><span class="protocol-badge">HTTPS</span></td><td>HTTP <em>plus encryption</em> (via TLS). Protects data in transit between browser and server.</td></tr>
+              <tr><td><span class="protocol-badge">DNS</span></td><td>Translates human-readable domain names (like <code>wikipedia.org</code>) into IP addresses. <strong>It does not deliver the website.</strong></td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Open standards matter:</strong> All of these protocols are <em>open and nonproprietary</em>, which is why any device made by any manufacturer can talk to any other device on the Internet. Open standards = interoperability + scalability.
+          </div>
+
+          <div class="mcq" data-id="q4a">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">A web browser needs to find the IP address that corresponds to <code>wikipedia.org</code>. Which protocol performs this lookup?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. HTTP</button>
+              <button class="choice" data-correct="false">B. TCP</button>
+              <button class="choice" data-correct="true">C. DNS</button>
+              <button class="choice" data-correct="false">D. UDP</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>DNS = Domain Name System.</strong> Its only job is translating a domain name to an IP address. After DNS returns the IP, the browser still needs HTTP/HTTPS to actually request the page and TCP/IP to move the data.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="q4b">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Which two protocols work together to break a message into packets, route them across networks, and reassemble them in order at the destination?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. HTTP and HTTPS</button>
+              <button class="choice" data-correct="false">B. DNS and IP</button>
+              <button class="choice" data-correct="true">C. TCP and IP</button>
+              <button class="choice" data-correct="false">D. UDP and DNS</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>TCP/IP is the classic pair.</strong> IP handles addressing and routing of individual packets; TCP handles splitting the data, ensuring reliable delivery, and reassembling packets in order on the receiving end.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 5. IPv4 vs IPv6 -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-arrow-up-right-circle"></i> 5. IPv4 → IPv6 (Scalability)<span class="ek-tag">EK CSN-1.B</span></h2>
+          <p>An <strong>IP address</strong> is a numerical label assigned to each device on a network. There are two versions in use:</p>
+
+          <table class="definition-table">
+            <thead>
+              <tr><th>Version</th><th>Address space</th><th>Why it matters</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>IPv4</strong></td><td>~4.3 billion addresses (32 bits)</td><td>The original. Running out of unused addresses.</td></tr>
+              <tr><td><strong>IPv6</strong></td><td>~3.4 × 10<sup>38</sup> addresses (128 bits)</td><td>Designed to scale to vastly more connected devices.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>You don't need to memorize</strong> the exact address syntax (dotted-decimal vs. hex-colon) or the bit lengths. The exam-relevant point is just: <em>IPv6 was created to provide a much larger address space so the Internet can keep growing.</em>
+          </div>
+
+          <div class="mcq" data-id="q5">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">What is the primary reason the Internet is transitioning from IPv4 to IPv6?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. IPv6 is encrypted, while IPv4 is not.</button>
+              <button class="choice" data-correct="true">B. IPv6 provides a much larger address space, allowing many more connected devices.</button>
+              <button class="choice" data-correct="false">C. IPv6 packets travel faster because they are smaller.</button>
+              <button class="choice" data-correct="false">D. IPv4 has been retired and no longer functions on modern networks.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Address exhaustion → scalability.</strong> The Internet now connects billions of phones, IoT devices, servers, etc. — far more than IPv4's 4.3 billion address space can handle. IPv6 solves this. Encryption and packet speed have nothing to do with which version is used.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 6. Bandwidth vs latency, open standards -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-speedometer2"></i> 6. Bandwidth vs. Latency<span class="ek-tag">EK CSN-1.A</span></h2>
+
+          <table class="definition-table">
+            <thead>
+              <tr><th>Term</th><th>Plain-English meaning</th><th>Analogy</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Bandwidth</strong></td><td>Maximum amount of data that can be transmitted per unit of time (capacity).</td><td>Width of a pipe.</td></tr>
+              <tr><td><strong>Latency</strong></td><td>The delay between sending and receiving — how long one packet takes to arrive.</td><td>Length of the pipe.</td></tr>
+            </tbody>
+          </table>
+
+          <p>A network can be high-bandwidth but high-latency (lots of data eventually, but each piece takes a while to arrive) or low-bandwidth but low-latency (responses come back quickly but you can't pump much through).</p>
+
+          <div class="mcq" data-id="q6">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">A user reports that videos take a long time to <em>start</em> playing, even though once they begin, they play smoothly in high quality. The "long time to start" is best described as a problem of:</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Bandwidth</button>
+              <button class="choice" data-correct="true">B. Latency</button>
+              <button class="choice" data-correct="false">C. Encryption</button>
+              <button class="choice" data-correct="false">D. Packet loss</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>"How long until I get a response" = latency.</strong> Bandwidth is fine because the video plays in high quality once it starts (lots of data flowing). The startup delay is a latency symptom &mdash; the round-trip time before any data starts arriving.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MAC addresses out of scope -->
+        <!-- ============================================================ -->
+        <div class="out-of-scope">
+          <h3><i class="bi bi-x-octagon-fill"></i> Heads up: MAC Addresses Are Not on the AP CSP Exam</h3>
+          <p>A few of you asked about <strong>MAC addresses</strong> on the survey. Good question — but here's the deal:</p>
+          <p>MAC addresses are real and important in networking, but they are <strong>not part of the AP CSP Course and Exam Description</strong>. The exam's networking content covers <strong>IP addresses, DNS, TCP, UDP, and HTTP/HTTPS</strong> &mdash; that's it for protocols and identifiers. MAC addresses are a CompTIA/Network+ topic.</p>
+          <p class="mb-0"><strong>Translation:</strong> Don't spend study time on MAC addresses for this exam. Spend it on the Internet vs. WWW distinction and packet switching.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Misconceptions lightning round -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-lightning-charge-fill"></i> Misconception Lightning Round</h2>
+          <p>These are statements that sound right but are <strong>wrong</strong> &mdash; and the wrong answer choices on the AP MCQ are built from these. Click True or False:</p>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"HTTPS guarantees that a website is trustworthy and safe."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> HTTPS only means the connection is <em>encrypted</em>. A scam site can absolutely have HTTPS. The padlock icon means "no one is eavesdropping on this connection," not "this site is honest."
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"An IP address uniquely and permanently identifies a specific person."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> An IP address identifies a <em>device or network interface</em> at a moment in time. IPs change (DHCP, mobile networks). Multiple devices behind a router share one public IP via NAT. Your IP is not your name.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"DNS delivers the contents of a webpage to your browser."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> DNS only translates the domain name to an IP address. After that, your browser uses HTTP/HTTPS to actually request the page from the server at that IP, and TCP/IP carries the data.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"If a single network cable or router on the path between two computers fails, all communication between them stops."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> Thanks to redundant paths and dynamic routing, traffic re-routes around the failure. This is exactly what fault tolerance means.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"Bandwidth and latency are two words for the same thing."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> Bandwidth = how much data per unit of time (capacity). Latency = how long until a piece of data arrives (delay). A satellite link can have huge bandwidth and terrible latency at the same time.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Out-of-scope reassurance -->
+        <!-- ============================================================ -->
+        <div class="topic-section" style="background: #f0f7ff;">
+          <h2 style="color: #0d6efd;"><i class="bi bi-check2-circle"></i> What's NOT on the AP CSP Exam</h2>
+          <p>Don't waste study time on these — they sound network-y but the AP CSP exam doesn't test them:</p>
+          <ul class="tight">
+            <li>OSI 7-layer model and layer numbers <span class="scope-pill out">Out of scope</span></li>
+            <li>Subnetting, CIDR notation, subnet masks <span class="scope-pill out">Out of scope</span></li>
+            <li>Specific port numbers (80, 443, 53, etc.) <span class="scope-pill out">Out of scope</span></li>
+            <li>NAT, BGP, ARP, ICMP details <span class="scope-pill out">Out of scope</span></li>
+            <li>The TLS handshake mechanics <span class="scope-pill out">Out of scope</span></li>
+            <li>Memorizing exact IPv4 dotted-decimal or IPv6 hex syntax <span class="scope-pill out">Out of scope</span></li>
+            <li>MAC addresses <span class="scope-pill out">Out of scope</span></li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- More info / trusted sources -->
+        <!-- ============================================================ -->
+        <div class="more-info">
+          <h3><i class="bi bi-bookmark-star-fill"></i> More Info — Trusted Sources to Verify or Go Deeper</h3>
+          <p class="source-note">Everything on this page is drawn from these sources. If you want to double-check anything or read more deeply, these are the references your teachers and the College Board treat as authoritative.</p>
+          <ul>
+            <li>
+              <a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles" target="_blank" rel="noopener">College Board AP Central — AP CSP Course Page</a>
+              — Official source. The Course and Exam Description (CED) PDF lists the exact Essential Knowledge statements (the EK codes you saw in this lesson).
+            </li>
+            <li>
+              <a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf" target="_blank" rel="noopener">AP CSP Course and Exam Description (PDF)</a>
+              — The official curriculum framework. Big Idea 4 (Computer Systems and Networks) is the relevant section for this lesson.
+            </li>
+            <li>
+              <a href="https://www.khanacademy.org/computing/ap-computer-science-principles/the-internet" target="_blank" rel="noopener">Khan Academy — AP CSP: The Internet</a>
+              — Free video lessons and practice questions aligned to the AP CSP framework.
+            </li>
+            <li>
+              <a href="https://runestone.academy/ns/books/published/mobilecsp/Unit6-Communication-Through-Internet/toctree.html" target="_blank" rel="noopener">Mobile CSP Textbook — Communication Through the Internet</a>
+              — Open-source textbook used by AP CSP teachers nationwide.
+            </li>
+            <li>
+              <a href="https://www.internetsociety.org/internet/" target="_blank" rel="noopener">Internet Society — How the Internet Works</a>
+              — Neutral, authoritative explainer maintained by one of the Internet's standards-setting organizations.
+            </li>
+            <li>
+              <a href="https://www.icann.org/resources/pages/what-2012-02-25-en" target="_blank" rel="noopener">ICANN — What is DNS?</a>
+              — From the organization that actually coordinates DNS at the global level.
+            </li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Multiple-choice questions
+      document.querySelectorAll('.mcq').forEach(q => {
+        const feedback = q.querySelector('.feedback');
+        q.querySelectorAll('.choice').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const isCorrect = btn.dataset.correct === 'true';
+            q.querySelectorAll('.choice').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.correct === 'true') b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+          });
+        });
+      });
+
+      // True/False misconception toggles
+      document.querySelectorAll('.misconception').forEach(m => {
+        const correctValue = m.dataset.correct;
+        const feedback = m.querySelector('.feedback');
+        m.querySelectorAll('.tf-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const picked = btn.dataset.value;
+            const isCorrect = picked === correctValue;
+            m.querySelectorAll('.tf-btn').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.value === correctValue) b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
