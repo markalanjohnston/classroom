@@ -1,0 +1,1316 @@
+---
+---
+<!-- File: classroom/pit/python-deployment-lab/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIT - Python Development Environment Deployment & Validation Lab</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .session-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .mission-header {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 35px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .mission-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(220,53,69,0.25) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .mission-classification {
+        display: inline-block;
+        background: #dc3545;
+        color: white;
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        border-radius: 3px;
+        margin-bottom: 15px;
+      }
+
+      .mission-header h1 {
+        font-size: 2.1rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .mission-header .subtitle {
+        font-size: 1.05rem;
+        opacity: 0.9;
+        margin-bottom: 20px;
+      }
+
+      .mission-meta {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255,255,255,0.2);
+      }
+
+      .mission-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .mission-meta-item i {
+        color: #dc3545;
+      }
+
+      .briefing-box {
+        background: #f8f9fa;
+        border-left: 4px solid #dc3545;
+        border-radius: 8px;
+        padding: 28px;
+        margin-bottom: 30px;
+      }
+
+      .briefing-box h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .briefing-box h2 i {
+        color: #dc3545;
+      }
+
+      .briefing-box p {
+        color: #495057;
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+
+      .briefing-box p:last-child {
+        margin-bottom: 0;
+      }
+
+      .role-card {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .role-card h2 {
+        color: white;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+      }
+
+      .role-card p, .role-card li {
+        color: #e8e8e8;
+        line-height: 1.7;
+      }
+
+      .role-card strong {
+        color: #ffc107;
+      }
+
+      .toc-card {
+        background: #fff;
+        border: 2px solid #dc3545;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .toc-card h2 {
+        color: #dc3545;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+
+      .toc-card ol {
+        margin-bottom: 0;
+        line-height: 1.9;
+      }
+
+      .toc-card a {
+        color: #2c3e50;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .toc-card a:hover {
+        color: #dc3545;
+        text-decoration: underline;
+      }
+
+      .phase-block {
+        margin-bottom: 40px;
+      }
+
+      .phase-banner {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        border-radius: 10px 10px 0 0;
+        padding: 22px 28px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .phase-banner .phase-num {
+        background: rgba(255,255,255,0.18);
+        border: 2px solid rgba(255,255,255,0.6);
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+      }
+
+      .phase-banner h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .phase-body {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        padding: 28px;
+      }
+
+      .phase-objective {
+        background: #e7f3ff;
+        border-left: 4px solid #0066cc;
+        padding: 16px 20px;
+        margin-bottom: 22px;
+        border-radius: 5px;
+      }
+
+      .phase-objective strong {
+        color: #0066cc;
+      }
+
+      .phase-objective p {
+        color: #004080;
+        margin-bottom: 0;
+        line-height: 1.6;
+      }
+
+      .step-card {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 22px;
+        margin-bottom: 18px;
+      }
+
+      .step-card h3 {
+        color: #2c3e50;
+        font-size: 1.15rem;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .step-card h3 .step-tag {
+        background: #dc3545;
+        color: white;
+        font-size: 0.75rem;
+        padding: 3px 10px;
+        border-radius: 3px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .step-card p {
+        color: #495057;
+        line-height: 1.65;
+        margin-bottom: 10px;
+      }
+
+      .step-card ol, .step-card ul {
+        color: #495057;
+        line-height: 1.7;
+      }
+
+      .step-card li {
+        margin-bottom: 6px;
+      }
+
+      pre.cmd-block {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 14px 18px;
+        border-radius: 6px;
+        font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        overflow-x: auto;
+        margin: 12px 0;
+        border-left: 3px solid #dc3545;
+      }
+
+      pre.cmd-block .prompt {
+        color: #4ec9b0;
+      }
+
+      pre.cmd-block .comment {
+        color: #6a9955;
+      }
+
+      .expected-output {
+        background: #0d1117;
+        color: #c9d1d9;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+        font-size: 0.88rem;
+        line-height: 1.5;
+        margin: 8px 0 14px 0;
+        border-left: 3px solid #28a745;
+        white-space: pre-wrap;
+      }
+
+      .expected-output::before {
+        content: "EXPECTED OUTPUT";
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #28a745;
+        margin-bottom: 6px;
+      }
+
+      .troubleshoot-box {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 16px 20px;
+        margin: 14px 0;
+        border-radius: 5px;
+      }
+
+      .troubleshoot-box h4 {
+        color: #856404;
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+
+      .troubleshoot-box p, .troubleshoot-box li {
+        color: #5c4604;
+        line-height: 1.6;
+        margin-bottom: 6px;
+      }
+
+      .doc-checkpoint {
+        background: #f0f8f0;
+        border-left: 4px solid #28a745;
+        padding: 16px 20px;
+        margin: 14px 0;
+        border-radius: 5px;
+      }
+
+      .doc-checkpoint h4 {
+        color: #1e6e2d;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .doc-checkpoint p, .doc-checkpoint li {
+        color: #155724;
+        line-height: 1.6;
+        margin-bottom: 6px;
+      }
+
+      .restricted-note {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 16px 20px;
+        margin: 14px 0;
+        border-radius: 5px;
+      }
+
+      .restricted-note h4 {
+        color: #842029;
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      .restricted-note p {
+        color: #58151c;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      .deliverable-box {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+      }
+
+      .deliverable-box h2 {
+        color: white;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+      }
+
+      .deliverable-box h3 {
+        color: white;
+        font-size: 1.15rem;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+      .deliverable-box p, .deliverable-box li {
+        color: white;
+        line-height: 1.7;
+        opacity: 0.97;
+      }
+
+      .deliverable-box ul, .deliverable-box ol {
+        margin-bottom: 12px;
+      }
+
+      .report-section {
+        background: rgba(255,255,255,0.12);
+        border-left: 3px solid rgba(255,255,255,0.6);
+        padding: 14px 18px;
+        margin: 10px 0;
+        border-radius: 5px;
+      }
+
+      .report-section strong {
+        color: #fff8c5;
+      }
+
+      .extension-card {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-left: 4px solid #6f42c1;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+
+      .extension-card h3 {
+        color: #6f42c1;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .extension-card p {
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+
+      .extension-card .tag {
+        display: inline-block;
+        background: #e9ecef;
+        color: #495057;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 3px;
+        margin-right: 5px;
+      }
+
+      .submission-box {
+        background: #2c3e50;
+        color: white;
+        border-radius: 10px;
+        padding: 28px;
+        margin-bottom: 30px;
+      }
+
+      .submission-box h2 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      .submission-box p, .submission-box li {
+        color: #e8e8e8;
+        line-height: 1.7;
+      }
+
+      .submission-box strong {
+        color: #ffc107;
+      }
+
+      .teks-alignment-box {
+        background: #e7f3ff;
+        border-left: 4px solid #0066cc;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .teks-alignment-box h2 {
+        color: #0066cc;
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+      }
+
+      .teks-alignment-box ul {
+        color: #004080;
+        line-height: 1.8;
+        margin-bottom: 0;
+      }
+
+      .professionalism-banner {
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 22px;
+        margin-bottom: 30px;
+      }
+
+      .professionalism-banner h3 {
+        color: #856404;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .professionalism-banner p, .professionalism-banner li {
+        color: #5c4604;
+        line-height: 1.65;
+        margin-bottom: 6px;
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+
+      .back-button:hover {
+        background: #5a6268;
+        color: white;
+      }
+
+      kbd {
+        background: #2c3e50;
+        color: #fff;
+        padding: 2px 7px;
+        border-radius: 4px;
+        font-size: 0.85em;
+        font-family: "Cascadia Code", Consolas, monospace;
+        border-bottom: 2px solid #1a252f;
+      }
+
+      code.inline {
+        background: #f1f3f5;
+        color: #c7254e;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Cascadia Code", Consolas, monospace;
+        font-size: 0.9em;
+      }
+
+      table.test-matrix {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+      }
+
+      table.test-matrix th {
+        background: #2c3e50;
+        color: white;
+        padding: 10px;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+
+      table.test-matrix td {
+        padding: 10px;
+        border-bottom: 1px solid #e9ecef;
+        font-size: 0.93rem;
+        line-height: 1.5;
+      }
+
+      table.test-matrix tr:nth-child(even) td {
+        background: #f8f9fa;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white">
+          <i class="bi bi-house"></i> Home
+        </a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Practicum in Information Technology</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Python Deployment &amp; Validation Lab</span>
+      </nav>
+
+      <div class="session-content">
+        <a href="../" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to PIT Home
+        </a>
+
+        <!-- Mission Header -->
+        <div class="mission-header">
+          <span class="mission-classification">
+            <i class="bi bi-shield-lock-fill"></i> INTERNAL // IT DEPLOYMENT WORK ORDER
+          </span>
+          <h1><i class="bi bi-cpu-fill"></i> Python Development Environment: Deployment &amp; Capability Validation Lab</h1>
+          <p class="subtitle">Determining whether the classroom lab can support professional Python development workflows inside a managed enterprise environment.</p>
+          <div class="mission-meta">
+            <div class="mission-meta-item">
+              <i class="bi bi-clock-fill"></i>
+              <span>Block Length: 3 hours (180 minutes)</span>
+            </div>
+            <div class="mission-meta-item">
+              <i class="bi bi-people-fill"></i>
+              <span>Format: Independent / Small Troubleshooting Groups</span>
+            </div>
+            <div class="mission-meta-item">
+              <i class="bi bi-tools"></i>
+              <span>Toolset: VS Code, Python 3, pip, Windows Terminal</span>
+            </div>
+            <div class="mission-meta-item">
+              <i class="bi bi-file-earmark-pdf-fill"></i>
+              <span>Deliverable: Capability Report (PDF via Schoology)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission Briefing -->
+        <div class="briefing-box">
+          <h2><i class="bi bi-megaphone-fill"></i> Mission Briefing</h2>
+          <p>
+            Before any software development team can work effectively, the host organization must first determine whether its systems can actually support the required tools, dependencies, and workflows. In industry, this process is called <strong>environment qualification</strong> — and it is performed before the first line of production code is ever written. Skipping it leads to lost engineering hours, broken builds, and an inability to ship.
+          </p>
+          <p>
+            Today, you are not "learning to code." You are acting as an <strong>IT Deployment Specialist</strong> and <strong>Software Validation Technician</strong>. Your task is to determine whether the lab computers in this room can realistically support local Python development — and to produce a professional report documenting your findings.
+          </p>
+          <p>
+            These machines operate inside a <strong>managed enterprise-style environment</strong>: software policy is centrally controlled, accounts are domain-joined, network traffic is filtered, and not every operation will succeed. That is normal. <strong>Discovering and documenting what does <em>not</em> work is just as valuable as confirming what does.</strong> Real organizations rely on technicians who can systematically verify capability and report it accurately — not technicians who give up when something is restricted.
+          </p>
+          <p>
+            By the end of this block, your team will deliver a <strong>Python Development Environment Capability Report</strong> that an IT manager could read and use to make a real procurement or curriculum decision.
+          </p>
+        </div>
+
+        <!-- Role Card -->
+        <div class="role-card">
+          <h2><i class="bi bi-person-badge-fill"></i> Your Role Today</h2>
+          <p><strong>Job Title:</strong> IT Deployment Specialist / Software Validation Technician</p>
+          <p><strong>Reports To:</strong> Lab Supervisor (Mr. Johnston, acting as roaming support tier)</p>
+          <p><strong>Authority:</strong> You may install end-user software permitted by district policy, run validation scripts, and document system behavior. You may <em>not</em> attempt to escalate privileges, disable security software, bypass content filters, or modify other students' machines.</p>
+          <p><strong>Communication:</strong> Work independently or in small troubleshooting groups (2–3). Escalate blockers to the supervisor only after attempting at least one documented workaround. Bring the exact error message with you.</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-card">
+          <h2><i class="bi bi-list-ul"></i> Lab Manual Contents</h2>
+          <ol>
+            <li><a href="#phase1">Phase 1 — Deployment &amp; Configuration</a></li>
+            <li><a href="#phase2">Phase 2 — Capability Testing &amp; Environment Validation</a></li>
+            <li><a href="#phase3">Phase 3 — System Boundary &amp; Limitation Testing</a></li>
+            <li><a href="#phase4">Phase 4 — Documentation &amp; Capability Report</a></li>
+            <li><a href="#extensions">Finished Early? Extension Activities</a></li>
+            <li><a href="#submission">Submission &amp; Grading</a></li>
+            <li><a href="#teks">TEKS Alignment</a></li>
+          </ol>
+        </div>
+
+        <!-- Suggested Pacing -->
+        <div class="step-card">
+          <h3><i class="bi bi-stopwatch"></i> Suggested Pacing for the 3-Hour Block</h3>
+          <table class="test-matrix">
+            <thead>
+              <tr><th style="width:120px;">Time</th><th>Phase</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0:00–0:15</td><td>Mission briefing review, machine assignment, sign-in</td></tr>
+              <tr><td>0:15–1:00</td><td><strong>Phase 1:</strong> Deployment &amp; Configuration</td></tr>
+              <tr><td>1:00–1:55</td><td><strong>Phase 2:</strong> Capability Testing &amp; Environment Validation</td></tr>
+              <tr><td>1:55–2:25</td><td><strong>Phase 3:</strong> System Boundary &amp; Limitation Testing</td></tr>
+              <tr><td>2:25–2:55</td><td><strong>Phase 4:</strong> Capability Report Drafting &amp; PDF Export</td></tr>
+              <tr><td>2:55–3:00</td><td>Final submission to Schoology, log out, secure workstation</td></tr>
+            </tbody>
+          </table>
+          <p><em>Pacing is a guideline. The deliverable is what matters — manage your own clock professionally.</em></p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PHASE 1 -->
+        <!-- ============================================================ -->
+        <div class="phase-block" id="phase1">
+          <div class="phase-banner">
+            <span class="phase-num">PHASE 1</span>
+            <h2><i class="bi bi-box-arrow-in-down"></i> Deployment &amp; Configuration</h2>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <p><strong>Objective:</strong> Install and configure Microsoft Visual Studio Code and Python 3 on your assigned lab machine. Confirm that both tools are functional, that the system <code class="inline">PATH</code> resolves correctly, and that a simple Python program executes from <em>both</em> the terminal and the VS Code IDE. Document everything you do.</p>
+            </div>
+
+            <!-- Step 1.1 -->
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 1.1</span> Pre-Flight System Inventory</h3>
+              <p>Before installing anything, document baseline system information. A real deployment specialist <em>always</em> begins with an inventory.</p>
+              <p>Open <strong>Windows Terminal</strong> or <strong>PowerShell</strong> (press <kbd>Win</kbd> + <kbd>X</kbd>, then choose <em>Terminal</em> or <em>Windows PowerShell</em>) and run each command below. Capture the output — screenshot or copy/paste — into your working notes.</p>
+<pre class="cmd-block">PS&gt; <span class="comment"># Identify the machine</span>
+PS&gt; hostname
+PS&gt; whoami
+PS&gt; <span class="comment"># Operating system version</span>
+PS&gt; (Get-CimInstance Win32_OperatingSystem).Caption
+PS&gt; (Get-CimInstance Win32_OperatingSystem).Version
+PS&gt; <span class="comment"># Check if Python is already deployed</span>
+PS&gt; python --version
+PS&gt; py --version
+PS&gt; <span class="comment"># Check if VS Code is already deployed</span>
+PS&gt; code --version</pre>
+              <div class="doc-checkpoint">
+                <h4><i class="bi bi-clipboard-check-fill"></i> Documentation Checkpoint</h4>
+                <p>Record the hostname, OS version, your username, and the result of each version check. If a tool is "not recognized," that is data — write it down. You will compare hostnames with classmates later.</p>
+              </div>
+            </div>
+
+            <!-- Step 1.2 -->
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 1.2</span> Deploy Python 3</h3>
+              <p>Attempt the deployment paths in the order listed. Stop at the first one that succeeds. Document which path worked and which failed.</p>
+              <ol>
+                <li><strong>Software Center / Company Portal:</strong> Open the <em>Software Center</em> app (or whatever managed software catalog the district provides) and search for <code class="inline">Python</code>. Install if available.</li>
+                <li><strong>Microsoft Store:</strong> Open the Microsoft Store, search for <code class="inline">Python 3.12</code> (or the latest 3.x), and click <em>Install</em>. The Store version is often allowed even on locked-down accounts because it installs per-user.</li>
+                <li><strong>python.org installer:</strong> Visit <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> and download the Windows installer. Run it and — critically — <strong>check the box "Add python.exe to PATH"</strong> on the first screen.</li>
+              </ol>
+              <p>After install, close and reopen your terminal (PATH only refreshes for new shells), then verify:</p>
+<pre class="cmd-block">PS&gt; python --version
+PS&gt; pip --version
+PS&gt; where python</pre>
+              <div class="expected-output">Python 3.12.x
+pip 24.x.x from C:\Users\...\Python\Python312\Lib\site-packages\pip (python 3.12)
+C:\Users\...\Python\Python312\python.exe</div>
+              <div class="troubleshoot-box">
+                <h4><i class="bi bi-wrench-adjustable"></i> Troubleshooting</h4>
+                <ul>
+                  <li><strong>"python is not recognized as an internal or external command"</strong> — PATH was not updated. Try <code class="inline">py --version</code> instead. If that works, the <em>py launcher</em> is installed but the <code class="inline">python</code> alias is missing. Reopen the terminal, or reinstall and check the PATH box.</li>
+                  <li><strong>The installer asks for an admin password</strong> — choose the option to <em>Install for current user only</em> (no admin needed) or fall back to the Microsoft Store path.</li>
+                  <li><strong>Microsoft Store opens a placeholder Python page</strong> — that placeholder is created when <code class="inline">python</code> is typed but no real Python is installed. Click <em>Get</em> on the real Python listing, not the placeholder.</li>
+                  <li><strong>Antivirus / Defender blocks the installer</strong> — stop. Do not attempt to disable security software. Document the block, screenshot the warning, and switch to the Microsoft Store path.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Step 1.3 -->
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 1.3</span> Deploy Visual Studio Code</h3>
+              <p>Attempt the deployment paths in this order:</p>
+              <ol>
+                <li><strong>Software Center / Company Portal:</strong> Search for <code class="inline">Visual Studio Code</code> and install if available.</li>
+                <li><strong>Direct download:</strong> Visit <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a> and choose the <strong>User Installer (64-bit)</strong>. The User Installer does <em>not</em> require administrator privileges.</li>
+              </ol>
+              <p>Verify:</p>
+<pre class="cmd-block">PS&gt; code --version</pre>
+              <div class="expected-output">1.95.x
+abc123def456...
+x64</div>
+              <p>If <code class="inline">code</code> still is not recognized but VS Code does open from the Start menu, launch VS Code, press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>, and run <em>Shell Command: Install 'code' command in PATH</em>.</p>
+            </div>
+
+            <!-- Step 1.4 -->
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 1.4</span> Install the VS Code Python Extension</h3>
+              <p>Open VS Code. Click the <strong>Extensions</strong> icon in the left sidebar (or press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>). Search for <code class="inline">Python</code> (publisher: <em>Microsoft</em>) and click <em>Install</em>.</p>
+              <p>Test the install: open the Command Palette (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>) and run <em>Python: Select Interpreter</em>. The Python you installed in Step 1.2 should appear in the list. Select it.</p>
+              <div class="troubleshoot-box">
+                <h4><i class="bi bi-wrench-adjustable"></i> Troubleshooting</h4>
+                <ul>
+                  <li><strong>Extension marketplace is blocked</strong> — document the block. Try downloading the <code class="inline">.vsix</code> from <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank" rel="noopener">marketplace.visualstudio.com</a> and installing it via <em>Extensions: Install from VSIX...</em> in the Command Palette. If that is also blocked, that is a documented finding for your report.</li>
+                  <li><strong>"No interpreter selected" warning</strong> — re-run <em>Python: Select Interpreter</em>. If your Python is missing from the list, click <em>Enter interpreter path...</em> and paste the full path from <code class="inline">where python</code>.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Step 1.5 -->
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 1.5</span> First Python Program — Terminal Path</h3>
+              <p>Create a working folder and a first script. Use your own name in the folder.</p>
+<pre class="cmd-block">PS&gt; cd $env:USERPROFILE\Documents
+PS&gt; mkdir python-validation-lab
+PS&gt; cd python-validation-lab
+PS&gt; notepad hello.py</pre>
+              <p>In Notepad, paste the following code, save, and close:</p>
+<pre class="cmd-block">import sys
+import platform
+
+print("Hello from", platform.node())
+print("Python version:", sys.version.split()[0])
+print("Executable path:", sys.executable)</pre>
+              <p>Run it from the terminal:</p>
+<pre class="cmd-block">PS&gt; python hello.py</pre>
+              <div class="expected-output">Hello from LAB-PC-##
+Python version: 3.12.x
+Executable path: C:\Users\...\python.exe</div>
+              <div class="doc-checkpoint">
+                <h4><i class="bi bi-camera-fill"></i> Capture Evidence</h4>
+                <p>Take a screenshot showing the terminal command and its output. Filename suggestion: <code class="inline">phase1_terminal_hello.png</code>. You will need this for your report.</p>
+              </div>
+            </div>
+
+            <!-- Step 1.6 -->
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 1.6</span> First Python Program — VS Code Path</h3>
+              <p>In VS Code, choose <em>File &gt; Open Folder...</em> and open the <code class="inline">python-validation-lab</code> folder you just created. Open <code class="inline">hello.py</code>.</p>
+              <p>Run the file three different ways. Confirm <strong>each</strong> works and document any that do not:</p>
+              <ol>
+                <li>Press the <strong>Run</strong> (▶) triangle in the top-right of the editor.</li>
+                <li>Open the integrated terminal (<kbd>Ctrl</kbd> + <kbd>`</kbd>) and run <code class="inline">python hello.py</code> from inside VS Code.</li>
+                <li>Right-click in the editor and choose <em>Run Python File in Terminal</em>.</li>
+              </ol>
+              <div class="doc-checkpoint">
+                <h4><i class="bi bi-camera-fill"></i> Capture Evidence</h4>
+                <p>Screenshot VS Code with the integrated terminal showing successful output. Filename suggestion: <code class="inline">phase1_vscode_hello.png</code>.</p>
+              </div>
+            </div>
+
+            <!-- Phase 1 Sign-Off -->
+            <div class="step-card">
+              <h3><i class="bi bi-check2-square"></i> Phase 1 Sign-Off Checklist</h3>
+              <p>Before moving to Phase 2, confirm <em>all</em> of the following. If any item fails, document it and proceed anyway — Phase 2 has tests that depend on Phase 1, and recording dependent failures is part of the report.</p>
+              <ul>
+                <li>☐ Hostname and OS version recorded</li>
+                <li>☐ Python 3.x installed; <code class="inline">python --version</code> works in a fresh terminal</li>
+                <li>☐ <code class="inline">pip --version</code> works</li>
+                <li>☐ VS Code installed; <code class="inline">code --version</code> works</li>
+                <li>☐ Microsoft Python extension installed; interpreter selected</li>
+                <li>☐ <code class="inline">hello.py</code> runs from terminal</li>
+                <li>☐ <code class="inline">hello.py</code> runs from VS Code Run button</li>
+                <li>☐ <code class="inline">hello.py</code> runs from VS Code integrated terminal</li>
+                <li>☐ Screenshots captured for terminal and VS Code execution</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PHASE 2 -->
+        <!-- ============================================================ -->
+        <div class="phase-block" id="phase2">
+          <div class="phase-banner">
+            <span class="phase-num">PHASE 2</span>
+            <h2><i class="bi bi-clipboard-data-fill"></i> Capability Testing &amp; Environment Validation</h2>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <p><strong>Objective:</strong> Determine which Python capabilities are <em>available</em> on this managed lab system. Run each test in order. For every test, record one of three results: <strong>PASS</strong>, <strong>FAIL</strong>, or <strong>RESTRICTED</strong>. A <em>restricted</em> result (the action was blocked by policy) is just as important as a pass.</p>
+            </div>
+
+            <!-- Test Matrix Summary -->
+            <div class="step-card">
+              <h3><i class="bi bi-table"></i> Test Matrix You Will Complete</h3>
+              <p>Use this exact table format in your final report. Fill it in as you work.</p>
+              <table class="test-matrix">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Capability Test</th>
+                    <th>Result</th>
+                    <th>Evidence / Error / Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>2.1</td><td>pip works (<code class="inline">pip list</code>)</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                  <tr><td>2.2</td><td>pip can install a package (<code class="inline">cmu-graphics</code>)</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                  <tr><td>2.3</td><td>CMU Graphics window opens locally</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                  <tr><td>2.4</td><td><code class="inline">tkinter</code> opens a window</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                  <tr><td>2.5</td><td><code class="inline">turtle</code> graphics renders</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                  <tr><td>2.6</td><td>External image file loads in Python</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                  <tr><td>2.7</td><td>External sound file plays</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                  <tr><td>2.8</td><td>Python can reach the public internet</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                  <tr><td>2.9</td><td>Python can read/write a local file</td><td>PASS / FAIL / RESTRICTED</td><td>—</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Test 2.1 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.1</span> pip Functionality</h3>
+<pre class="cmd-block">PS&gt; python -m pip --version
+PS&gt; python -m pip list</pre>
+              <p>If <code class="inline">pip list</code> prints a table of packages (even a small one), pip is functional. Note whether you needed to upgrade pip:</p>
+<pre class="cmd-block">PS&gt; python -m pip install --upgrade pip</pre>
+            </div>
+
+            <!-- Test 2.2 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.2</span> Install CMU Graphics via pip</h3>
+              <p>CMU Graphics is the same library used in the CMU CS Academy online environment. Determining whether it can be installed locally is a major decision point for whether this lab can host serious Python coursework offline.</p>
+<pre class="cmd-block">PS&gt; python -m pip install cmu-graphics</pre>
+              <p>If the install fails because of a permission error, retry with the user flag:</p>
+<pre class="cmd-block">PS&gt; python -m pip install --user cmu-graphics</pre>
+              <p>Verify the install completed:</p>
+<pre class="cmd-block">PS&gt; python -m pip show cmu-graphics</pre>
+              <div class="restricted-note">
+                <h4><i class="bi bi-info-circle-fill"></i> What if the install fails?</h4>
+                <p>Failure is a valuable finding, not a setback. Capture the <em>full</em> error text — especially any line containing "SSLError," "Could not find a version," "PermissionError," "proxy," or "blocked." That error is the data your report needs to cite. Do <em>not</em> attempt to disable certificate verification (<code class="inline">--trusted-host</code> hacks) — that is exactly the kind of unsafe workaround a professional report should flag, not perform.</p>
+              </div>
+            </div>
+
+            <!-- Test 2.3 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.3</span> CMU Graphics — Local Execution</h3>
+              <p>If Test 2.2 succeeded, create <code class="inline">cmu_test.py</code> with the following content and run it:</p>
+<pre class="cmd-block">from cmu_graphics import *
+
+Label('Lab Validation: CMU Graphics OK', 200, 100, size=18)
+Rect(50, 150, 300, 50, fill='lightBlue', border='black')
+Circle(200, 250, 30, fill='red')
+
+cmu_graphics.run()</pre>
+              <p>You should see a graphics window open with text, a rectangle, and a red circle. Close the window when done.</p>
+              <div class="doc-checkpoint">
+                <h4><i class="bi bi-camera-fill"></i> Capture Evidence</h4>
+                <p>Screenshot the running CMU window. If the window does not appear, screenshot the terminal error. Either outcome is a valid evidence artifact.</p>
+              </div>
+            </div>
+
+            <!-- Test 2.4 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.4</span> tkinter (Built-in GUI)</h3>
+              <p><code class="inline">tkinter</code> ships with most Python distributions. Run the built-in self-test from the terminal:</p>
+<pre class="cmd-block">PS&gt; python -m tkinter</pre>
+              <p>A small "TK" window should appear with a "Click me!" button and a "QUIT" button. If it does, screenshot it and close it.</p>
+              <p>Then create <code class="inline">tk_test.py</code> and confirm you can build your own:</p>
+<pre class="cmd-block">import tkinter as tk
+
+root = tk.Tk()
+root.title("Lab Validation Window")
+tk.Label(root, text="tkinter is functional on this machine.").pack(padx=20, pady=20)
+tk.Button(root, text="Close", command=root.destroy).pack(pady=10)
+root.mainloop()</pre>
+            </div>
+
+            <!-- Test 2.5 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.5</span> turtle Graphics</h3>
+              <p><code class="inline">turtle</code> is also built in. Create <code class="inline">turtle_test.py</code>:</p>
+<pre class="cmd-block">import turtle
+
+t = turtle.Turtle()
+t.shape("turtle")
+for _ in range(6):
+    t.forward(80)
+    t.left(60)
+turtle.done()</pre>
+              <p>You should see a hexagon traced by a small turtle.</p>
+            </div>
+
+            <!-- Test 2.6 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.6</span> Loading External Image Assets</h3>
+              <p>Place any <code class="inline">.png</code> file in your <code class="inline">python-validation-lab</code> folder (download a small image, or grab one from the school site). Then create <code class="inline">image_test.py</code>:</p>
+<pre class="cmd-block">import tkinter as tk
+
+root = tk.Tk()
+root.title("Image Load Test")
+img = tk.PhotoImage(file="test.png")  <span class="comment"># adjust filename to match yours</span>
+tk.Label(root, image=img).pack()
+root.mainloop()</pre>
+              <p>If the image displays, the file system + GUI pipeline supports asset loading. Note whether the image renders, errors, or is silently blocked.</p>
+            </div>
+
+            <!-- Test 2.7 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.7</span> Audio Playback</h3>
+              <p>Place any short <code class="inline">.wav</code> file in your folder. Then run:</p>
+<pre class="cmd-block">import winsound
+winsound.PlaySound("test.wav", winsound.SND_FILENAME)</pre>
+              <p>If audio plays, sound output is available to Python. If not, document whether the failure is a missing codec, a permission issue, or simply muted hardware.</p>
+            </div>
+
+            <!-- Test 2.8 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.8</span> Internet Access from Python</h3>
+              <p>This is one of the most informative tests in a managed environment. Create <code class="inline">net_test.py</code>:</p>
+<pre class="cmd-block">import urllib.request
+
+url = "https://example.com"
+try:
+    response = urllib.request.urlopen(url, timeout=5)
+    print("STATUS:", response.status)
+    print("FIRST 200 BYTES:", response.read(200))
+except Exception as e:
+    print("BLOCKED OR FAILED:", type(e).__name__, "-", e)</pre>
+              <p>Possible outcomes — all of them are findings worth recording:</p>
+              <ul>
+                <li><strong>Status 200</strong> — open internet from Python</li>
+                <li><strong>SSL error</strong> — content filter is intercepting HTTPS</li>
+                <li><strong>Timeout</strong> — outbound traffic blocked at the firewall</li>
+                <li><strong>403 / proxy authentication</strong> — district proxy in front of all traffic</li>
+              </ul>
+            </div>
+
+            <!-- Test 2.9 -->
+            <div class="step-card">
+              <h3><span class="step-tag">TEST 2.9</span> Local File Read &amp; Write</h3>
+              <p>Run the following from the integrated terminal in VS Code:</p>
+<pre class="cmd-block">PS&gt; python -c "open('write_test.txt','w').write('ok'); print(open('write_test.txt').read())"</pre>
+              <div class="expected-output">ok</div>
+              <p>Repeat the test, but write the file to a Documents subfolder and to your Desktop. Some managed environments allow writing to <code class="inline">Documents</code> but block <code class="inline">Desktop</code>, and some redirect both to OneDrive without telling the user. Note any redirection.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PHASE 3 -->
+        <!-- ============================================================ -->
+        <div class="phase-block" id="phase3">
+          <div class="phase-banner">
+            <span class="phase-num">PHASE 3</span>
+            <h2><i class="bi bi-shield-exclamation"></i> System Boundary &amp; Limitation Testing</h2>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <p><strong>Objective:</strong> Probe the boundaries of what this managed system permits — <em>professionally</em>. This is capability validation, not "trying to break things." A real IT manager needs to know where the operational edges of the platform are <em>before</em> a curriculum or product depends on those edges.</p>
+            </div>
+
+            <div class="restricted-note">
+              <h4><i class="bi bi-exclamation-octagon-fill"></i> Rules of Engagement</h4>
+              <p>You may only test boundaries with software you legitimately use as a student. You may <strong>not</strong> attempt to access another user's account, escalate privileges, disable security tools, evade content filters, or modify shared infrastructure. If a test would require any of those, do not run it — note it as "out of scope per policy" and move on. The maturity to know when to <em>stop</em> is part of being a professional technician.</p>
+            </div>
+
+            <!-- Boundary Test A -->
+            <div class="step-card">
+              <h3><span class="step-tag">BOUNDARY A</span> Extension &amp; Package Installation Limits</h3>
+              <ul>
+                <li>Install one additional, harmless VS Code extension (e.g., <em>Code Spell Checker</em>). Does it install? Does it require admin?</li>
+                <li>Try <code class="inline">python -m pip install requests</code>. Does pip respect proxy settings? Is there an SSL trust issue?</li>
+                <li>Try installing a package that is <em>large</em>, like <code class="inline">numpy</code>. Note install time — is the network bandwidth comparable to a pro environment, or visibly throttled?</li>
+              </ul>
+            </div>
+
+            <!-- Boundary Test B -->
+            <div class="step-card">
+              <h3><span class="step-tag">BOUNDARY B</span> Performance Under Load</h3>
+              <p>Create <code class="inline">perf_test.py</code> and run it. This is a deliberately heavy loop to expose CPU performance characteristics on the lab hardware.</p>
+<pre class="cmd-block">import time
+
+start = time.perf_counter()
+total = 0
+for i in range(10_000_000):
+    total += i * i
+elapsed = time.perf_counter() - start
+
+print(f"Sum: {total}")
+print(f"Elapsed: {elapsed:.3f} seconds")</pre>
+              <p>Run it three times. Record the median elapsed time. Compare with a classmate on a different machine — are the numbers consistent across the lab, or do some machines run noticeably slower?</p>
+            </div>
+
+            <!-- Boundary Test C -->
+            <div class="step-card">
+              <h3><span class="step-tag">BOUNDARY C</span> Animation &amp; Real-Time Behavior</h3>
+              <p>If CMU Graphics installed in Phase 2, try a continuous animation:</p>
+<pre class="cmd-block">from cmu_graphics import *
+
+ball = Circle(50, 200, 20, fill='red')
+app.dx = 4
+
+def onStep():
+    ball.centerX += app.dx
+    if ball.centerX &gt; 380 or ball.centerX &lt; 20:
+        app.dx = -app.dx
+
+cmu_graphics.run()</pre>
+              <p>Does the animation run smoothly, or does it stutter? Does the window remain responsive while the script runs? Inconsistent frame rates between machines indicate uneven graphics driver deployment.</p>
+            </div>
+
+            <!-- Boundary Test D -->
+            <div class="step-card">
+              <h3><span class="step-tag">BOUNDARY D</span> Cross-Machine Consistency</h3>
+              <p>Walk through the lab with your notes and compare results with at least <strong>three other classmates on different machines</strong>. For each test in the Phase 2 matrix, note where machines disagree:</p>
+              <ul>
+                <li>Did everyone get the same Python version?</li>
+                <li>Did pip succeed on every machine?</li>
+                <li>Did internet access behave identically?</li>
+                <li>Did CMU Graphics open everywhere or only some places?</li>
+              </ul>
+              <p>Inconsistencies between machines indicate <strong>deployment drift</strong> — a real-world IT problem that managers care about deeply, because it means students cannot rely on identical behavior across the lab.</p>
+            </div>
+
+            <!-- Boundary Test E -->
+            <div class="step-card">
+              <h3><span class="step-tag">BOUNDARY E</span> Documented Restrictions</h3>
+              <p>List every action that the system actively blocked today. Include the exact error text. Examples might include:</p>
+              <ul>
+                <li>"This app has been blocked by your system administrator"</li>
+                <li>"The requested operation requires elevation"</li>
+                <li>HTTPS certificate intercept warnings</li>
+                <li>OneDrive folder redirect notices</li>
+                <li>Group Policy-enforced password prompts</li>
+              </ul>
+              <p>This list, by itself, is one of the most professionally useful artifacts you will produce today.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- PHASE 4 -->
+        <!-- ============================================================ -->
+        <div class="phase-block" id="phase4">
+          <div class="phase-banner">
+            <span class="phase-num">PHASE 4</span>
+            <h2><i class="bi bi-file-earmark-pdf-fill"></i> Documentation &amp; Capability Report</h2>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <p><strong>Objective:</strong> Compile your findings into a <strong>Python Development Environment Capability Report</strong>. Submit as a <strong>PDF</strong> through Schoology. The report must be written in a tone that an IT manager — not a teacher — would recognize as professional documentation.</p>
+            </div>
+
+            <div class="deliverable-box">
+              <h2><i class="bi bi-file-earmark-text-fill"></i> Required Report Sections</h2>
+              <p>Use these section headings, in this order, in your PDF.</p>
+
+              <div class="report-section">
+                <strong>1. Cover Page</strong>
+                <ul>
+                  <li>Report title</li>
+                  <li>Your name and class period</li>
+                  <li>Date of validation</li>
+                  <li>Lab machine hostname(s) tested</li>
+                </ul>
+              </div>
+
+              <div class="report-section">
+                <strong>2. Executive Summary (≤ 1 paragraph)</strong>
+                <p>One paragraph an IT manager could read in 30 seconds. Answer: <em>Can these lab machines support real Python development? Yes, no, or with caveats?</em> Lead with the verdict.</p>
+              </div>
+
+              <div class="report-section">
+                <strong>3. System Inventory</strong>
+                <ul>
+                  <li>Hostname, OS, OS version</li>
+                  <li>Python version installed and install method used</li>
+                  <li>VS Code version and install method used</li>
+                  <li>Account type (standard user, admin, etc.)</li>
+                </ul>
+              </div>
+
+              <div class="report-section">
+                <strong>4. Phase 1: Deployment Findings</strong>
+                <p>Document which deployment paths worked and which did not. Include the screenshots of <code class="inline">hello.py</code> running from terminal and from VS Code.</p>
+              </div>
+
+              <div class="report-section">
+                <strong>5. Phase 2: Capability Test Matrix</strong>
+                <p>Reproduce the full PASS / FAIL / RESTRICTED matrix from Phase 2, with evidence column filled in. Include screenshots for every PASS that has visual evidence and the exact error text for every FAIL or RESTRICTED.</p>
+              </div>
+
+              <div class="report-section">
+                <strong>6. Phase 3: Boundary &amp; Consistency Findings</strong>
+                <p>Performance numbers, cross-machine comparison, and the documented-restrictions list.</p>
+              </div>
+
+              <div class="report-section">
+                <strong>7. Identified Failures &amp; Restrictions</strong>
+                <p>A clean, bulleted list of every blocker you encountered, with the literal error text. No commentary.</p>
+              </div>
+
+              <div class="report-section">
+                <strong>8. Recommendations for Future Classroom Use</strong>
+                <p>Based on the data — not feelings — what should the teacher and IT department know? Examples: "Microsoft Store Python deployed cleanly on all five machines tested; recommend it as the standard install method," or "pip installs over the district network averaged X seconds; large packages will be slow."</p>
+              </div>
+
+              <div class="report-section">
+                <strong>9. Overall Verdict</strong>
+                <p>Restate, in one sentence, whether this lab is suitable for local Python development workflows — and what the major caveats are.</p>
+              </div>
+
+              <div class="report-section">
+                <strong>10. Appendix</strong>
+                <p>Optional. Raw command output, additional screenshots, anything that supports the report but would clutter the body.</p>
+              </div>
+            </div>
+
+            <!-- Professionalism Banner -->
+            <div class="professionalism-banner">
+              <h3><i class="bi bi-mortarboard-fill"></i> Professional Communication Expectations</h3>
+              <ul>
+                <li>Use complete sentences. Use third person ("the technician installed...") or neutral first person ("I installed...") consistently. Avoid casual phrasing like "stuff didn't work."</li>
+                <li>State facts before opinions. Evidence first, conclusion second.</li>
+                <li>Quote error messages exactly. Wrap them in a fixed-width font or block quote.</li>
+                <li>Label every screenshot with a caption (e.g., <em>Figure 3 — CMU Graphics window confirming successful local rendering on LAB-PC-04</em>).</li>
+                <li>Spellcheck. Proofread. A typo in a deployment report costs credibility.</li>
+                <li>Length is not the goal — clarity is. A tight 3-page report beats a sprawling 8-page one.</li>
+              </ul>
+            </div>
+
+            <!-- How to Export PDF -->
+            <div class="step-card">
+              <h3><i class="bi bi-printer-fill"></i> Producing the PDF</h3>
+              <p>Author the report in Microsoft Word, Google Docs, or any equivalent tool. To export to PDF:</p>
+              <ul>
+                <li><strong>Word:</strong> <em>File &gt; Save As &gt; PDF (*.pdf)</em></li>
+                <li><strong>Google Docs:</strong> <em>File &gt; Download &gt; PDF Document (.pdf)</em></li>
+                <li><strong>Any app:</strong> <em>File &gt; Print &gt; Microsoft Print to PDF</em></li>
+              </ul>
+              <p>Filename convention: <code class="inline">LASTNAME_FIRSTNAME_PythonCapabilityReport.pdf</code></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- EXTENSIONS -->
+        <!-- ============================================================ -->
+        <div class="phase-block" id="extensions">
+          <div class="phase-banner" style="background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);">
+            <span class="phase-num">BONUS</span>
+            <h2><i class="bi bi-rocket-takeoff-fill"></i> Finished Early? Extension Activities</h2>
+          </div>
+          <div class="phase-body">
+            <p style="margin-bottom: 20px;">If your capability report is drafted and you still have block time remaining, pick one or more of the following. These are <strong>technically aligned</strong> with the lesson — they all deepen your validation findings or expand the deployment surface you've tested. Document anything you do here in the report's Appendix.</p>
+
+            <div class="extension-card">
+              <h3><i class="bi bi-window-stack"></i> Build a tkinter Diagnostic GUI</h3>
+              <p><span class="tag">GUI</span> <span class="tag">tkinter</span> <span class="tag">~30 min</span></p>
+              <p>Write a small tkinter app with three buttons: "Run Network Test," "Run File I/O Test," "Show Python Info." Each button runs the relevant Phase 2 test and prints the result inside the window. You're effectively turning your capability matrix into a tool. Submit a screenshot in the appendix.</p>
+            </div>
+
+            <div class="extension-card">
+              <h3><i class="bi bi-arrow-repeat"></i> Turtle Animation Stress Test</h3>
+              <p><span class="tag">turtle</span> <span class="tag">performance</span> <span class="tag">~20 min</span></p>
+              <p>Write a turtle script that draws 1,000 expanding spirals or randomly-positioned shapes. Time it. Compare on a second machine. Does the visual frame rate hold up? At what shape count does it start to lag?</p>
+            </div>
+
+            <div class="extension-card">
+              <h3><i class="bi bi-bullseye"></i> Recreate a CMU Academy Interaction Locally</h3>
+              <p><span class="tag">cmu-graphics</span> <span class="tag">~45 min</span></p>
+              <p>Pick a small graphical interaction you've previously built in CMU CS Academy (a click-counter, a moving character, a simple menu) and rebuild it locally using <code class="inline">cmu-graphics</code>. Document any behavioral differences between the cloud version and the local version.</p>
+            </div>
+
+            <div class="extension-card">
+              <h3><i class="bi bi-speedometer2"></i> Benchmark Python Versions</h3>
+              <p><span class="tag">benchmarking</span> <span class="tag">~25 min</span></p>
+              <p>If a classmate has a different Python version installed, run your <code class="inline">perf_test.py</code> on both. Record the runtimes. Is one version faster? By how much? This is real procurement data — newer Pythons are often substantially faster, and that matters when buying lab software stacks.</p>
+            </div>
+
+            <div class="extension-card">
+              <h3><i class="bi bi-folder-symlink-fill"></i> Local File Handling Audit</h3>
+              <p><span class="tag">filesystem</span> <span class="tag">~20 min</span></p>
+              <p>Use Python to write a test file to: Documents, Desktop, OneDrive, the temp folder, and a path you don't normally have access to. Record which succeeded, which failed, and which were silently redirected. Map the writable/read-only zones of the filesystem.</p>
+            </div>
+
+            <div class="extension-card">
+              <h3><i class="bi bi-qr-code"></i> Generate a QR Code Locally</h3>
+              <p><span class="tag">pip</span> <span class="tag">imaging</span> <span class="tag">~20 min</span></p>
+              <p>Try <code class="inline">python -m pip install qrcode[pil]</code>. If it succeeds, generate a QR code that links to your school's homepage and save the image. This is another data point on whether pip-based imaging libraries deploy cleanly on this network.</p>
+            </div>
+
+            <div class="extension-card">
+              <h3><i class="bi bi-graph-up"></i> Plot Lab-Wide Performance</h3>
+              <p><span class="tag">collaboration</span> <span class="tag">data</span> <span class="tag">~30 min</span></p>
+              <p>Collect <code class="inline">perf_test.py</code> times from five classmates. Build a small chart (Excel or matplotlib) of the spread. Drop the chart into your Appendix. This is exactly how a real IT team identifies hardware outliers in a deployment.</p>
+            </div>
+
+            <div class="extension-card">
+              <h3><i class="bi bi-shield-check"></i> Document a "Day 2" Onboarding Guide</h3>
+              <p><span class="tag">documentation</span> <span class="tag">~25 min</span></p>
+              <p>Write a one-page "How to Set Up Python on a Fresh Lab Machine" guide based on what you learned today, including only the deployment paths that <em>worked</em>. Imagine the next student sitting down at this machine and needing nothing but your guide.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SUBMISSION -->
+        <!-- ============================================================ -->
+        <div class="submission-box" id="submission">
+          <h2><i class="bi bi-cloud-upload-fill"></i> Submission &amp; Grading</h2>
+          <p><strong>Where to submit:</strong> Schoology — the assignment titled <em>Python Development Environment Capability Report</em>.</p>
+          <p><strong>What to submit:</strong> A single PDF named <code class="inline">LASTNAME_FIRSTNAME_PythonCapabilityReport.pdf</code> containing the ten sections listed in Phase 4.</p>
+          <p><strong>When:</strong> Before the end of the block. Late work follows the standard PIT late-work policy.</p>
+          <p><strong>How you'll be graded:</strong> Your report is evaluated on the same criteria a real IT deployment report would be:</p>
+          <ul>
+            <li><strong>Completeness</strong> — all required sections present, all Phase 2 matrix rows filled in</li>
+            <li><strong>Evidence</strong> — screenshots and exact error text included</li>
+            <li><strong>Accuracy</strong> — claims match the captured evidence</li>
+            <li><strong>Professional communication</strong> — tone, clarity, formatting, proofread</li>
+            <li><strong>Insight</strong> — the recommendations and verdict are grounded in your data, not guessing</li>
+          </ul>
+          <p><em>Honest "FAIL" and "RESTRICTED" results — when documented well — are worth full credit. Inflating results or copying a classmate's findings is academic dishonesty and will be treated under the standard PIT policy.</em></p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- TEKS -->
+        <!-- ============================================================ -->
+        <div class="teks-alignment-box" id="teks">
+          <h2><i class="bi bi-list-check"></i> TEKS Alignment — §130.312 Practicum in Information Technology</h2>
+          <p>This lab is intentionally aligned with the following Texas Essential Knowledge and Skills:</p>
+          <ul>
+            <li><strong>(c)(1)(E)</strong> — solve problems and think critically <em>(troubleshooting deployment failures, isolating root causes from error text)</em></li>
+            <li><strong>(c)(1)(F)</strong> — function effectively as a team member <em>(troubleshooting groups, cross-machine comparison)</em></li>
+            <li><strong>(c)(1)(I)</strong> — demonstrate planning, time-management, and project-management skills <em>(self-paced 3-hour block, four phases, professional deliverable)</em></li>
+            <li><strong>(c)(3)(A)</strong> — proper use of written, verbal, and visual communication consistent with IT industry standards <em>(formal capability report, captioned figures, exact error quotation)</em></li>
+            <li><strong>(c)(4)(A)–(B)</strong> — identify a problem in IT and apply a top-down research approach <em>(defining "is this lab capable of supporting Python?" and decomposing into testable capabilities)</em></li>
+            <li><strong>(c)(5)(A)–(C)</strong> — apply critical-thinking strategies and decision-making to technological solutions <em>(choosing between deployment paths, recommending a standard install method)</em></li>
+            <li><strong>(c)(6)(C)</strong> — identify areas where quality and reliability can be designed in <em>(cross-machine consistency findings, deployment-drift identification)</em></li>
+            <li><strong>(c)(6)(D)</strong> — develop and implement a security management plan <em>(operating within rules of engagement, refusing to bypass policy)</em></li>
+            <li><strong>(c)(6)(F)</strong> — develop an evaluation method for analyzing the effect of the product or service <em>(structured PASS / FAIL / RESTRICTED test matrix, executive summary verdict)</em></li>
+            <li><strong>(c)(6)(G)</strong> — develop a project portfolio that documents the research and development process <em>(the capability report itself, suitable for portfolio inclusion)</em></li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button">
+          <i class="bi bi-arrow-left"></i> Back to PIT Home
+        </a>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
