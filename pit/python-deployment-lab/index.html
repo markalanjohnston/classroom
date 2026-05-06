@@ -654,6 +654,21 @@
           <p><strong>Communication:</strong> Work independently or in small troubleshooting groups (2–3). Escalate blockers to the supervisor only after attempting at least one documented workaround. Bring the exact error message with you.</p>
         </div>
 
+        <!-- Continuity Protocol -->
+        <div class="briefing-box" style="border-left-color: #ffc107; background: #fff8e9;">
+          <h2 style="color: #856404;"><i class="bi bi-shield-fill-check" style="color: #ffc107;"></i> Continuity Protocol — How to Keep Working When Something Fails</h2>
+          <p style="color: #5c4604;">
+            In a real deployment, things will fail. The mark of a professional is not "everything worked," it is <strong>"I kept the project moving and I documented what happened."</strong> This lab is intentionally designed so that <strong>no single failure stops you</strong>. Read this section before you start.
+          </p>
+          <p style="color: #5c4604;"><strong>Three rules of continuity for today:</strong></p>
+          <ol style="color: #5c4604; line-height: 1.8;">
+            <li><strong>A failure is data, not a dead end.</strong> Capture the exact error text and a screenshot, write it into your test matrix as <code class="inline">FAIL</code> or <code class="inline">RESTRICTED</code>, and move to the next step. Documented failures are worth <em>full credit</em> on the report — the deliverable is your validation findings, not a successful install.</li>
+            <li><strong>Every Phase 2 test is independent.</strong> If pip is blocked, you can still test tkinter, turtle, internet access, and file I/O. If CMU Graphics will not install, you can still complete every other row of the matrix. Skip the dependent tests, mark them <code class="inline">N/A — depends on Test 2.X</code>, and keep going.</li>
+            <li><strong>If your machine is unworkable, partner up.</strong> If you cannot get past Phase 1 after twenty minutes of documented troubleshooting, do <em>not</em> sit idle. Either (a) move to a different open lab machine and restart Phase 1 there — comparing two machines is a Phase 3 finding anyway, or (b) pair with a classmate whose machine works. You then continue as a two-person validation team on their machine, and your "stuck" machine becomes a documented Phase 1 case study in your report.</li>
+          </ol>
+          <p style="color: #5c4604;"><strong>What is <em>not</em> acceptable:</strong> giving up, sitting idle, putting your head down, or saying "it didn't work" without an error message and a screenshot. The supervisor will check on this.</p>
+        </div>
+
         <!-- Table of Contents -->
         <div class="toc-card">
           <h2><i class="bi bi-list-ul"></i> Lab Manual Contents</h2>
@@ -724,27 +739,31 @@ PS&gt; code --version</pre>
 
             <!-- Step 1.2 -->
             <div class="step-card">
-              <h3><span class="step-tag">STEP 1.2</span> Deploy Python 3</h3>
-              <p>Attempt the deployment paths in the order listed. Stop at the first one that succeeds. Document which path worked and which failed.</p>
-              <ol>
-                <li><strong>Software Center / Company Portal:</strong> Open the <em>Software Center</em> app (or whatever managed software catalog the district provides) and search for <code class="inline">Python</code>. Install if available.</li>
-                <li><strong>Microsoft Store:</strong> Open the Microsoft Store, search for <code class="inline">Python 3.12</code> (or the latest 3.x), and click <em>Install</em>. The Store version is often allowed even on locked-down accounts because it installs per-user.</li>
-                <li><strong>python.org installer:</strong> Visit <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> and download the Windows installer. Run it and — critically — <strong>check the box "Add python.exe to PATH"</strong> on the first screen.</li>
-              </ol>
-              <p>After install, close and reopen your terminal (PATH only refreshes for new shells), then verify:</p>
+              <h3><span class="step-tag">STEP 1.2</span> Verify Python 3 (Pre-Deployed via Software Center)</h3>
+              <p><strong>Python is already deployed to these lab machines through the district Software Center.</strong> Your job is to <em>verify</em> the deployment — confirm it is present, confirm it is on the PATH, and confirm it actually runs. This is exactly what an IT technician does after a managed software push.</p>
+              <p><strong>Verification:</strong> Open a fresh terminal (PowerShell or Windows Terminal — important to use a fresh one, since PATH only refreshes for new shells) and run:</p>
 <pre class="cmd-block">PS&gt; python --version
 PS&gt; pip --version
 PS&gt; where python</pre>
               <div class="expected-output">Python 3.12.x
 pip 24.x.x from C:\Users\...\Python\Python312\Lib\site-packages\pip (python 3.12)
 C:\Users\...\Python\Python312\python.exe</div>
+              <p>If all three commands succeed, Python is deployed correctly — record the version and the install path, then move on to Step 1.3.</p>
+              <p><strong>If any command fails:</strong> the Software Center deployment did not land cleanly on your machine. Open the <em>Software Center</em> app from the Start menu, search for <code class="inline">Python</code>, and click <em>Install</em> (or <em>Repair</em> / <em>Reinstall</em> if it shows as already installed). Wait for it to finish, then close and reopen the terminal and re-run the verification commands.</p>
+              <p><strong>If Software Center reinstall still fails or the package is missing:</strong> these are documented fallback deployment paths. Try them in order, stopping at the first that succeeds. Whichever you used, write it in your report — different machines using different install paths is itself a deployment-drift finding.</p>
+              <ol>
+                <li><strong>Microsoft Store:</strong> Open the Microsoft Store, search for <code class="inline">Python 3.12</code> (or the latest 3.x), and click <em>Install</em>. The Store version installs per-user and usually works without admin rights.</li>
+                <li><strong>python.org installer:</strong> Visit <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> and download the Windows installer. Run it and — critically — <strong>check the box "Add python.exe to PATH"</strong> on the first screen.</li>
+              </ol>
               <div class="troubleshoot-box">
                 <h4><i class="bi bi-wrench-adjustable"></i> Troubleshooting</h4>
                 <ul>
-                  <li><strong>"python is not recognized as an internal or external command"</strong> — PATH was not updated. Try <code class="inline">py --version</code> instead. If that works, the <em>py launcher</em> is installed but the <code class="inline">python</code> alias is missing. Reopen the terminal, or reinstall and check the PATH box.</li>
+                  <li><strong>"python is not recognized as an internal or external command"</strong> — PATH was not updated, or you are still in the terminal that was open before the install. <em>Close every terminal window</em> and open a new one. If it still fails, try <code class="inline">py --version</code>. If that works, the py launcher is installed but the <code class="inline">python</code> alias is missing — note that in your report and use <code class="inline">py</code> in place of <code class="inline">python</code> for the rest of the lab.</li>
+                  <li><strong>Software Center button is greyed out / "Already installed" but verification fails</strong> — try <em>Software Center → Installation Status → Python → Reinstall</em>. If reinstall is not offered, screenshot the state and proceed to the Microsoft Store fallback.</li>
                   <li><strong>The installer asks for an admin password</strong> — choose the option to <em>Install for current user only</em> (no admin needed) or fall back to the Microsoft Store path.</li>
-                  <li><strong>Microsoft Store opens a placeholder Python page</strong> — that placeholder is created when <code class="inline">python</code> is typed but no real Python is installed. Click <em>Get</em> on the real Python listing, not the placeholder.</li>
-                  <li><strong>Antivirus / Defender blocks the installer</strong> — stop. Do not attempt to disable security software. Document the block, screenshot the warning, and switch to the Microsoft Store path.</li>
+                  <li><strong>Microsoft Store opens a placeholder Python page</strong> — that placeholder appears when <code class="inline">python</code> is typed but no real Python is installed. Click <em>Get</em> on the real Python listing, not the placeholder.</li>
+                  <li><strong>Antivirus / Defender blocks the installer</strong> — stop. Do not attempt to disable security software. Document the block, screenshot the warning, and switch to the next fallback path.</li>
+                  <li><strong>Cannot get any Python to run after 20 minutes</strong> — apply Continuity Rule 3 from the protocol above. Move to a different lab machine, or pair with a classmate, and continue.</li>
                 </ul>
               </div>
             </div>
@@ -824,17 +843,28 @@ Executable path: C:\Users\...\python.exe</div>
             <!-- Phase 1 Sign-Off -->
             <div class="step-card">
               <h3><i class="bi bi-check2-square"></i> Phase 1 Sign-Off Checklist</h3>
-              <p>Before moving to Phase 2, confirm <em>all</em> of the following. If any item fails, document it and proceed anyway — Phase 2 has tests that depend on Phase 1, and recording dependent failures is part of the report.</p>
+              <p>Before moving to Phase 2, work through this list. <strong>You do not need every item to be a green check to continue.</strong> Mark each item ✅ <em>(passed)</em>, ❌ <em>(failed — error captured)</em>, or ⚠️ <em>(partial / workaround applied)</em>, and proceed.</p>
               <ul>
-                <li>☐ Hostname and OS version recorded</li>
-                <li>☐ Python 3.x installed; <code class="inline">python --version</code> works in a fresh terminal</li>
-                <li>☐ <code class="inline">pip --version</code> works</li>
-                <li>☐ VS Code installed; <code class="inline">code --version</code> works</li>
-                <li>☐ Microsoft Python extension installed; interpreter selected</li>
-                <li>☐ <code class="inline">hello.py</code> runs from terminal</li>
-                <li>☐ <code class="inline">hello.py</code> runs from VS Code Run button</li>
-                <li>☐ <code class="inline">hello.py</code> runs from VS Code integrated terminal</li>
-                <li>☐ Screenshots captured for terminal and VS Code execution</li>
+                <li>Hostname and OS version recorded</li>
+                <li>Python 3.x verified (Software Center install or fallback); <code class="inline">python --version</code> works in a fresh terminal</li>
+                <li><code class="inline">pip --version</code> works</li>
+                <li>VS Code installed; <code class="inline">code --version</code> works</li>
+                <li>Microsoft Python extension installed; interpreter selected</li>
+                <li><code class="inline">hello.py</code> runs from terminal</li>
+                <li><code class="inline">hello.py</code> runs from VS Code Run button</li>
+                <li><code class="inline">hello.py</code> runs from VS Code integrated terminal</li>
+                <li>Screenshots captured for terminal and VS Code execution (or for the failures, if any)</li>
+              </ul>
+            </div>
+
+            <!-- Phase 1 Fallback -->
+            <div class="restricted-note">
+              <h4><i class="bi bi-arrow-right-circle-fill"></i> Cannot Pass Phase 1 Sign-Off? Read This Before Moving On.</h4>
+              <p>You can still complete Phase 2, Phase 3, and the final report. Pick the option that fits your situation:</p>
+              <ul style="color: #58151c; line-height: 1.7; margin-bottom: 0;">
+                <li><strong>Python runs but VS Code does not</strong> — proceed using the terminal only. Phase 2 tests do not require the VS Code IDE; they only require a working Python interpreter and a way to edit text files (Notepad is fine).</li>
+                <li><strong>VS Code runs but Python is broken</strong> — try a different lab machine. Without a working interpreter, none of Phase 2 will execute.</li>
+                <li><strong>Both are broken</strong> — apply Continuity Rule 3 (move machines, or partner up) and continue. Document the failed deployment as your <em>primary</em> Phase 1 finding in the report. A clean, detailed write-up of why a managed deployment failed is itself a high-value professional artifact.</li>
               </ul>
             </div>
           </div>
@@ -850,7 +880,13 @@ Executable path: C:\Users\...\python.exe</div>
           </div>
           <div class="phase-body">
             <div class="phase-objective">
-              <p><strong>Objective:</strong> Determine which Python capabilities are <em>available</em> on this managed lab system. Run each test in order. For every test, record one of three results: <strong>PASS</strong>, <strong>FAIL</strong>, or <strong>RESTRICTED</strong>. A <em>restricted</em> result (the action was blocked by policy) is just as important as a pass.</p>
+              <p><strong>Objective:</strong> Determine which Python capabilities are <em>available</em> on this managed lab system. For every test, record one of three results: <strong>PASS</strong>, <strong>FAIL</strong>, or <strong>RESTRICTED</strong>. A <em>restricted</em> result (the action was blocked by policy) is just as important as a pass.</p>
+            </div>
+
+            <div class="doc-checkpoint">
+              <h4><i class="bi bi-diagram-3-fill"></i> Tests Are Independent — Skip Around If You Need To</h4>
+              <p>Every test in the matrix below is <strong>independent</strong>, with one exception: Test 2.3 (CMU Graphics window) requires Test 2.2 (CMU Graphics install) to have succeeded. If a test fails, mark it and move to the next one. <strong>Do not stop the matrix because one row failed.</strong></p>
+              <p style="margin-bottom: 0;">If pip is completely blocked, you can still complete tests 2.1, 2.4, 2.5, 2.6, 2.7, 2.8, and 2.9 — that is seven of nine rows. A pip-blocked machine still produces a complete validation report.</p>
             </div>
 
             <!-- Test Matrix Summary -->
@@ -1283,7 +1319,7 @@ cmu_graphics.run()</pre>
             <li><strong>Professional communication</strong> — tone, clarity, formatting, proofread</li>
             <li><strong>Insight</strong> — the recommendations and verdict are grounded in your data, not guessing</li>
           </ul>
-          <p><em>Honest "FAIL" and "RESTRICTED" results — when documented well — are worth full credit. Inflating results or copying a classmate's findings is academic dishonesty and will be treated under the standard PIT policy.</em></p>
+          <p><em>Honest "FAIL" and "RESTRICTED" results — when documented well — are worth full credit. The same is true of incomplete phases: a report that says "Phase 1 deployment failed on this machine, here is the exact error, here is what I tried, here is what I observed on a working partner machine" is professional documentation and is graded as such. Inflating results or copying a classmate's findings, on the other hand, is academic dishonesty and will be treated under the standard PIT policy.</em></p>
         </div>
 
         <!-- ============================================================ -->
