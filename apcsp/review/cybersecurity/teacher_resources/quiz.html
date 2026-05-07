@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cybersecurity & Encryption Review Quiz</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      color: #000;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-header img {
+      width: 90px;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .quiz-header .quiz-title h1,
+    .quiz-header .quiz-title h2 {
+      text-align: left;
+      margin: 0;
+    }
+
+    .info-line {
+      display: flex;
+      justify-content: space-between;
+      margin: 25px 0 20px 0;
+      gap: 20px;
+    }
+
+    .blank {
+      border-bottom: 1px solid #000;
+      flex: 1;
+      min-height: 24px;
+    }
+
+    .question {
+      margin-bottom: 24px;
+      page-break-inside: avoid;
+    }
+
+    .question p {
+      margin-bottom: 8px;
+    }
+
+    .answer-lines {
+      border-bottom: 1px solid #aaa;
+      height: 22px;
+      margin-bottom: 8px;
+    }
+
+    .short-lines .answer-lines {
+      width: 100%;
+    }
+
+    .directions {
+      border: 1px solid #000;
+      padding: 10px;
+      margin: 20px 0;
+    }
+
+    .matching {
+      margin-top: 8px;
+    }
+
+    .matching .scenario {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .matching .scenario .label {
+      font-weight: 700;
+      flex-shrink: 0;
+      min-width: 24px;
+    }
+
+    .matching .scenario .body {
+      flex: 1;
+    }
+
+    .matching .scenario .blank-short {
+      border-bottom: 1px solid #000;
+      display: inline-block;
+      min-width: 180px;
+      margin-top: 4px;
+    }
+
+    .word-bank {
+      border: 1px solid #000;
+      padding: 8px 12px;
+      margin: 10px 0;
+      font-style: italic;
+      background: #fafafa;
+    }
+
+    @media print {
+      body {
+        padding: 0.5in;
+        max-width: none;
+      }
+
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="quiz-header">
+    <img src="../../../APCSP_Badge.png" alt="AP Computer Science Principles badge">
+    <div class="quiz-title">
+      <h1>AP Computer Science Principles</h1>
+      <h2>Cybersecurity &amp; Encryption Review Quiz</h2>
+    </div>
+  </div>
+
+  <div class="info-line">
+    <span>Name: <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>
+    <span>Class Period: <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>
+  </div>
+
+  <div class="directions">
+    <strong>Directions:</strong> Answer each question using complete thoughts when needed. This quiz uses short answer, fill-in-the-blank, and matching questions. There are no multiple-choice questions.
+  </div>
+
+  <div class="question">
+    <p><strong>1.</strong> Define <strong>encryption</strong> and <strong>decryption</strong>. You must define both.</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+  <div class="question">
+    <p><strong>2.</strong> Explain the main difference between <strong>symmetric</strong> and <strong>asymmetric (public-key)</strong> encryption.</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+  <div class="question">
+    <p><strong>3.</strong> In public-key encryption, Alice wants to send Bob a confidential message. <strong>Whose</strong> key does Alice use to <strong>encrypt</strong> the message, and <strong>whose</strong> key does Bob use to <strong>decrypt</strong> it? Be specific about <em>both</em> the person and whether it is the <em>public</em> or <em>private</em> key.</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+  <div class="question">
+    <p><strong>4.</strong> What is the main advantage of public-key (asymmetric) encryption compared to symmetric encryption?</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+  <div class="question">
+    <p><strong>5.</strong> What is the purpose of a <strong>digital certificate</strong>, and what kind of organization issues one?</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+  <div class="question">
+    <p><strong>6.</strong> A website is using HTTPS (the padlock icon is showing in the browser). Does this mean the website itself is trustworthy and safe? Explain.</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+  <div class="question">
+    <p><strong>7.</strong> What is <strong>Multi-Factor Authentication (MFA)</strong>? Name the three categories of authentication factors and give one example of each.</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+  <div class="question">
+    <p><strong>8.</strong> A website requires a password <em>and</em> the answer to a security question (such as "What was the name of your first pet?"). Is this Multi-Factor Authentication? Explain why or why not.</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+  <div class="question">
+    <p><strong>9.</strong> Match each scenario to the correct threat term. Write your answer on the blank to the right of each scenario.</p>
+    <div class="word-bank">
+      <strong>Word bank:</strong> phishing &nbsp;·&nbsp; keylogger &nbsp;·&nbsp; rogue access point &nbsp;·&nbsp; virus &nbsp;·&nbsp; worm
+    </div>
+    <div class="matching">
+      <div class="scenario">
+        <span class="label">a.</span>
+        <div class="body">
+          A user receives an email that appears to be from their bank, asking them to click a link and "verify" their login. <span class="blank-short"></span>
+        </div>
+      </div>
+      <div class="scenario">
+        <span class="label">b.</span>
+        <div class="body">
+          Hidden software on a laptop secretly records every keystroke a user types, including passwords. <span class="blank-short"></span>
+        </div>
+      </div>
+      <div class="scenario">
+        <span class="label">c.</span>
+        <div class="body">
+          An attacker sets up an unauthorized Wi-Fi hotspot in a coffee shop and names it "FreeCoffeeWiFi" to intercept users' traffic. <span class="blank-short"></span>
+        </div>
+      </div>
+      <div class="scenario">
+        <span class="label">d.</span>
+        <div class="body">
+          A piece of malware spreads automatically across networked computers without any user action and without needing a host file. <span class="blank-short"></span>
+        </div>
+      </div>
+      <div class="scenario">
+        <span class="label">e.</span>
+        <div class="body">
+          A piece of malware attaches itself to a program file and only spreads when the user runs that program. <span class="blank-short"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="question">
+    <p><strong>10.</strong> What is <strong>PII</strong>? Why is the <em>combination</em> of ZIP code, date of birth, and gender often considered a privacy risk, even though each piece by itself may seem harmless?</p>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+    <div class="answer-lines"></div>
+  </div>
+
+</body>
+</html>

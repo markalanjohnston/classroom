@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cybersecurity & Encryption Review Quiz — Answer Key</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      color: #000;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-header img {
+      width: 90px;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    .quiz-header .quiz-title h1,
+    .quiz-header .quiz-title h2 {
+      text-align: left;
+      margin: 0;
+    }
+
+    .key-banner {
+      background: #b3261e;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 4px;
+      font-weight: 700;
+      padding: 8px 0;
+      margin: 20px 0 25px 0;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    .directions {
+      border: 1px solid #000;
+      padding: 10px;
+      margin: 20px 0;
+      background: #f7f3e8;
+    }
+
+    .question {
+      margin-bottom: 22px;
+      page-break-inside: avoid;
+    }
+
+    .question p.prompt {
+      margin-bottom: 8px;
+    }
+
+    .answer {
+      background: #eef0fb;
+      border-left: 4px solid #1e3a8a;
+      padding: 10px 14px;
+      margin: 6px 0 4px 0;
+      border-radius: 4px;
+      font-size: 0.97rem;
+    }
+
+    .answer .label {
+      font-weight: 700;
+      color: #142a66;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .answer ul {
+      margin: 4px 0 0 0;
+      padding-left: 20px;
+    }
+
+    .answer li { margin-bottom: 3px; }
+
+    .scoring {
+      background: #fff8e9;
+      border-left: 4px solid #ffc107;
+      padding: 8px 14px;
+      margin: 4px 0 0 0;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: #5d4500;
+    }
+
+    .scoring .label {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      color: #856404;
+    }
+
+    code {
+      background: #f1f3f5;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 0.92em;
+    }
+
+    .matching-key {
+      margin: 6px 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .matching-key li {
+      padding: 4px 0;
+      border-bottom: 1px dashed #cfd4e6;
+    }
+
+    .matching-key li:last-child { border-bottom: none; }
+
+    .matching-key .letter {
+      font-weight: 700;
+      color: #142a66;
+      margin-right: 6px;
+    }
+
+    .matching-key .ans {
+      font-weight: 700;
+      color: #0f5132;
+      margin-right: 8px;
+    }
+
+    @media print {
+      body {
+        padding: 0.5in;
+        max-width: none;
+      }
+
+      .no-print {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="quiz-header">
+    <img src="../../../APCSP_Badge.png" alt="AP Computer Science Principles badge">
+    <div class="quiz-title">
+      <h1>AP Computer Science Principles</h1>
+      <h2>Cybersecurity &amp; Encryption Review Quiz</h2>
+    </div>
+  </div>
+
+  <div class="key-banner">ANSWER KEY &mdash; TEACHER USE ONLY</div>
+
+  <div class="directions">
+    <strong>About this key:</strong> Student wording will vary. The answers below describe the
+    <em>concepts</em> that should appear for full credit, drawn directly from the language used in
+    the Cybersecurity &amp; Encryption review lesson. Anything substantively equivalent counts.
+    Watch for the listed misconceptions &mdash; those are the most common partial-credit traps and
+    map directly to the AP MCQ wrong-answer choices.
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>1.</strong> Define <strong>encryption</strong> and <strong>decryption</strong>. You must define both.</p>
+    <div class="answer">
+      <span class="label">Both definitions required:</span>
+      <ul>
+        <li><strong>Encryption</strong> = encoding data so that only authorized parties can read it.</li>
+        <li><strong>Decryption</strong> = the reverse process &mdash; converting the encoded data back into its original, readable form.</li>
+      </ul>
+    </div>
+    <div class="scoring">
+      <span class="label">Common error:</span>
+      Defining only one term, or describing encryption as "hiding" or "deleting" data. The key idea is encoding so only authorized parties (those with the correct key) can read it.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>2.</strong> Explain the main difference between <strong>symmetric</strong> and <strong>asymmetric (public-key)</strong> encryption.</p>
+    <div class="answer">
+      <span class="label">Look for both ideas:</span>
+      <ul>
+        <li><strong>Symmetric</strong> uses <strong>one shared key</strong> for both encryption and decryption. Both parties must already have the same secret key.</li>
+        <li><strong>Asymmetric (public-key)</strong> uses a <strong>key pair</strong>: a <strong>public key</strong> (shared openly) for encryption and a <strong>private key</strong> (kept secret by the owner) for decryption.</li>
+      </ul>
+      Bonus credit if they note that symmetric has a <em>key-distribution problem</em> (you must somehow share the secret key first), and asymmetric solves it.
+    </div>
+    <div class="scoring">
+      <span class="label">Common error:</span>
+      Saying asymmetric uses two keys without identifying which one encrypts and which one decrypts, or saying symmetric is "less secure" (it isn't &mdash; it's the key-sharing that's hard).
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>3.</strong> In public-key encryption, Alice wants to send Bob a confidential message. <strong>Whose</strong> key does Alice use to <strong>encrypt</strong> the message, and <strong>whose</strong> key does Bob use to <strong>decrypt</strong> it?</p>
+    <div class="answer">
+      <span class="label">Answer:</span>
+      <ul>
+        <li>Alice encrypts with <strong>Bob's public key</strong>.</li>
+        <li>Bob decrypts with <strong>Bob's private key</strong>.</li>
+      </ul>
+      The recipient's public key encrypts; only the matching private key (held only by the recipient) can decrypt.
+    </div>
+    <div class="scoring">
+      <span class="label">Don't accept:</span>
+      "Alice's private key" (that's used for digital signatures, not for sending an encrypted message), or saying the public key can decrypt &mdash; it cannot. This is the single most-tested distinction in this unit.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>4.</strong> What is the main advantage of public-key (asymmetric) encryption compared to symmetric encryption?</p>
+    <div class="answer">
+      <span class="label">Look for:</span>
+      Two parties can communicate securely <strong>without first exchanging a secret key</strong>. Public-key encryption solves the <strong>key-distribution / key-sharing problem</strong> &mdash; you can publish your public key openly, and anyone can encrypt to you, even over an insecure channel.
+    </div>
+    <div class="scoring">
+      <span class="label">Don't accept:</span>
+      "It's faster" (it's actually <em>slower</em> &mdash; that's why HTTPS uses public-key only to set up a symmetric session key) or "it can't be broken" (no system has that property).
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>5.</strong> What is the purpose of a <strong>digital certificate</strong>, and what kind of organization issues one?</p>
+    <div class="answer">
+      <span class="label">Look for both parts:</span>
+      <ul>
+        <li><strong>Purpose:</strong> A digital certificate vouches that a particular public key really belongs to a particular website / server (i.e., it verifies the server's identity). Without it, an attacker could publish their own public key and impersonate the site.</li>
+        <li><strong>Issuer:</strong> A trusted third party called a <strong>Certificate Authority (CA)</strong>.</li>
+      </ul>
+    </div>
+    <div class="scoring">
+      <span class="label">Common error:</span>
+      Saying the certificate "encrypts the data." It doesn't &mdash; it establishes <em>identity</em>. Encryption is performed by the keys; the certificate just confirms the public key is genuine.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>6.</strong> A website is using HTTPS (the padlock icon is showing in the browser). Does this mean the website itself is trustworthy and safe? Explain.</p>
+    <div class="answer">
+      <span class="label">Look for:</span>
+      <strong>No.</strong> HTTPS only guarantees that the <strong>connection</strong> between the browser and the server is <strong>encrypted</strong> (data in transit cannot be eavesdropped) and that the server's identity is verified by a certificate. It says nothing about whether the website is honest, accurate, or safe to use. <strong>A scam or phishing site can have a perfectly valid HTTPS certificate.</strong>
+    </div>
+    <div class="scoring">
+      <span class="label">Full credit needs:</span>
+      both the "no" <em>and</em> a clear distinction between "encrypted connection" and "trustworthy website." Just "no" is partial credit.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>7.</strong> What is <strong>Multi-Factor Authentication (MFA)</strong>? Name the three categories of authentication factors and give one example of each.</p>
+    <div class="answer">
+      <span class="label">Look for the definition:</span>
+      MFA = an authentication method that requires <strong>at least two factors from <em>different</em> categories</strong>. (Two of the same factor is <em>not</em> MFA.)
+      <br><br>
+      <span class="label">Three categories with examples:</span>
+      <ul>
+        <li><strong>Something you KNOW</strong> &mdash; password, PIN, security question answer.</li>
+        <li><strong>Something you HAVE</strong> &mdash; phone receiving a code, hardware security key (e.g., YubiKey), authenticator app.</li>
+        <li><strong>Something you ARE</strong> &mdash; fingerprint, face scan, voice, iris (biometrics).</li>
+      </ul>
+    </div>
+    <div class="scoring">
+      <span class="label">Full credit needs:</span>
+      all three categories named and a valid example for each. The "different categories" requirement should appear in the definition for full credit.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>8.</strong> A website requires a password <em>and</em> the answer to a security question. Is this Multi-Factor Authentication? Explain why or why not.</p>
+    <div class="answer">
+      <span class="label">Answer:</span>
+      <strong>No, this is not MFA.</strong>
+      <br><br>
+      <span class="label">Reasoning to look for:</span>
+      Both a password and the answer to a security question are in the <strong>same category</strong> &mdash; <em>something you KNOW</em>. MFA requires factors from <strong>different categories</strong> (e.g., know + have, know + are). Two pieces of "know" information is just multiple credentials, not multi-<em>factor</em>.
+    </div>
+    <div class="scoring">
+      <span class="label">Full credit needs:</span>
+      both "no" <em>and</em> the explanation that both items are the same factor (something you KNOW). "No" without the why is partial credit.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>9.</strong> Match each scenario to the correct threat term.</p>
+    <div class="answer">
+      <span class="label">Answers:</span>
+      <ul class="matching-key">
+        <li><span class="letter">a.</span><span class="ans">Phishing</span> &mdash; defining feature is <em>social engineering</em>: a fake message tricks the user into giving up credentials. The attack is on the person, not the system.</li>
+        <li><span class="letter">b.</span><span class="ans">Keylogger</span> &mdash; software (or hardware) that secretly records every keystroke, including passwords.</li>
+        <li><span class="letter">c.</span><span class="ans">Rogue access point</span> &mdash; an unauthorized Wi-Fi hotspot, often impersonating a legitimate network, used to intercept user traffic.</li>
+        <li><span class="letter">d.</span><span class="ans">Worm</span> &mdash; self-replicating malware that spreads autonomously across networks, no host file or user action required.</li>
+        <li><span class="letter">e.</span><span class="ans">Virus</span> &mdash; malware that attaches to a host file or program and spreads only when the user runs the host. Requires user action.</li>
+      </ul>
+    </div>
+    <div class="scoring">
+      <span class="label">Common confusions:</span>
+      Students often swap <em>virus</em> and <em>worm</em> &mdash; the distinguishing rule is that a <strong>worm spreads on its own</strong> while a <strong>virus needs a host + user action</strong>. <em>Malware</em> alone is also a common wrong answer for any of d/e because it's the umbrella term &mdash; insist on the more specific word.
+    </div>
+  </div>
+
+  <div class="question">
+    <p class="prompt"><strong>10.</strong> What is <strong>PII</strong>? Why is the <em>combination</em> of ZIP code, date of birth, and gender often considered a privacy risk?</p>
+    <div class="answer">
+      <span class="label">Look for both parts:</span>
+      <ul>
+        <li><strong>PII (Personally Identifiable Information)</strong> = any information that can be used to identify, contact, or locate a specific individual &mdash; either on its own, or in <strong>combination</strong> with other information.</li>
+        <li><strong>Why the combination is risky:</strong> Each piece alone is too generic to identify a specific person, but combining ZIP + date of birth + gender narrows the population enough to <strong>uniquely identify the majority of people</strong>. This is called <strong>aggregation</strong> &mdash; harmless-looking data becomes sensitive when combined.</li>
+      </ul>
+    </div>
+    <div class="scoring">
+      <span class="label">Full credit needs:</span>
+      a definition of PII <em>and</em> the aggregation explanation. Bonus credit for using the word "aggregation" or referencing that ~87% of Americans can be identified this way (Latanya Sweeney's research, mentioned in the lesson).
+    </div>
+  </div>
+
+</body>
+</html>
