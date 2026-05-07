@@ -1,0 +1,476 @@
+---
+---
+
+<!-- File: classroom/fcs/advanced/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FCS Advanced - Running CMU Programs Locally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .advanced-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .lesson-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .lesson-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .step-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+        border: 1px solid #e9ecef;
+      }
+      .step-section h2 {
+        color: #198754;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .step-section h3 {
+        color: #495057;
+        margin-top: 18px;
+        margin-bottom: 10px;
+        font-size: 1.15rem;
+      }
+      .step-section p, .step-section li { line-height: 1.6; }
+
+      .objective-card {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin-bottom: 25px;
+      }
+      .objective-card h2 { color: #856404; margin-top: 0; }
+      .objective-card .eq {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .objective-card .iwill { margin: 0; padding-left: 22px; }
+      .objective-card .iwill li { margin-bottom: 5px; }
+
+      .step-tag {
+        display: inline-block;
+        background: #198754;
+        color: white;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 12px;
+        margin-right: 8px;
+        letter-spacing: 0.5px;
+      }
+
+      .key-fact {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #0f5132; }
+
+      .warn-fact {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .warn-fact strong { color: #842029; }
+
+      kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 2px 6px;
+        font-size: 0.85rem;
+      }
+
+      code.inline {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 0.92em;
+        font-family: 'Courier New', monospace;
+      }
+
+      .cmd-block, .code-block {
+        background: #1e1e1e;
+        color: #e8e6e3;
+        padding: 16px 18px;
+        border-radius: 6px;
+        font-family: 'Courier New', Consolas, monospace;
+        font-size: 0.92rem;
+        margin: 12px 0;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.45;
+      }
+
+      .code-wrap { position: relative; }
+
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #198754;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .copy-btn:hover { background: #157347; }
+      .copy-btn.copied { background: #0a3622; }
+
+      .check {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 12px 0;
+      }
+      .check h4 {
+        margin: 0 0 6px 0;
+        font-size: 1rem;
+        color: #198754;
+      }
+
+      .trouble {
+        background: white;
+        border: 1px solid #f1aeb5;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 10px 0;
+      }
+      .trouble strong.problem { color: #842029; display: block; margin-bottom: 4px; }
+
+      ul.tight li { margin-bottom: 6px; }
+
+      ol.steps > li { margin-bottom: 12px; line-height: 1.6; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Fundamentals of Computer Science</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Advanced</span>
+      </nav>
+
+      <div class="advanced-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to FCS Home</a>
+
+        <div class="lesson-header">
+          <h1><i class="bi bi-rocket-takeoff-fill"></i> Beyond CMU CS Academy</h1>
+          <p class="subtitle">Run your own CMU programs locally with VS Code &mdash; no internet, no cmu account needed.</p>
+        </div>
+
+        <div class="objective-card">
+          <h2><i class="bi bi-bullseye"></i> Learning Goals</h2>
+          <p class="eq"><strong>EQ:</strong> How do real software developers run Python programs without a website doing it for them?</p>
+          <p><strong>I will...</strong></p>
+          <ul class="iwill">
+            <li>Open VS Code, create a Python file, and run it from the editor.</li>
+            <li>Install the <code class="inline">cmu-graphics</code> library on this lab machine.</li>
+            <li>Take a program I already wrote in CMU CS Academy and adapt it to run locally with two small changes.</li>
+            <li>Run my own CMU CS Academy program offline, in a real editor.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Why this matters -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><i class="bi bi-lightbulb-fill"></i> Why This Lesson</h2>
+          <p>So far, every program you've written this year has lived inside a website &mdash; CMU CS Academy in your browser. That is great for learning, but it is <strong>not</strong> how real software is built.</p>
+          <p>Real developers write code in a <strong>code editor</strong> on their own machine, save it as a file, and run it from a <strong>terminal</strong>. The good news: <em>your CMU CS Academy code already works locally with two tiny changes.</em> By the end of this lesson, you'll have one of your own programs running on your computer with no internet connection at all.</p>
+          <div class="key-fact">
+            <strong>The big idea:</strong> CMU CS Academy uses an open-source library called <code class="inline">cmu-graphics</code>. The same library is installable on any computer with Python. That means your CMU programs can leave the browser.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Part 1: VS Code -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">PART 1</span> Open VS Code &amp; Make a Project Folder</h2>
+          <p><strong>VS Code</strong> (Visual Studio Code) is a free, professional code editor made by Microsoft. It is already installed on the lab machines.</p>
+
+          <ol class="steps">
+            <li>Open <strong>VS Code</strong> from the Start menu. (If it is not there, open <em>Software Center</em> and install it.)</li>
+            <li>Go to <strong>File &rarr; Open Folder...</strong> and create a new folder called <code class="inline">fcs-advanced</code> in your <em>Documents</em>. Open that folder.</li>
+            <li>If VS Code asks "Do you trust the authors of the files in this folder?" &mdash; click <strong>Yes, I trust the authors</strong>.</li>
+            <li>Click the <strong>Extensions</strong> icon on the left sidebar (it looks like four squares: <i class="bi bi-puzzle"></i>). Search for <strong>Python</strong> &mdash; install the one published by <strong>Microsoft</strong>.</li>
+            <li>Open the Command Palette with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>, type <code class="inline">Python: Select Interpreter</code>, and press Enter. Pick the Python that shows up. (If nothing shows up, ask your teacher &mdash; Python may not be installed yet.)</li>
+          </ol>
+
+          <div class="check">
+            <h4><i class="bi bi-check-circle-fill"></i> Check your work</h4>
+            <p class="mb-0">You have a folder open in VS Code, the Python extension is installed, and an interpreter is selected (visible at the bottom-right of the VS Code window).</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Part 2: Install cmu-graphics -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">PART 2</span> Install <code class="inline">cmu-graphics</code> (One Time)</h2>
+          <p>You only need to do this <strong>once per machine</strong>. The library is what lets <code class="inline">Rect</code>, <code class="inline">Circle</code>, <code class="inline">Polygon</code>, etc. work outside the browser.</p>
+
+          <ol class="steps">
+            <li>In VS Code, open a terminal: <strong>Terminal &rarr; New Terminal</strong> (or press <kbd>Ctrl</kbd> + <kbd>`</kbd>).</li>
+            <li>Type the following command and press Enter:
+<div class="cmd-block">python -m pip install cmu-graphics</div>
+            </li>
+            <li>If you see a permission error, try this version instead:
+<div class="cmd-block">python -m pip install --user cmu-graphics</div>
+            </li>
+            <li>Confirm the install with:
+<div class="cmd-block">python -m pip show cmu-graphics</div>
+              You should see a block of text starting with <code class="inline">Name: cmu-graphics</code>.</li>
+          </ol>
+
+          <div class="warn-fact">
+            <strong>Stuck on install?</strong> If both commands fail, you may be on a managed network with restrictions. Stop and ask your teacher &mdash; this is the same kind of finding the deployment lab in <code class="inline">/pit/python-deployment-lab</code> is designed to surface.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Part 3: Adapt CMU CS Academy code -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">PART 3</span> The Two-Line Conversion</h2>
+          <p>Here is the entire trick to running a CMU CS Academy program locally:</p>
+
+          <div class="key-fact">
+            <strong>Add ONE line at the top:</strong> &nbsp;<code class="inline">from cmu_graphics import *</code><br>
+            <strong>Add ONE line at the bottom:</strong> &nbsp;<code class="inline">cmu_graphics.run()</code>
+          </div>
+
+          <p>That is it. The body of your program &mdash; every <code class="inline">Rect</code>, <code class="inline">Circle</code>, <code class="inline">def onKeyPress</code>, etc. &mdash; stays exactly the same.</p>
+
+          <h3>Why it works</h3>
+          <ul class="tight">
+            <li>The CMU CS Academy website automatically does the import for you behind the scenes &mdash; on your own computer, you have to do it yourself.</li>
+            <li>The website also automatically opens a window when you press Run &mdash; on your own computer, the <code class="inline">cmu_graphics.run()</code> line is what opens the window.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Part 4: Worked example -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">PART 4</span> Worked Example: Traffic Light Game</h2>
+          <p>Let's verify everything works with a known-good program before you try your own.</p>
+
+          <ol class="steps">
+            <li>In VS Code, click the <strong>New File</strong> icon next to your folder name in the sidebar (or <strong>File &rarr; New File</strong>) and name it <code class="inline">traffic_light.py</code>.</li>
+            <li>Copy the entire program below into that file:
+              <div class="code-wrap">
+                <button class="copy-btn" data-target="trafficCode">Copy</button>
+<pre class="code-block" id="trafficCode">from cmu_graphics import *
+
+app.background = gradient('deepSkyBlue', 'lightSkyBlue', start='top')
+
+Rect(0, 150, 400, 250, fill=gradient('forestGreen', 'limeGreen', start='bottom'))
+
+# traffic light
+Line(200, 75, 200, 65)
+Line(0, 50, 200, 65)
+Line(400, 50, 200, 65)
+Rect(175, 75, 50, 100, fill='orange')
+redLight = Circle(200, 100, 20, fill='red')
+greenLight = Circle(200, 150, 20, fill='gray')
+msg = Label('Stop!', 200, 350, size=20, bold=True)
+
+# road
+Rect(0, 200, 400, 100)
+Line(0, 250, 400, 250, fill='yellow', lineWidth=3, dashes=True)
+
+# car
+car = Polygon(0, 211, 3, 210, 12, 210, 15, 211, 30, 211, 33, 210, 45, 210, 48, 220,
+              48, 230, 45, 240, 33, 240, 30, 239, 15, 239, 12, 240, 3, 240, 0, 239,
+              fill=gradient('royalBlue', 'mediumBlue'))
+frontWindow = Polygon(40, 215, 42, 225, 40, 235, 30, 234, 30, 216)
+backWindow = Rect(5, 215, 5, 20)
+top = Polygon(10, 215, 30, 216, 30, 234, 10, 235, fill=None, border='black',
+              borderWidth=1)
+
+def moveCar(leftPosition):
+    car.left = leftPosition
+    frontWindow.left = leftPosition + 30
+    backWindow.left = leftPosition + 5
+    top.left = backWindow.right
+
+def changeLight(redFill, greenFill, msgValue):
+    redLight.fill = redFill
+    greenLight.fill = greenFill
+    msg.value = msgValue
+
+def onKeyPress(key):
+    # Changes the color of the light.
+    if (key == 'enter'):
+        if (msg.value == 'Go!'):
+            changeLight('red', 'gray', 'Stop!')
+        else:
+            changeLight('gray', 'green', 'Go!')
+
+def onKeyHold(keys):
+    # Move the car forward or back to the starting point according to the
+    # light color while the game is playing.
+    if (msg.value != 'Car wins!'):
+        if ('space' in keys):
+            if (redLight.fill == 'red'):
+                moveCar(0)
+            else:
+                moveCar(car.left + 3)
+                if (car.right > 400):
+                    msg.value = 'Car wins!'
+                    msg.fill = car.fill
+
+cmu_graphics.run()</pre>
+              </div>
+            </li>
+            <li>Save the file: <kbd>Ctrl</kbd> + <kbd>S</kbd>.</li>
+            <li>Run it. Three ways to do this &mdash; pick whichever is easiest:
+              <ul class="tight">
+                <li>Click the <strong>&#9654; Run</strong> arrow at the top-right of the editor window.</li>
+                <li>Press <kbd>F5</kbd> and choose <strong>Python File</strong>.</li>
+                <li>In the terminal, type <code class="inline">python traffic_light.py</code> and press Enter.</li>
+              </ul>
+            </li>
+            <li>A graphics window should open showing a traffic light, a road, and a blue car. Press <strong>Enter</strong> to toggle the light, <strong>hold Space</strong> to drive when it's green, and try to win!</li>
+          </ol>
+
+          <div class="check">
+            <h4><i class="bi bi-check-circle-fill"></i> Check your work</h4>
+            <p class="mb-0">The graphics window opened, the traffic light is visible, and the car moves with Space when the light is green. If yes &mdash; your environment works. Move on.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Part 5: Your own program -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">PART 5</span> Now Do It With Your Own CMU Program</h2>
+          <p>Pick one of the programs <em>you</em> wrote earlier this year in CMU CS Academy. (A drawing, a small game, an animation &mdash; whatever you have.)</p>
+
+          <ol class="steps">
+            <li>Log into CMU CS Academy in your browser and open the program you want to bring over.</li>
+            <li>Select <strong>all</strong> of the code in the CMU editor (<kbd>Ctrl</kbd> + <kbd>A</kbd>) and copy it (<kbd>Ctrl</kbd> + <kbd>C</kbd>).</li>
+            <li>In VS Code, create a new file in your folder. Give it a sensible name with the <code class="inline">.py</code> extension &mdash; for example <code class="inline">my_drawing.py</code>. <em>Don't use spaces or hyphens; use underscores.</em></li>
+            <li>Paste your code into the new file (<kbd>Ctrl</kbd> + <kbd>V</kbd>).</li>
+            <li>At the very <strong>top</strong> of the file, add this line:
+<div class="cmd-block">from cmu_graphics import *</div>
+            </li>
+            <li>At the very <strong>bottom</strong> of the file, add this line:
+<div class="cmd-block">cmu_graphics.run()</div>
+            </li>
+            <li>Save the file (<kbd>Ctrl</kbd> + <kbd>S</kbd>) and run it the same way as Part 4.</li>
+          </ol>
+
+          <div class="key-fact">
+            <strong>Most programs work with no other changes.</strong> The same shapes, colors, event handlers, and variable names you used in CMU CS Academy work locally. If something behaves differently, write down exactly what's different &mdash; that's part of the deliverable.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Troubleshooting -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><i class="bi bi-tools"></i> Troubleshooting</h2>
+
+          <div class="trouble">
+            <strong class="problem">"ModuleNotFoundError: No module named 'cmu_graphics'"</strong>
+            The library isn't installed for the Python you're running. Re-run <code class="inline">python -m pip install cmu-graphics</code> in the VS Code terminal. Make sure the interpreter selected at the bottom-right of VS Code is the same Python you ran <code class="inline">pip</code> with.
+          </div>
+
+          <div class="trouble">
+            <strong class="problem">A graphics window flashes and closes immediately</strong>
+            You forgot the <code class="inline">cmu_graphics.run()</code> line at the bottom. Without it, the program ends before the window has anything to show.
+          </div>
+
+          <div class="trouble">
+            <strong class="problem">"SyntaxError" on the very first line that uses Rect / Circle / etc.</strong>
+            You forgot <code class="inline">from cmu_graphics import *</code> at the top. Python doesn't know what those names mean until you import them.
+          </div>
+
+          <div class="trouble">
+            <strong class="problem">My program uses <code class="inline">onMousePress</code> / <code class="inline">onStep</code> / etc. &mdash; do those still work?</strong>
+            Yes. All of CMU CS Academy's named event handlers (<code class="inline">onMousePress</code>, <code class="inline">onMouseMove</code>, <code class="inline">onKeyPress</code>, <code class="inline">onKeyHold</code>, <code class="inline">onStep</code>) are detected by <code class="inline">cmu-graphics</code> and called automatically &mdash; just like in the browser.
+          </div>
+
+          <div class="trouble">
+            <strong class="problem">"pip is not recognized" or "python is not recognized"</strong>
+            Python isn't on your PATH. Open a brand-new terminal (the PATH only updates for new shells) and try again. If it still fails, see the deployment lab in <code class="inline">/pit/python-deployment-lab</code> for fallback install paths.
+          </div>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to FCS Home</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.dataset.target);
+          if (!target) return;
+          navigator.clipboard.writeText(target.textContent).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 1500);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
