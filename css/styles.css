@@ -120,6 +120,25 @@ h3 {
   margin-top: 20px;
 }
 
+/* Gradient banner headers — the global h1/h2/h3 colors above are tuned for
+   light backgrounds and look unreadable on top of dark/colored banners.
+   Any heading inside one of these banner containers should pick up the
+   banner's white text color instead of the default heading colors. */
+.about-header h1,        .about-header h2,        .about-header h3,
+.assignment-header h1,   .assignment-header h2,   .assignment-header h3,
+.flex-header h1,         .flex-header h2,         .flex-header h3,
+.lesson-header h1,       .lesson-header h2,       .lesson-header h3,
+.mc-header h1,           .mc-header h2,           .mc-header h3,
+.mission-header h1,      .mission-header h2,      .mission-header h3,
+.project-header h1,      .project-header h2,      .project-header h3,
+.review-header h1,       .review-header h2,       .review-header h3,
+.session-header h1,      .session-header h2,      .session-header h3,
+.study-guide-header h1,  .study-guide-header h2,  .study-guide-header h3,
+.teacher-header h1,      .teacher-header h2,      .teacher-header h3,
+.unit-header h1,         .unit-header h2,         .unit-header h3 {
+  color: white;
+}
+
 .display-4 {
   font-size: 3rem !important;
 }
