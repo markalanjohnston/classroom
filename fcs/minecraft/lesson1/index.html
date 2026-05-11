@@ -79,22 +79,63 @@
       }
 
       .setup-banner {
-        background: #eef3f8;
-        border-left: 4px solid #1f4e79;
-        border-radius: 8px;
-        padding: 16px 22px;
-        margin-bottom: 25px;
+        position: relative;
+        background: linear-gradient(135deg, #1f4e79 0%, #2d6499 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 26px 30px;
+        margin-bottom: 28px;
+        box-shadow: 0 10px 28px rgba(31, 78, 121, 0.35);
+      }
+      .setup-banner .setup-badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: #ffc107;
+        color: #14365a;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        padding: 5px 14px;
+        border-radius: 14px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+        text-transform: uppercase;
       }
       .setup-banner h3 {
-        color: #14365a;
-        margin: 0 0 6px 0;
-        font-size: 1.1rem;
+        color: white;
+        margin: 0 0 10px 0;
+        font-size: 1.45rem;
+        font-weight: 800;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
       }
-      .setup-banner p { margin: 0; line-height: 1.55; }
-      .setup-banner a { color: #1f4e79; font-weight: 600; }
+      .setup-banner p {
+        margin: 0 0 18px 0;
+        font-size: 1rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .setup-banner p strong { color: #ffd54a; }
+      .setup-banner .setup-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        color: #1f4e79;
+        font-weight: 700;
+        padding: 11px 22px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+      }
+      .setup-banner .setup-cta:hover {
+        background: #ffc107;
+        color: #14365a;
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
       .goals-card h2 { color: #2f5320; margin: 0 0 8px 0; font-size: 1.15rem; }
       .goals-card ul { margin: 0; padding-left: 22px; }
       .goals-card li { margin-bottom: 4px; line-height: 1.5; }
@@ -331,8 +372,13 @@
         <!-- World setup banner — every lesson starts here -->
         <!-- ============================================================ -->
         <div class="setup-banner">
-          <h3><i class="bi bi-arrow-clockwise"></i> Start here every time</h3>
-          <p>Every Minecraft lesson begins with a fresh world. Open <a href="../lesson0/"><strong>Lesson 0 &mdash; World Setup</strong></a> first to turn on fullscreen and create a brand-new flat world with the right settings. Once your world is loaded, come back here and continue with Step 1.</p>
+          <span class="setup-badge">Every Lesson</span>
+          <h3><i class="bi bi-arrow-clockwise"></i> Start Here First &mdash; Every Single Time</h3>
+          <p>Every Minecraft lesson begins with a brand-new world. <strong>Do not skip this.</strong> Open Lesson 0, follow the setup steps, then come back here and continue with Step 1.</p>
+          <a href="../lesson0/" class="setup-cta">
+            <i class="bi bi-arrow-right-circle-fill"></i>
+            Open Lesson 0 &mdash; World Setup
+          </a>
         </div>
 
         <!-- ============================================================ -->
