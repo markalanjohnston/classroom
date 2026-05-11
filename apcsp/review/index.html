@@ -113,6 +113,27 @@
         margin-bottom: 20px;
       }
       .back-button:hover { background: #5a6268; color: white; }
+
+      .audio-card {
+        background: linear-gradient(135deg, #f1faf5 0%, #e3f4ed 100%);
+        border: 1px solid #c3e6d3;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 20px;
+      }
+      .audio-card h2 {
+        color: #146c43;
+        margin-bottom: 8px;
+        font-size: 1.25rem;
+      }
+      .audio-card p {
+        color: #495057;
+        margin-bottom: 14px;
+      }
+      .audio-card audio {
+        width: 100%;
+        max-width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -159,6 +180,15 @@
               <span class="yield-pill">High Yield (~8–11 MCQs)</span>
             </li>
           </ol>
+        </div>
+
+        <div class="audio-card">
+          <h2><i class="bi bi-headphones"></i> Listen: How the Digital World Actually Works</h2>
+          <p class="mb-2">A walking-pace overview of the topics you'll be reviewed on. Good for the bus, the gym, or anywhere you can't be at a screen.</p>
+          <audio controls preload="metadata">
+            <source src="How_the_digital_world_actually_works.m4a" type="audio/mp4">
+            Your browser doesn't support HTML5 audio. <a href="How_the_digital_world_actually_works.m4a">Download the file</a> instead.
+          </audio>
         </div>
 
         <h2 class="h4 mb-3 text-muted">Review Lessons</h2>
