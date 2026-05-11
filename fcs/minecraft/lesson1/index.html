@@ -416,6 +416,7 @@
     agent.move(FORWARD, 5)
     agent.turn(LEFT_TURN)
     agent.move(FORWARD, 5)
+    agent.destroy(DOWN)
     agent.place(DOWN)
 player.on_chat("road", on_chat)</pre>
           </div>
@@ -427,12 +428,18 @@ player.on_chat("road", on_chat)</pre>
             <li><code class="inline">agent.move(FORWARD, 5)</code> &mdash; the Agent moves forward 5 blocks.</li>
             <li><code class="inline">agent.turn(LEFT_TURN)</code> &mdash; the Agent turns left.</li>
             <li><code class="inline">agent.move(FORWARD, 5)</code> &mdash; the Agent moves forward 5 more blocks.</li>
+            <li><code class="inline">agent.destroy(DOWN)</code> &mdash; <em>breaks the block underneath the Agent</em>. We have to clear that space first, because the Agent can't place a new block where one already exists.</li>
             <li><code class="inline">agent.place(DOWN)</code> &mdash; the Agent places a block below itself <em>from</em> its inventory (the stone you loaded above).</li>
             <li><code class="inline">player.on_chat("road", on_chat)</code> &mdash; <em>this is the <strong>event</strong></em>. It tells Minecraft to run <code class="inline">on_chat</code> whenever the player types <code class="inline">road</code> in chat.</li>
           </ul>
 
           <div class="key-fact">
-            <strong>Why <code>set_item</code> matters:</strong> If you skip the <code class="inline">agent.set_item(...)</code> line, the Agent will still move &mdash; but <code class="inline">agent.place(DOWN)</code> will silently do nothing because the Agent has nothing in its hand to place. This is a common "it ran but didn't work" bug.
+            <strong>Two place-block gotchas:</strong>
+            <ol style="margin: 6px 0 0 22px; padding: 0;">
+              <li>If you skip <code class="inline">agent.set_item(...)</code>, the Agent has nothing in its hand and <code class="inline">place</code> silently does nothing.</li>
+              <li>If you skip <code class="inline">agent.destroy(DOWN)</code>, the Agent tries to place a block where one already exists (the ground), so <code class="inline">place</code> silently does nothing.</li>
+            </ol>
+            Both are common "it ran but didn't work" bugs &mdash; the program looks fine, but no block appears.
           </div>
 
           <details class="predict">
@@ -562,7 +569,7 @@ player.on_chat("turn", on_chat)</pre>
 
           <h3>Stretch goals (try if you finish early)</h3>
           <ul class="tight">
-            <li>Use <code class="inline">agent.place(DOWN)</code> after each move to leave a trail of blocks. If you want a long trail, raise the stone quantity at the top &mdash; e.g., <code class="inline">agent.set_item(STONE, 64, 1)</code> for a full stack.</li>
+            <li>Use <code class="inline">agent.destroy(DOWN)</code> then <code class="inline">agent.place(DOWN)</code> after each move to leave a trail of stone blocks. If you want a long trail, raise the stone quantity at the top &mdash; e.g., <code class="inline">agent.set_item(STONE, 64, 1)</code> for a full stack.</li>
             <li>Make a shape that another student would recognize.</li>
             <li>Add <strong>comments</strong> (lines starting with <code class="inline">#</code>) above each section of your code to explain what it does.</li>
           </ul>
