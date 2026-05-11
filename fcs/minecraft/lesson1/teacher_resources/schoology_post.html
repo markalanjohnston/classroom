@@ -74,12 +74,12 @@
       We will break it down together.
     </p>
 
-<pre style="background: #f4f4f4; border: 1px solid #ccc; padding: 12px; overflow-x: auto;"><code>player.onChat("road", function () {
+<pre style="background: #f4f4f4; border: 1px solid #ccc; padding: 12px; overflow-x: auto;"><code>def on_chat():
     agent.move(FORWARD, 5)
     agent.turn(LEFT_TURN)
     agent.move(FORWARD, 5)
     agent.place(DOWN)
-})</code></pre>
+player.on_chat("road", on_chat)</code></pre>
 
     <p>
       After we test it, your job will be to change the code and make the Agent do something new.

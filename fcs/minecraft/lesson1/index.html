@@ -354,7 +354,7 @@
           </ol>
 
           <div class="tip-fact">
-            <strong>Heads up:</strong> The code samples on this page are written in <strong>JavaScript</strong> (the default text view in MakeCode). To switch from blocks to JavaScript, click <strong>{ } JavaScript</strong> at the top of the MakeCode editor. Python is also fine if you prefer &mdash; both languages run the same Agent commands.
+            <strong>Heads up:</strong> The code samples on this page are written in <strong>Python</strong>. To switch from blocks to Python, click the language dropdown at the top of the MakeCode editor (it may say "Blocks" or "{ } JavaScript") and choose <strong>Python</strong>. JavaScript also works if you prefer &mdash; both languages run the same Agent commands.
           </div>
 
           <div class="check">
@@ -368,25 +368,26 @@
         <!-- ============================================================ -->
         <div class="step-section">
           <h2><span class="step-tag">STEP 3</span> Your First Agent Program</h2>
-          <p>Click <strong>{ } JavaScript</strong> at the top of MakeCode. <strong>Delete</strong> anything that's already there. Then copy the code below and paste it in:</p>
+          <p>Make sure MakeCode is in <strong>Python</strong> mode (see the heads-up above). <strong>Delete</strong> anything that's already in the editor. Then copy the code below and paste it in:</p>
 
           <div class="code-wrap">
             <button class="copy-btn" data-target="starterCode">Copy</button>
-<pre class="code-block" id="starterCode">player.onChat("road", function () {
+<pre class="code-block" id="starterCode">def on_chat():
     agent.move(FORWARD, 5)
     agent.turn(LEFT_TURN)
     agent.move(FORWARD, 5)
     agent.place(DOWN)
-})</pre>
+player.on_chat("road", on_chat)</pre>
           </div>
 
           <h3>What this program says</h3>
           <ul class="tight">
-            <li><code class="inline">player.onChat("road", ...)</code> &mdash; <em>this is the <strong>event</strong></em>. The code inside runs when the player types <code class="inline">road</code> in chat.</li>
+            <li><code class="inline">def on_chat():</code> &mdash; defines a <strong>function</strong> named <code class="inline">on_chat</code> that holds the instructions for the Agent. The indented lines below it belong to this function.</li>
             <li><code class="inline">agent.move(FORWARD, 5)</code> &mdash; the Agent moves forward 5 blocks.</li>
             <li><code class="inline">agent.turn(LEFT_TURN)</code> &mdash; the Agent turns left.</li>
             <li><code class="inline">agent.move(FORWARD, 5)</code> &mdash; the Agent moves forward 5 more blocks.</li>
             <li><code class="inline">agent.place(DOWN)</code> &mdash; the Agent places a block below itself.</li>
+            <li><code class="inline">player.on_chat("road", on_chat)</code> &mdash; <em>this is the <strong>event</strong></em>. It tells Minecraft to run <code class="inline">on_chat</code> whenever the player types <code class="inline">road</code> in chat.</li>
           </ul>
 
           <details class="predict">
@@ -404,7 +405,7 @@
           </ol>
 
           <div class="key-fact">
-            <strong>If the Agent doesn't move at all:</strong> make sure the Agent is somewhere in the world (you can summon it by typing <code class="inline">/agent</code> in chat). If your chat command does nothing, double-check that the word in <code class="inline">player.onChat("road", ...)</code> matches exactly what you typed.
+            <strong>If the Agent doesn't move at all:</strong> make sure the Agent is somewhere in the world (you can summon it by typing <code class="inline">/agent</code> in chat). If your chat command does nothing, double-check that the word in <code class="inline">player.on_chat("road", on_chat)</code> matches exactly what you typed.
           </div>
         </div>
 
@@ -431,13 +432,13 @@
 
           <div class="code-wrap">
             <button class="copy-btn" data-target="modExample">Copy</button>
-<pre class="code-block" id="modExample">player.onChat("path", function () {
+<pre class="code-block" id="modExample">def on_chat():
     agent.move(FORWARD, 4)
     agent.turn(RIGHT_TURN)
     agent.move(FORWARD, 6)
     agent.turn(LEFT_TURN)
     agent.move(FORWARD, 3)
-})</pre>
+player.on_chat("path", on_chat)</pre>
           </div>
         </div>
 
@@ -450,12 +451,12 @@
 
           <div class="code-wrap">
             <button class="copy-btn" data-target="brokenCode">Copy</button>
-<pre class="code-block" id="brokenCode">player.onChat("turn", function () {
+<pre class="code-block" id="brokenCode">def on_chat():
     agent.move(FORWARD, 5)
     agent.move(FORWARD, 5)
     agent.turn(LEFT_TURN)
     agent.move(FORWARD, 5)
-})</pre>
+player.on_chat("turn", on_chat)</pre>
           </div>
 
           <details class="predict">
@@ -470,12 +471,12 @@
 
           <div class="code-wrap">
             <button class="copy-btn" data-target="fixedCode">Copy</button>
-<pre class="code-block" id="fixedCode">player.onChat("turn", function () {
+<pre class="code-block" id="fixedCode">def on_chat():
     agent.move(FORWARD, 5)
     agent.turn(LEFT_TURN)
     agent.move(FORWARD, 5)
     agent.move(FORWARD, 5)
-})</pre>
+player.on_chat("turn", on_chat)</pre>
           </div>
 
           <div class="key-fact">
@@ -518,24 +519,24 @@
           <ul class="tight">
             <li>Use <code class="inline">agent.place(DOWN)</code> to place blocks as the Agent walks &mdash; it creates a trail.</li>
             <li>Make a shape that another student would recognize.</li>
-            <li>Add <strong>comments</strong> (lines starting with <code class="inline">//</code>) above each section of your code to explain what it does.</li>
+            <li>Add <strong>comments</strong> (lines starting with <code class="inline">#</code>) above each section of your code to explain what it does.</li>
           </ul>
 
           <h3>Example with comments</h3>
           <div class="code-wrap">
             <button class="copy-btn" data-target="commentedCode">Copy</button>
-<pre class="code-block" id="commentedCode">player.onChat("maze", function () {
-    // First side of the path
+<pre class="code-block" id="commentedCode">def on_chat():
+    # First side of the path
     agent.move(FORWARD, 5)
 
-    // Turn toward the second side
+    # Turn toward the second side
     agent.turn(RIGHT_TURN)
     agent.move(FORWARD, 3)
 
-    // Turn again to make the path more interesting
+    # Turn again to make the path more interesting
     agent.turn(LEFT_TURN)
     agent.move(FORWARD, 4)
-})</pre>
+player.on_chat("maze", on_chat)</pre>
           </div>
         </div>
 
