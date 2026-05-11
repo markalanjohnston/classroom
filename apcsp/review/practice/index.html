@@ -1,0 +1,848 @@
+---
+---
+<!-- File: classroom/apcsp/review/practice/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APCSP Review - Mixed MCQ Practice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../../css/styles.css" />
+    <style>
+      .review-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .review-header {
+        background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .review-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .review-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .score-tracker {
+        position: sticky;
+        top: 10px;
+        z-index: 100;
+        background: white;
+        border: 2px solid #f59e0b;
+        border-radius: 10px;
+        padding: 12px 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .score-tracker .label { font-weight: 600; color: #495057; }
+      .score-tracker .stat { font-size: 1.05rem; }
+      .score-tracker .stat strong { color: #b45309; }
+      .score-tracker .progress-bar-wrap {
+        flex: 1 1 200px;
+        height: 10px;
+        background: #fef3c7;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .score-tracker .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #f59e0b, #b45309);
+        transition: width 0.3s;
+        width: 0%;
+      }
+
+      .instructions {
+        background: #fef3c7;
+        border-left: 5px solid #f59e0b;
+        padding: 20px 25px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+      }
+      .instructions h2 { color: #92400e; margin-top: 0; font-size: 1.4rem; }
+      .instructions p, .instructions li { color: #78350f; line-height: 1.6; }
+      .instructions ul { margin-bottom: 0; }
+
+      .question-block {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        padding: 24px 28px;
+        margin-bottom: 22px;
+      }
+      .question-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .q-number {
+        display: inline-block;
+        background: #b45309;
+        color: white;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+      }
+      .topic-pill {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: white;
+      }
+      .topic-pill.internet { background: #0d6efd; }
+      .topic-pill.cyber { background: #1e3a8a; }
+      .topic-pill.data { background: #6f42c1; }
+      .topic-pill.pseudo { background: #0a7c5e; }
+      .topic-pill.impacts { background: #d63384; }
+      .topic-pill.algo { background: #20c997; color: #0a3a2d; }
+      .source-tag {
+        color: #6c757d;
+        font-size: 0.8rem;
+        font-style: italic;
+      }
+
+      .question-text {
+        font-weight: 500;
+        color: #212529;
+        margin-bottom: 14px;
+        line-height: 1.6;
+      }
+      .inline-code, code {
+        background: #fef3c7;
+        color: #92400e;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-weight: 600;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+        font-size: 0.92em;
+      }
+      pre.pseudocode {
+        background: #1f2d3d;
+        color: #f8f8f2;
+        padding: 14px 18px;
+        border-radius: 6px;
+        font-size: 0.88rem;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin: 12px 0;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+      }
+      pre.pseudocode .kw { color: #ff79c6; font-weight: 600; }
+      pre.pseudocode .num { color: #bd93f9; }
+
+      .ctrl-table {
+        width: auto;
+        margin: 10px 0;
+        border-collapse: collapse;
+      }
+      .ctrl-table th, .ctrl-table td {
+        padding: 6px 14px;
+        border: 1px solid #dee2e6;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+        font-size: 0.92rem;
+      }
+      .ctrl-table th { background: #fef3c7; color: #92400e; }
+
+      .choices { display: flex; flex-direction: column; gap: 8px; }
+      .choice {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 10px 14px;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        font-size: 0.95rem;
+        color: #212529;
+        font-family: inherit;
+        line-height: 1.5;
+      }
+      .choice:hover:not(:disabled) { background: #fef3c7; border-color: #f59e0b; }
+      .choice:disabled { cursor: default; }
+      .choice-correct {
+        background: #d1e7dd !important;
+        border-color: #198754 !important;
+        color: #0f5132 !important;
+        font-weight: 600;
+      }
+      .choice-correct::before { content: "\2713  "; font-weight: 700; }
+      .choice-wrong {
+        background: #f8d7da !important;
+        border-color: #dc3545 !important;
+        color: #842029 !important;
+      }
+      .choice-wrong::before { content: "\2717  "; font-weight: 700; }
+      .feedback {
+        margin-top: 14px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 0.93rem;
+      }
+      .feedback.correct { background: #d1e7dd; color: #0f5132; border-left: 4px solid #198754; }
+      .feedback.wrong { background: #fff3cd; color: #664d03; border-left: 4px solid #ffc107; }
+      .feedback strong.tag { display: block; margin-bottom: 6px; color: inherit; font-size: 0.85rem; letter-spacing: 0.5px; text-transform: uppercase; }
+
+      .final-results {
+        background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 100%);
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 30px;
+        text-align: center;
+      }
+      .final-results h2 { color: #78350f; margin-bottom: 12px; }
+      .final-results .big-score {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #b45309;
+        margin: 10px 0;
+      }
+      .final-results p { color: #78350f; }
+
+      .more-info {
+        background: #fef3c7;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 20px;
+      }
+      .more-info h3 { color: #92400e; margin-bottom: 12px; }
+      .more-info ul { margin-bottom: 0; padding-left: 20px; }
+      .more-info li { margin-bottom: 8px; line-height: 1.5; color: #78350f; }
+      .more-info a { color: #92400e; text-decoration: none; font-weight: 600; }
+      .more-info a:hover { text-decoration: underline; }
+      .source-note { font-size: 0.88rem; color: #78350f; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../../" class="text-white">AP Computer Science Principles</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Exam Review</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Mixed MCQ Practice</span>
+      </nav>
+
+      <div class="review-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+
+        <div class="review-header">
+          <h1><i class="bi bi-pencil-square"></i> Mixed MCQ Practice</h1>
+          <p class="subtitle">20 curated questions from the College Board's 2021 AP CSP Practice Exam</p>
+        </div>
+
+        <div class="instructions">
+          <h2><i class="bi bi-info-circle-fill"></i> How to Use This Practice Set</h2>
+          <ul>
+            <li>20 questions sampled from the released 2021 AP CSP Practice Exam, mixed across Big Ideas just like the real exam.</li>
+            <li>Each question has a <strong>topic tag</strong> &mdash; pay attention to which topics are giving you trouble.</li>
+            <li>Click an answer to get instant feedback with the explanation from the <strong>official College Board answer key</strong>.</li>
+            <li>The score tracker at the top updates as you go. There's no time limit on this page; the real exam gives you about 1m 43s per question.</li>
+          </ul>
+        </div>
+
+        <div class="score-tracker" id="tracker">
+          <div class="stat"><span class="label">Attempted:</span> <strong id="attemptedCount">0</strong> / 20</div>
+          <div class="stat"><span class="label">Correct:</span> <strong id="correctCount">0</strong></div>
+          <div class="stat"><span class="label">Accuracy:</span> <strong id="accuracy">—</strong></div>
+          <div class="progress-bar-wrap"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q1 -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m1">
+          <div class="question-header">
+            <span class="q-number">Question 1</span>
+            <span class="topic-pill cyber">Cybersecurity</span>
+            <span class="source-tag">2021 Practice Exam · Q1</span>
+          </div>
+          <p class="question-text">Which of the following is an example of a phishing attack?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Loading malicious software onto a user's computer in order to secretly gain access to sensitive information</button>
+            <button class="choice" data-correct="false">B. Flooding a user's computer with e-mail requests in order to cause the computer to crash</button>
+            <button class="choice" data-correct="false">C. Gaining remote access to a user's computer in order to steal user IDs and passwords</button>
+            <button class="choice" data-correct="true">D. Using fraudulent e-mails in order to trick a user into voluntarily providing sensitive information</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            D is correct. Phishing is a technique that attempts to trick a user into providing personal information &mdash; in this case via fraudulent email. (A is just malware, B is a denial-of-service attempt, C describes remote-access hacking.)
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q2 -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m2">
+          <div class="question-header">
+            <span class="q-number">Question 2</span>
+            <span class="topic-pill pseudo">Pseudocode</span>
+            <span class="source-tag">2021 Practice Exam · Q2</span>
+          </div>
+          <p class="question-text">To be eligible for a particular ride at an amusement park, a person must be at least 12 years old and must be between 50 and 80 inches tall, inclusive. Let <code>age</code> represent a person's age in years, and <code>height</code> the person's height in inches. Which expression evaluates to <code>true</code> if and only if the person is eligible for the ride?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. (age &ge; 12) AND ((height &ge; 50) AND (height &le; 80))</button>
+            <button class="choice" data-correct="false">B. (age &ge; 12) AND ((height &le; 50) AND (height &ge; 80))</button>
+            <button class="choice" data-correct="false">C. (age &ge; 12) AND ((height &le; 50) OR (height &ge; 80))</button>
+            <button class="choice" data-correct="false">D. (age &ge; 12) OR ((height &ge; 50) AND (height &le; 80))</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. All three conditions &mdash; <code>age &ge; 12</code>, <code>height &ge; 50</code>, AND <code>height &le; 80</code> &mdash; must be true. B is impossible (can't be both &le; 50 and &ge; 80). C and D let ineligible people through.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q3 (was Q4) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m3">
+          <div class="question-header">
+            <span class="q-number">Question 3</span>
+            <span class="topic-pill internet">Internet</span>
+            <span class="source-tag">2021 Practice Exam · Q4</span>
+          </div>
+          <p class="question-text">Which of the following best explains the relationship between the Internet and the World Wide Web?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Both the Internet and the World Wide Web refer to the same interconnected network of devices.</button>
+            <button class="choice" data-correct="false">B. The Internet is an interconnected network of data servers, and the World Wide Web is a network of user devices that communicates with the data servers.</button>
+            <button class="choice" data-correct="false">C. The Internet is a local network of interconnected devices, and the World Wide Web is a global network that connects the local networks with each other.</button>
+            <button class="choice" data-correct="true">D. The Internet is a network of interconnected networks, and the World Wide Web is a system of linked pages, programs, and files that is accessed via the Internet.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            D is correct. The Internet is the global infrastructure of interconnected networks using protocols. The World Wide Web is an information system (pages, programs, files) accessed <em>via</em> the Internet. They're not the same.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q4 (was Q6) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m4">
+          <div class="question-header">
+            <span class="q-number">Question 4</span>
+            <span class="topic-pill cyber">Cybersecurity</span>
+            <span class="source-tag">2021 Practice Exam · Q6</span>
+          </div>
+          <p class="question-text">Which of the following best exemplifies the use of multifactor authentication to protect an online banking system?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. When a user resets a password for an online bank account, the user is required to enter the new password twice.</button>
+            <button class="choice" data-correct="false">B. When multiple people have a shared online bank account, they are each required to have their own unique username and password.</button>
+            <button class="choice" data-correct="true">C. After entering a password for an online bank account, a user must also enter a code that is sent to the user's phone via text message.</button>
+            <button class="choice" data-correct="false">D. An online bank requires users to change their account passwords multiple times per year without using the same password twice.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. MFA combines several <em>separate</em> pieces of evidence from different categories. Here: password (something you know) + phone code (something you have). The others all use a single factor in different ways.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q5 (was Q8) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m5">
+          <div class="question-header">
+            <span class="q-number">Question 5</span>
+            <span class="topic-pill internet">Internet</span>
+            <span class="source-tag">2021 Practice Exam · Q8</span>
+          </div>
+          <p class="question-text">Which of the following best describes a direct benefit in using redundant routing on the Internet?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Redundancy enables messages to be transmitted with as few packets as possible.</button>
+            <button class="choice" data-correct="false">B. Redundancy enables network devices to communicate with as few network connections as possible.</button>
+            <button class="choice" data-correct="true">C. Redundancy often allows messages to be sent on the network even if some network devices or connections have failed.</button>
+            <button class="choice" data-correct="false">D. Redundancy prevents network communications from being intercepted by unauthorized individuals.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. If a device or connection fails, data can be re-routed along another path. Redundancy adds <em>more</em> resources, not fewer (eliminating A and B). It does nothing to prevent interception (D).
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q6 (was Q10) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m6">
+          <div class="question-header">
+            <span class="q-number">Question 6</span>
+            <span class="topic-pill data">Data &amp; Binary</span>
+            <span class="source-tag">2021 Practice Exam · Q10</span>
+          </div>
+          <p class="question-text">The player controls in a video game are represented by 5-bit binary numbers, as shown:</p>
+          <table class="ctrl-table">
+            <tr><th>Control</th><th>Binary</th></tr>
+            <tr><td>Jump</td><td>11000</td></tr>
+            <tr><td>Run</td><td>11001</td></tr>
+            <tr><td>Pause</td><td>11011</td></tr>
+            <tr><td>Reset</td><td>11111</td></tr>
+          </table>
+          <p class="question-text">What is the decimal value for the <strong>jump</strong> control?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. 3</button>
+            <button class="choice" data-correct="false">B. 12</button>
+            <button class="choice" data-correct="true">C. 24</button>
+            <button class="choice" data-correct="false">D. 48</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. <code>11000</code><sub>2</sub> = 2<sup>4</sup> + 2<sup>3</sup> = 16 + 8 = 24.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q7 (was Q14) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m7">
+          <div class="question-header">
+            <span class="q-number">Question 7</span>
+            <span class="topic-pill pseudo">Pseudocode</span>
+            <span class="source-tag">2021 Practice Exam · Q14</span>
+          </div>
+          <p class="question-text">A list of numbers is "increasing" if each value after the first is &ge; the preceding value. The procedure below is intended to return <code>true</code> if <code>numberList</code> is increasing and <code>false</code> otherwise. Assume <code>numberList</code> contains at least two elements. Which change is needed for the program to work as intended?</p>
+<pre class="pseudocode">Line 1: <span class="kw">PROCEDURE</span> isIncreasing(numberList)
+Line 2: {
+Line 3:     count &larr; 2
+Line 4:     <span class="kw">REPEAT UNTIL</span>(count &gt; <span class="kw">LENGTH</span>(numberList))
+Line 5:     {
+Line 6:         <span class="kw">IF</span>(numberList[count] &lt; numberList[count - 1])
+Line 7:         {
+Line 8:             <span class="kw">RETURN</span>(true)
+Line 9:         }
+Line 10:        count &larr; count + 1
+Line 11:    }
+Line 12:    <span class="kw">RETURN</span>(false)
+Line 13: }</pre>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. In line 3, <code>2</code> should be changed to <code>1</code>.</button>
+            <button class="choice" data-correct="false">B. In line 6, <code>&lt;</code> should be changed to <code>&ge;</code>.</button>
+            <button class="choice" data-correct="true">C. Lines 8 and 12 should be interchanged.</button>
+            <button class="choice" data-correct="false">D. Lines 10 and 11 should be interchanged.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. As written, the procedure returns <code>true</code> when it finds an out-of-order pair (the list is <em>not</em> increasing) and <code>false</code> otherwise &mdash; the logic is inverted. Swapping lines 8 and 12 fixes it. (A would index into <code>numberList[0]</code>, an error. D would create an infinite loop.)
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q8 (was Q16) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m8">
+          <div class="question-header">
+            <span class="q-number">Question 8</span>
+            <span class="topic-pill impacts">Impacts &amp; Ethics</span>
+            <span class="source-tag">2021 Practice Exam · Q16</span>
+          </div>
+          <p class="question-text">The author of an e-book publishes the e-book using a no-rights-reserved Creative Commons license. Which of the following best explains the consequences of publishing the book with this type of license?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. The contents of the e-book will be encrypted and can only be decrypted by authorized individuals.</button>
+            <button class="choice" data-correct="true">B. Individuals can freely distribute or use the contents of the e-book without needing to obtain additional permissions from the author.</button>
+            <button class="choice" data-correct="false">C. Individuals will be legally prevented from sharing the e-book on a peer-to-peer network.</button>
+            <button class="choice" data-correct="false">D. Individuals will be legally prevented from using excerpts from the e-book in another published work.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. A no-rights-reserved Creative Commons license is used when the creator wants the work to be freely available to everyone. CC licenses don't encrypt content (A) and the no-rights-reserved version specifically removes restrictions (C, D).
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q9 (was Q19) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m9">
+          <div class="question-header">
+            <span class="q-number">Question 9</span>
+            <span class="topic-pill cyber">Cybersecurity</span>
+            <span class="source-tag">2021 Practice Exam · Q19</span>
+          </div>
+          <p class="question-text">Which of the following best explains how devices and information can be susceptible to unauthorized access if weak passwords are used?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Unauthorized individuals can deny service to a computing system by overwhelming the system with login attempts.</button>
+            <button class="choice" data-correct="false">B. Unauthorized individuals can exploit vulnerabilities in compression algorithms to determine a user's password from their decompressed data.</button>
+            <button class="choice" data-correct="false">C. Unauthorized individuals can exploit vulnerabilities in encryption algorithms to determine a user's password from their encryption key.</button>
+            <button class="choice" data-correct="true">D. Unauthorized individuals can use data mining and other techniques to guess a user's password.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            D is correct. A weak password is easy to guess based on publicly available info about the user (or because it's a common password like "password" or "1234"). The other choices describe attacks that don't depend on password strength.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q10 (was Q20) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m10">
+          <div class="question-header">
+            <span class="q-number">Question 10</span>
+            <span class="topic-pill internet">Internet</span>
+            <span class="source-tag">2021 Practice Exam · Q20</span>
+          </div>
+          <p class="question-text">A local router is configured to limit the bandwidth of guest users connecting to the Internet. Which of the following best explains the result of this configuration as compared to a configuration in which the router does not limit the bandwidth?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. The amount of time it takes guest users to send and receive large files is likely to decrease.</button>
+            <button class="choice" data-correct="false">B. The number of packets required for guest users to send and receive data is likely to decrease.</button>
+            <button class="choice" data-correct="false">C. Guest users will be prevented from having fault-tolerant routing on the Internet.</button>
+            <button class="choice" data-correct="true">D. Guest users will be restricted in the maximum amount of data that they can send and receive per second.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            D is correct. Bandwidth is the maximum data per unit time. Limiting it caps how much data per second guests can move. (A is backwards &mdash; less bandwidth means files take <em>longer</em>. Packet count depends on file size, not bandwidth.)
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q11 (was Q21) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m11">
+          <div class="question-header">
+            <span class="q-number">Question 11</span>
+            <span class="topic-pill data">Data &amp; Binary</span>
+            <span class="source-tag">2021 Practice Exam · Q21</span>
+          </div>
+          <p class="question-text">A video-streaming website keeps a count of times each video has been played. At one time the most popular video's count was about two million. Later, the same video displayed a seven-digit <strong>negative</strong> number while other videos' counts displayed correctly. What is the most likely explanation?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. The count became larger than the maximum value allowed by the data type used to store the count.</button>
+            <button class="choice" data-correct="false">B. The mathematical operations used to calculate the count caused a rounding error to occur.</button>
+            <button class="choice" data-correct="false">C. The software used to update the count failed when too many videos were played simultaneously.</button>
+            <button class="choice" data-correct="false">D. The software contained a sampling error when using digital data to approximate the analog count.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. This is the classic <strong>overflow error</strong>: the count exceeded the maximum value representable in a fixed number of bits and wrapped around to a negative number. Rounding errors cause imprecision, not wrap-around. The count isn't analog so no sampling error.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q12 (was Q23) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m12">
+          <div class="question-header">
+            <span class="q-number">Question 12</span>
+            <span class="topic-pill internet">Internet</span>
+            <span class="source-tag">2021 Practice Exam · Q23</span>
+          </div>
+          <p class="question-text">Which of the following statements about the Internet is true?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. The Internet is a computer network that uses proprietary communication protocols.</button>
+            <button class="choice" data-correct="true">B. The Internet is designed to scale to support an increasing number of users.</button>
+            <button class="choice" data-correct="false">C. The Internet requires all communications to use encryption protocols.</button>
+            <button class="choice" data-correct="false">D. The Internet uses a centralized system to determine how packets are routed.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. The Internet uses <em>open</em> (nonproprietary) protocols specifically to be scalable so additional devices can be added easily. Encryption isn't required (C) and routing is dynamic and decentralized (D).
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q13 (was Q24) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m13">
+          <div class="question-header">
+            <span class="q-number">Question 13</span>
+            <span class="topic-pill data">Data &amp; Compression</span>
+            <span class="source-tag">2021 Practice Exam · Q24</span>
+          </div>
+          <p class="question-text">In which of the following situations would it be most appropriate to choose <strong>lossy</strong> compression over lossless compression?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Storing digital photographs to be printed and displayed in a large format in an art gallery</button>
+            <button class="choice" data-correct="false">B. Storing a formatted text document to be restored to its original version for a print publication</button>
+            <button class="choice" data-correct="true">C. Storing music files on a smartphone in order to maximize the number of songs that can be stored</button>
+            <button class="choice" data-correct="false">D. Storing a video file on an external device in order to preserve the highest possible video quality</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. Lossy compression sacrifices some quality for smaller file size &mdash; ideal when storage space matters more than perfect fidelity. Choices A, B, and D all require maximum quality or exact reconstruction, so lossless would be chosen.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q14 (was Q27) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m14">
+          <div class="question-header">
+            <span class="q-number">Question 14</span>
+            <span class="topic-pill impacts">Impacts &amp; Bias</span>
+            <span class="source-tag">2021 Practice Exam · Q27</span>
+          </div>
+          <p class="question-text">A social-media app is updating its algorithm to add a new feature. Which of the following strategies is <strong>LEAST</strong> likely to introduce bias into the application?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Enticing users to spend more time using the application by providing the updated algorithm only to users who use the app at least ten hours per week</button>
+            <button class="choice" data-correct="true">B. Inviting a random sample of all users to try out the new algorithm and provide feedback before it is released to a wider audience</button>
+            <button class="choice" data-correct="false">C. Providing the updated algorithm only to teenage users to generate excitement about the new feature</button>
+            <button class="choice" data-correct="false">D. Testing the updated algorithm with a small number of users in the city where the developers are located</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. A random sample of all users is the most representative group and least likely to introduce bias. A, C, and D all test on narrow non-representative groups (heavy users, teens only, one city) &mdash; classic sources of sampling bias.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q15 (was Q30) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m15">
+          <div class="question-header">
+            <span class="q-number">Question 15</span>
+            <span class="topic-pill internet">Internet</span>
+            <span class="source-tag">2021 Practice Exam · Q30</span>
+          </div>
+          <p class="question-text">Which of the following best explains how data is transmitted on the Internet?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Data is broken into packets, which are all sent to the recipient in a specified order along the same path.</button>
+            <button class="choice" data-correct="true">B. Data is broken into packets, which can be sent along different paths.</button>
+            <button class="choice" data-correct="false">C. All data is transmitted in a single packet through a direct connection between the sender and the recipient.</button>
+            <button class="choice" data-correct="false">D. Multiple data files are bundled together in a packet and transmitted together.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. Data is broken into packets and reassembled at the destination. Packets may travel along different paths, arrive in order, out of order, or not at all. They do not travel as a single bundle nor on a fixed path.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q16 (was Q31) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m16">
+          <div class="question-header">
+            <span class="q-number">Question 16</span>
+            <span class="topic-pill data">Data &amp; Binary</span>
+            <span class="source-tag">2021 Practice Exam · Q31</span>
+          </div>
+          <p class="question-text">A binary number is transformed by appending three 0s to the end. For example, <code>11101</code> becomes <code>11101000</code>. Which best describes the relationship between the transformed number and the original?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. The transformed number is 3 times the value of the original number.</button>
+            <button class="choice" data-correct="false">B. The transformed number is 4 times the value of the original number.</button>
+            <button class="choice" data-correct="true">C. The transformed number is 8 times the value of the original number.</button>
+            <button class="choice" data-correct="false">D. The transformed number is 1,000 times the value of the original number.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. Appending a 0 in <em>binary</em> multiplies the value by 2 (same as appending a 0 in decimal multiplies by 10). Three appended 0s multiplies by 2 &times; 2 &times; 2 = 8. Choice D is the decimal answer &mdash; a classic trap.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q17 (was Q32) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m17">
+          <div class="question-header">
+            <span class="q-number">Question 17</span>
+            <span class="topic-pill cyber">Cybersecurity</span>
+            <span class="source-tag">2021 Practice Exam · Q32</span>
+          </div>
+          <p class="question-text">Which of the following is a true statement about the use of public key encryption in transmitting messages?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. Public key encryption enables parties to initiate secure communications through an open medium, such as the Internet, in which there might be eavesdroppers.</button>
+            <button class="choice" data-correct="false">B. Public key encryption is not considered a secure method of communication because a public key can be intercepted.</button>
+            <button class="choice" data-correct="false">C. Public key encryption only allows the encryption of documents containing text; documents containing audio and video must use a different encryption method.</button>
+            <button class="choice" data-correct="false">D. Public key encryption uses a single key that should be kept secure because it is used for both encryption and decryption.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. The defining benefit of public-key encryption is that two parties can communicate securely <em>without</em> first sharing a secret. The public key being public is fine &mdash; only the matching private key decrypts (B is wrong). It works on any digital data, not just text (C). And it's <em>asymmetric</em>, not single-key (D describes symmetric).
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q18 (was Q34) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m18">
+          <div class="question-header">
+            <span class="q-number">Question 18</span>
+            <span class="topic-pill pseudo">Pseudocode</span>
+            <span class="source-tag">2021 Practice Exam · Q34</span>
+          </div>
+          <p class="question-text">Result X is expected 25% of the time and result Y 75%. The code below is intended to simulate 100 trials, but it reports "X occurred 24 times and Y occurred 70 times" &mdash; only 94 trials counted. Which change ensures a correct simulation?</p>
+<pre class="pseudocode">Line 1: xCount &larr; 0
+Line 2: yCount &larr; 0
+Line 3: <span class="kw">REPEAT</span> 100 <span class="kw">TIMES</span>
+Line 4: {
+Line 5:     <span class="kw">IF</span>(<span class="kw">RANDOM</span>(1, 4) = 1)
+Line 6:     {
+Line 7:         xCount &larr; xCount + 1
+Line 8:     }
+Line 9:     <span class="kw">IF</span>(<span class="kw">RANDOM</span>(1, 4) &gt; 1)
+Line 10:    {
+Line 11:        yCount &larr; yCount + 1
+Line 12:    }
+Line 13: }</pre>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Replace line 9 with <code>IF(RANDOM(1, 4) &ge; 2)</code></button>
+            <button class="choice" data-correct="true">B. Replace line 9 with <code>ELSE</code></button>
+            <button class="choice" data-correct="false">C. Interchange lines 5 and 9</button>
+            <button class="choice" data-correct="false">D. Interchange lines 7 and 11</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. The bug: <code>RANDOM</code> is called <em>twice</em> per loop iteration, so the two outcomes are two separate trials. Using <code>ELSE</code> instead of a second <code>IF</code> ensures one roll per loop &mdash; xCount or yCount increments, never both, never neither.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q19 (was Q41) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m19">
+          <div class="question-header">
+            <span class="q-number">Question 19</span>
+            <span class="topic-pill impacts">Impacts</span>
+            <span class="source-tag">2021 Practice Exam · Q41</span>
+          </div>
+          <p class="question-text">An online gaming company is introducing initiatives to encourage respectful communication. Which of the following describes a solution that uses <strong>crowdsourcing</strong>?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. The company allows individual players to endorse fellow players based on courteous interactions. Once a player receives enough endorsements, the player is given free rewards.</button>
+            <button class="choice" data-correct="false">B. The company eliminates chat from gameplay and sets the default chat policy to off. Players must actively turn on chat to converse outside of gameplay.</button>
+            <button class="choice" data-correct="false">C. The company introduces software that monitors all chats. Inappropriate conversations are identified, and players involved are banned.</button>
+            <button class="choice" data-correct="false">D. The company updates the acceptable content guidelines to explicitly describe appropriate and inappropriate behavior. All players must electronically sign an agreement.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. Crowdsourcing means obtaining input or contributions from a large group of people (the "crowd"). Players endorsing each other is the crowd contributing information about who is respectful. B is a default change, C is automated monitoring, D is a policy update &mdash; none involve the crowd contributing data.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q20 (was Q43) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m20">
+          <div class="question-header">
+            <span class="q-number">Question 20</span>
+            <span class="topic-pill cyber">Cybersecurity</span>
+            <span class="source-tag">2021 Practice Exam · Q43</span>
+          </div>
+          <p class="question-text">Which of the following best exemplifies the use of <strong>keylogging</strong> to gain unauthorized access to a computer system?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. A user unintentionally installs a program on their computer that records all user input and forwards it to another computer. A few weeks later, someone else is able to access the user's computer using the recorded data.</button>
+            <button class="choice" data-correct="false">B. A user has a very common password for an online banking account. Someone else guesses the password after a few attempts and gains access to the user's account.</button>
+            <button class="choice" data-correct="false">C. A user logs into an unsecure website. Someone else is able to view unencrypted log-in information as it is transmitted over the Internet.</button>
+            <button class="choice" data-correct="false">D. A user receives an e-mail claiming to be from their bank. The e-mail instructs the user to click a link and enter login info to verify the account. The site is fraudulent and the credentials are stolen.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. Keylogging is software that records every keystroke. B is a weak-password brute force. C is eavesdropping on an unencrypted connection. D is phishing.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Final results -->
+        <!-- ============================================================ -->
+        <div class="final-results" id="finalResults" hidden>
+          <h2><i class="bi bi-trophy-fill"></i> Practice Complete</h2>
+          <div class="big-score"><span id="finalCorrect">0</span> / 20</div>
+          <p><strong id="finalAccuracy">0%</strong> &mdash; <span id="finalMessage"></span></p>
+          <p class="mt-3"><a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Review Hub</a></p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- More info / sources -->
+        <!-- ============================================================ -->
+        <div class="more-info">
+          <h3><i class="bi bi-bookmark-star-fill"></i> Source &amp; More Practice</h3>
+          <p class="source-note">Every question on this page is reproduced from the College Board's official 2021 AP Computer Science Principles Practice Exam, and the explanations come directly from the official answer key.</p>
+          <ul>
+            <li>
+              <a href="../practice_exam/ap-computer-science-principles-practice-exam-and-notes-2021-mcq.pdf" target="_blank" rel="noopener">2021 AP CSP Practice Exam &mdash; full 70-question PDF</a>
+              &mdash; Contains questions with figures and grids that couldn't be reproduced here.
+            </li>
+            <li>
+              <a href="../practice_exam/ap-computer-science-principles-practice-exam-and-notes-2021-mcq-answers.pdf" target="_blank" rel="noopener">2021 AP CSP Practice Exam &mdash; Answers &amp; Notes (PDF)</a>
+              &mdash; College Board's official answer key with rationales for every choice (right and wrong).
+            </li>
+            <li>
+              <a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles/exam/past-exam-questions" target="_blank" rel="noopener">AP Central &mdash; Past Exam Questions</a>
+              &mdash; Additional released questions and free-response from prior years.
+            </li>
+            <li>
+              <a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf" target="_blank" rel="noopener">AP CSP Course and Exam Description (PDF)</a>
+              &mdash; Sample questions are included throughout the CED.
+            </li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const totalQuestions = 20;
+      let attempted = 0;
+      let correct = 0;
+
+      const attemptedEl = document.getElementById('attemptedCount');
+      const correctEl = document.getElementById('correctCount');
+      const accuracyEl = document.getElementById('accuracy');
+      const progressEl = document.getElementById('progressFill');
+      const finalEl = document.getElementById('finalResults');
+
+      function updateTracker() {
+        attemptedEl.textContent = attempted;
+        correctEl.textContent = correct;
+        accuracyEl.textContent = attempted === 0 ? '—' : Math.round((correct / attempted) * 100) + '%';
+        progressEl.style.width = (attempted / totalQuestions * 100) + '%';
+
+        if (attempted === totalQuestions) {
+          const pct = Math.round((correct / totalQuestions) * 100);
+          document.getElementById('finalCorrect').textContent = correct;
+          document.getElementById('finalAccuracy').textContent = pct + '%';
+          let msg;
+          if (pct >= 85) msg = 'Strong performance. You are well-prepared.';
+          else if (pct >= 70) msg = 'Good work. Review the wrong answers and re-read the explanations.';
+          else if (pct >= 55) msg = 'Solid foundation. Revisit the topic lessons for areas where you missed multiple questions.';
+          else msg = 'Use the topic lessons (Internet, Cybersecurity, Pseudocode) and come back to drill again.';
+          document.getElementById('finalMessage').textContent = msg;
+          finalEl.hidden = false;
+          finalEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      document.querySelectorAll('.mcq').forEach(q => {
+        const feedback = q.querySelector('.feedback');
+        q.querySelectorAll('.choice').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const isCorrect = btn.dataset.correct === 'true';
+            q.querySelectorAll('.choice').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.correct === 'true') b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+            attempted++;
+            if (isCorrect) correct++;
+            updateTracker();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

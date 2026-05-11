@@ -1,0 +1,808 @@
+---
+---
+<!-- File: classroom/apcsp/review/pseudocode/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APCSP Review - Reading Pseudocode</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../../css/styles.css" />
+    <style>
+      .review-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .review-header {
+        background: linear-gradient(135deg, #0a7c5e 0%, #20c997 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .review-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .review-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+      .topic-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+        border: 1px solid #e9ecef;
+      }
+      .topic-section h2 {
+        color: #0a7c5e;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .topic-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.15rem; }
+      .topic-section p, .topic-section li { line-height: 1.6; }
+
+      .ek-tag {
+        display: inline-block;
+        background: #d1f5e9;
+        color: #0a7c5e;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .danger-fact {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .danger-fact strong { color: #842029; }
+
+      .definition-table {
+        width: 100%;
+        margin: 15px 0;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .definition-table th {
+        background: #0a7c5e;
+        color: white;
+        padding: 10px 14px;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      .definition-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e9ecef;
+        vertical-align: top;
+        font-size: 0.95rem;
+      }
+      .definition-table tr:last-child td { border-bottom: none; }
+      .definition-table code, .pseudocode, .inline-code {
+        font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+      }
+      .inline-code {
+        background: #d1f5e9;
+        color: #0a7c5e;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-weight: 600;
+        font-size: 0.92em;
+      }
+      pre.pseudocode {
+        background: #1f2d3d;
+        color: #f8f8f2;
+        padding: 16px 20px;
+        border-radius: 6px;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin: 12px 0;
+      }
+      pre.pseudocode .kw { color: #ff79c6; font-weight: 600; }
+      pre.pseudocode .str { color: #f1fa8c; }
+      pre.pseudocode .num { color: #bd93f9; }
+      pre.pseudocode .cmt { color: #6272a4; font-style: italic; }
+
+      /* MCQ component */
+      .mcq {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 18px 0 0 0;
+      }
+      .mcq-label {
+        display: inline-block;
+        background: #0a7c5e;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+      .mcq-question { font-weight: 600; margin-bottom: 14px; color: #212529; }
+      .choices { display: flex; flex-direction: column; gap: 8px; }
+      .choice {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 10px 14px;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        font-size: 0.95rem;
+        color: #212529;
+        font-family: inherit;
+      }
+      .choice:hover:not(:disabled) { background: #d1f5e9; border-color: #0a7c5e; }
+      .choice:disabled { cursor: default; }
+      .choice.code-choice { font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace; white-space: pre; font-size: 0.9rem; }
+      .choice-correct {
+        background: #d1e7dd !important;
+        border-color: #198754 !important;
+        color: #0f5132 !important;
+        font-weight: 600;
+      }
+      .choice-correct::before { content: "\2713  "; font-weight: 700; }
+      .choice-wrong {
+        background: #f8d7da !important;
+        border-color: #dc3545 !important;
+        color: #842029 !important;
+      }
+      .choice-wrong::before { content: "\2717  "; font-weight: 700; }
+      .feedback {
+        margin-top: 14px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 0.95rem;
+      }
+      .feedback.correct { background: #d1e7dd; color: #0f5132; border-left: 4px solid #198754; }
+      .feedback.wrong { background: #fff3cd; color: #664d03; border-left: 4px solid #ffc107; }
+
+      .out-of-scope {
+        background: linear-gradient(135deg, #f8d7da 0%, #f5c2c7 100%);
+        border-left: 5px solid #dc3545;
+        border-radius: 8px;
+        padding: 20px 25px;
+        margin: 25px 0;
+      }
+      .out-of-scope h3 { color: #842029; margin-top: 0; }
+      .out-of-scope p, .out-of-scope li { color: #58151c; }
+
+      .more-info {
+        background: #d1f5e9;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 20px;
+      }
+      .more-info h3 { color: #0a7c5e; margin-bottom: 12px; }
+      .more-info ul { margin-bottom: 0; padding-left: 20px; }
+      .more-info li { margin-bottom: 8px; line-height: 1.5; }
+      .more-info a { color: #0a7c5e; text-decoration: none; font-weight: 600; }
+      .more-info a:hover { text-decoration: underline; }
+      .source-note { font-size: 0.88rem; color: #495057; }
+
+      .misconception {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 12px 0;
+      }
+      .misconception .statement { font-weight: 600; margin-bottom: 10px; color: #212529; }
+      .tf-buttons { display: flex; gap: 10px; }
+      .tf-btn {
+        flex: 0 0 auto;
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 6px 18px;
+        font-weight: 600;
+        cursor: pointer;
+        min-width: 70px;
+      }
+      .tf-btn:hover:not(:disabled) { background: #d1f5e9; border-color: #0a7c5e; }
+      .tf-btn:disabled { cursor: default; }
+
+      .scope-pill {
+        display: inline-block;
+        background: #198754;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+      .scope-pill.out { background: #dc3545; }
+
+      ul.tight li { margin-bottom: 6px; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../../" class="text-white">AP Computer Science Principles</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Exam Review</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Reading Pseudocode</span>
+      </nav>
+
+      <div class="review-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+
+        <div class="review-header">
+          <h1><i class="bi bi-braces"></i> Reading Pseudocode</h1>
+          <p class="subtitle">The AP Computer Science Principles Reference Sheet, decoded · ~30–45 min</p>
+        </div>
+
+        <div class="topic-section" style="background: #fff8e9; border-color: #ffc107;">
+          <h2 style="color: #856404;"><i class="bi bi-bullseye"></i> What This Lesson Covers</h2>
+          <p>The AP CSP exam uses its own <strong>language-agnostic pseudocode</strong> — not Python, not Java. The good news: <strong>you get the full reference sheet on the exam.</strong> You don't have to memorize syntax. You just have to read it confidently.</p>
+          <p>This lesson is a fast tour of every section of the reference sheet, with the gotchas that trip up most students.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 1. The AP Reference Sheet -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-file-earmark-text-fill"></i> 1. The AP Reference Sheet<span class="ek-tag">Provided on the exam</span></h2>
+          <p>The College Board provides a <strong>Reference Sheet</strong> at the start of the exam booklet. It explains every pseudocode instruction you might see. It is <strong>not</strong> a list of code to memorize &mdash; it is your dictionary while answering questions.</p>
+
+          <div class="key-fact">
+            <strong>Strategy:</strong> When you see a programming question, flip back to the reference sheet for any operator or instruction you're not 100% sure about. Use it. Don't try to remember exactly what <span class="inline-code">REPEAT UNTIL</span> does &mdash; look it up.
+          </div>
+
+          <p>The reference sheet has both a <strong>text format</strong> (what we'll use here) and a <strong>block format</strong> (drag-and-drop blocks like Scratch). Both formats show up on the exam. They mean the same thing &mdash; only the appearance differs.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 2. Assignment vs Equality -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-arrow-left-circle-fill"></i> 2. Assignment vs. Equality</h2>
+          <p>This is the #1 source of student confusion on AP CSP code questions:</p>
+
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 25%;">Symbol</th><th>What it means</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="inline-code">&larr;</span> (left arrow)</td>
+                <td><strong>Assignment.</strong> Evaluate the right side, then store the result in the variable on the left.</td>
+                <td><span class="inline-code">x &larr; 5</span> &mdash; puts the value 5 in x</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">=</span> (equals sign)</td>
+                <td><strong>Equality test.</strong> Evaluates to <span class="inline-code">true</span> if the two sides are equal, <span class="inline-code">false</span> otherwise.</td>
+                <td><span class="inline-code">x = 5</span> &mdash; is x equal to 5?</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Remember:</strong> If you see an arrow <span class="inline-code">&larr;</span>, the variable on the left is being <em>changed</em>. If you see <span class="inline-code">=</span>, it's a yes/no question, not an action.
+          </div>
+
+          <h3>Other "actions": <span class="inline-code">DISPLAY</span> and <span class="inline-code">INPUT</span></h3>
+          <ul class="tight">
+            <li><span class="inline-code">DISPLAY(expression)</span> &mdash; prints the value, followed by a space.</li>
+            <li><span class="inline-code">INPUT()</span> &mdash; pauses and returns whatever the user types.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 3. Arithmetic, MOD, RANDOM -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-calculator-fill"></i> 3. Arithmetic Operators</h2>
+          <p>Standard math: <span class="inline-code">+</span>, <span class="inline-code">-</span>, <span class="inline-code">*</span>, <span class="inline-code">/</span>. Normal order of operations. Plus two special ones:</p>
+
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 25%;">Operator</th><th>Meaning</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="inline-code">a MOD b</span></td>
+                <td>The <strong>remainder</strong> when <span class="inline-code">a</span> is divided by <span class="inline-code">b</span>. Same precedence as <span class="inline-code">*</span> and <span class="inline-code">/</span>.</td>
+                <td><span class="inline-code">17 MOD 5</span> evaluates to <span class="inline-code">2</span> (because 17 = 3&times;5 + 2)</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">RANDOM(a, b)</span></td>
+                <td>Returns a <strong>random integer</strong> from <span class="inline-code">a</span> to <span class="inline-code">b</span>, <strong>inclusive of both endpoints</strong>. Each value is equally likely.</td>
+                <td><span class="inline-code">RANDOM(1, 3)</span> could return 1, 2, or 3.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>MOD is "remainder," not "divide."</strong> <span class="inline-code">17 / 5</span> evaluates to <span class="inline-code">3.4</span>. <span class="inline-code">17 MOD 5</span> evaluates to <span class="inline-code">2</span>. Big difference.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 4. Boolean & Comparison -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-check2-square"></i> 4. Comparison &amp; Boolean Operators</h2>
+
+          <h3>Comparison (yes/no questions)</h3>
+          <p>These all produce a <strong>Boolean</strong> (<span class="inline-code">true</span> or <span class="inline-code">false</span>):</p>
+          <table class="definition-table">
+            <thead><tr><th style="width: 25%;">Operator</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><span class="inline-code">a = b</span></td><td>Equal to</td></tr>
+              <tr><td><span class="inline-code">a &ne; b</span></td><td>Not equal to</td></tr>
+              <tr><td><span class="inline-code">a &gt; b</span> / <span class="inline-code">a &lt; b</span></td><td>Greater than / less than</td></tr>
+              <tr><td><span class="inline-code">a &ge; b</span> / <span class="inline-code">a &le; b</span></td><td>Greater-than-or-equal / less-than-or-equal</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Boolean combinators</h3>
+          <table class="definition-table">
+            <thead><tr><th style="width: 25%;">Operator</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td><span class="inline-code">NOT condition</span></td><td><span class="inline-code">true</span> if <span class="inline-code">condition</span> is false; flips the value.</td></tr>
+              <tr><td><span class="inline-code">a AND b</span></td><td><span class="inline-code">true</span> only when <strong>both</strong> are true.</td></tr>
+              <tr><td><span class="inline-code">a OR b</span></td><td><span class="inline-code">true</span> when <strong>at least one</strong> is true (including both).</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Translating English to Boolean:</strong> "between 50 and 80 inclusive" means <span class="inline-code">(x &ge; 50) AND (x &le; 80)</span>. <em>Inclusive</em> means use <span class="inline-code">&ge;</span> and <span class="inline-code">&le;</span>; exclusive means use <span class="inline-code">&gt;</span> and <span class="inline-code">&lt;</span>.
+          </div>
+
+          <div class="mcq" data-id="pq1">
+            <span class="mcq-label">Practice MCQ · 2021 Exam Q2</span>
+            <p class="mcq-question">To be eligible for a particular ride at an amusement park, a person must be at least 12 years old and must be between 50 and 80 inches tall, inclusive. Let <span class="inline-code">age</span> represent the person's age in years, and <span class="inline-code">height</span> the person's height in inches. Which expression evaluates to <span class="inline-code">true</span> if and only if the person is eligible for the ride?</p>
+            <div class="choices">
+              <button class="choice code-choice" data-correct="true">A. (age &ge; 12) AND ((height &ge; 50) AND (height &le; 80))</button>
+              <button class="choice code-choice" data-correct="false">B. (age &ge; 12) AND ((height &le; 50) AND (height &ge; 80))</button>
+              <button class="choice code-choice" data-correct="false">C. (age &ge; 12) AND ((height &le; 50) OR (height &ge; 80))</button>
+              <button class="choice code-choice" data-correct="false">D. (age &ge; 12) OR ((height &ge; 50) AND (height &le; 80))</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>A.</strong> All three conditions must be true: age &ge; 12, height &ge; 50, AND height &le; 80. B is impossible (height can't be both &le; 50 AND &ge; 80). C allows a too-short person if their age is OK. D would let an 11-year-old ride if their height fits.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 5. Selection (IF / IF-ELSE) -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-signpost-split-fill"></i> 5. Selection: <code>IF</code> and <code>IF / ELSE</code></h2>
+
+          <pre class="pseudocode"><span class="kw">IF</span>(condition)
+{
+    &lt;block of statements&gt;
+}</pre>
+          <p>Run the block <strong>only if</strong> the condition is <span class="inline-code">true</span>. Otherwise, skip it entirely.</p>
+
+          <pre class="pseudocode"><span class="kw">IF</span>(condition)
+{
+    &lt;first block&gt;
+}
+<span class="kw">ELSE</span>
+{
+    &lt;second block&gt;
+}</pre>
+          <p>Run the first block if the condition is <span class="inline-code">true</span>; otherwise run the second block. Exactly one of the two blocks runs.</p>
+
+          <div class="key-fact">
+            <strong>Two separate <span class="inline-code">IF</span>s are not the same as <span class="inline-code">IF / ELSE</span>.</strong> Two separate <span class="inline-code">IF</span> blocks can both run, or both skip. An <span class="inline-code">IF / ELSE</span> always runs exactly one. This distinction is the bug in a classic AP exam question (Q34 below).
+          </div>
+
+          <div class="mcq" data-id="pq2">
+            <span class="mcq-label">Practice MCQ · 2021 Exam Q34</span>
+            <p class="mcq-question">Result X is expected to occur 25% of the time and result Y 75% of the time. The following code is intended to simulate 100 trials, but it counted only 94 trials (24 + 70). Which change fixes the bug?</p>
+<pre class="pseudocode">Line 1: xCount &larr; 0
+Line 2: yCount &larr; 0
+Line 3: <span class="kw">REPEAT</span> 100 <span class="kw">TIMES</span>
+Line 4: {
+Line 5:     <span class="kw">IF</span>(<span class="kw">RANDOM</span>(1, 4) = 1)
+Line 6:     {
+Line 7:         xCount &larr; xCount + 1
+Line 8:     }
+Line 9:     <span class="kw">IF</span>(<span class="kw">RANDOM</span>(1, 4) &gt; 1)
+Line 10:    {
+Line 11:        yCount &larr; yCount + 1
+Line 12:    }
+Line 13: }</pre>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Replace line 9 with <span class="inline-code">IF(RANDOM(1, 4) &ge; 2)</span></button>
+              <button class="choice" data-correct="true">B. Replace line 9 with <span class="inline-code">ELSE</span></button>
+              <button class="choice" data-correct="false">C. Interchange lines 5 and 9</button>
+              <button class="choice" data-correct="false">D. Interchange lines 7 and 11</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>B.</strong> The bug is that <span class="inline-code">RANDOM</span> is called <em>twice</em> per loop iteration &mdash; two separate dice rolls. Sometimes both roll 1 (both counters increment), sometimes both roll 2–4 (only yCount increments — wait, both run if the first rolls 1 too). Either way the trials don't add to 100. Using <span class="inline-code">ELSE</span> makes it one roll, one outcome &mdash; exactly 100 trials total.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 6. Iteration -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-arrow-repeat"></i> 6. Iteration: <code>REPEAT</code> and <code>FOR EACH</code></h2>
+
+          <table class="definition-table">
+            <thead><tr><th style="width: 30%;">Loop</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="inline-code">REPEAT n TIMES</span></td>
+                <td>Runs the block exactly <span class="inline-code">n</span> times.</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">REPEAT UNTIL(condition)</span></td>
+                <td>Keeps running the block <strong>until the condition becomes <span class="inline-code">true</span></strong>. If the condition is already <span class="inline-code">true</span> at the start, the block doesn't run at all.</td>
+              </tr>
+              <tr>
+                <td><span class="inline-code">FOR EACH item IN aList</span></td>
+                <td>Assigns each element of <span class="inline-code">aList</span> to the variable <span class="inline-code">item</span>, in order from first to last. The block runs once per element.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="danger-fact">
+            <strong>Gotcha:</strong> <span class="inline-code">REPEAT UNTIL</span> stops when the condition is <strong>true</strong>. Many students read it as "repeat while" and get the logic backwards. <em>Until true.</em>
+          </div>
+
+          <div class="key-fact">
+            <strong>FOR EACH gives you the <em>value</em>, not the index.</strong> If <span class="inline-code">aList</span> is <span class="inline-code">[10, 20, 30]</span>, then <span class="inline-code">FOR EACH item IN aList</span> assigns <span class="inline-code">item</span> the values 10, 20, 30 &mdash; not 1, 2, 3.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 7. Lists -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-list-ol"></i> 7. Lists</h2>
+
+          <div class="danger-fact">
+            <strong>The single biggest pseudocode trap on the AP exam:</strong> AP CSP lists are <strong>1-indexed</strong>. The first element of a list is at index <span class="inline-code">1</span>, not <span class="inline-code">0</span>. This is the opposite of Python, JavaScript, Java, C, etc.
+          </div>
+
+          <p>So for <span class="inline-code">aList &larr; [10, 20, 30]</span>:</p>
+          <ul class="tight">
+            <li><span class="inline-code">aList[1]</span> is <span class="inline-code">10</span> (first element)</li>
+            <li><span class="inline-code">aList[2]</span> is <span class="inline-code">20</span></li>
+            <li><span class="inline-code">aList[3]</span> is <span class="inline-code">30</span> (last element)</li>
+            <li><span class="inline-code">aList[0]</span> &mdash; <strong>error!</strong> the program terminates.</li>
+          </ul>
+
+          <h3>List operations</h3>
+          <table class="definition-table">
+            <thead><tr><th style="width: 38%;">Operation</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td><span class="inline-code">aList &larr; [v1, v2, v3]</span></td><td>Creates the list with those values at indices 1, 2, 3.</td></tr>
+              <tr><td><span class="inline-code">aList[i] &larr; x</span></td><td>Replaces the value at index <span class="inline-code">i</span> with <span class="inline-code">x</span>.</td></tr>
+              <tr><td><span class="inline-code">APPEND(aList, value)</span></td><td>Adds <span class="inline-code">value</span> to the end. List length grows by 1.</td></tr>
+              <tr><td><span class="inline-code">INSERT(aList, i, value)</span></td><td>Shifts elements at <span class="inline-code">i</span> and beyond to the right, then places <span class="inline-code">value</span> at index <span class="inline-code">i</span>. Length grows by 1.</td></tr>
+              <tr><td><span class="inline-code">REMOVE(aList, i)</span></td><td>Deletes the item at index <span class="inline-code">i</span>, shifts the rest left. Length shrinks by 1.</td></tr>
+              <tr><td><span class="inline-code">LENGTH(aList)</span></td><td>Returns the number of elements in the list.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Useful pattern:</strong> <span class="inline-code">aList[LENGTH(aList)]</span> always gives the <em>last</em> element &mdash; because lists are 1-indexed, the last index equals the length.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 8. Procedures -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-box-arrow-up-right"></i> 8. Procedures and <code>RETURN</code></h2>
+
+          <pre class="pseudocode"><span class="kw">PROCEDURE</span> procName(parameter1, parameter2, ...)
+{
+    &lt;block of statements&gt;
+    <span class="kw">RETURN</span>(expression)
+}</pre>
+
+          <p>A <strong>procedure</strong> is a named, reusable block of code that takes inputs (called <strong>parameters</strong>) and may return a result.</p>
+
+          <h3>Calling a procedure</h3>
+          <ul class="tight">
+            <li><span class="inline-code">procName(arg1, arg2)</span> &mdash; runs the procedure with those arguments.</li>
+            <li><span class="inline-code">result &larr; procName(arg1, arg2)</span> &mdash; runs it and stores the returned value in <span class="inline-code">result</span>.</li>
+          </ul>
+
+          <div class="key-fact">
+            <strong>RETURN exits the procedure immediately.</strong> As soon as a <span class="inline-code">RETURN</span> statement runs, control goes back to whoever called the procedure. Anything after that <span class="inline-code">RETURN</span> in the same procedure won't execute.
+          </div>
+
+          <div class="mcq" data-id="pq3">
+            <span class="mcq-label">Practice MCQ · 2021 Exam Q14</span>
+            <p class="mcq-question">The procedure below is intended to return <span class="inline-code">true</span> if <span class="inline-code">numberList</span> is "increasing" (each value &ge; the one before) and <span class="inline-code">false</span> otherwise. It contains a bug. Which change is needed?</p>
+<pre class="pseudocode">Line 1: <span class="kw">PROCEDURE</span> isIncreasing(numberList)
+Line 2: {
+Line 3:     count &larr; 2
+Line 4:     <span class="kw">REPEAT UNTIL</span>(count &gt; <span class="kw">LENGTH</span>(numberList))
+Line 5:     {
+Line 6:         <span class="kw">IF</span>(numberList[count] &lt; numberList[count - 1])
+Line 7:         {
+Line 8:             <span class="kw">RETURN</span>(true)
+Line 9:         }
+Line 10:        count &larr; count + 1
+Line 11:    }
+Line 12:    <span class="kw">RETURN</span>(false)
+Line 13: }</pre>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. In line 3, <span class="inline-code">2</span> should be changed to <span class="inline-code">1</span>.</button>
+              <button class="choice" data-correct="false">B. In line 6, <span class="inline-code">&lt;</span> should be changed to <span class="inline-code">&ge;</span>.</button>
+              <button class="choice" data-correct="true">C. Lines 8 and 12 should be interchanged.</button>
+              <button class="choice" data-correct="false">D. Lines 10 and 11 should be interchanged.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>C.</strong> As written, the procedure returns <span class="inline-code">true</span> when it finds an out-of-order pair (which means the list is <em>not</em> increasing) and <span class="inline-code">false</span> otherwise. That's backwards. Swapping lines 8 and 12 fixes the logic. (A would index into <span class="inline-code">numberList[0]</span> in line 6 &mdash; a crash. B doesn't fix the inverted return values.)
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 9. Robot -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-robot"></i> 9. Robot Commands</h2>
+          <p>Some exam questions use a small <strong>robot</strong> in a grid. The reference sheet defines four commands:</p>
+
+          <table class="definition-table">
+            <thead><tr><th style="width: 32%;">Command</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td><span class="inline-code">MOVE_FORWARD()</span></td><td>Moves the robot one square forward, in the direction it is currently facing.</td></tr>
+              <tr><td><span class="inline-code">ROTATE_LEFT()</span></td><td>Turns the robot 90&deg; counterclockwise in place. Does not move it.</td></tr>
+              <tr><td><span class="inline-code">ROTATE_RIGHT()</span></td><td>Turns the robot 90&deg; clockwise in place. Does not move it.</td></tr>
+              <tr><td><span class="inline-code">CAN_MOVE(direction)</span></td><td>Returns <span class="inline-code">true</span> if the square in that direction is open and on the grid. <span class="inline-code">direction</span> can be <span class="inline-code">forward</span>, <span class="inline-code">backward</span>, <span class="inline-code">left</span>, or <span class="inline-code">right</span>.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="danger-fact">
+            <strong>Hidden trap:</strong> If the robot tries to move into a blocked square or off the grid, the robot stays put <em>and the program terminates</em>. Always check <span class="inline-code">CAN_MOVE</span> before <span class="inline-code">MOVE_FORWARD</span> if there's any chance of running into an edge.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 10. Tracing strategy -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-table"></i> 10. How to Trace Code Like a Pro</h2>
+          <p>"Trace tables" turn confusing code into a simple ledger. The trick: pick a fresh sheet of scratch paper, draw one column per variable, and write down every value as it changes.</p>
+
+          <h3>Example trace</h3>
+          <pre class="pseudocode">x &larr; 3
+y &larr; 5
+<span class="kw">REPEAT</span> 3 <span class="kw">TIMES</span>
+{
+    x &larr; x + y
+    y &larr; y - 1
+}
+<span class="kw">DISPLAY</span>(x)</pre>
+
+          <table class="definition-table">
+            <thead><tr><th>Step</th><th>x</th><th>y</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Start</td><td>3</td><td>5</td><td>Initial assignments</td></tr>
+              <tr><td>Loop 1</td><td>8</td><td>4</td><td>x = 3+5, y = 5−1</td></tr>
+              <tr><td>Loop 2</td><td>12</td><td>3</td><td>x = 8+4, y = 4−1</td></tr>
+              <tr><td>Loop 3</td><td>15</td><td>2</td><td>x = 12+3, y = 3−1</td></tr>
+              <tr><td>Display</td><td><strong>15</strong></td><td>—</td><td>Final answer</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Don't trace in your head.</strong> Every year, students miss tracing questions they could've gotten by writing two columns on paper. Use the scratch space in your test booklet.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Misconceptions lightning round -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-lightning-charge-fill"></i> Misconception Lightning Round</h2>
+          <p>Click True or False:</p>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"You have to memorize the reference sheet because it isn't given to you on the exam."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> The full reference sheet is printed at the beginning of the exam booklet. Use it during the exam. Don't try to memorize syntax &mdash; spend your study time on tracing and Boolean logic instead.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"In AP CSP pseudocode, the first element of a list is at index 0."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> AP CSP lists are <strong>1-indexed</strong>. <span class="inline-code">aList[1]</span> is the first element. <span class="inline-code">aList[0]</span> causes an error and ends the program. This is opposite to most real programming languages &mdash; do not assume Python/JavaScript habits on this exam.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"The symbol <span class="inline-code">=</span> stores a value in a variable."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> The assignment operator is <span class="inline-code">&larr;</span> (left arrow). <span class="inline-code">=</span> is the equality <em>test</em> &mdash; it produces <span class="inline-code">true</span> or <span class="inline-code">false</span> and doesn't change any variable.
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"<span class="inline-code">REPEAT UNTIL(condition)</span> keeps looping <em>while</em> the condition is true."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> The opposite. <span class="inline-code">REPEAT UNTIL</span> stops <em>when</em> the condition becomes true. Read it literally: "repeat... until... [this is true]."
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="false">
+            <p class="statement">"<span class="inline-code">17 MOD 5</span> evaluates to <span class="inline-code">3</span> or <span class="inline-code">3.4</span> (the quotient)."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>False.</strong> <span class="inline-code">MOD</span> returns the <strong>remainder</strong>, not the quotient. <span class="inline-code">17 MOD 5</span> is <span class="inline-code">2</span> because 17 = 3&times;5 + <strong>2</strong>. (<span class="inline-code">17 / 5</span> is <span class="inline-code">3.4</span> &mdash; that's the divide operator.)
+            </div>
+          </div>
+
+          <div class="misconception" data-correct="true">
+            <p class="statement">"<span class="inline-code">aList[LENGTH(aList)]</span> always evaluates to the last element of the list."</p>
+            <div class="tf-buttons">
+              <button class="tf-btn" data-value="true">True</button>
+              <button class="tf-btn" data-value="false">False</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>True.</strong> Because AP CSP lists are 1-indexed, the last valid index equals the length of the list. If the list has 5 elements, <span class="inline-code">aList[5]</span> is the 5th (last) one, and <span class="inline-code">LENGTH(aList)</span> is 5. This is a useful pattern on the exam.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Out of scope -->
+        <!-- ============================================================ -->
+        <div class="topic-section" style="background: #e8f7f1;">
+          <h2 style="color: #0a7c5e;"><i class="bi bi-check2-circle"></i> What's NOT on the AP CSP Exam</h2>
+          <p>Don't spend study time on these &mdash; they're real programming concepts but they're not tested:</p>
+          <ul class="tight">
+            <li>Memorizing Python, Java, or JavaScript syntax <span class="scope-pill out">Out of scope</span></li>
+            <li>Object-oriented programming, classes, inheritance <span class="scope-pill out">Out of scope</span></li>
+            <li>Pointers, memory management, types beyond {number, Boolean, string, list} <span class="scope-pill out">Out of scope</span></li>
+            <li>Recursion as a tested topic (it can show up incidentally, but is not on the framework) <span class="scope-pill out">Out of scope</span></li>
+            <li>Specific sorting algorithm names (bubble sort, quicksort, etc.) <span class="scope-pill out">Out of scope</span></li>
+            <li>Big-O notation specifics &mdash; you only need "reasonable time" vs. "not reasonable time" <span class="scope-pill out">Out of scope</span></li>
+          </ul>
+          <p class="mb-0"><strong>Translation:</strong> The exam is testing whether you can <em>read</em> code, not whether you can write a specific language. Reference sheet + tracing skill = most pseudocode questions.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- More info -->
+        <!-- ============================================================ -->
+        <div class="more-info">
+          <h3><i class="bi bi-bookmark-star-fill"></i> More Info — Trusted Sources to Verify or Go Deeper</h3>
+          <p class="source-note">Everything on this page is drawn directly from the College Board's official AP CSP Reference Sheet (the same one printed inside the exam booklet) and the 2021 released practice exam. If you want to see the original document or read deeper, these are the references your teachers and the College Board treat as authoritative.</p>
+          <ul>
+            <li>
+              <a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles" target="_blank" rel="noopener">College Board AP Central — AP CSP Course Page</a>
+              — The official source. The Course and Exam Description (CED) PDF contains the full reference sheet.
+            </li>
+            <li>
+              <a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-course-and-exam-description.pdf" target="_blank" rel="noopener">AP CSP Course and Exam Description (PDF)</a>
+              — Reference sheet appears in Appendix A. This is the document the exam booklet is reprinted from.
+            </li>
+            <li>
+              <a href="https://apcentral.collegeboard.org/media/pdf/ap-computer-science-principles-exam-reference-sheet.pdf" target="_blank" rel="noopener">AP CSP Exam Reference Sheet (PDF)</a>
+              — Just the reference sheet, standalone. Print it. Read it. You'll see the exact same one on exam day.
+            </li>
+            <li>
+              <a href="https://www.khanacademy.org/computing/ap-computer-science-principles" target="_blank" rel="noopener">Khan Academy — AP Computer Science Principles</a>
+              — Free video lessons with worked pseudocode examples in the same style as the exam.
+            </li>
+            <li>
+              <a href="https://runestone.academy/ns/books/published/mobilecsp/index.html" target="_blank" rel="noopener">Mobile CSP Textbook</a>
+              — Open-source AP CSP textbook used by teachers nationwide. Strong chapters on lists, iteration, and procedures.
+            </li>
+            <li>
+              <a href="https://www.apcsexamprep.com/pages/ap-csp-big-idea-3-algorithms-programming" target="_blank" rel="noopener">apcsexamprep.com — Big Idea 3 (Algorithms &amp; Programming)</a>
+              — Practice questions and walkthroughs explicitly aligned to the AP CSP CED.
+            </li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll('.mcq').forEach(q => {
+        const feedback = q.querySelector('.feedback');
+        q.querySelectorAll('.choice').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const isCorrect = btn.dataset.correct === 'true';
+            q.querySelectorAll('.choice').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.correct === 'true') b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+          });
+        });
+      });
+
+      document.querySelectorAll('.misconception').forEach(m => {
+        const correctValue = m.dataset.correct;
+        const feedback = m.querySelector('.feedback');
+        m.querySelectorAll('.tf-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const picked = btn.dataset.value;
+            const isCorrect = picked === correctValue;
+            m.querySelectorAll('.tf-btn').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.value === correctValue) b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
