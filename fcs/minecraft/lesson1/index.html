@@ -77,6 +77,24 @@
         padding: 18px 22px;
         margin-bottom: 25px;
       }
+
+      .setup-banner {
+        background: #eef3f8;
+        border-left: 4px solid #1f4e79;
+        border-radius: 8px;
+        padding: 16px 22px;
+        margin-bottom: 25px;
+      }
+      .setup-banner h3 {
+        color: #14365a;
+        margin: 0 0 6px 0;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .setup-banner p { margin: 0; line-height: 1.55; }
+      .setup-banner a { color: #1f4e79; font-weight: 600; }
       .goals-card h2 { color: #2f5320; margin: 0 0 8px 0; font-size: 1.15rem; }
       .goals-card ul { margin: 0; padding-left: 22px; }
       .goals-card li { margin-bottom: 4px; line-height: 1.5; }
@@ -310,42 +328,11 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- LESSON 0: Set Up Minecraft -->
+        <!-- World setup banner — every lesson starts here -->
         <!-- ============================================================ -->
-        <div class="step-section">
-          <h2><span class="step-tag setup">LESSON 0</span> Get Minecraft Ready</h2>
-          <p>Before you start coding, set up Minecraft Education so the world is calm, flat, and easy to work in &mdash; no mobs attacking you, no rain, no nighttime. This setup makes everything in the rest of the lesson easier to see and easier to debug.</p>
-
-          <h3>Part A &mdash; Turn on fullscreen</h3>
-          <ol class="steps">
-            <li>Open <strong>Minecraft Education</strong> and sign in if you aren't already.</li>
-            <li>On the main menu, click <strong>Settings</strong>.</li>
-            <li>Click <strong>Video</strong>.</li>
-            <li>Turn <strong>Fullscreen</strong> on.</li>
-            <li>Click <strong>Back</strong> to return to the main menu.</li>
-          </ol>
-
-          <h3>Part B &mdash; Create a flat world with the right settings</h3>
-          <ol class="steps">
-            <li>Click <strong>Play</strong>.</li>
-            <li>Click <strong>Create New</strong>, then <strong>New</strong>.</li>
-            <li>On the left, click the <strong>Advanced</strong> tab.</li>
-            <li>Change <strong>World Type</strong> to <strong>Flat World</strong>.</li>
-            <li>Turn <strong>Show Coordinates</strong> ON. <em>(So you can see exactly where the Agent is.)</em></li>
-            <li>Set <strong>Daylight Cycle</strong> to <strong>Always Day</strong>. <em>(No nighttime interruptions.)</em></li>
-            <li>Turn <strong>Mob Spawning</strong> OFF. <em>(No zombies or skeletons.)</em></li>
-            <li>Turn <strong>Weather Cycle</strong> OFF. <em>(No rain or snow.)</em></li>
-            <li>Click <strong>Create</strong> (or <strong>Play</strong>) to load the world.</li>
-          </ol>
-
-          <div class="key-fact">
-            <strong>Why these settings:</strong> A flat world makes it easy to watch the Agent's path. Showing coordinates lets you confirm the Agent moved where you expected. Turning off mobs and weather removes distractions so you can focus on your code.
-          </div>
-
-          <div class="check">
-            <h4><i class="bi bi-check-circle-fill"></i> Check yourself</h4>
-            <p>You're standing in a flat world, the sun is up, there are no zombies, and you can see coordinates (X, Y, Z numbers) in a corner of the screen. If yes &mdash; you're ready for Step 1. If something looks off, pause the game and open <strong>Settings &rarr; Game</strong> to fix it.</p>
-          </div>
+        <div class="setup-banner">
+          <h3><i class="bi bi-arrow-clockwise"></i> Start here every time</h3>
+          <p>Every Minecraft lesson begins with a fresh world. Open <a href="../lesson0/"><strong>Lesson 0 &mdash; World Setup</strong></a> first to turn on fullscreen and create a brand-new flat world with the right settings. Once your world is loaded, come back here and continue with Step 1.</p>
         </div>
 
         <!-- ============================================================ -->
@@ -384,7 +371,7 @@
         <!-- ============================================================ -->
         <div class="step-section">
           <h2><span class="step-tag">STEP 2</span> Open MakeCode</h2>
-          <p>You should already be in your flat world from Lesson 0. If not, go back and finish Lesson 0 first.</p>
+          <p>You should already be in your fresh flat world from <a href="../lesson0/">Lesson 0</a>. If not, go back and complete Lesson 0 first.</p>
           <ol class="steps">
             <li>In the Minecraft world, press <kbd>C</kbd> on your keyboard to open the <strong>Code Builder</strong>.</li>
             <li>In the Code Builder window, choose <strong>MakeCode</strong>.</li>

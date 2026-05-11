@@ -95,6 +95,12 @@
         align-self: flex-start;
       }
 
+      .lesson-card .lesson-num.setup { background: #1f4e79; }
+
+      .lesson-card.setup-card { border-color: #1f4e79; }
+      .lesson-card.setup-card:hover { border-color: #1f4e79; }
+      .lesson-card.setup-card .lesson-open { color: #1f4e79; }
+
       .lesson-card h3 {
         color: #2c3e50;
         font-size: 1.2rem;
@@ -166,9 +172,26 @@
           <p class="mb-0">These lessons cover the same programming concepts you'll see in <strong>AP Computer Science Principles</strong> &mdash; sequence, events, debugging, loops, conditionals, and procedures &mdash; with the Minecraft Agent as your test subject.</p>
         </div>
 
+        <div class="intro-card" style="background: #eef3f8; border-left-color: #1f4e79;">
+          <h2 style="color: #14365a;"><i class="bi bi-arrow-clockwise"></i> Start every lesson with Lesson 0</h2>
+          <p class="mb-0">Before every Minecraft lesson, complete <a href="lesson0/"><strong>Lesson 0 &mdash; World Setup</strong></a> to create a fresh, distraction-free flat world. A new world every time keeps your work organized and prevents leftover blocks from previous lessons getting in your way.</p>
+        </div>
+
         <h2 class="h4 mb-3 text-muted">Available Lessons</h2>
 
         <div class="lesson-grid">
+          <a href="lesson0/" class="lesson-card setup-card">
+            <span class="lesson-num setup">Lesson 0 &middot; Setup</span>
+            <h3>Get Minecraft Ready</h3>
+            <p class="lesson-sub">World setup &mdash; do this before every lesson</p>
+            <p>
+              Turn on fullscreen and create a brand-new flat world with the right settings: show coordinates, always day, no mobs, no weather. Five-minute reset before each Minecraft lesson.
+            </p>
+            <span class="lesson-open">
+              Open Lesson 0 <i class="bi bi-arrow-right"></i>
+            </span>
+          </a>
+
           <a href="lesson1/" class="lesson-card">
             <span class="lesson-num">Lesson 1</span>
             <h3>Controlling the Agent</h3>
