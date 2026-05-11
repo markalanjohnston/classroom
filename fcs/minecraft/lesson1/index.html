@@ -373,6 +373,7 @@
           <div class="code-wrap">
             <button class="copy-btn" data-target="starterCode">Copy</button>
 <pre class="code-block" id="starterCode">def on_chat():
+    agent.set_item(STONE, 1, 1)
     agent.move(FORWARD, 5)
     agent.turn(LEFT_TURN)
     agent.move(FORWARD, 5)
@@ -383,12 +384,17 @@ player.on_chat("road", on_chat)</pre>
           <h3>What this program says</h3>
           <ul class="tight">
             <li><code class="inline">def on_chat():</code> &mdash; defines a <strong>function</strong> named <code class="inline">on_chat</code> that holds the instructions for the Agent. The indented lines below it belong to this function.</li>
+            <li><code class="inline">agent.set_item(STONE, 1, 1)</code> &mdash; <em>loads the Agent's inventory</em>. The Agent can't place a block out of thin air; you have to tell it which block to place. This puts 1 <code class="inline">STONE</code> in slot 1 of the Agent's inventory.</li>
             <li><code class="inline">agent.move(FORWARD, 5)</code> &mdash; the Agent moves forward 5 blocks.</li>
             <li><code class="inline">agent.turn(LEFT_TURN)</code> &mdash; the Agent turns left.</li>
             <li><code class="inline">agent.move(FORWARD, 5)</code> &mdash; the Agent moves forward 5 more blocks.</li>
-            <li><code class="inline">agent.place(DOWN)</code> &mdash; the Agent places a block below itself.</li>
+            <li><code class="inline">agent.place(DOWN)</code> &mdash; the Agent places a block below itself <em>from</em> its inventory (the stone you loaded above).</li>
             <li><code class="inline">player.on_chat("road", on_chat)</code> &mdash; <em>this is the <strong>event</strong></em>. It tells Minecraft to run <code class="inline">on_chat</code> whenever the player types <code class="inline">road</code> in chat.</li>
           </ul>
+
+          <div class="key-fact">
+            <strong>Why <code>set_item</code> matters:</strong> If you skip the <code class="inline">agent.set_item(...)</code> line, the Agent will still move &mdash; but <code class="inline">agent.place(DOWN)</code> will silently do nothing because the Agent has nothing in its hand to place. This is a common "it ran but didn't work" bug.
+          </div>
 
           <details class="predict">
             <summary><i class="bi bi-question-circle-fill"></i> Predict before you run it &mdash; what shape will the Agent's path make in the world?</summary>
@@ -517,7 +523,7 @@ player.on_chat("turn", on_chat)</pre>
 
           <h3>Stretch goals (try if you finish early)</h3>
           <ul class="tight">
-            <li>Use <code class="inline">agent.place(DOWN)</code> to place blocks as the Agent walks &mdash; it creates a trail.</li>
+            <li>Use <code class="inline">agent.place(DOWN)</code> after each move to leave a trail of blocks. If you want a long trail, raise the stone quantity at the top &mdash; e.g., <code class="inline">agent.set_item(STONE, 64, 1)</code> for a full stack.</li>
             <li>Make a shape that another student would recognize.</li>
             <li>Add <strong>comments</strong> (lines starting with <code class="inline">#</code>) above each section of your code to explain what it does.</li>
           </ul>
