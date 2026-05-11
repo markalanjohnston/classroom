@@ -1,121 +1,52 @@
-<div style="max-width: 900px; margin: 0 auto; font-family: Arial, sans-serif; line-height: 1.5; color: #222;">
-
-  <div style="background: #1f4e79; color: white; padding: 18px; border-radius: 8px; text-align: center;">
-    <h2 style="margin: 0; font-size: 28px;">Minecraft MakeCode Lesson 1</h2>
-    <p style="margin: 6px 0 0 0; font-size: 18px;"><strong>Sequencing, Events, and Agent Movement</strong></p>
-  </div>
-
-  <div style="border: 2px solid #1f4e79; padding: 15px; margin-top: 15px; border-radius: 8px;">
-    <h3 style="margin-top: 0; color: #1f4e79;">Today&rsquo;s Big Idea</h3>
-    <p>
-      Today we will use <strong>Minecraft MakeCode</strong> to control the Agent with code.
-      You will write instructions that run in order, test your program, find mistakes, and improve your code.
-    </p>
-    <p>
-      This lesson connects directly to programming concepts you will see next year in
-      <strong>AP Computer Science Principles</strong>.
-    </p>
-  </div>
-
-  <div style="background: #f2f6fa; border-left: 6px solid #1f4e79; padding: 15px; margin-top: 15px;">
-    <h3 style="margin-top: 0;">Learning Objectives</h3>
-    <p>By the end of class, you should be able to:</p>
-    <ul>
-      <li>Explain why the <strong>order</strong> of code matters.</li>
-      <li>Use an <strong>event</strong>, such as a chat command, to start a program.</li>
-      <li>Write a sequence of commands that moves the Minecraft Agent.</li>
-      <li>Test and debug code when the Agent does not do what you expected.</li>
-      <li>Modify starter code to create your own Minecraft build.</li>
-    </ul>
-  </div>
-
-  <div style="border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 8px;">
-    <h3 style="margin-top: 0;">Key Vocabulary</h3>
-    <table style="width: 100%; border-collapse: collapse;">
-      <tr>
-        <th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5;">Term</th>
-        <th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5;">Meaning</th>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ccc; padding: 8px;"><strong>Sequence</strong></td>
-        <td style="border: 1px solid #ccc; padding: 8px;">The order that instructions run in a program.</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ccc; padding: 8px;"><strong>Event</strong></td>
-        <td style="border: 1px solid #ccc; padding: 8px;">Something that starts code, such as typing a command.</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ccc; padding: 8px;"><strong>Agent</strong></td>
-        <td style="border: 1px solid #ccc; padding: 8px;">A Minecraft character that follows your code instructions.</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ccc; padding: 8px;"><strong>Debugging</strong></td>
-        <td style="border: 1px solid #ccc; padding: 8px;">Finding and fixing mistakes in code.</td>
-      </tr>
-    </table>
-  </div>
-
-  <div style="background: #fff8e1; border: 1px solid #e0b000; padding: 15px; margin-top: 15px; border-radius: 8px;">
-    <h3 style="margin-top: 0;">What We Will Do Today</h3>
-    <ol>
-      <li>Review how computers follow instructions exactly as written.</li>
-      <li>Open Minecraft MakeCode and connect to the Agent.</li>
-      <li>Copy and run starter code.</li>
-      <li>Modify the code to change what the Agent does.</li>
-      <li>Create your own maze entrance, path, or simple structure.</li>
-      <li>Submit evidence of your work.</li>
-    </ol>
-  </div>
-
-  <div style="border: 2px solid #4a7c2f; padding: 15px; margin-top: 15px; border-radius: 8px;">
-    <h3 style="margin-top: 0; color: #4a7c2f;">Starter Code</h3>
-    <p>
-      We will begin with code similar to this. Do not worry if it does not make sense yet.
-      We will break it down together.
-    </p>
-
-<pre style="background: #f4f4f4; border: 1px solid #ccc; padding: 12px; overflow-x: auto;"><code>def on_chat():
-    agent.set_item(STONE, 1, 1)
-    agent.move(FORWARD, 5)
-    agent.turn(LEFT_TURN)
-    agent.move(FORWARD, 5)
-    agent.destroy(DOWN)
-    agent.place(DOWN)
-player.on_chat("road", on_chat)</code></pre>
-
-    <p>
-      After we test it, your job will be to change the code and make the Agent do something new.
-    </p>
-  </div>
-
-  <div style="background: #f2f6fa; border-left: 6px solid #4a7c2f; padding: 15px; margin-top: 15px;">
-    <h3 style="margin-top: 0;">Success Criteria</h3>
-    <p>Your work is successful when you can show:</p>
-    <ul>
-      <li>Your Agent moves using code.</li>
-      <li>Your program starts from a chat command.</li>
-      <li>Your code includes several steps in the correct order.</li>
-      <li>You changed the starter code instead of only copying it.</li>
-      <li>You can explain at least one bug you fixed.</li>
-    </ul>
-  </div>
-
-  <div style="border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 8px;">
-    <h3 style="margin-top: 0;">What You Will Submit</h3>
-    <ul>
-      <li>A screenshot of your code.</li>
-      <li>A screenshot of what your Agent built or changed in Minecraft.</li>
-      <li>A short reflection answering:
-        <br><strong>What did your code do, and what did you have to fix?</strong>
-      </li>
-    </ul>
-  </div>
-
-  <div style="background: #1f4e79; color: white; padding: 15px; margin-top: 15px; border-radius: 8px;">
-    <h3 style="margin-top: 0;">Essential Question</h3>
-    <p style="font-size: 18px; margin-bottom: 0;">
-      How does the order of instructions affect what a program does?
-    </p>
-  </div>
-
+<div style="max-width: 900px; margin: 0 auto; font-family: Arial, sans-serif; line-height: 1.5; color: #222;" dir="ltr">
+<div style="background: #1f4e79; color: #ffffff; padding: 18px; border-radius: 8px; text-align: center;">
+<h2 style="margin: 0; font-size: 28px;" dir="ltr">Minecraft MakeCode Lesson 1</h2>
+<p style="margin: 6px 0 0 0; font-size: 18px;"><strong>Sequencing, Events, and Agent Movement</strong></p>
+</div>
+<div style="border: 2px solid #1f4e79; padding: 15px; margin-top: 15px; border-radius: 8px;">
+<h3 style="margin-top: 0; color: #1f4e79;">Today&rsquo;s Big Idea</h3>
+<p>Today we will use <strong>Minecraft MakeCode</strong> to control the Agent with code. You will write instructions that run in order, test your program, find mistakes, and improve your code.</p>
+<p>This lesson connects directly to programming concepts you will see next year in <strong>AP Computer Science Principles</strong>.</p>
+</div>
+<div style="background: #f2f6fa; border-left: 6px solid #1f4e79; padding: 15px; margin-top: 15px;">
+<h3 style="margin-top: 0;">Learning Objectives</h3>
+<p>By the end of class, you should be able to:</p>
+<ul>
+<li>Explain why the <strong>order</strong> of code matters.</li>
+<li>Use an <strong>event</strong>, such as a chat command, to start a program.</li>
+<li>Write a sequence of commands that moves the Minecraft Agent.</li>
+<li>Test and debug code when the Agent does not do what you expected.</li>
+<li>Modify starter code to create your own Minecraft build.</li>
+<li>Use a loop to create something.</li>
+</ul>
+</div>
+<div style="border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 8px;">
+<h3 style="margin-top: 0;">Key Vocabulary</h3>
+<table style="width: 100%; border-collapse: collapse;">
+<tbody>
+<tr><th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5;">Term</th><th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5;">Meaning</th></tr>
+<tr>
+<td style="border: 1px solid #ccc; padding: 8px;"><strong>Sequence</strong></td>
+<td style="border: 1px solid #ccc; padding: 8px;">The order that instructions run in a program.</td>
+</tr>
+<tr>
+<td style="border: 1px solid #ccc; padding: 8px;"><strong>Event</strong></td>
+<td style="border: 1px solid #ccc; padding: 8px;">Something that starts code, such as typing a command.</td>
+</tr>
+<tr>
+<td style="border: 1px solid #ccc; padding: 8px;"><strong>Agent</strong></td>
+<td style="border: 1px solid #ccc; padding: 8px;">A Minecraft character that follows your code instructions.</td>
+</tr>
+<tr>
+<td style="border: 1px solid #ccc; padding: 8px;"><strong>Debugging</strong></td>
+<td style="border: 1px solid #ccc; padding: 8px;">Finding and fixing mistakes in code.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="background: #fff8e1; border: 1px solid #e0b000; padding: 15px; margin-top: 15px; border-radius: 8px; text-align: center;">
+<h3 style="margin-top: 0;">Open Today&rsquo;s Lesson</h3>
+<p>Click the button below to open the full Minecraft MakeCode lesson page.</p>
+<p style="margin: 20px 0 5px 0;"><a style="background: #1f4e79; color: #ffffff; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-size: 18px; font-weight: bold;" href="https://classroom.mjstem.com/fcs/minecraft/"> Go to Minecraft MakeCode Lesson </a></p>
+</div>
 </div>
