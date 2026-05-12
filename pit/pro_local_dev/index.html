@@ -1,0 +1,676 @@
+---
+---
+<!-- File: classroom/pit/pro_local_dev/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIT — Transitioning to Professional Local Development</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .lesson-header {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .lesson-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .lesson-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .topic-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+        border: 1px solid #e9ecef;
+      }
+      .topic-section h2 {
+        color: #dc3545;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .topic-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.15rem; }
+      .topic-section p, .topic-section li { line-height: 1.6; }
+
+      .block-tag {
+        display: inline-block;
+        background: #fce4e6;
+        color: #b02a37;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .checkpoint {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .checkpoint strong { color: #0f5132; }
+
+      .reflection {
+        background: #cfe2ff;
+        border-left: 4px solid #0d6efd;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .reflection strong { color: #084298; }
+
+      /* Profession Connection — the "this skill shows up in other careers too" box */
+      .profession-connection {
+        background: linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
+        border: 2px solid #7e57c2;
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin: 20px 0;
+      }
+      .profession-connection h3 {
+        color: #4527a0;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .profession-connection h3 i { color: #7e57c2; }
+      .profession-connection p, .profession-connection li { color: #311b92; line-height: 1.6; }
+      .profession-connection ul { margin-bottom: 0; }
+      .profession-connection .tag {
+        display: inline-block;
+        background: #7e57c2;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: 2px 10px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      pre.code {
+        background: #1e1e1e;
+        color: #f8f8f2;
+        padding: 14px 18px;
+        border-radius: 6px;
+        font-family: 'Courier New', Consolas, monospace;
+        font-size: 0.92rem;
+        overflow-x: auto;
+        margin: 10px 0;
+      }
+      code.inline {
+        background: #fdecea;
+        color: #b02a37;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-weight: 600;
+        font-family: 'Courier New', Consolas, monospace;
+      }
+
+      .definition-table {
+        width: 100%;
+        margin: 15px 0;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .definition-table th {
+        background: #dc3545;
+        color: white;
+        padding: 10px 14px;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      .definition-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e9ecef;
+        vertical-align: top;
+        font-size: 0.95rem;
+      }
+      .definition-table tr:last-child td { border-bottom: none; }
+
+      .more-info {
+        background: #fff5f5;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 20px;
+      }
+      .more-info h3 { color: #dc3545; margin-bottom: 12px; }
+      .more-info ul { margin-bottom: 0; padding-left: 20px; }
+      .more-info li { margin-bottom: 8px; line-height: 1.5; }
+      .more-info a { color: #b02a37; text-decoration: none; font-weight: 600; }
+      .more-info a:hover { text-decoration: underline; }
+      .source-note { font-size: 0.88rem; color: #495057; }
+
+      .objective-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .objective-grid li {
+        background: white;
+        border-left: 3px solid #dc3545;
+        padding: 10px 14px;
+        list-style: none;
+        border-radius: 4px;
+        font-size: 0.95rem;
+      }
+      .objective-grid ul { padding: 0; margin: 0; }
+
+      ul.tight li { margin-bottom: 6px; }
+
+      .block-time {
+        display: inline-block;
+        background: #6c757d;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Practicum in Information Technology</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Transitioning to Professional Local Development</span>
+      </nav>
+
+      <div class="lesson-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to PIT Home</a>
+
+        <div class="lesson-header">
+          <h1><i class="bi bi-code-square"></i> Transitioning to Professional Local Development</h1>
+          <p class="subtitle">From CMU Academy in the browser &rarr; VS Code + Python + CMU Graphics + Git on a real machine · 3-hour practicum</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Opening: "Every profession has a workflow" -->
+        <!-- ============================================================ -->
+        <div class="profession-connection">
+          <h3><i class="bi bi-briefcase-fill"></i> <span class="tag">Open</span> Why this matters for every career, not just coders</h3>
+          <p><strong>Every profession has a "workflow."</strong> Pilots run a pre-flight checklist before every flight. Surgeons follow a sterile-field protocol. Accountants close the books on a fixed monthly cadence. Line cooks follow <em>mise en place</em>. The work looks different, but the pattern is identical: a sequence of steps, in a specific order, with specific tools, that produces reliable results.</p>
+          <p>Today, you're going to learn the <strong>professional software development workflow</strong>: set up environment &rarr; write code &rarr; verify it runs &rarr; commit a snapshot &rarr; iterate. Even if you never write code professionally, the bigger skill you're practicing &mdash; <em>learning a new workflow quickly and following it without skipping steps</em> &mdash; is exactly what employers in every field hire for. CTE Standard <code class="inline">130.312(c)(1)(B)</code> calls this out by name: <em>flexibility, open-mindedness, initiative, and willingness to learn new knowledge and skills.</em></p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- What this lesson covers -->
+        <!-- ============================================================ -->
+        <div class="topic-section" style="background: #fff8e9; border-color: #ffc107;">
+          <h2 style="color: #856404;"><i class="bi bi-bullseye"></i> What You Will Do Today</h2>
+          <p>You will move one of your own CMU Academy programs out of the browser and into a real local development environment, then use Git to take versioned snapshots of your work &mdash; the same way professional developers do every day.</p>
+
+          <h3 style="color: #856404;">Learning Objectives</h3>
+          <p>By the end of this 3-hour practicum, you will be able to:</p>
+          <div class="objective-grid">
+            <ul>
+              <li><strong>1.</strong> Verify a working professional Python environment (VS Code + Python) on a local machine.</li>
+              <li><strong>2.</strong> Install <code class="inline">cmu-graphics</code> with <code class="inline">pip</code> and run a CMU Graphics program locally.</li>
+              <li><strong>3.</strong> Migrate one of your CMU Academy programs into VS Code with improved formatting, naming, and comments.</li>
+              <li><strong>4.</strong> Initialize a local Git repository and create meaningful commits.</li>
+              <li><strong>5.</strong> Articulate <em>why</em> version control matters &mdash; and recognize parallel "workflow" and "versioning" practices in other industries.</li>
+              <li><strong>6.</strong> Submit a professional PDF deliverable documenting today's work.</li>
+            </ul>
+          </div>
+
+          <h3 style="color: #856404;">Today's Blocks</h3>
+          <ul class="tight">
+            <li><strong>Block 1</strong> &mdash; Mission Briefing &amp; Environment Validation <span class="block-time">0&ndash;25 min</span></li>
+            <li><strong>Block 2</strong> &mdash; Installing &amp; Testing CMU Graphics <span class="block-time">25&ndash;60 min</span></li>
+            <li><strong>Block 3</strong> &mdash; Importing a Real CMU Program <span class="block-time">60&ndash;100 min</span></li>
+            <li><strong>Block 4</strong> &mdash; Introduction to Git <span class="block-time">100&ndash;130 min</span></li>
+            <li><strong>Block 5</strong> &mdash; Iteration &amp; Versioning <span class="block-time">130&ndash;160 min</span></li>
+            <li><strong>Block 6</strong> &mdash; Final Deliverable Submission <span class="block-time">160&ndash;180 min</span></li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 1 -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-1-circle-fill"></i> Block 1 &mdash; Environment Validation<span class="block-tag">0&ndash;25 min</span></h2>
+          <p>Before you write a single line of code, professional developers <em>verify</em> their environment. A bad PATH, missing interpreter, or wrong terminal will silently waste hours later. Validate first, then code.</p>
+
+          <h3>Your tasks</h3>
+          <ol>
+            <li>Open <strong>VS Code</strong>.</li>
+            <li>Open the integrated terminal (<code class="inline">Ctrl + `</code> or View &rarr; Terminal).</li>
+            <li>Verify Python is installed and on PATH:
+              <pre class="code">python --version</pre>
+              You should see something like <code class="inline">Python 3.x.x</code>. If you see "command not found" or a Microsoft Store popup, raise your hand &mdash; that's a PATH issue.
+            </li>
+            <li>Create a project folder named exactly:
+              <pre class="code">cmu-local-project</pre>
+            </li>
+            <li>Open that folder in VS Code (File &rarr; Open Folder).</li>
+            <li>Create a new file <code class="inline">hello.py</code> with one line:
+              <pre class="code">print("Python works!")</pre>
+            </li>
+            <li>Run it from the terminal:
+              <pre class="code">python hello.py</pre>
+            </li>
+          </ol>
+
+          <div class="checkpoint">
+            <strong>Checkpoint screenshots (save for your PDF):</strong>
+            <ul class="tight mb-0">
+              <li>Terminal showing <code class="inline">python --version</code> output</li>
+              <li>Terminal showing successful execution of <code class="inline">hello.py</code></li>
+            </ul>
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-clipboard-check-fill"></i> <span class="tag">Pre-flight</span> "Validate before you fly" is everywhere</h3>
+            <p>Verifying your environment before coding is the same instinct as a pilot's pre-flight checklist or a surgeon's "time-out" before incision. The pattern: confirm tools, confirm conditions, <em>then</em> begin the work. Industries that adopted this idea formally:</p>
+            <ul class="tight">
+              <li><strong>Aviation</strong> &mdash; pre-flight checklists (cockpit, fuel, weather) before every takeoff.</li>
+              <li><strong>Medicine</strong> &mdash; the WHO Surgical Safety Checklist is used in operating rooms worldwide.</li>
+              <li><strong>Construction</strong> &mdash; daily Job Hazard Analysis and equipment inspection before work begins.</li>
+              <li><strong>Restaurants</strong> &mdash; line cooks do <em>mise en place</em> (everything in its place) before service.</li>
+            </ul>
+            <p class="mt-2 mb-0">"It works on my machine" is the developer version of skipping the checklist. Don't.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 2 -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-2-circle-fill"></i> Block 2 &mdash; Installing &amp; Testing CMU Graphics<span class="block-tag">25&ndash;60 min</span></h2>
+          <p>You'll use <strong>pip</strong> (Python's standard package manager) to install <code class="inline">cmu-graphics</code> on your local machine and verify that a graphics window opens outside the browser.</p>
+
+          <h3>Install the package</h3>
+          <pre class="code">pip install cmu-graphics</pre>
+          <p>If <code class="inline">pip</code> reports a permissions or network error, screenshot the exact error text &mdash; documented failures are still full credit, and the error text is what the supervisor will help you triage.</p>
+
+          <h3>Smoke-test program</h3>
+          <p>Create <code class="inline">smoke_test.py</code>:</p>
+          <pre class="code">from cmu_graphics import *
+
+app.background = 'black'
+Circle(200, 200, 50, fill='lime')
+
+cmu_graphics.run()</pre>
+          <p>Run it. A window should open with a black background and a green circle.</p>
+
+          <div class="checkpoint">
+            <strong>Checkpoint:</strong> Screenshot of the open CMU Graphics window <em>plus</em> the terminal that launched it. If the window does not open, screenshot the error and write a one-sentence diagnosis.
+          </div>
+
+          <div class="reflection">
+            <strong>Reflection (1 short paragraph in your PDF):</strong> What advantages or disadvantages did you notice running CMU Graphics locally instead of in the browser? Consider: speed, file access, debugging, sharing your work, dependencies.
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-box-seam-fill"></i> <span class="tag">Packages</span> Package managers exist in almost every modern toolchain</h3>
+            <p><code class="inline">pip install</code> feels like a coding-only thing, but the same pattern &mdash; <em>"pull in a trusted third-party component instead of building from scratch"</em> &mdash; runs almost every modern industry. Once you understand the idea here, you'll spot it in fields that aren't software at all:</p>
+            <ul class="tight">
+              <li><strong>Architects &amp; engineers</strong> use Revit/AutoCAD <em>component libraries</em> &mdash; pre-built doors, HVAC, fixtures.</li>
+              <li><strong>Musicians &amp; producers</strong> install plugin packs (VSTs, sample libraries) into their DAW.</li>
+              <li><strong>Designers</strong> import Adobe component libraries and Figma <em>design systems</em>.</li>
+              <li><strong>Accountants</strong> install QuickBooks/Xero <em>add-ons</em> for industry-specific reporting.</li>
+            </ul>
+            <p class="mt-2 mb-0">The shared mental model: a registry, a trusted source, a version, and dependency on other components. That's <code class="inline">pip</code>, <code class="inline">npm</code>, the App Store, and an architect's CAD library &mdash; all the same idea.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 3 -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-3-circle-fill"></i> Block 3 &mdash; Importing a Real CMU Program<span class="block-tag">60&ndash;100 min</span></h2>
+          <p>Choose one of your existing CMU Academy programs &mdash; ideally one you're proud of. You'll copy it into VS Code and bring it up to a professional baseline.</p>
+
+          <h3>Required improvements</h3>
+          <ul class="tight">
+            <li>Copy the program into a new file in <code class="inline">cmu-local-project</code> (e.g. <code class="inline">my_program.py</code>).</li>
+            <li>Add the <code class="inline">from cmu_graphics import *</code> import if it's missing.</li>
+            <li>Add the <code class="inline">cmu_graphics.run()</code> call at the bottom.</li>
+            <li>Rename any unclear variables (no more <code class="inline">x1</code>, <code class="inline">temp</code>, <code class="inline">stuff</code>).</li>
+            <li>Add <strong>at least 3 comments</strong> explaining <em>why</em> something is there (not just <em>what</em> it does).</li>
+            <li>Clean indentation; break long lines.</li>
+          </ul>
+
+          <div class="key-fact">
+            <strong>Watch out:</strong> CMU Academy is forgiving about some things that the local <code class="inline">cmu-graphics</code> package is stricter about &mdash; case sensitivity, missing imports, and the explicit <code class="inline">cmu_graphics.run()</code> call. If your program ran in Academy but not locally, that's exactly the kind of "browser vs. real environment" delta you should document.
+          </div>
+
+          <div class="checkpoint">
+            <strong>Checkpoint:</strong> Screenshot of your imported program running locally, plus a short note (1&ndash;2 sentences) on any differences you had to resolve.
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-file-earmark-text-fill"></i> <span class="tag">Documentation</span> "Comment why, not what" is a writing skill, not a coding skill</h3>
+            <p>The instinct to leave behind a clear paper trail of <em>why</em> a decision was made is one of the highest-paid soft skills in any career &mdash; not because writing comments is hard, but because most professionals don't do it. A few examples of where this same skill shows up:</p>
+            <ul class="tight">
+              <li><strong>Medicine</strong> &mdash; chart notes (SOAP format) record <em>why</em> a clinician made a decision, not just what they did. Insurance audits and malpractice cases hinge on this.</li>
+              <li><strong>Law</strong> &mdash; legal memos and briefs cite reasoning, not just outcomes.</li>
+              <li><strong>Engineering</strong> &mdash; design rationale documents accompany every set of CAD drawings.</li>
+              <li><strong>Journalism</strong> &mdash; reporters keep "source notes" that explain why a fact was included or omitted.</li>
+              <li><strong>Customer service</strong> &mdash; ticket notes that say "called back at 3pm, customer requested upgrade because of X" beat "talked to customer" every time.</li>
+            </ul>
+            <p class="mt-2 mb-0">If you can write a clear "why" comment, you can write a clear chart note, brief, ticket, or design doc. Same muscle.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 4 -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-4-circle-fill"></i> Block 4 &mdash; Introduction to Git<span class="block-tag">100&ndash;130 min</span></h2>
+          <p>Git is the version control system used by ~90% of professional software teams. The concepts in this block are the ones that show up on day one of any internship or developer job.</p>
+
+          <h3>Vocabulary you need today</h3>
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 28%;">Term</th><th>One-line meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Version control</strong></td><td>A system that tracks every change to your files so you can review, revert, or collaborate without losing work.</td></tr>
+              <tr><td><strong>Git</strong></td><td>The most widely used version control <em>software</em>. It runs locally on your machine.</td></tr>
+              <tr><td><strong>GitHub / Gitea</strong></td><td><em>Hosting services</em> for Git repositories &mdash; not Git itself. (Think: Word vs. OneDrive.)</td></tr>
+              <tr><td><strong>Repository (repo)</strong></td><td>A folder Git is tracking. The history lives inside a hidden <code class="inline">.git</code> directory.</td></tr>
+              <tr><td><strong>Commit</strong></td><td>A snapshot of your project at a moment in time, with a message describing the change.</td></tr>
+              <tr><td><strong>Staging area</strong></td><td>The "shopping cart" of changes you've selected to include in the next commit.</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Your Git tasks</h3>
+          <p>From the terminal, inside <code class="inline">cmu-local-project</code>:</p>
+          <pre class="code">git init
+git status
+git add .
+git commit -m "Initial local CMU project"
+git log</pre>
+
+          <div class="key-fact">
+            <strong>Read the output, don't just run the commands.</strong> <code class="inline">git status</code> tells you exactly what state the repo is in. If your commit message looks wrong, fix it &mdash; the log is permanent.
+          </div>
+
+          <div class="checkpoint">
+            <strong>Checkpoint:</strong> Screenshot of <code class="inline">git status</code> showing a clean tree after committing, and the <code class="inline">git log</code> output showing your first commit (hash + message + your name).
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-clock-history"></i> <span class="tag">Versioning</span> Version control existed long before Git &mdash; in every serious industry</h3>
+            <p>Git is the software developer's flavor of an idea that nearly every regulated or collaborative profession already uses. If you understand the <em>concept</em> here, you'll recognize it immediately in these fields:</p>
+            <ul class="tight">
+              <li><strong>Law</strong> &mdash; "redline" comparisons and Word's Track Changes are versioning. Contracts are amended through dated, numbered revisions.</li>
+              <li><strong>Engineering &amp; manufacturing</strong> &mdash; CAD files and Bills of Materials are tracked through PLM (Product Lifecycle Management) systems with full revision history, approvals, and rollback. The discipline is called <em>configuration management</em>.</li>
+              <li><strong>Accounting &amp; finance</strong> &mdash; audit trails. SOX (Sarbanes-Oxley) and SEC rules require every change to financial records to be traceable to who, when, why.</li>
+              <li><strong>Healthcare</strong> &mdash; EHR (Electronic Health Records) systems are append-only by law. You can't edit a chart note &mdash; you add an addendum. That's a commit.</li>
+              <li><strong>Film &amp; music production</strong> &mdash; Pro Tools, Avid, and Final Cut all keep snapshot/version history. "We need the cut from Tuesday" is a checkout.</li>
+              <li><strong>Government &amp; legislation</strong> &mdash; bills are tracked through numbered revisions; the U.S. Code is essentially a permanent change log of all federal law.</li>
+            </ul>
+            <p class="mt-2 mb-0">Different tools, same idea: <em>never overwrite the past &mdash; always be able to answer "what did it look like on Tuesday, and who changed it?"</em></p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 5 -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-5-circle-fill"></i> Block 5 &mdash; Iteration &amp; Versioning<span class="block-tag">130&ndash;160 min</span></h2>
+          <p>One commit isn't version control &mdash; it's a save. You earn the benefits of Git by committing <em>often</em>, with <em>meaningful messages</em>, as you make real changes.</p>
+
+          <h3>Make at least two more commits</h3>
+          <p>Modify your program in a meaningful way. Pick one or more:</p>
+          <ul class="tight">
+            <li>Change colors / styling</li>
+            <li>Add animation or movement</li>
+            <li>Add keyboard or mouse interaction</li>
+            <li>Change the layout or add a new shape group</li>
+            <li>Refactor a section for clarity</li>
+          </ul>
+          <p>Then:</p>
+          <pre class="code">git status
+git add .
+git commit -m "Improved visuals and added keyboard interaction"</pre>
+          <p>Repeat with a second meaningful change and a second descriptive commit message.</p>
+
+          <div class="key-fact">
+            <strong>Commit message rules of thumb:</strong>
+            <ul class="tight mb-0">
+              <li>Imperative mood: <em>"Add animation"</em> &mdash; not <em>"Added animation"</em> or <em>"Adding animation"</em>.</li>
+              <li>Specific: <em>"Fix circle off-screen on resize"</em> beats <em>"bug fix"</em>.</li>
+              <li>~50 characters for the summary line.</li>
+            </ul>
+          </div>
+
+          <div class="reflection">
+            <strong>Reflection (full sentences, in your PDF):</strong>
+            <ol class="mb-0">
+              <li>Why might version control be important in professional software development?</li>
+              <li>What problems could arise if a team of developers worked without version control?</li>
+              <li>How could Git help teams collaborate more effectively than emailing files around?</li>
+            </ol>
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-arrow-repeat"></i> <span class="tag">Iteration</span> Iterative work is the dominant model in modern industry</h3>
+            <p>"Make a small change, test it, capture the result, repeat" is the same engine that powers:</p>
+            <ul class="tight">
+              <li><strong>Manufacturing</strong> &mdash; <em>kaizen</em> (Toyota's continuous improvement) and Lean methodology. Every change is small, measured, documented.</li>
+              <li><strong>Marketing</strong> &mdash; A/B testing. Run version A, run version B, keep the winner, repeat.</li>
+              <li><strong>Design</strong> &mdash; design sprints, low-fi prototypes, user testing iterations.</li>
+              <li><strong>Education</strong> &mdash; formative assessment cycles: teach, assess, adjust, re-teach.</li>
+              <li><strong>Medicine</strong> &mdash; clinical trial phases I &rarr; II &rarr; III; each builds on the prior.</li>
+            </ul>
+            <p class="mt-2 mb-0">"Big-bang" work &mdash; one giant attempt with no checkpoints &mdash; lost out in most industries decades ago. If you internalize the commit-often habit here, you'll be ahead of most adults at their jobs.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 6 -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-6-circle-fill"></i> Block 6 &mdash; Final Deliverable<span class="block-tag">160&ndash;180 min</span></h2>
+          <p>Compile everything into a single professional PDF named <code class="inline">LASTNAME_FIRSTNAME_LocalDevPracticum.pdf</code> and submit it through Schoology.</p>
+
+          <h3>Required sections (in this order)</h3>
+          <ol>
+            <li><strong>Cover page</strong> &mdash; your name, date, class period, lab title.</li>
+            <li><strong>Environment validation</strong> &mdash; screenshots from Block 1 (Python version, hello.py run).</li>
+            <li><strong>CMU Graphics local test</strong> &mdash; screenshot of the smoke-test window plus your short paragraph on local vs. browser differences.</li>
+            <li><strong>Imported program</strong> &mdash; screenshot of your program running, with notes on what you had to change.</li>
+            <li><strong>Git repository evidence</strong> &mdash; screenshots of <code class="inline">git status</code>, the first <code class="inline">git commit</code>, and <code class="inline">git log</code> showing all three of your commits.</li>
+            <li><strong>Iteration log</strong> &mdash; describe the two changes you made in Block 5 and why.</li>
+            <li><strong>Critical reflection</strong> &mdash; 2 well-developed paragraphs covering: what you learned, how local dev differs from browser-based coding, why version control matters, and which of the "Profession Connection" callouts from this lesson surprised you most.</li>
+          </ol>
+
+          <div class="key-fact">
+            <strong>Submission rules:</strong> Single PDF, professional formatting (headings, captions on screenshots, complete sentences). No screenshots of screenshots. No upside-down phone photos of your monitor.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Grading -->
+        <!-- ============================================================ -->
+        <div class="topic-section" style="background: #f0f7ff;">
+          <h2 style="color: #0d6efd;"><i class="bi bi-check2-square"></i> Grading Breakdown</h2>
+          <table class="definition-table">
+            <thead>
+              <tr><th>Category</th><th style="width: 20%;">Points</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Environment setup completed (Block 1)</td><td>20</td></tr>
+              <tr><td>CMU Graphics runs locally (Block 2)</td><td>20</td></tr>
+              <tr><td>Git initialized &amp; 3+ meaningful commits (Blocks 4&ndash;5)</td><td>20</td></tr>
+              <tr><td>Screenshots / professional documentation</td><td>20</td></tr>
+              <tr><td>Reflection quality</td><td>20</td></tr>
+              <tr><td><strong>Total</strong></td><td><strong>100</strong></td></tr>
+            </tbody>
+          </table>
+          <p class="mt-2 mb-0"><em>Honest <strong>documented</strong> failures (with the exact error text) are worth full credit on the affected sections. Pretending something worked when it didn't is academic dishonesty.</em></p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Finished early -->
+        <!-- ============================================================ -->
+        <div class="topic-section">
+          <h2><i class="bi bi-rocket-takeoff-fill"></i> Finished Early?</h2>
+          <ul class="tight">
+            <li>Add more interaction to your program (mouse events, keyboard handlers, animation timing).</li>
+            <li>Make additional commits with clean messages &mdash; build a multi-line <code class="inline">git log</code>.</li>
+            <li>Intentionally break your code, then use <code class="inline">git restore .</code> or <code class="inline">git checkout &lt;hash&gt; -- .</code> to roll back. Document what happened.</li>
+            <li>Help a classmate troubleshoot their environment &mdash; mentoring others is on the TEKS rubric too.</li>
+            <li>Read ahead about <code class="inline">.gitignore</code> and create one that excludes <code class="inline">__pycache__/</code>.</li>
+            <li>If the classroom Gitea server is configured, attempt to push your local repo to a remote (instructions on board).</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Surprising places coding shows up -->
+        <!-- ============================================================ -->
+        <div class="profession-connection">
+          <h3><i class="bi bi-globe2"></i> <span class="tag">Career</span> "Even a little coding" shows up in fields you wouldn't expect</h3>
+          <p>If you're sitting in this class thinking <em>"I'm not going to be a developer, so why does this matter?"</em> &mdash; here's the honest answer: <strong>almost every modern field has at least one role where basic Python, SQL, or Excel automation is the difference between two equally qualified candidates.</strong></p>
+          <ul class="tight">
+            <li><strong>Journalism</strong> &mdash; "data journalism" desks at the <em>New York Times</em>, <em>Washington Post</em>, <em>ProPublica</em>, and the <em>Texas Tribune</em> use Python and R every day to analyze public records and government data.</li>
+            <li><strong>Law</strong> &mdash; e-discovery firms hire paralegals who can write small scripts to filter millions of emails. "Legal tech" is one of the fastest-growing job categories in law.</li>
+            <li><strong>Medicine &amp; public health</strong> &mdash; R is the dominant language of biostatistics. Epidemiologists, hospital quality teams, and public health departments run on it.</li>
+            <li><strong>Sports</strong> &mdash; every MLB, NBA, and NFL team now has an analytics department. The starting credential is often Python, R, or SQL &mdash; not a sports management degree.</li>
+            <li><strong>Agriculture</strong> &mdash; John Deere and Climate Corp run "precision agriculture" platforms on Python. Farm managers analyze soil sensor data the same way a developer reads server logs.</li>
+            <li><strong>Marketing &amp; e-commerce</strong> &mdash; the people who can pull their own data out of Google Analytics or a CRM with a script get promoted faster than those who file tickets for it.</li>
+            <li><strong>Finance &amp; accounting</strong> &mdash; Excel is the floor; Python (for analysis) and SQL (for pulling data) are the ceiling. Most large firms now teach Python in onboarding.</li>
+            <li><strong>Film, photography, &amp; design</strong> &mdash; batch processing (renaming, resizing, exporting thousands of files) is a Python one-liner. Studios pay for that skill.</li>
+            <li><strong>Government &amp; nonprofits</strong> &mdash; civic-tech roles (data.gov, U.S. Digital Service, Code for America) hire people who can translate between policy and code.</li>
+          </ul>
+          <p class="mt-2 mb-0">You don't need a CS degree to use any of this. You need <em>just enough</em> coding to not be the person who has to ask someone else every time. Today's lesson is part of building that "just enough."</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Quick command reference -->
+        <!-- ============================================================ -->
+        <div class="topic-section" style="background: #1e1e1e; color: #f8f8f2; border-color: #000;">
+          <h2 style="color: #ff6b6b;"><i class="bi bi-terminal-fill"></i> Quick Command Reference</h2>
+          <pre class="code" style="background: #0d0d0d;"># Check Python is installed
+python --version
+
+# Install CMU Graphics
+pip install cmu-graphics
+
+# Run a Python file
+python my_program.py
+
+# Git: initialize a repo (do this once per project)
+git init
+
+# Git: see what state the repo is in (use this constantly)
+git status
+
+# Git: stage all changes
+git add .
+
+# Git: take a snapshot
+git commit -m "Descriptive message in imperative mood"
+
+# Git: see your commit history
+git log
+
+# Git: see what you changed since last commit
+git diff
+
+# Git: throw away local edits (CAREFUL)
+git restore &lt;file&gt;</pre>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- More info / trusted sources -->
+        <!-- ============================================================ -->
+        <div class="more-info">
+          <h3><i class="bi bi-bookmark-star-fill"></i> More Info &mdash; Trusted Sources</h3>
+          <p class="source-note">Bookmark these. They are the references professional developers actually use &mdash; not random blog posts.</p>
+          <ul>
+            <li>
+              <a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">Official Python Tutorial</a>
+              &mdash; The canonical Python introduction, maintained by the Python core team.
+            </li>
+            <li>
+              <a href="https://code.visualstudio.com/docs/python/python-tutorial" target="_blank" rel="noopener">VS Code &mdash; Python in VS Code</a>
+              &mdash; Microsoft's official walkthrough of the Python extension, interpreters, and the integrated terminal.
+            </li>
+            <li>
+              <a href="https://academy.cs.cmu.edu/docs" target="_blank" rel="noopener">CMU Graphics Documentation</a>
+              &mdash; Reference for shapes, events, and the <code class="inline">cmu_graphics</code> library you're using locally.
+            </li>
+            <li>
+              <a href="https://pip.pypa.io/en/stable/" target="_blank" rel="noopener">pip Documentation</a>
+              &mdash; The official Python package installer docs.
+            </li>
+            <li>
+              <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Pro Git Book (free, official)</a>
+              &mdash; The book published by the Git project itself. Chapter 1&ndash;2 covers everything you used today.
+            </li>
+            <li>
+              <a href="https://www.atlassian.com/git/tutorials/what-is-version-control" target="_blank" rel="noopener">Atlassian &mdash; What is Version Control?</a>
+              &mdash; Plain-English overview of why version control exists and how Git compares to older systems.
+            </li>
+            <li>
+              <a href="https://tea.texas.gov/about-tea/laws-and-rules/sboe-rules-tac/sboe-tac-currently-in-effect/ch130c.pdf" target="_blank" rel="noopener">Texas TEKS &mdash; §130.312 Practicum in IT</a>
+              &mdash; The official standards this course is graded against.
+            </li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to PIT Home</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
