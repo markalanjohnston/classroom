@@ -232,12 +232,63 @@
 
   const scores = {}; // id -> 0..10 tier
 
-  function commentForTier(v) {
-    if (v === 0) return 'Missing item.';
-    if (v <= 3) return 'Poor, lacks effort.';
-    if (v <= 7) return 'Missing some things, or I just can\'t see it.';
-    if (v <= 9) return 'Great work.';
-    return 'Excellent.';
+  const COMMENTS = {
+    effort: {
+      0:  'Unprofessional — off task, disruptive, or absent for most of the block.',
+      lo: 'Off task throughout the block.',
+      md: 'Some off-task behavior, but generally working.',
+      hi: 'Excellent professional engagement throughout the block.'
+    },
+    cover: {
+      0:  'No cover page.',
+      lo: 'Missing most required info (name, date, period, or lab title).',
+      md: 'Most info present, but formatting is sloppy or one element is missing.',
+      hi: 'Clean, professional cover page with all required info.'
+    },
+    env: {
+      0:  'No environment verification evidence.',
+      lo: 'Missing key evidence — Python version, VS Code, or hello.py running.',
+      md: 'Some screenshots present, but missing captions or one required piece.',
+      hi: 'All required screenshots with clear captions.'
+    },
+    cmu: {
+      0:  'No evidence of running CMU Graphics locally.',
+      lo: 'Screenshot is missing the terminal or the graphics window — can\'t verify it ran locally.',
+      md: 'Ran locally, but the local-vs-browser reflection is thin or missing.',
+      hi: 'Clear local screenshot plus thoughtful local-vs-browser comparison.'
+    },
+    imported: {
+      0:  'Did not import own program.',
+      lo: 'Program shown but not actually running, or no visible code-quality improvements.',
+      md: 'Running locally, but minimal improvements or no notes on what had to change.',
+      hi: 'Imported program running locally with clear improvements and change notes.'
+    },
+    git: {
+      0:  'No Git evidence.',
+      lo: 'Missing screenshots, or commit messages are meaningless (“asdf”, “update”).',
+      md: 'All three screenshots present, but commit messages are weak or one is missing.',
+      hi: 'Three clear screenshots with meaningful commit messages.'
+    },
+    log: {
+      0:  'No iteration log.',
+      lo: 'Only one change documented, or no “why” explanation.',
+      md: 'Both changes described, but missing commit links or written as fragments.',
+      hi: 'Both changes fully described with what, why, and commit links.'
+    },
+    refl: {
+      0:  'No reflection.',
+      lo: 'One short paragraph, or filler with no real substance.',
+      md: 'Two paragraphs, but missing one of the required prompts.',
+      hi: 'Two well-developed paragraphs covering all required prompts.'
+    }
+  };
+
+  function commentForTier(secId, v) {
+    const c = COMMENTS[secId];
+    if (v === 0) return c[0];
+    if (v <= 4) return c.lo;
+    if (v <= 8) return c.md;
+    return c.hi;
   }
 
   function pointsForSection(sec, v) {
@@ -253,7 +304,7 @@
     });
     const pts = pointsForSection(sec, val);
     root.querySelector('.score-value').textContent = pts + ' / ' + sec.max;
-    root.querySelector('.comment').textContent = commentForTier(val);
+    root.querySelector('.comment').textContent = commentForTier(secId, val);
     updateSummary();
   }
 
@@ -267,7 +318,7 @@
       } else {
         const pts = pointsForSection(sec, v);
         total += pts;
-        lines.push(sec.label + ': ' + pts + '/' + sec.max + ' — ' + commentForTier(v));
+        lines.push(sec.label + ': ' + pts + '/' + sec.max + ' — ' + commentForTier(sec.id, v));
       }
     });
     document.getElementById('total').textContent = total;
