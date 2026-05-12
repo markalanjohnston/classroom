@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Map — Teacher Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11pt;
+      line-height: 1.45;
+      color: #212529;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 60px 24px;
+      background: #f7f7f8;
+    }
+
+    .sticky-top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #f7f7f8;
+      padding: 18px 0 12px 0;
+      margin-bottom: 18px;
+      border-bottom: 1px solid #d8d8de;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #4f5ed6 100%);
+      color: #fff;
+      padding: 16px 22px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .page-header img {
+      width: 56px;
+      height: auto;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+    }
+
+    .page-header h1 { margin: 0 0 2px 0; font-size: 1.25rem; }
+    .page-header .subtitle { margin: 0; opacity: 0.9; font-size: 0.92rem; }
+
+    .teacher-banner {
+      background: #b3261e;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 3px;
+      font-weight: 700;
+      padding: 5px 0;
+      margin: 0 0 10px 0;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .controls input[type="search"] {
+      flex: 1 1 320px;
+      padding: 8px 12px;
+      border: 1px solid #b0b0ba;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    .controls input[type="search"]:focus {
+      outline: 2px solid #1e3a8a;
+      outline-offset: -1px;
+      border-color: #1e3a8a;
+    }
+
+    .controls label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.88rem;
+      color: #495057;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .counts {
+      font-size: 0.82rem;
+      color: #555;
+      margin-left: auto;
+    }
+
+    .counts .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    .counts .pill.student { background: #e3edfa; color: #0a3a7a; }
+    .counts .pill.teacher { background: #fde2dd; color: #7a1a14; }
+    .counts .pill.total { background: #e9ecef; color: #212529; }
+
+    h2.section {
+      font-size: 1.1rem;
+      color: #1e3a8a;
+      border-bottom: 2px solid #1e3a8a;
+      padding-bottom: 4px;
+      margin: 22px 0 4px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    h2.section .section-link {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: #1e3a8a;
+      text-decoration: none;
+    }
+
+    h2.section .section-link:hover { text-decoration: underline; }
+
+    h2.section .section-desc {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: #6c757d;
+      margin-left: auto;
+    }
+
+    h3.subsection {
+      font-size: 0.95rem;
+      color: #495057;
+      margin: 14px 0 4px 0;
+      padding-left: 6px;
+      border-left: 3px solid #adb5bd;
+    }
+
+    ul.pages {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px 0;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background 0.1s;
+    }
+
+    .page:hover { background: #eef0f5; }
+
+    .page[hidden] { display: none; }
+
+    .page .badge {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 18px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .page[data-type="student"] .badge {
+      background: #2e5b9a;
+    }
+
+    .page[data-type="teacher"] .badge {
+      background: #b3261e;
+    }
+
+    .page .body { min-width: 0; }
+
+    .page a.path {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88rem;
+      color: #0a3a7a;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .page[data-type="teacher"] a.path {
+      color: #7a1a14;
+    }
+
+    .page a.path:hover { text-decoration: underline; }
+
+    .page .desc {
+      font-size: 0.85rem;
+      color: #495057;
+      margin-top: 1px;
+      line-height: 1.35;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: #6c757d;
+      font-style: italic;
+      padding: 30px 0;
+      display: none;
+    }
+
+    .empty-msg.show { display: block; }
+
+    .footnote {
+      font-size: 0.82rem;
+      color: #6c757d;
+      border-top: 1px solid #d8d8de;
+      padding-top: 12px;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 720px) {
+      .counts { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sticky-top">
+    <div class="page-header">
+      <img src="images/johnston-small.png" alt="Mr. Johnston">
+      <div>
+        <h1>Site Map &mdash; Teacher Admin</h1>
+        <p class="subtitle">Every page on classroom.mjstem.com, grouped by course. Click a path to open it.</p>
+      </div>
+    </div>
+
+    <div class="teacher-banner">TEACHER ADMIN &mdash; NOT LINKED FROM PUBLIC NAV</div>
+
+    <div class="controls">
+      <input type="search" id="filter" placeholder="Filter by path or description (e.g. 'pseudocode', 'quiz', 'lesson308')&hellip;" autocomplete="off">
+      <label><input type="checkbox" id="show-student" checked> student</label>
+      <label><input type="checkbox" id="show-teacher" checked> teacher</label>
+      <span class="counts">
+        Showing <span id="count-shown">0</span> of <span id="count-total">0</span>
+        <span class="pill student"><span id="count-student">0</span> student</span>
+        <span class="pill teacher"><span id="count-teacher">0</span> teacher</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- ================= SITE ROOT ================= -->
+  <h2 class="section">Site Root
+    <a class="section-link" href="index.html">/</a>
+    <span class="section-desc">Top-level pages</span>
+  </h2>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="index.html">index.html</a><div class="desc">Site landing page for Mr. Johnston's Classroom.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="about.html">about.html</a><div class="desc">Biography and background for Mr. Johnston.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="welcome/index.html">welcome/index.html</a><div class="desc">Welcome page for parents/students explaining how courses are organized.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="welcome/index-es.html">welcome/index-es.html</a><div class="desc">Spanish translation of the welcome page.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="no-phones-sign.html">no-phones-sign.html</a><div class="desc">Printable classroom device policy sign for Room D156.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="no-phones-sign-schoology.html">no-phones-sign-schoology.html</a><div class="desc">Phone policy sign formatted for Schoology posting.</div></div></li>
+  </ul>
+
+  <!-- ================= APCSP ================= -->
+  <h2 class="section">APCSP
+    <a class="section-link" href="apcsp/">apcsp/</a>
+    <span class="section-desc">AP Computer Science Principles</span>
+  </h2>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/index.html">apcsp/index.html</a><div class="desc">APCSP course landing page with links to syllabus, CMU lessons, and exam review.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/syllabus.html">apcsp/syllabus.html</a><div class="desc">Course syllabus &mdash; expectations, grading, and policies.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">apcsp/cmu-csp/ &mdash; CMU programming lessons</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/cmu-csp/index.html">apcsp/cmu-csp/index.html</a><div class="desc">CMU AP CSP programming quarter overview and lesson directory.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/cmu-csp/teacher.html">apcsp/cmu-csp/teacher.html</a><div class="desc">Teacher resource hub for the CMU AP CSP quarter.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/cmu-csp/lesson705.html">apcsp/cmu-csp/lesson705.html</a><div class="desc">Lesson 705 &mdash; Unit 1 Creative Task introduction.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/cmu-csp/lesson706.html">apcsp/cmu-csp/lesson706.html</a><div class="desc">Lesson 706 &mdash; Unit 2 function basics.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/cmu-csp/lesson706-teacher.html">apcsp/cmu-csp/lesson706-teacher.html</a><div class="desc">Teacher lesson plan for lesson 706.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/cmu-csp/lesson707.html">apcsp/cmu-csp/lesson707.html</a><div class="desc">Lesson 707 &mdash; multiple parameters, function practice.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/cmu-csp/lesson707-teacher.html">apcsp/cmu-csp/lesson707-teacher.html</a><div class="desc">Teacher lesson plan for lesson 707.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/cmu-csp/lesson708.html">apcsp/cmu-csp/lesson708.html</a><div class="desc">Lesson 708 &mdash; mouse events (onMousePress/onMouseRelease).</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/cmu-csp/lesson708-teacher.html">apcsp/cmu-csp/lesson708-teacher.html</a><div class="desc">Teacher lesson plan for lesson 708.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">apcsp/review/ &mdash; Exam review (4-class plan)</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/review/index.html">apcsp/review/index.html</a><div class="desc">Exam review hub &mdash; priority topics, audio overview, and the four review unit cards.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/review/practice/index.html">apcsp/review/practice/index.html</a><div class="desc">20-question mixed MCQ practice set from the released 2021 AP CSP exam.</div></div></li>
+
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/review/internet/index.html">apcsp/review/internet/index.html</a><div class="desc">Internet Basics review &mdash; packets, DNS, protocols, fault tolerance, bandwidth vs. latency.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/internet/teacher_resources/index.html">apcsp/review/internet/teacher_resources/index.html</a><div class="desc">Teacher landing page for the Internet Basics review.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/internet/teacher_resources/schoology_post.html">apcsp/review/internet/teacher_resources/schoology_post.html</a><div class="desc">Schoology agenda post HTML for the Internet Basics lesson.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/internet/teacher_resources/quiz.html">apcsp/review/internet/teacher_resources/quiz.html</a><div class="desc">10-question printable quiz: short answer / fill-in-the-blank.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/internet/teacher_resources/quiz_key.html">apcsp/review/internet/teacher_resources/quiz_key.html</a><div class="desc">Answer key for the Internet Basics quiz, with misconception watch-fors.</div></div></li>
+
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/review/cybersecurity/index.html">apcsp/review/cybersecurity/index.html</a><div class="desc">Cybersecurity &amp; encryption review &mdash; symmetric/asymmetric, certificates, MFA, threats, PII.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/cybersecurity/teacher_resources/index.html">apcsp/review/cybersecurity/teacher_resources/index.html</a><div class="desc">Teacher landing page for the cybersecurity review.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/cybersecurity/teacher_resources/schoology_post.html">apcsp/review/cybersecurity/teacher_resources/schoology_post.html</a><div class="desc">Schoology agenda post HTML for the cybersecurity lesson.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/cybersecurity/teacher_resources/quiz.html">apcsp/review/cybersecurity/teacher_resources/quiz.html</a><div class="desc">Printable cybersecurity quiz: short answer, fill-in, matching.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/cybersecurity/teacher_resources/quiz_key.html">apcsp/review/cybersecurity/teacher_resources/quiz_key.html</a><div class="desc">Answer key for the cybersecurity quiz.</div></div></li>
+
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="apcsp/review/pseudocode/index.html">apcsp/review/pseudocode/index.html</a><div class="desc">Reading Pseudocode review &mdash; assignment, MOD, IF/ELSE, REPEAT, lists, procedures, robot commands.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/pseudocode/teacher_resources/index.html">apcsp/review/pseudocode/teacher_resources/index.html</a><div class="desc">Teacher landing page for the pseudocode review.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/pseudocode/teacher_resources/schoology_post.html">apcsp/review/pseudocode/teacher_resources/schoology_post.html</a><div class="desc">Schoology agenda post HTML for the pseudocode lesson.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/pseudocode/teacher_resources/partner_tracing_handout.html">apcsp/review/pseudocode/teacher_resources/partner_tracing_handout.html</a><div class="desc">Two-page partner tracing practice handout with trace tables.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="apcsp/review/pseudocode/teacher_resources/partner_tracing_handout_key.html">apcsp/review/pseudocode/teacher_resources/partner_tracing_handout_key.html</a><div class="desc">Answer key for the partner tracing handout, including the trap-question response.</div></div></li>
+  </ul>
+
+  <!-- ================= EDP ================= -->
+  <h2 class="section">EDP
+    <a class="section-link" href="edp/">edp/</a>
+    <span class="section-desc">Engineering Design Process</span>
+  </h2>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="edp/index.html">edp/index.html</a><div class="desc">EDP course landing page.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="edp/syllabus.html">edp/syllabus.html</a><div class="desc">EDP course syllabus and policies.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="edp/weekly-agenda.html">edp/weekly-agenda.html</a><div class="desc">Full-page weekly agenda (Google Sheets backed).</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="edp/weekly-agenda-iframe.html">edp/weekly-agenda-iframe.html</a><div class="desc">Iframe-friendly version of the weekly agenda for embedding in Schoology.</div></div></li>
+  </ul>
+
+  <!-- ================= FCS ================= -->
+  <h2 class="section">FCS
+    <a class="section-link" href="fcs/">fcs/</a>
+    <span class="section-desc">Foundations of Computer Science</span>
+  </h2>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/index.html">fcs/index.html</a><div class="desc">FCS course landing page.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/syllabus.html">fcs/syllabus.html</a><div class="desc">FCS course syllabus, objectives, and grading.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/advanced/index.html">fcs/advanced/index.html</a><div class="desc">Running CMU programs locally &mdash; advanced local development setup.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">fcs/cmu-cs1/ &mdash; CMU CS1 programming semester</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/index.html">fcs/cmu-cs1/index.html</a><div class="desc">CMU CS1 lesson directory and semester overview.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/teacher.html">fcs/cmu-cs1/teacher.html</a><div class="desc">Teacher resource hub for CMU CS1.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson302.html">fcs/cmu-cs1/lesson302.html</a><div class="desc">Lesson 302 &mdash; getting started with CMU CS Academy.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson302-teacher.html">fcs/cmu-cs1/lesson302-teacher.html</a><div class="desc">Teacher plan for lesson 302.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson303.html">fcs/cmu-cs1/lesson303.html</a><div class="desc">Lesson 303 &mdash; Unit 1.2 colors and graphics.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson303-teacher.html">fcs/cmu-cs1/lesson303-teacher.html</a><div class="desc">Teacher plan for lesson 303.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson304.html">fcs/cmu-cs1/lesson304.html</a><div class="desc">Lesson 304 &mdash; Unit 1.3 shapes and drawing.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson304-teacher.html">fcs/cmu-cs1/lesson304-teacher.html</a><div class="desc">Teacher plan for lesson 304.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson305.html">fcs/cmu-cs1/lesson305.html</a><div class="desc">Lesson 305 &mdash; Flex Day #1, student-choice activity.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson305-teacher.html">fcs/cmu-cs1/lesson305-teacher.html</a><div class="desc">Teacher resource guide for lesson 305.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson306.html">fcs/cmu-cs1/lesson306.html</a><div class="desc">Lesson 306 &mdash; Unit 1 exercises catch-up.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson306-teacher.html">fcs/cmu-cs1/lesson306-teacher.html</a><div class="desc">Teacher plan for lesson 306.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson307.html">fcs/cmu-cs1/lesson307.html</a><div class="desc">Lesson 307 &mdash; Unit 1 creative mini-task project.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson307-teacher.html">fcs/cmu-cs1/lesson307-teacher.html</a><div class="desc">Teacher plan for lesson 307.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson308.html">fcs/cmu-cs1/lesson308.html</a><div class="desc">Lesson 308 &mdash; functions and mouse events.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson308-teacher.html">fcs/cmu-cs1/lesson308-teacher.html</a><div class="desc">Teacher plan for lesson 308.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson309.html">fcs/cmu-cs1/lesson309.html</a><div class="desc">Lesson 309 &mdash; properties and object manipulation.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson309-teacher.html">fcs/cmu-cs1/lesson309-teacher.html</a><div class="desc">Teacher plan for lesson 309.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson310.html">fcs/cmu-cs1/lesson310.html</a><div class="desc">Lesson 310 &mdash; Unit 2 exercises practice set.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/lesson310-teacher.html">fcs/cmu-cs1/lesson310-teacher.html</a><div class="desc">Teacher plan for lesson 310.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">fcs/cmu-cs1/unit4/ &mdash; Conditional statements unit</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/unit4/index.html">fcs/cmu-cs1/unit4/index.html</a><div class="desc">Unit 4 interactive lesson with embedded visualizer.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/unit4/lesson-for-observer.html">fcs/cmu-cs1/unit4/lesson-for-observer.html</a><div class="desc">Unit 4 observation support guide (handout for classroom observers).</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/unit4/lesson-for-teacher.html">fcs/cmu-cs1/unit4/lesson-for-teacher.html</a><div class="desc">Unit 4 90-minute observation lesson plan.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/unit4/vocab-cards.html">fcs/cmu-cs1/unit4/vocab-cards.html</a><div class="desc">Conditional statements vocabulary cards for printing.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">fcs/cmu-cs1/cmu-to-mobile/ &mdash; CMU Graphics &rarr; mobile app</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/cmu-cs1/cmu-to-mobile/index.html">fcs/cmu-cs1/cmu-to-mobile/index.html</a><div class="desc">Self-paced advanced lesson: porting CMU Graphics projects to a mobile app.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/cmu-cs1/cmu-to-mobile/teacher.html">fcs/cmu-cs1/cmu-to-mobile/teacher.html</a><div class="desc">Teacher overview and implementation guide for the mobile port unit.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">fcs/minecraft/ &mdash; Minecraft MakeCode lessons</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/minecraft/index.html">fcs/minecraft/index.html</a><div class="desc">Minecraft MakeCode lesson hub &mdash; block coding and sequencing.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/minecraft/lesson0/index.html">fcs/minecraft/lesson0/index.html</a><div class="desc">Lesson 0 &mdash; world setup and agent introduction.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/minecraft/lesson1/index.html">fcs/minecraft/lesson1/index.html</a><div class="desc">Lesson 1 &mdash; controlling the Agent with code.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/minecraft/lesson1/teacher_resources/schoology_post.html">fcs/minecraft/lesson1/teacher_resources/schoology_post.html</a><div class="desc">Schoology agenda post for Minecraft Lesson 1.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/minecraft/lesson2/index.html">fcs/minecraft/lesson2/index.html</a><div class="desc">Lesson 2 &mdash; loops and repetition patterns.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="fcs/minecraft/lesson2/teacher_resources/schoology_post.html">fcs/minecraft/lesson2/teacher_resources/schoology_post.html</a><div class="desc">Schoology agenda post for Minecraft Lesson 2.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="fcs/minecraft/lesson3/index.html">fcs/minecraft/lesson3/index.html</a><div class="desc">Lesson 3 &mdash; the Builder and relative coordinates.</div></div></li>
+  </ul>
+
+  <!-- ================= PAE ================= -->
+  <h2 class="section">PAE
+    <a class="section-link" href="pae/">pae/</a>
+    <span class="section-desc">Principles of Applied Engineering</span>
+  </h2>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/index.html">pae/index.html</a><div class="desc">PAE course landing page.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/syllabus.html">pae/syllabus.html</a><div class="desc">PAE syllabus, labs, and grading policy.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/weekly-agenda.html">pae/weekly-agenda.html</a><div class="desc">PAE weekly agenda (full page).</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/weekly-agenda-iframe.html">pae/weekly-agenda-iframe.html</a><div class="desc">PAE weekly agenda optimized for iframe embedding.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">pae/projects/ &mdash; Project pages</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/projects/index.html">pae/projects/index.html</a><div class="desc">Projects hub with links to data visualization projects.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/projects/data-visualization.html">pae/projects/data-visualization.html</a><div class="desc">Data Visualization Project 1 &mdash; interactive charts and analysis.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/projects/data-visualization2.html">pae/projects/data-visualization2.html</a><div class="desc">Population Data Visualization &mdash; comparing four countries.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">pae/study/ &mdash; Chapter study guides</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/study/index.html">pae/study/index.html</a><div class="desc">Study guides hub with chapter-by-chapter review.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/study/ch4-study-guide.html">pae/study/ch4-study-guide.html</a><div class="desc">Chapter 4 study guide.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/study/ch5-study-guide.html">pae/study/ch5-study-guide.html</a><div class="desc">Chapter 5 study guide.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/study/ch9-study-guide.html">pae/study/ch9-study-guide.html</a><div class="desc">Chapter 9 study guide.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/study/ch10-study-guide.html">pae/study/ch10-study-guide.html</a><div class="desc">Chapter 10 study guide.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/study/ch11-study-guide.html">pae/study/ch11-study-guide.html</a><div class="desc">Chapter 11 study guide.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">pae/vocab/ &mdash; Vocabulary game</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/vocab/index.html">pae/vocab/index.html</a><div class="desc">Chapter selector for the vocabulary game.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/vocab/game.html">pae/vocab/game.html</a><div class="desc">Interactive vocabulary game with flashcard quizzes and certificate output.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pae/vocab/certificate.html">pae/vocab/certificate.html</a><div class="desc">Printable completion certificate for the vocab game.</div></div></li>
+  </ul>
+
+  <!-- ================= PIT ================= -->
+  <h2 class="section">PIT
+    <a class="section-link" href="pit/">pit/</a>
+    <span class="section-desc">Principles of Information Technology</span>
+  </h2>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/index.html">pit/index.html</a><div class="desc">PIT course landing page and unit overview.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/syllabus.html">pit/syllabus.html</a><div class="desc">PIT course syllabus and grading rubric.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/weekly-agenda.html">pit/weekly-agenda.html</a><div class="desc">PIT weekly lesson schedule and agenda.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">pit/unit01/ &mdash; Problem identification &amp; solution design</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/unit01/index.html">pit/unit01/index.html</a><div class="desc">Unit 1 overview &mdash; six sessions across the design cycle.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/unit01/session01.html">pit/unit01/session01.html</a><div class="desc">Session 1 &mdash; problem identification and research.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/unit01/session02.html">pit/unit01/session02.html</a><div class="desc">Session 2 &mdash; solution design and planning.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/unit01/session02-checkpoint.html">pit/unit01/session02-checkpoint.html</a><div class="desc">Session 2 checkpoint &mdash; progress review.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/unit01/session03.html">pit/unit01/session03.html</a><div class="desc">Session 3 &mdash; implementation and testing.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/unit01/session04.html">pit/unit01/session04.html</a><div class="desc">Session 4 &mdash; evaluation and iteration.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/unit01/session05.html">pit/unit01/session05.html</a><div class="desc">Session 5 &mdash; documentation and reflection.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/unit01/session06.html">pit/unit01/session06.html</a><div class="desc">Session 6 &mdash; final project presentation.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">pit/pro_local_dev/ &mdash; Professional local development</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/pro_local_dev/index.html">pit/pro_local_dev/index.html</a><div class="desc">Transitioning to professional local development with VS Code and Git.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="pit/pro_local_dev/teacher_resources/schoology_post.html">pit/pro_local_dev/teacher_resources/schoology_post.html</a><div class="desc">Schoology agenda post for the Pro Local Dev lesson.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="pit/pro_local_dev/teacher_resources/quiz.html">pit/pro_local_dev/teacher_resources/quiz.html</a><div class="desc">Pro Local Dev practicum quiz.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="pit/pro_local_dev/teacher_resources/quiz_key.html">pit/pro_local_dev/teacher_resources/quiz_key.html</a><div class="desc">Pro Local Dev quiz answer key.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="pit/pro_local_dev/teacher_resources/grading_key.html">pit/pro_local_dev/teacher_resources/grading_key.html</a><div class="desc">Pro Local Dev grading key with section-by-section rubric and per-value comments.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">pit/python-deployment-lab/ &mdash; Python environment lab</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/python-deployment-lab/index.html">pit/python-deployment-lab/index.html</a><div class="desc">Python deployment lab &mdash; environment setup and validation.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="pit/python-deployment-lab/teacher_resources/schoology_post.html">pit/python-deployment-lab/teacher_resources/schoology_post.html</a><div class="desc">Schoology agenda post for the Python deployment lab.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">pit/gitea_remote/ &mdash; Self-hosted Git remotes</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="pit/gitea_remote/index.html">pit/gitea_remote/index.html</a><div class="desc">Publishing to the classroom Gitea server.</div></div></li>
+  </ul>
+
+  <!-- ================= WIN ================= -->
+  <h2 class="section">WIN
+    <a class="section-link" href="win/">win/</a>
+    <span class="section-desc">WIN Robotics</span>
+  </h2>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/index.html">win/index.html</a><div class="desc">WIN Robotics course landing page.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/robotics.html">win/robotics.html</a><div class="desc">WIN Robotics class information and syllabus details.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/hoc.html">win/hoc.html</a><div class="desc">Hour of Code &mdash; CMU Academy robotics tutorials.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/binary-quiz.html">win/binary-quiz.html</a><div class="desc">Interactive binary number conversion quiz with certificate output.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/binary-visualizer.html">win/binary-visualizer.html</a><div class="desc">Interactive binary place-value visualizer.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/weekly-agenda.html">win/weekly-agenda.html</a><div class="desc">WIN Robotics weekly schedule and agenda.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/weekly-agenda-iframe.html">win/weekly-agenda-iframe.html</a><div class="desc">WIN agenda optimized for iframe embedding.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">win/programming-challenges/blocks/ &mdash; Block-coding track</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/index.html">win/programming-challenges/index.html</a><div class="desc">Programming challenges overview &mdash; blocks vs. Python track selector.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/blocks/index.html">win/programming-challenges/blocks/index.html</a><div class="desc">Block-coding challenges landing page.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/blocks/getting-started.html">win/programming-challenges/blocks/getting-started.html</a><div class="desc">Getting started with VEX VR block coding.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/blocks/basic-movement.html">win/programming-challenges/blocks/basic-movement.html</a><div class="desc">Basic movement block challenges.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/blocks/decision-making.html">win/programming-challenges/blocks/decision-making.html</a><div class="desc">Decision making (if/else) block challenges.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/blocks/loops-patterns.html">win/programming-challenges/blocks/loops-patterns.html</a><div class="desc">Loops and patterns block challenges.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/blocks/sensors-detection.html">win/programming-challenges/blocks/sensors-detection.html</a><div class="desc">Sensors and detection block challenges.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/blocks/rover-rescue.html">win/programming-challenges/blocks/rover-rescue.html</a><div class="desc">Rover Rescue block-coding mission.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/blocks/challenge-projects.html">win/programming-challenges/blocks/challenge-projects.html</a><div class="desc">Block-coding culminating challenge projects.</div></div></li>
+  </ul>
+
+  <h3 class="subsection">win/programming-challenges/python/ &mdash; Python track</h3>
+  <ul class="pages">
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/python/index.html">win/programming-challenges/python/index.html</a><div class="desc">Python challenges landing page.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/python/getting-started.html">win/programming-challenges/python/getting-started.html</a><div class="desc">Getting started with Python in VEX VR.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/python/basic-movement.html">win/programming-challenges/python/basic-movement.html</a><div class="desc">Basic movement Python challenges.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/python/decision-making.html">win/programming-challenges/python/decision-making.html</a><div class="desc">Decision making (if/else) Python challenges.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/python/loops-patterns.html">win/programming-challenges/python/loops-patterns.html</a><div class="desc">Loops and patterns Python challenges.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/python/sensors-detection.html">win/programming-challenges/python/sensors-detection.html</a><div class="desc">Sensors and detection Python challenges.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/python/rover-rescue.html">win/programming-challenges/python/rover-rescue.html</a><div class="desc">Rover Rescue Python mission.</div></div></li>
+    <li class="page" data-type="student"><span class="badge">S</span><div class="body"><a class="path" href="win/programming-challenges/python/challenge-projects.html">win/programming-challenges/python/challenge-projects.html</a><div class="desc">Python culminating challenge projects.</div></div></li>
+  </ul>
+
+  <!-- ================= TEACHERTOOLS ================= -->
+  <h2 class="section">Teacher Tools
+    <a class="section-link" href="teachertools/">teachertools/</a>
+    <span class="section-desc">Standalone classroom utilities</span>
+  </h2>
+  <ul class="pages">
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="teachertools/index.html">teachertools/index.html</a><div class="desc">Teacher tools hub.</div></div></li>
+    <li class="page" data-type="teacher"><span class="badge">T</span><div class="body"><a class="path" href="teachertools/thermo/index.html">teachertools/thermo/index.html</a><div class="desc">Classroom thermometer / energy-level utility.</div></div></li>
+  </ul>
+
+  <div class="empty-msg" id="empty-msg">No pages match the current filter.</div>
+
+  <div class="footnote">
+    This page is not linked from the public site navigation but <strong>is publicly accessible</strong> if someone guesses the URL. Don't put anything sensitive here. Generated from the file tree on 2026-05-12.
+  </div>
+
+  <script>
+    (function () {
+      const filterInput = document.getElementById('filter');
+      const showStudent = document.getElementById('show-student');
+      const showTeacher = document.getElementById('show-teacher');
+      const emptyMsg = document.getElementById('empty-msg');
+      const pages = Array.from(document.querySelectorAll('.page'));
+      const sections = Array.from(document.querySelectorAll('h2.section, h3.subsection, ul.pages'));
+
+      const countShown = document.getElementById('count-shown');
+      const countTotal = document.getElementById('count-total');
+      const countStudent = document.getElementById('count-student');
+      const countTeacher = document.getElementById('count-teacher');
+
+      const total = pages.length;
+      const totalStudent = pages.filter(p => p.dataset.type === 'student').length;
+      const totalTeacher = pages.filter(p => p.dataset.type === 'teacher').length;
+      countTotal.textContent = total;
+      countStudent.textContent = totalStudent;
+      countTeacher.textContent = totalTeacher;
+
+      function apply() {
+        const q = filterInput.value.trim().toLowerCase();
+        const wantStudent = showStudent.checked;
+        const wantTeacher = showTeacher.checked;
+        let shown = 0;
+
+        pages.forEach(p => {
+          const type = p.dataset.type;
+          const typeOk = (type === 'student' && wantStudent) || (type === 'teacher' && wantTeacher);
+          const text = p.textContent.toLowerCase();
+          const matches = q === '' || text.includes(q);
+          const visible = typeOk && matches;
+          p.hidden = !visible;
+          if (visible) shown++;
+        });
+
+        countShown.textContent = shown;
+        emptyMsg.classList.toggle('show', shown === 0);
+
+        // Hide section headings whose following <ul> has no visible pages.
+        document.querySelectorAll('ul.pages').forEach(ul => {
+          const anyVisible = Array.from(ul.querySelectorAll('.page')).some(p => !p.hidden);
+          ul.style.display = anyVisible ? '' : 'none';
+        });
+        document.querySelectorAll('h3.subsection').forEach(h => {
+          const ul = h.nextElementSibling;
+          if (ul && ul.tagName === 'UL') {
+            h.style.display = ul.style.display === 'none' ? 'none' : '';
+          }
+        });
+        document.querySelectorAll('h2.section').forEach(h => {
+          // h2 is followed by any combo of: ul, h3, ul, h3, ul ... until next h2.
+          let sib = h.nextElementSibling;
+          let anyChildVisible = false;
+          while (sib && sib.tagName !== 'H2') {
+            if ((sib.tagName === 'UL' && sib.style.display !== 'none') ||
+                (sib.tagName === 'H3' && sib.style.display !== 'none')) {
+              anyChildVisible = true;
+              break;
+            }
+            sib = sib.nextElementSibling;
+          }
+          h.style.display = anyChildVisible ? '' : 'none';
+        });
+      }
+
+      filterInput.addEventListener('input', apply);
+      showStudent.addEventListener('change', apply);
+      showTeacher.addEventListener('change', apply);
+      apply();
+    })();
+  </script>
+
+</body>
+</html>
