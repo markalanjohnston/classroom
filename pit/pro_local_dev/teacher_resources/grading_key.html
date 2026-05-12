@@ -220,7 +220,7 @@
 
 <script>
   const SECTIONS = [
-    { id: 'effort',   label: 'Effort & Professional Engagement', max: 30 },
+    { id: 'effort',   label: 'Effort & Professional Engagement', max: 30, scale: [0, 5, 10, 15, 20, 25, 30] },
     { id: 'cover',    label: 'Cover Page',                       max: 10 },
     { id: 'env',      label: 'Environment Verification',         max: 10 },
     { id: 'cmu',      label: 'CMU Graphics Local Test',          max: 10 },
@@ -230,14 +230,17 @@
     { id: 'refl',     label: 'Critical Reflection',              max: 10 }
   ];
 
-  const scores = {}; // id -> 0..10 tier
+  const scores = {}; // id -> selected point value
 
   const COMMENTS = {
     effort: {
       0:  'Unprofessional — off task, disruptive, or absent for most of the block.',
-      lo: 'Off task throughout the block.',
-      md: 'Some off-task behavior, but generally working.',
-      hi: 'Excellent professional engagement throughout the block.'
+      5:  'Mostly off task throughout the block.',
+      10: 'Some off-task behavior — frequent distractions or phone use.',
+      15: 'Could have done more — inconsistent focus, partial engagement.',
+      20: 'Solid effort overall, with a few lapses.',
+      25: 'Strong, professional engagement throughout.',
+      30: 'Excellent — fully engaged and professional the entire block.'
     },
     cover: {
       0:  'No cover page.',
@@ -283,16 +286,13 @@
     }
   };
 
-  function commentForTier(secId, v) {
+  function commentForSection(secId, v) {
     const c = COMMENTS[secId];
+    if (Object.prototype.hasOwnProperty.call(c, v)) return c[v];
     if (v === 0) return c[0];
     if (v <= 4) return c.lo;
     if (v <= 8) return c.md;
     return c.hi;
-  }
-
-  function pointsForSection(sec, v) {
-    return Math.round((v / 10) * sec.max);
   }
 
   function selectScore(secId, val) {
@@ -302,9 +302,8 @@
     root.querySelectorAll('.score-btn').forEach(btn => {
       btn.classList.toggle('selected', parseInt(btn.dataset.val) === val);
     });
-    const pts = pointsForSection(sec, val);
-    root.querySelector('.score-value').textContent = pts + ' / ' + sec.max;
-    root.querySelector('.comment').textContent = commentForTier(secId, val);
+    root.querySelector('.score-value').textContent = val + ' / ' + sec.max;
+    root.querySelector('.comment').textContent = commentForSection(secId, val);
     updateSummary();
   }
 
@@ -316,9 +315,8 @@
       if (v === undefined) {
         lines.push(sec.label + ': not scored');
       } else {
-        const pts = pointsForSection(sec, v);
-        total += pts;
-        lines.push(sec.label + ': ' + pts + '/' + sec.max + ' — ' + commentForTier(sec.id, v));
+        total += v;
+        lines.push(sec.label + ': ' + v + '/' + sec.max + ' — ' + commentForSection(sec.id, v));
       }
     });
     document.getElementById('total').textContent = total;
@@ -328,15 +326,16 @@
   function buildButtons() {
     SECTIONS.forEach(sec => {
       const row = document.querySelector('[data-secid="' + sec.id + '"] .score-row');
-      for (let i = 0; i <= 10; i++) {
+      const scale = sec.scale || Array.from({ length: sec.max + 1 }, (_, i) => i);
+      scale.forEach(val => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'score-btn';
-        btn.dataset.val = i;
-        btn.textContent = i;
-        btn.addEventListener('click', () => selectScore(sec.id, i));
+        btn.dataset.val = val;
+        btn.textContent = val;
+        btn.addEventListener('click', () => selectScore(sec.id, val));
         row.appendChild(btn);
-      }
+      });
     });
   }
 
