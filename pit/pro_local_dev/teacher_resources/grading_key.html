@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pro Local Dev &mdash; Grading Key</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; max-width: 1100px; margin: 0 auto; padding: 24px 20px 380px; line-height: 1.5; color: #212529; background: #f8f9fa; }
+  h1 { color: #0d6efd; border-bottom: 2px solid #0d6efd; padding-bottom: 8px; margin-bottom: 6px; }
+  .intro { color: #495057; margin-top: 0; }
+
+  .section { background: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 18px 22px; margin: 18px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .section h2 { margin: 0 0 4px 0; color: #084298; font-size: 1.2em; }
+  .points-badge { display: inline-block; background: #fff3cd; border: 1px solid #ffeeba; color: #664d03; font-size: 0.78em; padding: 2px 10px; border-radius: 12px; font-weight: bold; margin-left: 8px; vertical-align: middle; }
+
+  .placeholder { background: #f8f9fa; border: 2px dashed #adb5bd; border-radius: 8px; padding: 16px 18px; margin: 12px 0; color: #495057; }
+  .placeholder .ph-label { color: #6c757d; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: bold; }
+  .placeholder h3 { margin: 0 0 8px 0; color: #212529; font-size: 1em; }
+  .placeholder ul { margin: 6px 0 0 0; padding-left: 20px; }
+  .placeholder li { margin: 3px 0; }
+  .placeholder code { background: #e9ecef; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+
+  .observation { background: #e7f5ff; border-left: 4px solid #1971c2; border-radius: 6px; padding: 14px 18px; margin: 12px 0; }
+  .observation .ph-label { color: #1971c2; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: bold; }
+  .observation ul { margin: 6px 0 0 0; padding-left: 20px; }
+
+  .score-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 14px; }
+  .score-row .label { font-weight: bold; color: #495057; margin-right: 8px; font-size: 0.9em; }
+  .score-btn { min-width: 44px; padding: 8px 12px; border: 1px solid #ced4da; background: #fff; border-radius: 6px; cursor: pointer; font-size: 0.95em; font-weight: 600; color: #495057; transition: all 0.12s; }
+  .score-btn:hover { background: #e9ecef; }
+  .score-btn.selected { background: #0d6efd; color: #fff; border-color: #0d6efd; box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25); }
+
+  .score-display { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding: 10px 14px; background: #f8f9fa; border-radius: 6px; font-size: 0.95em; border: 1px solid #e9ecef; }
+  .score-display .score-value { font-weight: bold; color: #0d6efd; font-size: 1.1em; }
+  .score-display .comment { color: #495057; font-style: italic; }
+
+  .summary { position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a2e; color: #fff; padding: 16px 24px; box-shadow: 0 -4px 12px rgba(0,0,0,0.15); z-index: 100; }
+  .summary-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 240px 1fr; gap: 18px; }
+  .summary h2 { margin: 0 0 6px 0; color: #ff6b6b; font-size: 1.05em; }
+  .total-display { font-size: 2.2em; font-weight: bold; line-height: 1; margin: 4px 0; }
+  .total-display .out-of { font-size: 0.5em; color: #adb5bd; font-weight: normal; }
+  .summary-left { padding-right: 12px; border-right: 1px solid #495057; }
+  .summary-right { display: flex; flex-direction: column; }
+  textarea { width: 100%; height: 170px; padding: 10px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.85em; border-radius: 6px; border: 1px solid #495057; background: #f8f9fa; color: #212529; resize: none; }
+  .summary-buttons { display: flex; gap: 8px; margin-top: 8px; }
+  .copy-btn { background: #20c997; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.9em; }
+  .copy-btn:hover { background: #12b886; }
+  .copy-btn.copied { background: #198754; }
+  .reset-btn { background: transparent; color: #adb5bd; border: 1px solid #495057; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 0.9em; }
+  .reset-btn:hover { background: #2d2d44; color: #fff; }
+
+  @media (max-width: 700px) {
+    .summary-inner { grid-template-columns: 1fr; }
+    .summary-left { border-right: none; border-bottom: 1px solid #495057; padding: 0 0 12px 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Pro Local Dev &mdash; Grading Key</h1>
+<p class="intro">Side-by-side reference while reviewing student PDFs. Click a score (0&ndash;10) under each section &mdash; a canned justification is generated and the running total updates at the bottom. Use the copy button to paste the full comment block into Schoology.</p>
+
+<!-- 1. Effort -->
+<div class="section" data-secid="effort" data-max="30">
+  <h2>1. Effort &amp; Professional Engagement <span class="points-badge">/ 30 pts</span></h2>
+  <div class="observation">
+    <div class="ph-label">Teacher observation &mdash; no screenshot</div>
+    <strong>What to look for during the block:</strong>
+    <ul>
+      <li>On task throughout the 3-hour block; not idle, not heads-down</li>
+      <li>Phone away</li>
+      <li>Tried at least one documented workaround before escalating</li>
+      <li>Captured exact error text on failures rather than saying &ldquo;it didn&rsquo;t work&rdquo;</li>
+      <li>Professional behavior &mdash; not disruptive, kept lab area clean</li>
+      <li>If finished early: moved on to an extension activity or helped a classmate</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 30</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 2. Cover page -->
+<div class="section" data-secid="cover" data-max="10">
+  <h2>2. Cover Page <span class="points-badge">/ 10 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Screenshot / page 1 of PDF</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>Student&rsquo;s <strong>full name</strong></li>
+      <li><strong>Date</strong> (5/12/26)</li>
+      <li><strong>Class period</strong></li>
+      <li><strong>Lab title</strong> &mdash; e.g. &ldquo;Local Dev Practicum&rdquo; or &ldquo;Transitioning to Professional Local Development&rdquo;</li>
+      <li>Professional formatting &mdash; readable fonts, centered or clean layout, no upside-down phone photos</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 10</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 3. Environment verification -->
+<div class="section" data-secid="env" data-max="10">
+  <h2>3. Environment Verification <span class="points-badge">/ 10 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Screenshot(s) from Block 1</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>Terminal output of <code>python --version</code> returning <code>Python 3.x</code> (or <code>py --version</code> on Windows)</li>
+      <li>VS Code open with <code>hello.py</code> visible</li>
+      <li>Terminal inside VS Code showing <code>hello.py</code> running successfully</li>
+      <li>Optionally: <code>pip --version</code> and <code>code --version</code></li>
+      <li>Captions under each screenshot explaining what it shows</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 10</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 4. CMU Graphics test -->
+<div class="section" data-secid="cmu" data-max="10">
+  <h2>4. CMU Graphics Local Test <span class="points-badge">/ 10 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Screenshot from Block 2</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>An open <strong>CMU Graphics window</strong> with the smoke-test drawing visible (shapes, colors)</li>
+      <li>The <strong>terminal that launched it</strong> visible alongside &mdash; proves it ran locally, not in browser</li>
+      <li>1 short paragraph noting <strong>local vs. browser differences</strong> they observed: speed, file access, debugging, dependencies</li>
+      <li>If it failed: exact error text + 1-sentence diagnosis (still worth full credit if documented honestly)</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 10</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 5. Imported program -->
+<div class="section" data-secid="imported" data-max="10">
+  <h2>5. Imported Program <span class="points-badge">/ 10 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Screenshot + code excerpt</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>One of <strong>their own CMU Academy programs</strong> now running in VS Code locally</li>
+      <li>Screenshot of the program running (graphics window or terminal output)</li>
+      <li>Visible <strong>code quality improvements</strong>: better formatting, descriptive names, comments</li>
+      <li>1&ndash;2 sentences on what had to change to run locally &mdash; case sensitivity, missing imports, explicit <code>cmu_graphics.run()</code>, etc.</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 10</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 6. Git evidence -->
+<div class="section" data-secid="git" data-max="10">
+  <h2>6. Git Repository Evidence <span class="points-badge">/ 10 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Three terminal screenshots</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>Screenshot of <code>git status</code> output</li>
+      <li>Screenshot of their <strong>first <code>git commit</code></strong> (initial commit message visible)</li>
+      <li>Screenshot of <code>git log</code> showing <strong>all three (or more) commits</strong></li>
+      <li>Commit messages should be <strong>meaningful</strong> &mdash; e.g. &ldquo;Add player movement&rdquo; not &ldquo;asdf&rdquo; or &ldquo;update&rdquo;</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 10</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 7. Iteration log -->
+<div class="section" data-secid="log" data-max="10">
+  <h2>7. Iteration Log <span class="points-badge">/ 10 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Written section in PDF</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>Description of the <strong>two changes made in Block 5</strong></li>
+      <li>For each change: <strong>what</strong> they changed and <strong>why</strong></li>
+      <li>Links each change to its corresponding Git commit (commit hash or commit message)</li>
+      <li>Complete sentences, not bullet fragments</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 10</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 8. Reflection -->
+<div class="section" data-secid="refl" data-max="10">
+  <h2>8. Critical Reflection <span class="points-badge">/ 10 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Written section in PDF</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li><strong>2 well-developed paragraphs</strong> (not 2 sentences, not 4 paragraphs of filler)</li>
+      <li>What they <strong>learned</strong> from the practicum</li>
+      <li>How <strong>local dev differs from browser-based</strong> coding (CMU Academy)</li>
+      <li>Why <strong>version control matters</strong></li>
+      <li>Which <strong>&ldquo;Profession Connection&rdquo; callout</strong> surprised them most &mdash; and why</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 10</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- Summary -->
+<div class="summary">
+  <div class="summary-inner">
+    <div class="summary-left">
+      <h2>Total Score</h2>
+      <div class="total-display"><span id="total">0</span><span class="out-of"> / 100</span></div>
+      <div class="summary-buttons">
+        <button class="copy-btn" id="copyBtn">Copy comments</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
+      </div>
+    </div>
+    <div class="summary-right">
+      <textarea id="output" readonly placeholder="Score each section above and the comment block will appear here..."></textarea>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SECTIONS = [
+    { id: 'effort',   label: 'Effort & Professional Engagement', max: 30 },
+    { id: 'cover',    label: 'Cover Page',                       max: 10 },
+    { id: 'env',      label: 'Environment Verification',         max: 10 },
+    { id: 'cmu',      label: 'CMU Graphics Local Test',          max: 10 },
+    { id: 'imported', label: 'Imported Program',                 max: 10 },
+    { id: 'git',      label: 'Git Repository Evidence',          max: 10 },
+    { id: 'log',      label: 'Iteration Log',                    max: 10 },
+    { id: 'refl',     label: 'Critical Reflection',              max: 10 }
+  ];
+
+  const scores = {}; // id -> 0..10 tier
+
+  function commentForTier(v) {
+    if (v === 0) return 'Missing item.';
+    if (v <= 3) return 'Poor, lacks effort.';
+    if (v <= 7) return 'Missing some things, or I just can\'t see it.';
+    if (v <= 9) return 'Great work.';
+    return 'Excellent.';
+  }
+
+  function pointsForSection(sec, v) {
+    return Math.round((v / 10) * sec.max);
+  }
+
+  function selectScore(secId, val) {
+    scores[secId] = val;
+    const sec = SECTIONS.find(s => s.id === secId);
+    const root = document.querySelector('[data-secid="' + secId + '"]');
+    root.querySelectorAll('.score-btn').forEach(btn => {
+      btn.classList.toggle('selected', parseInt(btn.dataset.val) === val);
+    });
+    const pts = pointsForSection(sec, val);
+    root.querySelector('.score-value').textContent = pts + ' / ' + sec.max;
+    root.querySelector('.comment').textContent = commentForTier(val);
+    updateSummary();
+  }
+
+  function updateSummary() {
+    let total = 0;
+    const lines = [];
+    SECTIONS.forEach(sec => {
+      const v = scores[sec.id];
+      if (v === undefined) {
+        lines.push(sec.label + ': not scored');
+      } else {
+        const pts = pointsForSection(sec, v);
+        total += pts;
+        lines.push(sec.label + ': ' + pts + '/' + sec.max + ' — ' + commentForTier(v));
+      }
+    });
+    document.getElementById('total').textContent = total;
+    document.getElementById('output').value = lines.join('\n') + '\n\nTotal: ' + total + '/100';
+  }
+
+  function buildButtons() {
+    SECTIONS.forEach(sec => {
+      const row = document.querySelector('[data-secid="' + sec.id + '"] .score-row');
+      for (let i = 0; i <= 10; i++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'score-btn';
+        btn.dataset.val = i;
+        btn.textContent = i;
+        btn.addEventListener('click', () => selectScore(sec.id, i));
+        row.appendChild(btn);
+      }
+    });
+  }
+
+  function resetAll() {
+    Object.keys(scores).forEach(k => delete scores[k]);
+    document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.section').forEach(sec => {
+      const max = sec.dataset.max;
+      sec.querySelector('.score-value').textContent = '— / ' + max;
+      sec.querySelector('.comment').textContent = '(not scored)';
+    });
+    document.getElementById('total').textContent = '0';
+    document.getElementById('output').value = '';
+  }
+
+  function copyComments() {
+    const out = document.getElementById('output');
+    if (!out.value) return;
+    navigator.clipboard.writeText(out.value).then(() => {
+      const btn = document.getElementById('copyBtn');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    buildButtons();
+    document.getElementById('copyBtn').addEventListener('click', copyComments);
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+  });
+</script>
+
+</body>
+</html>
