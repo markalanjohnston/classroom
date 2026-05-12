@@ -188,7 +188,7 @@
         </div>
 
         <div style="background: #cfe2ff; border: 2px solid #0d6efd; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px;">
-          <p style="margin: 0; color: #084298;"><strong><i class="bi bi-info-circle-fill"></i> When to do this:</strong> This is a required extension of the Pro Local Dev practicum &mdash; not optional. If you finished the main lab early, begin it during the same class period. Otherwise, you will complete it during a <strong>follow-up class meeting</strong>. The screenshot from Step 7 becomes part of the same PDF deliverable.</p>
+          <p style="margin: 0; color: #084298;"><strong><i class="bi bi-info-circle-fill"></i> When to do this:</strong> This is a required extension of the Pro Local Dev practicum &mdash; not optional. If you finished the main lab early, begin it during the same class period. Otherwise, you will complete it during a <strong>follow-up class meeting</strong>. The screenshot from Step 8 becomes part of the same PDF deliverable.</p>
         </div>
 
         <div class="server-card">
@@ -206,6 +206,7 @@
             <li>Clone it to your local machine with Git Bash.</li>
             <li>Build a simple <code class="inline">index.html</code> splash page (you may use the AI of your choice).</li>
             <li>Configure your Git identity (name + email).</li>
+            <li>Create a <code class="inline">.gitignore</code> file so you don't accidentally publish secrets or junk.</li>
             <li>Stage, commit, and <strong>push</strong> &mdash; the new Git command this lesson is built around.</li>
             <li>View your file <em>publicly hosted</em> at the classroom web address.</li>
           </ol>
@@ -329,16 +330,104 @@ git config --global user.email "you@yourschool.edu"</pre>
         </div>
 
         <!-- ============================================================ -->
-        <!-- STEP 6 -->
+        <!-- STEP 6 — .gitignore -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">6</span> Stage, commit, and <strong>push</strong></h2>
+          <h2><span class="step-num">6</span> Create a <code class="inline">.gitignore</code> &mdash; before you push anything public</h2>
+
+          <div class="danger-fact">
+            <strong><i class="bi bi-exclamation-octagon-fill"></i> The internet is forever.</strong> Anything you commit and push is <em>publicly visible the moment you push it</em> &mdash; and even if you delete the file later, <strong>the Git history still has it</strong>. There are bots that scan public repositories for accidentally committed passwords and API keys, and they will use them within minutes. A <code class="inline">.gitignore</code> file is how you tell Git "never track these files" so they cannot be committed by accident.
+          </div>
+
+          <h3>What is <code class="inline">.gitignore</code>?</h3>
+          <p>It's a plain text file (named literally <code class="inline">.gitignore</code>, with the leading dot) in the root of your repo. Each line lists a file, folder, or pattern Git should ignore. Git checks this file before staging anything &mdash; ignored files won't even show up in <code class="inline">git status</code>.</p>
+
+          <h3>Create it in VS Code</h3>
+          <ol>
+            <li>In VS Code's file explorer, right-click in the <code class="inline">test</code> folder &rarr; <strong>New File</strong>.</li>
+            <li>Name it exactly <code class="inline">.gitignore</code> (yes, starting with a dot, no extension).</li>
+            <li>Paste this starter content:
+              <pre class="code"># --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor / IDE config ---
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- Secrets &mdash; NEVER commit these ---
+.env
+.env.*
+*.key
+*.pem
+secrets.json
+config.local.json
+credentials.*
+
+# --- Build / dependency artifacts ---
+dist/
+build/
+node_modules/
+
+# --- Large or local-only files ---
+*.log
+*.zip
+*.mp4</pre>
+            </li>
+            <li>Save the file (<code class="inline">Ctrl+S</code>).</li>
+          </ol>
+
+          <h3>Verify Git is honoring it</h3>
+          <p>Back in Git Bash, from inside your <code class="inline">test</code> folder:</p>
+          <pre class="code">git status</pre>
+          <p>You should see <code class="inline">.gitignore</code> and <code class="inline">index.html</code> listed as untracked. You should <strong>not</strong> see anything like <code class="inline">.vscode/</code>, <code class="inline">Thumbs.db</code>, or other junk. If something junky still appears, add a matching line to <code class="inline">.gitignore</code>, save, and run <code class="inline">git status</code> again.</p>
+
+          <div class="key-fact">
+            <strong>The rule:</strong> <em>Read <code class="inline">git status</code> before every commit.</em> If you see a file you didn't expect, stop &mdash; either add it to <code class="inline">.gitignore</code> or figure out why it's there. Never blindly run <code class="inline">git add .</code> on a repo headed to a public server.
+          </div>
+
+          <h3>What if you already committed something you shouldn't have?</h3>
+          <p>Adding a file to <code class="inline">.gitignore</code> after the fact does <strong>not</strong> remove it from history. If you committed a real secret (API key, password, credential file), assume it is compromised:</p>
+          <ol>
+            <li><strong>Rotate the secret immediately</strong> (change the password, revoke the key) &mdash; this is the only step that actually matters.</li>
+            <li>Tell Mr. Johnston so the repo can be scrubbed or deleted.</li>
+            <li>Do not "just delete the file" and push &mdash; that does nothing useful.</li>
+          </ol>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-shield-lock-fill"></i> <span class="tag">Career</span> Secret-leak incidents end careers, not just projects</h3>
+            <p>"I accidentally pushed AWS credentials to a public repo" is one of the most common &mdash; and most career-affecting &mdash; mistakes in early-career IT. Companies have lost six-figure sums to bots that scrape GitHub for keys. Industries where this skill matters most:</p>
+            <ul class="tight">
+              <li><strong>Finance &amp; healthcare</strong> &mdash; a single leaked database credential can trigger HIPAA / PCI / SOX violations and mandatory breach disclosure.</li>
+              <li><strong>Government contractors</strong> &mdash; leaks can cost a company its clearance.</li>
+              <li><strong>Any company on AWS, Azure, or GCP</strong> &mdash; a leaked cloud key can rack up tens of thousands of dollars in compute charges within hours.</li>
+            </ul>
+            <p class="mt-2 mb-0">Practicing <code class="inline">.gitignore</code> discipline now is the same muscle you'll use to keep your future employer out of the newspaper.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 7 — push -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">7</span> Stage, commit, and <strong>push</strong></h2>
           <p>Two of these commands you already know from the Pro Local Dev lesson. The third &mdash; <code class="inline">git push</code> &mdash; is the new one. <em>Push</em> sends your local commits up to the remote on the Pi.</p>
 
           <pre class="code">git status
 git add .
-git commit -m "Add personal splash page"
+git commit -m "Add personal splash page and .gitignore"
 git push</pre>
+
+          <p><strong>Read the <code class="inline">git status</code> output one more time</strong> before <code class="inline">git add .</code> &mdash; confirm the only things being staged are <code class="inline">index.html</code> and <code class="inline">.gitignore</code>. If anything else appears, fix your <code class="inline">.gitignore</code> first.</p>
 
           <div class="key-fact">
             <strong>First-time push prompt:</strong> Git Credential Manager will likely open a browser tab pointed at the Gitea login. Click <strong>Authorize</strong> (or sign in if asked), then return to Git Bash. The push will complete. After this first time, your machine will remember the credentials.
@@ -350,10 +439,10 @@ git push</pre>
         </div>
 
         <!-- ============================================================ -->
-        <!-- STEP 7 -->
+        <!-- STEP 8 — view -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">7</span> See your file on the remote &mdash; and live on the web</h2>
+          <h2><span class="step-num">8</span> See your file on the remote &mdash; and live on the web</h2>
           <ol>
             <li>Refresh your Gitea repo page at <a href="http://10.12.6.236:3000/" target="_blank" rel="noopener"><code class="inline">http://10.12.6.236:3000/</code></a>. You should now see <code class="inline">index.html</code> listed instead of the "empty repository" message.</li>
             <li>Now for the cool part &mdash; the classroom server <em>also</em> serves your files publicly through nginx, similar to GitHub Pages. Visit:
