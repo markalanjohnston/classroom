@@ -1,0 +1,404 @@
+---
+---
+<!-- File: classroom/pit/gitea_remote/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIT — Publishing to the Classroom Gitea Server</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .lesson-header {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .lesson-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .lesson-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .step-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 26px 30px;
+        margin-bottom: 22px;
+        border: 1px solid #e9ecef;
+      }
+      .step-section h2 {
+        color: #dc3545;
+        margin-bottom: 12px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .step-section h3 { color: #495057; margin-top: 16px; margin-bottom: 8px; font-size: 1.1rem; }
+      .step-section p, .step-section li { line-height: 1.6; }
+
+      .step-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        background: #dc3545;
+        color: white;
+        font-weight: 700;
+        border-radius: 50%;
+        font-size: 1.1rem;
+      }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .danger-fact {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .danger-fact strong { color: #842029; }
+
+      .checkpoint {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .checkpoint strong { color: #0f5132; }
+
+      pre.code {
+        background: #1e1e1e;
+        color: #f8f8f2;
+        padding: 14px 18px;
+        border-radius: 6px;
+        font-family: 'Courier New', Consolas, monospace;
+        font-size: 0.92rem;
+        overflow-x: auto;
+        margin: 10px 0;
+      }
+      code.inline {
+        background: #fdecea;
+        color: #b02a37;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-weight: 600;
+        font-family: 'Courier New', Consolas, monospace;
+      }
+
+      .profession-connection {
+        background: linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
+        border: 2px solid #7e57c2;
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin: 20px 0;
+      }
+      .profession-connection h3 {
+        color: #4527a0;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .profession-connection h3 i { color: #7e57c2; }
+      .profession-connection p, .profession-connection li { color: #311b92; line-height: 1.6; }
+      .profession-connection .tag {
+        display: inline-block;
+        background: #7e57c2;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        padding: 2px 10px;
+        border-radius: 10px;
+        text-transform: uppercase;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      .server-card {
+        background: #1a1a2e;
+        color: white;
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin: 16px 0;
+      }
+      .server-card strong { color: #ff6b6b; }
+      .server-card a { color: #6ec1ff; font-weight: 600; }
+
+      ul.tight li { margin-bottom: 6px; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Practicum in Information Technology</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Publishing to Classroom Gitea</span>
+      </nav>
+
+      <div class="lesson-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to PIT Home</a>
+
+        <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px;">
+          <p style="margin: 0; color: #5d4500;"><strong><i class="bi bi-exclamation-triangle-fill"></i> Heads-up &mdash; AI-assisted content:</strong> The formatting and some of the written content on this page were drafted with the help of an AI assistant. The material has been reviewed by Mr. Johnston and is presented in good faith, <em>but</em> specific steps (especially Gitea menus, Git Bash output, and exact UI labels) may differ slightly from what you see on your actual machine. <strong>Because you've been given this notice, you are expected to flag any irregularities you encounter</strong> &mdash; bring the exact wording, screenshot, or error text to class so we can correct the page. Reporting a mismatch is full credit; following a wrong step silently is not.</p>
+        </div>
+
+        <div class="lesson-header">
+          <h1><i class="bi bi-cloud-upload-fill"></i> Publishing to the Classroom Gitea Server</h1>
+          <p class="subtitle">Bonus extension &mdash; push your first website to a real, self-hosted Git server running on the classroom Raspberry Pi</p>
+        </div>
+
+        <div class="server-card">
+          <p style="margin: 0;"><strong>Fun fact:</strong> The Gitea server, web hosting (nginx), and the public file viewer you'll use today are all running on <strong>a single Raspberry Pi sitting on Mr. Johnston's desk</strong>. No cloud, no AWS, no Microsoft &mdash; just a credit-card-sized computer and good open-source software. If a Pi can host this, you can host things too.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Objectives -->
+        <!-- ============================================================ -->
+        <div class="step-section" style="background: #fff8e9; border-color: #ffc107;">
+          <h2 style="color: #856404;"><i class="bi bi-bullseye"></i> What You'll Do</h2>
+          <ol class="tight">
+            <li>Create an account on the classroom Gitea server.</li>
+            <li>Create your first <strong>remote repository</strong>.</li>
+            <li>Clone it to your local machine with Git Bash.</li>
+            <li>Build a simple <code class="inline">index.html</code> splash page (you may use the AI of your choice).</li>
+            <li>Configure your Git identity (name + email).</li>
+            <li>Stage, commit, and <strong>push</strong> &mdash; the new Git command this lesson is built around.</li>
+            <li>View your file <em>publicly hosted</em> at the classroom web address.</li>
+          </ol>
+          <p class="mb-0"><strong>New term today:</strong> a <em>remote</em> is a copy of your repository that lives on a server somewhere &mdash; in this case, on the Pi.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 1 -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">1</span> Create your Gitea account</h2>
+          <ol>
+            <li>Open a browser and go to <a href="http://10.12.6.236:3000/" target="_blank" rel="noopener"><code class="inline">http://10.12.6.236:3000/</code></a>.</li>
+            <li>Click <strong>Register</strong>.</li>
+            <li>Pick a username you can live with publicly (it will appear in URLs and on your repo page). Use your school email if you want password reset to actually work.</li>
+            <li>Sign in.</li>
+          </ol>
+
+          <div class="key-fact">
+            <strong>The server is only reachable from inside the classroom network.</strong> If you try this on your phone using cellular data, it will fail. That's not a bug &mdash; it's intentional. Self-hosted services live where the hardware lives.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 2 -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">2</span> Create a repository named <code class="inline">test</code></h2>
+          <ol>
+            <li>In the top-right of Gitea, click the <strong>+</strong> icon, then <strong>New Repository</strong>.</li>
+            <li>Name it exactly: <code class="inline">test</code></li>
+            <li>Leave <em>Initialize Repository</em> <strong>unchecked</strong>. We want an empty remote so we can practice the full push workflow.</li>
+            <li>Click <strong>Create Repository</strong>.</li>
+          </ol>
+          <p>Gitea will show you a "quick setup" page with a URL that looks like:</p>
+          <pre class="code">http://10.12.6.236:3000/<em>your-username</em>/test.git</pre>
+          <p>Copy that URL &mdash; you'll need it in the next step.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 3 -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">3</span> Clone the empty remote to your local machine</h2>
+
+          <div class="danger-fact">
+            <strong><i class="bi bi-exclamation-octagon-fill"></i> DO NOT clone into a OneDrive folder.</strong> Cloud-synced folders (OneDrive, Google Drive, Dropbox) constantly rewrite files in the background. This collides with Git's <code class="inline">.git</code> directory and causes file-lock errors, missing objects, and corrupted repos. <strong>Use a local folder that is NOT synced to OneDrive.</strong>
+          </div>
+
+          <ol>
+            <li>Open <strong>Git Bash</strong> (Start menu &rarr; search "Git Bash").</li>
+            <li>Move to your local Documents folder:
+              <pre class="code">cd ~/Documents
+pwd</pre>
+            </li>
+            <li><strong>Read the <code class="inline">pwd</code> output carefully.</strong> If it shows something like <code class="inline">/c/Users/you/OneDrive/Documents</code> &mdash; that's bad. You need a non-OneDrive path. Try one of these instead:
+              <pre class="code"># Option A: use the user profile root
+cd /c/Users/$USER
+
+# Option B: make a dedicated PIT projects folder
+mkdir -p /c/Users/$USER/pit-projects
+cd /c/Users/$USER/pit-projects</pre>
+              When you run <code class="inline">pwd</code> again, the path should <strong>not</strong> contain the word "OneDrive". If you can't find a non-OneDrive location, raise your hand.
+            </li>
+            <li>Clone the empty remote (replace <code class="inline">your-username</code>):
+              <pre class="code">git clone http://10.12.6.236:3000/<em>your-username</em>/test.git
+cd test</pre>
+            </li>
+          </ol>
+
+          <div class="key-fact">
+            <strong>Expected message:</strong> Git will warn that you appear to have cloned an <em>empty repository</em>. That is exactly what we wanted &mdash; we created the remote first specifically so we'd have something real to push to. The clone wired up the connection between this local folder and the remote on the Pi.
+          </div>
+
+          <p>Confirm the remote is wired up:</p>
+          <pre class="code">git remote -v</pre>
+          <p>You should see <code class="inline">origin</code> pointing at the Pi's URL.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 4 -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">4</span> Build an <code class="inline">index.html</code> splash page</h2>
+          <ol>
+            <li>Open the <code class="inline">test</code> folder in VS Code:
+              <pre class="code">code .</pre>
+              (If <code class="inline">code</code> isn't recognized, just open VS Code and use <em>File &rarr; Open Folder</em>.)
+            </li>
+            <li>Create a new file named exactly <code class="inline">index.html</code>.</li>
+            <li>Use the AI of your choice (ChatGPT, Claude, Gemini, Copilot) to generate a one-page personal splash. Suggested prompt:
+              <pre class="code">Generate a single-file index.html splash page for me.
+Include: my name as a heading, a short bio paragraph,
+3 things I'm working on this semester, and inline CSS
+to make it look clean. No external links or scripts.</pre>
+            </li>
+            <li>Paste the generated HTML into <code class="inline">index.html</code> and save (<code class="inline">Ctrl+S</code>).</li>
+            <li>Open the file in your browser to make sure it renders before you push.</li>
+          </ol>
+
+          <div class="key-fact">
+            <strong>Read what the AI gave you before you paste.</strong> If it included external scripts, tracker pixels, or links to sites you don't recognize, strip them out. You're about to publish this <em>publicly</em>.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 5 -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">5</span> Configure your Git identity</h2>
+          <p>Git needs to know who is making commits. Set this once (the <code class="inline">--global</code> flag writes to your user profile, so it carries across future repos):</p>
+          <pre class="code">git config --global user.name "Your Name"
+git config --global user.email "you@yourschool.edu"</pre>
+          <p>Use the <strong>same email</strong> as your Gitea account so your commits get linked to your profile on the server.</p>
+          <p>Verify it:</p>
+          <pre class="code">git config --global --list</pre>
+
+          <div class="key-fact">
+            <strong>Why "global" is OK in this lab:</strong> on a Windows lab machine, <code class="inline">--global</code> writes to your personal user profile, not to a machine-wide location. The next student to log in with their own account won't see your config.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 6 -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">6</span> Stage, commit, and <strong>push</strong></h2>
+          <p>Two of these commands you already know from the Pro Local Dev lesson. The third &mdash; <code class="inline">git push</code> &mdash; is the new one. <em>Push</em> sends your local commits up to the remote on the Pi.</p>
+
+          <pre class="code">git status
+git add .
+git commit -m "Add personal splash page"
+git push</pre>
+
+          <div class="key-fact">
+            <strong>First-time push prompt:</strong> Git Credential Manager will likely open a browser tab pointed at the Gitea login. Click <strong>Authorize</strong> (or sign in if asked), then return to Git Bash. The push will complete. After this first time, your machine will remember the credentials.
+          </div>
+
+          <div class="checkpoint">
+            <strong>Checkpoint:</strong> The last lines of <code class="inline">git push</code> output should show something like <code class="inline">main -&gt; main</code> and a couple of object counts. Screenshot it.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 7 -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">7</span> See your file on the remote &mdash; and live on the web</h2>
+          <ol>
+            <li>Refresh your Gitea repo page at <a href="http://10.12.6.236:3000/" target="_blank" rel="noopener"><code class="inline">http://10.12.6.236:3000/</code></a>. You should now see <code class="inline">index.html</code> listed instead of the "empty repository" message.</li>
+            <li>Now for the cool part &mdash; the classroom server <em>also</em> serves your files publicly through nginx, similar to GitHub Pages. Visit:
+              <pre class="code">http://10.12.6.236/<em>your-username</em>/test/</pre>
+              Your splash page should load in the browser, hosted off the Pi.
+            </li>
+          </ol>
+
+          <div class="checkpoint">
+            <strong>Final checkpoint:</strong> Screenshot of your <em>publicly hosted</em> splash page rendered from <code class="inline">http://10.12.6.236/your-username/test/</code>. Add this screenshot to your PDF deliverable from the Pro Local Dev lab as a "Bonus &mdash; Remote Hosting" section.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Profession Connection -->
+        <!-- ============================================================ -->
+        <div class="profession-connection">
+          <h3><i class="bi bi-hdd-network-fill"></i> <span class="tag">Career</span> "Self-hosted" is a real, paid skill</h3>
+          <p>You just stood up your own Git server, made an account, pushed code, and viewed it on a public URL &mdash; on hardware running in the same room. That's not a toy. <strong>System administrators</strong>, <strong>DevOps engineers</strong>, <strong>cloud architects</strong>, and <strong>IT operations specialists</strong> do exactly this for a living, at scale, in industries that don't trust their data to third-party clouds:</p>
+          <ul class="tight">
+            <li><strong>Hospitals &amp; clinics</strong> &mdash; HIPAA-regulated data often runs on on-premises servers, not cloud.</li>
+            <li><strong>Defense contractors</strong> &mdash; classified work runs on private "air-gapped" networks.</li>
+            <li><strong>Banks &amp; insurance</strong> &mdash; core transaction systems are still self-hosted for compliance and audit reasons.</li>
+            <li><strong>Universities &amp; research labs</strong> &mdash; researchers host their own Git, datasets, and compute clusters.</li>
+            <li><strong>Small businesses</strong> &mdash; many local IT shops install on-prem servers for cost or privacy reasons.</li>
+          </ul>
+          <p class="mt-2 mb-0">"Can run their own infrastructure" is one of the highest-paid skill clusters in IT. Today's Raspberry Pi exercise is the same shape as a $150K sysadmin job &mdash; just at one-thousandth the scale.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Troubleshooting -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><i class="bi bi-wrench-adjustable"></i> If Something Doesn't Work</h2>
+          <ul class="tight">
+            <li><strong>"fatal: not a git repository"</strong> &mdash; you're not inside the <code class="inline">test</code> folder. <code class="inline">cd test</code> and try again.</li>
+            <li><strong>"Permission denied" / "authentication failed"</strong> &mdash; your Git identity email doesn't match your Gitea account, or you canceled the browser authorize step. Re-run <code class="inline">git push</code> and complete the browser prompt.</li>
+            <li><strong>"index.lock" / "unable to write"</strong> errors &mdash; you're inside a OneDrive folder. Move the repo to a non-synced location (see Step 3) and clone again.</li>
+            <li><strong>Can't reach <code class="inline">10.12.6.236</code></strong> &mdash; you're probably on cellular data or the guest network. Connect to the classroom Wi-Fi.</li>
+            <li><strong>Public URL shows 404 or directory listing</strong> &mdash; the file might be named <code class="inline">Index.html</code> (capital I) or saved with a hidden <code class="inline">.txt</code> extension. Check the actual filename in Git Bash with <code class="inline">ls</code>.</li>
+            <li><strong>Page loads but is blank</strong> &mdash; the AI may have given you incomplete HTML. View source in the browser; you should see at minimum <code class="inline">&lt;html&gt;</code>, <code class="inline">&lt;head&gt;</code>, <code class="inline">&lt;body&gt;</code> tags.</li>
+          </ul>
+          <p class="mt-2"><strong>Document any error you hit</strong> &mdash; exact text, what you tried, what fixed it. That's the report you'd submit on the job.</p>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to PIT Home</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
