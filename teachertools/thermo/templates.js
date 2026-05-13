@@ -37,6 +37,121 @@ function randomEncouragement() {
   return ENCOURAGEMENTS[Math.floor(Math.random() * ENCOURAGEMENTS.length)];
 }
 
+/* Different tone from ENCOURAGEMENTS: aimed at a struggling student
+   ("you can do this") rather than celebrating one who succeeded
+   ("you crushed it"). Used by the encourage template. */
+const ENCOURAGE_MESSAGES = [
+  "Don't give up — you can do this!",
+  "I have faith in you!",
+  "Keep going — you're closer than you think.",
+  "One step at a time.",
+  "Mistakes mean you're learning.",
+  "Be patient with yourself.",
+  "Trust the process.",
+  "Hard things take time.",
+  "Take a breath, then try again.",
+  "I'm rooting for you.",
+  "Your effort matters more than the answer.",
+  "Future-you will thank present-you.",
+  "Progress, not perfection.",
+  "You've got more in you than you think.",
+  "Struggling means you're stretching.",
+  "Every expert was once a beginner.",
+  "You belong here.",
+  "It's okay to ask for help."
+];
+
+function randomEncourageMsg() {
+  return ENCOURAGE_MESSAGES[Math.floor(Math.random() * ENCOURAGE_MESSAGES.length)];
+}
+
+/* ASCII art library for the encourage template.
+   All pieces sit under ~16 chars wide so the parent .r-ascii block
+   stays well within the 28-char receipt width when centered. */
+const ENCOURAGE_ART = {
+  none: '',
+
+  star: [
+    "   .    .    .",
+    "     \\  *  /",
+    "   *  \\ * /  *",
+    "  ---  ***  ---",
+    "   *  / * \\  *",
+    "     /  *  \\",
+    "   .    .    ."
+  ].join('\n'),
+
+  smile: [
+    "   .--------.",
+    "  /          \\",
+    " |   o    o   |",
+    " |     __     |",
+    "  \\   \\__/   /",
+    "   '--------'"
+  ].join('\n'),
+
+  mountain: [
+    "        /\\",
+    "       /  \\",
+    "      /    \\",
+    "     /  /\\  \\",
+    "    /  /  \\  \\",
+    "   /__/____\\__\\"
+  ].join('\n'),
+
+  rocket: [
+    "       /\\",
+    "      /  \\",
+    "     |    |",
+    "     |[##]|",
+    "     |    |",
+    "    /|    |\\",
+    "   / |____| \\",
+    "      /\\/\\",
+    "     /\\/\\/\\"
+  ].join('\n'),
+
+  robot: [
+    "   .---------.",
+    "   | [o] [o] |",
+    "   |    -    |",
+    "   |  \\___/  |",
+    "   '----+----'",
+    "       _|_",
+    "      |   |"
+  ].join('\n'),
+
+  thumbs: [
+    "        __",
+    "       |  |",
+    "       |  |",
+    "    ___|  |",
+    "   |      |",
+    "   |  ()  |",
+    "   |______|"
+  ].join('\n'),
+
+  trophy: [
+    "    .-------.",
+    "   (         )",
+    "    \\   *   /",
+    "     \\_____/",
+    "       | |",
+    "      _| |_",
+    "     |_____|"
+  ].join('\n'),
+
+  flame: [
+    "       ()",
+    "      (  )",
+    "     ( () )",
+    "    (  ()  )",
+    "     \\    /",
+    "      \\  /",
+    "       \\/"
+  ].join('\n')
+};
+
 const TEMPLATES = {
 
   /* -------------------- 1. Praise / Awesome (unified) ---- */
@@ -103,7 +218,86 @@ const TEMPLATES = {
     }
   },
 
-  /* -------------------- 2. Pass -------------------------- */
+  /* -------------------- 2. Encourage --------------------- */
+  encourage: {
+    id: 'encourage',
+    label: 'Encouragement',
+    sub: '"Don\'t give up" — for a student who needs a boost.',
+    usesSerial: false,
+
+    fields: (ctx) => ([
+      { name: 'title', label: 'Title', type: 'select',
+        options: [
+          { value: "DON'T GIVE UP!",     label: "DON'T GIVE UP!" },
+          { value: 'YOU CAN DO THIS!',   label: 'YOU CAN DO THIS!' },
+          { value: 'I BELIEVE IN YOU!',  label: 'I BELIEVE IN YOU!' },
+          { value: 'KEEP GOING!',        label: 'KEEP GOING!' },
+          { value: 'ALMOST THERE!',      label: 'ALMOST THERE!' },
+          { value: 'TAKE A BREATH',      label: 'TAKE A BREATH' }
+        ],
+        default: "DON'T GIVE UP!" },
+      { name: 'student',     label: 'Student',    type: 'student-picker', required: true },
+      { name: 'classPeriod', label: 'Class',      type: 'class-select' },
+      { name: 'art',         label: 'ASCII art',  type: 'select',
+        options: [
+          { value: 'none',     label: '(none)' },
+          { value: 'star',     label: 'Star burst' },
+          { value: 'smile',    label: 'Smiley face' },
+          { value: 'mountain', label: 'Mountain (climb it)' },
+          { value: 'rocket',   label: 'Rocket (going places)' },
+          { value: 'robot',    label: 'Robot pal' },
+          { value: 'thumbs',   label: 'Thumbs up' },
+          { value: 'trophy',   label: 'Trophy' },
+          { value: 'flame',    label: 'Flame (keep your fire)' }
+        ],
+        default: 'star' },
+      { name: 'message', label: 'Short message', type: 'text',
+        default: randomEncourageMsg(),
+        placeholder: 'One-line encouragement' },
+      { name: 'reason', label: "What I've noticed you doing well (optional, longer)", type: 'textarea',
+        placeholder: 'showing up every day; asking good questions; not quitting on the last one' },
+      { name: 'includeMessage', label: 'Print short message', type: 'checkbox', default: true },
+      { name: 'includeClass',   label: 'Print class period',  type: 'checkbox', default: true }
+    ]),
+
+    shuffle: (data) => {
+      data.message = randomEncourageMsg();
+      // Skip the 'none' option when shuffling so you always get art.
+      const artKeys = Object.keys(ENCOURAGE_ART).filter(k => k !== 'none');
+      data.art = artKeys[Math.floor(Math.random() * artKeys.length)];
+      return data;
+    },
+
+    render: (data, ctx) => {
+      const e = ctx.escape;
+      const name = (data.student || '').trim().toUpperCase() || '(student)';
+      const title = data.title || "DON'T GIVE UP!";
+      const art = ENCOURAGE_ART[data.art || 'star'] || '';
+      return `
+        <div class="r">
+          ${ctx.logo}
+          <div class="r-divider">${ctx.divider('*')}</div>
+          <div class="r-title">${e(title)}</div>
+          <div class="r-divider">${ctx.divider('*')}</div>
+          ${art ? `<div class="r-ascii"><pre>${e(art)}</pre></div>` : ''}
+          <div class="r-name">${e(name)}</div>
+          ${(data.includeClass !== false && data.classPeriod)
+            ? `<div class="r-msg">${e(data.classPeriod)}</div>` : ''}
+          ${(data.includeMessage !== false && data.message)
+            ? `<div class="r-msg">${e(data.message)}</div>` : ''}
+          ${data.reason ? `<div class="r-block">${e(data.reason)}</div>` : ''}
+          <div class="r-divider">${ctx.divider('-')}</div>
+          <div class="r-footer">
+            <div>${e(ctx.fmtDateTime(ctx.now))}</div>
+            <div class="r-sig">${e(ctx.settings.teacher)}</div>
+            ${ctx.footer}
+          </div>
+          <div class="r-feed"></div>
+        </div>`;
+    }
+  },
+
+  /* -------------------- 3. Pass -------------------------- */
   pass: {
     id: 'pass',
     label: 'Pass',
@@ -178,7 +372,7 @@ const TEMPLATES = {
     }
   },
 
-  /* -------------------- 3. Homework pass coupon ---------- */
+  /* -------------------- 4. Homework pass coupon ---------- */
   homework: {
     id: 'homework',
     label: 'Late Homework Pass',
@@ -310,7 +504,7 @@ TEMPLATES.phone = {
   }
 };
 
-/* -------------------- 5. Custom (kitchen sink) ---------- */
+/* -------------------- 6. Custom (kitchen sink) ---------- */
 TEMPLATES.custom = {
   id: 'custom',
   label: 'Custom',
@@ -540,4 +734,4 @@ TEMPLATES.custom = {
   }
 };
 
-const TEMPLATE_ORDER = ['praise', 'pass', 'homework', 'phone', 'custom'];
+const TEMPLATE_ORDER = ['praise', 'encourage', 'pass', 'homework', 'phone', 'custom'];
