@@ -1,0 +1,842 @@
+---
+---
+<!-- File: classroom/apcsp/review/practice2/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APCSP Review - Mixed MCQ Practice 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../../css/styles.css" />
+    <style>
+      .review-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .review-header {
+        background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .review-header h1 { margin-bottom: 10px; font-size: 2rem; }
+      .review-header .subtitle { font-size: 1.1rem; opacity: 0.95; }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .score-tracker {
+        position: sticky;
+        top: 10px;
+        z-index: 100;
+        background: white;
+        border: 2px solid #10b981;
+        border-radius: 10px;
+        padding: 12px 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .score-tracker .label { font-weight: 600; color: #495057; }
+      .score-tracker .stat { font-size: 1.05rem; }
+      .score-tracker .stat strong { color: #047857; }
+      .score-tracker .progress-bar-wrap {
+        flex: 1 1 200px;
+        height: 10px;
+        background: #d1fae5;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .score-tracker .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #10b981, #047857);
+        transition: width 0.3s;
+        width: 0%;
+      }
+
+      .instructions {
+        background: #d1fae5;
+        border-left: 5px solid #10b981;
+        padding: 20px 25px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+      }
+      .instructions h2 { color: #047857; margin-top: 0; font-size: 1.4rem; }
+      .instructions p, .instructions li { color: #064e3b; line-height: 1.6; }
+      .instructions ul { margin-bottom: 0; }
+
+      .question-block {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        padding: 24px 28px;
+        margin-bottom: 22px;
+      }
+      .question-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .q-number {
+        display: inline-block;
+        background: #047857;
+        color: white;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+      }
+      .topic-pill {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: white;
+      }
+      .topic-pill.internet { background: #0d6efd; }
+      .topic-pill.cyber { background: #1e3a8a; }
+      .topic-pill.data { background: #6f42c1; }
+      .topic-pill.pseudo { background: #0a7c5e; }
+      .topic-pill.impacts { background: #d63384; }
+      .topic-pill.algo { background: #20c997; color: #0a3a2d; }
+      .source-tag {
+        color: #6c757d;
+        font-size: 0.8rem;
+        font-style: italic;
+      }
+
+      .question-text {
+        font-weight: 500;
+        color: #212529;
+        margin-bottom: 14px;
+        line-height: 1.6;
+      }
+      .inline-code, code {
+        background: #d1fae5;
+        color: #064e3b;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-weight: 600;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+        font-size: 0.92em;
+      }
+      pre.pseudocode {
+        background: #1f2d3d;
+        color: #f8f8f2;
+        padding: 14px 18px;
+        border-radius: 6px;
+        font-size: 0.88rem;
+        line-height: 1.55;
+        overflow-x: auto;
+        margin: 12px 0;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+      }
+      pre.pseudocode .kw { color: #ff79c6; font-weight: 600; }
+      pre.pseudocode .num { color: #bd93f9; }
+
+      .info-table {
+        width: auto;
+        margin: 10px 0;
+        border-collapse: collapse;
+      }
+      .info-table th, .info-table td {
+        padding: 6px 14px;
+        border: 1px solid #dee2e6;
+        font-size: 0.92rem;
+      }
+      .info-table th { background: #d1fae5; color: #064e3b; }
+
+      .choices { display: flex; flex-direction: column; gap: 8px; }
+      .choice {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 10px 14px;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        font-size: 0.95rem;
+        color: #212529;
+        font-family: inherit;
+        line-height: 1.5;
+      }
+      .choice:hover:not(:disabled) { background: #d1fae5; border-color: #10b981; }
+      .choice:disabled { cursor: default; }
+      .choice-correct {
+        background: #d1e7dd !important;
+        border-color: #198754 !important;
+        color: #0f5132 !important;
+        font-weight: 600;
+      }
+      .choice-correct::before { content: "\2713  "; font-weight: 700; }
+      .choice-wrong {
+        background: #f8d7da !important;
+        border-color: #dc3545 !important;
+        color: #842029 !important;
+      }
+      .choice-wrong::before { content: "\2717  "; font-weight: 700; }
+      .feedback {
+        margin-top: 14px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 0.93rem;
+      }
+      .feedback.correct { background: #d1e7dd; color: #0f5132; border-left: 4px solid #198754; }
+      .feedback.wrong { background: #fff3cd; color: #664d03; border-left: 4px solid #ffc107; }
+      .feedback strong.tag { display: block; margin-bottom: 6px; color: inherit; font-size: 0.85rem; letter-spacing: 0.5px; text-transform: uppercase; }
+
+      .final-results {
+        background: linear-gradient(135deg, #d1fae5 0%, #34d399 100%);
+        border-radius: 10px;
+        padding: 30px;
+        margin-top: 30px;
+        text-align: center;
+      }
+      .final-results h2 { color: #064e3b; margin-bottom: 12px; }
+      .final-results .big-score {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #047857;
+        margin: 10px 0;
+      }
+      .final-results p { color: #064e3b; }
+
+      .more-info {
+        background: #d1fae5;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 20px;
+      }
+      .more-info h3 { color: #047857; margin-bottom: 12px; }
+      .more-info ul { margin-bottom: 0; padding-left: 20px; }
+      .more-info li { margin-bottom: 8px; line-height: 1.5; color: #064e3b; }
+      .more-info a { color: #047857; text-decoration: none; font-weight: 600; }
+      .more-info a:hover { text-decoration: underline; }
+      .source-note { font-size: 0.88rem; color: #064e3b; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../../" class="text-white">AP Computer Science Principles</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Exam Review</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Mixed MCQ Practice 2</span>
+      </nav>
+
+      <div class="review-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+
+        <div class="review-header">
+          <h1><i class="bi bi-pencil-square"></i> Mixed MCQ Practice 2</h1>
+          <p class="subtitle">A second set of 20 questions from the College Board's 2021 AP CSP Practice Exam &mdash; no overlap with Practice Set 1</p>
+        </div>
+
+        <div class="instructions">
+          <h2><i class="bi bi-info-circle-fill"></i> How to Use This Practice Set</h2>
+          <ul>
+            <li>20 <strong>different</strong> questions from the 2021 AP CSP Practice Exam &mdash; none of these appear in Practice Set 1. Mixed across Big Ideas just like the real exam.</li>
+            <li>Each question has a <strong>topic tag</strong>. After finishing, look for patterns in which topics gave you trouble.</li>
+            <li>Click an answer to get instant feedback with the explanation from the <strong>official College Board answer key</strong>.</li>
+            <li>The score tracker at the top updates as you go. The real exam gives you about 1m 43s per question.</li>
+          </ul>
+        </div>
+
+        <div class="score-tracker" id="tracker">
+          <div class="stat"><span class="label">Attempted:</span> <strong id="attemptedCount">0</strong> / 20</div>
+          <div class="stat"><span class="label">Correct:</span> <strong id="correctCount">0</strong></div>
+          <div class="stat"><span class="label">Accuracy:</span> <strong id="accuracy">&mdash;</strong></div>
+          <div class="progress-bar-wrap"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q1 (was Q9) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m1">
+          <div class="question-header">
+            <span class="q-number">Question 1</span>
+            <span class="topic-pill data">Data</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q9</span>
+          </div>
+          <p class="question-text">Which of the following best explains how an analog audio signal is typically represented by a computer?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. An analog audio signal is measured as input parameters to a program or procedure. The inputs are represented at the lowest level as a collection of variables.</button>
+            <button class="choice" data-correct="true">B. An analog audio signal is measured at regular intervals. Each measurement is stored as a sample, which is represented at the lowest level as a sequence of bits.</button>
+            <button class="choice" data-correct="false">C. An analog audio signal is measured as a sequence of operations that describe how the sound can be reproduced. The operations are represented at the lowest level as programming instructions.</button>
+            <button class="choice" data-correct="false">D. An analog audio signal is measured as text that describes the attributes of the sound. The text is represented at the lowest level as a string.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. Analog signals are sampled digitally at discrete intervals over time. These samples &mdash; like all digital data &mdash; are represented at the lowest level as a sequence of bits.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q2 (was Q13) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m2">
+          <div class="question-header">
+            <span class="q-number">Question 2</span>
+            <span class="topic-pill impacts">Impacts</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q13</span>
+          </div>
+          <p class="question-text">Which of the following is <strong>NOT</strong> a benefit of collaborating to develop a computing innovation?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Collaboration can decrease the size and complexity of tasks required of individual team members.</button>
+            <button class="choice" data-correct="false">B. Collaboration can make it easier to find and correct errors during the development process.</button>
+            <button class="choice" data-correct="true">C. Collaboration eliminates the need to resolve differences of opinion.</button>
+            <button class="choice" data-correct="false">D. Collaboration facilitates multiple perspectives in developing ideas.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. While effective collaboration benefits from diverse talents and perspectives, collaborators still need to develop strategies to resolve differences of opinion &mdash; collaboration doesn't make those disagreements go away. A, B, and D are all genuine benefits.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q3 (was Q26) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m3">
+          <div class="question-header">
+            <span class="q-number">Question 3</span>
+            <span class="topic-pill algo">Algorithms</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q26</span>
+          </div>
+          <p class="question-text">Which of the following best describes a challenge involved in using a <strong>parallel computing</strong> solution?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. A parallel computing solution may not be appropriate for an algorithm in which each step requires the output from the preceding step.</button>
+            <button class="choice" data-correct="false">B. A parallel computing solution may not be appropriate for an algorithm in which the same formula is applied to many numeric data elements.</button>
+            <button class="choice" data-correct="false">C. A parallel computing solution may not be appropriate for an algorithm that can be easily broken down into small independent tasks.</button>
+            <button class="choice" data-correct="false">D. A parallel computing solution may not be appropriate for an algorithm that searches for occurrences of a key word in a large number of documents.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. If each step depends on the preceding step's output, the steps are inherently sequential &mdash; parallel processors can't help because each step must wait for the previous one to finish. B, C, and D all describe workloads that parallelize <em>well</em>.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q4 (was Q33) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m4">
+          <div class="question-header">
+            <span class="q-number">Question 4</span>
+            <span class="topic-pill algo">Algorithms</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q33</span>
+          </div>
+          <p class="question-text">A company delivers packages by truck and wants to minimize the length of each driver's route to <code>n</code> delivery locations. Two algorithms are being considered:</p>
+          <ul>
+            <li><strong>Algorithm I:</strong> Generate all possible routes, compute their lengths, and select the shortest. Does <em>not</em> run in reasonable time.</li>
+            <li><strong>Algorithm II:</strong> Starting from an arbitrary location, find the nearest unvisited location. Continue until all locations are visited. Does not guarantee the shortest route. Runs in time proportional to <code>n<sup>2</sup></code>.</li>
+          </ul>
+          <p class="question-text">Which of the following best categorizes Algorithm II?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Algorithm II attempts to use an algorithmic approach to solve an otherwise undecidable problem.</button>
+            <button class="choice" data-correct="true">B. Algorithm II uses a heuristic approach to provide an approximate solution in reasonable time.</button>
+            <button class="choice" data-correct="false">C. Algorithm II provides no improvement over Algorithm I because neither algorithm runs in reasonable time.</button>
+            <button class="choice" data-correct="false">D. Algorithm II requires a much faster computer in order to provide any improvement over Algorithm I.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. A <strong>heuristic</strong> is an approximate solution that runs in reasonable time when finding an exact solution doesn't. Algorithm II runs in <code>n<sup>2</sup></code> (polynomial = reasonable time) and gives a good-enough answer. The problem is <em>not</em> undecidable &mdash; Algorithm I would solve it exactly given unlimited time.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q5 (was Q35) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m5">
+          <div class="question-header">
+            <span class="q-number">Question 5</span>
+            <span class="topic-pill data">Data</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q35</span>
+          </div>
+          <p class="question-text">A city maintains a database of all traffic tickets issued over the past ten years. Tickets are divided into <strong>moving violations</strong> and <strong>nonmoving violations</strong>. The data recorded for each ticket includes only:</p>
+          <ul>
+            <li>The month and year the ticket was issued</li>
+            <li>The category of the ticket</li>
+          </ul>
+          <p class="question-text">Which question <strong>CANNOT</strong> be answered using only the information in the database?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Have the total number of traffic tickets per year increased each year over the past ten years?</button>
+            <button class="choice" data-correct="true">B. In the past ten years, were nonmoving violations more likely to occur on a weekend than on a weekday?</button>
+            <button class="choice" data-correct="false">C. In the past ten years, were there any months when moving violations occurred more often than nonmoving violations?</button>
+            <button class="choice" data-correct="false">D. In how many of the past ten years were there more than one million moving violations?</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. The database tracks only the <em>month and year</em>, not the specific day &mdash; so there's no way to tell weekend from weekday. A, C, and D all only require counting by year, by month, or by category, which the data supports.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q6 (was Q36) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m6">
+          <div class="question-header">
+            <span class="q-number">Question 6</span>
+            <span class="topic-pill impacts">Impacts</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q36</span>
+          </div>
+          <p class="question-text">Individuals sometimes attempt to remove personal information from the Internet. Which of the following is the <strong>LEAST</strong> likely reason the personal information is hard to remove?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Internet users with a copy of the information might redistribute the personal information without first seeking permission.</button>
+            <button class="choice" data-correct="false">B. There are potentially an extremely large number of devices on the Internet that may contain the information.</button>
+            <button class="choice" data-correct="false">C. Automated technologies collect information about Internet users without their knowledge.</button>
+            <button class="choice" data-correct="true">D. All personal information is stored online using authentication measures, making the information hard to access.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            D is correct. The opposite is true &mdash; personal information often ends up in places where authentication is <em>not</em> used (social media posts, forums, public records). A, B, and C all describe real reasons removal is hard.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q7 (was Q38) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m7">
+          <div class="question-header">
+            <span class="q-number">Question 7</span>
+            <span class="topic-pill algo">Algorithms</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q38</span>
+          </div>
+          <p class="question-text">A scientist wants to investigate several problems. In which situation is using a <strong>simulation</strong> LEAST suitable?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. When a scientific study requires performing a large number of trials that need to be conducted very quickly</button>
+            <button class="choice" data-correct="false">B. When it is considered acceptable to make simplifying assumptions when modeling a real-world object or phenomenon</button>
+            <button class="choice" data-correct="false">C. When performing an experiment that would be too costly or dangerous to conduct in the real world</button>
+            <button class="choice" data-correct="true">D. When the solution to the problem requires real-world data inputs that are continually measured at regular intervals</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            D is correct. Simulations are abstractions, useful precisely when real-world events are impractical, slow, or dangerous. If the solution actually requires continuous real-world data, a simulation isn't the right tool &mdash; you need the real measurements.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q8 (was Q39) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m8">
+          <div class="question-header">
+            <span class="q-number">Question 8</span>
+            <span class="topic-pill data">Data &amp; Binary</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q39</span>
+          </div>
+          <p class="question-text">A store uses binary numbers to assign a unique binary sequence to each item in its inventory. What is the <strong>minimum</strong> number of bits required for each binary sequence if the store has between 75 and 100 items in its inventory?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. 5</button>
+            <button class="choice" data-correct="false">B. 6</button>
+            <button class="choice" data-correct="true">C. 7</button>
+            <button class="choice" data-correct="false">D. 8</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. 6 bits gives only 2<sup>6</sup> = 64 unique sequences &mdash; not enough. 7 bits gives 2<sup>7</sup> = 128 sequences &mdash; enough for up to 128 items. So 7 is the minimum. 8 bits would work but isn't the minimum.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q9 (was Q40) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m9">
+          <div class="question-header">
+            <span class="q-number">Question 9</span>
+            <span class="topic-pill impacts">Impacts</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q40</span>
+          </div>
+          <p class="question-text">A state government is attempting to reduce the <strong>digital divide</strong>. Which of the following activities has the greatest potential to <em>contribute to</em> the digital divide rather than reducing it?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Providing programs that focus on technology literacy at local libraries</button>
+            <button class="choice" data-correct="true">B. Requiring applicants for government jobs to apply using an online platform</button>
+            <button class="choice" data-correct="false">C. Working with technology companies to offer computing devices at discounted prices to individuals with reduced incomes</button>
+            <button class="choice" data-correct="false">D. Working with telecommunications companies to build network infrastructure in remote areas</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. Requiring online-only job applications excludes the exact people the digital divide describes &mdash; those without reliable internet or devices. A, C, and D all expand access (literacy, hardware, infrastructure).
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q10 (was Q44) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m10">
+          <div class="question-header">
+            <span class="q-number">Question 10</span>
+            <span class="topic-pill data">Data &amp; Binary</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q44</span>
+          </div>
+          <p class="question-text">A program developed for a Web store represents customer account balances using a format that approximates real numbers. While testing, a developer discovers that some values appear <strong>mathematically imprecise</strong>. Which is the most likely cause of the imprecision?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. The account balances are represented using a fixed number of bits, resulting in overflow errors.</button>
+            <button class="choice" data-correct="true">B. The account balances are represented using a fixed number of bits, resulting in round-off errors.</button>
+            <button class="choice" data-correct="false">C. The account balances are represented using an unlimited number of bits, resulting in overflow errors.</button>
+            <button class="choice" data-correct="false">D. The account balances are represented using an unlimited number of bits, resulting in round-off errors.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. Real numbers stored in a <em>fixed</em> number of bits often can't be represented exactly, causing <strong>round-off</strong> (imprecision) errors. Overflow is about exceeding the maximum value, not imprecision. C and D are nonsensical &mdash; "unlimited bits" wouldn't cause either error.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q11 (was Q47) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m11">
+          <div class="question-header">
+            <span class="q-number">Question 11</span>
+            <span class="topic-pill pseudo">Pseudocode</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q47</span>
+          </div>
+          <p class="question-text">A spreadsheet stores restaurant data. In column B, the <strong>price range</strong> is <code>"lo"</code> (under $10), <code>"med"</code> ($11&ndash;$30), or <code>"hi"</code> (over $30). In column D, the <strong>average customer rating</strong> is a decimal.</p>
+          <p class="question-text">A student wants to count restaurants whose price range is $30 or less <em>and</em> whose average customer rating is at least 4.0. For a given row, <code>prcRange</code> contains the price range as a string and <code>avgRating</code> the average rating as a decimal.</p>
+          <p class="question-text">Which of the following expressions evaluates to <code>true</code> if the restaurant should be counted and <code>false</code> otherwise?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. (avgRating &ge; 4.0) AND ((prcRange = "lo") AND (prcRange = "med"))</button>
+            <button class="choice" data-correct="true">B. (avgRating &ge; 4.0) AND ((prcRange = "lo") OR (prcRange = "med"))</button>
+            <button class="choice" data-correct="false">C. (avgRating &ge; 4.0) OR ((prcRange = "lo") AND (prcRange = "med"))</button>
+            <button class="choice" data-correct="false">D. (avgRating &ge; 4.0) OR ((prcRange = "lo") OR (prcRange = "med"))</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. We need BOTH a good rating AND an inexpensive price &mdash; outer operator is <code>AND</code>. A single value of <code>prcRange</code> can be <code>"lo"</code> <em>or</em> <code>"med"</code> but never both, so the inner operator is <code>OR</code>. Choice A's inner <code>AND</code> is always false. C and D use the wrong outer operator and let unqualified restaurants through.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q12 (was Q48) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m12">
+          <div class="question-header">
+            <span class="q-number">Question 12</span>
+            <span class="topic-pill cyber">Cybersecurity</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q48</span>
+          </div>
+          <p class="question-text">Which of the following is an example of an attack using a <strong>rogue access point</strong>?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. An unauthorized individual gains the ability to view network traffic by connecting to a network router that uses weak or no security measures.</button>
+            <button class="choice" data-correct="false">B. An unauthorized individual physically disconnects an exposed network router, making the network unavailable to some users.</button>
+            <button class="choice" data-correct="false">C. An unauthorized individual poses as a network administrator and attempts to trick a user into providing personal information.</button>
+            <button class="choice" data-correct="false">D. A group of unauthorized individuals overwhelms a network router with traffic, making it unavailable to some users.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. A <strong>rogue access point</strong> is an insecure/unauthorized wireless access point used to intercept traffic. B is physical sabotage, C is phishing/social engineering, D is a denial-of-service attack.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q13 (was Q49) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m13">
+          <div class="question-header">
+            <span class="q-number">Question 13</span>
+            <span class="topic-pill algo">Algorithms</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q49</span>
+          </div>
+          <p class="question-text">Which of the following best explains the ability to solve problems algorithmically?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Any problem can be solved algorithmically, though some algorithmic solutions may require humans to validate the results.</button>
+            <button class="choice" data-correct="false">B. Any problem can be solved algorithmically, though some algorithmic solutions must be executed on multiple devices in parallel.</button>
+            <button class="choice" data-correct="false">C. Any problem can be solved algorithmically, though some algorithmic solutions require a very large amount of data storage to execute.</button>
+            <button class="choice" data-correct="true">D. There exist some problems that cannot be solved algorithmically using any computer.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            D is correct. An <strong>undecidable</strong> problem is one for which no algorithm can be constructed that always produces a correct yes-or-no answer for every input. The halting problem is the classic example. A, B, and C all start with the false premise that <em>every</em> problem has an algorithmic solution.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q14 (was Q50) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m14">
+          <div class="question-header">
+            <span class="q-number">Question 14</span>
+            <span class="topic-pill cyber">Cybersecurity</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q50</span>
+          </div>
+          <p class="question-text">Which of the following best explains how <strong>symmetric encryption</strong> algorithms are typically used?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. Symmetric encryption uses a single key that should be kept secret. The same key is used for both encryption and decryption of data.</button>
+            <button class="choice" data-correct="false">B. Symmetric encryption uses a single key that should be made public. The same key is used for both encryption and decryption of data.</button>
+            <button class="choice" data-correct="false">C. Symmetric encryption uses two keys that should both be kept secret. One key is used for encryption, and the other is used for decryption.</button>
+            <button class="choice" data-correct="false">D. Symmetric encryption uses two keys. The key used for encryption should be made public, but the key used for decryption should be kept secret.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. <strong>Symmetric</strong> means one shared key for both encryption and decryption &mdash; and because that one key unlocks the data, it must stay secret. C describes a key system that doesn't really exist. D describes <em>public-key</em> (asymmetric) encryption.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q15 (was Q51) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m15">
+          <div class="question-header">
+            <span class="q-number">Question 15</span>
+            <span class="topic-pill impacts">Impacts</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q51</span>
+          </div>
+          <p class="question-text">Which of the following research proposals is most likely to be successful as a <strong>citizen science</strong> project?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. Collecting pictures of birds from around the world that can then be analyzed to determine how location affects bird size</button>
+            <button class="choice" data-correct="false">B. Monitoring a group of cells in a laboratory to determine how growth rate is affected by exposure to varying temperatures</button>
+            <button class="choice" data-correct="false">C. Using a simulation to determine which one from a set of chemicals causes the most significant change to local animal and plant life</button>
+            <button class="choice" data-correct="false">D. Using specialized equipment to perform three-dimensional scans of complex proteins found in human cells</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. <strong>Citizen science</strong> relies on distributed, non-expert contributors using their own devices. Photographing local birds fits perfectly. B and D require laboratory or specialized equipment; C is a single simulation, not a distributed effort.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q16 (was Q52) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m16">
+          <div class="question-header">
+            <span class="q-number">Question 16</span>
+            <span class="topic-pill algo">Algorithms</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q52</span>
+          </div>
+          <p class="question-text">A sorted list of numbers contains 128 elements. Which of the following is closest to the maximum number of list elements that can be examined when performing a <strong>binary search</strong> for a value in the list?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. 2</button>
+            <button class="choice" data-correct="true">B. 8</button>
+            <button class="choice" data-correct="false">C. 64</button>
+            <button class="choice" data-correct="false">D. 128</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            B is correct. Binary search halves the remaining range each step: 128 &rarr; 64 &rarr; 32 &rarr; 16 &rarr; 8 &rarr; 4 &rarr; 2 &rarr; 1 &mdash; at most 8 elements examined. (Choice D is what a linear search would require.)
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q17 (was Q53) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m17">
+          <div class="question-header">
+            <span class="q-number">Question 17</span>
+            <span class="topic-pill pseudo">Pseudocode</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q53</span>
+          </div>
+          <p class="question-text">A list of numbers has <code>n</code> elements, indexed from 1 to <code>n</code>. The algorithm below should display <code>true</code> if <code>target</code> appears in the list more than once, and <code>false</code> otherwise. It uses variables <code>position</code> and <code>count</code>. <strong>Steps 4 and 5 are missing.</strong></p>
+<pre class="pseudocode"><span class="kw">Step 1:</span> Set count to 0 and position to 1.
+<span class="kw">Step 2:</span> <span class="kw">IF</span> the value at index position equals target,
+        increase count by 1.
+<span class="kw">Step 3:</span> Increase position by 1.
+<span class="kw">Step 4:</span> (missing)
+<span class="kw">Step 5:</span> (missing)</pre>
+          <p class="question-text">Which of the following correctly replaces steps 4 and 5?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. Step 4: Repeat steps 2 and 3 until <code>position</code> &gt; <code>n</code>. Step 5: If <code>count</code> &ge; 2, display <code>true</code>; otherwise display <code>false</code>.</button>
+            <button class="choice" data-correct="false">B. Step 4: Repeat steps 2 and 3 until <code>position</code> &gt; <code>n</code>. Step 5: If <code>count</code> &ge; <code>position</code>, display <code>true</code>; otherwise display <code>false</code>.</button>
+            <button class="choice" data-correct="false">C. Step 4: Repeat steps 2 and 3 until <code>count</code> &gt; 2. Step 5: If <code>position</code> &ge; <code>n</code>, display <code>true</code>; otherwise display <code>false</code>.</button>
+            <button class="choice" data-correct="false">D. Step 4: Repeat steps 2 and 3 until <code>count</code> &gt; <code>n</code>. Step 5: If <code>count</code> &ge; 2, display <code>true</code>; otherwise display <code>false</code>.</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. Step 4 must stop when the loop runs past the end of the list (<code>position &gt; n</code>). Step 5 then checks if <code>target</code> was found at least twice (<code>count &ge; 2</code>). B's check (<code>count &ge; position</code>) only triggers when <em>every</em> element matches. C and D have wrong loop conditions that either stop too early or run off the end of the list.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q18 (was Q55) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m18">
+          <div class="question-header">
+            <span class="q-number">Question 18</span>
+            <span class="topic-pill pseudo">Pseudocode</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q55</span>
+          </div>
+          <p class="question-text">A code segment should transform the list <code>utensils</code> so the <strong>last</strong> element moves to the <strong>beginning</strong>.</p>
+          <p class="question-text">For example, if <code>utensils</code> initially contains <code>["fork", "spoon", "tongs", "spatula", "whisk"]</code>, it should contain <code>["whisk", "fork", "spoon", "tongs", "spatula"]</code> afterward. Which code segment transforms the list as intended?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. <code>len &larr; LENGTH(utensils)</code>; <code>temp &larr; utensils[len]</code>; <code>REMOVE(utensils, len)</code>; <code>APPEND(utensils, temp)</code></button>
+            <button class="choice" data-correct="false">B. <code>len &larr; LENGTH(utensils)</code>; <code>REMOVE(utensils, len)</code>; <code>temp &larr; utensils[len]</code>; <code>APPEND(utensils, temp)</code></button>
+            <button class="choice" data-correct="true">C. <code>len &larr; LENGTH(utensils)</code>; <code>temp &larr; utensils[len]</code>; <code>REMOVE(utensils, len)</code>; <code>INSERT(utensils, 1, temp)</code></button>
+            <button class="choice" data-correct="false">D. <code>len &larr; LENGTH(utensils)</code>; <code>REMOVE(utensils, len)</code>; <code>temp &larr; utensils[len]</code>; <code>INSERT(utensils, 1, temp)</code></button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            C is correct. Save the last element to <code>temp</code>, remove it from the end, then <code>INSERT</code> it at index 1. A puts it right back at the end. B and D try to read <code>utensils[len]</code> <em>after</em> removing the last element &mdash; index <code>len</code> no longer exists, causing an error.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q19 (was Q57) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m19">
+          <div class="question-header">
+            <span class="q-number">Question 19</span>
+            <span class="topic-pill algo">Algorithms</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q57</span>
+          </div>
+          <p class="question-text">A computer has two identical processors that run in parallel. The table shows execution times of four processes on a single processor. The processes are independent.</p>
+          <table class="info-table">
+            <tr><th>Process</th><th>Time on Either Processor</th></tr>
+            <tr><td>P</td><td>30 seconds</td></tr>
+            <tr><td>Q</td><td>10 seconds</td></tr>
+            <tr><td>R</td><td>20 seconds</td></tr>
+            <tr><td>S</td><td>15 seconds</td></tr>
+          </table>
+          <p class="question-text">Which parallel computing solution would minimize the time to execute all four processes?</p>
+          <div class="choices">
+            <button class="choice" data-correct="true">A. Running processes P and Q on one processor and processes R and S on the other</button>
+            <button class="choice" data-correct="false">B. Running processes P and R on one processor and processes Q and S on the other</button>
+            <button class="choice" data-correct="false">C. Running processes P and S on one processor and processes Q and R on the other</button>
+            <button class="choice" data-correct="false">D. Running process P on one processor and processes Q, R, and S on the other</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            A is correct. With two parallel processors, total time = the longer of the two processor loads. P+Q = 40s, R+S = 35s &rarr; finishes in <strong>40s</strong>. B: 50 vs 25 = 50s. C: 45 vs 30 = 45s. D: 30 vs 45 = 45s. Balance the load to minimize total time.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Q20 (was Q58) -->
+        <!-- ============================================================ -->
+        <div class="question-block mcq" data-id="m20">
+          <div class="question-header">
+            <span class="q-number">Question 20</span>
+            <span class="topic-pill internet">Internet &amp; Apps</span>
+            <span class="source-tag">2021 Practice Exam &middot; Q58</span>
+          </div>
+          <p class="question-text"><strong>RunRoutr</strong> is a fitness app that creates suggested running routes. Each user has a personal profile and a contact list of friends. The app uses the smartphone's GPS to track location, speed, and distance. Users are considered <em>compatible</em> if they're on each other's contact lists or run at similar speeds. At the start of a run, users indicate the distance they want to run, and the app suggests a route from their current location.</p>
+          <p class="question-text">Which of the following data <strong>must</strong> be collected from a user's smartphone in order for RunRoutr to suggest a running route?</p>
+          <div class="choices">
+            <button class="choice" data-correct="false">A. Available running routes near the user's home</button>
+            <button class="choice" data-correct="false">B. The current time</button>
+            <button class="choice" data-correct="false">C. The starting location of the user's previous run</button>
+            <button class="choice" data-correct="true">D. The user's geographic position</button>
+          </div>
+          <div class="feedback" hidden>
+            <strong class="tag">Official Explanation</strong>
+            D is correct. The app suggests a route starting from the user's <em>current</em> location, so it needs the user's geographic position &mdash; collected from the smartphone's GPS. A is route data (server-side, not from the phone). B and C are unnecessary for suggesting a new route.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Final results -->
+        <!-- ============================================================ -->
+        <div class="final-results" id="finalResults" hidden>
+          <h2><i class="bi bi-trophy-fill"></i> Practice Complete</h2>
+          <div class="big-score"><span id="finalCorrect">0</span> / 20</div>
+          <p><strong id="finalAccuracy">0%</strong> &mdash; <span id="finalMessage"></span></p>
+          <p class="mt-3"><a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Review Hub</a></p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- More info / sources -->
+        <!-- ============================================================ -->
+        <div class="more-info">
+          <h3><i class="bi bi-bookmark-star-fill"></i> Source &amp; More Practice</h3>
+          <p class="source-note">Every question on this page is reproduced from the College Board's official 2021 AP Computer Science Principles Practice Exam, and the explanations come directly from the official answer key. None of these questions appear in <a href="../practice/">Practice Set 1</a>.</p>
+          <ul>
+            <li>
+              <a href="../practice/">Mixed MCQ Practice 1</a>
+              &mdash; The first 20-question set, also drawn from the 2021 Practice Exam.
+            </li>
+            <li>
+              <a href="../practice_exam/ap-computer-science-principles-practice-exam-and-notes-2021-mcq.pdf" target="_blank" rel="noopener">2021 AP CSP Practice Exam &mdash; full 70-question PDF</a>
+              &mdash; Contains questions with figures and grids that couldn't be reproduced here.
+            </li>
+            <li>
+              <a href="../practice_exam/ap-computer-science-principles-practice-exam-and-notes-2021-mcq-answers.pdf" target="_blank" rel="noopener">2021 AP CSP Practice Exam &mdash; Answers &amp; Notes (PDF)</a>
+              &mdash; College Board's official answer key with rationales for every choice (right and wrong).
+            </li>
+            <li>
+              <a href="https://apcentral.collegeboard.org/courses/ap-computer-science-principles/exam/past-exam-questions" target="_blank" rel="noopener">AP Central &mdash; Past Exam Questions</a>
+              &mdash; Additional released questions and free-response from prior years.
+            </li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Review Hub</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const totalQuestions = 20;
+      let attempted = 0;
+      let correct = 0;
+
+      const attemptedEl = document.getElementById('attemptedCount');
+      const correctEl = document.getElementById('correctCount');
+      const accuracyEl = document.getElementById('accuracy');
+      const progressEl = document.getElementById('progressFill');
+      const finalEl = document.getElementById('finalResults');
+
+      function updateTracker() {
+        attemptedEl.textContent = attempted;
+        correctEl.textContent = correct;
+        accuracyEl.textContent = attempted === 0 ? '—' : Math.round((correct / attempted) * 100) + '%';
+        progressEl.style.width = (attempted / totalQuestions * 100) + '%';
+
+        if (attempted === totalQuestions) {
+          const pct = Math.round((correct / totalQuestions) * 100);
+          document.getElementById('finalCorrect').textContent = correct;
+          document.getElementById('finalAccuracy').textContent = pct + '%';
+          let msg;
+          if (pct >= 85) msg = 'Strong performance. You are well-prepared.';
+          else if (pct >= 70) msg = 'Good work. Review the wrong answers and re-read the explanations.';
+          else if (pct >= 55) msg = 'Solid foundation. Revisit the topic lessons for areas where you missed multiple questions.';
+          else msg = 'Use the topic lessons (Algorithms, Data, Impacts, Pseudocode) and come back to drill again.';
+          document.getElementById('finalMessage').textContent = msg;
+          finalEl.hidden = false;
+          finalEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      document.querySelectorAll('.mcq').forEach(q => {
+        const feedback = q.querySelector('.feedback');
+        q.querySelectorAll('.choice').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const isCorrect = btn.dataset.correct === 'true';
+            q.querySelectorAll('.choice').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.correct === 'true') b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+            attempted++;
+            if (isCorrect) correct++;
+            updateTracker();
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
