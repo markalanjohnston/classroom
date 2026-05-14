@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>8th Grade Orientation — Hype Posters</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Arial Black', 'Helvetica Neue', sans-serif; background: #fff; }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .poster {
+    width: 100%;
+    height: 100%;
+    padding: 0.5in;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.2);
+    font-size: 14pt;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    align-self: flex-start;
+  }
+  .tag.solid { background: #fff; color: #000; }
+
+  .headline {
+    font-size: 70pt;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 18px;
+  }
+  .headline.medium { font-size: 56pt; }
+  .headline.small { font-size: 46pt; }
+
+  .big-number {
+    font-size: 180pt;
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -8px;
+    margin-bottom: 4px;
+  }
+  .big-number .unit {
+    font-size: 50pt;
+    letter-spacing: -2px;
+  }
+
+  .sub {
+    font-size: 22pt;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 18px;
+  }
+  .sub.small { font-size: 18pt; }
+
+  .kicker {
+    margin-top: auto;
+    font-size: 18pt;
+    font-weight: 700;
+    border-top: 4px solid rgba(255,255,255,0.4);
+    padding-top: 16px;
+    line-height: 1.3;
+  }
+  .kicker.boxed {
+    border: 4px solid #fff;
+    border-radius: 14px;
+    padding: 16px 22px;
+  }
+
+  .compare {
+    display: flex;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .compare .col {
+    flex: 1;
+    background: rgba(0,0,0,0.25);
+    border-radius: 14px;
+    padding: 18px;
+  }
+  .compare .col h3 { font-size: 16pt; opacity: 0.85; margin-bottom: 8px; }
+  .compare .col .num { font-size: 50pt; font-weight: 900; line-height: 1; }
+  .compare .col .label { font-size: 13pt; margin-top: 6px; opacity: 0.85; }
+
+  .footer-brand {
+    position: absolute;
+    bottom: 0.4in;
+    right: 0.5in;
+    font-size: 12pt;
+    font-weight: 700;
+    opacity: 0.75;
+    letter-spacing: 2px;
+  }
+
+  .squiggle {
+    position: absolute;
+    font-size: 220pt;
+    opacity: 0.08;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* color themes */
+  .theme-1 { background: linear-gradient(135deg, #ff006e, #8338ec); }
+  .theme-2 { background: linear-gradient(135deg, #00f5a0, #00d9f5); color: #002b36; }
+  .theme-2 .tag { background: rgba(0,0,0,0.15); color: #002b36; }
+  .theme-2 .kicker { border-color: rgba(0,43,54,0.3); }
+  .theme-3 { background: linear-gradient(135deg, #fb5607, #ffbe0b); color: #1a0000; }
+  .theme-3 .tag { background: rgba(0,0,0,0.15); color: #1a0000; }
+  .theme-3 .kicker { border-color: rgba(0,0,0,0.3); }
+  .theme-4 { background: linear-gradient(135deg, #3a0ca3, #4361ee); }
+  .theme-5 { background: linear-gradient(135deg, #06d6a0, #118ab2); }
+  .theme-6 { background: linear-gradient(135deg, #d62828, #f77f00); }
+  .theme-7 { background: linear-gradient(135deg, #2b2d42, #8d99ae); }
+  .theme-8 { background: linear-gradient(135deg, #003566, #ffc300); }
+  .theme-9 { background: linear-gradient(135deg, #720026, #ce4257); }
+  .theme-10 { background: linear-gradient(135deg, #1d3557, #457b9d); }
+  .theme-11 { background: linear-gradient(135deg, #9d0208, #dc2f02); }
+  .theme-12 { background: linear-gradient(135deg, #03045e, #00b4d8); }
+
+  /* utility */
+  .stack { display: flex; flex-direction: column; height: 100%; }
+  .center { justify-content: center; text-align: center; align-items: center; }
+  .highlight {
+    background: #fff;
+    color: #000;
+    padding: 2px 12px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .theme-2 .highlight, .theme-3 .highlight { background: #000; color: #fff; }
+
+  .checklist {
+    list-style: none;
+    margin-bottom: 18px;
+  }
+  .checklist li {
+    font-size: 18pt;
+    font-weight: 700;
+    padding: 8px 0;
+    border-bottom: 2px solid rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .checklist li::before {
+    content: '✓';
+    font-size: 22pt;
+    background: rgba(255,255,255,0.25);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .theme-2 .checklist li::before, .theme-3 .checklist li::before {
+    background: rgba(0,0,0,0.2);
+  }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     1. TikTok algorithm
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-1">
+    <div class="squiggle" style="top:-20px; right:-40px;">?</div>
+    <span class="tag">DID YOU KNOW</span>
+    <div class="headline">Your<br>For You Page<br>is code.</div>
+    <div class="sub">TikTok runs <span class="highlight">machine learning models</span> that decide what you see next — based on how long you stare at each video.</div>
+    <div class="kicker boxed">Understanding how it works changes how you use it.<br>That's computer science.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     2. Phishing / scam awareness
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-6">
+    <span class="tag">REAL LIFE CS</span>
+    <div class="headline medium">Spot a scam<br>before it<br>steals your<br>account.</div>
+    <ul class="checklist">
+      <li>Recognize fake login pages</li>
+      <li>Catch phishing emails</li>
+      <li>Know when a link is sketchy</li>
+      <li>Protect your family's info too</li>
+    </ul>
+    <div class="kicker">Every CS class covers cybersecurity. Most adults can't do this. You will.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     3. Phone is more powerful than moon landing
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-4">
+    <span class="tag">DID YOU KNOW</span>
+    <div class="headline small">The phone in<br>your pocket is</div>
+    <div class="big-number">100,000<span class="unit">×</span></div>
+    <div class="sub">more powerful than the computer that<br>landed astronauts on the moon in 1969.</div>
+    <div class="kicker boxed">You're carrying a supercomputer.<br>Learn what it can really do.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     4. Don't get ripped off by ISP
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-3">
+    <span class="tag">REAL LIFE CS</span>
+    <div class="headline medium">Don't let your<br>internet company<br>rip you off.</div>
+    <div class="sub">Know what <span class="highlight">Mbps</span> actually means.<br>Know when you're being throttled.<br>Know what router upgrade you actually need.</div>
+    <div class="kicker">When you understand how the internet works, you stop paying for stuff you don't need.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     5. Roblox / Minecraft creator economy
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-5">
+    <span class="tag">DID YOU KNOW</span>
+    <div class="headline small">Roblox creators<br>have made over</div>
+    <div class="big-number">$1<span class="unit">BILLION</span></div>
+    <div class="sub">building games other kids want to play.<br>The top earners are <span class="highlight">teenagers.</span></div>
+    <div class="kicker boxed">Their tools? Lua. Scripting. Logic.<br>You can learn all of it here.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     6. AI-generated content / deepfakes
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-7">
+    <span class="tag">REAL LIFE CS</span>
+    <div class="headline medium">That photo?<br>That video?<br>Maybe it's<br>not real.</div>
+    <div class="sub">AI can now generate fake images, voices, and videos that look 100% real. <span class="highlight">How do you tell?</span></div>
+    <div class="kicker">CS teaches you to think like the people building this tech — so you don't get fooled by it.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     7. Minecraft built by one person
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-8">
+    <span class="tag">DID YOU KNOW</span>
+    <div class="headline">Minecraft was<br>built by</div>
+    <div class="big-number">1<span class="unit"> person.</span></div>
+    <div class="sub">One programmer. A laptop. An idea.<br>Then sold to Microsoft for <span class="highlight">$2.5 billion.</span></div>
+    <div class="kicker boxed">Every massive app started as one person learning to code.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     8. Why ads follow you around
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-10">
+    <span class="tag">REAL LIFE CS</span>
+    <div class="headline medium">Why does that<br>ad follow you<br>around the<br>internet?</div>
+    <div class="sub">Because apps are <span class="highlight">tracking you</span> in ways most people don't realize.<br>You should know what they collect — and how to turn it off.</div>
+    <div class="kicker">Privacy isn't paranoia. It's literacy.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     9. Code is everywhere
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-2">
+    <span class="tag">DID YOU KNOW</span>
+    <div class="headline">Every text.<br>Every video call.<br>Every game.<br>Every emoji.</div>
+    <div class="sub">All of it is <span class="highlight">code someone wrote.</span></div>
+    <div class="kicker boxed">Imagine being the person who writes the next one everyone uses.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     10. Account security
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-11">
+    <span class="tag">REAL LIFE CS</span>
+    <div class="headline medium">Hackers don't<br>guess passwords.<br>They harvest them.</div>
+    <div class="sub">Your Snap, Discord, gaming, and bank logins are <span class="highlight">all targets.</span></div>
+    <ul class="checklist">
+      <li>How password managers work</li>
+      <li>Why 2-factor matters</li>
+      <li>What a data breach really is</li>
+    </ul>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     11. First programmer was a woman
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-9">
+    <span class="tag">DID YOU KNOW</span>
+    <div class="headline small">The world's first<br>computer programmer<br>was a</div>
+    <div class="headline" style="font-size:80pt;">WOMAN.</div>
+    <div class="sub">Ada Lovelace wrote the first algorithm in <span class="highlight">1843</span> — before electricity was even common.</div>
+    <div class="kicker boxed">CS has always been for everyone curious enough to try.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     12. Salary / opportunity
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-12">
+    <span class="tag">DID YOU KNOW</span>
+    <div class="headline small">Average starting salary<br>for a software job<br>right out of college:</div>
+    <div class="big-number">$75K<span class="unit">+</span></div>
+    <div class="sub">And you don't need a 4-year degree to start.<br><span class="highlight">P-TECH</span> + industry certifications can get you in faster.</div>
+    <div class="kicker boxed">Your first CS class is in 9th grade.<br>Your first job could be at 18.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     13. Final hype poster — "You belong here"
+════════════════════════════════════════════ -->
+<div class="page">
+  <div class="poster theme-1 center">
+    <div class="headline" style="font-size:90pt; text-align:center;">Never<br>coded<br>before?</div>
+    <div class="sub" style="text-align:center; font-size:32pt; margin-top:20px;">Good.</div>
+    <div class="kicker boxed" style="font-size:22pt; text-align:center; margin-top:30px;">This class is built for beginners.<br>Start in 9th grade. Build real things by 12th.</div>
+    <div class="footer-brand">CS @ HS</div>
+  </div>
+</div>
+
+</body>
+</html>

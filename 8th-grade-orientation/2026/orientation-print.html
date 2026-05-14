@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>8th Grade Orientation — Print Assets</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Arial', sans-serif; background: #fff; }
+
+  /* Each page breaks cleanly */
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    padding: 0.4in;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ── STATION SIGNS ── */
+  .sign {
+    border-radius: 18px;
+    width: 100%;
+    padding: 0.4in 0.5in;
+    text-align: center;
+    color: #fff;
+  }
+  .sign .number {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+  .sign h1 {
+    font-size: 54pt;
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 12px;
+  }
+  .sign .emoji { font-size: 64pt; display: block; margin-bottom: 10px; }
+  .sign .tagline {
+    font-size: 22pt;
+    font-weight: 600;
+    opacity: 0.92;
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+  .sign .steps {
+    background: rgba(255,255,255,0.18);
+    border-radius: 12px;
+    padding: 16px 24px;
+    text-align: left;
+    display: inline-block;
+    min-width: 70%;
+  }
+  .sign .steps p {
+    font-size: 17pt;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+  .sign .steps p span.num {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    text-align: center;
+    line-height: 32px;
+    margin-right: 10px;
+    font-size: 14pt;
+  }
+  .sign .screenshot {
+    margin-top: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,0.4);
+    max-width: 100%;
+  }
+  .sign .screenshot img {
+    width: 100%;
+    display: block;
+    max-height: 2.8in;
+    object-fit: cover;
+    object-position: top;
+  }
+  .sign .callout {
+    margin-top: 18px;
+    font-size: 17pt;
+    font-style: italic;
+    opacity: 0.88;
+    border-top: 2px solid rgba(255,255,255,0.3);
+    padding-top: 14px;
+    width: 100%;
+  }
+
+  /* Colors per station */
+  .s1 { background: linear-gradient(135deg, #1a73e8, #0d47a1); }
+  .s2 { background: linear-gradient(135deg, #e65c00, #b34700); }
+  .s3 { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
+  .s4 { background: linear-gradient(135deg, #6a1b9a, #4a148c); }
+  .s5 { background: linear-gradient(135deg, #00838f, #006064); }
+  .s6 { background: linear-gradient(135deg, #c62828, #8e0000); }
+
+  /* ── FLYER ── */
+  .flyer {
+    width: 100%;
+    border: 6px solid #1a73e8;
+    border-radius: 18px;
+    padding: 0.4in 0.5in;
+    text-align: center;
+  }
+  .flyer h1 { font-size: 36pt; color: #1a73e8; font-weight: 900; margin-bottom: 6px; }
+  .flyer .sub { font-size: 16pt; color: #333; margin-bottom: 22px; }
+  .flyer .pathway {
+    background: #e8f0fe;
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin: 0 auto 22px;
+    max-width: 90%;
+    text-align: left;
+  }
+  .flyer .pathway h2 { font-size: 14pt; color: #1a73e8; margin-bottom: 8px; }
+  .flyer .pathway .row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-size: 13pt;
+  }
+  .flyer .pathway .grade {
+    background: #1a73e8;
+    color: #fff;
+    border-radius: 8px;
+    padding: 3px 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    font-size: 11pt;
+  }
+  .flyer .careers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .flyer .careers span {
+    background: #f3e5f5;
+    color: #4a148c;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12pt;
+    font-weight: 600;
+  }
+  .flyer .bigline {
+    font-size: 18pt;
+    font-weight: 900;
+    color: #1a73e8;
+    border: 3px solid #1a73e8;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 14px;
+  }
+  .flyer .note { font-size: 11pt; color: #555; margin-top: 12px; }
+
+  /* ── SENIOR GUIDE ── */
+  .guide { width: 100%; }
+  .guide h1 { font-size: 28pt; font-weight: 900; color: #0d47a1; border-bottom: 4px solid #0d47a1; padding-bottom: 10px; margin-bottom: 18px; }
+  .guide h2 { font-size: 16pt; font-weight: 800; color: #b34700; margin: 18px 0 6px; }
+  .guide p, .guide li { font-size: 12pt; line-height: 1.6; color: #222; }
+  .guide ul { padding-left: 22px; margin-bottom: 10px; }
+  .guide .station-block {
+    background: #f5f5f5;
+    border-left: 5px solid #1a73e8;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+  }
+  .guide .station-block h3 { font-size: 13pt; font-weight: 800; color: #1a73e8; margin-bottom: 4px; }
+  .guide .station-block p { font-size: 11.5pt; }
+  .guide .quote {
+    font-style: italic;
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    border-radius: 4px;
+    padding: 8px 14px;
+    margin: 6px 0;
+    font-size: 11.5pt;
+  }
+  .guide .big-rule {
+    background: #e8f5e9;
+    border: 2px solid #2e7d32;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 18px;
+  }
+  .guide .big-rule p { font-weight: 700; color: #1b5e20; font-size: 13pt; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     STATION 1 — Tinkercad Codeblocks
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="sign s1">
+    <div class="number">STATION 1</div>
+    <span class="emoji">🧩</span>
+    <h1>Tinkercad<br>Codeblocks</h1>
+    <div class="tagline">Drag blocks. Build logic. See it run.</div>
+    <div class="steps">
+      <p><span class="num">1</span> Open the project already on screen</p>
+      <p><span class="num">2</span> Find a block — change one number</p>
+      <p><span class="num">3</span> Click <strong>Run</strong> and watch what changes</p>
+      <p><span class="num">4</span> Try again with a different value!</p>
+    </div>
+    <div class="callout">Ask the senior at this station if you get stuck.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     STATION 2 — Arduino LEDs
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="sign s2">
+    <div class="number">STATION 2</div>
+    <span class="emoji">💡</span>
+    <h1>Arduino<br>Blinking LEDs</h1>
+    <div class="tagline">Change the code. Watch the light change.</div>
+    <div class="steps">
+      <p><span class="num">1</span> Look at the blinking LED on the board</p>
+      <p><span class="num">2</span> Find <strong>delay(1000)</strong> in the code</p>
+      <p><span class="num">3</span> Change <strong>1000</strong> to something else (try 200 or 2000)</p>
+      <p><span class="num">4</span> Click <strong>Upload</strong> — watch the LED!</p>
+    </div>
+    <div class="screenshot">
+      <img src="arduino-IDE.png" alt="Arduino IDE screenshot">
+    </div>
+    <div class="callout">1000 = 1 second. What does 200 do?</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     STATION 3 — React Native Apps (Senior projects)
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="sign s3">
+    <div class="number">STATION 3</div>
+    <span class="emoji">📱</span>
+    <h1>Student-Made<br>Apps</h1>
+    <div class="tagline">Built by seniors in this class — on real tablets.</div>
+    <div class="steps">
+      <p><span class="num">1</span> Pick up the tablet and try the app</p>
+      <p><span class="num">2</span> Tap around and explore what it does</p>
+      <p><span class="num">3</span> Ask the senior: <em>"How long did this take?"</em></p>
+    </div>
+    <div class="callout">These apps were built by students just like you — who started with zero experience.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     STATION 4 — VEX IQ Robots
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="sign s4">
+    <div class="number">STATION 4</div>
+    <span class="emoji">🤖</span>
+    <h1>VEX IQ<br>Robot</h1>
+    <div class="tagline">Write code. Run the robot. Adjust. Repeat.</div>
+    <div class="steps">
+      <p><span class="num">1</span> Look at the code on screen</p>
+      <p><span class="num">2</span> Find the drive distance — change one number</p>
+      <p><span class="num">3</span> Run the program</p>
+      <p><span class="num">4</span> Did the robot do what you expected?</p>
+    </div>
+    <div class="screenshot">
+      <img src="code-iq-IDE.png" alt="VEXcode IQ screenshot">
+    </div>
+    <div class="callout">This is what debugging looks like — try, test, fix, repeat.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     STATION 5 — VEX VR (Virtual Robot)
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="sign s5">
+    <div class="number">STATION 5</div>
+    <span class="emoji">🖥️</span>
+    <h1>VEX VR<br>Virtual Robot</h1>
+    <div class="tagline">No robot needed — program one on screen.</div>
+    <div class="steps">
+      <p><span class="num">1</span> The VEX VR site is already open</p>
+      <p><span class="num">2</span> Pick a maze or playground</p>
+      <p><span class="num">3</span> Drag blocks to move the virtual robot</p>
+      <p><span class="num">4</span> Try to get it through the maze!</p>
+    </div>
+    <div class="callout">No hardware required — just logic. Can you get the robot to the goal?</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     STATION 6 — CMU CS Academy
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="sign s6">
+    <div class="number">STATION 6</div>
+    <span class="emoji">🎓</span>
+    <h1>CMU CS<br>Academy</h1>
+    <div class="tagline">Real Python. Real programming. Lesson 1.</div>
+    <div class="steps">
+      <p><span class="num">1</span> The first lesson is already open</p>
+      <p><span class="num">2</span> Read the short instructions on screen</p>
+      <p><span class="num">3</span> Type the code they show you</p>
+      <p><span class="num">4</span> Press <strong>Run</strong> — did it work?</p>
+    </div>
+    <div class="callout">This is the actual curriculum you will use in Fundamentals of CS next year.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FLYER — Fundamentals of Computer Science
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="flyer">
+    <h1>Fundamentals of Computer Science</h1>
+    <div class="sub">Your starting point for coding, robotics, apps, games, cybersecurity, and more.</div>
+
+    <div class="pathway">
+      <h2>Your CS Pathway at a Glance</h2>
+      <div class="row"><span class="grade">9th Grade</span> Fundamentals of Computer Science ← Start here</div>
+      <div class="row"><span class="grade">10th Grade</span> AP Computer Science Principles</div>
+      <div class="row"><span class="grade">11th / 12th Grade</span> AP Computer Science A</div>
+    </div>
+
+    <p style="font-size:13pt; font-weight:700; margin-bottom:12px;">CS connects to careers in:</p>
+    <div class="careers">
+      <span>Robotics</span><span>Game Design</span><span>Cybersecurity</span>
+      <span>App Development</span><span>Engineering</span><span>Health Care Tech</span>
+      <span>Artificial Intelligence</span><span>Business</span><span>Aerospace</span>
+      <span>Data Science</span>
+    </div>
+
+    <div class="bigline">No experience required. Zero. This class is built for beginners.</div>
+    <div class="note">P-TECH students get first priority. Other students may join if space is available.<br>See Mr. Johnston for details.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SENIOR HELPER GUIDE (2-up, print double-sided or as-is)
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="guide">
+    <h1>Senior Helper Guide — 8th Grade Orientation</h1>
+    <p><strong>Thank you for helping today.</strong> Your job is simple: keep students engaged, help them make one change at your station, and remind them that you started with zero experience too.</p>
+
+    <h2>Your One Job at Every Station</h2>
+    <p>Get each student to <strong>change one thing and see the result.</strong> That's it. They don't need to understand everything — they just need to feel the connection between code and outcome.</p>
+
+    <div class="station-block">
+      <h3>Station 1 — Tinkercad Codeblocks</h3>
+      <p>Help them find a block with a number and change it. Point out that they didn't type a single line — they just dragged and dropped.</p>
+      <div class="quote">"Block coding is how a lot of people start. By the end of the first semester you'll be writing actual code."</div>
+    </div>
+
+    <div class="station-block">
+      <h3>Station 2 — Arduino LEDs</h3>
+      <p>Show them the <strong>delay(1000)</strong> line. Have them change the number. Upload. Watch the LED.</p>
+      <div class="quote">"1000 milliseconds = 1 second. What happens if you put 100? Or 5000?"</div>
+    </div>
+
+    <div class="station-block">
+      <h3>Station 3 — Student-Made Apps (React Native)</h3>
+      <p>Let them use the app on the tablet. Tell them a little about what the senior who built it was working on. Emphasize: this was made by a student who started in the same class they're considering.</p>
+      <div class="quote">"This runs on your phone. It was built right here in this classroom."</div>
+    </div>
+
+    <div class="station-block">
+      <h3>Station 4 — VEX IQ Robot</h3>
+      <p>Have a simple drive program ready. Let them change the drive distance or turn angle, run it, and watch. If the robot does something unexpected, that's perfect — talk about debugging.</p>
+      <div class="quote">"That's debugging. You guessed, tested, and now you adjust. That's real engineering."</div>
+    </div>
+
+    <div class="station-block">
+      <h3>Station 5 — VEX VR</h3>
+      <p>Let them try a maze. Keep it low-pressure. If they get stuck, guide them toward adding one more move block rather than solving it for them.</p>
+      <div class="quote">"Try adding a turn before that last move. See if that gets you closer."</div>
+    </div>
+
+    <div class="station-block">
+      <h3>Station 6 — CMU CS Academy</h3>
+      <p>Walk them through the very first lesson. Let them type the code themselves — don't type it for them. If it runs and draws something, they'll remember it.</p>
+      <div class="quote">"This is the actual curriculum. You'll start exactly here in September."</div>
+    </div>
+
+    <h2>What to Say When Students Say "I'm Not Good at Math" or "I'm Not a Tech Person"</h2>
+    <div class="quote">"Neither was I when I started. This class doesn't require math skills — it teaches you to think logically, and that's something you learn here, not something you need to bring."</div>
+
+    <h2>If the Room Gets Crowded or Time Is Short</h2>
+    <ul>
+      <li>Prioritize the robot station and the LED station — physical things grab attention fastest</li>
+      <li>If a group is moving fast, skip the CMU Academy station — it's the least visual</li>
+      <li>If you only have 5 minutes with a group, do Station 2 (Arduino) and Station 4 (Robot) only</li>
+    </ul>
+
+    <div class="big-rule">
+      <p>The message to repeat all morning:<br>"You do not need to already know how to code. Fundamentals of Computer Science is where everyone starts."</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
