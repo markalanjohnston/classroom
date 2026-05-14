@@ -419,6 +419,26 @@ button.danger {
   white-space: pre;
 }
 
+/* ASCII art block — the parent centers, the inline-block <pre> keeps
+   its internal left-alignment so columns of slashes/pipes line up. */
+.receipt-preview .r-ascii,
+.print-area .r-ascii {
+  text-align: center;
+  margin: 2mm 0;
+}
+.receipt-preview .r-ascii pre,
+.print-area .r-ascii pre {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1.1;
+  text-align: left;
+  white-space: pre;
+}
+
 /* Coupon-style dashed border variant */
 .receipt-preview .r-coupon,
 .print-area .r-coupon {
