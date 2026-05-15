@@ -1,0 +1,759 @@
+---
+---
+
+<!-- File: classroom/teachertools/schoology/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schoology Post Builder — Mr. Johnston's Classroom</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <style>
+    /* ── Layout ─────────────────────────────────────── */
+    body { overflow: hidden; }
+
+    .builder-bar {
+      background: #2c3e50;
+      color: white;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .builder-bar h2 { margin: 0; font-size: 1rem; flex: 1; white-space: nowrap; }
+
+    .builder-layout {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      height: calc(100vh - 108px); /* nav + bar */
+      overflow: hidden;
+    }
+
+    /* ── Builder panel ──────────────────────────────── */
+    .builder-panel {
+      overflow-y: auto;
+      padding: 14px 16px;
+      background: #f1f3f5;
+      border-right: 1px solid #dee2e6;
+    }
+
+    .section-card {
+      background: white;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .section-card.disabled { opacity: 0.55; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      cursor: pointer;
+      user-select: none;
+      background: white;
+    }
+    .section-card:not(.collapsed) .section-header {
+      border-bottom: 1px solid #dee2e6;
+    }
+    .section-title { flex: 1; font-weight: 600; font-size: 0.85rem; margin: 0; }
+    .section-chevron { transition: transform 0.2s; font-size: 0.75rem; color: #6c757d; }
+    .section-card.collapsed .section-chevron { transform: rotate(-90deg); }
+
+    .section-body { padding: 12px; }
+    .section-card.collapsed .section-body { display: none; }
+
+    /* ── Color swatches ─────────────────────────────── */
+    .color-swatches { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+    .color-swatch {
+      width: 22px; height: 22px; border-radius: 4px;
+      border: 2px solid transparent; cursor: pointer;
+      transition: border-color 0.15s, outline 0.15s;
+    }
+    .color-swatch.selected {
+      border-color: #0d6efd;
+      outline: 2px solid #0d6efd;
+      outline-offset: 1px;
+    }
+
+    /* ── Preview panel ──────────────────────────────── */
+    .preview-panel {
+      overflow-y: auto;
+      padding: 16px;
+      background: #dde1e7;
+    }
+
+    .preview-chrome {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    }
+    .preview-chrome-bar {
+      background: #e9ecef;
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .preview-chrome-dots span {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 50%; margin-right: 4px;
+    }
+    .preview-chrome-label { font-size: 0.72rem; color: #6c757d; flex: 1; text-align: center; }
+
+    /* ── Preview content — mirrors Schoology rendering ─ */
+    .preview-content {
+      padding: 22px 26px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #1a1a1a;
+    }
+    .preview-content h2 { font-size: 1.35em; font-weight: bold; margin: 0 0 12px; }
+    .preview-content h3 { font-size: 1.05em; font-weight: bold; margin: 16px 0 8px; }
+    .preview-content p  { margin: 0 0 8px; }
+    .preview-content ol, .preview-content ul { padding-left: 24px; margin: 0 0 10px; }
+    .preview-content li { margin-bottom: 3px; }
+    .preview-content a  { color: #0a58ca; }
+    .preview-content code {
+      background: #f4f4f4; padding: 1px 4px;
+      border-radius: 3px; font-size: 0.88em;
+    }
+    .preview-content table { border-collapse: collapse; width: 100%; margin-bottom: 14px; }
+    .preview-content th, .preview-content td {
+      border: 1px solid #ffeeba; padding: 6px 12px;
+    }
+
+    /* ── HTML source panel ──────────────────────────── */
+    .html-output {
+      background: #1e1e1e; color: #d4d4d4;
+      border-radius: 6px; padding: 14px;
+      font-size: 0.72rem; font-family: 'Courier New', monospace;
+      max-height: 260px; overflow-y: auto;
+      white-space: pre-wrap; word-break: break-all;
+      display: none; margin-top: 12px;
+    }
+    .html-output.visible { display: block; }
+
+    /* ── Misc ───────────────────────────────────────── */
+    .form-label { margin-bottom: 2px; }
+    .form-control-sm { font-size: 0.82rem; }
+    @media (max-width: 900px) {
+      .builder-layout { grid-template-columns: 1fr; height: auto; overflow: visible; }
+      body { overflow: auto; }
+    }
+  </style>
+</head>
+<body>
+  {% include navigation.html %}
+
+  <!-- ── Global settings bar ─────────────────────────── -->
+  <div class="builder-bar">
+    <i class="bi bi-file-earmark-code fs-5"></i>
+    <h2><i class="bi bi-pencil-square me-1"></i> Schoology Post Builder</h2>
+
+    <div class="d-flex align-items-center gap-2">
+      <label class="text-white-50 small mb-0">Font</label>
+      <select class="form-select form-select-sm" id="globalFontSize" style="width:72px">
+        <option value="10pt">10pt</option>
+        <option value="11pt" selected>11pt</option>
+        <option value="12pt">12pt</option>
+      </select>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <label class="text-white-50 small mb-0">Width</label>
+      <select class="form-select form-select-sm" id="globalMaxWidth" style="width:90px">
+        <option value="800px">800px</option>
+        <option value="900px" selected>900px</option>
+        <option value="100%">Full</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success btn-sm ms-auto" id="btnCopyHtml">
+      <i class="bi bi-clipboard"></i> Copy HTML
+    </button>
+    <button class="btn btn-outline-light btn-sm" id="btnToggleSource">
+      <i class="bi bi-code-slash"></i> Source
+    </button>
+  </div>
+
+  <div class="builder-layout">
+
+    <!-- ══ LEFT: Builder panel ════════════════════════ -->
+    <div class="builder-panel" id="builderPanel">
+      <p class="text-muted mb-2" style="font-size:0.78rem">
+        <i class="bi bi-info-circle"></i> Toggle sections on/off. Preview updates live. Use <code>**bold**</code> and <code>`code`</code> in text fields.
+      </p>
+
+      <!-- ─ Title ─────────────────────────────────── -->
+      <div class="section-card" data-section="title">
+        <div class="section-header" onclick="toggleCollapse('title')">
+          <span class="section-title"><i class="bi bi-type-h2 me-1 text-primary"></i>Page Title</span>
+          <span class="badge bg-primary" style="font-size:0.62rem">always on</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Title (h2)</label>
+          <input type="text" class="form-control form-control-sm" id="titleText"
+            value="Transitioning to Professional Local Development">
+        </div>
+      </div>
+
+      <!-- ─ Goal Box ───────────────────────────────── -->
+      <div class="section-card" data-section="goalBox">
+        <div class="section-header" onclick="toggleCollapse('goalBox')">
+          <input type="checkbox" class="section-toggle" id="en_goalBox" checked
+            onclick="event.stopPropagation();toggleEnabled('goalBox',this.checked)">
+          <span class="section-title"><i class="bi bi-exclamation-circle me-1 text-danger"></i>Goal / Intro Box</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Color</label>
+          <div class="color-swatches" data-for="goalBox"></div>
+          <label class="form-label small fw-semibold mt-2">Bold label (optional)</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="goalLabel" value="Today's Goal:">
+          <label class="form-label small fw-semibold">Body</label>
+          <textarea class="form-control form-control-sm" id="goalBody" rows="3">Move one of your CMU Academy programs out of the browser and into a real professional local development environment — VS Code, Python, CMU Graphics, and Git — the same toolchain professional developers use every day.</textarea>
+        </div>
+      </div>
+
+      <!-- ─ Website Link Box ───────────────────────── -->
+      <div class="section-card" data-section="linkBox">
+        <div class="section-header" onclick="toggleCollapse('linkBox')">
+          <input type="checkbox" class="section-toggle" id="en_linkBox" checked
+            onclick="event.stopPropagation();toggleEnabled('linkBox',this.checked)">
+          <span class="section-title"><i class="bi bi-link-45deg me-1 text-primary"></i>Website Link Box</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Color</label>
+          <div class="color-swatches" data-for="linkBox"></div>
+          <label class="form-label small fw-semibold mt-2">Description</label>
+          <textarea class="form-control form-control-sm mb-2" id="linkDesc" rows="2">All detailed instructions, commands, checkpoints, and the full grading rubric live on the class website. This Schoology page is intentionally brief — the website is your lab manual for the day.</textarea>
+          <label class="form-label small fw-semibold">URL</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="linkUrl" placeholder="https://..."
+            value="https://classroom.mjstem.com/pit/pro_local_dev/">
+          <label class="form-label small fw-semibold">Link label</label>
+          <input type="text" class="form-control form-control-sm" id="linkLabel"
+            value="Open the full lesson on classroom.mjstem.com">
+        </div>
+      </div>
+
+      <!-- ─ Learning Objectives ────────────────────── -->
+      <div class="section-card" data-section="objectives">
+        <div class="section-header" onclick="toggleCollapse('objectives')">
+          <input type="checkbox" class="section-toggle" id="en_objectives" checked
+            onclick="event.stopPropagation();toggleEnabled('objectives',this.checked)">
+          <span class="section-title"><i class="bi bi-list-ol me-1 text-primary"></i>Learning Objectives</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Heading</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="objHeading" value="Learning Objectives">
+          <label class="form-label small fw-semibold">Intro line (optional)</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="objIntro"
+            value="By the end of this 3-hour practicum, you will be able to:">
+          <label class="form-label small fw-semibold">Items — one per line</label>
+          <textarea class="form-control form-control-sm" id="objList" rows="5">Verify a working professional Python environment (VS Code + Python) on a local machine.
+Install `cmu-graphics` with `pip` and run a CMU Graphics program locally.
+Migrate one of your CMU Academy programs into VS Code with improved formatting, naming, and comments.
+Initialize a local Git repository and create meaningful commits.
+Articulate **why** version control matters.</textarea>
+        </div>
+      </div>
+
+      <!-- ─ Why This Matters ───────────────────────── -->
+      <div class="section-card" data-section="whyMatters">
+        <div class="section-header" onclick="toggleCollapse('whyMatters')">
+          <input type="checkbox" class="section-toggle" id="en_whyMatters" checked
+            onclick="event.stopPropagation();toggleEnabled('whyMatters',this.checked)">
+          <span class="section-title"><i class="bi bi-lightbulb me-1 text-warning"></i>Why This Matters</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Heading</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="whyHeading" value="Why This Matters Beyond CS">
+          <label class="form-label small fw-semibold">Body</label>
+          <textarea class="form-control form-control-sm" id="whyBody" rows="3">Even if you never write code professionally, today you're practicing a bigger skill: **learning a new workflow quickly and following it without skipping steps** — the same skill used by pilots running pre-flight checklists, accountants closing the books, and surgeons running a sterile-field protocol.</textarea>
+        </div>
+      </div>
+
+      <!-- ─ What You Will Do ───────────────────────── -->
+      <div class="section-card collapsed" data-section="whatYouWillDo">
+        <div class="section-header" onclick="toggleCollapse('whatYouWillDo')">
+          <input type="checkbox" class="section-toggle" id="en_whatYouWillDo"
+            onclick="event.stopPropagation();toggleEnabled('whatYouWillDo',this.checked)">
+          <span class="section-title"><i class="bi bi-card-checklist me-1 text-success"></i>What You Will Do</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Heading</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="whatHeading" value="What You Will Do (High Level)">
+          <label class="form-label small fw-semibold">Steps — one per line</label>
+          <textarea class="form-control form-control-sm" id="whatList" rows="4">**Phase 1 — Deployment & Configuration:** Install VS Code and Python on your assigned machine.
+**Phase 2 — Capability Testing:** Validate which Python capabilities the system actually supports.
+**Phase 3 — Boundary Testing:** Professionally probe the limits of the managed environment.
+**Phase 4 — Capability Report:** Produce a professional PDF summarizing your findings.</textarea>
+        </div>
+      </div>
+
+      <!-- ─ Format ─────────────────────────────────── -->
+      <div class="section-card collapsed" data-section="format">
+        <div class="section-header" onclick="toggleCollapse('format')">
+          <input type="checkbox" class="section-toggle" id="en_format"
+            onclick="event.stopPropagation();toggleEnabled('format',this.checked)">
+          <span class="section-title"><i class="bi bi-layout-text-sidebar me-1 text-secondary"></i>Format</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Heading</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="formatHeading" value="Format">
+          <label class="form-label small fw-semibold">Items — one per line</label>
+          <textarea class="form-control form-control-sm" id="formatList" rows="4">3-hour block, work independently or in small troubleshooting groups (2–3).
+Mr. Johnston is acting as a roaming support technician, not delivering direct instruction.
+Pace yourself. The website includes a suggested time breakdown.
+Escalate blockers only after attempting at least one documented workaround — bring the exact error text.</textarea>
+        </div>
+      </div>
+
+      <!-- ─ Problem Protocol ───────────────────────── -->
+      <div class="section-card collapsed" data-section="problemProtocol">
+        <div class="section-header" onclick="toggleCollapse('problemProtocol')">
+          <input type="checkbox" class="section-toggle" id="en_problemProtocol"
+            onclick="event.stopPropagation();toggleEnabled('problemProtocol',this.checked)">
+          <span class="section-title"><i class="bi bi-shield-exclamation me-1 text-warning"></i>Problem Protocol</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Color</label>
+          <div class="color-swatches" data-for="problemProtocol"></div>
+          <label class="form-label small fw-semibold mt-2">Heading</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="problemHeading" value="If Something Doesn't Work">
+          <label class="form-label small fw-semibold">Intro line</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="problemIntro"
+            value="Failures are data, not dead ends. The short version:">
+          <label class="form-label small fw-semibold">Steps — one per line</label>
+          <textarea class="form-control form-control-sm" id="problemList" rows="3">**Capture the exact error** (screenshot + error text), mark it FAIL or RESTRICTED, and move on.
+Tests are independent — if one is blocked, skip it, mark it N/A, keep going.
+If your machine is unworkable after 20 minutes of documented troubleshooting, move to a different machine.</textarea>
+        </div>
+      </div>
+
+      <!-- ─ Submission ─────────────────────────────── -->
+      <div class="section-card" data-section="submission">
+        <div class="section-header" onclick="toggleCollapse('submission')">
+          <input type="checkbox" class="section-toggle" id="en_submission" checked
+            onclick="event.stopPropagation();toggleEnabled('submission',this.checked)">
+          <span class="section-title"><i class="bi bi-upload me-1 text-success"></i>Submission</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Color</label>
+          <div class="color-swatches" data-for="submission"></div>
+          <label class="form-label small fw-semibold mt-2">Deliverable description</label>
+          <textarea class="form-control form-control-sm mb-2" id="submissionDeliverable" rows="2">A single PDF named `LASTNAME_FIRSTNAME_LocalDevPracticum.pdf`, submitted through the Schoology assignment before the end of class on **5/12/26** (Mastery Grade).</textarea>
+          <label class="form-label small fw-semibold">Submit link URL (optional)</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="submissionUrl" placeholder="https://...">
+          <label class="form-label small fw-semibold">Submit link label</label>
+          <input type="text" class="form-control form-control-sm" id="submissionLinkLabel" value="Submit your PDF here">
+        </div>
+      </div>
+
+      <!-- ─ Due Date & Late Policy ─────────────────── -->
+      <div class="section-card" data-section="dueDate">
+        <div class="section-header" onclick="toggleCollapse('dueDate')">
+          <input type="checkbox" class="section-toggle" id="en_dueDate" checked
+            onclick="event.stopPropagation();toggleEnabled('dueDate',this.checked)">
+          <span class="section-title"><i class="bi bi-calendar-x me-1 text-danger"></i>Due Date & Late Policy</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Color</label>
+          <div class="color-swatches" data-for="dueDate"></div>
+          <label class="form-label small fw-semibold mt-2">Policy items — one per line</label>
+          <textarea class="form-control form-control-sm" id="dueDateList" rows="4">**Due:** end of the period (5/12/26).
+**Up to 24 hours late:** accepted with a **30-point deduction**.
+**After 24 hours:** not accepted — recorded as **`NHI`** (Not Handed In).
+**Retake opportunity:** available for a maximum score of **70%**.</textarea>
+        </div>
+      </div>
+
+      <!-- ─ Rubric ─────────────────────────────────── -->
+      <div class="section-card" data-section="rubric">
+        <div class="section-header" onclick="toggleCollapse('rubric')">
+          <input type="checkbox" class="section-toggle" id="en_rubric" checked
+            onclick="event.stopPropagation();toggleEnabled('rubric',this.checked)">
+          <span class="section-title"><i class="bi bi-table me-1 text-primary"></i>Rubric</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Heading</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="rubricHeading" value="Rubric">
+          <label class="form-label small fw-semibold">Rows: <code>Criterion | Points</code> — one per line</label>
+          <textarea class="form-control form-control-sm mb-1" id="rubricRows" rows="7">Effort & professional engagement throughout the block | 30
+Cover page | 10
+Environment verification | 10
+CMU Graphics test | 10
+Imported program | 10
+Git evidence | 10
+Reflection | 10</textarea>
+          <div class="text-muted mt-1" id="rubricTotal" style="font-size:0.78rem"></div>
+        </div>
+      </div>
+
+      <!-- ─ Expectations ───────────────────────────── -->
+      <div class="section-card" data-section="expectations">
+        <div class="section-header" onclick="toggleCollapse('expectations')">
+          <input type="checkbox" class="section-toggle" id="en_expectations" checked
+            onclick="event.stopPropagation();toggleEnabled('expectations',this.checked)">
+          <span class="section-title"><i class="bi bi-patch-check me-1 text-secondary"></i>Expectations</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Heading</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="expectHeading" value="Class Expectations">
+          <label class="form-label small fw-semibold">Items — one per line</label>
+          <textarea class="form-control form-control-sm" id="expectList" rows="3">Phones away — we do not need them (ask if you believe there is an exception).
+No food. Liquids in sealed containers only.
+If you finish early, the website lists extension activities. Idle time is not an option.</textarea>
+        </div>
+      </div>
+
+      <!-- ─ Closing Link Box ───────────────────────── -->
+      <div class="section-card" data-section="closingBox">
+        <div class="section-header" onclick="toggleCollapse('closingBox')">
+          <input type="checkbox" class="section-toggle" id="en_closingBox" checked
+            onclick="event.stopPropagation();toggleEnabled('closingBox',this.checked)">
+          <span class="section-title"><i class="bi bi-arrow-right-circle me-1 text-primary"></i>Closing Link Box</span>
+          <i class="bi bi-chevron-down section-chevron"></i>
+        </div>
+        <div class="section-body">
+          <label class="form-label small fw-semibold">Color</label>
+          <div class="color-swatches" data-for="closingBox"></div>
+          <label class="form-label small fw-semibold mt-2">URL</label>
+          <input type="text" class="form-control form-control-sm mb-2" id="closingUrl"
+            value="https://classroom.mjstem.com/pit/pro_local_dev/">
+          <label class="form-label small fw-semibold">Link label</label>
+          <input type="text" class="form-control form-control-sm" id="closingLabel"
+            value="Open the full lesson to begin">
+        </div>
+      </div>
+
+    </div><!-- /builder-panel -->
+
+    <!-- ══ RIGHT: Preview panel ═══════════════════════ -->
+    <div class="preview-panel">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <span class="text-muted" style="font-size:0.78rem"><i class="bi bi-eye"></i> Live Preview</span>
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-success" id="btnCopyHtml2">
+            <i class="bi bi-clipboard"></i> Copy HTML
+          </button>
+          <button class="btn btn-sm btn-outline-secondary" id="btnToggleSource2">
+            <i class="bi bi-code-slash"></i> Source
+          </button>
+        </div>
+      </div>
+
+      <div class="preview-chrome">
+        <div class="preview-chrome-bar">
+          <div class="preview-chrome-dots">
+            <span style="background:#ff5f56"></span>
+            <span style="background:#ffbd2e"></span>
+            <span style="background:#27c93f"></span>
+          </div>
+          <span class="preview-chrome-label">Schoology Page Preview</span>
+        </div>
+        <div class="preview-content" id="previewContent"></div>
+      </div>
+
+      <div class="html-output" id="htmlOutput"></div>
+    </div>
+
+  </div><!-- /builder-layout -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  // ── Color palette ─────────────────────────────────────
+  const PALETTE = {
+    red:    { label:'Red',    swatch:'#f5c2c7', bg:'#fdecea', border:'1px solid #f5c2c7', color:'#000' },
+    blue:   { label:'Blue',   swatch:'#b8d4f8', bg:'#f0f6ff', border:'1px solid #cfe2ff', color:'#000' },
+    yellow: { label:'Yellow', swatch:'#ffd966', bg:'#fff3cd', border:'1px solid #ffeeba', color:'#000' },
+    green:  { label:'Green',  swatch:'#a3cfbb', bg:'#d1e7dd', border:'1px solid #a3cfbb', color:'#000' },
+    dark:   { label:'Dark',   swatch:'#3a3a5c', bg:'#1a1a2e', border:'none',              color:'#fff' },
+    amber:  { label:'Amber (left border)', swatch:'#ffc107', bg:'#fff8e9', leftBorder:'4px solid #ffc107', border:'none', color:'#000' },
+  };
+
+  // Default color per section
+  const defaultColor = {
+    goalBox:         'red',
+    linkBox:         'blue',
+    problemProtocol: 'amber',
+    submission:      'yellow',
+    dueDate:         'red',
+    closingBox:      'blue',
+  };
+
+  const colorState = { ...defaultColor };
+
+  // ── Build color swatches ───────────────────────────────
+  document.querySelectorAll('.color-swatches[data-for]').forEach(container => {
+    const sec = container.dataset.for;
+    Object.entries(PALETTE).forEach(([key, c]) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'color-swatch' + (colorState[sec] === key ? ' selected' : '');
+      btn.style.background = c.swatch;
+      btn.title = c.label;
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        colorState[sec] = key;
+        renderPreview();
+      });
+      container.appendChild(btn);
+    });
+  });
+
+  // ── Section collapse / enable ─────────────────────────
+  function toggleCollapse(id) {
+    document.querySelector(`.section-card[data-section="${id}"]`).classList.toggle('collapsed');
+  }
+
+  function toggleEnabled(id, on) {
+    document.querySelector(`.section-card[data-section="${id}"]`).classList.toggle('disabled', !on);
+    renderPreview();
+  }
+
+  function on(id) {
+    const el = document.getElementById('en_' + id);
+    return el ? el.checked : true;
+  }
+
+  // ── HTML helpers ──────────────────────────────────────
+  function esc(s) {
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // Process inline: escape, then apply **bold**, `code`, typography
+  function inline(s) {
+    return esc(s)
+      .replace(/—/g,'&mdash;').replace(/–/g,'&ndash;')
+      .replace(/'/g,"&rsquo;").replace(/'/g,"&lsquo;")
+      .replace(/"/g,"&rdquo;").replace(/"/g,"&ldquo;")
+      .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+      .replace(/`([^`]+)`/g,'<code>$1</code>');
+  }
+
+  function makeList(text, ordered) {
+    const items = text.split('\n').map(l => l.trim()).filter(Boolean);
+    if (!items.length) return '';
+    const t = ordered ? 'ol' : 'ul';
+    return `<${t}>\n${items.map(i => `<li>${inline(i)}</li>`).join('\n')}\n</${t}>`;
+  }
+
+  function makeBox(sec, inner, extraStyle = '') {
+    const c = PALETTE[colorState[sec] || 'blue'];
+    const borderCSS = c.leftBorder
+      ? `border-left: ${c.leftBorder}; border-radius: 6px;`
+      : `border: ${c.border}; border-radius: 6px;`;
+    const colorCSS = c.color !== '#000' ? ` color: ${c.color};` : '';
+    return `<div style="background-color: ${c.bg}; ${borderCSS} padding: 12px 16px; margin-bottom: 14px;${colorCSS}${extraStyle}">${inner}</div>`;
+  }
+
+  function val(id) { return (document.getElementById(id) || {}).value || ''; }
+
+  // ── Generate HTML ─────────────────────────────────────
+  function generateHtml() {
+    const fontSize = val('globalFontSize') || '11pt';
+    const maxWidth = val('globalMaxWidth') || '900px';
+    const parts = [];
+
+    // Title
+    parts.push(`<h2 dir="ltr">${esc(val('titleText').trim())}</h2>`);
+
+    // Goal box
+    if (on('goalBox')) {
+      const label = val('goalLabel').trim();
+      const body  = val('goalBody').trim();
+      const lbl   = label ? `<strong>${esc(label)}</strong> ` : '';
+      parts.push(makeBox('goalBox', `<p style="margin:0;">${lbl}${inline(body)}</p>`));
+    }
+
+    // Link box
+    if (on('linkBox')) {
+      const desc  = val('linkDesc').trim();
+      const url   = val('linkUrl').trim();
+      const label = val('linkLabel').trim();
+      let inner = desc ? `<p style="margin:0;">${inline(desc)}</p>` : '';
+      if (url && label)
+        inner += `<p style="margin:8px 0 0 0; font-size:1.1em;">&rarr; <strong><a href="${esc(url)}" rel="noreferrer noopener" target="_blank">${esc(label)}</a></strong></p>`;
+      parts.push(makeBox('linkBox', inner));
+    }
+
+    // Objectives
+    if (on('objectives')) {
+      const h = val('objHeading').trim();
+      const i = val('objIntro').trim();
+      const l = val('objList').trim();
+      parts.push(`<h3>${esc(h)}</h3>${i ? `<p>${inline(i)}</p>` : ''}${makeList(l, true)}`);
+    }
+
+    // Why This Matters
+    if (on('whyMatters')) {
+      const h = val('whyHeading').trim();
+      const b = val('whyBody').trim();
+      parts.push(`<h3>${esc(h)}</h3><p>${inline(b)}</p>`);
+    }
+
+    // What You Will Do
+    if (on('whatYouWillDo')) {
+      const h = val('whatHeading').trim();
+      const l = val('whatList').trim();
+      parts.push(`<h3>${esc(h)}</h3>${makeList(l, true)}`);
+    }
+
+    // Format
+    if (on('format')) {
+      const h = val('formatHeading').trim();
+      const l = val('formatList').trim();
+      parts.push(`<h3>${esc(h)}</h3>${makeList(l, false)}`);
+    }
+
+    // Problem Protocol
+    if (on('problemProtocol')) {
+      const h    = val('problemHeading').trim();
+      const i    = val('problemIntro').trim();
+      const l    = val('problemList').trim();
+      const lbl  = i ? `<p style="margin:0;"><strong>${inline(i)}</strong></p>` : '';
+      parts.push(`<h3>${esc(h)}</h3>` +
+        makeBox('problemProtocol', lbl + `<div style="margin:8px 0 0 0;">${makeList(l, true)}</div>`));
+    }
+
+    // Submission
+    if (on('submission')) {
+      const deliv = val('submissionDeliverable').trim();
+      const url   = val('submissionUrl').trim();
+      const lbl   = val('submissionLinkLabel').trim();
+      let inner = `<p style="margin:0;"><strong>Deliverable:</strong> ${inline(deliv)}</p>`;
+      if (url && lbl)
+        inner += `<p style="margin:8px 0 0 0;">&rarr; <strong><a href="${esc(url)}" rel="noreferrer noopener" target="_blank">${esc(lbl)}</a></strong></p>`;
+      parts.push(`<h3>Submission</h3>` + makeBox('submission', inner));
+    }
+
+    // Due Date
+    if (on('dueDate')) {
+      const l = val('dueDateList').trim();
+      const inner = `<${makeList(l,false).slice(1)}`;  // keep the ul/ol
+      parts.push(`<h3>Due Date &amp; Late Policy</h3>` +
+        makeBox('dueDate', `<div style="margin:0;">${makeList(l, false)}</div>`));
+    }
+
+    // Rubric
+    if (on('rubric')) {
+      const h    = val('rubricHeading').trim();
+      const rows = val('rubricRows').trim().split('\n').map(r => r.trim()).filter(Boolean);
+      let total  = 0;
+      let tbody  = '';
+      rows.forEach(row => {
+        const [crit, pts] = row.split('|');
+        const p = parseInt((pts || '').trim()) || 0;
+        total += p;
+        tbody += `<tr><td style="padding:6px 12px;border:1px solid #ffeeba;">${inline((crit||'').trim())}</td>`
+               + `<td style="text-align:right;padding:6px 12px;border:1px solid #ffeeba;">${p}</td></tr>\n`;
+      });
+      tbody += `<tr style="background-color:#fff3cd;font-weight:bold;">`
+             + `<td style="padding:8px 12px;border:1px solid #ffeeba;">Total</td>`
+             + `<td style="text-align:right;padding:8px 12px;border:1px solid #ffeeba;">${total}</td></tr>`;
+
+      document.getElementById('rubricTotal').textContent = `Total: ${total} pts`;
+
+      parts.push(`<h3>${esc(h)}</h3>
+<table style="border-collapse:collapse;width:100%;font-family:Arial,Helvetica,sans-serif;font-size:11pt;margin-bottom:14px;">
+<thead>
+<tr style="background-color:#fff3cd;border:1px solid #ffeeba;">
+<th style="text-align:left;padding:8px 12px;border:1px solid #ffeeba;">Criterion</th>
+<th style="text-align:right;padding:8px 12px;border:1px solid #ffeeba;width:90px;">Points</th>
+</tr>
+</thead>
+<tbody>
+${tbody}</tbody>
+</table>`);
+    }
+
+    // Expectations
+    if (on('expectations')) {
+      const h = val('expectHeading').trim();
+      const l = val('expectList').trim();
+      parts.push(`<h3>${esc(h)}</h3>${makeList(l, false)}`);
+    }
+
+    // Closing box
+    if (on('closingBox')) {
+      const url = val('closingUrl').trim();
+      const lbl = val('closingLabel').trim();
+      if (url && lbl) {
+        parts.push(makeBox('closingBox',
+          `<p style="margin:0;font-size:1.1em;"><strong>&rarr; <a href="${esc(url)}" rel="noreferrer noopener" target="_blank">${esc(lbl)}</a></strong></p>`,
+          ' margin-top:14px; text-align:center;'));
+      }
+    }
+
+    return `<div style="font-family:Arial,Helvetica,sans-serif;font-size:${fontSize};line-height:1.5;max-width:${maxWidth};" dir="ltr">\n`
+         + parts.join('\n') + '\n</div>';
+  }
+
+  // ── Render preview ────────────────────────────────────
+  function renderPreview() {
+    const html = generateHtml();
+    document.getElementById('previewContent').innerHTML = html;
+    const out = document.getElementById('htmlOutput');
+    if (out.classList.contains('visible')) out.textContent = html;
+  }
+
+  // ── Copy HTML ─────────────────────────────────────────
+  function copyHtml() {
+    navigator.clipboard.writeText(generateHtml()).then(() => {
+      ['btnCopyHtml','btnCopyHtml2'].forEach(id => {
+        const btn = document.getElementById(id);
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="bi bi-check-lg"></i> Copied!';
+        setTimeout(() => { btn.innerHTML = orig; }, 2000);
+      });
+    });
+  }
+
+  // ── Toggle source ─────────────────────────────────────
+  function toggleSource() {
+    const out = document.getElementById('htmlOutput');
+    out.classList.toggle('visible');
+    if (out.classList.contains('visible')) out.textContent = generateHtml();
+  }
+
+  // ── Wire up events ────────────────────────────────────
+  document.getElementById('btnCopyHtml').addEventListener('click', copyHtml);
+  document.getElementById('btnCopyHtml2').addEventListener('click', copyHtml);
+  document.getElementById('btnToggleSource').addEventListener('click', toggleSource);
+  document.getElementById('btnToggleSource2').addEventListener('click', toggleSource);
+  document.getElementById('builderPanel').addEventListener('input', renderPreview);
+  document.getElementById('globalFontSize').addEventListener('change', renderPreview);
+  document.getElementById('globalMaxWidth').addEventListener('change', renderPreview);
+
+  // Initial render
+  renderPreview();
+  </script>
+</body>
+</html>
