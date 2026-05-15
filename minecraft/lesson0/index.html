@@ -1,0 +1,242 @@
+---
+---
+
+<!-- File: classroom/minecraft/lesson0/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Lesson 0 - World Setup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #1f4e79 0%, #2d6499 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 28px 30px;
+        margin-bottom: 25px;
+      }
+      .lesson-header .lesson-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.18);
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        padding: 4px 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+      .lesson-header h1 { margin: 0 0 8px; font-size: 1.85rem; }
+      .lesson-header .subtitle { font-size: 1.05rem; opacity: 0.95; margin: 0; }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .intro-card {
+        background: #eef3f8;
+        border-left: 4px solid #1f4e79;
+        border-radius: 8px;
+        padding: 18px 22px;
+        margin-bottom: 25px;
+      }
+      .intro-card h2 { color: #14365a; margin: 0 0 8px 0; font-size: 1.15rem; }
+      .intro-card p { margin-bottom: 0; }
+      .intro-card strong { color: #14365a; }
+
+      .step-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 26px 28px;
+        margin-bottom: 22px;
+        border: 1px solid #e9ecef;
+      }
+      .step-section h2 {
+        color: #1f4e79;
+        margin-bottom: 12px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .step-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.1rem; }
+      .step-section p, .step-section li { line-height: 1.6; }
+
+      .step-tag {
+        display: inline-block;
+        background: #1f4e79;
+        color: white;
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 12px;
+        margin-right: 8px;
+        letter-spacing: 0.5px;
+      }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .check {
+        background: white;
+        border: 2px solid #cfe2ff;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 14px 0;
+      }
+      .check h4 {
+        margin: 0 0 6px 0;
+        font-size: 0.95rem;
+        color: #0a58ca;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .check p { margin: 0; font-size: 0.95rem; }
+
+      kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 2px 6px;
+        font-size: 0.85rem;
+      }
+
+      ol.steps > li { margin-bottom: 12px; line-height: 1.55; }
+
+      .ready-card {
+        background: linear-gradient(135deg, #1f4e79 0%, #2d6499 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 26px 30px;
+        margin-top: 24px;
+        text-align: center;
+      }
+      .ready-card h2 { color: white; margin-top: 0; }
+      .ready-card p { margin: 8px 0 16px 0; }
+      .ready-card .ready-link {
+        display: inline-block;
+        background: rgba(255,255,255,0.15);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        border: 2px solid rgba(255,255,255,0.4);
+      }
+      .ready-card .ready-link:hover {
+        background: rgba(255,255,255,0.25);
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Minecraft</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 0</span>
+      </nav>
+
+      <div class="lesson-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+
+        <div class="lesson-header">
+          <span class="lesson-tag">Lesson 0 &middot; Setup</span>
+          <h1><i class="bi bi-gear-fill"></i> Get Minecraft Ready</h1>
+          <p class="subtitle">Set up a fresh, distraction-free world before every Minecraft lesson.</p>
+        </div>
+
+        <div class="intro-card">
+          <h2><i class="bi bi-arrow-clockwise"></i> Do this every lesson</h2>
+          <p><strong>Start every Minecraft lesson by completing Lesson 0.</strong> Create a brand-new world with the settings below. A fresh world keeps each lesson's work separate, makes the Agent easier to see, and avoids leftover blocks or terrain from a previous session getting in your way.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 1: Fullscreen -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 1</span> Turn on Fullscreen</h2>
+          <p>Fullscreen mode hides distractions and gives you the biggest possible view of the world.</p>
+          <ol class="steps">
+            <li>Open <strong>Minecraft Education</strong> and sign in if you aren't already.</li>
+            <li>On the main menu, click <strong>Settings</strong>.</li>
+            <li>Click <strong>Video</strong>.</li>
+            <li>Turn <strong>Fullscreen</strong> on.</li>
+            <li>Click <strong>Back</strong> to return to the main menu.</li>
+          </ol>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 2: Create a flat world -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 2</span> Create a New Flat World</h2>
+          <p>You will create a brand-new world for this lesson with specific settings.</p>
+          <ol class="steps">
+            <li>From the main menu, click <strong>Play</strong>.</li>
+            <li>Click <strong>Create New</strong>, then <strong>New</strong>.</li>
+            <li>On the left, click the <strong>Advanced</strong> tab.</li>
+            <li>Change <strong>World Type</strong> to <strong>Flat World</strong>.</li>
+            <li>Turn <strong>Show Coordinates</strong> ON. <em>(So you can see exactly where the Agent is.)</em></li>
+            <li>Set <strong>Daylight Cycle</strong> to <strong>Always Day</strong>. <em>(No nighttime interruptions.)</em></li>
+            <li>Turn <strong>Mob Spawning</strong> OFF. <em>(No zombies or skeletons.)</em></li>
+            <li>Turn <strong>Weather Cycle</strong> OFF. <em>(No rain or snow.)</em></li>
+            <li>Click <strong>Create</strong> (or <strong>Play</strong>) to load the world.</li>
+          </ol>
+
+          <div class="key-fact">
+            <strong>Why these settings:</strong> A flat world makes it easy to watch the Agent's path. Showing coordinates lets you confirm the Agent moved where you expected. Turning off mobs and weather removes distractions so you can focus on your code.
+          </div>
+
+          <div class="check">
+            <h4><i class="bi bi-check-circle-fill"></i> Check yourself</h4>
+            <p>You're standing in a flat world, the sun is up, there are no zombies, and you can see coordinates (X, Y, Z numbers) in a corner of the screen. If something looks off, pause the game and open <strong>Settings &rarr; Game</strong> to fix it &mdash; or simply leave the world and create a new one.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Ready -->
+        <!-- ============================================================ -->
+        <div class="ready-card">
+          <h2><i class="bi bi-check2-circle"></i> World is ready</h2>
+          <p>Head back to the Minecraft lessons page and open the lesson you came here to do.</p>
+          <a href="../" class="ready-link"><i class="bi bi-grid-3x3-gap-fill"></i> Back to Minecraft Lessons</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

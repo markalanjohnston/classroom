@@ -1,0 +1,743 @@
+---
+---
+
+<!-- File: classroom/minecraft/lesson2/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Lesson 2 - Loops &amp; Patterns</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #1f4e79 0%, #4a7c2f 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 28px 30px;
+        margin-bottom: 25px;
+      }
+      .lesson-header .lesson-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.18);
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        padding: 4px 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+      .lesson-header h1 { margin: 0 0 8px; font-size: 1.85rem; }
+      .lesson-header .subtitle { font-size: 1.05rem; opacity: 0.95; margin: 0; }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .eq-card {
+        background: #1f4e79;
+        color: #fff;
+        padding: 16px 22px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .eq-card .eq-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        opacity: 0.85;
+      }
+      .eq-card p { margin: 4px 0 0 0; font-size: 1.1rem; font-weight: 500; }
+
+      .goals-card {
+        background: #f1f6ec;
+        border-left: 4px solid #4a7c2f;
+        border-radius: 8px;
+        padding: 18px 22px;
+        margin-bottom: 25px;
+      }
+      .goals-card h2 { color: #2f5320; margin: 0 0 8px 0; font-size: 1.15rem; }
+      .goals-card ul { margin: 0; padding-left: 22px; }
+      .goals-card li { margin-bottom: 4px; line-height: 1.5; }
+
+      .setup-banner {
+        position: relative;
+        background: linear-gradient(135deg, #1f4e79 0%, #2d6499 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 26px 30px;
+        margin-bottom: 28px;
+        box-shadow: 0 10px 28px rgba(31, 78, 121, 0.35);
+      }
+      .setup-banner .setup-badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: #ffc107;
+        color: #14365a;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        padding: 5px 14px;
+        border-radius: 14px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+        text-transform: uppercase;
+      }
+      .setup-banner h3 {
+        color: white;
+        margin: 0 0 10px 0;
+        font-size: 1.45rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .setup-banner p {
+        margin: 0 0 18px 0;
+        font-size: 1rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .setup-banner p strong { color: #ffd54a; }
+      .setup-banner .setup-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        color: #1f4e79;
+        font-weight: 700;
+        padding: 11px 22px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+      }
+      .setup-banner .setup-cta:hover {
+        background: #ffc107;
+        color: #14365a;
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+
+      .step-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 26px 28px;
+        margin-bottom: 22px;
+        border: 1px solid #e9ecef;
+      }
+      .step-section h2 {
+        color: #1f4e79;
+        margin-bottom: 12px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .step-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.1rem; }
+      .step-section p, .step-section li { line-height: 1.6; }
+
+      .step-tag {
+        display: inline-block;
+        background: #4a7c2f;
+        color: white;
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 12px;
+        margin-right: 8px;
+        letter-spacing: 0.5px;
+      }
+      .step-tag.setup { background: #1f4e79; }
+      .step-tag.warm-up { background: #6c757d; }
+      .step-tag.challenge { background: #d97706; }
+      .step-tag.submit { background: #b3261e; }
+
+      .vocab-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .vocab-item {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 12px 14px;
+      }
+      .vocab-item strong {
+        display: block;
+        color: #1f4e79;
+        margin-bottom: 4px;
+        font-size: 0.98rem;
+      }
+      .vocab-item span { font-size: 0.92rem; color: #495057; }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .tip-fact {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .tip-fact strong { color: #0f5132; }
+
+      .check {
+        background: white;
+        border: 2px solid #cfe2ff;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 14px 0;
+      }
+      .check h4 {
+        margin: 0 0 6px 0;
+        font-size: 0.95rem;
+        color: #0a58ca;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .check p { margin: 0; font-size: 0.95rem; }
+
+      details.predict {
+        background: white;
+        border: 2px dashed #ffc107;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 12px 0;
+      }
+      details.predict summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #856404;
+      }
+      details.predict[open] summary { margin-bottom: 8px; }
+      details.predict .answer {
+        padding-top: 8px;
+        border-top: 1px solid #eee;
+        margin-top: 8px;
+        color: #2c3e50;
+      }
+
+      kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 2px 6px;
+        font-size: 0.85rem;
+      }
+
+      code.inline {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 0.92em;
+        font-family: 'Courier New', monospace;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        color: #e8e6e3;
+        padding: 16px 18px;
+        border-radius: 6px;
+        font-family: 'Courier New', Consolas, monospace;
+        font-size: 0.92rem;
+        margin: 12px 0;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.5;
+      }
+
+      .code-wrap { position: relative; }
+
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #4a7c2f;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .copy-btn:hover { background: #3d6526; }
+      .copy-btn.copied { background: #2a4719; }
+
+      ol.steps > li { margin-bottom: 12px; line-height: 1.55; }
+      ul.tight li { margin-bottom: 5px; }
+
+      .compare-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 14px;
+        margin: 14px 0;
+      }
+      .compare-grid h4 { margin: 0 0 6px 0; font-size: 1rem; }
+      .compare-grid .compare-card {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 14px;
+      }
+      .compare-grid .compare-card.bad { border-color: #f1aeb5; }
+      .compare-grid .compare-card.bad h4 { color: #b3261e; }
+      .compare-grid .compare-card.good { border-color: #a3cfbb; }
+      .compare-grid .compare-card.good h4 { color: #146c43; }
+      .compare-grid .compare-card pre {
+        background: #1e1e1e;
+        color: #e8e6e3;
+        padding: 12px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        margin: 0;
+        overflow-x: auto;
+        white-space: pre;
+      }
+
+      .challenge-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 12px;
+      }
+      .challenge-options .option {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-left: 4px solid #d97706;
+        border-radius: 6px;
+        padding: 14px 16px;
+      }
+      .challenge-options .option h4 { margin: 0 0 6px 0; color: #d97706; font-size: 1rem; }
+      .challenge-options .option p { margin: 0; font-size: 0.92rem; color: #495057; }
+
+      .submit-card {
+        background: #fdebec;
+        border: 2px solid #f1aeb5;
+        border-radius: 10px;
+        padding: 24px 28px;
+        margin-top: 24px;
+      }
+      .submit-card h2 { color: #842029; margin-top: 0; }
+      .submit-card ol { padding-left: 22px; }
+      .submit-card ol li { margin-bottom: 8px; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Minecraft</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 2</span>
+      </nav>
+
+      <div class="lesson-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+
+        <div class="lesson-header">
+          <span class="lesson-tag">Lesson 2 &middot; Self-Paced</span>
+          <h1><i class="bi bi-arrow-repeat"></i> Loops, Repetition, and Agent Patterns</h1>
+          <p class="subtitle">Make the Agent repeat actions automatically with for loops.</p>
+        </div>
+
+        <div class="eq-card">
+          <div class="eq-label">ESSENTIAL QUESTION</div>
+          <p>Why do programmers use loops instead of writing the same instruction over and over?</p>
+        </div>
+
+        <div class="goals-card">
+          <h2><i class="bi bi-check2-square"></i> By the end of this lesson, I will...</h2>
+          <ul>
+            <li>Explain why loops make programs shorter and easier to change.</li>
+            <li>Use a <strong>for loop</strong> to repeat Agent movement.</li>
+            <li>Use a loop to make the Agent place or destroy blocks repeatedly.</li>
+            <li>Predict how many times a repeated action will happen.</li>
+            <li>Modify loop values to change the size of a path, wall, or pattern.</li>
+            <li>Debug a loop when the Agent repeats too many or too few times.</li>
+            <li>Create an original Agent build that uses repetition.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- World setup banner — every lesson starts here -->
+        <!-- ============================================================ -->
+        <div class="setup-banner">
+          <span class="setup-badge">Every Lesson</span>
+          <h3><i class="bi bi-arrow-clockwise"></i> Start Here First &mdash; Every Single Time</h3>
+          <p>Every Minecraft lesson begins with a brand-new world. <strong>Do not skip this.</strong> Open Lesson 0, follow the setup steps, then come back here and continue with Step 1.</p>
+          <a href="../lesson0/" class="setup-cta">
+            <i class="bi bi-arrow-right-circle-fill"></i>
+            Open Lesson 0 &mdash; World Setup
+          </a>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 1: Warm-up -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag warm-up">STEP 1</span> Warm-up: The Case for Loops</h2>
+          <p>Imagine you wanted to walk down a hallway and lay down a tile every step. Imagine the hallway is <strong>20 tiles long</strong>. Write out (on paper or just in your head) the instructions you would give the Agent.</p>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Think about it first &mdash; what is annoying about those instructions?</summary>
+            <div class="answer">
+              <p>You probably wrote <em>move, place, move, place...</em> 20 times in a row. That is <strong>20 identical pairs of lines</strong> &mdash; 40 lines total. If you decide tomorrow that the hallway should be 30 tiles long, you have to add 10 more pairs. If it should be 100 tiles long, good luck.</p>
+              <p class="mb-0"><strong>The big idea:</strong> Repeating yourself in code is slow to write, hard to change, and easy to mess up. A <strong>loop</strong> lets you say <em>"do this thing 20 times"</em> in one line. Change the 20 to 100 and you're done.</p>
+            </div>
+          </details>
+
+          <h3>Today's Vocabulary</h3>
+          <div class="vocab-grid">
+            <div class="vocab-item"><strong>Loop</strong><span>A programming structure that repeats instructions.</span></div>
+            <div class="vocab-item"><strong>Iteration</strong><span>One repetition of a loop.</span></div>
+            <div class="vocab-item"><strong>For Loop</strong><span>A loop that repeats a specific number of times.</span></div>
+            <div class="vocab-item"><strong>Nested Loop</strong><span>A loop inside another loop.</span></div>
+            <div class="vocab-item"><strong>Efficiency</strong><span>Writing code without unnecessary repetition.</span></div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 2: Open MakeCode -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 2</span> Open MakeCode (Python Only)</h2>
+          <p>You should already be in your fresh flat world from <a href="../lesson0/">Lesson 0</a>. If not, go back and complete Lesson 0 first.</p>
+          <ol class="steps">
+            <li>In the Minecraft world, press <kbd>C</kbd> on your keyboard to open the <strong>Code Builder</strong>.</li>
+            <li>In the Code Builder window, choose <strong>MakeCode</strong>.</li>
+            <li>Click <strong>New Project</strong> and give it a name &mdash; <code class="inline">Lesson 2 - Loops</code> works.</li>
+            <li>Click <strong>Code options</strong>, then select <strong>Python Only</strong>.</li>
+            <li>Click <strong>Create</strong>. The project will open straight into the Python editor.</li>
+          </ol>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 3: Repeat-the-long-way vs. with-a-loop -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 3</span> The Same Program, Two Ways</h2>
+          <p>Here is a program that makes the Agent walk forward 5 blocks, placing stone underneath each step &mdash; written the <em>repetitive</em> way and the <em>loop</em> way. Look at both. They do the exact same thing.</p>
+
+          <div class="compare-grid">
+            <div class="compare-card bad">
+              <h4><i class="bi bi-x-circle-fill"></i> Without a loop &mdash; tedious</h4>
+<pre>def on_chat():
+    agent.set_item(STONE, 64, 1)
+    agent.move(FORWARD, 1)
+    agent.destroy(DOWN)
+    agent.place(DOWN)
+    agent.move(FORWARD, 1)
+    agent.destroy(DOWN)
+    agent.place(DOWN)
+    agent.move(FORWARD, 1)
+    agent.destroy(DOWN)
+    agent.place(DOWN)
+    agent.move(FORWARD, 1)
+    agent.destroy(DOWN)
+    agent.place(DOWN)
+    agent.move(FORWARD, 1)
+    agent.destroy(DOWN)
+    agent.place(DOWN)
+player.on_chat("long", on_chat)</pre>
+            </div>
+            <div class="compare-card good">
+              <h4><i class="bi bi-check-circle-fill"></i> With a loop &mdash; clean</h4>
+<pre>def on_chat():
+    agent.set_item(STONE, 64, 1)
+    for i in range(5):
+        agent.move(FORWARD, 1)
+        agent.destroy(DOWN)
+        agent.place(DOWN)
+player.on_chat("short", on_chat)</pre>
+            </div>
+          </div>
+
+          <div class="key-fact">
+            <strong>Read the loop in English:</strong> <code class="inline">for i in range(5):</code> means "do the indented stuff below me <strong>5 times</strong>." The variable <code class="inline">i</code> is a counter that goes 0, 1, 2, 3, 4 &mdash; one value per iteration. You don't have to use <code class="inline">i</code> for anything yet, but it has to be there.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 4: Run your first loop -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 4</span> Run Your First Loop</h2>
+          <p>Delete anything in your MakeCode editor and paste the loop version below. Save and try it.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="starterLoop">Copy</button>
+<pre class="code-block" id="starterLoop">def on_chat():
+    agent.set_item(STONE, 64, 1)
+    for i in range(5):
+        agent.move(FORWARD, 1)
+        agent.destroy(DOWN)
+        agent.place(DOWN)
+player.on_chat("path", on_chat)</pre>
+          </div>
+
+          <h3>What this program says</h3>
+          <ul class="tight">
+            <li><code class="inline">agent.set_item(STONE, 64, 1)</code> &mdash; loads <strong>64 stone</strong> (a full stack) in inventory slot 1, so the Agent never runs out.</li>
+            <li><code class="inline">for i in range(5):</code> &mdash; repeat the indented block 5 times.</li>
+            <li><code class="inline">agent.move(FORWARD, 1)</code> &mdash; move forward one block.</li>
+            <li><code class="inline">agent.destroy(DOWN)</code> &mdash; clear the ground under the Agent.</li>
+            <li><code class="inline">agent.place(DOWN)</code> &mdash; drop one stone in that empty spot.</li>
+          </ul>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict before you run &mdash; how many stone blocks will appear in the world?</summary>
+            <div class="answer">
+              <p>The loop runs 5 times, and each iteration places exactly one stone &mdash; so you'll see a line of <strong>5 stone blocks</strong> behind the Agent.</p>
+            </div>
+          </details>
+
+          <h3>Run it</h3>
+          <ol class="steps">
+            <li>Switch to Minecraft.</li>
+            <li>Open chat (<kbd>T</kbd>), type <code class="inline">path</code>, press Enter.</li>
+            <li>Count the stone blocks. Did you get 5?</li>
+          </ol>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 5: Modify the loop -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 5</span> Change the Number, Change the Result</h2>
+          <p>This is the whole point of loops: you change <em>one</em> number to change the size of the result. Try at least <strong>two</strong> of the modifications below. Run after each change so you can see the difference.</p>
+
+          <h3>Modifications</h3>
+          <ol class="steps">
+            <li>Change <code class="inline">range(5)</code> to <code class="inline">range(15)</code>. Run the program. Did you get 15 blocks?</li>
+            <li>Change <code class="inline">range(15)</code> back to a smaller number, like <code class="inline">range(3)</code>.</li>
+            <li>Change <code class="inline">agent.move(FORWARD, 1)</code> to <code class="inline">agent.move(FORWARD, 2)</code>. What happens to the spacing of the stone blocks? <em>(Hint: this is a common bug.)</em></li>
+            <li>Add an <code class="inline">agent.turn(RIGHT_TURN)</code> call <em>after</em> the place line but still inside the loop. What pattern does that create?</li>
+          </ol>
+
+          <div class="tip-fact">
+            <strong>One thing at a time:</strong> Change one value, save, run, look at the result, then change the next thing. If your Agent does something unexpected, undo your last change and try again.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 6: Debugging -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 6</span> Debugging: Indentation Matters</h2>
+          <p>Here is a program a student wrote. They wanted the Agent to walk 10 blocks <em>and</em> leave a stone trail behind every step. But when they ran it, only <strong>one</strong> stone block appeared at the end of the path. Read the code carefully.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="brokenLoop">Copy</button>
+<pre class="code-block" id="brokenLoop">def on_chat():
+    agent.set_item(STONE, 64, 1)
+    for i in range(10):
+        agent.move(FORWARD, 1)
+    agent.destroy(DOWN)
+    agent.place(DOWN)
+player.on_chat("oops", on_chat)</pre>
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: why does only one block appear instead of 10?</summary>
+            <div class="answer">
+              <p>The <code class="inline">destroy</code> and <code class="inline">place</code> lines are <strong>not indented</strong> the same as <code class="inline">agent.move</code>. That means they are <em>outside</em> the loop &mdash; they only run <strong>once</strong>, after the Agent has finished walking all 10 blocks.</p>
+              <p class="mb-0"><strong>Fix:</strong> indent <code class="inline">destroy</code> and <code class="inline">place</code> so they line up with <code class="inline">agent.move</code>. That puts them <em>inside</em> the loop, so they run every iteration.</p>
+            </div>
+          </details>
+
+          <p class="mt-3">Try the broken version first to confirm only one block appears. Then try the fixed version below:</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="fixedLoop">Copy</button>
+<pre class="code-block" id="fixedLoop">def on_chat():
+    agent.set_item(STONE, 64, 1)
+    for i in range(10):
+        agent.move(FORWARD, 1)
+        agent.destroy(DOWN)
+        agent.place(DOWN)
+player.on_chat("oops", on_chat)</pre>
+          </div>
+
+          <div class="key-fact">
+            <strong>In Python, indentation is the law.</strong> Lines indented the same amount are a group that belongs together. Different indentation = different group. This is how Python knows what is "inside the loop" and what is not. MakeCode does this automatically when you drag blocks, but when you type code, <em>you</em> control the indentation.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 7: Nested loops -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 7</span> Loops Inside Loops (Nested Loops)</h2>
+          <p>You can put a loop <em>inside</em> another loop. The inside loop finishes completely <strong>before</strong> the outside loop moves on to its next iteration. This is exactly what you need to draw a square: <em>walk one side, turn; walk another side, turn; ...repeat 4 times.</em></p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="nestedLoop">Copy</button>
+<pre class="code-block" id="nestedLoop">def on_chat():
+    agent.set_item(STONE, 64, 1)
+    for side in range(4):
+        for step in range(5):
+            agent.move(FORWARD, 1)
+            agent.destroy(DOWN)
+            agent.place(DOWN)
+        agent.turn(LEFT_TURN)
+player.on_chat("square", on_chat)</pre>
+          </div>
+
+          <h3>How to read this nested loop</h3>
+          <ul class="tight">
+            <li>The <strong>outer</strong> loop (<code class="inline">for side in range(4):</code>) repeats <strong>4 times</strong> &mdash; one per side of the square.</li>
+            <li>The <strong>inner</strong> loop (<code class="inline">for step in range(5):</code>) repeats <strong>5 times</strong> &mdash; one stone per step along that side.</li>
+            <li>Total stones placed: <strong>4 &times; 5 = 20</strong>.</li>
+            <li>After the inner loop finishes one side, <code class="inline">agent.turn(LEFT_TURN)</code> rotates the Agent for the next side.</li>
+          </ul>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict &mdash; if you change <code>range(5)</code> to <code>range(7)</code>, what changes? What if you change <code>range(4)</code> to <code>range(3)</code>?</summary>
+            <div class="answer">
+              <p><code class="inline">range(7)</code> &rarr; each side becomes 7 blocks long instead of 5. The square gets bigger.</p>
+              <p class="mb-0"><code class="inline">range(3)</code> &rarr; the Agent only walks 3 sides and stops &mdash; you get a <em>triangle-ish</em> open shape, not a closed square. (You need 4 sides for a square.)</p>
+            </div>
+          </details>
+
+          <p>Run the <code class="inline">square</code> command and watch the Agent draw the outline of a 5&times;5 square. Try changing the numbers and see what shapes you can make.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- CHALLENGE -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag challenge">CHALLENGE</span> Build Something with Repetition</h2>
+          <p>Now create an <strong>original</strong> Agent program that uses at least one loop. Pick one of the options below &mdash; or invent your own.</p>
+
+          <div class="challenge-options">
+            <div class="option">
+              <h4>Option A &mdash; Long Path</h4>
+              <p>A straight path or trail of at least 15 blocks. Try using something other than stone (e.g., <code class="inline">DIRT</code>, <code class="inline">PLANKS_OAK</code>, or <code class="inline">GLASS</code>).</p>
+            </div>
+            <div class="option">
+              <h4>Option B &mdash; Wall or Tower</h4>
+              <p>Use <code class="inline">UP</code> instead of <code class="inline">DOWN</code> with <code class="inline">agent.place</code>, or use a nested loop to stack rows. Build a wall of stone.</p>
+            </div>
+            <div class="option">
+              <h4>Option C &mdash; Custom Shape</h4>
+              <p>Use a nested loop to draw a rectangle, an open box, a staircase, or any pattern with repeating sections.</p>
+            </div>
+          </div>
+
+          <h3>Minimum requirements</h3>
+          <ul class="tight">
+            <li>Your program starts with a chat command.</li>
+            <li>Your program uses at least one <code class="inline">for</code> loop.</li>
+            <li>The Agent places at least 10 blocks in total.</li>
+            <li>You changed the loop count at least once and can describe what changed.</li>
+            <li>The final program is different from the starter examples on this page.</li>
+          </ul>
+
+          <h3>Stretch goals</h3>
+          <ul class="tight">
+            <li>Use a <strong>nested loop</strong> to build a 2D shape (a square outline, a rectangle, or a filled grid).</li>
+            <li>Use multiple block types &mdash; load slots 2 and 3 with different materials and switch which slot you place from.</li>
+            <li>Add a <code class="inline">#</code> comment above each loop explaining what it does.</li>
+            <li>Make a recognizable structure: a tic-tac-toe grid, a chess-board pattern, a plus sign, a letter of the alphabet.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SUBMIT -->
+        <!-- ============================================================ -->
+        <div class="submit-card">
+          <h2><span class="step-tag submit">SUBMIT</span> Turn In Your Work</h2>
+          <p>When you've finished the challenge, submit <strong>three</strong> items to the Schoology assignment:</p>
+          <ol>
+            <li><strong>Screenshot of your code</strong> in the MakeCode editor. Make sure your <code>for</code> loop is visible.</li>
+            <li><strong>Screenshot of the result in Minecraft</strong> &mdash; the path, wall, square, or pattern your Agent built.</li>
+            <li><strong>Short written reflection.</strong> Answer all four in 1&ndash;2 sentences each:
+              <ul>
+                <li>What does your loop repeat, and how many times?</li>
+                <li>Which number did you change to make the result bigger or smaller? What happened?</li>
+                <li>Describe one bug you ran into &mdash; what was wrong, and how did you figure it out?</li>
+                <li>How would this program look if you wrote it <em>without</em> a loop?</li>
+              </ul>
+            </li>
+          </ol>
+
+          <div class="key-fact" style="background: #fde9ec; border-color: #dc3545;">
+            <strong style="color: #842029;">Important:</strong> The reflection counts for half the grade. Show that you understand <em>why</em> the loop did what it did &mdash; not just that it worked.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DONE -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><i class="bi bi-flag-fill"></i> When You're Done</h2>
+          <ul class="tight">
+            <li>Trade computers with a classmate and run each other's programs.</li>
+            <li>Try a <strong>3D nested loop</strong>: a loop inside a loop inside a loop to fill a cube.</li>
+            <li>Try using <code class="inline">agent.move(UP, 1)</code> at the end of each row to build a tall wall instead of a flat one.</li>
+            <li>Explore the other Agent commands in MakeCode (<code class="inline">agent.detect</code>, <code class="inline">agent.attack</code>).</li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.dataset.target);
+          if (!target) return;
+          navigator.clipboard.writeText(target.textContent).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 1500);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

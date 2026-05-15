@@ -1,0 +1,877 @@
+---
+---
+
+<!-- File: classroom/minecraft/lesson3/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Lesson 3 - The Builder &amp; Relative Coordinates</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #1f4e79 0%, #4a7c2f 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 28px 30px;
+        margin-bottom: 25px;
+      }
+      .lesson-header .lesson-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.18);
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        padding: 4px 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+      .lesson-header h1 { margin: 0 0 8px; font-size: 1.85rem; }
+      .lesson-header .subtitle { font-size: 1.05rem; opacity: 0.95; margin: 0; }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .eq-card {
+        background: #1f4e79;
+        color: #fff;
+        padding: 16px 22px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .eq-card .eq-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        opacity: 0.85;
+      }
+      .eq-card p { margin: 4px 0 0 0; font-size: 1.1rem; font-weight: 500; }
+
+      .goals-card {
+        background: #f1f6ec;
+        border-left: 4px solid #4a7c2f;
+        border-radius: 8px;
+        padding: 18px 22px;
+        margin-bottom: 25px;
+      }
+      .goals-card h2 { color: #2f5320; margin: 0 0 8px 0; font-size: 1.15rem; }
+      .goals-card ul { margin: 0; padding-left: 22px; }
+      .goals-card li { margin-bottom: 4px; line-height: 1.5; }
+
+      .setup-banner {
+        position: relative;
+        background: linear-gradient(135deg, #1f4e79 0%, #2d6499 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 26px 30px;
+        margin-bottom: 28px;
+        box-shadow: 0 10px 28px rgba(31, 78, 121, 0.35);
+      }
+      .setup-banner .setup-badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: #ffc107;
+        color: #14365a;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        padding: 5px 14px;
+        border-radius: 14px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+        text-transform: uppercase;
+      }
+      .setup-banner h3 {
+        color: white;
+        margin: 0 0 10px 0;
+        font-size: 1.45rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .setup-banner p {
+        margin: 0 0 18px 0;
+        font-size: 1rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .setup-banner p strong { color: #ffd54a; }
+      .setup-banner .setup-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        color: #1f4e79;
+        font-weight: 700;
+        padding: 11px 22px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+      }
+      .setup-banner .setup-cta:hover {
+        background: #ffc107;
+        color: #14365a;
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+
+      .recap-card {
+        background: #fafaf6;
+        border: 1px solid #e0d9bc;
+        border-radius: 8px;
+        padding: 16px 22px;
+        margin-bottom: 25px;
+      }
+      .recap-card h3 {
+        color: #715c00;
+        margin: 0 0 8px 0;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .recap-card .recap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .recap-card .recap-item {
+        background: white;
+        border: 1px solid #e9e3c4;
+        border-radius: 6px;
+        padding: 10px 12px;
+        font-size: 0.92rem;
+      }
+      .recap-card .recap-item strong {
+        display: block;
+        color: #1f4e79;
+        margin-bottom: 2px;
+        font-size: 0.95rem;
+      }
+
+      .step-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 26px 28px;
+        margin-bottom: 22px;
+        border: 1px solid #e9ecef;
+      }
+      .step-section h2 {
+        color: #1f4e79;
+        margin-bottom: 12px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .step-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.1rem; }
+      .step-section p, .step-section li { line-height: 1.6; }
+
+      .step-tag {
+        display: inline-block;
+        background: #4a7c2f;
+        color: white;
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 12px;
+        margin-right: 8px;
+        letter-spacing: 0.5px;
+      }
+      .step-tag.setup { background: #1f4e79; }
+      .step-tag.warm-up { background: #6c757d; }
+      .step-tag.recap { background: #715c00; }
+      .step-tag.challenge { background: #d97706; }
+      .step-tag.submit { background: #b3261e; }
+
+      .vocab-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .vocab-item {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 12px 14px;
+      }
+      .vocab-item strong {
+        display: block;
+        color: #1f4e79;
+        margin-bottom: 4px;
+        font-size: 0.98rem;
+      }
+      .vocab-item span { font-size: 0.92rem; color: #495057; }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .tip-fact {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .tip-fact strong { color: #0f5132; }
+
+      .step-back {
+        background: #fff5e1;
+        border-left: 4px solid #e69400;
+        border-radius: 6px;
+        padding: 10px 14px;
+        margin: 14px 0;
+        font-size: 0.94rem;
+      }
+      .step-back .step-back-icon { color: #b86000; margin-right: 4px; }
+      .step-back kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 1px 6px;
+        font-size: 0.85rem;
+      }
+
+      .check {
+        background: white;
+        border: 2px solid #cfe2ff;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 14px 0;
+      }
+      .check h4 {
+        margin: 0 0 6px 0;
+        font-size: 0.95rem;
+        color: #0a58ca;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .check p { margin: 0; font-size: 0.95rem; }
+
+      details.predict {
+        background: white;
+        border: 2px dashed #ffc107;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 12px 0;
+      }
+      details.predict summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #856404;
+      }
+      details.predict[open] summary { margin-bottom: 8px; }
+      details.predict .answer {
+        padding-top: 8px;
+        border-top: 1px solid #eee;
+        margin-top: 8px;
+        color: #2c3e50;
+      }
+
+      kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 2px 6px;
+        font-size: 0.85rem;
+      }
+
+      code.inline {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 0.92em;
+        font-family: 'Courier New', monospace;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        color: #e8e6e3;
+        padding: 16px 18px;
+        border-radius: 6px;
+        font-family: 'Courier New', Consolas, monospace;
+        font-size: 0.92rem;
+        margin: 12px 0;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.5;
+      }
+
+      .code-wrap { position: relative; }
+
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #4a7c2f;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .copy-btn:hover { background: #3d6526; }
+      .copy-btn.copied { background: #2a4719; }
+
+      ol.steps > li { margin-bottom: 12px; line-height: 1.55; }
+      ul.tight li { margin-bottom: 5px; }
+
+      .versions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 12px;
+        margin: 16px 0;
+      }
+      .versions .v-card {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 14px;
+      }
+      .versions .v-card h4 {
+        margin: 0 0 8px 0;
+        font-size: 0.98rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .versions .v-card .tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 10px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .versions .v-card.slow { border-color: #f5d18a; }
+      .versions .v-card.slow .tag { background: #fff3cd; color: #856404; }
+      .versions .v-card.better { border-color: #b3d9ff; }
+      .versions .v-card.better .tag { background: #cfe2ff; color: #0a58ca; }
+      .versions .v-card.best { border-color: #a3cfbb; }
+      .versions .v-card.best .tag { background: #d1e7dd; color: #146c43; }
+
+      .coord-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 0.95rem;
+      }
+      .coord-table th {
+        background: #1f4e79;
+        color: white;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      .coord-table td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #e9ecef;
+        background: white;
+      }
+      .coord-table td code {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 5px;
+        border-radius: 3px;
+      }
+
+      .challenge-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 12px;
+      }
+      .challenge-options .option {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-left: 4px solid #d97706;
+        border-radius: 6px;
+        padding: 14px 16px;
+      }
+      .challenge-options .option h4 { margin: 0 0 6px 0; color: #d97706; font-size: 1rem; }
+      .challenge-options .option p { margin: 0; font-size: 0.92rem; color: #495057; }
+
+      .submit-card {
+        background: #fdebec;
+        border: 2px solid #f1aeb5;
+        border-radius: 10px;
+        padding: 24px 28px;
+        margin-top: 24px;
+      }
+      .submit-card h2 { color: #842029; margin-top: 0; }
+      .submit-card ol { padding-left: 22px; }
+      .submit-card ol li { margin-bottom: 8px; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Minecraft</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 3</span>
+      </nav>
+
+      <div class="lesson-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+
+        <div class="lesson-header">
+          <span class="lesson-tag">Lesson 3 &middot; Self-Paced</span>
+          <h1><i class="bi bi-bricks"></i> The Builder &amp; Relative Coordinates</h1>
+          <p class="subtitle">Meet a faster block-placer, learn the tilde, and combine everything from Lessons 1 and 2.</p>
+        </div>
+
+        <div class="eq-card">
+          <div class="eq-label">ESSENTIAL QUESTION</div>
+          <p>How can choosing a smarter tool let your code do the same job in far fewer lines?</p>
+        </div>
+
+        <div class="goals-card">
+          <h2><i class="bi bi-check2-square"></i> By the end of this lesson, I will...</h2>
+          <ul>
+            <li>Explain how the <strong>Builder</strong> is different from the Agent.</li>
+            <li>Read and write <strong>relative coordinates</strong> using the <code class="inline">~</code> (tilde) operator.</li>
+            <li>Use <code class="inline">builder.move</code>, <code class="inline">builder.turn</code>, and <code class="inline">builder.trace_path</code> to draw a shape.</li>
+            <li>Make the same program more efficient by moving <code class="inline">trace_path</code> outside the inner loop.</li>
+            <li>Use <code class="inline">builder.mark()</code> and <code class="inline">builder.line()</code> to draw long lines in one step.</li>
+            <li>Combine loops (Lesson 2) with the Builder to build a wall or repeating structure.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- World setup banner -->
+        <!-- ============================================================ -->
+        <div class="setup-banner">
+          <span class="setup-badge">Every Lesson</span>
+          <h3><i class="bi bi-arrow-clockwise"></i> Start Here First &mdash; Every Single Time</h3>
+          <p>Every Minecraft lesson begins with a brand-new world. <strong>Do not skip this.</strong> Open Lesson 0, follow the setup steps, then come back here and continue with Step 1.</p>
+          <a href="../lesson0/" class="setup-cta">
+            <i class="bi bi-arrow-right-circle-fill"></i>
+            Open Lesson 0 &mdash; World Setup
+          </a>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Recap of what we've learned -->
+        <!-- ============================================================ -->
+        <div class="recap-card">
+          <h3><i class="bi bi-bookmarks-fill"></i> What you already know</h3>
+          <p style="margin: 0;">Today's lesson <strong>builds on everything from Lessons 1 and 2</strong>. Here's the toolkit you bring in:</p>
+          <div class="recap-grid">
+            <div class="recap-item"><strong>From Lesson 1</strong>Sequences run in order. Events (<code class="inline">player.on_chat</code>) start your code.</div>
+            <div class="recap-item"><strong>From Lesson 2</strong>For loops repeat instructions. Nested loops make 2D patterns.</div>
+            <div class="recap-item"><strong>New today</strong>The Builder (invisible, fast) and relative coordinates with <code class="inline">~</code>.</div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 1: Warm-up — Meet the Builder -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag warm-up">STEP 1</span> Warm-up: Meet the Builder</h2>
+          <p>You've spent two lessons with the <strong>Agent</strong> &mdash; a visible character you can watch walk around the world. The Agent is great for learning because you can <em>see</em> what your code did.</p>
+          <p>Today you'll meet the <strong>Builder</strong>. The Builder does similar work but with three big differences:</p>
+
+          <table class="coord-table">
+            <thead>
+              <tr><th style="width: 24%;"></th><th>Agent</th><th>Builder</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Visible?</strong></td><td>Yes &mdash; you can see it.</td><td>No &mdash; it's invisible while working.</td></tr>
+              <tr><td><strong>Speed</strong></td><td>Slow &mdash; walks one block at a time.</td><td>Fast &mdash; can teleport and stamp lines.</td></tr>
+              <tr><td><strong>Inventory</strong></td><td>Needs <code>set_item</code> first.</td><td>No inventory needed &mdash; just say which block.</td></tr>
+              <tr><td><strong>Best for</strong></td><td>Learning, debugging, watching what code does.</td><td>Big builds, walls, lines, structures.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>You'll still use both.</strong> The Agent is easier to debug because you can watch it. The Builder is faster once you know what you want. Real programs often use whichever fits the job.
+          </div>
+
+          <h3>Today's Vocabulary</h3>
+          <div class="vocab-grid">
+            <div class="vocab-item"><strong>Builder</strong><span>An invisible, faster block-placing tool with its own commands.</span></div>
+            <div class="vocab-item"><strong>Relative coordinate</strong><span>A position written with <code>~</code> meaning "offset from here."</span></div>
+            <div class="vocab-item"><strong>trace_path</strong><span>Stamps a block trail along the Builder's recent route.</span></div>
+            <div class="vocab-item"><strong>mark</strong><span>Saves the Builder's current position.</span></div>
+            <div class="vocab-item"><strong>line</strong><span>Draws a straight line of blocks from <code>mark</code> to where the Builder is now.</span></div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 2: Open MakeCode -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 2</span> Open MakeCode (Python Only)</h2>
+          <p>You should already be in your fresh flat world from <a href="../lesson0/">Lesson 0</a>. If not, go back and complete Lesson 0 first.</p>
+          <ol class="steps">
+            <li>In Minecraft, press <kbd>C</kbd> to open <strong>Code Builder</strong>.</li>
+            <li>Choose <strong>MakeCode</strong>.</li>
+            <li>Click <strong>New Project</strong> and name it <code class="inline">Lesson 3 - Builder</code>.</li>
+            <li>Click <strong>Code options</strong>, then select <strong>Python Only</strong>, then click <strong>Create</strong>.</li>
+          </ol>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 3: Relative coordinates -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 3</span> Relative Coordinates with <code>~</code></h2>
+          <p>Minecraft has two ways to describe a position. <strong>Absolute</strong> coordinates use exact world numbers (like X = 200, Y = 64, Z = -57). <strong>Relative</strong> coordinates use the tilde character <code class="inline">~</code> and mean "offset from where the player is standing."</p>
+
+          <table class="coord-table">
+            <thead>
+              <tr><th style="width: 38%;">Position</th><th>What it means</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>pos(~0, ~0, ~0)</code></td><td>Exactly where the player is standing right now.</td></tr>
+              <tr><td><code>pos(~5, ~0, ~0)</code></td><td>5 blocks east of the player (X axis).</td></tr>
+              <tr><td><code>pos(~0, ~3, ~0)</code></td><td>3 blocks <em>up</em> from the player (Y axis).</td></tr>
+              <tr><td><code>pos(~0, ~0, ~5)</code></td><td>5 blocks south of the player (Z axis).</td></tr>
+              <tr><td><code>pos(~-2, ~0, ~0)</code></td><td>2 blocks west of the player (negative direction).</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Why this matters:</strong> If you write absolute coordinates (no <code class="inline">~</code>), your program only works at one specific spot in the world. With <code class="inline">~</code>, the same program works <em>wherever the player is standing</em>. Relative coordinates make your code portable.
+          </div>
+
+          <p>You'll see <code class="inline">pos(~0, ~0, ~0)</code> a lot in this lesson. It just means "start here."</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 4: Recap — the Agent way -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag recap">RECAP</span> First, the Agent Way (from Lesson 2)</h2>
+          <p>You already know how to make a 5&times;5 square outline with the Agent. Here it is one more time so we have something to compare with:</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="agentSquare">Copy</button>
+<pre class="code-block" id="agentSquare">def on_chat():
+    agent.set_item(STONE, 64, 1)
+    for side in range(4):
+        for step in range(5):
+            agent.move(FORWARD, 1)
+            agent.destroy(DOWN)
+            agent.place(DOWN)
+        agent.turn(LEFT_TURN)
+player.on_chat("agent_square", on_chat)</pre>
+          </div>
+
+          <p>If you want to feel the difference, paste this in and run it with the chat command <code class="inline">agent_square</code>. You'll watch the Agent walk every block, one at a time. It works &mdash; but you'll see why the Builder is appealing.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 5: Builder version 1 — like the Agent -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 5</span> Builder Version 1: Just Like the Agent</h2>
+          <p>Here is the same 5&times;5 square &mdash; but written with the Builder. Look carefully at the differences.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="builderV1">Copy</button>
+<pre class="code-block" id="builderV1">def on_chat():
+    # Start fresh: warp the Builder to the player. This resets where the
+    # Builder is so the program produces the same result no matter what ran before.
+    builder.teleport_to(pos(~0, ~0, ~0))
+    for side in range(4):
+        for step in range(5):
+            builder.move(FORWARD, 1)
+            builder.trace_path(STONE)
+        builder.turn(TurnDirection.LEFT)
+player.on_chat("build1", on_chat)</pre>
+          </div>
+
+          <h3>What changed</h3>
+          <ul class="tight">
+            <li><code class="inline">builder.teleport_to(pos(~0, ~0, ~0))</code> &mdash; warp the Builder to where the player is standing. This is a one-line replacement for "summon and position the Agent."</li>
+            <li><code class="inline">builder.move(FORWARD, 1)</code> &mdash; same idea as <code class="inline">agent.move</code>, but for the Builder.</li>
+            <li><code class="inline">builder.trace_path(STONE)</code> &mdash; <em>stamps</em> a stone block on the Builder's path. No <code class="inline">set_item</code>, no <code class="inline">destroy</code>, no inventory worries.</li>
+            <li><code class="inline">builder.turn(TurnDirection.LEFT)</code> &mdash; same idea as <code class="inline">agent.turn(LEFT_TURN)</code>, but the constant name is different. (Don't ask me why &mdash; it just is.)</li>
+          </ul>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: how is the <em>result</em> different from the Agent version? How does the <em>experience</em> of running it differ?</summary>
+            <div class="answer">
+              <p>The <strong>result</strong> is the same: a 5&times;5 stone outline. The <strong>experience</strong> is very different &mdash; you won't see anything walking around the world. The square just appears. The Builder is invisible.</p>
+            </div>
+          </details>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> The Builder teleports to <em>your</em> spot, so anything it builds will end up around your feet. Before running the chat command, press <kbd>T</kbd> to open chat, type <code class="inline">/tp ~ ~ ~10</code>, and press Enter to jump 10 blocks south. Now there's open ground in front of the Builder and you'll have a clear view of what it does.
+          </div>
+
+          <p class="mt-3">Run it with the chat command <code class="inline">build1</code> and watch the square pop into existence.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 6: Builder version 2 — better -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 6</span> Builder Version 2: One Trace at the End</h2>
+          <p>The Builder has a trick the Agent doesn't have. You can <em>walk the whole path first</em>, then call <code class="inline">trace_path</code> <strong>once</strong> at the very end. The Builder remembers every step it took and stamps the blocks along the whole route.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="builderV2">Copy</button>
+<pre class="code-block" id="builderV2">def on_chat():
+    # Start fresh: warp to the player so this function stands alone.
+    builder.teleport_to(pos(~0, ~0, ~0))
+    for side in range(4):
+        for step in range(5):
+            builder.move(FORWARD, 1)
+        builder.turn(TurnDirection.LEFT)
+    builder.trace_path(STONE)
+player.on_chat("build2", on_chat)</pre>
+          </div>
+
+          <h3>What changed (and why it's better)</h3>
+          <ul class="tight">
+            <li><code class="inline">trace_path(STONE)</code> moved <strong>outside</strong> the inner loop &mdash; it's the last line of the function.</li>
+            <li>The Builder walks the entire square path first, then trace_path stamps all the stone in one operation.</li>
+            <li>Result is identical to Version 1, but the program does its work in one big stamp instead of 20 small ones.</li>
+          </ul>
+
+          <div class="key-fact">
+            <strong>The pattern:</strong> The hot, slow part of the loop is now outside it. Whenever you can do an expensive operation once instead of many times, your code becomes more efficient. This is the same idea as Lesson 2's loop &mdash; replacing repetition with one well-placed statement.
+          </div>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> Before running this one, open chat (<kbd>T</kbd>), type <code class="inline">/tp ~ ~ ~10</code>, and press Enter. Standing 10 blocks back lets you see the entire square at once. Then run the chat command <code class="inline">build2</code>.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 7: Builder version 3 — mark and line -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 7</span> Builder Version 3: <code>mark()</code> and <code>line()</code></h2>
+          <p>For <strong>straight lines</strong> the Builder has a faster trick still: mark a spot, teleport somewhere else, and draw a line between them.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="builderLine">Copy</button>
+<pre class="code-block" id="builderLine">def on_chat():
+    # Start fresh: warp to the player so this function stands alone.
+    builder.teleport_to(pos(~0, ~0, ~0))
+    builder.mark()
+    builder.teleport_to(pos(~100, ~0, ~0))
+    builder.line(STONE)
+player.on_chat("long_line", on_chat)</pre>
+          </div>
+
+          <h3>How this works</h3>
+          <ol class="tight">
+            <li><code class="inline">teleport_to(pos(~0, ~0, ~0))</code> &mdash; place the Builder at the player's spot.</li>
+            <li><code class="inline">mark()</code> &mdash; remember this position.</li>
+            <li><code class="inline">teleport_to(pos(~100, ~0, ~0))</code> &mdash; warp 100 blocks east.</li>
+            <li><code class="inline">line(STONE)</code> &mdash; fill every block between the mark and here with stone.</li>
+          </ol>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: how many stone blocks will appear, and how long does the program take to run?</summary>
+            <div class="answer">
+              <p>Roughly <strong>100 stone blocks</strong> stretching east from where you stand &mdash; and the whole thing happens almost instantly. You did the work of a 100-iteration loop in 4 lines of code.</p>
+            </div>
+          </details>
+
+          <div class="tip-fact">
+            <strong>When to use which:</strong>
+            <ul class="tight" style="margin-bottom: 0;">
+              <li><code class="inline">trace_path</code> &mdash; you walked a curvy path and want to stamp blocks along the route.</li>
+              <li><code class="inline">mark()</code> + <code class="inline">line()</code> &mdash; you want a straight line between two points. Way faster than walking.</li>
+              <li><code class="inline">agent.move + place</code> &mdash; you want to <em>see</em> the work happen for debugging or for fun.</li>
+            </ul>
+          </div>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> The line shoots out 100 blocks <em>east</em> of you, so the start of the line will be right under your feet. Before running, open chat (<kbd>T</kbd>), type <code class="inline">/tp ~ ~ ~10</code>, and press Enter. The line will run alongside you instead of into you. Then run <code class="inline">long_line</code>.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 8: Loops + mark/line -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 8</span> Combining Loops with <code>mark()</code> and <code>line()</code></h2>
+          <p>Now bring the two pieces together. We use a <strong>loop</strong> (from Lesson 2) to repeat a <strong>mark/line</strong> pair. Each iteration draws one row, and after drawing we step the Builder up by 1. Result: a wall.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="builderWall">Copy</button>
+<pre class="code-block" id="builderWall">def on_chat():
+    # Start fresh: warp to the player so this function stands alone.
+    builder.teleport_to(pos(~0, ~0, ~0))
+    for layer in range(5):
+        builder.mark()
+        builder.move(FORWARD, 10)
+        builder.line(STONE)
+        builder.move(BACK, 10)
+        builder.move(UP, 1)
+player.on_chat("wall", on_chat)</pre>
+          </div>
+
+          <h3>Reading this nested idea</h3>
+          <ul class="tight">
+            <li>The loop runs <strong>5 times</strong> &mdash; one per layer of the wall.</li>
+            <li>Each iteration: mark the spot, walk forward 10, draw a stone line back to the mark.</li>
+            <li>Then walk back to the start of this row (so the next mark begins lined up).</li>
+            <li>Move up 1 block to start the next layer.</li>
+            <li>Total: a wall <strong>10 blocks long, 5 blocks tall</strong>.</li>
+          </ul>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: if you change <code>range(5)</code> to <code>range(15)</code>, what changes? What if you change <code>FORWARD, 10</code> to <code>FORWARD, 30</code>?</summary>
+            <div class="answer">
+              <p><code class="inline">range(15)</code> &rarr; the wall becomes <strong>15 blocks tall</strong> instead of 5. Same length, more height.</p>
+              <p class="mb-0"><code class="inline">FORWARD, 30</code> (and <code class="inline">BACK, 30</code>) &rarr; the wall becomes <strong>30 blocks long</strong>. Same height, much longer.</p>
+            </div>
+          </details>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> Before running this one, open chat (<kbd>T</kbd>), type <code class="inline">/tp ~ ~ ~10</code>, and press Enter. You'll be 10 blocks south of where the wall builds, with a clean view of the whole thing.
+          </div>
+
+          <p>Run it as <code class="inline">wall</code> and look at what just appeared. Try the changes from the prediction prompt and watch the wall scale up.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- CHALLENGE -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag challenge">CHALLENGE</span> Build Something Big</h2>
+          <p>Create an <strong>original</strong> Builder program that uses at least one loop and either <code class="inline">mark()</code>+<code class="inline">line()</code> or <code class="inline">trace_path()</code>. Pick a challenge below &mdash; or invent your own.</p>
+
+          <div class="challenge-options">
+            <div class="option">
+              <h4>Option A &mdash; The Big Floor</h4>
+              <p>Use a loop and <code class="inline">mark()</code>/<code class="inline">line()</code> to draw 20 parallel stone lines side-by-side. You should end up with a flat 20&times;20 floor.</p>
+            </div>
+            <div class="option">
+              <h4>Option B &mdash; The Tall Tower</h4>
+              <p>Use a nested loop to build a rectangular tower: 4 walls, each <em>at least 8 blocks tall</em>. Use a different block material (glass, oak planks, brick) for variety.</p>
+            </div>
+            <div class="option">
+              <h4>Option C &mdash; Custom Skyscraper</h4>
+              <p>Combine everything: nested loops, mark/line, multiple block types. Build a recognizable structure with at least two rooms or two visible patterns.</p>
+            </div>
+          </div>
+
+          <h3>Minimum requirements</h3>
+          <ul class="tight">
+            <li>Your program starts with a chat command.</li>
+            <li>Your program uses at least one <code class="inline">for</code> loop.</li>
+            <li>Your program uses the <strong>Builder</strong> &mdash; not the Agent.</li>
+            <li>Your program uses at least one of: <code class="inline">trace_path</code>, <code class="inline">mark()</code>+<code class="inline">line()</code>.</li>
+            <li>Your program uses relative coordinates (<code class="inline">~</code>) at least once.</li>
+            <li>Your build covers a footprint of at least 10&times;10 blocks, or stands at least 8 blocks tall.</li>
+          </ul>
+
+          <h3>Stretch goals</h3>
+          <ul class="tight">
+            <li>Build a <strong>filled rectangle floor</strong> (not just an outline) using nested loops and <code class="inline">mark()</code>+<code class="inline">line()</code>.</li>
+            <li>Use multiple block types &mdash; alternate stone and glass to make a checker or stripe pattern.</li>
+            <li>Add an opening (door or window) by skipping certain iterations with an <code class="inline">if</code> statement.</li>
+            <li>Add <code class="inline">#</code> comments above each section to explain what it does.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SUBMIT -->
+        <!-- ============================================================ -->
+        <div class="submit-card">
+          <h2><span class="step-tag submit">SUBMIT</span> Turn In Your Work</h2>
+          <p>Submit <strong>three</strong> items to the Schoology assignment:</p>
+          <ol>
+            <li><strong>Screenshot of your code</strong> in the MakeCode editor. Your loop and your Builder commands must be visible.</li>
+            <li><strong>Screenshot of the result in Minecraft</strong> &mdash; the structure or pattern your Builder created.</li>
+            <li><strong>Short written reflection.</strong> Answer all four in 1&ndash;2 sentences each:
+              <ul>
+                <li>What did your program build, and which Builder commands did you use?</li>
+                <li>Where in your code did you use <code class="inline">~</code> (relative coordinates)? Why is that useful?</li>
+                <li>Compare: how would this same build look if you wrote it with the Agent? Faster or slower? Why?</li>
+                <li>Describe one bug or surprise you ran into and what fixed it.</li>
+              </ul>
+            </li>
+          </ol>
+
+          <div class="key-fact" style="background: #fde9ec; border-color: #dc3545;">
+            <strong style="color: #842029;">Important:</strong> The reflection counts for half the grade. Show that you understand <em>why</em> the Builder was the right tool for this job &mdash; not just that it worked.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DONE -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><i class="bi bi-flag-fill"></i> When You're Done</h2>
+          <ul class="tight">
+            <li>Trade computers and run a classmate's program.</li>
+            <li>Look up <code class="inline">builder.fill</code> in the MakeCode docs &mdash; it fills a solid box between two marked corners in one call.</li>
+            <li>Try building a hollow cube using <code class="inline">mark()</code> + <code class="inline">line()</code> for each edge.</li>
+            <li>Re-write your Lesson 2 challenge using the Builder. How much shorter does the code get?</li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.dataset.target);
+          if (!target) return;
+          navigator.clipboard.writeText(target.textContent).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 1500);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
