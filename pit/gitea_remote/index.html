@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PIT — Publishing to the Classroom Gitea Server</title>
+    <title>PIT — Gitea Workflow: Peer Review, Iteration &amp; Git History Surgery</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
@@ -73,6 +73,18 @@
         font-size: 1.1rem;
       }
 
+      .block-tag {
+        display: inline-block;
+        background: #fce4e6;
+        color: #b02a37;
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
       .key-fact {
         background: #fff8e9;
         border-left: 4px solid #ffc107;
@@ -99,6 +111,15 @@
         border-radius: 4px;
       }
       .checkpoint strong { color: #0f5132; }
+
+      .reflection {
+        background: #cfe2ff;
+        border-left: 4px solid #0d6efd;
+        padding: 12px 18px;
+        margin: 15px 0;
+        border-radius: 4px;
+      }
+      .reflection strong { color: #084298; }
 
       pre.code {
         background: #1e1e1e;
@@ -161,7 +182,125 @@
       .server-card strong { color: #ff6b6b; }
       .server-card a { color: #6ec1ff; font-weight: 600; }
 
+      .hsw {
+        background: linear-gradient(135deg, #fff5f5 0%, #ffe9eb 100%);
+        border: 1px solid #f5c2c7;
+        border-left: 4px solid #dc3545;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 18px 0;
+      }
+      .hsw-item { margin-bottom: 10px; line-height: 1.55; }
+      .hsw-item:last-child { margin-bottom: 0; }
+      .hsw-label {
+        display: inline-block;
+        background: #dc3545;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 10px;
+        margin-right: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        vertical-align: 1px;
+      }
+      .hsw-label.so { background: #b02a37; }
+      .hsw-label.now { background: #6c1d22; }
+
+      .mcq {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 18px 0 0 0;
+      }
+      .mcq-label {
+        display: inline-block;
+        background: #dc3545;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+      .mcq-question { font-weight: 600; margin-bottom: 14px; color: #212529; }
+      .choices { display: flex; flex-direction: column; gap: 8px; }
+      .choice {
+        background: white;
+        border: 2px solid #dee2e6;
+        border-radius: 6px;
+        padding: 10px 14px;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.15s, border-color 0.15s;
+        font-size: 0.95rem;
+        color: #212529;
+      }
+      .choice:hover:not(:disabled) { background: #fdecea; border-color: #dc3545; }
+      .choice:disabled { cursor: default; }
+      .choice-correct {
+        background: #d1e7dd !important;
+        border-color: #198754 !important;
+        color: #0f5132 !important;
+        font-weight: 600;
+      }
+      .choice-correct::before { content: "\2713  "; font-weight: 700; }
+      .choice-wrong {
+        background: #f8d7da !important;
+        border-color: #dc3545 !important;
+        color: #842029 !important;
+      }
+      .choice-wrong::before { content: "\2717  "; font-weight: 700; }
+      .feedback {
+        margin-top: 14px;
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 0.95rem;
+      }
+      .feedback.correct { background: #d1e7dd; color: #0f5132; border-left: 4px solid #198754; }
+      .feedback.wrong { background: #fff3cd; color: #664d03; border-left: 4px solid #ffc107; }
+
+      .definition-table {
+        width: 100%;
+        margin: 15px 0;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .definition-table th {
+        background: #dc3545;
+        color: white;
+        padding: 10px 14px;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      .definition-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e9ecef;
+        vertical-align: top;
+        font-size: 0.95rem;
+      }
+      .definition-table tr:last-child td { border-bottom: none; }
+
+      .rubric-table th { background: #0d6efd; }
+
       ul.tight li { margin-bottom: 6px; }
+
+      .block-time {
+        display: inline-block;
+        background: #6c757d;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
     </style>
   </head>
   <body>
@@ -172,7 +311,7 @@
         <span class="text-white-50 mx-2">/</span>
         <a href="../" class="text-white">Practicum in Information Technology</a>
         <span class="text-white-50 mx-2">/</span>
-        <span class="text-white">Publishing to Classroom Gitea</span>
+        <span class="text-white">Gitea Workflow &amp; History Surgery</span>
       </nav>
 
       <div class="lesson-content">
@@ -183,293 +322,744 @@
         </div>
 
         <div class="lesson-header">
-          <h1><i class="bi bi-cloud-upload-fill"></i> Publishing to the Classroom Gitea Server</h1>
-          <p class="subtitle">Required extension to the Pro Local Dev practicum &mdash; push your first website to a real, self-hosted Git server running on the classroom Raspberry Pi</p>
-        </div>
-
-        <div style="background: #cfe2ff; border: 2px solid #0d6efd; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px;">
-          <p style="margin: 0; color: #084298;"><strong><i class="bi bi-info-circle-fill"></i> When to do this:</strong> This is a required extension of the Pro Local Dev practicum &mdash; not optional. If you finished the main lab early, begin it during the same class period. Otherwise, you will complete it during a <strong>follow-up class meeting</strong>. The screenshot from Step 8 becomes part of the same PDF deliverable.</p>
+          <h1><i class="bi bi-git"></i> Gitea Workflow: Peer Review, Iteration &amp; Git History Surgery</h1>
+          <p class="subtitle">Follow-up to the Pro Local Dev practicum &mdash; publish to the classroom Gitea server, iterate on real peer feedback, then practice the three Git operations that save professional developers from disaster: <em>discard</em>, <em>revert</em>, and <em>cherry-pick</em>. · 160-minute class</p>
         </div>
 
         <div class="server-card">
-          <p style="margin: 0;"><strong>Fun fact:</strong> The Gitea server, web hosting (nginx), and the public file viewer you'll use in this lesson are all running on <strong>a single Raspberry Pi sitting on Mr. Johnston's desk</strong>. No cloud, no AWS, no Microsoft &mdash; just a credit-card-sized computer and good open-source software. If a Pi can host this, you can host things too.</p>
+          <p style="margin: 0;"><strong>Fun fact:</strong> The Gitea server, the public nginx file viewer, and everything else on the classroom network are running on <strong>a single Raspberry Pi sitting on Mr. Johnston's desk</strong>. No cloud, no AWS, no Microsoft &mdash; just a credit-card-sized computer and good open-source software. Our district network blocks GitHub, so we host our own. That is a real, paid skill.</p>
         </div>
 
         <!-- ============================================================ -->
-        <!-- Objectives -->
+        <!-- What this lesson covers -->
         <!-- ============================================================ -->
         <div class="step-section" style="background: #fff8e9; border-color: #ffc107;">
-          <h2 style="color: #856404;"><i class="bi bi-bullseye"></i> What You'll Do</h2>
-          <ol class="tight">
-            <li>Create an account on the classroom Gitea server.</li>
-            <li>Create your first <strong>remote repository</strong>.</li>
-            <li>Clone it to your local machine with Git Bash.</li>
-            <li>Build a simple <code class="inline">index.html</code> splash page (you may use the AI of your choice).</li>
-            <li>Configure your Git identity (name + email).</li>
-            <li>Create a <code class="inline">.gitignore</code> file so you don't accidentally publish secrets or junk.</li>
-            <li>Stage, commit, and <strong>push</strong> &mdash; the new Git command this lesson is built around.</li>
-            <li>View your file <em>publicly hosted</em> at the classroom web address.</li>
-          </ol>
-          <p class="mb-0"><strong>New term:</strong> a <em>remote</em> is a copy of your repository that lives on a server somewhere &mdash; in this case, on the Pi.</p>
+          <h2 style="color: #856404;"><i class="bi bi-bullseye"></i> What You'll Do Today</h2>
+          <p>Today you build on every Git skill from the Pro Local Dev practicum, then add four new ones that professional teams use constantly: <strong>publishing to a remote</strong>, <strong>iterating on peer feedback</strong>, <strong>discarding unwanted changes</strong>, and <strong>surgically editing your project's history</strong> with <code class="inline">git revert</code> and <code class="inline">git cherry-pick</code>.</p>
+
+          <h3 style="color: #856404;">Learning Objectives</h3>
+          <ul class="tight">
+            <li><strong>1.</strong> Create a Gitea account and a public repo named <code class="inline">my_first_repo_lastname</code>.</li>
+            <li><strong>2.</strong> Build a small HTML / CSS / JS splash page (AI assistance permitted).</li>
+            <li><strong>3.</strong> Push the page to the classroom Gitea server and view it live on a public URL.</li>
+            <li><strong>4.</strong> Exchange peer feedback with another student and use that feedback to drive a real iteration loop, committing each change you like.</li>
+            <li><strong>5.</strong> Practice <em>discarding</em> uncommitted changes you don't want (<code class="inline">git restore</code>).</li>
+            <li><strong>6.</strong> Practice <em>rolling back</em> a specific past commit (<code class="inline">git revert</code>) and <em>rebuilding</em> a project from chosen commits (<code class="inline">git cherry-pick</code>).</li>
+            <li><strong>7.</strong> Submit a deliverable with screenshots, peer-feedback notes, and a written reflection.</li>
+          </ul>
+
+          <h3 style="color: #856404;">Today's Blocks (160 minutes total)</h3>
+          <ul class="tight">
+            <li><strong>Block 0</strong> &mdash; Warm-Up: What Did You Already Learn? <span class="block-time">0&ndash;10 min</span></li>
+            <li><strong>Block 1</strong> &mdash; Gitea Account &amp; Your Repo <span class="block-time">10&ndash;20 min</span></li>
+            <li><strong>Block 2</strong> &mdash; Build &amp; Push Your Splash Page <span class="block-time">20&ndash;55 min</span></li>
+            <li><strong>Block 3</strong> &mdash; Peer Review &amp; Feedback Loop <span class="block-time">55&ndash;90 min</span></li>
+            <li><strong>Block 4</strong> &mdash; Discard Uncommitted Changes <span class="block-time">90&ndash;110 min</span></li>
+            <li><strong>Block 5</strong> &mdash; History Surgery: Revert &amp; Cherry-Pick <span class="block-time">110&ndash;145 min</span></li>
+            <li><strong>Block 6</strong> &mdash; Deliverable &amp; Reflection <span class="block-time">145&ndash;160 min</span></li>
+          </ul>
         </div>
 
         <!-- ============================================================ -->
-        <!-- STEP 1 -->
+        <!-- BLOCK 0 — Review Warm-Up -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">1</span> Create your Gitea account</h2>
+          <h2><i class="bi bi-pencil-square"></i> Block 0 &mdash; Warm-Up: What Did You Already Learn?<span class="block-tag">0&ndash;10 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> In the <a href="../pro_local_dev/">Pro Local Dev practicum</a> you set up Python locally, imported a CMU Graphics program, and used <code class="inline">git init</code>, <code class="inline">git add</code>, <code class="inline">git commit</code>, and <code class="inline">git log</code> to take snapshots of your work. That was Git running entirely on <em>your</em> machine.</div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> If a tool sits unused for a week or two it disappears from your hands. Walking back through what a <em>commit</em>, <em>staging area</em>, and <em>repository</em> are at the start of this class is what makes today's harder concepts (push, revert, cherry-pick) actually stick.</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Open a blank document (Word, Google Doc, or a new <code class="inline">REFLECTION.md</code> in VS Code) and write the short prompt below. This becomes the first section of your deliverable PDF.</div>
+          </div>
+
+          <div class="reflection">
+            <strong>Warm-up reflection (3&ndash;5 sentences each, full credit if honest):</strong>
+            <ol class="mb-0">
+              <li>In your own words: <em>what is a Git commit?</em> Pretend you're explaining it to a freshman who has never opened VS Code.</li>
+              <li>Why is committing better than just saving the file? Give one reason that has nothing to do with "in case the file gets deleted."</li>
+              <li>What was the most confusing thing about Git from the last lesson? Be specific &mdash; this is the thing today's class needs to clear up for you.</li>
+            </ol>
+          </div>
+
+          <div class="mcq" data-id="b0-q1">
+            <span class="mcq-label">Quick Review MCQ</span>
+            <p class="mcq-question">A classmate says: "Every time I press <code class="inline">Ctrl+S</code> in VS Code, Git takes a new snapshot of my file." Which best corrects them?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Correct &mdash; Git automatically snapshots on every save.</button>
+              <button class="choice" data-correct="false">B. Almost &mdash; Git snapshots on save, but only for <code class="inline">.py</code> files.</button>
+              <button class="choice" data-correct="true">C. No &mdash; saving the file only updates the file on disk. Git only takes a snapshot when you explicitly run <code class="inline">git commit</code>.</button>
+              <button class="choice" data-correct="false">D. No &mdash; Git takes a snapshot only when you push to a remote.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Save &ne; commit.</strong> The editor writes the file to disk. Git only captures a snapshot when you stage (<code class="inline">git add</code>) and commit (<code class="inline">git commit</code>). This distinction is the whole foundation of today's lesson &mdash; if Git auto-snapshotted every keystroke, "discard my changes since the last commit" wouldn't be a meaningful idea.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 1 — Account + Repo -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">1</span> Block 1 &mdash; Gitea Account &amp; Your Repo<span class="block-tag">10&ndash;20 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> Gitea is a self-hosted Git server &mdash; like a tiny private GitHub running on the classroom Pi. You'll register an account, then create a <em>remote repository</em>: a copy of your project that lives on the server instead of on your laptop.</div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> Every professional team puts their code on a remote so multiple people can collaborate, see each other's history, and not lose work when a laptop dies. The terms <em>local</em> (your machine) and <em>remote</em> (the server) are the vocabulary of every coding job interview.</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Make the account and the repo. Keep the username and the exact repo URL handy &mdash; you'll need both in Block 2.</div>
+          </div>
+
+          <h3>Step 1.1 &mdash; Register on the classroom Gitea</h3>
           <ol>
-            <li>Open a browser and go to <a href="http://10.12.6.236:3000/" target="_blank" rel="noopener"><code class="inline">http://10.12.6.236:3000/</code></a>.</li>
+            <li>Open a browser to <a href="http://10.12.6.236:3000/" target="_blank" rel="noopener"><code class="inline">http://10.12.6.236:3000/</code></a>.</li>
             <li>Click <strong>Register</strong>.</li>
-            <li>Pick a username you can live with publicly (it will appear in URLs and on your repo page). Use your school email if you want password reset to actually work.</li>
+            <li>Use a username you'd be okay seeing in a URL (it'll appear in your repo's public address).</li>
+            <li>Use your school email so password resets work.</li>
             <li>Sign in.</li>
           </ol>
 
           <div class="key-fact">
-            <strong>The server is only reachable from inside the classroom network.</strong> If you try this on your phone using cellular data, it will fail. That's not a bug &mdash; it's intentional. Self-hosted services live where the hardware lives.
+            <strong>The server only answers on the classroom network.</strong> If you try this on cellular data or off-campus, the page won't load. That's not a bug &mdash; self-hosted services live where the hardware lives, and our district network still blocks GitHub.
           </div>
-        </div>
 
-        <!-- ============================================================ -->
-        <!-- STEP 2 -->
-        <!-- ============================================================ -->
-        <div class="step-section">
-          <h2><span class="step-num">2</span> Create a repository named <code class="inline">test</code></h2>
+          <h3>Step 1.2 &mdash; Create a <em>public</em> repository</h3>
           <ol>
-            <li>In the top-right of Gitea, click the <strong>+</strong> icon, then <strong>New Repository</strong>.</li>
-            <li>Name it exactly: <code class="inline">test</code></li>
-            <li>Leave <em>Initialize Repository</em> <strong>unchecked</strong>. We want an empty remote so we can practice the full push workflow.</li>
+            <li>In Gitea, click the <strong>+</strong> in the top-right &rarr; <strong>New Repository</strong>.</li>
+            <li>Name it <strong>exactly</strong>: <code class="inline">my_first_repo_lastname</code> (use your real last name, lowercase, no spaces, e.g. <code class="inline">my_first_repo_johnston</code>).</li>
+            <li>Set <strong>Visibility</strong> to <strong>Public</strong>. Public is required so the nginx server can serve your page on the web.</li>
+            <li>Leave <em>Initialize Repository</em> <strong>unchecked</strong>.</li>
             <li>Click <strong>Create Repository</strong>.</li>
           </ol>
-          <p>Gitea will show you a "quick setup" page with a URL that looks like:</p>
-          <pre class="code">http://10.12.6.236:3000/<em>your-username</em>/test.git</pre>
-          <p>Copy that URL &mdash; you'll need it in the next step.</p>
+
+          <p>Gitea will show a "quick setup" page with a clone URL that looks like:</p>
+          <pre class="code">http://10.12.6.236:3000/<em>your-username</em>/my_first_repo_<em>lastname</em>.git</pre>
+          <p>Copy that URL.</p>
+
+          <div class="checkpoint">
+            <strong>Checkpoint screenshot #1:</strong> Your Gitea repo page showing the repo name and the <em>Public</em> badge. Save this for your deliverable.
+          </div>
+
+          <div class="mcq" data-id="b1-q1">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">In Git vocabulary, what is the difference between a <em>local repository</em> and a <em>remote repository</em>?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. The local repo is read-only; the remote is editable.</button>
+              <button class="choice" data-correct="true">B. The local repo lives on your machine; the remote is a copy hosted on a server that other people can also access.</button>
+              <button class="choice" data-correct="false">C. The remote repo is always faster because it runs in the cloud.</button>
+              <button class="choice" data-correct="false">D. The local repo has commits; the remote only has the latest file.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Local = your machine, remote = the server.</strong> Both contain the full history. The remote exists so other people (or other machines you own) can sync with your work. Today's Gitea is your remote; your laptop's <code class="inline">my_first_repo_lastname</code> folder will be your local.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="b1-q2">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Why does this lesson require the repository to be marked <strong>Public</strong>?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Private repos cost money on Gitea.</button>
+              <button class="choice" data-correct="false">B. Git refuses to work on private repos until a paid license is installed.</button>
+              <button class="choice" data-correct="true">C. The classroom web host (nginx) is configured to serve files only from public repos, so peers can view your site at the public URL.</button>
+              <button class="choice" data-correct="false">D. Private repos cannot be cloned to a local machine.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Public is what makes the splash-page hosting work.</strong> A private repo would still clone, push, and commit fine &mdash; but the nginx server is intentionally configured to ignore private repos so nobody accidentally publishes sensitive files to a URL.
+            </div>
+          </div>
         </div>
 
         <!-- ============================================================ -->
-        <!-- STEP 3 -->
+        <!-- BLOCK 2 — Build + push splash -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">3</span> Clone the empty remote to your local machine</h2>
+          <h2><span class="step-num">2</span> Block 2 &mdash; Build &amp; Push Your Splash Page<span class="block-tag">20&ndash;55 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> You'll clone the empty repo, build a simple HTML + CSS + JS splash page (AI is allowed, and in fact encouraged for the first draft), commit it, and push it. The new Git command today is <code class="inline">git push</code> &mdash; it sends your local commits up to the remote.</div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> Push is what turns "I have code on my laptop" into "the world can see this." It's also the moment your mistakes go public, which is why we'll be deliberate about what we push.</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Build something you'd actually want a stranger to see on the school network &mdash; a clean splash page about you, your projects, or a topic you care about.</div>
+          </div>
+
+          <h3>Step 2.1 &mdash; Clone the empty remote</h3>
 
           <div class="danger-fact">
-            <strong><i class="bi bi-exclamation-octagon-fill"></i> DO NOT clone into a OneDrive folder.</strong> Cloud-synced folders (OneDrive, Google Drive, Dropbox) constantly rewrite files in the background. This collides with Git's <code class="inline">.git</code> directory and causes file-lock errors, missing objects, and corrupted repos. <strong>Use a local folder that is NOT synced to OneDrive.</strong>
+            <strong><i class="bi bi-exclamation-octagon-fill"></i> DO NOT clone into a OneDrive folder.</strong> OneDrive rewrites files in the background and corrupts Git's <code class="inline">.git</code> directory. Use a folder that is NOT synced to OneDrive (e.g. <code class="inline">C:\Users\you\pit-projects</code>).
           </div>
 
           <ol>
-            <li>Open <strong>Git Bash</strong> (Start menu &rarr; search "Git Bash").</li>
-            <li>Move to your local Documents folder:
-              <pre class="code">cd ~/Documents
+            <li>Open <strong>Git Bash</strong>.</li>
+            <li>Move to (or create) a non-OneDrive folder:
+              <pre class="code">mkdir -p /c/Users/$USER/pit-projects
+cd /c/Users/$USER/pit-projects
 pwd</pre>
+              The path you print should <strong>not</strong> contain the word "OneDrive." If it does, raise your hand.
             </li>
-            <li><strong>Read the <code class="inline">pwd</code> output carefully.</strong> If it shows something like <code class="inline">/c/Users/you/OneDrive/Documents</code> &mdash; that's bad. You need a non-OneDrive path. Try one of these instead:
-              <pre class="code"># Option A: use the user profile root
-cd /c/Users/$USER
-
-# Option B: make a dedicated PIT projects folder
-mkdir -p /c/Users/$USER/pit-projects
-cd /c/Users/$USER/pit-projects</pre>
-              When you run <code class="inline">pwd</code> again, the path should <strong>not</strong> contain the word "OneDrive". If you can't find a non-OneDrive location, raise your hand.
+            <li>Clone the empty remote (replace your username and last name):
+              <pre class="code">git clone http://10.12.6.236:3000/<em>your-username</em>/my_first_repo_<em>lastname</em>.git
+cd my_first_repo_<em>lastname</em></pre>
             </li>
-            <li>Clone the empty remote (replace <code class="inline">your-username</code>):
-              <pre class="code">git clone http://10.12.6.236:3000/<em>your-username</em>/test.git
-cd test</pre>
+            <li>Confirm the remote is wired up:
+              <pre class="code">git remote -v</pre>
+              You should see <code class="inline">origin</code> pointing at the Pi.
             </li>
           </ol>
 
-          <div class="key-fact">
-            <strong>Expected message:</strong> Git will warn that you appear to have cloned an <em>empty repository</em>. That is exactly what we wanted &mdash; we created the remote first specifically so we'd have something real to push to. The clone wired up the connection between this local folder and the remote on the Pi.
-          </div>
-
-          <p>Confirm the remote is wired up:</p>
-          <pre class="code">git remote -v</pre>
-          <p>You should see <code class="inline">origin</code> pointing at the Pi's URL.</p>
-        </div>
-
-        <!-- ============================================================ -->
-        <!-- STEP 4 -->
-        <!-- ============================================================ -->
-        <div class="step-section">
-          <h2><span class="step-num">4</span> Build an <code class="inline">index.html</code> splash page</h2>
-          <ol>
-            <li>Open the <code class="inline">test</code> folder in VS Code:
-              <pre class="code">code .</pre>
-              (If <code class="inline">code</code> isn't recognized, just open VS Code and use <em>File &rarr; Open Folder</em>.)
-            </li>
-            <li>Create a new file named exactly <code class="inline">index.html</code>.</li>
-            <li>Use the AI of your choice (ChatGPT, Claude, Gemini, Copilot) to generate a one-page personal splash. Suggested prompt:
-              <pre class="code">Generate a single-file index.html splash page for me.
-Include: my name as a heading, a short bio paragraph,
-3 things I'm working on this semester, and inline CSS
-to make it look clean. No external links or scripts.</pre>
-            </li>
-            <li>Paste the generated HTML into <code class="inline">index.html</code> and save (<code class="inline">Ctrl+S</code>).</li>
-            <li>Open the file in your browser to make sure it renders before you push.</li>
-          </ol>
-
-          <div class="key-fact">
-            <strong>Read what the AI gave you before you paste.</strong> If it included external scripts, tracker pixels, or links to sites you don't recognize, strip them out. You're about to publish this <em>publicly</em>.
-          </div>
-        </div>
-
-        <!-- ============================================================ -->
-        <!-- STEP 5 -->
-        <!-- ============================================================ -->
-        <div class="step-section">
-          <h2><span class="step-num">5</span> Configure your Git identity</h2>
-          <p>Git needs to know who is making commits. Set this once (the <code class="inline">--global</code> flag writes to your user profile, so it carries across future repos):</p>
+          <h3>Step 2.2 &mdash; Configure your Git identity (if you haven't already)</h3>
+          <p>If you already did this in the Pro Local Dev practicum on this same machine, skip this step. Otherwise:</p>
           <pre class="code">git config --global user.name "Your Name"
 git config --global user.email "you@yourschool.edu"</pre>
-          <p>Use the <strong>same email</strong> as your Gitea account so your commits get linked to your profile on the server.</p>
-          <p>Verify it:</p>
-          <pre class="code">git config --global --list</pre>
+          <p>Use the same email as your Gitea account so commits get linked to your profile.</p>
+
+          <h3>Step 2.3 &mdash; Build a splash page (HTML + CSS + JS)</h3>
+          <p>Open the folder in VS Code:</p>
+          <pre class="code">code .</pre>
+          <p>Create a file named exactly <code class="inline">index.html</code>. You may use the AI of your choice (ChatGPT, Claude, Gemini, Copilot) for the first draft. A starter prompt:</p>
+          <pre class="code">Generate a single-file index.html for a personal splash page.
+Requirements:
+  - My name as a big heading
+  - A short bio paragraph (2-3 sentences)
+  - A list of 3 things I'm working on this semester
+  - Inline &lt;style&gt; with a clean color scheme (no external CSS)
+  - Inline &lt;script&gt; that does ONE small thing on load
+    (e.g. shows the current date, or a friendly console.log greeting)
+  - No external scripts, no tracker pixels, no analytics</pre>
+          <p>Paste the generated HTML into <code class="inline">index.html</code>, save, and open the file in your browser to make sure it renders before you push.</p>
 
           <div class="key-fact">
-            <strong>Why "global" is OK in this lab:</strong> on a Windows lab machine, <code class="inline">--global</code> writes to your personal user profile, not to a machine-wide location. The next student to log in with their own account won't see your config.
-          </div>
-        </div>
-
-        <!-- ============================================================ -->
-        <!-- STEP 6 — .gitignore -->
-        <!-- ============================================================ -->
-        <div class="step-section">
-          <h2><span class="step-num">6</span> Create a <code class="inline">.gitignore</code> &mdash; before you push anything public</h2>
-
-          <div class="danger-fact">
-            <strong><i class="bi bi-exclamation-octagon-fill"></i> The internet is forever.</strong> Anything you commit and push is <em>publicly visible the moment you push it</em> &mdash; and even if you delete the file later, <strong>the Git history still has it</strong>. There are bots that scan public repositories for accidentally committed passwords and API keys, and they will use them within minutes. A <code class="inline">.gitignore</code> file is how you tell Git "never track these files" so they cannot be committed by accident.
+            <strong>Read what the AI gave you before you paste.</strong> Strip out anything that loads from a domain you don't recognize. You're about to publish this publicly on the school network.
           </div>
 
-          <h3>What is <code class="inline">.gitignore</code>?</h3>
-          <p>It's a plain text file (named literally <code class="inline">.gitignore</code>, with the leading dot) in the root of your repo. Each line lists a file, folder, or pattern Git should ignore. Git checks this file before staging anything &mdash; ignored files won't even show up in <code class="inline">git status</code>.</p>
-
-          <h3>Create it in VS Code</h3>
-          <ol>
-            <li>In VS Code's file explorer, right-click in the <code class="inline">test</code> folder &rarr; <strong>New File</strong>.</li>
-            <li>Name it exactly <code class="inline">.gitignore</code> (yes, starting with a dot, no extension).</li>
-            <li>Paste this starter content:
-              <pre class="code"># --- OS junk ---
+          <h3>Step 2.4 &mdash; Add a <code class="inline">.gitignore</code></h3>
+          <p>Create a file named exactly <code class="inline">.gitignore</code> in your repo with at least:</p>
+          <pre class="code"># OS and editor junk
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# --- Editor / IDE config ---
 .vscode/
-.idea/
-*.swp
-*.bak
 
-# --- Python ---
-__pycache__/
-*.pyc
-.venv/
-venv/
-
-# --- Secrets &mdash; NEVER commit these ---
+# Secrets
 .env
-.env.*
 *.key
-*.pem
-secrets.json
-config.local.json
-credentials.*
+secrets.json</pre>
 
-# --- Build / dependency artifacts ---
-dist/
-build/
-node_modules/
-
-# --- Large or local-only files ---
-*.log
-*.zip
-*.mp4</pre>
-            </li>
-            <li>Save the file (<code class="inline">Ctrl+S</code>).</li>
-          </ol>
-
-          <h3>Verify Git is honoring it</h3>
-          <p>Back in Git Bash, from inside your <code class="inline">test</code> folder:</p>
-          <pre class="code">git status</pre>
-          <p>You should see <code class="inline">.gitignore</code> and <code class="inline">index.html</code> listed as untracked. You should <strong>not</strong> see anything like <code class="inline">.vscode/</code>, <code class="inline">Thumbs.db</code>, or other junk. If something junky still appears, add a matching line to <code class="inline">.gitignore</code>, save, and run <code class="inline">git status</code> again.</p>
-
-          <div class="key-fact">
-            <strong>The rule:</strong> <em>Read <code class="inline">git status</code> before every commit.</em> If you see a file you didn't expect, stop &mdash; either add it to <code class="inline">.gitignore</code> or figure out why it's there. Never blindly run <code class="inline">git add .</code> on a repo headed to a public server.
-          </div>
-
-          <h3>What if you already committed something you shouldn't have?</h3>
-          <p>Adding a file to <code class="inline">.gitignore</code> after the fact does <strong>not</strong> remove it from history. If you committed a real secret (API key, password, credential file), assume it is compromised:</p>
-          <ol>
-            <li><strong>Rotate the secret immediately</strong> (change the password, revoke the key) &mdash; this is the only step that actually matters.</li>
-            <li>Tell Mr. Johnston so the repo can be scrubbed or deleted.</li>
-            <li>Do not "just delete the file" and push &mdash; that does nothing useful.</li>
-          </ol>
-
-          <div class="profession-connection">
-            <h3><i class="bi bi-shield-lock-fill"></i> <span class="tag">Career</span> Secret-leak incidents end careers, not just projects</h3>
-            <p>"I accidentally pushed AWS credentials to a public repo" is one of the most common &mdash; and most career-affecting &mdash; mistakes in early-career IT. Companies have lost six-figure sums to bots that scrape GitHub for keys. Industries where this skill matters most:</p>
-            <ul class="tight">
-              <li><strong>Finance &amp; healthcare</strong> &mdash; a single leaked database credential can trigger HIPAA / PCI / SOX violations and mandatory breach disclosure.</li>
-              <li><strong>Government contractors</strong> &mdash; leaks can cost a company its clearance.</li>
-              <li><strong>Any company on AWS, Azure, or GCP</strong> &mdash; a leaked cloud key can rack up tens of thousands of dollars in compute charges within hours.</li>
-            </ul>
-            <p class="mt-2 mb-0">Practicing <code class="inline">.gitignore</code> discipline now is the same muscle you'll use to keep your future employer out of the newspaper.</p>
-          </div>
-        </div>
-
-        <!-- ============================================================ -->
-        <!-- STEP 7 — push -->
-        <!-- ============================================================ -->
-        <div class="step-section">
-          <h2><span class="step-num">7</span> Stage, commit, and <strong>push</strong></h2>
-          <p>Two of these commands you already know from the Pro Local Dev lesson. The third &mdash; <code class="inline">git push</code> &mdash; is the new one. <em>Push</em> sends your local commits up to the remote on the Pi.</p>
-
+          <h3>Step 2.5 &mdash; Stage, commit, and PUSH</h3>
           <pre class="code">git status
 git add .
-git commit -m "Add personal splash page and .gitignore"
+git commit -m "Add initial splash page"
 git push</pre>
-
-          <p><strong>Read the <code class="inline">git status</code> output one more time</strong> before <code class="inline">git add .</code> &mdash; confirm the only things being staged are <code class="inline">index.html</code> and <code class="inline">.gitignore</code>. If anything else appears, fix your <code class="inline">.gitignore</code> first.</p>
+          <p><strong>Read <code class="inline">git status</code> before you stage.</strong> Only <code class="inline">.gitignore</code> and <code class="inline">index.html</code> should be listed.</p>
 
           <div class="key-fact">
-            <strong>First-time push prompt:</strong> Git Credential Manager will likely open a browser tab pointed at the Gitea login. Click <strong>Authorize</strong> (or sign in if asked), then return to Git Bash. The push will complete. After this first time, your machine will remember the credentials.
+            <strong>First-time push:</strong> Git Credential Manager may open a browser window pointed at Gitea. Click <strong>Authorize</strong>, then return to Git Bash. Your machine will remember the credentials after that.
           </div>
 
-          <div class="checkpoint">
-            <strong>Checkpoint:</strong> The last lines of <code class="inline">git push</code> output should show something like <code class="inline">main -&gt; main</code> and a couple of object counts. Screenshot it.
-          </div>
-        </div>
-
-        <!-- ============================================================ -->
-        <!-- STEP 8 — view -->
-        <!-- ============================================================ -->
-        <div class="step-section">
-          <h2><span class="step-num">8</span> See your file on the remote &mdash; and live on the web</h2>
+          <h3>Step 2.6 &mdash; See your page live on the public URL</h3>
           <ol>
-            <li>Refresh your Gitea repo page at <a href="http://10.12.6.236:3000/" target="_blank" rel="noopener"><code class="inline">http://10.12.6.236:3000/</code></a>. You should now see <code class="inline">index.html</code> listed instead of the "empty repository" message.</li>
-            <li>Now for the cool part &mdash; the classroom server <em>also</em> serves your files publicly through nginx, similar to GitHub Pages. Visit:
-              <pre class="code">http://10.12.6.236/<em>your-username</em>/test/</pre>
-              Your splash page should load in the browser, hosted off the Pi.
+            <li>Refresh your Gitea repo page &mdash; you should now see <code class="inline">index.html</code> in the file list.</li>
+            <li>Open your public site:
+              <pre class="code">http://10.12.6.236/<em>your-username</em>/my_first_repo_<em>lastname</em>/</pre>
+              The Pi's nginx will serve your <code class="inline">index.html</code> like a real web host.
             </li>
           </ol>
 
           <div class="checkpoint">
-            <strong>Final checkpoint:</strong> Screenshot of your <em>publicly hosted</em> splash page rendered from <code class="inline">http://10.12.6.236/your-username/test/</code>. Add this screenshot to your PDF deliverable from the Pro Local Dev lab as a new <strong>"Remote Hosting &amp; Push"</strong> section.
+            <strong>Checkpoint screenshot #2:</strong> Your splash page rendered at the public URL (URL bar visible).
+          </div>
+
+          <div class="mcq" data-id="b2-q1">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">You ran <code class="inline">git commit -m "Add splash page"</code> and got a success message. You then closed Git Bash without running <code class="inline">git push</code>. A friend visits your public URL. What do they see?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. Your new splash page &mdash; commits sync to the remote automatically.</button>
+              <button class="choice" data-correct="true">B. Whatever was on the remote before your commit (or "empty repository" if you'd never pushed).</button>
+              <button class="choice" data-correct="false">C. An error page, because the local and remote are out of sync.</button>
+              <button class="choice" data-correct="false">D. Your splash page, but only for 24 hours.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Push is its own step.</strong> A commit is local. It does not reach the remote (and therefore the public URL) until you run <code class="inline">git push</code>. This is why "I committed it!" is not the same as "it's live."
+            </div>
+          </div>
+
+          <div class="mcq" data-id="b2-q2">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Which is the BEST reason to read the output of <code class="inline">git status</code> before running <code class="inline">git add .</code> on a repo you're about to push publicly?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. <code class="inline">git status</code> is required before <code class="inline">git add</code> will work.</button>
+              <button class="choice" data-correct="true">B. It shows every file Git is about to track &mdash; the last chance to spot a secret, a junk file, or something you didn't mean to publish.</button>
+              <button class="choice" data-correct="false">C. <code class="inline">git status</code> automatically removes files that shouldn't be committed.</button>
+              <button class="choice" data-correct="false">D. It makes your next commit faster.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong><code class="inline">git status</code> is your last checkpoint before a public mistake.</strong> Once it's pushed, the file is in history forever &mdash; even deleting it later doesn't remove the historical copy. Looking at <code class="inline">git status</code> takes 2 seconds and prevents the most common embarrassing Git mistakes.
+            </div>
           </div>
         </div>
 
         <!-- ============================================================ -->
-        <!-- Profession Connection -->
+        <!-- BLOCK 3 — Peer Review -->
         <!-- ============================================================ -->
-        <div class="profession-connection">
-          <h3><i class="bi bi-hdd-network-fill"></i> <span class="tag">Career</span> "Self-hosted" is a real, paid skill</h3>
-          <p>You just stood up your own Git server, made an account, pushed code, and viewed it on a public URL &mdash; on hardware running in the same room. That's not a toy. <strong>System administrators</strong>, <strong>DevOps engineers</strong>, <strong>cloud architects</strong>, and <strong>IT operations specialists</strong> do exactly this for a living, at scale, in industries that don't trust their data to third-party clouds:</p>
+        <div class="step-section">
+          <h2><span class="step-num">3</span> Block 3 &mdash; Peer Review &amp; Feedback Loop<span class="block-tag">55&ndash;90 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> Pair up with someone in class. You each visit the other's public splash page, give written feedback, then go back to your code and act on at least <strong>two</strong> pieces of feedback. Each change you're happy with becomes its own commit and push.</div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> A first draft is never the finished product. The instinct to <em>show the work, hear the response, fix it, ship again</em> is the exact rhythm of modern software teams &mdash; and of basically every creative or technical field. This is the loop that turns "I made something" into "I made something good."</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Trade URLs with a partner. Write feedback specific enough to act on. Then iterate.</div>
+          </div>
+
+          <h3>Step 3.1 &mdash; Swap public URLs</h3>
+          <p>Tell your partner your public URL (<code class="inline">http://10.12.6.236/your-username/my_first_repo_lastname/</code>). They tell you theirs.</p>
+
+          <h3>Step 3.2 &mdash; Write feedback for your partner</h3>
+          <p>Open your partner's page in a browser. In a text doc, write them <strong>three specific pieces of feedback</strong>. "It's good" is not feedback. Examples of good feedback:</p>
           <ul class="tight">
-            <li><strong>Hospitals &amp; clinics</strong> &mdash; HIPAA-regulated data often runs on on-premises servers, not cloud.</li>
-            <li><strong>Defense contractors</strong> &mdash; classified work runs on private "air-gapped" networks.</li>
-            <li><strong>Banks &amp; insurance</strong> &mdash; core transaction systems are still self-hosted for compliance and audit reasons.</li>
-            <li><strong>Universities &amp; research labs</strong> &mdash; researchers host their own Git, datasets, and compute clusters.</li>
-            <li><strong>Small businesses</strong> &mdash; many local IT shops install on-prem servers for cost or privacy reasons.</li>
+            <li>"The contrast between the gray text and the white background is hard to read &mdash; consider darker text or a softer background."</li>
+            <li>"Your bio mentions you like robotics but doesn't say <em>what</em> you've built &mdash; one concrete example would make it land harder."</li>
+            <li>"The console.log greeting is cute but only shows up if I open dev tools. Could you make the greeting visible on the page itself?"</li>
           </ul>
-          <p class="mt-2 mb-0">"Can run their own infrastructure" is one of the highest-paid skill clusters in IT. This Raspberry Pi exercise is the same shape as a $150K sysadmin job &mdash; just at one-thousandth the scale.</p>
+          <p>Send your three pieces of feedback to your partner (DM, paste in a doc you share, whatever method your class uses).</p>
+
+          <div class="checkpoint">
+            <strong>Checkpoint #3 (text, not screenshot):</strong> Save the feedback <em>you received</em> from your partner verbatim. Paste it into your deliverable.
+          </div>
+
+          <h3>Step 3.3 &mdash; Iterate. Commit each improvement.</h3>
+          <p>Pick at least <strong>two</strong> pieces of feedback you got. For each one:</p>
+          <ol>
+            <li>Edit <code class="inline">index.html</code> in VS Code to address that piece of feedback.</li>
+            <li>Save the file.</li>
+            <li>Reload your local file in the browser to check it.</li>
+            <li>Once you're happy with the change:
+              <pre class="code">git status
+git add index.html
+git commit -m "Fix low-contrast text per peer feedback"
+git push</pre>
+            </li>
+            <li>Reload the <em>public</em> URL &mdash; your partner can see the improvement.</li>
+          </ol>
+
+          <div class="key-fact">
+            <strong>Commit message rules of thumb:</strong>
+            <ul class="tight mb-0">
+              <li>Imperative mood: <em>"Fix contrast"</em> not <em>"Fixed contrast"</em>.</li>
+              <li>Specific enough that future-you can read the log and remember <em>why</em>.</li>
+              <li>~50 characters or fewer for the summary line.</li>
+            </ul>
+          </div>
+
+          <div class="checkpoint">
+            <strong>Checkpoint screenshot #4:</strong> The output of <code class="inline">git log --oneline</code> after your iteration commits &mdash; should show at least 3 commits (initial + 2 feedback fixes).
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-arrow-repeat"></i> <span class="tag">Iteration</span> "Ship, review, fix, ship again" is the dominant workflow in modern industry</h3>
+            <p>What you just did &mdash; build a small thing, get specific feedback, act on it, publish the next version &mdash; is the same pattern at the heart of:</p>
+            <ul class="tight">
+              <li><strong>Software</strong> &mdash; pull requests with code review comments before merging.</li>
+              <li><strong>Marketing</strong> &mdash; A/B testing landing pages, keeping the version that performs.</li>
+              <li><strong>Manufacturing</strong> &mdash; Toyota's <em>kaizen</em>: small, documented, continuous improvements.</li>
+              <li><strong>Design</strong> &mdash; user testing rounds on low-fi prototypes before any pixel is polished.</li>
+              <li><strong>Writing &amp; journalism</strong> &mdash; editor passes that produce numbered drafts.</li>
+            </ul>
+            <p class="mt-2 mb-0">The shared idea: <em>nobody gets it right the first time, and pretending you do is the slowest way to get good.</em></p>
+          </div>
+
+          <div class="mcq" data-id="b3-q1">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">After you make a code change that addresses peer feedback, in what order should you run these commands?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. <code class="inline">git push</code> &rarr; <code class="inline">git commit</code> &rarr; <code class="inline">git add</code></button>
+              <button class="choice" data-correct="false">B. <code class="inline">git commit</code> &rarr; <code class="inline">git add</code> &rarr; <code class="inline">git push</code></button>
+              <button class="choice" data-correct="true">C. <code class="inline">git add</code> &rarr; <code class="inline">git commit</code> &rarr; <code class="inline">git push</code></button>
+              <button class="choice" data-correct="false">D. <code class="inline">git push</code> &rarr; <code class="inline">git add</code> &rarr; <code class="inline">git commit</code></button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Stage, snapshot, send.</strong> <code class="inline">git add</code> moves your changes into the staging area. <code class="inline">git commit</code> turns the staged changes into a permanent local snapshot. <code class="inline">git push</code> sends those local commits up to the Gitea remote so the public URL updates.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="b3-q2">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Which commit message is the most professional?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. <code class="inline">stuff</code></button>
+              <button class="choice" data-correct="false">B. <code class="inline">final FINAL fixed for real this time</code></button>
+              <button class="choice" data-correct="true">C. <code class="inline">Increase header contrast for readability</code></button>
+              <button class="choice" data-correct="false">D. <code class="inline">Changed some HTML and CSS, also updated the script a little, and adjusted the colors to look better according to feedback I got from Maria</code></button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Specific, imperative, short.</strong> "Increase header contrast for readability" tells future-you (or a teammate, or a hiring manager looking at your repo) <em>exactly</em> what changed and why. The 80-character life-story version (D) is worse than the vague version (A) because it buries the signal in noise.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 4 — Discard Uncommitted -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">4</span> Block 4 &mdash; Discard Uncommitted Changes<span class="block-tag">90&ndash;110 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> Your repo is in a clean state &mdash; everything that's committed is also pushed. Now you'll <em>deliberately</em> make a bunch of changes you don't like, look at them in the browser, then use Git to throw them away and return to your last known-good commit.</div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> Every developer eventually goes down a rabbit hole, mangles the code, and wants to start over from the last save point. Without Git, that means hours of "Ctrl+Z until it looks right." With Git, it's one command. This is the most-used Git feature in any developer's daily work and you should be fluent with it.</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Follow the guided steps exactly. The goal is to <em>experience</em> losing changes on purpose so you trust the command later when you really need it.</div>
+          </div>
+
+          <h3>Step 4.1 &mdash; Confirm you're at a clean baseline</h3>
+          <pre class="code">git status</pre>
+          <p>You should see <em>"nothing to commit, working tree clean."</em> If you see anything else, commit and push it before continuing &mdash; we want this experiment to start from a known good state.</p>
+
+          <h3>Step 4.2 &mdash; Make a mess on purpose</h3>
+          <p>Open <code class="inline">index.html</code> in VS Code and intentionally make it worse:</p>
+          <ul class="tight">
+            <li>Change the body background color to <code class="inline">hotpink</code>.</li>
+            <li>Change your heading text to all caps and add 10 exclamation points.</li>
+            <li>Delete a section of your bio.</li>
+            <li>Add a paragraph that says <code class="inline">&lt;p&gt;I LOVE GIT SO MUCH&lt;/p&gt;</code> three times in a row.</li>
+          </ul>
+          <p><strong>Save the file</strong> (<code class="inline">Ctrl+S</code>). Open it in the browser locally to see the mess.</p>
+
+          <h3>Step 4.3 &mdash; Look at what Git sees</h3>
+          <pre class="code">git status
+git diff index.html</pre>
+          <p><code class="inline">git diff</code> shows you exactly what changed since the last commit &mdash; red lines are removed, green lines are added.</p>
+
+          <div class="key-fact">
+            <strong>Read the diff carefully &mdash; this is professional muscle memory.</strong> Before discarding anything, scan the diff and make sure nothing in it is worth keeping. If there's even one change you want to keep, copy it to a scratch file before you discard.
+          </div>
+
+          <h3>Step 4.4 &mdash; Discard everything since the last commit</h3>
+          <pre class="code">git restore index.html</pre>
+          <p>That's it. Reload the browser &mdash; your splash page is back to the way it was at the last commit.</p>
+
+          <p>To verify:</p>
+          <pre class="code">git status   # should say "nothing to commit, working tree clean"
+git diff     # should print nothing</pre>
+
+          <div class="danger-fact">
+            <strong><i class="bi bi-exclamation-octagon-fill"></i> <code class="inline">git restore</code> on a file PERMANENTLY throws away uncommitted edits to that file.</strong> There is no undo. This is exactly why we commit often &mdash; so the worst <code class="inline">git restore</code> can do is erase the last few minutes, not the last few hours.
+          </div>
+
+          <div class="checkpoint">
+            <strong>Checkpoint screenshot #5:</strong> Side-by-side or before/after &mdash; (1) the mangled page in the browser, then (2) the clean page after running <code class="inline">git restore</code>. Add a one-sentence caption explaining what happened.
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-arrow-counterclockwise"></i> <span class="tag">Safety Net</span> "Throw away the experiment" is a cross-industry concept</h3>
+            <p>The instinct to try something risky <em>knowing</em> you can roll back in one move is a professional habit:</p>
+            <ul class="tight">
+              <li><strong>Photoshop / Lightroom</strong> &mdash; non-destructive editing layers; the original is never overwritten.</li>
+              <li><strong>Video editing</strong> &mdash; "save as a new version" before any major cut.</li>
+              <li><strong>Surgery</strong> &mdash; intra-op decision points where the team can abort a procedure and revert to a stable plan.</li>
+              <li><strong>Trading floors</strong> &mdash; "paper trading" before any real money moves.</li>
+            </ul>
+            <p class="mt-2 mb-0">If you can't roll back, you can't experiment. Git's <code class="inline">restore</code> is your "experiment safely" button.</p>
+          </div>
+
+          <div class="mcq" data-id="b4-q1">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">You've edited <code class="inline">index.html</code>, saved it, and decided you hate every change. You have NOT run <code class="inline">git add</code> or <code class="inline">git commit</code> yet. Which command returns the file to its state at the last commit?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. <code class="inline">git delete index.html</code></button>
+              <button class="choice" data-correct="false">B. <code class="inline">git push --undo</code></button>
+              <button class="choice" data-correct="true">C. <code class="inline">git restore index.html</code></button>
+              <button class="choice" data-correct="false">D. <code class="inline">Ctrl+Z</code> &mdash; Git is built into VS Code's undo stack.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong><code class="inline">git restore</code> = throw away uncommitted edits.</strong> It rewrites the working-tree file to match the last committed version. <code class="inline">Ctrl+Z</code> only works while the editor is still open and only as far back as the editor remembers &mdash; it has nothing to do with Git.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="b4-q2">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Why is it important to run <code class="inline">git diff</code> <em>before</em> running <code class="inline">git restore</code>?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. <code class="inline">git restore</code> won't run unless you've checked the diff first.</button>
+              <button class="choice" data-correct="true">B. <code class="inline">git restore</code> permanently throws away uncommitted edits, so the diff is your last chance to spot any change worth keeping.</button>
+              <button class="choice" data-correct="false">C. <code class="inline">git diff</code> commits the changes for you.</button>
+              <button class="choice" data-correct="false">D. <code class="inline">git diff</code> sends the changes to your partner for review.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Look before you leap.</strong> Discarding uncommitted work has no undo. <code class="inline">git diff</code> takes two seconds and shows you exactly what's about to disappear.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 5 — Revert + Cherry-pick -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-num">5</span> Block 5 &mdash; History Surgery: Revert &amp; Cherry-Pick<span class="block-tag">110&ndash;145 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> Block 4 was about throwing away changes that <em>weren't yet committed</em>. This block is about editing changes that <em>have</em> been committed &mdash; sometimes even after they've been pushed. You'll learn <code class="inline">git revert</code> (undo a specific past commit safely) and <code class="inline">git cherry-pick</code> (apply a specific past commit on top of where you are now).</div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> Real teams ship bad commits constantly &mdash; a styling change that breaks mobile, a feature that fails for some users, a typo that goes live. <em>Reverting</em> the bad commit while keeping every other later change is the move that gets the site working again without losing the team's progress. <em>Cherry-picking</em> is what you use when you want one specific change from a different branch or a previous attempt &mdash; without dragging along everything that came with it.</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Because today is your first time doing this, you'll practice on a separate file (<code class="inline">practice.html</code>) so you can't accidentally damage your splash page.</div>
+          </div>
+
+          <h3>Step 5.1 &mdash; Set up the practice file with 4 commits</h3>
+          <p>Inside your repo (same folder as <code class="inline">index.html</code>), do each step below <strong>in order</strong>, committing after each one. This gives us a history we can perform surgery on.</p>
+
+          <p><strong>Commit A &mdash;</strong> Create a new file <code class="inline">practice.html</code> with this exact content:</p>
+          <pre class="code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body { background: lightyellow; font-family: sans-serif; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;This is a practice file for Git history surgery.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+          <p>Then:</p>
+          <pre class="code">git add practice.html
+git commit -m "A: Create practice file with yellow background"</pre>
+
+          <p><strong>Commit B &mdash;</strong> Add an <code class="inline">&lt;h1&gt;</code> heading inside <code class="inline">&lt;body&gt;</code>, <strong>above</strong> the existing paragraph:</p>
+          <pre class="code">&lt;h1&gt;Welcome to the Practice Page&lt;/h1&gt;</pre>
+          <p>Save, then:</p>
+          <pre class="code">git add practice.html
+git commit -m "B: Add welcome heading"</pre>
+
+          <p><strong>Commit C (intentionally ugly) &mdash;</strong> Change the body background from <code class="inline">lightyellow</code> to <code class="inline">purple</code>:</p>
+          <pre class="code">body { background: purple; font-family: sans-serif; }</pre>
+          <p>Save, then:</p>
+          <pre class="code">git add practice.html
+git commit -m "C: Change background to purple"</pre>
+
+          <p><strong>Commit D &mdash;</strong> Add an <code class="inline">h1</code> rule and a keyframes rule so the heading bounces. Replace the <code class="inline">&lt;style&gt;</code> block with:</p>
+          <pre class="code">&lt;style&gt;
+  body { background: purple; font-family: sans-serif; }
+  h1 { animation: bounce 1s infinite alternate; }
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-10px); }
+  }
+&lt;/style&gt;</pre>
+          <p>Save, then:</p>
+          <pre class="code">git add practice.html
+git commit -m "D: Add bounce animation to heading"
+git push</pre>
+
+          <p>Check the history:</p>
+          <pre class="code">git log --oneline</pre>
+          <p>You should see <strong>D, C, B, A</strong> (newest first), each with a short hash. Open <code class="inline">practice.html</code> in a browser &mdash; you'll see a purple page (ugly!) with a bouncing heading.</p>
+
+          <h3>Step 5.2 &mdash; <code class="inline">git revert</code>: undo a specific past commit, keep everything else</h3>
+          <p>The purple background (commit C) is bad. The bounce animation (commit D) is good. We want to undo C while keeping D.</p>
+
+          <p>Copy the short hash of commit C from <code class="inline">git log --oneline</code>. Then:</p>
+          <pre class="code">git revert &lt;hash-of-C&gt; --no-edit
+git push</pre>
+
+          <p>Look at the file in the browser &mdash; the background is back to yellow, and the heading is <strong>still</strong> bouncing. Run <code class="inline">git log --oneline</code> again. You'll see a <em>new</em> commit at the top &mdash; something like "Revert &quot;C: Change background to purple&quot;". The original C is still in history; the new commit just <em>undoes</em> it.</p>
+
+          <div class="key-fact">
+            <strong>Why <code class="inline">revert</code> instead of just deleting a commit?</strong> Because commit C was already pushed. Erasing it from history would mess up anyone else who has cloned the repo. <code class="inline">revert</code> adds a new commit that cancels out the old one, leaving history intact and shareable. This is the safe way to undo published work.
+          </div>
+
+          <div class="checkpoint">
+            <strong>Checkpoint screenshot #6:</strong> <code class="inline">git log --oneline</code> showing your A&ndash;D commits plus the new "Revert C" commit on top.
+          </div>
+
+          <h3>Step 5.3 &mdash; <code class="inline">git cherry-pick</code>: grab a specific commit by hash</h3>
+          <p>Cherry-pick is the inverse problem: instead of taking a commit <em>out</em>, you take a commit and apply it <em>onto</em> your current state.</p>
+
+          <p>Let's simulate a realistic case. Pretend we want to make a small detour: temporarily remove the bounce animation, then later re-apply only commit D's changes by cherry-picking.</p>
+
+          <p><strong>Step 5.3a</strong> &mdash; Undo commit D so we can practice picking it back up. We'll use <code class="inline">revert</code> again:</p>
+          <pre class="code">git log --oneline   # find the hash of "D: Add bounce animation to heading"
+git revert &lt;hash-of-D&gt; --no-edit
+git push</pre>
+          <p>Reload the page. The bouncing should stop &mdash; the heading sits still.</p>
+
+          <p><strong>Step 5.3b</strong> &mdash; Now cherry-pick the <strong>original</strong> commit D back. Its changes were good; we just want them re-applied:</p>
+          <pre class="code">git log --oneline   # find the hash of "D: Add bounce animation to heading" (the ORIGINAL D, not its revert)
+git cherry-pick &lt;hash-of-D&gt;
+git push</pre>
+
+          <p>Reload the page &mdash; the heading is bouncing again. Run <code class="inline">git log --oneline</code> one more time: you should see the cherry-picked commit at the top with the same message as the original D.</p>
+
+          <div class="key-fact">
+            <strong>What just happened:</strong> <code class="inline">cherry-pick</code> took the diff of commit D &mdash; "add the bounce animation rules" &mdash; and applied that diff as a brand-new commit on top of your current state. The original D is still in history. The new cherry-pick commit is a fresh snapshot that contains the same changes.
+          </div>
+
+          <div class="checkpoint">
+            <strong>Checkpoint screenshot #7:</strong> Final <code class="inline">git log --oneline</code> after the cherry-pick. Add a one-sentence caption explaining what the cherry-pick did.
+          </div>
+
+          <h3>When would you use each?</h3>
+          <table class="definition-table">
+            <thead>
+              <tr><th style="width: 28%;">Command</th><th>When to use it</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code class="inline">git restore &lt;file&gt;</code></td><td>You haven't committed yet and you want to throw away the file's changes. The most common Git "oops" command.</td></tr>
+              <tr><td><code class="inline">git revert &lt;hash&gt;</code></td><td>You committed (and probably pushed) a change that turned out to be bad. You want to undo it safely without rewriting history.</td></tr>
+              <tr><td><code class="inline">git cherry-pick &lt;hash&gt;</code></td><td>There's a specific commit you want to re-apply &mdash; from earlier in your history, or from another branch &mdash; without dragging along the surrounding commits.</td></tr>
+              <tr><td><code class="inline">git reset --hard &lt;hash&gt;</code></td><td>You're <em>only</em> working locally (nothing pushed), and you want to throw away one or more commits entirely. Dangerous on shared work &mdash; rewrites history.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="reflection">
+            <strong>Mini-reflection (3&ndash;5 sentences, in your deliverable):</strong> Explain in your own words the difference between <code class="inline">git restore</code> and <code class="inline">git revert</code>. Give one realistic scenario where you'd use each.
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-clock-history"></i> <span class="tag">Career</span> "Rollback without a time machine" is a real specialty</h3>
+            <p>People get hired specifically because they can use Git to safely undo published work. In bigger fields:</p>
+            <ul class="tight">
+              <li><strong>Site Reliability Engineering (SRE)</strong> &mdash; on-call engineers at Google, Meta, and Cloudflare are paid to know exactly which commit broke the site and how to revert it during an outage.</li>
+              <li><strong>Game studios</strong> &mdash; a hotfix patch is often a cherry-pick of one targeted commit onto a stable branch.</li>
+              <li><strong>Banking &amp; trading platforms</strong> &mdash; "release engineering" teams hand-pick which commits make it into a regulated release.</li>
+              <li><strong>Hospital IT</strong> &mdash; EHR software updates are deployed with explicit rollback plans mapped to exact Git revisions.</li>
+            </ul>
+            <p class="mt-2 mb-0">Today's class is the same shape as a $200K+ SRE job &mdash; just at a much smaller scale.</p>
+          </div>
+
+          <div class="mcq" data-id="b5-q1">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">Your team pushed five commits to the shared remote today. The third one broke the login page. The other four are fine and your teammates depend on them. Which Git operation is the SAFEST way to undo only the third commit?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. <code class="inline">git reset --hard</code> to before the bad commit, then force-push.</button>
+              <button class="choice" data-correct="true">B. <code class="inline">git revert &lt;hash-of-bad-commit&gt;</code> and push the new revert commit.</button>
+              <button class="choice" data-correct="false">C. <code class="inline">git restore</code> on every changed file.</button>
+              <button class="choice" data-correct="false">D. Delete the repo and start over.</button>
+            </div>
+            <div class="feedback" hidden>
+              <strong><code class="inline">git revert</code> is the safe undo for shared/pushed work.</strong> <code class="inline">reset --hard</code> + force-push would rewrite history that teammates already have on their machines &mdash; chaos. <code class="inline">restore</code> only handles uncommitted changes, so it doesn't apply here.
+            </div>
+          </div>
+
+          <div class="mcq" data-id="b5-q2">
+            <span class="mcq-label">Practice MCQ</span>
+            <p class="mcq-question">A teammate wrote a tiny bug fix on a different branch. You don't want their other 12 work-in-progress commits &mdash; you only want that one fix on your branch. Which Git command best fits?</p>
+            <div class="choices">
+              <button class="choice" data-correct="false">A. <code class="inline">git restore</code></button>
+              <button class="choice" data-correct="false">B. <code class="inline">git revert</code></button>
+              <button class="choice" data-correct="true">C. <code class="inline">git cherry-pick &lt;hash-of-the-fix&gt;</code></button>
+              <button class="choice" data-correct="false">D. <code class="inline">git push --force</code></button>
+            </div>
+            <div class="feedback" hidden>
+              <strong>Cherry-pick = "I want that one commit, not the rest."</strong> It reapplies a specific commit's changes on top of your current state, ignoring everything around it on the other branch.
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 6 — Deliverable + Reflection -->
+        <!-- ============================================================ -->
+        <div class="step-section" style="background: #f0f7ff; border-color: #b6d4fe;">
+          <h2 style="color: #0d6efd;"><i class="bi bi-clipboard-check"></i> Block 6 &mdash; Deliverable &amp; Reflection<span class="block-tag">145&ndash;160 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> Combine everything you produced today &mdash; screenshots, peer-feedback notes, mini-reflections &mdash; into a single PDF and submit it through Schoology.</div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> The deliverable is how this work gets credit, but it's also a portfolio artifact. Future you, applying for an internship, will be glad you have a clean, well-captioned PDF that documents that you can push, iterate, peer-review, and surgically edit Git history.</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Build the PDF in this order, with clear section headings.</div>
+          </div>
+
+          <h3>Required sections of the PDF</h3>
+          <p>Submit a single PDF named <code class="inline">LASTNAME_FIRSTNAME_GiteaWorkflow.pdf</code> with these sections, in this order:</p>
+          <ol>
+            <li><strong>Cover page</strong> &mdash; name, date, period, lesson title.</li>
+            <li><strong>Warm-up reflection</strong> (from Block 0) &mdash; your 3 short answers about what a commit is, why committing beats just saving, and what was most confusing from the prior lesson.</li>
+            <li><strong>Gitea evidence</strong> &mdash; Checkpoint #1: your repo page on Gitea showing the public badge and repo name.</li>
+            <li><strong>Splash page evidence</strong> &mdash; Checkpoint #2: your splash page rendered at the public URL (URL bar visible).</li>
+            <li><strong>Peer feedback log</strong> &mdash; Checkpoint #3: the full text of the 3 pieces of feedback your partner gave you, followed by a short paragraph (3&ndash;4 sentences) describing which two you acted on and what you actually changed.</li>
+            <li><strong>Iteration history</strong> &mdash; Checkpoint #4: <code class="inline">git log --oneline</code> screenshot showing your initial commit plus your peer-feedback commits.</li>
+            <li><strong>Discard experiment</strong> &mdash; Checkpoint #5: before/after screenshots from Block 4, plus your one-sentence caption.</li>
+            <li><strong>History surgery</strong> &mdash; Checkpoints #6 and #7: <code class="inline">git log</code> screenshots after the revert and after the cherry-pick, plus your mini-reflection comparing <code class="inline">git restore</code> and <code class="inline">git revert</code>.</li>
+            <li><strong>Final reflection</strong> &mdash; one well-developed paragraph (6&ndash;8 sentences). Address all of:
+              <ul class="tight">
+                <li>Which of today's four operations (<code class="inline">restore</code>, <code class="inline">revert</code>, <code class="inline">cherry-pick</code>, plus the plain commit/push cycle) felt most useful and why?</li>
+                <li>What surprised you about getting public peer feedback on your code?</li>
+                <li>Where outside of programming might the "version everything, never overwrite" mindset matter to your future career?</li>
+              </ul>
+            </li>
+          </ol>
+
+          <h3 style="margin-top: 24px;">Rubric (100 points)</h3>
+          <table class="definition-table rubric-table">
+            <thead>
+              <tr><th>Criterion</th><th style="width: 13%;">Points</th><th>What full credit looks like</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Engagement &amp; on-task behavior</td>
+                <td>20</td>
+                <td>Worked through all blocks. Asked specific questions when stuck. Helped or got help respectfully.</td>
+              </tr>
+              <tr>
+                <td>Warm-up reflection</td>
+                <td>5</td>
+                <td>All three prompts answered in complete sentences; honest and specific.</td>
+              </tr>
+              <tr>
+                <td>Gitea account + public repo correctly named</td>
+                <td>5</td>
+                <td>Repo named <code class="inline">my_first_repo_lastname</code> exactly, public, visible on the server.</td>
+              </tr>
+              <tr>
+                <td>Splash page (HTML + CSS + JS) live at public URL</td>
+                <td>10</td>
+                <td>Page loads at <code class="inline">http://10.12.6.236/your-username/my_first_repo_lastname/</code>. Includes HTML structure, at least some CSS, and at least one piece of JS.</td>
+              </tr>
+              <tr>
+                <td>Peer feedback exchange</td>
+                <td>10</td>
+                <td>Three specific, actionable pieces of feedback given to a partner. Three pieces of feedback received and recorded verbatim. At least two acted on in commits.</td>
+              </tr>
+              <tr>
+                <td>Iteration commits &amp; quality of commit messages</td>
+                <td>10</td>
+                <td>At least 3 commits total on <code class="inline">index.html</code>. Messages are specific, imperative, and reflect what actually changed.</td>
+              </tr>
+              <tr>
+                <td>Discard demo (<code class="inline">git restore</code>)</td>
+                <td>10</td>
+                <td>Before/after screenshots clearly show the mangled and recovered states. Caption explains what command undid it.</td>
+              </tr>
+              <tr>
+                <td>History surgery (<code class="inline">revert</code> + <code class="inline">cherry-pick</code>)</td>
+                <td>20</td>
+                <td><code class="inline">practice.html</code> created with commits A&ndash;D. Revert and cherry-pick performed and visible in <code class="inline">git log --oneline</code>. Mini-reflection clearly distinguishes <code class="inline">restore</code> from <code class="inline">revert</code>.</td>
+              </tr>
+              <tr>
+                <td>Final reflection</td>
+                <td>10</td>
+                <td>Full paragraph that addresses all three prompts with thought and specificity.</td>
+              </tr>
+              <tr><td><strong>Total</strong></td><td><strong>100</strong></td><td></td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>Submission rules:</strong> Single PDF. Professional formatting (headings, complete sentences, captioned screenshots). No screenshots-of-screenshots. No upside-down phone photos of your monitor. Honest documented failures (with exact error text) are worth full credit on the affected section &mdash; pretending something worked when it didn't is academic dishonesty.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Quick reference -->
+        <!-- ============================================================ -->
+        <div class="step-section" style="background: #1e1e1e; color: #f8f8f2; border-color: #000;">
+          <h2 style="color: #ff6b6b;"><i class="bi bi-terminal-fill"></i> Quick Command Reference</h2>
+          <pre class="code" style="background: #0d0d0d;"># --- Everyday loop ---
+git status                          # what is staged / modified / untracked
+git diff                            # what changed since last commit
+git add &lt;file&gt;                       # stage one file
+git add .                           # stage everything (use after reading git status!)
+git commit -m "Imperative message"  # snapshot the staged changes
+git push                            # send commits to the remote
+
+# --- Get a remote onto your machine ---
+git clone &lt;url&gt;                     # copy a remote repo locally
+git remote -v                       # show where origin points
+
+# --- History surgery ---
+git log --oneline                   # short history
+git restore &lt;file&gt;                  # throw away uncommitted edits to file
+git revert &lt;hash&gt; --no-edit         # undo a past commit by adding a new "undo" commit
+git cherry-pick &lt;hash&gt;              # apply a specific past commit on top of HEAD</pre>
         </div>
 
         <!-- ============================================================ -->
@@ -478,12 +1068,13 @@ git push</pre>
         <div class="step-section">
           <h2><i class="bi bi-wrench-adjustable"></i> If Something Doesn't Work</h2>
           <ul class="tight">
-            <li><strong>"fatal: not a git repository"</strong> &mdash; you're not inside the <code class="inline">test</code> folder. <code class="inline">cd test</code> and try again.</li>
-            <li><strong>"Permission denied" / "authentication failed"</strong> &mdash; your Git identity email doesn't match your Gitea account, or you canceled the browser authorize step. Re-run <code class="inline">git push</code> and complete the browser prompt.</li>
-            <li><strong>"index.lock" / "unable to write"</strong> errors &mdash; you're inside a OneDrive folder. Move the repo to a non-synced location (see Step 3) and clone again.</li>
-            <li><strong>Can't reach <code class="inline">10.12.6.236</code></strong> &mdash; you're probably on cellular data or the guest network. Connect to the classroom Wi-Fi.</li>
-            <li><strong>Public URL shows 404 or directory listing</strong> &mdash; the file might be named <code class="inline">Index.html</code> (capital I) or saved with a hidden <code class="inline">.txt</code> extension. Check the actual filename in Git Bash with <code class="inline">ls</code>.</li>
-            <li><strong>Page loads but is blank</strong> &mdash; the AI may have given you incomplete HTML. View source in the browser; you should see at minimum <code class="inline">&lt;html&gt;</code>, <code class="inline">&lt;head&gt;</code>, <code class="inline">&lt;body&gt;</code> tags.</li>
+            <li><strong>"fatal: not a git repository"</strong> &mdash; you're not inside the repo folder. <code class="inline">cd my_first_repo_lastname</code> first.</li>
+            <li><strong>"Permission denied" / "authentication failed"</strong> &mdash; your Git identity email doesn't match your Gitea account, or you cancelled the browser authorize step. Re-run <code class="inline">git push</code> and complete the browser prompt.</li>
+            <li><strong>"index.lock" / "unable to write"</strong> errors &mdash; you're inside OneDrive. Move the repo to a non-synced location (e.g. <code class="inline">C:\Users\you\pit-projects</code>) and clone again.</li>
+            <li><strong>Cherry-pick or revert says "conflict"</strong> &mdash; two changes touched the same line. Open the file, look for the <code class="inline">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> markers, edit to the version you want, then <code class="inline">git add &lt;file&gt;</code> and <code class="inline">git cherry-pick --continue</code> (or <code class="inline">git revert --continue</code>).</li>
+            <li><strong>Can't reach <code class="inline">10.12.6.236</code></strong> &mdash; cellular or guest network. Connect to classroom Wi-Fi.</li>
+            <li><strong>Public URL shows 404</strong> &mdash; check that the file is named exactly <code class="inline">index.html</code> (lowercase, no hidden <code class="inline">.txt</code> extension) and that the repo is set to <em>Public</em> on Gitea.</li>
+            <li><strong>Page loads but is blank</strong> &mdash; the AI may have given you incomplete HTML. View source; you should see <code class="inline">&lt;html&gt;</code>, <code class="inline">&lt;head&gt;</code>, <code class="inline">&lt;body&gt;</code>.</li>
           </ul>
           <p class="mt-2"><strong>Document any error you hit</strong> &mdash; exact text, what you tried, what fixed it. That's the report you'd submit on the job.</p>
         </div>
@@ -493,5 +1084,22 @@ git push</pre>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll('.mcq').forEach(q => {
+        const feedback = q.querySelector('.feedback');
+        q.querySelectorAll('.choice').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const isCorrect = btn.dataset.correct === 'true';
+            q.querySelectorAll('.choice').forEach(b => {
+              b.disabled = true;
+              if (b.dataset.correct === 'true') b.classList.add('choice-correct');
+              else if (b === btn) b.classList.add('choice-wrong');
+            });
+            feedback.hidden = false;
+            feedback.classList.add(isCorrect ? 'correct' : 'wrong');
+          });
+        });
+      });
+    </script>
   </body>
 </html>
