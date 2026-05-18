@@ -323,7 +323,7 @@
 
         <div class="lesson-header">
           <h1><i class="bi bi-git"></i> Gitea Workflow: Peer Review, Iteration &amp; Git History Surgery</h1>
-          <p class="subtitle">Follow-up to the Pro Local Dev practicum &mdash; publish to the classroom Gitea server, iterate on real peer feedback, then practice the three Git operations that save professional developers from disaster: <em>discard</em>, <em>revert</em>, and <em>cherry-pick</em>. · 160-minute class</p>
+          <p class="subtitle">Follow-up to the Pro Local Dev practicum &mdash; publish to the classroom Gitea server, iterate on real peer feedback, then practice the three Git operations that save professional developers from disaster: <em>discard</em>, <em>revert</em>, and <em>cherry-pick</em>. · Two 180-minute classes (360 min total) &mdash; due at the end of Class 2</p>
         </div>
 
         <div class="server-card">
@@ -348,23 +348,40 @@
             <li><strong>7.</strong> Submit a deliverable with screenshots, peer-feedback notes, and a written reflection.</li>
           </ul>
 
-          <h3 style="color: #856404;">Today's Blocks (160 minutes total)</h3>
+          <h3 style="color: #856404;">Pacing &mdash; Two Class Meetings, 360 Minutes Total</h3>
+          <p style="margin-bottom: 8px;">You have <strong>two full 180-minute class periods</strong> to complete this project. The deliverable is due at the <strong>end of Class 2</strong>. The blocks below are <em>guideposts</em>, not stopwatches &mdash; you'll have time to think, experiment, and revisit anything that didn't click the first time. If you finish a block early, use the extra minutes to polish your splash page, give better feedback, or start the Day 2 work early.</p>
+
+          <p style="margin: 14px 0 4px 0; font-weight: 600; color: #856404;">Class 1 &mdash; 180 minutes (Building, Publishing, Peer Review)</p>
           <ul class="tight">
-            <li><strong>Block 0</strong> &mdash; Warm-Up: What Did You Already Learn? <span class="block-time">0&ndash;10 min</span></li>
-            <li><strong>Block 1</strong> &mdash; Gitea Account &amp; Your Repo <span class="block-time">10&ndash;20 min</span></li>
-            <li><strong>Block 2</strong> &mdash; Build &amp; Push Your Splash Page <span class="block-time">20&ndash;55 min</span></li>
-            <li><strong>Block 3</strong> &mdash; Peer Review &amp; Feedback Loop <span class="block-time">55&ndash;90 min</span></li>
-            <li><strong>Block 4</strong> &mdash; Discard Uncommitted Changes <span class="block-time">90&ndash;110 min</span></li>
-            <li><strong>Block 5</strong> &mdash; History Surgery: Revert &amp; Cherry-Pick <span class="block-time">110&ndash;145 min</span></li>
-            <li><strong>Block 6</strong> &mdash; Deliverable &amp; Reflection <span class="block-time">145&ndash;160 min</span></li>
+            <li><strong>Block 0</strong> &mdash; Warm-Up: What Did You Already Learn? <span class="block-time">~15 min</span></li>
+            <li><strong>Block 1</strong> &mdash; Tour the Server, Make Your Account &amp; Repo <span class="block-time">~25 min</span></li>
+            <li><strong>Block 2</strong> &mdash; Build &amp; Push Your Splash Page <span class="block-time">~60 min</span></li>
+            <li><strong>Block 3</strong> &mdash; Peer Review &amp; First Iteration Loop <span class="block-time">~60 min</span></li>
+            <li><strong>Class 1 Wrap-Up</strong> &mdash; Commit-message audit &amp; what to expect Day 2 <span class="block-time">~20 min</span></li>
           </ul>
+
+          <p style="margin: 14px 0 4px 0; font-weight: 600; color: #856404;">Class 2 &mdash; 180 minutes (History Surgery, Experimentation, Submit)</p>
+          <ul class="tight">
+            <li><strong>Block 4</strong> &mdash; Discard Uncommitted Changes <span class="block-time">~35 min</span></li>
+            <li><strong>Block 5</strong> &mdash; History Surgery: Revert &amp; Cherry-Pick <span class="block-time">~60 min</span></li>
+            <li><strong>Block 6</strong> &mdash; Open Experimentation Lab (choose your own) <span class="block-time">~45 min</span></li>
+            <li><strong>Block 7</strong> &mdash; Deliverable Assembly &amp; Final Reflection <span class="block-time">~40 min</span></li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DAY 1 BANNER -->
+        <!-- ============================================================ -->
+        <div style="background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%); color: white; padding: 18px 24px; border-radius: 10px; margin: 30px 0 18px 0;">
+          <h2 style="margin: 0 0 4px 0; color: white;"><i class="bi bi-calendar-event-fill"></i> Class 1 &mdash; Day 1 (180 minutes)</h2>
+          <p style="margin: 0; opacity: 0.95;">Building, publishing, and the first round of peer feedback. By the end of today, your splash page is live and you've already iterated on it once.</p>
         </div>
 
         <!-- ============================================================ -->
         <!-- BLOCK 0 — Review Warm-Up -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><i class="bi bi-pencil-square"></i> Block 0 &mdash; Warm-Up: What Did You Already Learn?<span class="block-tag">0&ndash;10 min</span></h2>
+          <h2><i class="bi bi-pencil-square"></i> Block 0 &mdash; Warm-Up: What Did You Already Learn?<span class="block-tag">~15 min</span></h2>
 
           <div class="hsw">
             <div class="hsw-item"><span class="hsw-label">Here's What</span> In the <a href="../pro_local_dev/">Pro Local Dev practicum</a> you set up Python locally, imported a CMU Graphics program, and used <code class="inline">git init</code>, <code class="inline">git add</code>, <code class="inline">git commit</code>, and <code class="inline">git log</code> to take snapshots of your work. That was Git running entirely on <em>your</em> machine.</div>
@@ -400,7 +417,7 @@
         <!-- BLOCK 1 — Account + Repo -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">1</span> Block 1 &mdash; Gitea Account &amp; Your Repo<span class="block-tag">10&ndash;20 min</span></h2>
+          <h2><span class="step-num">1</span> Block 1 &mdash; Tour the Server, Make Your Account &amp; Repo<span class="block-tag">~25 min</span></h2>
 
           <div class="hsw">
             <div class="hsw-item"><span class="hsw-label">Here's What</span> Gitea is a self-hosted Git server &mdash; like a tiny private GitHub running on the classroom Pi. You'll register an account, then create a <em>remote repository</em>: a copy of your project that lives on the server instead of on your laptop.</div>
@@ -471,7 +488,7 @@
         <!-- BLOCK 2 — Build + push splash -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">2</span> Block 2 &mdash; Build &amp; Push Your Splash Page<span class="block-tag">20&ndash;55 min</span></h2>
+          <h2><span class="step-num">2</span> Block 2 &mdash; Build &amp; Push Your Splash Page<span class="block-tag">~60 min</span></h2>
 
           <div class="hsw">
             <div class="hsw-item"><span class="hsw-label">Here's What</span> You'll clone the empty repo, build a simple HTML + CSS + JS splash page (AI is allowed, and in fact encouraged for the first draft), commit it, and push it. The new Git command today is <code class="inline">git push</code> &mdash; it sends your local commits up to the remote.</div>
@@ -598,7 +615,7 @@ git push</pre>
         <!-- BLOCK 3 — Peer Review -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">3</span> Block 3 &mdash; Peer Review &amp; Feedback Loop<span class="block-tag">55&ndash;90 min</span></h2>
+          <h2><span class="step-num">3</span> Block 3 &mdash; Peer Review &amp; First Iteration Loop<span class="block-tag">~60 min</span></h2>
 
           <div class="hsw">
             <div class="hsw-item"><span class="hsw-label">Here's What</span> Pair up with someone in class. You each visit the other's public splash page, give written feedback, then go back to your code and act on at least <strong>two</strong> pieces of feedback. Each change you're happy with becomes its own commit and push.</div>
@@ -693,10 +710,46 @@ git push</pre>
         </div>
 
         <!-- ============================================================ -->
+        <!-- CLASS 1 WRAP-UP -->
+        <!-- ============================================================ -->
+        <div class="step-section" style="background: #fff8e9; border-color: #ffc107;">
+          <h2 style="color: #856404;"><i class="bi bi-flag-fill"></i> Class 1 Wrap-Up<span class="block-tag">~20 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> Before you log off for today, take 20 minutes to land the plane on Day 1 work cleanly &mdash; so Day 2 isn't spent fixing yesterday's loose ends.</div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> Coming back to a half-pushed repo with mystery uncommitted changes is the most common reason a project loses momentum. A clean stop is a clean start.</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Run through the checklist below.</div>
+          </div>
+
+          <h3 style="color: #856404;">End-of-Day-1 checklist</h3>
+          <ul class="tight">
+            <li>Run <code class="inline">git status</code>. It must say <em>"nothing to commit, working tree clean."</em> If not, decide: commit it, or discard it with <code class="inline">git restore</code> (covered tomorrow).</li>
+            <li>Run <code class="inline">git log --oneline</code>. Re-read each commit message. Are they imperative, specific, and ~50 characters? Note any you'd write differently next time.</li>
+            <li>Confirm your public URL still loads in a fresh browser tab.</li>
+            <li>Add a short note to your draft deliverable: which feedback you've already acted on, what you might still want to change tomorrow.</li>
+            <li>If a partner is absent on Day 2, you can do their peer feedback round asynchronously by leaving comments in a shared doc &mdash; flag this with the teacher today, not tomorrow.</li>
+          </ul>
+
+          <div class="reflection">
+            <strong>Day 1 closeout reflection (3&ndash;5 sentences, for your deliverable):</strong> What part of today's work felt smoothest? What part felt hardest? What's one thing you want to remember when you come back tomorrow?
+          </div>
+
+          <p style="margin-top: 12px;"><strong>Heads up for Day 2:</strong> tomorrow we work entirely <em>inside</em> Git history &mdash; discarding uncommitted changes, reverting a published commit, and cherry-picking a specific commit back. We'll also have an Open Experimentation Lab where you choose your own Git adventure.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DAY 2 BANNER -->
+        <!-- ============================================================ -->
+        <div style="background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%); color: white; padding: 18px 24px; border-radius: 10px; margin: 30px 0 18px 0;">
+          <h2 style="margin: 0 0 4px 0; color: white;"><i class="bi bi-calendar-event-fill"></i> Class 2 &mdash; Day 2 (180 minutes)</h2>
+          <p style="margin: 0; opacity: 0.95;">History surgery, open experimentation, and submitting your deliverable. By the end of today, you can fearlessly undo, redo, and surgically edit a Git project. <strong>Deliverable due end of class.</strong></p>
+        </div>
+
+        <!-- ============================================================ -->
         <!-- BLOCK 4 — Discard Uncommitted -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">4</span> Block 4 &mdash; Discard Uncommitted Changes<span class="block-tag">90&ndash;110 min</span></h2>
+          <h2><span class="step-num">4</span> Block 4 &mdash; Discard Uncommitted Changes<span class="block-tag">~35 min</span></h2>
 
           <div class="hsw">
             <div class="hsw-item"><span class="hsw-label">Here's What</span> Your repo is in a clean state &mdash; everything that's committed is also pushed. Now you'll <em>deliberately</em> make a bunch of changes you don't like, look at them in the browser, then use Git to throw them away and return to your last known-good commit.</div>
@@ -788,7 +841,7 @@ git diff     # should print nothing</pre>
         <!-- BLOCK 5 — Revert + Cherry-pick -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-num">5</span> Block 5 &mdash; History Surgery: Revert &amp; Cherry-Pick<span class="block-tag">110&ndash;145 min</span></h2>
+          <h2><span class="step-num">5</span> Block 5 &mdash; History Surgery: Revert &amp; Cherry-Pick<span class="block-tag">~60 min</span></h2>
 
           <div class="hsw">
             <div class="hsw-item"><span class="hsw-label">Here's What</span> Block 4 was about throwing away changes that <em>weren't yet committed</em>. This block is about editing changes that <em>have</em> been committed &mdash; sometimes even after they've been pushed. You'll learn <code class="inline">git revert</code> (undo a specific past commit safely) and <code class="inline">git cherry-pick</code> (apply a specific past commit on top of where you are now).</div>
@@ -947,10 +1000,111 @@ git push</pre>
         </div>
 
         <!-- ============================================================ -->
-        <!-- BLOCK 6 — Deliverable + Reflection -->
+        <!-- BLOCK 6 — Open Experimentation Lab -->
+        <!-- ============================================================ -->
+        <div class="step-section" style="background: #f3e5f5; border-color: #ce93d8;">
+          <h2 style="color: #6a1b9a;"><span class="step-num" style="background: #6a1b9a;">6</span> Block 6 &mdash; Open Experimentation Lab (Choose Your Own)<span class="block-tag" style="background: #e1bee7; color: #4a148c;">~45 min</span></h2>
+
+          <div class="hsw">
+            <div class="hsw-item"><span class="hsw-label">Here's What</span> You've been guided through the core Git moves &mdash; now you get unstructured time to push past the script. Pick <strong>at least two</strong> of the experiments below and try them. Document each one (what you did, what you expected, what actually happened, what you learned) in a short section of your deliverable called <em>"Experiments."</em></div>
+            <div class="hsw-item"><span class="hsw-label so">So What</span> Professional Git fluency doesn't come from following one tutorial perfectly &mdash; it comes from playing in a sandbox where mistakes are cheap. This block is your sandbox. Real teams use these moves daily.</div>
+            <div class="hsw-item"><span class="hsw-label now">Now What</span> Skim the menu below, pick experiments that look interesting (or scary), and try them. Use your <code class="inline">practice.html</code> repo or make a brand-new throwaway repo &mdash; do not test these on a teammate's work.</div>
+          </div>
+
+          <div class="key-fact">
+            <strong>Rules of the lab:</strong>
+            <ul class="tight mb-0">
+              <li>Try the experiment first. Then look up the docs if you're stuck.</li>
+              <li>Run <code class="inline">git status</code> and <code class="inline">git log --oneline</code> before and after each experiment. Screenshot the diff in state if it's interesting.</li>
+              <li>If you break your repo, you can always clone a fresh copy from Gitea and start over. That's the whole point of having a remote.</li>
+              <li>Document at least two experiments. More is welcome.</li>
+            </ul>
+          </div>
+
+          <h3 style="color: #6a1b9a;">Experiment menu</h3>
+
+          <div style="background: white; border: 1px solid #ce93d8; border-radius: 8px; padding: 16px 20px; margin: 12px 0;">
+            <h4 style="color: #6a1b9a; margin-top: 0;">A. Branch &amp; merge</h4>
+            <p>The most common "real team" Git workflow. Make a side branch, do some work, and merge it back to <code class="inline">main</code>.</p>
+            <pre class="code">git checkout -b feature-fancy-button   # create + switch to a new branch
+# edit practice.html, add a button
+git add practice.html
+git commit -m "Add fancy button"
+git checkout main                       # switch back to main
+git merge feature-fancy-button          # bring the branch's commits in
+git push</pre>
+            <p>Then run <code class="inline">git log --oneline --graph --all</code> &mdash; you'll see the branch structure visually.</p>
+          </div>
+
+          <div style="background: white; border: 1px solid #ce93d8; border-radius: 8px; padding: 16px 20px; margin: 12px 0;">
+            <h4 style="color: #6a1b9a; margin-top: 0;">B. Make a merge conflict on purpose &mdash; then resolve it</h4>
+            <p>Create a branch that changes the same line as <code class="inline">main</code>. Merge it. Git will refuse and ask you to pick. Open the file &mdash; you'll see <code class="inline">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> markers. Edit the file to the version you want, then:</p>
+            <pre class="code">git add practice.html
+git commit                              # finishes the merge</pre>
+            <p>Conflicts are not bugs &mdash; they're Git asking you a question. Resolving one is a rite of passage.</p>
+          </div>
+
+          <div style="background: white; border: 1px solid #ce93d8; border-radius: 8px; padding: 16px 20px; margin: 12px 0;">
+            <h4 style="color: #6a1b9a; margin-top: 0;">C. <code class="inline">git stash</code> &mdash; set aside work-in-progress</h4>
+            <p>You're mid-edit and a teammate asks you to switch to fix something else. You don't want to commit half-done work. Stash it:</p>
+            <pre class="code">git stash                # tucks all uncommitted changes away
+git status               # working tree clean
+# ...do the other thing, commit it...
+git stash pop            # bring your half-done work back</pre>
+          </div>
+
+          <div style="background: white; border: 1px solid #ce93d8; border-radius: 8px; padding: 16px 20px; margin: 12px 0;">
+            <h4 style="color: #6a1b9a; margin-top: 0;">D. <code class="inline">git reflog</code> &mdash; recover a "lost" commit</h4>
+            <p>Make a commit, then run <code class="inline">git reset --hard HEAD~1</code> (which "deletes" it). Panic for one second. Then:</p>
+            <pre class="code">git reflog               # shows EVERY HEAD movement, including the "lost" commit
+git reset --hard &lt;hash&gt;  # bring it back</pre>
+            <p>Git almost never actually deletes commits &mdash; it just stops pointing at them. <code class="inline">reflog</code> is the safety net.</p>
+          </div>
+
+          <div style="background: white; border: 1px solid #ce93d8; border-radius: 8px; padding: 16px 20px; margin: 12px 0;">
+            <h4 style="color: #6a1b9a; margin-top: 0;">E. Two-machine simulation</h4>
+            <p>Clone the same Gitea repo into a <em>second</em> folder on your machine to simulate a teammate. From the first folder, push a commit. From the second folder, run <code class="inline">git pull</code> and watch the change appear. This is exactly what real collaboration looks like.</p>
+            <pre class="code">cd /c/Users/$USER/pit-projects
+git clone http://10.12.6.236:3000/your-username/my_first_repo_lastname.git my_first_repo_lastname_2
+# from the original folder: commit + push something
+cd my_first_repo_lastname_2
+git pull                  # the change you just pushed appears here</pre>
+          </div>
+
+          <div style="background: white; border: 1px solid #ce93d8; border-radius: 8px; padding: 16px 20px; margin: 12px 0;">
+            <h4 style="color: #6a1b9a; margin-top: 0;">F. <code class="inline">git diff</code> archaeology</h4>
+            <p>Pick any two commits in your history. Run:</p>
+            <pre class="code">git diff &lt;older-hash&gt; &lt;newer-hash&gt; -- practice.html</pre>
+            <p>Read every change that happened between those two snapshots. This is how a developer reviews a colleague's pull request or audits what changed during an incident.</p>
+          </div>
+
+          <div style="background: white; border: 1px solid #ce93d8; border-radius: 8px; padding: 16px 20px; margin: 12px 0;">
+            <h4 style="color: #6a1b9a; margin-top: 0;">G. <code class="inline">git blame</code> &mdash; who wrote this line and why?</h4>
+            <pre class="code">git blame practice.html</pre>
+            <p>For each line of the file, Git shows the commit hash, author, and date that introduced it. On a team, this is how you find out who to ask when you don't understand a piece of code.</p>
+          </div>
+
+          <div style="background: white; border: 1px solid #ce93d8; border-radius: 8px; padding: 16px 20px; margin: 12px 0;">
+            <h4 style="color: #6a1b9a; margin-top: 0;">H. Propose your own experiment</h4>
+            <p>Have a Git question you want to answer? Try it. Document it. Bring it up in the closing share-out. New questions are the goal of this block.</p>
+          </div>
+
+          <div class="checkpoint">
+            <strong>Checkpoint screenshot #8 (Experimentation Lab):</strong> For each of your two (or more) experiments, capture a screenshot or pasted terminal block showing what you did. Add a 2&ndash;3 sentence write-up: what you tried, what happened, what you'd use this for in real work.
+          </div>
+
+          <div class="profession-connection">
+            <h3><i class="bi bi-flask"></i> <span class="tag">Career</span> "Pay for hours, hire for curiosity"</h3>
+            <p>Hiring managers across IT routinely say the same thing: the difference between a junior who plateaus and a junior who gets promoted is whether they <em>play with their tools</em>. The engineer who tried <code class="inline">git stash</code> on a random Tuesday <em>before</em> they needed it is the engineer who reaches for it calmly six months later when the bug bell rings.</p>
+            <p class="mt-2 mb-0">This block is small-scale exposure to the habit. Build it now.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- BLOCK 7 — Deliverable + Reflection -->
         <!-- ============================================================ -->
         <div class="step-section" style="background: #f0f7ff; border-color: #b6d4fe;">
-          <h2 style="color: #0d6efd;"><i class="bi bi-clipboard-check"></i> Block 6 &mdash; Deliverable &amp; Reflection<span class="block-tag">145&ndash;160 min</span></h2>
+          <h2 style="color: #0d6efd;"><i class="bi bi-clipboard-check"></i> Block 7 &mdash; Deliverable &amp; Final Reflection<span class="block-tag">~40 min</span></h2>
 
           <div class="hsw">
             <div class="hsw-item"><span class="hsw-label">Here's What</span> Combine everything you produced today &mdash; screenshots, peer-feedback notes, mini-reflections &mdash; into a single PDF and submit it through Schoology.</div>
@@ -961,17 +1115,18 @@ git push</pre>
           <h3>Required sections of the PDF</h3>
           <p>Submit a single PDF named <code class="inline">LASTNAME_FIRSTNAME_GiteaWorkflow.pdf</code> with these sections, in this order:</p>
           <ol>
-            <li><strong>Cover page</strong> &mdash; name, date, period, lesson title.</li>
-            <li><strong>Warm-up reflection</strong> (from Block 0) &mdash; your 3 short answers about what a commit is, why committing beats just saving, and what was most confusing from the prior lesson.</li>
+            <li><strong>Cover page</strong> &mdash; name, date(s), period, lesson title.</li>
+            <li><strong>Warm-up &amp; Day 1 closeout reflections</strong> &mdash; the Block 0 prompts (what a commit is, why committing beats saving, most confusing thing prior) AND the short Class 1 wrap-up reflection (smoothest part, hardest part, what to remember tomorrow).</li>
             <li><strong>Gitea evidence</strong> &mdash; Checkpoint #1: your repo page on Gitea showing the public badge and repo name.</li>
             <li><strong>Splash page evidence</strong> &mdash; Checkpoint #2: your splash page rendered at the public URL (URL bar visible).</li>
             <li><strong>Peer feedback log</strong> &mdash; Checkpoint #3: the full text of the 3 pieces of feedback your partner gave you, followed by a short paragraph (3&ndash;4 sentences) describing which two you acted on and what you actually changed.</li>
             <li><strong>Iteration history</strong> &mdash; Checkpoint #4: <code class="inline">git log --oneline</code> screenshot showing your initial commit plus your peer-feedback commits.</li>
             <li><strong>Discard experiment</strong> &mdash; Checkpoint #5: before/after screenshots from Block 4, plus your one-sentence caption.</li>
             <li><strong>History surgery</strong> &mdash; Checkpoints #6 and #7: <code class="inline">git log</code> screenshots after the revert and after the cherry-pick, plus your mini-reflection comparing <code class="inline">git restore</code> and <code class="inline">git revert</code>.</li>
+            <li><strong>Experiments</strong> &mdash; Checkpoint #8: at least two experiments from Block 6's menu (or your own). For each: which letter (or "self-proposed"), screenshot / terminal block of what you did, and 2&ndash;3 sentences on what happened and what you'd use it for in real work.</li>
             <li><strong>Final reflection</strong> &mdash; one well-developed paragraph (6&ndash;8 sentences). Address all of:
               <ul class="tight">
-                <li>Which of today's four operations (<code class="inline">restore</code>, <code class="inline">revert</code>, <code class="inline">cherry-pick</code>, plus the plain commit/push cycle) felt most useful and why?</li>
+                <li>Which of the Git operations you practiced (<code class="inline">restore</code>, <code class="inline">revert</code>, <code class="inline">cherry-pick</code>, plus the plain commit/push cycle, plus whatever you tried in Block 6) felt most useful and why?</li>
                 <li>What surprised you about getting public peer feedback on your code?</li>
                 <li>Where outside of programming might the "version everything, never overwrite" mindset matter to your future career?</li>
               </ul>
@@ -985,14 +1140,14 @@ git push</pre>
             </thead>
             <tbody>
               <tr>
-                <td>Engagement &amp; on-task behavior</td>
-                <td>20</td>
-                <td>Worked through all blocks. Asked specific questions when stuck. Helped or got help respectfully.</td>
+                <td>Engagement &amp; on-task behavior (both days)</td>
+                <td>15</td>
+                <td>Worked through both class periods. Asked specific questions when stuck. Helped or got help respectfully.</td>
               </tr>
               <tr>
-                <td>Warm-up reflection</td>
+                <td>Warm-up + Day 1 closeout reflections</td>
                 <td>5</td>
-                <td>All three prompts answered in complete sentences; honest and specific.</td>
+                <td>Both reflections (Block 0 and Class 1 wrap-up) answered in complete sentences; honest and specific.</td>
               </tr>
               <tr>
                 <td>Gitea account + public repo correctly named</td>
@@ -1025,8 +1180,13 @@ git push</pre>
                 <td><code class="inline">practice.html</code> created with commits A&ndash;D. Revert and cherry-pick performed and visible in <code class="inline">git log --oneline</code>. Mini-reflection clearly distinguishes <code class="inline">restore</code> from <code class="inline">revert</code>.</td>
               </tr>
               <tr>
-                <td>Final reflection</td>
+                <td>Open Experimentation Lab</td>
                 <td>10</td>
+                <td>At least two experiments from Block 6's menu (or self-proposed) documented with a screenshot/terminal block and a 2&ndash;3 sentence write-up explaining what happened and a real-world use.</td>
+              </tr>
+              <tr>
+                <td>Final reflection</td>
+                <td>5</td>
                 <td>Full paragraph that addresses all three prompts with thought and specificity.</td>
               </tr>
               <tr><td><strong>Total</strong></td><td><strong>100</strong></td><td></td></tr>
