@@ -572,10 +572,11 @@ git push</pre>
           <h3>Step 2.6 &mdash; See your page live on the public URL</h3>
           <ol>
             <li>Refresh your Gitea repo page &mdash; you should now see <code class="inline">index.html</code> in the file list.</li>
-            <li>Open your public site:
-              <pre class="code">http://10.12.6.236/<em>your-username</em>/my_first_repo_<em>lastname</em>/</pre>
-              The Pi's nginx will serve your <code class="inline">index.html</code> like a real web host.
+            <li>Open the classroom web host in a new tab:
+              <pre class="code">http://10.12.6.236/</pre>
+              You'll land on an index page that lists every public repo on the server. Find your username, click in, then click your repo &mdash; your splash page will load. The Pi's nginx is serving it like a real web host.
             </li>
+            <li>Once your page loads, look at the URL in the browser bar &mdash; it'll look like <code class="inline">http://10.12.6.236/your-username/my_first_repo_lastname/</code>. That's the link to share with your partner in Block 3.</li>
           </ol>
 
           <div class="checkpoint">
@@ -624,7 +625,7 @@ git push</pre>
           </div>
 
           <h3>Step 3.1 &mdash; Swap public URLs</h3>
-          <p>Tell your partner your public URL (<code class="inline">http://10.12.6.236/your-username/my_first_repo_lastname/</code>). They tell you theirs.</p>
+          <p>Easiest way: both you and your partner open <code class="inline">http://10.12.6.236/</code>, navigate into your own repo, then copy the URL from the browser bar and share it. Or, if you prefer, just tell your partner your Gitea username &mdash; they can find your repo from the index at <code class="inline">http://10.12.6.236/</code> themselves.</p>
 
           <h3>Step 3.2 &mdash; Write feedback for your partner</h3>
           <p>Open your partner's page in a browser. In a text doc, write them <strong>three specific pieces of feedback</strong>. "It's good" is not feedback. Examples of good feedback:</p>
