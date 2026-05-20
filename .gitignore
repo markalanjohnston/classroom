@@ -52,6 +52,9 @@ PDF-Objectives/
 # Internal workflow documentation
 WORKFLOW.md
 
+# Student work (may contain PII or unsubmitted drafts; matches any depth)
+student_work/
+
 cslevel1-python/
 
 # Python scrapers and reference files
