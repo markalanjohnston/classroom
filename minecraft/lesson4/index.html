@@ -1,0 +1,948 @@
+---
+---
+
+<!-- File: classroom/minecraft/lesson4/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Lesson 4 - Filling Spaces &amp; Spawning Mobs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #1f4e79 0%, #4a7c2f 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 28px 30px;
+        margin-bottom: 25px;
+      }
+      .lesson-header .lesson-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.18);
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        padding: 4px 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+      .lesson-header h1 { margin: 0 0 8px; font-size: 1.85rem; }
+      .lesson-header .subtitle { font-size: 1.05rem; opacity: 0.95; margin: 0; }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .eq-card {
+        background: #1f4e79;
+        color: #fff;
+        padding: 16px 22px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .eq-card .eq-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        opacity: 0.85;
+      }
+      .eq-card p { margin: 4px 0 0 0; font-size: 1.1rem; font-weight: 500; }
+
+      .goals-card {
+        background: #f1f6ec;
+        border-left: 4px solid #4a7c2f;
+        border-radius: 8px;
+        padding: 18px 22px;
+        margin-bottom: 25px;
+      }
+      .goals-card h2 { color: #2f5320; margin: 0 0 8px 0; font-size: 1.15rem; }
+      .goals-card ul { margin: 0; padding-left: 22px; }
+      .goals-card li { margin-bottom: 4px; line-height: 1.5; }
+
+      .setup-banner {
+        position: relative;
+        background: linear-gradient(135deg, #1f4e79 0%, #2d6499 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 26px 30px;
+        margin-bottom: 28px;
+        box-shadow: 0 10px 28px rgba(31, 78, 121, 0.35);
+      }
+      .setup-banner .setup-badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: #ffc107;
+        color: #14365a;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        padding: 5px 14px;
+        border-radius: 14px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+        text-transform: uppercase;
+      }
+      .setup-banner h3 {
+        color: white;
+        margin: 0 0 10px 0;
+        font-size: 1.45rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .setup-banner p {
+        margin: 0 0 18px 0;
+        font-size: 1rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .setup-banner p strong { color: #ffd54a; }
+      .setup-banner .setup-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        color: #1f4e79;
+        font-weight: 700;
+        padding: 11px 22px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+      }
+      .setup-banner .setup-cta:hover {
+        background: #ffc107;
+        color: #14365a;
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+
+      .recap-card {
+        background: #fafaf6;
+        border: 1px solid #e0d9bc;
+        border-radius: 8px;
+        padding: 16px 22px;
+        margin-bottom: 25px;
+      }
+      .recap-card h3 {
+        color: #715c00;
+        margin: 0 0 8px 0;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .recap-card .recap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .recap-card .recap-item {
+        background: white;
+        border: 1px solid #e9e3c4;
+        border-radius: 6px;
+        padding: 10px 12px;
+        font-size: 0.92rem;
+      }
+      .recap-card .recap-item strong {
+        display: block;
+        color: #1f4e79;
+        margin-bottom: 2px;
+        font-size: 0.95rem;
+      }
+
+      .step-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 26px 28px;
+        margin-bottom: 22px;
+        border: 1px solid #e9ecef;
+      }
+      .step-section h2 {
+        color: #1f4e79;
+        margin-bottom: 12px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .step-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.1rem; }
+      .step-section p, .step-section li { line-height: 1.6; }
+
+      .step-tag {
+        display: inline-block;
+        background: #4a7c2f;
+        color: white;
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 12px;
+        margin-right: 8px;
+        letter-spacing: 0.5px;
+      }
+      .step-tag.setup { background: #1f4e79; }
+      .step-tag.warm-up { background: #6c757d; }
+      .step-tag.recap { background: #715c00; }
+      .step-tag.challenge { background: #d97706; }
+      .step-tag.submit { background: #b3261e; }
+
+      .vocab-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .vocab-item {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 12px 14px;
+      }
+      .vocab-item strong {
+        display: block;
+        color: #1f4e79;
+        margin-bottom: 4px;
+        font-size: 0.98rem;
+      }
+      .vocab-item span { font-size: 0.92rem; color: #495057; }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .tip-fact {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .tip-fact strong { color: #0f5132; }
+
+      .step-back {
+        background: #fff5e1;
+        border-left: 4px solid #e69400;
+        border-radius: 6px;
+        padding: 10px 14px;
+        margin: 14px 0;
+        font-size: 0.94rem;
+      }
+      .step-back .step-back-icon { color: #b86000; margin-right: 4px; }
+      .step-back kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 1px 6px;
+        font-size: 0.85rem;
+      }
+
+      .check {
+        background: white;
+        border: 2px solid #cfe2ff;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 14px 0;
+      }
+      .check h4 {
+        margin: 0 0 6px 0;
+        font-size: 0.95rem;
+        color: #0a58ca;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .check p { margin: 0; font-size: 0.95rem; }
+
+      details.predict {
+        background: white;
+        border: 2px dashed #ffc107;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 12px 0;
+      }
+      details.predict summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #856404;
+      }
+      details.predict[open] summary { margin-bottom: 8px; }
+      details.predict .answer {
+        padding-top: 8px;
+        border-top: 1px solid #eee;
+        margin-top: 8px;
+        color: #2c3e50;
+      }
+
+      kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 2px 6px;
+        font-size: 0.85rem;
+      }
+
+      code.inline {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 0.92em;
+        font-family: 'Courier New', monospace;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        color: #e8e6e3;
+        padding: 16px 18px;
+        border-radius: 6px;
+        font-family: 'Courier New', Consolas, monospace;
+        font-size: 0.92rem;
+        margin: 12px 0;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.5;
+      }
+
+      .code-wrap { position: relative; }
+
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #4a7c2f;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .copy-btn:hover { background: #3d6526; }
+      .copy-btn.copied { background: #2a4719; }
+
+      ol.steps > li { margin-bottom: 12px; line-height: 1.55; }
+      ul.tight li { margin-bottom: 5px; }
+
+      .coord-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 0.95rem;
+      }
+      .coord-table th {
+        background: #1f4e79;
+        color: white;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      .coord-table td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #e9ecef;
+        background: white;
+      }
+      .coord-table td code {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 5px;
+        border-radius: 3px;
+      }
+
+      .challenge-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 12px;
+      }
+      .challenge-options .option {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-left: 4px solid #d97706;
+        border-radius: 6px;
+        padding: 14px 16px;
+      }
+      .challenge-options .option h4 { margin: 0 0 6px 0; color: #d97706; font-size: 1rem; }
+      .challenge-options .option p { margin: 0; font-size: 0.92rem; color: #495057; }
+
+      .submit-card {
+        background: #fdebec;
+        border: 2px solid #f1aeb5;
+        border-radius: 10px;
+        padding: 24px 28px;
+        margin-top: 24px;
+      }
+      .submit-card h2 { color: #842029; margin-top: 0; }
+      .submit-card ol { padding-left: 22px; }
+      .submit-card ol li { margin-bottom: 8px; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Minecraft</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 4</span>
+      </nav>
+
+      <div class="lesson-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+
+        <div class="lesson-header">
+          <span class="lesson-tag">Lesson 4 &middot; Self-Paced</span>
+          <h1><i class="bi bi-box-fill"></i> Filling Spaces &amp; Spawning Mobs</h1>
+          <p class="subtitle">Use <code>blocks.fill()</code> to create rooms, arenas, ponds, and habitats &mdash; then use <code>mobs.spawn()</code> to bring them to life.</p>
+        </div>
+
+        <div class="eq-card">
+          <div class="eq-label">ESSENTIAL QUESTION</div>
+          <p>How can a program use coordinates to create and populate a whole space at once?</p>
+        </div>
+
+        <div class="goals-card">
+          <h2><i class="bi bi-check2-square"></i> By the end of this lesson, I will...</h2>
+          <ul>
+            <li>Explain when <code class="inline">blocks.fill()</code> is a better tool than the Agent or Builder.</li>
+            <li>Use two positions as <strong>opposite corners</strong> of a 3D rectangular region.</li>
+            <li>Use <code class="inline">FillOperation.REPLACE</code>, <code class="inline">HOLLOW</code>, and <code class="inline">OUTLINE</code> intentionally.</li>
+            <li>Use <code class="inline">mobs.spawn()</code> to place mobs at a specific or random position.</li>
+            <li>Combine <code class="inline">blocks.fill()</code>, a <code class="inline">for</code> loop, and <code class="inline">mobs.spawn()</code> to create an interactive scene.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- World setup banner -->
+        <!-- ============================================================ -->
+        <div class="setup-banner">
+          <span class="setup-badge">Every Lesson</span>
+          <h3><i class="bi bi-arrow-clockwise"></i> Start Here First &mdash; Every Single Time</h3>
+          <p>Every Minecraft lesson begins with a brand-new world. <strong>Do not skip this.</strong> Open Lesson 0, follow the setup steps, then come back here and continue with Step 1.</p>
+          <a href="../lesson0/" class="setup-cta">
+            <i class="bi bi-arrow-right-circle-fill"></i>
+            Open Lesson 0 &mdash; World Setup
+          </a>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Recap of what we've learned -->
+        <!-- ============================================================ -->
+        <div class="recap-card">
+          <h3><i class="bi bi-bookmarks-fill"></i> What you already know</h3>
+          <p style="margin: 0;">Today's lesson <strong>builds on Lessons 1, 2, and 3</strong>. Here's the toolkit you bring in:</p>
+          <div class="recap-grid">
+            <div class="recap-item"><strong>From Lesson 1</strong>Sequences run in order. Events (<code class="inline">player.on_chat</code>) start your code.</div>
+            <div class="recap-item"><strong>From Lesson 2</strong><code class="inline">for</code> loops repeat instructions; indentation decides what's inside the loop.</div>
+            <div class="recap-item"><strong>From Lesson 3</strong><code class="inline">pos(x, y, z)</code> measures from where you stand. Builder commands. "Fewer-lines-is-better" thinking.</div>
+            <div class="recap-item"><strong>New today</strong><code class="inline">blocks.fill()</code> for whole regions and <code class="inline">mobs.spawn()</code> to bring them to life.</div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 1: Warm-up — Which tool would you choose? -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag warm-up">STEP 1</span> Warm-up: Which Tool Would You Choose?</h2>
+          <p>You now have <strong>three tools</strong> for shaping the Minecraft world: the <strong>Agent</strong>, the <strong>Builder</strong>, and &mdash; new today &mdash; <code class="inline">blocks.fill()</code>. Each one is right for different jobs.</p>
+          <p>Look at each task below and decide which tool fits best <em>before</em> reading the answer.</p>
+
+          <table class="coord-table">
+            <thead>
+              <tr><th style="width: 38%;">Task</th><th style="width: 24%;">Best tool</th><th>Why</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Watch a character walk through a maze</td><td><strong>Agent</strong></td><td>Visible movement, easy to debug.</td></tr>
+              <tr><td>Draw a long straight wall</td><td><strong>Builder</strong></td><td><code>mark()</code> + <code>line()</code> is efficient.</td></tr>
+              <tr><td>Make a 20&times;20&times;10 glass box</td><td><code>blocks.fill()</code></td><td>One command fills a whole region.</td></tr>
+              <tr><td>Add 10 animals inside the box</td><td><code>mobs.spawn()</code> + loop</td><td>Repeats mob creation.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="key-fact">
+            <strong>The big idea:</strong> Lesson 3 ended on "fewer lines is better." Lesson 4 takes the same idea further: sometimes even the Builder is more work than necessary. When you want a whole <em>region</em> filled in one go, <code class="inline">blocks.fill()</code> is the right tool.
+          </div>
+
+          <h3>Today's Vocabulary</h3>
+          <div class="vocab-grid">
+            <div class="vocab-item"><strong>blocks.fill()</strong><span>Fills every block in a 3D box with the block type you choose.</span></div>
+            <div class="vocab-item"><strong>Opposite corners</strong><span>The two positions you give <code>fill()</code> &mdash; one corner of the box and the corner farthest from it.</span></div>
+            <div class="vocab-item"><strong>FillOperation</strong><span>Tells <code>fill()</code> <em>how</em> to fill: <code>REPLACE</code>, <code>HOLLOW</code>, <code>OUTLINE</code>, <code>KEEP</code>, or <code>DESTROY</code>.</span></div>
+            <div class="vocab-item"><strong>mobs.spawn()</strong><span>Creates a mob (sheep, cow, fish, zombie, &hellip;) at a position.</span></div>
+            <div class="vocab-item"><strong>randpos()</strong><span>Returns a random position inside the box between two corners. Great for spreading mobs around.</span></div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 2: Open MakeCode -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 2</span> Open MakeCode (Python Only)</h2>
+          <p>You should already be in your fresh flat world from <a href="../lesson0/">Lesson 0</a>. If not, go back and complete Lesson 0 first.</p>
+          <ol class="steps">
+            <li>In Minecraft, press <kbd>C</kbd> to open <strong>Code Builder</strong>.</li>
+            <li>Choose <strong>MakeCode</strong>.</li>
+            <li>Click <strong>New Project</strong> and name it <code class="inline">Lesson 4 - Fill</code>.</li>
+            <li>Click <strong>Code options</strong>, then select <strong>Python Only</strong>, then click <strong>Create</strong>.</li>
+          </ol>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 3: Bridge from Lesson 3 -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag recap">RECAP</span> Bridge from Lesson 3: The Same Wall, Even Shorter</h2>
+          <p>In Lesson 3 you built a 10-long, 5-tall stone wall with a loop, <code class="inline">mark()</code>, and <code class="inline">line()</code>. Here's the same wall written with <code class="inline">blocks.fill()</code>:</p>
+
+          <div class="key-fact">
+            <strong>One small Python note before we keep going.</strong> Inside <code class="inline">pos(x, y, z)</code> the numbers are <em>already</em> measured from where the player is standing &mdash; you do <strong>not</strong> need the <code class="inline">~</code> symbol you'd type in a chat command. So <code class="inline">pos(0, 0, 0)</code> means "at your feet" and <code class="inline">pos(5, 0, 0)</code> means "5 blocks east of you." The <code class="inline">~</code> still belongs in chat commands like <code class="inline">/tp ~ ~ ~10</code> &mdash; just not inside <code class="inline">pos()</code>.
+          </div>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="fillWall">Copy</button>
+<pre class="code-block" id="fillWall">def on_chat():
+    blocks.fill(STONE,
+                pos(0, 0, 0),
+                pos(10, 5, 0),
+                FillOperation.REPLACE)
+player.on_chat("wall", on_chat)</pre>
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: what part of this is like Lesson 3? What part is brand new?</summary>
+            <div class="answer">
+              <p><strong>Same:</strong> still describes a wall <strong>10 long, 5 tall</strong> using coordinates measured from where the player is standing (<code class="inline">pos(0, 0, 0)</code> is at your feet).</p>
+              <p class="mb-0"><strong>New:</strong> no Builder movement at all. No loop. The world fills the entire wall in <strong>one command</strong>. You went from a 5-line program to a 1-line program.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 4: Opposite corners + fill operations -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 4</span> The Big New Idea: Opposite Corners</h2>
+          <p><code class="inline">blocks.fill()</code> does not <em>move</em> like the Agent or Builder. It needs <strong>two opposite corners</strong> of a rectangular box. The world fills every block between them.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="fillSolid">Copy</button>
+<pre class="code-block" id="fillSolid">def on_chat():
+    blocks.fill(GLASS,
+                pos(0, 0, 0),
+                pos(10, 5, 10),
+                FillOperation.REPLACE)
+player.on_chat("solid", on_chat)</pre>
+          </div>
+
+          <p>That fills a <strong>solid glass brick</strong> &mdash; 11 wide, 6 tall, 11 deep. Now change one word and look at what happens:</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="fillHollow">Copy</button>
+<pre class="code-block" id="fillHollow">def on_chat():
+    blocks.fill(GLASS,
+                pos(0, 0, 0),
+                pos(10, 5, 10),
+                FillOperation.HOLLOW)
+player.on_chat("room", on_chat)</pre>
+          </div>
+
+          <p>Same two corners. Same block type. But <code class="inline">HOLLOW</code> gives you a <strong>room you can stand in</strong> instead of a solid cube.</p>
+
+          <h3>Fill operations &mdash; pick the one you want</h3>
+          <table class="coord-table">
+            <thead>
+              <tr><th style="width: 30%;">Operation</th><th>What it does</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>FillOperation.REPLACE</code></td><td>Fills <em>every</em> block in the region with the chosen block.</td></tr>
+              <tr><td><code>FillOperation.HOLLOW</code></td><td>Builds the outer shell and <em>clears the inside</em> to air. Great for rooms.</td></tr>
+              <tr><td><code>FillOperation.OUTLINE</code></td><td>Builds only the outer edge/shell. Leaves whatever was inside alone.</td></tr>
+              <tr><td><code>FillOperation.KEEP</code></td><td>Fills only the empty air blocks &mdash; won't overwrite existing blocks.</td></tr>
+              <tr><td><code>FillOperation.DESTROY</code></td><td>Replaces blocks and drops the old ones as if you mined them.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> The fill starts at your feet, so anything solid (like <code class="inline">REPLACE</code> with stone) will trap you. Before running a fill, press <kbd>T</kbd>, type <code class="inline">/tp ~ ~ ~10</code>, and press Enter to jump 10 blocks south. Now your build appears <em>in front of you</em>, not <em>around you</em>.
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: what happens if you run the <code>HOLLOW</code> version with <code>STONE</code> instead of <code>GLASS</code>?</summary>
+            <div class="answer">
+              <p>You get a hollow stone box &mdash; same shape, but you can't see in or out. <code class="inline">HOLLOW</code> describes <em>how</em> to build; the block type is independent. Try it both ways and notice that you can walk inside either one (the inside is air either way).</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 5: Starter build — habitat -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 5</span> Starter Build: A Habitat</h2>
+          <p>Now we'll combine <strong>two fills</strong> &mdash; a hollow glass-pane shell with a grass floor inside. This is the base for almost any habitat, arena, or scene.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="habitatBase">Copy</button>
+<pre class="code-block" id="habitatBase">def on_chat():
+    # Hollow glass shell
+    blocks.fill(GLASS_PANE,
+                pos(5, 0, -10),
+                pos(12, 7, 10),
+                FillOperation.HOLLOW)
+
+    # Grass floor inside the shell
+    blocks.fill(GRASS,
+                pos(6, 0, -9),
+                pos(11, 0, 9),
+                FillOperation.REPLACE)
+player.on_chat("habitat", on_chat)</pre>
+          </div>
+
+          <h3>Read the coordinates before running</h3>
+          <ul class="tight">
+            <li>The first fill goes from <code class="inline">(5, 0, -10)</code> to <code class="inline">(12, 7, 10)</code>. That's <strong>8 wide</strong> (12 - 5 + 1), <strong>8 tall</strong>, <strong>21 deep</strong>.</li>
+            <li>The second fill is <strong>smaller</strong> &mdash; it starts at <code class="inline">6</code> and ends at <code class="inline">11</code> on the X axis, and <code class="inline">-9</code> to <code class="inline">9</code> on Z. It sits <em>inside</em> the shell.</li>
+            <li>Both fills share the same Y axis (<code class="inline">0</code>), so the grass becomes the <strong>floor</strong> of the habitat.</li>
+          </ul>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: why is the second fill smaller than the first? What would happen if it weren't?</summary>
+            <div class="answer">
+              <p>The grass floor needs to fit <strong>inside</strong> the glass walls &mdash; not <em>on top of</em> them. If you used the same corners as the shell, the grass would replace the bottom layer of glass and the habitat wouldn't have walls down to the ground.</p>
+            </div>
+          </details>
+
+          <div class="check">
+            <h4><i class="bi bi-pencil-square"></i> Coordinate quick-check</h4>
+            <p>Which axis controls <strong>width</strong>? Which one controls <strong>height</strong>? Which one controls <strong>depth</strong>?
+            <br /><em>Answer:</em> X = width, Y = height (up/down), Z = depth (forward/back). Same as Lesson 3.</p>
+          </div>
+
+          <div class="tip-fact">
+            <strong>Why a land habitat first?</strong> Start with grass and air, not water. A land habitat works for almost any mob &mdash; sheep, cows, pigs, chickens. We'll save the aquarium for the challenge.
+          </div>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> Open chat (<kbd>T</kbd>), type <code class="inline">/tp ~ ~ ~10</code>, and press Enter. The habitat will build to the east of you instead of around you. Then run <code class="inline">habitat</code>.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 6: Builder accent — bring the Builder back -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 6</span> Add a Builder Accent</h2>
+          <p>The habitat looks plain. <code class="inline">blocks.fill()</code> is great for <em>big regions</em> &mdash; whole walls, whole floors. But for a single <strong>line</strong> &mdash; say, a stone path running down the middle of the habitat &mdash; the <strong>Builder</strong> from Lesson 3 is still the right tool. Use the right tool for the size of the job.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="builderPath">Copy</button>
+<pre class="code-block" id="builderPath">def on_chat():
+    # Walls and floor (big regions — fill is the right tool)
+    blocks.fill(GLASS_PANE, pos(5, 0, -10), pos(12, 7, 10), FillOperation.HOLLOW)
+    blocks.fill(GRASS,      pos(6, 0, -9),  pos(11, 0, 9),  FillOperation.REPLACE)
+
+    # Walkway down the middle (a single line — Builder is the right tool)
+    builder.teleport_to(pos(8, 1, -9))
+    builder.mark()
+    builder.teleport_to(pos(8, 1, 9))
+    builder.line(COBBLESTONE)
+player.on_chat("habitat", on_chat)</pre>
+          </div>
+
+          <h3>What the Builder is doing</h3>
+          <ul class="tight">
+            <li><code class="inline">builder.teleport_to(pos(8, 1, -9))</code> &mdash; warp the Builder to the <strong>north end</strong> of the habitat, one block above the grass.</li>
+            <li><code class="inline">builder.mark()</code> &mdash; remember this position.</li>
+            <li><code class="inline">builder.teleport_to(pos(8, 1, 9))</code> &mdash; warp to the <strong>south end</strong>.</li>
+            <li><code class="inline">builder.line(COBBLESTONE)</code> &mdash; stamp a cobblestone line between the mark and here.</li>
+          </ul>
+
+          <div class="key-fact">
+            <strong>The toolbox now:</strong> <code class="inline">blocks.fill()</code> for <em>regions</em>, the <strong>Builder</strong> for <em>lines</em>, and the <strong>Agent</strong> for things you want to <em>watch happen</em>. A real program often uses two or three together &mdash; fill the big stuff, then add Builder detail on top.
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: could you build the same cobblestone path with another <code>blocks.fill()</code> instead? Would that be better or worse?</summary>
+            <div class="answer">
+              <p>Yes &mdash; <code class="inline">blocks.fill(COBBLESTONE, pos(8, 1, -9), pos(8, 1, 9), FillOperation.REPLACE)</code> would work just as well. For a perfectly straight line it's a fine choice.</p>
+              <p class="mb-0"><strong>When the Builder wins:</strong> if you want to <em>curve</em> the path or place stones along a route that bends, <code class="inline">trace_path</code> walks the curve and stamps blocks behind it &mdash; something <code class="inline">fill</code> can't do.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 7: Add mobs.spawn() -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 7</span> Bring It to Life: <code>mobs.spawn()</code></h2>
+          <p>An empty habitat is just architecture. Add a single mob first, then turn it into a loop.</p>
+
+          <h3>One mob, exact position</h3>
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="oneMob">Copy</button>
+<pre class="code-block" id="oneMob">def on_chat():
+    blocks.fill(GLASS_PANE, pos(5, 0, -10), pos(12, 7, 10), FillOperation.HOLLOW)
+    blocks.fill(GRASS,      pos(6, 0, -9),  pos(11, 0, 9),  FillOperation.REPLACE)
+
+    mobs.spawn(SHEEP, pos(8, 1, 0))
+player.on_chat("habitat", on_chat)</pre>
+          </div>
+
+          <p>The sheep appears at <code class="inline">(8, 1, 0)</code> &mdash; one block above the grass floor, centered between the walls. Run it. You should see exactly one sheep standing inside the habitat.</p>
+
+          <h3>Many mobs, random positions (callback to Lesson 2's loop)</h3>
+          <p>Now bring the <code class="inline">for</code> loop from Lesson 2 back into the program. Each iteration spawns one sheep at a <strong>random</strong> position inside the habitat.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="manyMobs">Copy</button>
+<pre class="code-block" id="manyMobs">def on_chat():
+    blocks.fill(GLASS_PANE, pos(5, 0, -10), pos(12, 7, 10), FillOperation.HOLLOW)
+    blocks.fill(GRASS,      pos(6, 0, -9),  pos(11, 0, 9),  FillOperation.REPLACE)
+
+    for i in range(5):
+        mobs.spawn(SHEEP, randpos(pos(6, 1, -9), pos(11, 1, 9)))
+player.on_chat("habitat", on_chat)</pre>
+          </div>
+
+          <h3>What's happening</h3>
+          <ul class="tight">
+            <li><code class="inline">range(5)</code> &mdash; the loop runs <strong>5 times</strong>. Same pattern as Lesson 2.</li>
+            <li><code class="inline">randpos(corner1, corner2)</code> &mdash; pick a random position inside the box between those two corners.</li>
+            <li>The corners here match the grass floor's footprint with Y bumped up to <code class="inline">1</code> so the sheep spawn <em>on</em> the grass, not <em>inside</em> it.</li>
+          </ul>
+
+          <div class="key-fact">
+            <strong>Connect to Lesson 2:</strong> This is the same <code class="inline">for i in range(N):</code> pattern that controlled how many forward steps the Agent took. Now it controls how many sheep spawn. Loops don't care what's inside them &mdash; they just repeat.
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: what changes if you change <code>range(5)</code> to <code>range(20)</code>? What if you swap <code>SHEEP</code> for <code>ZOMBIE</code>?</summary>
+            <div class="answer">
+              <p><code class="inline">range(20)</code> &rarr; <strong>20 sheep</strong> instead of 5. The habitat gets crowded fast.</p>
+              <p class="mb-0"><code class="inline">ZOMBIE</code> &rarr; 5 zombies in a glass box. They can't get out (glass blocks them) but they will roam around. Try it &mdash; just be ready to run the program a second time to clear them out, or use <code class="inline">/kill @e[type=zombie]</code> in chat.</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 8: Debugging focus -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 8</span> Debugging: Two Bugs to Recognize</h2>
+          <p>Two bugs come up in nearly every Lesson 4 program. Recognize them once and you'll spot them instantly from now on.</p>
+
+          <h3>Bug 1 &mdash; Indentation (callback to Lesson 2)</h3>
+          <p>This program <em>looks</em> right but spawns only <strong>one sheep</strong>, not five. Can you spot why?</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="bugIndent">Copy</button>
+<pre class="code-block" id="bugIndent">def on_chat():
+    blocks.fill(GLASS_PANE, pos(5, 0, -10), pos(12, 7, 10), FillOperation.HOLLOW)
+    blocks.fill(GRASS,      pos(6, 0, -9),  pos(11, 0, 9),  FillOperation.REPLACE)
+
+    for i in range(5):
+    mobs.spawn(SHEEP, randpos(pos(6, 1, -9), pos(11, 1, 9)))
+player.on_chat("broken", on_chat)</pre>
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Why is this broken?</summary>
+            <div class="answer">
+              <p>The <code class="inline">mobs.spawn(...)</code> line is <strong>not indented inside the loop</strong>. Python won't even run this &mdash; it's a syntax error. This is the same family of bug you saw in Lesson 2's wall: a misaligned line breaks the loop.</p>
+              <p class="mb-0"><strong>Fix:</strong> indent the <code class="inline">mobs.spawn</code> line with 4 spaces (or a tab) so it lines up <em>inside</em> the <code class="inline">for</code> loop.</p>
+            </div>
+          </details>
+
+          <h3>Bug 2 &mdash; Wrong Y value (callback to Lesson 3)</h3>
+          <p>This one runs without errors &mdash; but the sheep fall from the sky every time. Can you see why?</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="bugY">Copy</button>
+<pre class="code-block" id="bugY">def on_chat():
+    blocks.fill(GLASS_PANE, pos(5, 0, -10), pos(12, 7, 10), FillOperation.HOLLOW)
+    blocks.fill(GRASS,      pos(6, 0, -9),  pos(11, 0, 9),  FillOperation.REPLACE)
+
+    for i in range(5):
+        mobs.spawn(SHEEP, randpos(pos(6, 10, -9), pos(11, 10, 9)))
+player.on_chat("falling", on_chat)</pre>
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Why are the sheep falling from the sky?</summary>
+            <div class="answer">
+              <p>The Y values inside <code class="inline">randpos</code> are <code class="inline">10</code>, which is <strong>10 blocks above</strong> the grass floor (the floor is at Y = <code class="inline">0</code>). Sheep spawn near the ceiling and fall down to the floor.</p>
+              <p class="mb-0"><strong>Fix:</strong> use <code class="inline">1</code> for both Y values so the sheep spawn one block above the grass &mdash; right where they belong.</p>
+            </div>
+          </details>
+
+          <div class="tip-fact">
+            <strong>Debugging instinct:</strong> When something is wrong with where a mob ends up, look at the <strong>Y axis</strong> first. Wrong-Y is the most common <code class="inline">mobs.spawn()</code> bug there is.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- CHALLENGE -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag challenge">CHALLENGE</span> Build Your Own Scene</h2>
+          <p>Create an <strong>original</strong> program that uses <code class="inline">blocks.fill()</code> and <code class="inline">mobs.spawn()</code> to build a habitat, arena, pond, aquarium, or scene of your own design. Pick one of the options below or invent your own.</p>
+
+          <div class="challenge-options">
+            <div class="option">
+              <h4>Option A &mdash; Animal Habitat</h4>
+              <p>Glass or fence walls, a floor, and at least <strong>5 mobs</strong> spawned with a loop. Use at least two block types. Sheep, cows, pigs, or chickens are easy starters.</p>
+            </div>
+            <div class="option">
+              <h4>Option B &mdash; Battle Arena</h4>
+              <p>Walls or outline, a floor, mobs spawned at random positions, and at least one <strong>obstacle</strong> built with another <code class="inline">blocks.fill()</code>. A great place to talk about abstraction and parameters.</p>
+            </div>
+            <div class="option">
+              <h4>Option C &mdash; Trident Aquarium</h4>
+              <p>A glass cube filled with water, then tropical fish, pufferfish, and dolphins spawned at random positions &mdash; summoned by <em>right-clicking with a trident</em> instead of a chat command. Full working program below.</p>
+            </div>
+          </div>
+
+          <div class="tip-fact">
+            <strong>New event trigger:</strong> <code class="inline">player.on_item_interacted(TRIDENT, ...)</code> runs your function when the player <em>uses</em> a trident (right-click). It's the same idea as <code class="inline">player.on_chat</code> &mdash; an event that starts your code &mdash; just triggered differently. Any item works: <code class="inline">STICK</code>, <code class="inline">DIAMOND</code>, <code class="inline">CARROT_ON_A_STICK</code>, &hellip;
+          </div>
+
+          <h3>Option C full program &mdash; the Trident Aquarium</h3>
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="aquarium">Copy</button>
+<pre class="code-block" id="aquarium">def trident_summon_aquarium():
+    blocks.fill(GLASS, pos(5, 0, -10), pos(12, 7, 10), FillOperation.REPLACE)
+    blocks.fill(WATER, pos(6, 1, -9),  pos(11, 7, 9),  FillOperation.REPLACE)
+    for i in range(4):
+        mobs.spawn(TROPICAL_FISH, randpos(pos(6, 1, -9), pos(11, 6, 9)))
+        blocks.place(BUBBLE_CORAL, randpos(pos(6, 1, -9), pos(11, 6, 9)))
+        mobs.spawn(PUFFERFISH,    randpos(pos(6, 1, -9), pos(11, 6, 9)))
+        mobs.spawn(DOLPHIN,       randpos(pos(6, 1, -9), pos(11, 6, 9)))
+
+        # blocks.place(SEAGRASS, randpos(pos(6, 1, -9), pos(11, 1, 9)))
+        # Doesn't work because seagrass can't be placed on glass.
+        # Fix it later by filling a dirt layer at the bottom first.
+
+player.on_item_interacted(TRIDENT, trident_summon_aquarium)</pre>
+          </div>
+
+          <h3>What's different about this program</h3>
+          <ul class="tight">
+            <li><strong>Solid then carved:</strong> the first fill makes a <em>solid</em> glass cube with <code class="inline">REPLACE</code>. The second fill <em>replaces the inside</em> with water. Result: glass shell with water inside &mdash; a different way to get the same effect as <code class="inline">HOLLOW</code>.</li>
+            <li><strong>Three different mobs in one loop:</strong> each iteration spawns a fish, a pufferfish, and a dolphin &mdash; so <code class="inline">range(4)</code> gives you 4 of each, 12 total.</li>
+            <li><strong><code class="inline">blocks.place()</code> for single blocks:</strong> bubble coral is placed one block at a time inside the loop. Use <code class="inline">place</code> for one-offs; use <code class="inline">fill</code> for regions.</li>
+            <li><strong>The commented bug:</strong> the seagrass line is intentionally commented out &mdash; seagrass needs dirt under it. Real programs include notes like this to remember what to fix later.</li>
+          </ul>
+
+          <h3>Minimum requirements</h3>
+          <ul class="tight">
+            <li>Your program starts with an <strong>event</strong> &mdash; either a chat command (<code class="inline">player.on_chat</code>) or an item interaction (<code class="inline">player.on_item_interacted</code>).</li>
+            <li>Uses <code class="inline">blocks.fill()</code> <strong>at least twice</strong>.</li>
+            <li>Uses at least <strong>two different block types</strong>.</li>
+            <li>Uses <code class="inline">mobs.spawn()</code> at least once.</li>
+            <li>Uses a <code class="inline">for</code> loop to spawn multiple mobs.</li>
+            <li>Uses <code class="inline">randpos(...)</code> or carefully chosen coordinates so the mobs end up <em>inside</em> the structure.</li>
+            <li>Final result is a habitat, arena, pond, aquarium, or other enclosed scene.</li>
+          </ul>
+
+          <h3>Stretch goals</h3>
+          <ul class="tight">
+            <li>Use a <strong>different mob type per loop iteration</strong> with an <code class="inline">if</code> statement.</li>
+            <li>Add a <strong>second floor</strong> or interior wall with a third <code class="inline">blocks.fill()</code>.</li>
+            <li>Use <code class="inline">FillOperation.OUTLINE</code> for the walls and decorate the inside separately.</li>
+            <li>Add an opening (a door or window) by running another fill of <code class="inline">AIR</code> in a small region.</li>
+            <li>Add <code class="inline">#</code> comments above each section to explain what it does.</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SUBMIT -->
+        <!-- ============================================================ -->
+        <div class="submit-card">
+          <h2><span class="step-tag submit">SUBMIT</span> Turn In Your Work</h2>
+          <p>When you've finished the challenge, submit <strong>three</strong> items using the submission link in your class:</p>
+          <ol>
+            <li><strong>Screenshot of your code</strong> in the MakeCode editor. Your <code class="inline">blocks.fill()</code> calls, your <code class="inline">for</code> loop, and your <code class="inline">mobs.spawn()</code> must all be visible.</li>
+            <li><strong>Screenshot of the result in Minecraft</strong> &mdash; the habitat, arena, or scene your program created, with the mobs inside.</li>
+            <li><strong>Short written reflection.</strong> Answer all five in 1&ndash;2 sentences each:
+              <ul>
+                <li>What did your program build?</li>
+                <li>Which two positions did you use as opposite corners for your main <code class="inline">blocks.fill()</code>?</li>
+                <li>Which fill operation did you use &mdash; <code class="inline">REPLACE</code>, <code class="inline">HOLLOW</code>, or <code class="inline">OUTLINE</code> &mdash; and why?</li>
+                <li>How did your loop affect the number of mobs that spawned?</li>
+                <li>Why would this build be harder with the Agent or Builder?</li>
+              </ul>
+            </li>
+          </ol>
+
+          <div class="key-fact" style="background: #fde9ec; border-color: #dc3545;">
+            <strong style="color: #842029;">Important:</strong> The reflection counts for half the grade. Show that you understand <em>why</em> <code class="inline">blocks.fill()</code> was the right tool for this job &mdash; not just that it worked.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DONE -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><i class="bi bi-flag-fill"></i> When You're Done</h2>
+          <ul class="tight">
+            <li>Trade computers and run a classmate's program. Did their habitat surprise you?</li>
+            <li>Look up <code class="inline">FillOperation.KEEP</code> &mdash; how is it different from <code class="inline">REPLACE</code>?</li>
+            <li>Try chaining three or four habitats side-by-side using one chat command and a loop around the fills.</li>
+            <li>Re-write your Lesson 3 wall using a single <code class="inline">blocks.fill()</code>. How short can the program get?</li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.dataset.target);
+          if (!target) return;
+          navigator.clipboard.writeText(target.textContent).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 1500);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

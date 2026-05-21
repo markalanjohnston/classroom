@@ -1,0 +1,186 @@
+<div style="max-width: 900px; margin: 0 auto; font-family: Arial, sans-serif; line-height: 1.5; color: #222;" dir="ltr">
+
+  <div style="background: #1f4e79; color: #ffffff; padding: 18px; border-radius: 8px; text-align: center;">
+    <h2 style="margin: 0; font-size: 28px;" dir="ltr">Assignment &mdash; Minecraft Lesson 4</h2>
+    <p style="margin: 6px 0 0 0; font-size: 18px;"><strong>Filling Spaces &amp; Spawning Mobs</strong></p>
+  </div>
+
+  <div style="border: 2px solid #1f4e79; padding: 15px; margin-top: 15px; border-radius: 8px;">
+    <h3 style="margin-top: 0; color: #1f4e79;">Today&rsquo;s Big Idea</h3>
+    <p>
+      In Lesson 3 you used the <strong>Builder</strong> to draw walls and lines in just a few commands. Today you'll go one step further: <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code> creates a whole <strong>3D region</strong> &mdash; a room, an arena, a pond &mdash; in <strong>one line</strong>. Then <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">mobs.spawn()</code> brings the space to life with sheep, fish, zombies, or whatever fits your scene.
+    </p>
+    <p style="margin-bottom: 0;">
+      The whole self-paced lesson &mdash; vocabulary, starter code, predict prompts, debugging examples, and the challenge &mdash; lives on the class website. <strong>Open the lesson page</strong> using the button at the bottom of this assignment, then come back here to submit when you're done.
+    </p>
+  </div>
+
+  <div style="background: #f2f6fa; border-left: 6px solid #1f4e79; padding: 15px; margin-top: 15px;">
+    <h3 style="margin-top: 0;">Learning Objectives</h3>
+    <p>By the end of this lesson, you should be able to:</p>
+    <ul>
+      <li>Explain when <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code> is a better tool than the Agent or the Builder.</li>
+      <li>Use two positions as <strong>opposite corners</strong> of a 3D rectangular region.</li>
+      <li>Choose intentionally between <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">FillOperation.REPLACE</code>, <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">HOLLOW</code>, and <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">OUTLINE</code>.</li>
+      <li>Use <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">mobs.spawn()</code> to place a mob at a specific or random position.</li>
+      <li>Combine a <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">for</code> loop with <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">randpos()</code> to populate a space with many mobs at once.</li>
+      <li>Recognize and fix two common bugs: a misindented loop body and a wrong Y value.</li>
+    </ul>
+  </div>
+
+  <div style="border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 8px;">
+    <h3 style="margin-top: 0;">Key Vocabulary</h3>
+
+    <table style="width: 100%; border-collapse: collapse;">
+      <tbody>
+        <tr>
+          <th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5;">Term</th>
+          <th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5;">Meaning</th>
+        </tr>
+
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px;"><strong>blocks.fill()</strong></td>
+          <td style="border: 1px solid #ccc; padding: 8px;">Fills every block in a 3D box with the block type you choose.</td>
+        </tr>
+
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px;"><strong>Opposite corners</strong></td>
+          <td style="border: 1px solid #ccc; padding: 8px;">The two positions you give <code>fill()</code> &mdash; one corner of the box and the corner farthest from it.</td>
+        </tr>
+
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px;"><strong>FillOperation</strong></td>
+          <td style="border: 1px solid #ccc; padding: 8px;">Tells <code>fill()</code> <em>how</em> to fill: <code>REPLACE</code>, <code>HOLLOW</code>, <code>OUTLINE</code>, <code>KEEP</code>, or <code>DESTROY</code>.</td>
+        </tr>
+
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px;"><strong>mobs.spawn()</strong></td>
+          <td style="border: 1px solid #ccc; padding: 8px;">Creates a mob (sheep, cow, fish, zombie, &hellip;) at a given position.</td>
+        </tr>
+
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px;"><strong>randpos()</strong></td>
+          <td style="border: 1px solid #ccc; padding: 8px;">Returns a random position inside the box between two corners &mdash; great for spreading mobs around.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="border: 2px solid #1f4e79; padding: 15px; margin-top: 15px; border-radius: 8px;">
+    <h3 style="margin-top: 0; color: #1f4e79;">The Task</h3>
+    <p>
+      Create an <strong>original</strong> program that uses <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code> and <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">mobs.spawn()</code> to build a habitat, arena, pond, aquarium, or scene of your own design. Your final program must be different from the starter examples on the lesson page.
+    </p>
+    <p style="margin-bottom: 0;">
+      <strong>Minimum requirements:</strong>
+    </p>
+    <ul style="margin-top: 6px;">
+      <li>Your program starts with an <strong>event</strong> &mdash; either a chat command (<code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">player.on_chat</code>) or an item interaction (<code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">player.on_item_interacted</code>).</li>
+      <li>Uses <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code> <strong>at least twice</strong>.</li>
+      <li>Uses <strong>at least two different block types</strong>.</li>
+      <li>Uses <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">mobs.spawn()</code> at least once.</li>
+      <li>Uses a <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">for</code> loop to spawn multiple mobs.</li>
+      <li>Uses <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">randpos(...)</code> or carefully chosen coordinates so the mobs end up inside the structure.</li>
+      <li>The final result is a habitat, arena, pond, aquarium, or other enclosed scene.</li>
+    </ul>
+  </div>
+
+  <div style="background: #fdebec; border: 2px solid #f1aeb5; padding: 15px; margin-top: 15px; border-radius: 8px;">
+    <h3 style="margin-top: 0; color: #842029;">What to Turn In</h3>
+    <p>Submit <strong>one PDF file</strong> using the <strong>Submit Assignment button on this page</strong>. Build the PDF in <strong>Microsoft Word</strong> or <strong>Google Docs</strong>, then export it as a PDF before uploading.</p>
+
+    <p style="margin-bottom: 6px;"><strong>Your document must include all three of the following, in this order:</strong></p>
+    <ol>
+      <li><strong>Screenshot of your code</strong> in the MakeCode editor (pasted into the document). Your <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code> calls, <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">for</code> loop, and <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">mobs.spawn()</code> must all be clearly visible.</li>
+      <li><strong>Screenshot of the result in Minecraft</strong> (pasted into the document) &mdash; the habitat, arena, or scene your program created, with the mobs inside.</li>
+      <li><strong>Short written reflection</strong> &mdash; type your answers to all five questions below directly into the same document (1&ndash;2 sentences each).</li>
+    </ol>
+
+    <p style="margin-bottom: 6px;"><strong>How to save it as a PDF:</strong></p>
+    <ul style="margin-top: 0;">
+      <li><strong>Microsoft Word:</strong> File &rarr; Save As &rarr; choose <em>PDF</em> from the file-type dropdown.</li>
+      <li><strong>Google Docs:</strong> File &rarr; Download &rarr; <em>PDF Document (.pdf)</em>.</li>
+    </ul>
+
+    <p style="margin-bottom: 0;"><strong>Upload only the PDF</strong> &mdash; do not submit the Word doc, the Google Docs link, or the raw image files.</p>
+  </div>
+
+  <div style="background: #f2f6fa; border-left: 6px solid #1f4e79; padding: 15px; margin-top: 15px;">
+    <h3 style="margin-top: 0;">Reflection Questions</h3>
+    <p>Answer all five. Aim for 1&ndash;2 sentences each &mdash; show that you understand <em>why</em> <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code> was the right tool for this job, not just that it worked.</p>
+    <ol>
+      <li>What did your program build?</li>
+      <li>Which two positions did you use as opposite corners for your main <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code>?</li>
+      <li>Which fill operation did you use &mdash; <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">REPLACE</code>, <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">HOLLOW</code>, or <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">OUTLINE</code> &mdash; and why?</li>
+      <li>How did your loop affect the number of mobs that spawned?</li>
+      <li>Why would this build be harder with the Agent or the Builder?</li>
+    </ol>
+  </div>
+
+  <div style="border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 8px;">
+    <h3 style="margin-top: 0; color: #1f4e79;">Rubric &mdash; 20 points total</h3>
+
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5; text-align: left; width: 22%;">Criterion</th>
+          <th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5; text-align: left;">Full credit</th>
+          <th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5; text-align: left;">Partial credit</th>
+          <th style="border: 1px solid #ccc; padding: 8px; background: #e8eef5; text-align: left;">No credit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>Code Screenshot</strong><br /><span style="color:#555;">5 pts</span></td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>5</strong> &mdash; Clear MakeCode screenshot; <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code>, the <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">for</code> loop, and <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">mobs.spawn()</code> are all visible and readable.</td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>3</strong> &mdash; Screenshot submitted but at least one required piece (fill, loop, or spawn) is cut off, blurry, or hard to read.</td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>0</strong> &mdash; No screenshot, or the screenshot does not show the required code.</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>Minecraft Screenshot</strong><br /><span style="color:#555;">5 pts</span></td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>5</strong> &mdash; Clear screenshot of the built scene with the mobs visible inside the structure.</td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>3</strong> &mdash; Screenshot submitted but either the structure or the mobs are missing or hard to see.</td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>0</strong> &mdash; No Minecraft screenshot.</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>Original Program</strong><br /><span style="color:#555;">2 pts</span></td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>2</strong> &mdash; Program is different from the starter examples (different shape, block types, mob types, or layout).</td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>1</strong> &mdash; Program is only slightly changed from a starter example.</td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top;"><strong>0</strong> &mdash; Program is an exact copy of a starter example.</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top; background: #fff8e1;"><strong>Reflection</strong><br /><span style="color:#555;">8 pts</span></td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top; background: #fff8e1;"><strong>8</strong> &mdash; All five questions answered. Answers show understanding of <em>why</em> <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">blocks.fill()</code> was the right tool and use vocabulary from the lesson.</td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top; background: #fff8e1;"><strong>4&ndash;6</strong> &mdash; Most questions answered, but some are very short, vague, or only describe <em>what</em> happened without explaining why.</td>
+          <td style="border: 1px solid #ccc; padding: 8px; vertical-align: top; background: #fff8e1;"><strong>0&ndash;2</strong> &mdash; Reflection missing, or answers do not show understanding.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 12px; margin-bottom: 0; font-size: 14px; color: #555;">
+      <strong>Note:</strong> The reflection is worth almost half of the grade. Take it seriously &mdash; full code with no reflection caps your score at 12/20.
+    </p>
+  </div>
+
+  <div style="background: #eef7ee; padding: 15px; margin-top: 15px; border-left: 6px solid #3d7a3d; border-radius: 8px;">
+    <h3 style="margin-top: 0;">Tips for a Strong Submission</h3>
+    <ul style="margin-bottom: 0;">
+      <li>Use the <strong>full-screen screenshot</strong> tool so your code is easy to read &mdash; <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> works well.</li>
+      <li>If your build is hard to see from one angle, fly up (creative mode) and take a top-down or aerial shot.</li>
+      <li>In your reflection, name the <strong>specific corners</strong> you used &mdash; e.g., "from <code>pos(5, 0, -10)</code> to <code>pos(12, 7, 10)</code>" &mdash; not just "I used two corners."</li>
+      <li>If you used <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">FillOperation.OUTLINE</code>, multiple mob types, or added an opening with an <code style="background:#e9ecef; padding:1px 5px; border-radius:3px;">AIR</code> fill, <strong>mention it</strong> &mdash; that's stretch-goal territory.</li>
+    </ul>
+  </div>
+
+  <div style="background: #fff8e1; border: 1px solid #e0b000; padding: 15px; margin-top: 15px; border-radius: 8px; text-align: center;">
+    <h3 style="margin-top: 0;">Open Today&rsquo;s Lesson</h3>
+    <p>The full self-paced lesson lives on the class website. Open it, work through it, then come back here to submit.</p>
+
+    <p style="margin: 20px 0 5px 0;">
+      <a style="background: #1f4e79; color: #ffffff; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-size: 18px; font-weight: bold;" href="https://classroom.mjstem.com/minecraft/lesson4/">
+        Open Minecraft Lesson 4
+      </a>
+    </p>
+  </div>
+
+</div>
