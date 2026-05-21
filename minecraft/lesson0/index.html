@@ -132,6 +132,42 @@
 
       ol.steps > li { margin-bottom: 12px; line-height: 1.55; }
 
+      .phase {
+        background: white;
+        border: 1px solid #e1e6ea;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 14px 0;
+      }
+      .phase h3 {
+        margin: 0 0 6px 0;
+        color: #1f4e79;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .phase ol { margin: 8px 0 0 0; padding-left: 22px; }
+      .phase ol li { margin-bottom: 6px; line-height: 1.55; }
+
+      .step-figure {
+        margin: 14px 0 4px;
+        text-align: center;
+      }
+      .step-figure img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      }
+      .step-figure figcaption {
+        font-size: 0.88rem;
+        color: #6c757d;
+        font-style: italic;
+        margin-top: 6px;
+      }
+      .step-figure.narrow img { max-width: 420px; }
+
       .ready-card {
         background: linear-gradient(135deg, #1f4e79 0%, #2d6499 100%);
         color: white;
@@ -190,12 +226,17 @@
           <h2><span class="step-tag">STEP 1</span> Turn on Fullscreen</h2>
           <p>Fullscreen mode hides distractions and gives you the biggest possible view of the world.</p>
           <ol class="steps">
-            <li>Open <strong>Minecraft Education</strong> and sign in if you aren't already.</li>
+            <li>Open <strong>Minecraft Education</strong> and sign in if you aren't already. You should land on the main menu shown below.</li>
             <li>On the main menu, click <strong>Settings</strong>.</li>
             <li>Click <strong>Video</strong>.</li>
             <li>Turn <strong>Fullscreen</strong> on.</li>
             <li>Click <strong>Back</strong> to return to the main menu.</li>
           </ol>
+
+          <figure class="step-figure narrow">
+            <img src="../images/mc-main-menu.png" alt="Minecraft Education main menu with Play and Settings buttons" />
+            <figcaption>The Minecraft Education main menu &mdash; <strong>Settings</strong> is the second button.</figcaption>
+          </figure>
         </div>
 
         <!-- ============================================================ -->
@@ -203,18 +244,75 @@
         <!-- ============================================================ -->
         <div class="step-section">
           <h2><span class="step-tag">STEP 2</span> Create a New Flat World</h2>
-          <p>You will create a brand-new world for this lesson with specific settings.</p>
-          <ol class="steps">
-            <li>From the main menu, click <strong>Play</strong>.</li>
-            <li>Click <strong>Create New</strong>, then <strong>New</strong>.</li>
-            <li>On the left, click the <strong>Advanced</strong> tab.</li>
-            <li>Change <strong>World Type</strong> to <strong>Flat World</strong>.</li>
-            <li>Turn <strong>Show Coordinates</strong> ON. <em>(So you can see exactly where the Agent is.)</em></li>
-            <li>Set <strong>Daylight Cycle</strong> to <strong>Always Day</strong>. <em>(No nighttime interruptions.)</em></li>
-            <li>Turn <strong>Mob Spawning</strong> OFF. <em>(No zombies or skeletons.)</em></li>
-            <li>Turn <strong>Weather Cycle</strong> OFF. <em>(No rain or snow.)</em></li>
-            <li>Click <strong>Create</strong> (or <strong>Play</strong>) to load the world.</li>
-          </ol>
+          <p>Now create a brand-new world with the specific settings shown below. Work through each phase in order &mdash; each one includes a screenshot of exactly what the screen should look like.</p>
+
+          <!-- Phase A: get to the new-world screen -->
+          <div class="phase">
+            <h3>A. Get to the &ldquo;Create New World&rdquo; screen</h3>
+            <ol>
+              <li>From the main menu, click <strong>Play</strong>.</li>
+              <li>You'll see the <strong>My Worlds / Library</strong> screen. Click <strong>Create New</strong>, then <strong>New</strong>.</li>
+            </ol>
+            <figure class="step-figure narrow">
+              <img src="../images/mc-worlds-menu.png" alt="My Worlds screen with Create New, Join World, and Import buttons" />
+              <figcaption>The Worlds screen. Click the green <strong>Create New</strong> button.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Phase B: advanced tab + flat world -->
+          <div class="phase">
+            <h3>B. Open the Advanced tab and switch to Flat World</h3>
+            <ol>
+              <li>On the left side of the Create New World screen, click the <strong>Advanced</strong> tab.</li>
+              <li>Find <strong>Flat world</strong> near the top and turn it <strong>ON</strong>.</li>
+              <li>When the <strong>Flat world preset</strong> dropdown appears, leave it on <strong>Classic Flat</strong> (Grass / Dirt / Bedrock layers).</li>
+            </ol>
+            <figure class="step-figure">
+              <img src="../images/mc-create-world-advanced.png" alt="Create New World screen, Advanced tab, before turning on Flat world" />
+              <figcaption>The Advanced tab when you first open it &mdash; <strong>Flat world</strong> is off here.</figcaption>
+            </figure>
+            <figure class="step-figure">
+              <img src="../images/mc-flat-world-on.png" alt="Advanced tab with Flat world toggled on and Classic Flat preset showing Grass, Dirt, Bedrock layers" />
+              <figcaption>After turning <strong>Flat world</strong> ON &mdash; the Classic Flat preset is exactly what you want.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Phase C: show coordinates -->
+          <div class="phase">
+            <h3>C. Turn on Show Coordinates</h3>
+            <ol>
+              <li>Scroll down on the Advanced tab until you see <strong>Show coordinates</strong>.</li>
+              <li>Turn it <strong>ON</strong>. <em>(So you can see exactly where you and the Agent are standing.)</em></li>
+              <li>Make sure <strong>Bonus chest</strong> stays <strong>OFF</strong> &mdash; you don't need starting items.</li>
+            </ol>
+            <figure class="step-figure">
+              <img src="../images/mc-show-coordinates.png" alt="Advanced tab scrolled to show the Show coordinates toggle turned on" />
+              <figcaption>Find <strong>Show coordinates</strong> in the middle of the Advanced settings and turn it on.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Phase D: always day + mobs off -->
+          <div class="phase">
+            <h3>D. Always Day &amp; no mobs</h3>
+            <ol>
+              <li>Keep scrolling. Set the <strong>Daylight Cycle</strong> selector to <strong>Always day</strong>. <em>(No nighttime.)</em></li>
+              <li>Turn <strong>Mob spawning</strong> <strong>OFF</strong>. <em>(No zombies or skeletons interrupting your code.)</em></li>
+              <li>If you see a <strong>Weather cycle</strong> toggle, turn it <strong>OFF</strong> too &mdash; no rain or snow.</li>
+            </ol>
+            <figure class="step-figure">
+              <img src="../images/mc-always-day-mobs-off.png" alt="Advanced settings showing Always day selected at the top and Mob spawning toggle off" />
+              <figcaption><strong>Always day</strong> selected at the top; <strong>Mob spawning</strong> off below.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Phase E: create -->
+          <div class="phase">
+            <h3>E. Click Create</h3>
+            <ol>
+              <li>Click the big <strong>Create</strong> (or <strong>Play</strong>) button on the left.</li>
+              <li>Wait for the world to load. You should drop into a flat green field with the sun directly overhead and your coordinates visible in the top-left corner.</li>
+            </ol>
+          </div>
 
           <div class="key-fact">
             <strong>Why these settings:</strong> A flat world makes it easy to watch the Agent's path. Showing coordinates lets you confirm the Agent moved where you expected. Turning off mobs and weather removes distractions so you can focus on your code.
@@ -223,6 +321,70 @@
           <div class="check">
             <h4><i class="bi bi-check-circle-fill"></i> Check yourself</h4>
             <p>You're standing in a flat world, the sun is up, there are no zombies, and you can see coordinates (X, Y, Z numbers) in a corner of the screen. If something looks off, pause the game and open <strong>Settings &rarr; Game</strong> to fix it &mdash; or simply leave the world and create a new one.</p>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 3: Open MakeCode -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 3</span> Open MakeCode (Python Only)</h2>
+          <p>Every lesson uses <strong>MakeCode</strong> as the code editor. Open it once now so it's ready when you start the lesson.</p>
+
+          <!-- Phase A: open Code Builder -->
+          <div class="phase">
+            <h3>A. Open Code Builder and choose MakeCode</h3>
+            <ol>
+              <li>In the world, press <kbd>C</kbd> on your keyboard to open <strong>Code Builder</strong>.</li>
+              <li>If it asks which editor, choose <strong>MakeCode</strong>.</li>
+              <li>You should now see the MakeCode home screen with the tutorial picker, <strong>My Projects</strong>, and a green <strong>New Project</strong> button.</li>
+            </ol>
+            <figure class="step-figure">
+              <img src="../images/mc-makecode-home.png" alt="MakeCode home screen with tutorial chooser and New Project button" />
+              <figcaption>The MakeCode home screen. Ignore the tutorials &mdash; click the green <strong>New Project</strong> button.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Phase B: create empty project -->
+          <div class="phase">
+            <h3>B. Start a new project</h3>
+            <ol>
+              <li>Click <strong>New Project</strong>.</li>
+              <li>A <strong>Create a Project</strong> dialog opens with a blank name field.</li>
+            </ol>
+            <figure class="step-figure narrow">
+              <img src="../images/mc-create-project-empty.png" alt="MakeCode Create a Project dialog with blank name field" />
+              <figcaption>The Create a Project dialog when it first opens.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Phase C: name and choose Python Only -->
+          <div class="phase">
+            <h3>C. Name your project and pick Python Only</h3>
+            <ol>
+              <li>Type a project name. For this setup, use <code>lesson_0</code>. For other lessons use names like <code>lesson_1</code>, <code>lesson_2</code>, etc.</li>
+              <li>Click <strong>Code options</strong> (under the name field).</li>
+              <li>Change the dropdown to <strong>Python Only</strong>. <em>(All our lessons use Python.)</em></li>
+              <li>Click the green <strong>Create</strong> button.</li>
+            </ol>
+            <figure class="step-figure narrow">
+              <img src="../images/mc-create-project-python.png" alt="Create a Project dialog with name lesson_0 and Code options set to Python Only" />
+              <figcaption>Name it, expand <strong>Code options</strong>, set the dropdown to <strong>Python Only</strong>, then click Create.</figcaption>
+            </figure>
+          </div>
+
+          <!-- Phase D: editor open -->
+          <div class="phase">
+            <h3>D. You're in the editor</h3>
+            <p>MakeCode opens with an empty Python file on the right and category buttons (<strong>BASIC</strong>, <strong>PLAYER</strong>, <strong>BLOCKS</strong>, <strong>MOBS</strong>, <strong>AGENT</strong>, &hellip;) on the left. The green play button in the bottom-right runs your code in the Minecraft world.</p>
+            <figure class="step-figure">
+              <img src="../images/mc-makecode-editor.png" alt="MakeCode Python editor with category buttons on the left and an empty code area on the right" />
+              <figcaption>The MakeCode Python editor &mdash; this is where you'll write code in every lesson.</figcaption>
+            </figure>
+          </div>
+
+          <div class="key-fact">
+            <strong>Once per lesson:</strong> You only need to do Step 3 once per lesson &mdash; just give each project a different name (<code>lesson_1</code>, <code>lesson_2</code>, &hellip;) so you can find them later under <strong>My Projects</strong>.
           </div>
         </div>
 

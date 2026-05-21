@@ -354,6 +354,37 @@
       ol.steps > li { margin-bottom: 12px; line-height: 1.55; }
       ul.tight li { margin-bottom: 5px; }
 
+      .step-figure {
+        margin: 14px 0 4px;
+        text-align: center;
+      }
+      .step-figure img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      }
+      .step-figure figcaption {
+        font-size: 0.88rem;
+        color: #6c757d;
+        font-style: italic;
+        margin-top: 6px;
+      }
+      .step-figure.narrow img { max-width: 420px; }
+
+      .play-card {
+        background: #eaf3ff;
+        border: 1px solid #b6d4fe;
+        border-left: 4px solid #0a58ca;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 18px 0;
+      }
+      .play-card h3 { color: #0a58ca; margin: 0 0 8px 0; font-size: 1.05rem; }
+      .play-card ol { padding-left: 22px; margin: 8px 0 0 0; }
+      .play-card ol li { margin-bottom: 6px; line-height: 1.55; }
+
       .coord-table {
         width: 100%;
         border-collapse: collapse;
@@ -862,6 +893,28 @@ player.on_item_interacted(TRIDENT, trident_summon_aquarium)</pre>
             <li><strong><code class="inline">blocks.place()</code> for single blocks:</strong> bubble coral is placed one block at a time inside the loop. Use <code class="inline">place</code> for one-offs; use <code class="inline">fill</code> for regions.</li>
             <li><strong>The commented bug:</strong> the seagrass line is intentionally commented out &mdash; seagrass needs dirt under it. Real programs include notes like this to remember what to fix later.</li>
           </ul>
+
+          <div class="play-card">
+            <h3><i class="bi bi-hand-index-fill"></i> How to actually summon the aquarium (Trident 101)</h3>
+            <p>The program only runs when you <strong>use</strong> a trident &mdash; so first you need one in your hand. If you've never opened a Minecraft inventory before, follow these steps exactly:</p>
+            <ol>
+              <li>Run your code in MakeCode (green play button). Nothing will happen yet &mdash; the program is now <em>waiting</em> for you to use a trident.</li>
+              <li>Switch back to the Minecraft world.</li>
+              <li>Press the <kbd>E</kbd> key. This opens your <strong>inventory</strong>.</li>
+              <li>In the search bar at the top, type <code class="inline">trident</code>. A trident icon appears.</li>
+              <li>Click and drag the trident into one of the squares along the <strong>bottom row</strong> &mdash; that's your <em>hotbar</em>, the items you can hold.</li>
+              <li>Press <kbd>Esc</kbd> (or <kbd>E</kbd> again) to close the inventory.</li>
+              <li>Scroll your mouse wheel until the trident is selected in your hotbar (or press the number key matching its slot &mdash; <kbd>1</kbd> through <kbd>9</kbd>). You should now be <strong>holding</strong> the trident.</li>
+              <li><strong>Right-click</strong> the mouse to <em>use</em> the trident. The aquarium appears!</li>
+            </ol>
+            <figure class="step-figure narrow">
+              <img src="../images/mc-inventory-trident.png" alt="Minecraft inventory open with the search box showing 'trident' and the trident item displayed below" />
+              <figcaption>Inventory open (<kbd>E</kbd>), search box typed with <code>trident</code>, the trident item ready to drag into your hotbar.</figcaption>
+            </figure>
+            <div class="tip-fact" style="margin-top: 12px;">
+              <strong>Right-click does nothing?</strong> Make sure: (1) the trident is actually selected in your hotbar (the slot has a white border), (2) you ran the MakeCode program first, and (3) you're aiming at empty air or a block in front of you, not at the sky or out of bounds.
+            </div>
+          </div>
 
           <h3>Minimum requirements</h3>
           <ul class="tight">
