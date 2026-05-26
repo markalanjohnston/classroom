@@ -1,0 +1,1080 @@
+---
+---
+
+<!-- File: classroom/minecraft/lesson5/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Lesson 5 - Patterns, Functions &amp; the Castle Capstone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .lesson-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .lesson-header {
+        background: linear-gradient(135deg, #1f4e79 0%, #4a7c2f 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 28px 30px;
+        margin-bottom: 25px;
+      }
+      .lesson-header .lesson-tag {
+        display: inline-block;
+        background: rgba(255,255,255,0.18);
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        padding: 4px 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+      .lesson-header h1 { margin: 0 0 8px; font-size: 1.85rem; }
+      .lesson-header .subtitle { font-size: 1.05rem; opacity: 0.95; margin: 0; }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .eq-card {
+        background: #1f4e79;
+        color: #fff;
+        padding: 16px 22px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .eq-card .eq-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        opacity: 0.85;
+      }
+      .eq-card p { margin: 4px 0 0 0; font-size: 1.1rem; font-weight: 500; }
+
+      .goals-card {
+        background: #f1f6ec;
+        border-left: 4px solid #4a7c2f;
+        border-radius: 8px;
+        padding: 18px 22px;
+        margin-bottom: 25px;
+      }
+      .goals-card h2 { color: #2f5320; margin: 0 0 8px 0; font-size: 1.15rem; }
+      .goals-card ul { margin: 0; padding-left: 22px; }
+      .goals-card li { margin-bottom: 4px; line-height: 1.5; }
+
+      .setup-banner {
+        position: relative;
+        background: linear-gradient(135deg, #1f4e79 0%, #2d6499 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 26px 30px;
+        margin-bottom: 28px;
+        box-shadow: 0 10px 28px rgba(31, 78, 121, 0.35);
+      }
+      .setup-banner .setup-badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: #ffc107;
+        color: #14365a;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        padding: 5px 14px;
+        border-radius: 14px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22);
+        text-transform: uppercase;
+      }
+      .setup-banner h3 {
+        color: white;
+        margin: 0 0 10px 0;
+        font-size: 1.45rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .setup-banner p {
+        margin: 0 0 18px 0;
+        font-size: 1rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .setup-banner p strong { color: #ffd54a; }
+      .setup-banner .setup-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        color: #1f4e79;
+        font-weight: 700;
+        padding: 11px 22px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+      }
+      .setup-banner .setup-cta:hover {
+        background: #ffc107;
+        color: #14365a;
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+
+      .recap-card {
+        background: #fafaf6;
+        border: 1px solid #e0d9bc;
+        border-radius: 8px;
+        padding: 16px 22px;
+        margin-bottom: 25px;
+      }
+      .recap-card h3 {
+        color: #715c00;
+        margin: 0 0 8px 0;
+        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .recap-card .recap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .recap-card .recap-item {
+        background: white;
+        border: 1px solid #e9e3c4;
+        border-radius: 6px;
+        padding: 10px 12px;
+        font-size: 0.92rem;
+      }
+      .recap-card .recap-item strong {
+        display: block;
+        color: #1f4e79;
+        margin-bottom: 2px;
+        font-size: 0.95rem;
+      }
+
+      .step-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 26px 28px;
+        margin-bottom: 22px;
+        border: 1px solid #e9ecef;
+      }
+      .step-section h2 {
+        color: #1f4e79;
+        margin-bottom: 12px;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .step-section h3 { color: #495057; margin-top: 18px; margin-bottom: 10px; font-size: 1.1rem; }
+      .step-section p, .step-section li { line-height: 1.6; }
+
+      .step-tag {
+        display: inline-block;
+        background: #4a7c2f;
+        color: white;
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 12px;
+        margin-right: 8px;
+        letter-spacing: 0.5px;
+      }
+      .step-tag.setup { background: #1f4e79; }
+      .step-tag.warm-up { background: #6c757d; }
+      .step-tag.recap { background: #715c00; }
+      .step-tag.challenge { background: #d97706; }
+      .step-tag.submit { background: #b3261e; }
+
+      .vocab-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .vocab-item {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        padding: 12px 14px;
+      }
+      .vocab-item strong {
+        display: block;
+        color: #1f4e79;
+        margin-bottom: 4px;
+        font-size: 0.98rem;
+      }
+      .vocab-item span { font-size: 0.92rem; color: #495057; }
+
+      .key-fact {
+        background: #fff8e9;
+        border-left: 4px solid #ffc107;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .key-fact strong { color: #856404; }
+
+      .tip-fact {
+        background: #d1e7dd;
+        border-left: 4px solid #198754;
+        padding: 12px 18px;
+        margin: 14px 0;
+        border-radius: 4px;
+      }
+      .tip-fact strong { color: #0f5132; }
+
+      .step-back {
+        background: #fff5e1;
+        border-left: 4px solid #e69400;
+        border-radius: 6px;
+        padding: 10px 14px;
+        margin: 14px 0;
+        font-size: 0.94rem;
+      }
+      .step-back .step-back-icon { color: #b86000; margin-right: 4px; }
+      .step-back kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 1px 6px;
+        font-size: 0.85rem;
+      }
+
+      .check {
+        background: white;
+        border: 2px solid #cfe2ff;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 14px 0;
+      }
+      .check h4 {
+        margin: 0 0 6px 0;
+        font-size: 0.95rem;
+        color: #0a58ca;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .check p { margin: 0; font-size: 0.95rem; }
+
+      details.predict {
+        background: white;
+        border: 2px dashed #ffc107;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin: 12px 0;
+      }
+      details.predict summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #856404;
+      }
+      details.predict[open] summary { margin-bottom: 8px; }
+      details.predict .answer {
+        padding-top: 8px;
+        border-top: 1px solid #eee;
+        margin-top: 8px;
+        color: #2c3e50;
+      }
+
+      kbd {
+        background: #495057;
+        color: #fff;
+        border-radius: 3px;
+        padding: 2px 6px;
+        font-size: 0.85rem;
+      }
+
+      code.inline {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 0.92em;
+        font-family: 'Courier New', monospace;
+      }
+
+      .code-block {
+        background: #1e1e1e;
+        color: #e8e6e3;
+        padding: 16px 18px;
+        border-radius: 6px;
+        font-family: 'Courier New', Consolas, monospace;
+        font-size: 0.92rem;
+        margin: 12px 0;
+        overflow-x: auto;
+        white-space: pre;
+        line-height: 1.5;
+      }
+
+      .code-wrap { position: relative; }
+
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #4a7c2f;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .copy-btn:hover { background: #3d6526; }
+      .copy-btn.copied { background: #2a4719; }
+
+      ol.steps > li { margin-bottom: 12px; line-height: 1.55; }
+      ul.tight li { margin-bottom: 5px; }
+
+      .versions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 12px;
+        margin: 16px 0;
+      }
+      .versions .v-card {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 14px;
+      }
+      .versions .v-card h4 {
+        margin: 0 0 8px 0;
+        font-size: 0.98rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .versions .v-card .tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 10px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .versions .v-card.before { border-color: #f5d18a; }
+      .versions .v-card.before .tag { background: #fff3cd; color: #856404; }
+      .versions .v-card.after  { border-color: #a3cfbb; }
+      .versions .v-card.after  .tag { background: #d1e7dd; color: #146c43; }
+
+      .coord-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 12px 0;
+        font-size: 0.95rem;
+      }
+      .coord-table th {
+        background: #1f4e79;
+        color: white;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      .coord-table td {
+        padding: 8px 10px;
+        border-bottom: 1px solid #e9ecef;
+        background: white;
+      }
+      .coord-table td code {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 5px;
+        border-radius: 3px;
+      }
+
+      .challenge-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 12px;
+      }
+      .challenge-options .option {
+        background: white;
+        border: 1px solid #dee2e6;
+        border-left: 4px solid #d97706;
+        border-radius: 6px;
+        padding: 14px 16px;
+      }
+      .challenge-options .option h4 { margin: 0 0 6px 0; color: #d97706; font-size: 1rem; }
+      .challenge-options .option p { margin: 0; font-size: 0.92rem; color: #495057; }
+
+      .submit-card {
+        background: #fdebec;
+        border: 2px solid #f1aeb5;
+        border-radius: 10px;
+        padding: 24px 28px;
+        margin-top: 24px;
+      }
+      .submit-card h2 { color: #842029; margin-top: 0; }
+      .submit-card ol { padding-left: 22px; }
+      .submit-card ol li { margin-bottom: 8px; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Minecraft</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Lesson 5</span>
+      </nav>
+
+      <div class="lesson-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+
+        <div class="lesson-header">
+          <span class="lesson-tag">Lesson 5 &middot; Capstone</span>
+          <h1><i class="bi bi-bank2"></i> Patterns, Functions &amp; the Castle Capstone</h1>
+          <p class="subtitle">Use the loop counter as a coordinate, add math for round shapes, give your functions parameters &mdash; and combine them into a whole castle.</p>
+        </div>
+
+        <div class="eq-card">
+          <div class="eq-label">ESSENTIAL QUESTION</div>
+          <p>How can the loop counter become part of what you build, and how can small functions combine into something as complex as a castle?</p>
+        </div>
+
+        <div class="goals-card">
+          <h2><i class="bi bi-check2-square"></i> By the end of this lesson, I will...</h2>
+          <ul>
+            <li>Use the iteration variable <code class="inline">i</code> (and <code class="inline">j</code> in nested loops) <em>inside</em> the loop body to position blocks.</li>
+            <li>Use modulo (<code class="inline">%</code>) to make alternating patterns like checker boards.</li>
+            <li>Use <code class="inline">abs()</code>, <code class="inline">max()</code>, and the Pythagorean theorem to build pyramids and round structures.</li>
+            <li>Write a function that takes <strong>parameters</strong> &mdash; so you can call it at any position and size.</li>
+            <li>Combine several parameterized functions into one bigger build (a <strong>castle</strong>).</li>
+          </ul>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- World setup banner -->
+        <!-- ============================================================ -->
+        <div class="setup-banner">
+          <span class="setup-badge">Every Lesson</span>
+          <h3><i class="bi bi-arrow-clockwise"></i> Start Here First &mdash; Every Single Time</h3>
+          <p>Every Minecraft lesson begins with a brand-new world. <strong>Do not skip this.</strong> Open Lesson 0, follow the setup steps, then come back here and continue with Step 1.</p>
+          <a href="../lesson0/" class="setup-cta">
+            <i class="bi bi-arrow-right-circle-fill"></i>
+            Open Lesson 0 &mdash; World Setup
+          </a>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- Recap card -->
+        <!-- ============================================================ -->
+        <div class="recap-card">
+          <h3><i class="bi bi-bookmarks-fill"></i> What you already know</h3>
+          <p style="margin: 0;">Lesson 5 is a <strong>capstone</strong> &mdash; it pulls together everything from Lessons 1&ndash;4 and pushes it one step further.</p>
+          <div class="recap-grid">
+            <div class="recap-item"><strong>From Lesson 2</strong><code class="inline">for i in range(N):</code> repeats N times.</div>
+            <div class="recap-item"><strong>From Lesson 3</strong>The Builder, relative coords (<code class="inline">~</code>), <code class="inline">trace_path</code>, <code class="inline">mark</code>/<code class="inline">line</code>.</div>
+            <div class="recap-item"><strong>From Lesson 4</strong><code class="inline">blocks.fill()</code>, opposite corners, <code class="inline">mobs.spawn()</code>, <code class="inline">randpos()</code>.</div>
+            <div class="recap-item"><strong>New today</strong>Use <code class="inline">i</code> inside the loop. Use math for round shapes. Give functions <strong>parameters</strong>. Compose them into one big build.</div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 1: Warm-up — the loop variable was there all along -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag warm-up">STEP 1</span> Warm-up: The Loop Variable Was There All Along</h2>
+          <p>Look back at every <code class="inline">for</code> loop you've ever written in Lessons 2, 3, and 4. They all have a name right after <code class="inline">for</code> &mdash; usually <code class="inline">i</code>, <code class="inline">side</code>, or <code class="inline">step</code>. That name is called the <strong>iteration variable</strong>. It counts up by 1 every time the loop repeats.</p>
+
+          <p>Here's the catch: <em>you've almost never used it</em>. Look at this Lesson 2 code:</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="oldLoop">Copy</button>
+<pre class="code-block" id="oldLoop">for i in range(5):
+    agent.move(FORWARD, 1)
+    agent.place(DOWN)</pre>
+          </div>
+
+          <p>The variable <code class="inline">i</code> took the values <code class="inline">0, 1, 2, 3, 4</code> &mdash; and we ignored every single one of them. The loop just acted as a "do this 5 times" counter.</p>
+
+          <div class="key-fact">
+            <strong>Today's big idea:</strong> the iteration variable <code class="inline">i</code> can become part of what you build. If <code class="inline">i</code> goes <code class="inline">0, 1, 2, ..., 9</code>, you can use it as a coordinate, a height, a color index, or a piece of math. Every iteration looks different.
+          </div>
+
+          <h3>Today's vocabulary</h3>
+          <div class="vocab-grid">
+            <div class="vocab-item"><strong>Iteration variable</strong><span>The <code>i</code> in <code>for i in range(N)</code>. Counts <code>0, 1, ..., N-1</code>.</span></div>
+            <div class="vocab-item"><strong>Modulo (<code>%</code>)</strong><span>The remainder after division. <code>7 % 2 = 1</code>. Turns numbers into repeating patterns.</span></div>
+            <div class="vocab-item"><strong>Distance from center</strong><span>How far a block is from a chosen point &mdash; measured with <code>abs()</code> or the Pythagorean theorem.</span></div>
+            <div class="vocab-item"><strong>Parameter</strong><span>A value a function accepts when it's called. <code>def tower(cx, cz, h):</code> takes 3 parameters.</span></div>
+            <div class="vocab-item"><strong>Composition</strong><span>Calling functions from inside other functions to build something bigger.</span></div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 2: Open MakeCode -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 2</span> Open MakeCode (Python Only)</h2>
+          <p>You should already be in your fresh flat world from <a href="../lesson0/">Lesson 0</a>. If not, go back and complete Lesson 0 first.</p>
+          <ol class="steps">
+            <li>In Minecraft, press <kbd>C</kbd> to open <strong>Code Builder</strong>.</li>
+            <li>Choose <strong>MakeCode</strong>.</li>
+            <li>Click <strong>New Project</strong> and name it <code class="inline">Lesson 5 - Castle</code>.</li>
+            <li>Click <strong>Code options</strong>, then select <strong>Python Only</strong>, then click <strong>Create</strong>.</li>
+          </ol>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 3: Staircase — use i in a position -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 3</span> Use <code>i</code> in a Position &mdash; Build a Staircase</h2>
+          <p>The simplest way to use <code class="inline">i</code> is to put it directly inside <code class="inline">pos(...)</code>. Each iteration places a block at a different spot.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="stairs">Copy</button>
+<pre class="code-block" id="stairs">def stairs():
+    for i in range(10):
+        blocks.fill(STONE,
+                    pos(i, 0, 0),
+                    pos(i, i, 0),
+                    FillOperation.REPLACE)
+player.on_chat("stairs", stairs)</pre>
+          </div>
+
+          <h3>What's happening</h3>
+          <ul class="tight">
+            <li>Each pass through the loop has a different value of <code class="inline">i</code>.</li>
+            <li><code class="inline">pos(i, 0, 0)</code> &mdash; the <strong>bottom</strong> of the column. The <code class="inline">i</code> means the column slides one block east each iteration.</li>
+            <li><code class="inline">pos(i, i, 0)</code> &mdash; the <strong>top</strong> of the column. Because Y is <code class="inline">i</code>, the column gets <em>taller</em> as the loop goes.</li>
+            <li>Result: 10 columns side-by-side. The first is 1 block tall, the last is 10 blocks tall &mdash; a staircase.</li>
+          </ul>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: how many total stone blocks does this program place?</summary>
+            <div class="answer">
+              <p>The columns are 1, 2, 3, ..., 10 blocks tall. Add them up: <strong>1+2+3+&hellip;+10 = 55 blocks</strong>. The same loop placed dramatically different numbers of blocks per iteration &mdash; because <code class="inline">i</code> changed each time.</p>
+            </div>
+          </details>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> Press <kbd>T</kbd>, type <code class="inline">/tp ~ ~ ~10</code>, and press Enter to jump 10 blocks south. The stairs will rise to the east in front of you. Then chat <code class="inline">stairs</code>.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 4: Two loops, two variables -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 4</span> Two Loops, Two Variables: <code>i</code> AND <code>j</code></h2>
+          <p>Nested loops were introduced in Lesson 2. Until now you ignored both variables. Today both of them <em>do</em> something.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="steps">Copy</button>
+<pre class="code-block" id="steps">def steps():
+    for i in range(6):
+        for j in range(6):
+            height = i + j + 1
+            blocks.fill(STONE_BRICKS,
+                        pos(i * 2, 0, j * 2),
+                        pos(i * 2, height, j * 2),
+                        FillOperation.REPLACE)
+player.on_chat("steps", steps)</pre>
+          </div>
+
+          <h3>How the variables work together</h3>
+          <ul class="tight">
+            <li><code class="inline">i</code> controls one axis (east/west) &mdash; <code class="inline">i * 2</code> spaces the pillars 2 blocks apart.</li>
+            <li><code class="inline">j</code> controls another axis (north/south) &mdash; same spacing.</li>
+            <li><code class="inline">height = i + j + 1</code> &mdash; the pillar at <code class="inline">i=0, j=0</code> is 1 block tall. The pillar at <code class="inline">i=5, j=5</code> is 11 blocks tall.</li>
+            <li>Result: a 6&times;6 field of pillars rising diagonally from one corner to the opposite. It looks like a stadium &mdash; or a video-game victory podium.</li>
+          </ul>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: which pillar is tallest? Which is shortest?</summary>
+            <div class="answer">
+              <p>Shortest: <code class="inline">i=0, j=0</code> &rarr; <code class="inline">0 + 0 + 1 = 1</code> block.</p>
+              <p class="mb-0">Tallest: <code class="inline">i=5, j=5</code> &rarr; <code class="inline">5 + 5 + 1 = 11</code> blocks. The pillars rise diagonally because the height depends on <strong>both</strong> variables.</p>
+            </div>
+          </details>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> <kbd>T</kbd>, <code class="inline">/tp ~ ~ ~10</code>, Enter. Then chat <code class="inline">steps</code>.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 5: Patterns with modulo % -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 5</span> Patterns with Modulo <code>%</code></h2>
+          <p>The <code class="inline">%</code> operator is called <strong>modulo</strong>. It gives the <em>remainder</em> after dividing.</p>
+
+          <table class="coord-table">
+            <thead>
+              <tr><th style="width: 30%;">Expression</th><th>Result</th><th>What it's useful for</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>0 % 2</code></td><td><code>0</code></td><td>Even numbers give <code>0</code>.</td></tr>
+              <tr><td><code>1 % 2</code></td><td><code>1</code></td><td>Odd numbers give <code>1</code>.</td></tr>
+              <tr><td><code>5 % 2</code></td><td><code>1</code></td><td>Still odd &rarr; still <code>1</code>.</td></tr>
+              <tr><td><code>(i + j) % 2</code></td><td><code>0</code> or <code>1</code></td><td>Toggles every block &mdash; <strong>checkerboard</strong>.</td></tr>
+              <tr><td><code>i % 4</code></td><td><code>0, 1, 2, 3, 0, 1, &hellip;</code></td><td>Cycles through 4 values &mdash; <strong>stripes of 4 colors</strong>.</td></tr>
+            </tbody>
+          </table>
+
+          <p>Use modulo to pick a color from a <strong>list</strong>:</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="checker">Copy</button>
+<pre class="code-block" id="checker">def checker():
+    colors = [WOOL, OBSIDIAN, STONE, REDSTONE_BLOCK]
+    for i in range(16):
+        for j in range(16):
+            color = colors[(i % 2) * 2 + (j % 2)]
+            blocks.fill(color,
+                        pos(i, 0, j),
+                        pos(i, 0, j),
+                        FillOperation.REPLACE)
+player.on_chat("checker", checker)</pre>
+          </div>
+
+          <h3>Reading the color picker</h3>
+          <ul class="tight">
+            <li><code class="inline">colors</code> is a <strong>list</strong> &mdash; an ordered collection of values. Index 0 is <code class="inline">WOOL</code>, index 1 is <code class="inline">OBSIDIAN</code>, etc.</li>
+            <li><code class="inline">(i % 2) * 2 + (j % 2)</code> &mdash; combines the two modulo results into a single number 0&ndash;3.</li>
+            <li>That number indexes the list &mdash; so each cell gets one of four colors based on whether <code class="inline">i</code> and <code class="inline">j</code> are even or odd.</li>
+          </ul>
+
+          <div class="tip-fact">
+            <strong>Why lists beat nested if/else.</strong> Without lists you'd need four <code class="inline">if/elif/else</code> branches to choose a color. With a list and modulo arithmetic, the whole choice is one short line. Lists shine when you want to <em>index into</em> a fixed set of options.
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: what happens if you change <code>colors</code> to just two entries like <code>[WOOL, OBSIDIAN]</code> and change the index to <code>(i + j) % 2</code>?</summary>
+            <div class="answer">
+              <p>You get a classic <strong>two-color checkerboard</strong>. <code class="inline">(i + j) % 2</code> is <code class="inline">0</code> when both are even or both are odd, and <code class="inline">1</code> otherwise &mdash; exactly the checker pattern. Try it!</p>
+            </div>
+          </details>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 6: Distance math — pyramids and cones -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 6</span> Distance Math: Pyramids and Cones</h2>
+          <p>So far <code class="inline">i</code> and <code class="inline">j</code> have been straight coordinates. Now let's measure something more interesting: <strong>distance from the center</strong> of the grid. Two ways to measure distance give two completely different shapes.</p>
+
+          <h3>Diamond pyramid &mdash; <code>abs()</code> and <code>max()</code></h3>
+          <p>The function <code class="inline">abs(x)</code> gives the absolute value &mdash; how far <code class="inline">x</code> is from zero. The function <code class="inline">max(a, b)</code> gives whichever number is bigger.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="pyramidDemo">Copy</button>
+<pre class="code-block" id="pyramidDemo">def pyramid_demo():
+    SIZE = 32
+    CENTER = SIZE // 2
+    for i in range(SIZE):
+        for j in range(SIZE):
+            height = CENTER - max(abs(i - CENTER), abs(j - CENTER))
+            if height > 0:
+                blocks.fill(SANDSTONE,
+                            pos(i, 0, j),
+                            pos(i, height, j),
+                            FillOperation.REPLACE)
+player.on_chat("pyramid_demo", pyramid_demo)</pre>
+          </div>
+
+          <ul class="tight">
+            <li><code class="inline">abs(i - CENTER)</code> &mdash; how far this column is from center along the X axis.</li>
+            <li><code class="inline">max(abs(i - CENTER), abs(j - CENTER))</code> &mdash; the larger of the two distances. Pillars on the edge of the grid have a big value; pillars near the center have a small value.</li>
+            <li><code class="inline">height = CENTER - max(&hellip;)</code> &mdash; <em>flips</em> it. Center pillars are tall; edge pillars are short or zero.</li>
+            <li>Result: a <strong>step pyramid</strong> &mdash; tallest at the middle, shortest at the edges, with a diamond outline.</li>
+          </ul>
+
+          <h3>Round volcano &mdash; the Pythagorean theorem</h3>
+          <p>For a <em>round</em> shape instead of a diamond, measure the real Euclidean distance using the Pythagorean theorem: <code class="inline">distance = sqrt(dx&sup2; + dz&sup2;)</code>.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="volcanoDemo">Copy</button>
+<pre class="code-block" id="volcanoDemo">def volcano_demo():
+    SIZE = 32
+    CENTER = SIZE // 2
+    for i in range(SIZE):
+        for j in range(SIZE):
+            dx = i - CENTER
+            dz = j - CENTER
+            dist = (dx * dx + dz * dz) ** 0.5
+            height = int(CENTER - dist)
+            if height > 0:
+                blocks.fill(STONE,
+                            pos(i, 0, j),
+                            pos(i, height, j),
+                            FillOperation.REPLACE)
+player.on_chat("volcano_demo", volcano_demo)</pre>
+          </div>
+
+          <ul class="tight">
+            <li><code class="inline">dx * dx + dz * dz</code> &mdash; the sum of squares (no built-in square function needed; just multiply).</li>
+            <li><code class="inline">** 0.5</code> &mdash; raise to the half power, which is the same as <strong>square root</strong>.</li>
+            <li><code class="inline">int(&hellip;)</code> &mdash; convert the decimal distance to a whole-number height (you can't place half a block).</li>
+            <li>Result: a <strong>smooth round cone</strong>. Same idea as the pyramid, but using true distance instead of max-of-two distances gives a circle instead of a diamond.</li>
+          </ul>
+
+          <div class="key-fact">
+            <strong>The same loop builds two completely different shapes.</strong> The only difference is how you measure distance. Diamond uses <code class="inline">max(abs, abs)</code>; circle uses <code class="inline">sqrt(dx&sup2; + dz&sup2;)</code>. Pick the math &mdash; pick the shape.
+          </div>
+
+          <h3>Conditional placement &mdash; only build <em>inside</em> a circle</h3>
+          <p>Distance math doesn't have to control <em>how tall</em> a column is. It can also decide <em>whether to build at all</em>. Here's a flat round platform: build only where the distance is less than a chosen radius.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="platform">Copy</button>
+<pre class="code-block" id="platform">def platform():
+    SIZE = 32
+    CENTER = SIZE // 2
+    RADIUS = 12
+    for i in range(SIZE):
+        for j in range(SIZE):
+            dx = i - CENTER
+            dz = j - CENTER
+            if dx * dx + dz * dz <= RADIUS * RADIUS:
+                blocks.place(GOLD_BLOCK, pos(i, 0, j))
+player.on_chat("platform", platform)</pre>
+          </div>
+
+          <div class="tip-fact">
+            <strong>Skipping the square root.</strong> Notice we compare <code class="inline">dx*dx + dz*dz</code> against <code class="inline">RADIUS*RADIUS</code> &mdash; we never actually compute the square root. Squaring both sides of <code class="inline">distance &lt; RADIUS</code> gives the same answer, faster. Small optimization, but a real one.
+          </div>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> Each of these builds is 32 blocks wide. <kbd>T</kbd>, <code class="inline">/tp ~ ~ ~10</code>, Enter before running each chat command.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 7: Functions with parameters -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 7</span> Functions with <strong>Parameters</strong></h2>
+          <p>Look at the three programs in Step 6. They're almost identical &mdash; same <code class="inline">SIZE</code>, same <code class="inline">CENTER</code>, same outer loop. The only differences are the math inside and the block type. That's a strong hint that the code wants to be <em>one function</em> you can call many different ways.</p>
+
+          <p>This is the most important new idea in this lesson: a function can take <strong>parameters</strong> &mdash; values you pass in when you call it.</p>
+
+          <div class="versions">
+            <div class="v-card before">
+              <h4><span class="tag">Before</span> Hard-coded</h4>
+<pre class="code-block" style="margin: 0;">def round_tower_v1():
+    CENTER = 12
+    RADIUS = 5
+    HEIGHT = 14
+    for di in range(-RADIUS, RADIUS + 1):
+        for dj in range(-RADIUS, RADIUS + 1):
+            d2 = di * di + dj * dj
+            if d2 &lt;= RADIUS * RADIUS:
+                blocks.fill(STONE_BRICKS,
+                  pos(CENTER + di, 0, CENTER + dj),
+                  pos(CENTER + di, HEIGHT, CENTER + dj),
+                  FillOperation.REPLACE)</pre>
+              <p style="margin: 8px 0 0 0; font-size: 0.9rem;">Always builds at the same spot, same size. Useful once, then useless.</p>
+            </div>
+            <div class="v-card after">
+              <h4><span class="tag">After</span> Parameterized</h4>
+<pre class="code-block" style="margin: 0;">def round_tower(cx, cz, radius, height):
+    for di in range(-radius, radius + 1):
+        for dj in range(-radius, radius + 1):
+            d2 = di * di + dj * dj
+            if d2 &lt;= radius * radius:
+                blocks.fill(STONE_BRICKS,
+                  pos(cx + di, 0, cz + dj),
+                  pos(cx + di, height, cz + dj),
+                  FillOperation.REPLACE)</pre>
+              <p style="margin: 8px 0 0 0; font-size: 0.9rem;">Works <em>anywhere</em> at <em>any size</em>. Reusable forever.</p>
+            </div>
+          </div>
+
+          <h3>What changed</h3>
+          <ul class="tight">
+            <li>The constants <code class="inline">CENTER</code>, <code class="inline">RADIUS</code>, <code class="inline">HEIGHT</code> became <strong>parameters</strong>: <code class="inline">cx, cz, radius, height</code>.</li>
+            <li>Inside the loop, <code class="inline">pos(CENTER + di, ...)</code> became <code class="inline">pos(cx + di, ...)</code>. The function uses whatever <code class="inline">cx</code> the caller passed.</li>
+            <li>To <em>call</em> it, you supply values: <code class="inline">round_tower(20, 20, 4, 10)</code> &mdash; tower at (20, 20), radius 4, height 10.</li>
+          </ul>
+
+          <h3>Two towers from one function</h3>
+          <p>Now you can call the same function twice, with different parameters, and get two different towers:</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="twoTowers">Copy</button>
+<pre class="code-block" id="twoTowers">def round_tower(cx, cz, radius, height):
+    for di in range(-radius, radius + 1):
+        for dj in range(-radius, radius + 1):
+            d2 = di * di + dj * dj
+            if d2 &lt;= radius * radius:
+                blocks.fill(STONE_BRICKS,
+                            pos(cx + di, 0, cz + dj),
+                            pos(cx + di, height, cz + dj),
+                            FillOperation.REPLACE)
+
+def two_towers():
+    round_tower(10, 10, 4, 8)    # short, fat
+    round_tower(30, 10, 3, 14)   # tall, skinny
+player.on_chat("two_towers", two_towers)</pre>
+          </div>
+
+          <div class="key-fact">
+            <strong>One function, many builds.</strong> Without parameters, every variation needed its own copy-pasted function. With parameters, one function definition handles every tower in your world &mdash; small, big, near, far. This is the most important programming skill in today's lesson.
+          </div>
+
+          <h3>About the wrapper trick</h3>
+          <p>You may have noticed that <code class="inline">player.on_chat(...)</code> expects a function that takes <em>no arguments</em>. But our new <code class="inline">round_tower</code> takes four. So we make a tiny <strong>wrapper function</strong> &mdash; <code class="inline">two_towers</code> above &mdash; that takes no arguments, but calls the real function with the values we want. The wrapper is the chat handler; the real work happens in <code class="inline">round_tower</code>.</p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- STEP 8: Capstone — castle = moat + wall + tower + dome -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag">STEP 8</span> Capstone: Build a Castle by <strong>Composing Functions</strong></h2>
+          <p>Once your functions take a center <code class="inline">(cx, cz)</code>, something magical happens: you can call <em>several</em> of them at the <em>same center</em>, and they line up automatically. That's how this castle is built &mdash; four small functions, one shared center.</p>
+
+          <p>Here are the four helpers. Read them carefully &mdash; each one is just a familiar pattern with parameters.</p>
+
+          <h3>Helper 1 &mdash; the moat (water ring)</h3>
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="moatFn">Copy</button>
+<pre class="code-block" id="moatFn">def moat(cx, cz, inner, outer):
+    for di in range(-outer, outer + 1):
+        for dj in range(-outer, outer + 1):
+            d2 = di * di + dj * dj
+            if inner * inner &lt;= d2 &lt;= outer * outer:
+                blocks.fill(WATER,
+                            pos(cx + di, -1, cz + dj),
+                            pos(cx + di, -1, cz + dj),
+                            FillOperation.REPLACE)</pre>
+          </div>
+          <p>Two circle tests at once: <em>inside the outer</em> circle AND <em>outside the inner</em> one. The water sits 1 block below the surface.</p>
+
+          <h3>Helper 2 &mdash; the castle wall with crenellations</h3>
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="wallFn">Copy</button>
+<pre class="code-block" id="wallFn">def castle_wall(cx, cz, half_size, height):
+    for di in range(-half_size, half_size + 1):
+        for dj in range(-half_size, half_size + 1):
+            on_edge = (di == -half_size or di == half_size or
+                       dj == -half_size or dj == half_size)
+            if on_edge:
+                if (di + dj) % 2 == 0:
+                    h = height
+                else:
+                    h = height - 2
+                blocks.fill(STONE_BRICKS,
+                            pos(cx + di, 0, cz + dj),
+                            pos(cx + di, h, cz + dj),
+                            FillOperation.REPLACE)</pre>
+          </div>
+          <p>Only builds on the <strong>perimeter</strong> (the <code class="inline">on_edge</code> test). Modulo (<code class="inline">% 2</code>) alternates between full-height pillars and shorter ones &mdash; the medieval pattern called <strong>crenellations</strong>.</p>
+
+          <h3>Helper 3 &mdash; the hollow round tower (keep)</h3>
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="towerFn">Copy</button>
+<pre class="code-block" id="towerFn">def round_tower(cx, cz, radius, height, material, hollow):
+    inner_r = radius - 1
+    for di in range(-radius, radius + 1):
+        for dj in range(-radius, radius + 1):
+            d2 = di * di + dj * dj
+            in_outer = d2 &lt;= radius * radius
+            on_ring  = d2 &gt;= inner_r * inner_r
+            if in_outer and (not hollow or on_ring):
+                blocks.fill(material,
+                            pos(cx + di, 0, cz + dj),
+                            pos(cx + di, height, cz + dj),
+                            FillOperation.REPLACE)</pre>
+          </div>
+          <p>Two circle tests again: inside the outer circle and (if <code class="inline">hollow</code>) outside the inner one. That leaves only the outer ring &mdash; a tower you can walk inside.</p>
+
+          <h3>Helper 4 &mdash; the dome roof</h3>
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="domeFn">Copy</button>
+<pre class="code-block" id="domeFn">def dome(cx, cz, radius, base_y, material):
+    for di in range(-radius, radius + 1):
+        for dj in range(-radius, radius + 1):
+            d2 = di * di + dj * dj
+            if d2 &lt;= radius * radius:
+                height = int((radius * radius - d2) ** 0.5)
+                blocks.fill(material,
+                            pos(cx + di, base_y, cz + dj),
+                            pos(cx + di, base_y + height, cz + dj),
+                            FillOperation.REPLACE)</pre>
+          </div>
+          <p>The Pythagorean theorem in 3D &mdash; the height of each column is what's left after subtracting <code class="inline">dx&sup2; + dz&sup2;</code> from <code class="inline">radius&sup2;</code>. Building from <code class="inline">base_y</code> up gives a hemisphere sitting at any height. We'll start it at the top of the keep.</p>
+
+          <h3>The capstone: assemble the castle</h3>
+          <p>Now look at the payoff. The whole castle is just four function calls &mdash; all at the same <code class="inline">(CX, CZ)</code>.</p>
+
+          <div class="code-wrap">
+            <button class="copy-btn" data-target="castleFn">Copy</button>
+<pre class="code-block" id="castleFn">def castle():
+    CX = 30
+    CZ = 0
+    # Moat - 4-block-wide water ring, just outside the wall corners
+    moat(CX, CZ, 18, 22)
+    # Outer wall - 24x24 square, 6 tall, crenellated
+    castle_wall(CX, CZ, 12, 6)
+    # Central keep - hollow stone tower, 14 tall
+    round_tower(CX, CZ, 5, 14, STONE_BRICKS, True)
+    # Quartz dome roof sitting on top of the keep
+    dome(CX, CZ, 5, 14, WOOL)
+    player.say("CASTLE COMPLETE :)")
+player.on_chat("castle", castle)</pre>
+          </div>
+
+          <div class="key-fact">
+            <strong>This is composition.</strong> Each helper is small and does one thing. The castle function calls four of them at one shared center, and a coordinated build appears. To move the entire castle to a different spot, change only <code class="inline">CX</code> and <code class="inline">CZ</code>. To make it bigger, change the radii together. The "castle" is just a recipe of helper calls.
+          </div>
+
+          <details class="predict">
+            <summary><i class="bi bi-question-circle-fill"></i> Predict: what changes if you swap the <code>moat</code> call for <code>moat(CX, CZ, 22, 26)</code>?</summary>
+            <div class="answer">
+              <p>The moat moves <strong>further out</strong> from the castle. The inner edge goes from radius 18 to radius 22, and the outer edge from 22 to 26. There's now a 4-block strip of dry ground between the wall and the water &mdash; like a courtyard outside the walls.</p>
+            </div>
+          </details>
+
+          <div class="step-back">
+            <strong><i class="bi bi-arrow-bar-right step-back-icon"></i>Step back first.</strong> The castle is centered 30 blocks east of you. <kbd>T</kbd>, <code class="inline">/tp ~ ~ ~10</code>, Enter, then chat <code class="inline">castle</code>. Walk around it. Climb the wall. Stand inside the keep and look up at the dome.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- CHALLENGE -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><span class="step-tag challenge">CHALLENGE</span> Compose Your Own Build</h2>
+          <p>Make an <strong>original</strong> program that uses at least <strong>two parameterized helpers</strong> from today and calls them together at a shared center. Pick an option below or invent your own.</p>
+
+          <div class="challenge-options">
+            <div class="option">
+              <h4>Option A &mdash; Twin-Tower Fortress</h4>
+              <p>Build a <code class="inline">castle_wall</code> with a <strong>round_tower</strong> at each of the four corners. Each corner tower should be taller than the walls. Bonus: top each tower with a <code class="inline">dome</code>.</p>
+            </div>
+            <div class="option">
+              <h4>Option B &mdash; Volcano Island</h4>
+              <p>Use <code class="inline">moat</code> as the ocean around your "island," then put a <code class="inline">volcano</code> in the middle. Bonus: add the lava crater from the advanced examples file.</p>
+            </div>
+            <div class="option">
+              <h4>Option C &mdash; Temple Complex</h4>
+              <p>A central <code class="inline">pyramid</code>, four <code class="inline">round_tower</code> obelisks around it, and a circular path or moat surrounding the whole thing. Vary the sandstone, gold, and stone materials.</p>
+            </div>
+            <div class="option">
+              <h4>Option D &mdash; Custom Castle</h4>
+              <p>Start from the castle in Step 8 and change it: bigger walls, different dome material, multiple keeps, a second concentric wall, mobs spawned inside&hellip; whatever you can dream up.</p>
+            </div>
+          </div>
+
+          <h3>Minimum requirements</h3>
+          <ul class="tight">
+            <li>Your program starts with a chat command (<code class="inline">player.on_chat</code>).</li>
+            <li>You define at least <strong>two helper functions with parameters</strong>.</li>
+            <li>You call each helper at least once. At least two helpers share a center.</li>
+            <li>At least one helper uses <code class="inline">i</code> or <code class="inline">j</code> as a coordinate or in a height calculation.</li>
+            <li>At least one helper uses modulo (<code class="inline">%</code>) <em>or</em> distance math (<code class="inline">abs/max</code> or Pythagorean).</li>
+            <li>Your build covers at least a 20&times;20 area or is 10+ blocks tall.</li>
+          </ul>
+
+          <h3>Stretch goals</h3>
+          <ul class="tight">
+            <li>Use a <strong>list</strong> indexed by modulo to vary block materials across the build.</li>
+            <li>Use a <code class="inline">for</code> loop in your chat command to call a helper <em>multiple times</em> at evenly spaced positions.</li>
+            <li>Add <code class="inline">mobs.spawn()</code> inside your structure (Lesson 4 callback).</li>
+            <li>Combine <strong>three or more</strong> helpers at one center.</li>
+            <li>Add <code class="inline">#</code> comments above each helper explaining what it does and what its parameters mean.</li>
+          </ul>
+
+          <div class="tip-fact">
+            <strong>Don't write code from scratch &mdash; remix.</strong> Copy the helpers from Step 8 into your program. Tweak the numbers. Add a new helper of your own. The point of parameterized functions is that you don't rewrite the same shape twice; you call it twice with different arguments.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SUBMIT -->
+        <!-- ============================================================ -->
+        <div class="submit-card">
+          <h2><span class="step-tag submit">SUBMIT</span> Turn In Your Work</h2>
+          <p>This is the capstone &mdash; the reflection is longer than usual. Submit <strong>three</strong> items to the Schoology assignment:</p>
+          <ol>
+            <li><strong>Screenshot of your code.</strong> The screenshot must include the <code class="inline">def</code> line of at least two of your helper functions <em>and</em> the chat-command function that calls them.</li>
+            <li><strong>Screenshot of the result in Minecraft</strong> &mdash; the full build, ideally with you standing in/on it for scale.</li>
+            <li><strong>Written reflection.</strong> Answer all five in 1&ndash;2 sentences each:
+              <ul>
+                <li>What did your program build, and which helpers did you compose?</li>
+                <li>Name one place in your code where the <em>iteration variable</em> (<code class="inline">i</code> or <code class="inline">j</code>) was used as a coordinate or in math &mdash; not just as a counter.</li>
+                <li>Did you use modulo, distance math, or both? What pattern or shape did the math create?</li>
+                <li>Pick one of your helper functions and explain its parameters &mdash; what does each one control?</li>
+                <li>If a classmate wanted to move your whole build to a new spot, what would they have to change? (Hopefully a small answer.)</li>
+              </ul>
+            </li>
+          </ol>
+
+          <div class="key-fact" style="background: #fde9ec; border-color: #dc3545;">
+            <strong style="color: #842029;">Capstone note:</strong> This is the lesson where the reflection matters most. You're not just building a thing &mdash; you're showing that you understand <em>why</em> parameterized helpers let you build big things from small pieces.
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DONE -->
+        <!-- ============================================================ -->
+        <div class="step-section">
+          <h2><i class="bi bi-flag-fill"></i> When You're Done</h2>
+          <ul class="tight">
+            <li>Trade computers and run a classmate's program. Try changing only the <code class="inline">CX, CZ</code> values &mdash; did the whole build move cleanly?</li>
+            <li>Open the advanced examples file your teacher shared &mdash; <code class="inline">lesson5_advanced.py</code> &mdash; for more helpers (<code class="inline">volcano_lava</code>, <code class="inline">spiral</code> staircase using trig, <code class="inline">village</code> of houses, <code class="inline">sponge</code> 3D pattern).</li>
+            <li>Add a <code class="inline">spawn_castle_guards()</code> helper that uses <code class="inline">mobs.spawn()</code> inside a parameterized region (Lesson 4 callback).</li>
+            <li>Look up <code class="inline">blocks.fill</code> with <code class="inline">FillOperation.OUTLINE</code> &mdash; can you rewrite <code class="inline">castle_wall</code> in two lines using one big fill?</li>
+          </ul>
+        </div>
+
+        <a href="../" class="back-button mt-4"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.dataset.target);
+          if (!target) return;
+          navigator.clipboard.writeText(target.textContent).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 1500);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
