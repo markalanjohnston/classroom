@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minecraft Lesson 5 - Patterns, Functions &amp; the Castle Capstone</title>
+    <title>Minecraft Lesson 5 - Patterns, Functions &amp; the Castle</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
@@ -454,8 +454,8 @@
         <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Minecraft Lessons</a>
 
         <div class="lesson-header">
-          <span class="lesson-tag">Lesson 5 &middot; Capstone</span>
-          <h1><i class="bi bi-bank2"></i> Patterns, Functions &amp; the Castle Capstone</h1>
+          <span class="lesson-tag">Lesson 5</span>
+          <h1><i class="bi bi-bank2"></i> Patterns, Functions &amp; the Castle</h1>
           <p class="subtitle">Use the loop counter as a coordinate, add math for round shapes, give your functions parameters &mdash; and combine them into a whole castle.</p>
         </div>
 
@@ -493,7 +493,7 @@
         <!-- ============================================================ -->
         <div class="recap-card">
           <h3><i class="bi bi-bookmarks-fill"></i> What you already know</h3>
-          <p style="margin: 0;">Lesson 5 is a <strong>capstone</strong> &mdash; it pulls together everything from Lessons 1&ndash;4 and pushes it one step further.</p>
+          <p style="margin: 0;">Lesson 5 is the <strong>final lesson of the unit</strong> &mdash; it pulls together everything from Lessons 1&ndash;4 and pushes it one step further.</p>
           <div class="recap-grid">
             <div class="recap-item"><strong>From Lesson 2</strong><code class="inline">for i in range(N):</code> repeats N times.</div>
             <div class="recap-item"><strong>From Lesson 3</strong>The Builder, relative coords (<code class="inline">~</code>), <code class="inline">trace_path</code>, <code class="inline">mark</code>/<code class="inline">line</code>.</div>
@@ -853,10 +853,10 @@ player.on_chat("two_towers", two_towers)</pre>
         </div>
 
         <!-- ============================================================ -->
-        <!-- STEP 8: Capstone — castle = moat + wall + tower + dome -->
+        <!-- STEP 8: Putting it all together — castle = moat + wall + tower + dome -->
         <!-- ============================================================ -->
         <div class="step-section">
-          <h2><span class="step-tag">STEP 8</span> Capstone: Build a Castle by <strong>Composing Functions</strong></h2>
+          <h2><span class="step-tag">STEP 8</span> Build a Castle by <strong>Composing Functions</strong></h2>
           <p>Once your functions take a center <code class="inline">(cx, cz)</code>, something magical happens: you can call <em>several</em> of them at the <em>same center</em>, and they line up automatically. That's how this castle is built &mdash; four small functions, one shared center.</p>
 
           <p>Here are the four helpers. Read them carefully &mdash; each one is just a familiar pattern with parameters.</p>
@@ -930,7 +930,7 @@ player.on_chat("two_towers", two_towers)</pre>
           </div>
           <p>The Pythagorean theorem in 3D &mdash; the height of each column is what's left after subtracting <code class="inline">dx&sup2; + dz&sup2;</code> from <code class="inline">radius&sup2;</code>. Building from <code class="inline">base_y</code> up gives a hemisphere sitting at any height. We'll start it at the top of the keep.</p>
 
-          <h3>The capstone: assemble the castle</h3>
+          <h3>Putting it all together: assemble the castle</h3>
           <p>Now look at the payoff. The whole castle is just four function calls &mdash; all at the same <code class="inline">(CX, CZ)</code>.</p>
 
           <div class="code-wrap">
@@ -1021,7 +1021,7 @@ player.on_chat("castle", castle)</pre>
         <!-- ============================================================ -->
         <div class="submit-card">
           <h2><span class="step-tag submit">SUBMIT</span> Turn In Your Work</h2>
-          <p>This is the capstone &mdash; the reflection is longer than usual. Submit <strong>three</strong> items to the Schoology assignment:</p>
+          <p>This lesson's reflection is longer than usual. Submit <strong>three</strong> items to the Schoology assignment:</p>
           <ol>
             <li><strong>Screenshot of your code.</strong> The screenshot must include the <code class="inline">def</code> line of at least two of your helper functions <em>and</em> the chat-command function that calls them.</li>
             <li><strong>Screenshot of the result in Minecraft</strong> &mdash; the full build, ideally with you standing in/on it for scale.</li>
@@ -1037,7 +1037,7 @@ player.on_chat("castle", castle)</pre>
           </ol>
 
           <div class="key-fact" style="background: #fde9ec; border-color: #dc3545;">
-            <strong style="color: #842029;">Capstone note:</strong> This is the lesson where the reflection matters most. You're not just building a thing &mdash; you're showing that you understand <em>why</em> parameterized helpers let you build big things from small pieces.
+            <strong style="color: #842029;">Note:</strong> This is the lesson where the reflection matters most. You're not just building a thing &mdash; you're showing that you understand <em>why</em> parameterized helpers let you build big things from small pieces.
           </div>
         </div>
 
