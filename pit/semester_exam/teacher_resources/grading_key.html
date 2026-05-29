@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PIT Semester Exam &mdash; Grading Key</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; max-width: 1100px; margin: 0 auto; padding: 24px 20px 380px; line-height: 1.5; color: #212529; background: #f8f9fa; }
+  h1 { color: #dc3545; border-bottom: 2px solid #dc3545; padding-bottom: 8px; margin-bottom: 6px; }
+  .intro { color: #495057; margin-top: 0; }
+
+  .section { background: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 18px 22px; margin: 18px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .section h2 { margin: 0 0 4px 0; color: #721c24; font-size: 1.2em; }
+  .points-badge { display: inline-block; background: #fff3cd; border: 1px solid #ffeeba; color: #664d03; font-size: 0.78em; padding: 2px 10px; border-radius: 12px; font-weight: bold; margin-left: 8px; vertical-align: middle; }
+
+  .placeholder { background: #f8f9fa; border: 2px dashed #adb5bd; border-radius: 8px; padding: 16px 18px; margin: 12px 0; color: #495057; }
+  .placeholder .ph-label { color: #6c757d; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: bold; }
+  .placeholder h3 { margin: 0 0 8px 0; color: #212529; font-size: 1em; }
+  .placeholder ul { margin: 6px 0 0 0; padding-left: 20px; }
+  .placeholder li { margin: 3px 0; }
+  .placeholder code { background: #e9ecef; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+
+  .observation { background: #fff8e9; border-left: 4px solid #ffc107; border-radius: 6px; padding: 14px 18px; margin: 12px 0; }
+  .observation .ph-label { color: #856404; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: bold; }
+  .observation ul { margin: 6px 0 0 0; padding-left: 20px; }
+
+  .verify-callout { background: #f8d7da; border-left: 4px solid #dc3545; border-radius: 6px; padding: 10px 14px; margin: 10px 0; font-size: 0.9em; color: #721c24; }
+  .verify-callout strong { color: #721c24; }
+
+  .score-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 14px; }
+  .score-row .label { font-weight: bold; color: #495057; margin-right: 8px; font-size: 0.9em; }
+  .score-btn { min-width: 44px; padding: 8px 12px; border: 1px solid #ced4da; background: #fff; border-radius: 6px; cursor: pointer; font-size: 0.95em; font-weight: 600; color: #495057; transition: all 0.12s; }
+  .score-btn:hover { background: #e9ecef; }
+  .score-btn.selected { background: #dc3545; color: #fff; border-color: #dc3545; box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25); }
+
+  .score-display { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding: 10px 14px; background: #f8f9fa; border-radius: 6px; font-size: 0.95em; border: 1px solid #e9ecef; }
+  .score-display .score-value { font-weight: bold; color: #dc3545; font-size: 1.1em; }
+  .score-display .comment { color: #495057; font-style: italic; }
+
+  .summary { position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a2e; color: #fff; padding: 16px 24px; box-shadow: 0 -4px 12px rgba(0,0,0,0.15); z-index: 100; }
+  .summary-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 240px 1fr; gap: 18px; }
+  .summary h2 { margin: 0 0 6px 0; color: #ff6b6b; font-size: 1.05em; }
+  .total-display { font-size: 2.2em; font-weight: bold; line-height: 1; margin: 4px 0; }
+  .total-display .out-of { font-size: 0.5em; color: #adb5bd; font-weight: normal; }
+  .summary-left { padding-right: 12px; border-right: 1px solid #495057; }
+  .summary-right { display: flex; flex-direction: column; }
+  textarea { width: 100%; height: 170px; padding: 10px; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.85em; border-radius: 6px; border: 1px solid #495057; background: #f8f9fa; color: #212529; resize: none; }
+  .summary-buttons { display: flex; gap: 8px; margin-top: 8px; }
+  .copy-btn { background: #20c997; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 0.9em; }
+  .copy-btn:hover { background: #12b886; }
+  .copy-btn.copied { background: #198754; }
+  .reset-btn { background: transparent; color: #adb5bd; border: 1px solid #495057; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 0.9em; }
+  .reset-btn:hover { background: #2d2d44; color: #fff; }
+
+  @media (max-width: 700px) {
+    .summary-inner { grid-template-columns: 1fr; }
+    .summary-left { border-right: none; border-bottom: 1px solid #495057; padding: 0 0 12px 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>PIT Semester Exam &mdash; Grading Key</h1>
+<p class="intro">Side-by-side reference while reviewing the PDF and the Gitea portfolio URL. Click a score under each section &mdash; a canned justification is generated and the running total updates at the bottom. Use the copy button to paste the full comment block into Schoology.</p>
+
+<!-- 1. Cover Letter -->
+<div class="section" data-secid="cover" data-max="20">
+  <h2>1. Cover Letter <span class="points-badge">/ 20 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">First section of the PDF</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>Header with student name, contact info, date, and employer info (company from chosen posting)</li>
+      <li>Opening paragraph naming the specific posting title</li>
+      <li>Body paragraph(s) tying their actual PIT coursework to the posting&rsquo;s responsibilities (at least 2 specific examples)</li>
+      <li>Closing paragraph with thank-you, availability, sign-off</li>
+      <li>One page, 11&ndash;12pt readable font, no typos</li>
+      <li><strong>Tailored to the chosen posting</strong> &mdash; would not work for any other posting verbatim</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 20</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 2. Portfolio Website -->
+<div class="section" data-secid="portfolio" data-max="20">
+  <h2>2. Portfolio Website (Gitea) <span class="points-badge">/ 20 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Visit the public URL</div>
+    <h3>Should show at <code>http://10.12.6.236/sites/[user]/semester_exam/</code>:</h3>
+    <ul>
+      <li>Header / hero with name + role being applied for</li>
+      <li>About-me section (60&ndash;120 words)</li>
+      <li>Skills section (6&ndash;12 skills, technical + soft)</li>
+      <li>Three portfolio artifacts (name, description, what they learned, link or screenshot)</li>
+      <li>&ldquo;Why I&rsquo;m applying&rdquo; paragraph tying coursework to the posting</li>
+      <li>Cover letter linked or embedded</li>
+      <li>Page actually loads &mdash; not 404 or blank</li>
+      <li>Readable formatting; consistent typography</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 20</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 3. Soft-Skills Self-Review -->
+<div class="section" data-secid="softskills" data-max="30">
+  <h2>3. Year-One Soft-Skills Self-Review <span class="points-badge">/ 30 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Section in the PDF</div>
+    <h3>Should show all 5 categories addressed:</h3>
+    <ul>
+      <li>Punctuality &amp; Attendance &mdash; rating + example + improvement</li>
+      <li>Teamwork &amp; Collaboration &mdash; rating + example + improvement</li>
+      <li>Communication (written + verbal) &mdash; rating + example + improvement</li>
+      <li>Professional Conduct &amp; Workplace Standards &mdash; rating + example + improvement</li>
+      <li>Adaptability &amp; Response to Feedback &mdash; rating + example + improvement</li>
+      <li>Each category 4&ndash;6 complete sentences, not bullet fragments</li>
+    </ul>
+  </div>
+  <div class="verify-callout"><strong>Verification policy:</strong> Mid-range ratings (2&ndash;4) with concrete evidence &rarr; trust them. Ratings of 5 &rarr; spot-check against attendance, submitted work, observed behavior. A 5 with thin evidence drops to a 3 with a written note.</div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 30</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 4. Technical Reflection -->
+<div class="section" data-secid="tech" data-max="15">
+  <h2>4. Technical Reflection <span class="points-badge">/ 15 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Section in the PDF</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>2&ndash;3 specific technical skills (Git, local Python, peer review, deployment validation, HTML/CSS, etc.)</li>
+      <li>Each skill: what they can do now + a specific PIT example</li>
+      <li>Each skill: how it transfers to the chosen job (even if the job isn&rsquo;t IT)</li>
+      <li>Complete sentences; not just a bullet list of skill names</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 15</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- 5. Future Goal -->
+<div class="section" data-secid="goal" data-max="15">
+  <h2>5. Future Goal <span class="points-badge">/ 15 pts</span></h2>
+  <div class="placeholder">
+    <div class="ph-label">Section in the PDF</div>
+    <h3>Should show:</h3>
+    <ul>
+      <li>One specific goal (certification, course, internship, project, license step)</li>
+      <li>Clearly tied to the posting they chose</li>
+      <li>Concrete steps to pursue (with at least one date)</li>
+      <li>Success criterion &mdash; what would be different a year from now</li>
+      <li>Not vague (&ldquo;get better at communication&rdquo; does not earn points)</li>
+    </ul>
+  </div>
+  <div class="score-row"><span class="label">Score:</span></div>
+  <div class="score-display"><span>Points: <span class="score-value">&mdash; / 15</span></span><span class="comment">(not scored)</span></div>
+</div>
+
+<!-- Summary -->
+<div class="summary">
+  <div class="summary-inner">
+    <div class="summary-left">
+      <h2>Total Score</h2>
+      <div class="total-display"><span id="total">0</span><span class="out-of"> / 100</span></div>
+      <div class="summary-buttons">
+        <button class="copy-btn" id="copyBtn">Copy comments</button>
+        <button class="reset-btn" id="resetBtn">Reset</button>
+      </div>
+    </div>
+    <div class="summary-right">
+      <textarea id="output" readonly placeholder="Score each section above and the comment block will appear here..."></textarea>
+    </div>
+  </div>
+</div>
+
+<script>
+  const SECTIONS = [
+    { id: 'cover',      label: 'Cover Letter',                 max: 20, scale: [0, 5, 10, 15, 20] },
+    { id: 'portfolio',  label: 'Portfolio Website',            max: 20, scale: [0, 5, 10, 15, 20] },
+    { id: 'softskills', label: 'Soft-Skills Self-Review',      max: 30, scale: [0, 5, 10, 15, 20, 25, 30] },
+    { id: 'tech',       label: 'Technical Reflection',         max: 15, scale: [0, 5, 10, 15] },
+    { id: 'goal',       label: 'Future Goal',                  max: 15, scale: [0, 5, 10, 15] }
+  ];
+
+  const scores = {};
+
+  const COMMENTS = {
+    cover: {
+      0:  'No cover letter submitted.',
+      5:  'Cover letter present but generic — would work for any posting, missing structure or full of typos.',
+      10: 'Has the required structure, but body is thin or not specifically tied to the chosen posting.',
+      15: 'Solid, tailored cover letter with PIT-specific examples; minor format or proofreading slips.',
+      20: 'Excellent — clearly tailored, specific evidence, clean professional format, no errors.'
+    },
+    portfolio: {
+      0:  'No portfolio site, or URL does not load.',
+      5:  'Page loads but most required sections missing; thin content or no real artifacts.',
+      10: 'Most sections present, but 1–2 missing or artifacts lack reflection / links.',
+      15: 'All required sections present, artifacts well described; visual polish could improve.',
+      20: 'Excellent — all sections, three substantive artifacts, ties cleanly to the chosen posting, page loads and is readable.'
+    },
+    softskills: {
+      0:  'No self-review.',
+      5:  '1–2 categories addressed only; ratings without evidence; surface-level.',
+      10: '3 categories with evidence, but reflection is shallow or improvement notes missing.',
+      15: 'All 5 categories present but some are thin; evidence is generic for at least one.',
+      20: 'All 5 categories with specific evidence; ratings appear evidence-based; improvement notes concrete.',
+      25: 'Strong self-awareness across all 5; specific examples tied to actual semester work; honest about gaps.',
+      30: 'Excellent — every category has rating, concrete example, and actionable improvement; the kind of self-review a manager would respect.'
+    },
+    tech: {
+      0:  'No technical reflection.',
+      5:  'Only 1 skill, or just lists skill names with no examples or transferability.',
+      10: '2–3 skills with examples, but transferability statement is weak or generic.',
+      15: 'Excellent — 2–3 skills, each with specific PIT example and clear, credible transferability to the chosen posting.'
+    },
+    goal: {
+      0:  'No future goal.',
+      5:  'Goal is vague (e.g., "get better at communication"); no path, no criterion.',
+      10: 'Specific goal but missing one of: timeline, steps, or success criterion. OR not clearly tied to the posting.',
+      15: 'Excellent — specific, realistic, time-bound, clearly tied to the posting, with concrete steps and a success criterion.'
+    }
+  };
+
+  function commentForSection(secId, v) {
+    const c = COMMENTS[secId];
+    if (Object.prototype.hasOwnProperty.call(c, v)) return c[v];
+    return c[0];
+  }
+
+  function selectScore(secId, val) {
+    scores[secId] = val;
+    const sec = SECTIONS.find(s => s.id === secId);
+    const root = document.querySelector('[data-secid="' + secId + '"]');
+    root.querySelectorAll('.score-btn').forEach(btn => {
+      btn.classList.toggle('selected', parseInt(btn.dataset.val) === val);
+    });
+    root.querySelector('.score-value').textContent = val + ' / ' + sec.max;
+    root.querySelector('.comment').textContent = commentForSection(secId, val);
+    updateSummary();
+  }
+
+  function updateSummary() {
+    let total = 0;
+    const lines = [];
+    SECTIONS.forEach(sec => {
+      const v = scores[sec.id];
+      if (v === undefined) {
+        lines.push(sec.label + ': not scored');
+      } else {
+        total += v;
+        lines.push(sec.label + ': ' + v + '/' + sec.max + ' — ' + commentForSection(sec.id, v));
+      }
+    });
+    document.getElementById('total').textContent = total;
+    document.getElementById('output').value = lines.join('\n') + '\n\nTotal: ' + total + '/100';
+  }
+
+  function buildButtons() {
+    SECTIONS.forEach(sec => {
+      const row = document.querySelector('[data-secid="' + sec.id + '"] .score-row');
+      const scale = sec.scale || Array.from({ length: sec.max + 1 }, (_, i) => i);
+      scale.forEach(val => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'score-btn';
+        btn.dataset.val = val;
+        btn.textContent = val;
+        btn.addEventListener('click', () => selectScore(sec.id, val));
+        row.appendChild(btn);
+      });
+    });
+  }
+
+  function resetAll() {
+    Object.keys(scores).forEach(k => delete scores[k]);
+    document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.section').forEach(sec => {
+      const max = sec.dataset.max;
+      sec.querySelector('.score-value').textContent = '— / ' + max;
+      sec.querySelector('.comment').textContent = '(not scored)';
+    });
+    document.getElementById('total').textContent = '0';
+    document.getElementById('output').value = '';
+  }
+
+  function copyComments() {
+    const out = document.getElementById('output');
+    if (!out.value) return;
+    navigator.clipboard.writeText(out.value).then(() => {
+      const btn = document.getElementById('copyBtn');
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    buildButtons();
+    document.getElementById('copyBtn').addEventListener('click', copyComments);
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+  });
+</script>
+
+</body>
+</html>
