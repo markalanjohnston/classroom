@@ -1,0 +1,1405 @@
+---
+---
+<!-- File: classroom/pit/semester_exam/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIT Semester Exam &mdash; Career Application &amp; Year-One Review</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .session-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .hero-header {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 35px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .hero-classification {
+        display: inline-block;
+        background: rgba(255,255,255,0.18);
+        border: 1px solid rgba(255,255,255,0.5);
+        color: white;
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        border-radius: 3px;
+        margin-bottom: 15px;
+      }
+
+      .hero-header h1 {
+        font-size: 2.1rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .hero-header .subtitle {
+        font-size: 1.05rem;
+        opacity: 0.95;
+        margin-bottom: 20px;
+      }
+
+      .hero-meta {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255,255,255,0.3);
+      }
+
+      .hero-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .briefing-box {
+        background: #f8f9fa;
+        border-left: 4px solid #dc3545;
+        border-radius: 8px;
+        padding: 28px;
+        margin-bottom: 30px;
+      }
+
+      .briefing-box h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .briefing-box h2 i { color: #dc3545; }
+      .briefing-box p { color: #495057; line-height: 1.7; margin-bottom: 12px; }
+      .briefing-box p:last-child { margin-bottom: 0; }
+
+      .role-card {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .role-card h2 { color: white; font-size: 1.4rem; margin-bottom: 15px; }
+      .role-card p, .role-card li { color: #e8e8e8; line-height: 1.7; }
+      .role-card strong { color: #ffc107; }
+
+      .toc-card {
+        background: #fff;
+        border: 2px solid #dc3545;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .toc-card h2 { color: #dc3545; font-size: 1.3rem; margin-bottom: 15px; }
+      .toc-card ol { margin-bottom: 0; line-height: 1.9; }
+      .toc-card a { color: #495057; text-decoration: none; font-weight: 500; }
+      .toc-card a:hover { color: #dc3545; text-decoration: underline; }
+
+      .phase-block { margin-bottom: 40px; }
+
+      .phase-banner {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        border-radius: 10px 10px 0 0;
+        padding: 22px 28px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .phase-banner .phase-num {
+        background: rgba(255,255,255,0.18);
+        border: 2px solid rgba(255,255,255,0.6);
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+      }
+
+      .phase-banner h2 { margin: 0; font-size: 1.5rem; color: white; }
+      .phase-banner .phase-time {
+        margin-left: auto;
+        background: rgba(0,0,0,0.2);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .phase-body {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        padding: 28px;
+      }
+
+      .phase-objective {
+        background: #e7f3ff;
+        border-left: 4px solid #0066cc;
+        padding: 16px 20px;
+        margin-bottom: 22px;
+        border-radius: 5px;
+      }
+
+      .phase-objective strong { color: #0066cc; }
+      .phase-objective p { color: #004080; margin-bottom: 0; line-height: 1.6; }
+
+      .step-card {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 22px;
+        margin-bottom: 18px;
+      }
+
+      .step-card h3 {
+        color: #2c3e50;
+        font-size: 1.15rem;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .step-card h3 .step-tag {
+        background: #dc3545;
+        color: white;
+        font-size: 0.75rem;
+        padding: 3px 10px;
+        border-radius: 3px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .step-card p { color: #495057; line-height: 1.65; margin-bottom: 10px; }
+      .step-card ol, .step-card ul { color: #495057; line-height: 1.7; }
+      .step-card li { margin-bottom: 6px; }
+
+      pre.cmd-block {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        padding: 14px 18px;
+        border-radius: 6px;
+        font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        overflow-x: auto;
+        margin: 12px 0;
+        border-left: 3px solid #dc3545;
+      }
+
+      code.inline {
+        background: #e9ecef;
+        color: #c7254e;
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+        font-size: 0.92em;
+      }
+
+      .key-fact {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 14px 18px;
+        border-radius: 5px;
+        margin: 14px 0;
+      }
+
+      .key-fact strong { color: #856404; }
+
+      .checkpoint {
+        background: #d4edda;
+        border-left: 4px solid #28a745;
+        padding: 14px 18px;
+        border-radius: 5px;
+        margin: 14px 0;
+      }
+
+      .checkpoint strong { color: #155724; display: flex; align-items: center; gap: 8px; }
+
+      .reflection {
+        background: #f3e7ff;
+        border-left: 4px solid #6f42c1;
+        padding: 14px 18px;
+        border-radius: 5px;
+        margin: 14px 0;
+      }
+
+      .reflection strong { color: #4b228a; }
+
+      .danger-fact {
+        background: #f8d7da;
+        border-left: 4px solid #dc3545;
+        padding: 14px 18px;
+        border-radius: 5px;
+        margin: 14px 0;
+      }
+
+      .danger-fact strong { color: #721c24; }
+
+      /* Job posting accordion */
+      .postings-grid { margin-top: 18px; }
+
+      details.posting {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      details.posting summary {
+        padding: 16px 20px;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 600;
+        color: #2c3e50;
+        background: #fff;
+        border-left: 4px solid transparent;
+        transition: background 0.12s, border-color 0.12s;
+      }
+
+      details.posting summary::-webkit-details-marker { display: none; }
+
+      details.posting summary:hover {
+        background: #f8f9fa;
+        border-left-color: #dc3545;
+      }
+
+      details.posting[open] summary {
+        background: #f1f3f5;
+        border-left-color: #dc3545;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      details.posting summary .posting-icon {
+        flex: 0 0 auto;
+        font-size: 1.3rem;
+        color: #dc3545;
+      }
+
+      details.posting summary .posting-title { flex: 1 1 auto; }
+      details.posting summary .posting-title small {
+        display: block;
+        color: #6c757d;
+        font-weight: 400;
+        font-size: 0.88rem;
+        margin-top: 2px;
+      }
+
+      details.posting summary .posting-tag {
+        flex: 0 0 auto;
+        background: #e9ecef;
+        color: #495057;
+        font-size: 0.72rem;
+        padding: 3px 9px;
+        border-radius: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      details.posting summary::after {
+        content: "\F282"; /* bi-chevron-down */
+        font-family: "bootstrap-icons";
+        color: #adb5bd;
+        font-size: 1rem;
+        transition: transform 0.18s;
+      }
+
+      details.posting[open] summary::after { transform: rotate(180deg); }
+
+      .posting-body { padding: 18px 22px 22px; background: #fff; }
+      .posting-body h4 { color: #2c3e50; font-size: 1rem; margin: 14px 0 8px; }
+      .posting-body h4:first-child { margin-top: 0; }
+      .posting-body ul { margin: 0; padding-left: 22px; line-height: 1.65; color: #495057; }
+      .posting-body p { color: #495057; line-height: 1.65; margin-bottom: 10px; }
+
+      .posting-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        padding: 10px 14px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        font-size: 0.88rem;
+        color: #495057;
+        margin-bottom: 14px;
+      }
+
+      .posting-meta strong { color: #2c3e50; }
+
+      /* Rubric */
+      .rubric-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0;
+        font-size: 0.95rem;
+      }
+
+      .rubric-table th {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 10px 14px;
+        text-align: left;
+      }
+
+      .rubric-table th.points-col { width: 100px; text-align: right; }
+
+      .rubric-table td {
+        padding: 8px 14px;
+        border: 1px solid #ffeeba;
+        color: #495057;
+        line-height: 1.55;
+      }
+
+      .rubric-table td.points-col { text-align: right; font-weight: 600; color: #2c3e50; }
+
+      .rubric-table tr.total-row td {
+        background: #fff3cd;
+        font-weight: 700;
+        color: #2c3e50;
+      }
+
+      /* TEKS */
+      details.teks-detail {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        padding: 12px 16px;
+      }
+
+      details.teks-detail summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: #495057;
+        padding: 4px 0;
+      }
+
+      details.teks-detail summary:hover { color: #dc3545; }
+
+      .teks-detail-body { padding: 12px 0 4px; color: #495057; line-height: 1.65; }
+      .teks-detail-body ul { padding-left: 22px; margin: 0; }
+
+      /* Submission block */
+      .submit-block {
+        background: #fff8e9;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 22px 26px;
+        margin: 24px 0;
+      }
+
+      .submit-block h2 {
+        color: #856404;
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .submit-block ul { color: #495057; line-height: 1.75; }
+    </style>
+  </head>
+  <body>
+    {% include navigation.html %}
+    <div class="main-container">
+      <nav class="breadcrumb-nav">
+        <a href="../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">PIT</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Semester Exam</span>
+      </nav>
+
+      <div class="session-content">
+
+        <!-- Hero -->
+        <div class="hero-header">
+          <span class="hero-classification">PIT &middot; SEMESTER EXAM</span>
+          <h1><i class="bi bi-briefcase-fill"></i> Career Application &amp; Year-One Review</h1>
+          <p class="subtitle">A 180-minute professional simulation: pick a job, write a cover letter, build a portfolio site, and complete a year-one self-review.</p>
+          <div class="hero-meta">
+            <div class="hero-meta-item"><i class="bi bi-clock"></i> 180-minute block</div>
+            <div class="hero-meta-item"><i class="bi bi-bullseye"></i> 100 points</div>
+            <div class="hero-meta-item"><i class="bi bi-files"></i> 2 deliverables (webpage + PDF)</div>
+            <div class="hero-meta-item"><i class="bi bi-person-workspace"></i> Individual work</div>
+          </div>
+        </div>
+
+        <!-- Briefing -->
+        <div class="briefing-box">
+          <h2><i class="bi bi-info-circle-fill"></i> The Scenario</h2>
+          <p>This semester exam is a <strong>professional simulation</strong> in three layered roles. You will:</p>
+          <ol style="line-height: 1.8;">
+            <li><strong>Apply</strong> for one of fifteen real-looking entry-level job postings &mdash; chosen from a wide range of industries, not just IT.</li>
+            <li><strong>Get the job</strong> (we&rsquo;ll simulate it) and build a small <strong>portfolio website</strong> on the classroom Gitea server that an employer could actually look at.</li>
+            <li><strong>Fast-forward one year.</strong> Conduct a year-one self-review the way real employees do: rate yourself on the soft skills every job uses, reflect on what you learned technically, and set a goal for year two.</li>
+          </ol>
+          <p>The goal is not to predict your career &mdash; it&rsquo;s to demonstrate the <strong>employability skills</strong> (TEKS &sect;130.312(c)(1) and (c)(2)) that this course is built around. Pick a posting that interests you, even if it&rsquo;s not what you&rsquo;ll actually do after graduation.</p>
+        </div>
+
+        <!-- Your role -->
+        <div class="role-card">
+          <h2><i class="bi bi-person-badge"></i> Your Role Today</h2>
+          <p>You are wearing <strong>three hats</strong> over the next 180 minutes: <strong>job applicant</strong>, <strong>new hire building a professional web presence</strong>, and <strong>year-one employee reflecting on their first year on the job</strong>.</p>
+          <p>Treat your work the way a real employer would read it. Cover letters with typos get rejected. Portfolio sites that don&rsquo;t load are invisible. Self-reviews that just say &ldquo;I&rsquo;m great at everything&rdquo; aren&rsquo;t taken seriously by managers in the real world &mdash; and they won&rsquo;t score well here either.</p>
+        </div>
+
+        <!-- TOC + Time budget -->
+        <div class="toc-card">
+          <h2><i class="bi bi-list-ol"></i> Today&rsquo;s Plan (180 min)</h2>
+          <ol>
+            <li><a href="#choose">Choose a job posting</a> &mdash; 15 min</li>
+            <li><a href="#part1">Part 1: Cover letter</a> &mdash; 35 min</li>
+            <li><a href="#part2">Part 2: Portfolio website on Gitea</a> &mdash; 60 min</li>
+            <li><a href="#part3">Part 3: Year-one soft-skills self-review</a> &mdash; 30 min</li>
+            <li><a href="#part4">Part 4: Technical reflection</a> &mdash; 15 min</li>
+            <li><a href="#part5">Part 5: Future goal</a> &mdash; 10 min</li>
+            <li><a href="#submit">Assemble PDF, push to Gitea, submit</a> &mdash; 15 min</li>
+          </ol>
+        </div>
+
+        <!-- ===================== Choose a posting ===================== -->
+        <div class="phase-block" id="choose">
+          <div class="phase-banner">
+            <div class="phase-num">STEP 0</div>
+            <h2>Choose Your Job Posting</h2>
+            <div class="phase-time">15 min</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <strong>Objective.</strong>
+              <p>Pick <em>one</em> posting that you would apply for if you graduated tomorrow. Browse the list, open the ones that catch your eye, and commit to a choice within 15 minutes so you have time for the actual work.</p>
+            </div>
+
+            <div class="key-fact">
+              <strong>How to pick.</strong> Don&rsquo;t over-think it. You are not committing to this career. Pick something that <em>interests you</em> and that you can talk about credibly in a cover letter. If you want to be a software engineer, the software posting is here. If you don&rsquo;t, that&rsquo;s fine &mdash; there are 14 others.
+            </div>
+
+            <p><strong>Click any posting to expand.</strong></p>
+
+            <div class="postings-grid">
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-code-slash posting-icon"></i>
+                  <span class="posting-title">Software Developer I
+                    <small>Codespan Solutions &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Tech</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $58k&ndash;$72k</span>
+                    <span><strong>Type:</strong> Full-time, on-site</span>
+                    <span><strong>Industry:</strong> B2B software</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Codespan Solutions builds internal business tools for mid-sized logistics companies. As a Software Developer I, you&rsquo;ll join a small team writing Python and JavaScript web applications. You&rsquo;ll pair with a senior developer for your first 90 days, participate in daily standups, and submit your code through pull requests.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Write, test, and debug Python and JavaScript code for internal web apps</li>
+                    <li>Participate in code review &mdash; both giving and receiving feedback</li>
+                    <li>Use Git daily; push to a shared remote, work in branches, resolve merge conflicts</li>
+                    <li>Document your changes so future-you and your teammates can read them</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Familiarity with at least one programming language</li>
+                    <li>Comfort with the command line and Git basics</li>
+                    <li>Willingness to ask questions and accept feedback</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-headset posting-icon"></i>
+                  <span class="posting-title">IT Help Desk Technician
+                    <small>Sunridge Health Systems &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">IT Support</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $42k&ndash;$52k</span>
+                    <span><strong>Type:</strong> Full-time, on-site</span>
+                    <span><strong>Industry:</strong> Healthcare IT</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Sunridge runs three clinics and a 60-bed hospital. The IT Help Desk is the first line of support for every clinician, nurse, and admin in the building. You&rsquo;ll work the phones, ticketing system, and walk-up desk &mdash; resetting passwords, fixing printers, troubleshooting workstations, and escalating the harder problems to senior staff.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Triage 30&ndash;50 tickets a day across phone, email, and walk-up channels</li>
+                    <li>Reset passwords, unlock accounts, and configure printers and workstations</li>
+                    <li>Document every fix in the ticketing system so the next tech doesn&rsquo;t repeat your work</li>
+                    <li>Stay calm with frustrated clinicians who have a patient waiting</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>High school diploma; CompTIA A+ a plus</li>
+                    <li>Comfort with Windows, basic networking, and ticketing systems</li>
+                    <li>Strong written and verbal communication</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-heart-pulse posting-icon"></i>
+                  <span class="posting-title">Registered Nurse (Graduate Residency)
+                    <small>Borderland Regional Hospital &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Healthcare</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $68k&ndash;$78k</span>
+                    <span><strong>Type:</strong> Full-time, 12-hr shifts</span>
+                    <span><strong>Industry:</strong> Hospital</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Borderland&rsquo;s Graduate Nurse Residency is a 12-month program for new BSN graduates entering the med-surg unit. You&rsquo;ll work alongside an assigned preceptor for your first 90 days, attend weekly cohort debriefs, and gradually take on your own patient load.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Provide direct patient care: assessments, medication administration, charting</li>
+                    <li>Communicate with patients, families, physicians, and the care team</li>
+                    <li>Document accurately in the EHR &mdash; missed documentation is missed care</li>
+                    <li>Show up on time for shift change; lateness affects patient handoff</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>BSN (Bachelor of Science in Nursing); pursuing NCLEX-RN within 90 days</li>
+                    <li>Texas RN license (or eligible)</li>
+                    <li>Basic Life Support (BLS) certification</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-shield-lock posting-icon"></i>
+                  <span class="posting-title">Cybersecurity Analyst I (SOC)
+                    <small>Fronterra Defense Group &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Tech</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $62k&ndash;$75k</span>
+                    <span><strong>Type:</strong> Full-time, rotating shifts</span>
+                    <span><strong>Industry:</strong> Managed security</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Fronterra runs a 24/7 Security Operations Center for small and mid-sized clients. As a Tier-1 SOC analyst, you&rsquo;ll be the first set of eyes on every alert that comes off the SIEM &mdash; deciding what&rsquo;s noise, what&rsquo;s a real incident, and what gets escalated to a senior analyst.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Monitor SIEM alerts; investigate suspicious activity</li>
+                    <li>Triage and categorize incidents; write clear case notes</li>
+                    <li>Hand off cases at shift change with no detail lost</li>
+                    <li>Follow runbooks; flag the ones that are out of date</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Familiarity with networking fundamentals, common attack types, and basic Linux</li>
+                    <li>CompTIA Security+ or equivalent (or path to it)</li>
+                    <li>Strong written communication &mdash; case notes are read by other analysts</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-building posting-icon"></i>
+                  <span class="posting-title">Civil Engineer I
+                    <small>Paseo Engineering Partners &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Engineering</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $66k&ndash;$78k</span>
+                    <span><strong>Type:</strong> Full-time, hybrid</span>
+                    <span><strong>Industry:</strong> Civil consulting</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Paseo designs municipal infrastructure &mdash; roads, drainage, water and wastewater systems &mdash; for cities across West Texas. As an EI (Engineer-in-training), you&rsquo;ll draft, run calculations, and visit sites under the supervision of a licensed PE while you work toward your own PE license.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Drafting and design work in AutoCAD Civil 3D</li>
+                    <li>Hydraulic and structural calculations under PE review</li>
+                    <li>Site visits in the El Paso/Las Cruces region &mdash; sometimes early-morning</li>
+                    <li>Document every design decision in the project file</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>BS in Civil Engineering (ABET-accredited)</li>
+                    <li>EIT certification (or actively pursuing FE exam)</li>
+                    <li>Working knowledge of AutoCAD or similar CAD tools</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-megaphone posting-icon"></i>
+                  <span class="posting-title">Marketing Specialist
+                    <small>Mesa Verde Brands &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Business</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $48k&ndash;$58k</span>
+                    <span><strong>Type:</strong> Full-time, hybrid</span>
+                    <span><strong>Industry:</strong> Outdoor retail</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Mesa Verde Brands is a regional outdoor-gear retailer with five stores and a growing e-commerce site. The marketing team is six people total. You&rsquo;ll own day-to-day social media, draft email campaigns, and write web copy &mdash; reporting to the Marketing Director.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Plan and post 4&ndash;5 social posts per week across Instagram, TikTok, and Facebook</li>
+                    <li>Draft and schedule weekly email campaigns in Klaviyo</li>
+                    <li>Coordinate with the photographer for product shoots</li>
+                    <li>Pull weekly metrics; present what worked and what didn&rsquo;t</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Strong writing &mdash; this is a writing job at heart</li>
+                    <li>Comfort with social media platforms and basic photo editing</li>
+                    <li>Some coursework or experience in marketing, communications, or journalism</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-mortarboard posting-icon"></i>
+                  <span class="posting-title">Elementary Teacher (5th Grade)
+                    <small>Sandia Heights ISD &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Education</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $52k&ndash;$58k</span>
+                    <span><strong>Type:</strong> 187-day contract</span>
+                    <span><strong>Industry:</strong> K-12 public ed</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Sandia Heights ISD has openings for self-contained 5th-grade classrooms at three campuses. You&rsquo;ll teach all four core subjects to one group of about 22 students, supported by a grade-level team and an instructional coach.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Plan and deliver daily lessons across math, reading, science, and social studies</li>
+                    <li>Communicate weekly with parents &mdash; email, conferences, and the parent portal</li>
+                    <li>Document grades and behavior in the district SIS</li>
+                    <li>Collaborate with your grade-level team on shared assessments</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Bachelor&rsquo;s degree</li>
+                    <li>Texas teacher certification (alternative-cert candidates considered)</li>
+                    <li>Background check clearance</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-lightning-charge posting-icon"></i>
+                  <span class="posting-title">Electrician Apprentice
+                    <small>Crosstown Electric Contractors &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Skilled Trade</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $42k&ndash;$52k (apprentice scale)</span>
+                    <span><strong>Type:</strong> 4-year apprenticeship</span>
+                    <span><strong>Industry:</strong> Construction</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Crosstown Electric runs residential and light-commercial electrical projects throughout the El Paso metro. Their 4-year registered apprenticeship combines on-the-job hours with night classes and ends with your Texas journeyman license.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Work on job sites under a licensed journeyman &mdash; pulling wire, installing fixtures, terminating circuits</li>
+                    <li>Show up on time, every day &mdash; the crew can&rsquo;t start without you</li>
+                    <li>Attend night classes at the local trade college twice a week</li>
+                    <li>Keep your tools, truck, and PPE organized and safe</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>High school diploma or GED</li>
+                    <li>Valid Texas driver&rsquo;s license</li>
+                    <li>Ability to lift 50 lbs and work outdoors in El Paso summer heat</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-palette posting-icon"></i>
+                  <span class="posting-title">Junior Graphic Designer
+                    <small>Studio 9 Creative &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Creative</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $44k&ndash;$56k</span>
+                    <span><strong>Type:</strong> Full-time, on-site</span>
+                    <span><strong>Industry:</strong> Branding agency</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Studio 9 is a 12-person branding and design agency working with local restaurants, breweries, and non-profits. As a junior designer, you&rsquo;ll be assigned to a senior&rsquo;s projects &mdash; producing social graphics, print collateral, and brand-identity assets.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Produce social media graphics, print pieces, and basic brand assets</li>
+                    <li>Take feedback from senior designers and clients &mdash; sometimes a lot of it</li>
+                    <li>Meet print and posting deadlines, including end-of-week pushes</li>
+                    <li>Maintain the studio&rsquo;s asset library and file structure</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Portfolio of 6&ndash;10 finished pieces (school work is fine)</li>
+                    <li>Proficiency in Adobe Illustrator and Photoshop</li>
+                    <li>Strong eye for typography, color, and layout</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-calculator posting-icon"></i>
+                  <span class="posting-title">Staff Accountant
+                    <small>Salazar &amp; Reyes CPAs &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Business</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $52k&ndash;$64k</span>
+                    <span><strong>Type:</strong> Full-time, hybrid</span>
+                    <span><strong>Industry:</strong> Public accounting</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Salazar &amp; Reyes is a 22-person CPA firm serving small businesses in the El Paso/Las Cruces area. Staff Accountants own day-to-day bookkeeping for a portfolio of about ten small-business clients, supported by a senior accountant.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Run monthly bookkeeping in QuickBooks Online for assigned clients</li>
+                    <li>Reconcile bank statements; investigate discrepancies</li>
+                    <li>Prepare payroll runs; ensure tax remittances are on time</li>
+                    <li>Draft basic tax-return work papers for senior review</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Associate&rsquo;s or Bachelor&rsquo;s in Accounting (or bookkeeping certification)</li>
+                    <li>Comfort with QuickBooks and Excel</li>
+                    <li>Strong attention to detail &mdash; numbers either tie or they don&rsquo;t</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-gear-wide-connected posting-icon"></i>
+                  <span class="posting-title">Mechanical Engineer I
+                    <small>Highland Manufacturing Group &middot; Las Cruces, NM</small>
+                  </span>
+                  <span class="posting-tag">Engineering</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $64k&ndash;$76k</span>
+                    <span><strong>Type:</strong> Full-time, on-site</span>
+                    <span><strong>Industry:</strong> Industrial manufacturing</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Highland manufactures industrial valves and pumps for oil &amp; gas and municipal water customers. As an ME I, you&rsquo;ll work in product engineering &mdash; modeling components in SolidWorks, running tolerance studies, and supporting the production floor.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Model parts and assemblies in SolidWorks</li>
+                    <li>Run basic FEA and tolerance stack-ups under PE review</li>
+                    <li>Walk the production floor when there are issues &mdash; bring a notebook</li>
+                    <li>Update engineering change orders in PLM</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>BS in Mechanical Engineering</li>
+                    <li>Working SolidWorks proficiency</li>
+                    <li>EIT or working toward FE exam</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-egg-fried posting-icon"></i>
+                  <span class="posting-title">Registered Dietitian
+                    <small>West Texas Wellness Network &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Healthcare</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $54k&ndash;$62k</span>
+                    <span><strong>Type:</strong> Full-time, hybrid</span>
+                    <span><strong>Industry:</strong> Outpatient health</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>West Texas Wellness Network operates four outpatient clinics serving primary-care and chronic-disease management patients. As an RD, you&rsquo;ll see patients one-on-one for nutrition counseling, run small group education sessions, and coordinate with physicians on care plans.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Conduct 60-minute initial nutrition assessments and follow-up sessions</li>
+                    <li>Build individualized meal plans for diabetes, hypertension, and weight-management patients</li>
+                    <li>Document in the EHR and bill insurance correctly the first time</li>
+                    <li>Run a weekly group class &mdash; usually 6&ndash;10 patients</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>RD credential (Registered Dietitian)</li>
+                    <li>Texas license (or eligible)</li>
+                    <li>Strong patient communication; bilingual English/Spanish strongly preferred</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-file-earmark-text posting-icon"></i>
+                  <span class="posting-title">Paralegal
+                    <small>Reyes Vasquez Cordova LLP &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Legal</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $44k&ndash;$54k</span>
+                    <span><strong>Type:</strong> Full-time, on-site</span>
+                    <span><strong>Industry:</strong> Civil litigation</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Reyes Vasquez Cordova is a 9-attorney civil-litigation firm. Paralegals support 2&ndash;3 attorneys at a time &mdash; drafting routine documents, organizing case files, managing e-discovery, and keeping court deadlines from slipping.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Draft routine documents: pleadings, discovery requests, deposition summaries</li>
+                    <li>Organize case files (paper and electronic)</li>
+                    <li>Track court and discovery deadlines &mdash; missing one is a serious problem</li>
+                    <li>Handle client intake calls with care and professionalism</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Paralegal certificate or associate&rsquo;s degree</li>
+                    <li>Excellent writing and proofreading</li>
+                    <li>Comfort with calendaring software and document-management tools</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-window-stack posting-icon"></i>
+                  <span class="posting-title">UX Designer (Junior)
+                    <small>Lightyear Software &middot; remote, US-based</small>
+                  </span>
+                  <span class="posting-tag">Tech</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $58k&ndash;$72k</span>
+                    <span><strong>Type:</strong> Full-time, fully remote</span>
+                    <span><strong>Industry:</strong> SaaS</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Lightyear builds project-management software for construction subcontractors. As a junior UX designer, you&rsquo;ll join a 4-person design team working closely with product managers and engineers &mdash; producing wireframes, prototypes, and usability-test plans.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Produce wireframes and high-fidelity prototypes in Figma</li>
+                    <li>Run usability tests with 5&ndash;6 real customers per cycle</li>
+                    <li>Hand off to engineering with clear specs and edge cases identified</li>
+                    <li>Communicate clearly in writing &mdash; everything happens in Slack and Notion</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Portfolio with 2&ndash;3 documented case studies (process, not just final visuals)</li>
+                    <li>Working knowledge of Figma</li>
+                    <li>Self-direction &mdash; remote work means no one over your shoulder</li>
+                  </ul>
+                </div>
+              </details>
+
+              <details class="posting">
+                <summary>
+                  <i class="bi bi-graph-up-arrow posting-icon"></i>
+                  <span class="posting-title">Business Analyst I
+                    <small>Continental Trade Logistics &middot; El Paso, TX</small>
+                  </span>
+                  <span class="posting-tag">Business / Tech</span>
+                </summary>
+                <div class="posting-body">
+                  <div class="posting-meta">
+                    <span><strong>Salary:</strong> $54k&ndash;$66k</span>
+                    <span><strong>Type:</strong> Full-time, hybrid</span>
+                    <span><strong>Industry:</strong> Cross-border logistics</span>
+                  </div>
+                  <h4>About the role</h4>
+                  <p>Continental Trade Logistics handles cross-border freight between the U.S. and Mexico. Business Analysts sit between operations and IT &mdash; gathering requirements from warehouse managers and dispatch supervisors, then writing them up so the technology team can build the right thing.</p>
+                  <h4>What you&rsquo;ll do</h4>
+                  <ul>
+                    <li>Interview business users; document current processes</li>
+                    <li>Write requirements that engineers can actually build from</li>
+                    <li>Build dashboards and reports in Power BI or Tableau</li>
+                    <li>Track project progress and communicate up to leadership</li>
+                  </ul>
+                  <h4>Minimum qualifications</h4>
+                  <ul>
+                    <li>Bachelor&rsquo;s in business, IT, or related</li>
+                    <li>Strong writing and presentation skills</li>
+                    <li>Comfort with Excel; willingness to learn SQL and a BI tool</li>
+                  </ul>
+                </div>
+              </details>
+
+            </div>
+
+            <div class="checkpoint">
+              <strong><i class="bi bi-check-circle-fill"></i> Checkpoint.</strong> Before moving on: write the job title at the top of a scratch doc. From here forward, every part of the exam ties back to <em>this</em> posting.
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== Part 1: Cover Letter ===================== -->
+        <div class="phase-block" id="part1">
+          <div class="phase-banner">
+            <div class="phase-num">PART 1</div>
+            <h2>Cover Letter</h2>
+            <div class="phase-time">35 min &middot; 20 pts</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <strong>Objective.</strong>
+              <p>Write a one-page cover letter tailored to the specific posting you chose. It should sound like <em>you</em>, not a template, and it should reference the actual job.</p>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">FORMAT</span> Required structure</h3>
+              <p>A professional cover letter has four parts. Yours must include all four.</p>
+              <ol>
+                <li><strong>Header.</strong> Your name, phone, email, the date, and the employer&rsquo;s name and address (use the company name from the posting; you can use El Paso, TX as the address).</li>
+                <li><strong>Opening paragraph (2&ndash;3 sentences).</strong> Name the specific position you&rsquo;re applying for, where you saw the posting (you can write &ldquo;your job posting on the company careers page&rdquo;), and a one-sentence hook on why you&rsquo;re a fit.</li>
+                <li><strong>Body (1&ndash;2 paragraphs).</strong> Tie your <em>actual</em> coursework, projects, and skills to the responsibilities listed in the posting. Be specific. &ldquo;In my PIT class I used Git daily to push code to a classroom server&rdquo; beats &ldquo;I am good with computers.&rdquo;</li>
+                <li><strong>Closing (2&ndash;3 sentences).</strong> Thank the reader, state your availability for an interview, and include a professional sign-off.</li>
+              </ol>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">QUALITY</span> What graders look for</h3>
+              <ul>
+                <li><strong>Tailored, not generic.</strong> If your cover letter would work for any of the 15 postings, it&rsquo;s too generic.</li>
+                <li><strong>Specific evidence.</strong> Reference at least two concrete things from this semester (assignments, tools, projects) that map to the posting.</li>
+                <li><strong>Professional tone.</strong> No slang, no emojis, no exclamation points stacked together.</li>
+                <li><strong>Clean formatting.</strong> Consistent font, readable size (11&ndash;12 pt), one page, properly aligned.</li>
+                <li><strong>Proofread.</strong> Typos in a cover letter are typically the first reason a real recruiter rejects a candidate.</li>
+              </ul>
+            </div>
+
+            <div class="key-fact">
+              <strong>AI policy.</strong> You may use AI to brainstorm or critique a draft, but the final words must be yours and must accurately describe <em>your</em> work. Submitting an AI-generated cover letter with details you didn&rsquo;t actually do is academic dishonesty.
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== Part 2: Portfolio Website ===================== -->
+        <div class="phase-block" id="part2">
+          <div class="phase-banner">
+            <div class="phase-num">PART 2</div>
+            <h2>Portfolio Website on Gitea</h2>
+            <div class="phase-time">60 min &middot; 20 pts</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <strong>Objective.</strong>
+              <p>Build a single-page portfolio website, push it to a new Gitea repo, and confirm it loads publicly. This is the page you&rsquo;d send the hiring manager.</p>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 1</span> Create the Gitea repo</h3>
+              <ol>
+                <li>Open <a href="http://10.12.6.236:3000/" target="_blank" rel="noopener"><code class="inline">http://10.12.6.236:3000/</code></a> and sign in (same account from <a href="../gitea_remote/">Gitea Workflow lesson</a>).</li>
+                <li>Click <strong>+ &rarr; New Repository</strong>.</li>
+                <li>Repository name: <code class="inline">semester_exam</code>. Visibility: <strong>public</strong>. Check &ldquo;Initialize with README.&rdquo; Click <strong>Create Repository</strong>.</li>
+                <li>Copy the clone URL &mdash; it&rsquo;ll look like <code class="inline">http://10.12.6.236:3000/your-username/semester_exam.git</code>.</li>
+              </ol>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 2</span> Clone and build</h3>
+              <p>Open Git Bash in a folder you control. Then:</p>
+<pre class="cmd-block">git clone http://10.12.6.236:3000/your-username/semester_exam.git
+cd semester_exam</pre>
+              <p>Create an <code class="inline">index.html</code> (you can reuse and adapt the splash page from the Gitea Workflow lesson). Your portfolio must include the following content sections.</p>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">CONTENT</span> Required sections</h3>
+              <ol>
+                <li><strong>Header / hero.</strong> Your name, the role you&rsquo;re applying for (e.g., &ldquo;Aspiring Software Developer&rdquo;), and a one-sentence positioning line.</li>
+                <li><strong>About me (60&ndash;120 words).</strong> Short bio. Mention you&rsquo;re a high-school senior at your school, what you&rsquo;ve been studying, and what kind of role you&rsquo;re looking for. Tie this to the job.</li>
+                <li><strong>Skills.</strong> A clean list (bullets, badges, or a small grid) of 6&ndash;12 skills you actually have. Include both technical (Git, VS Code, Python, HTML/CSS, etc.) and soft (written communication, collaboration, etc.).</li>
+                <li><strong>Three portfolio artifacts.</strong> Three projects from this semester, each with a name, 2&ndash;3 sentence description, what you learned, and a link or screenshot. Suggested sources:
+                  <ul>
+                    <li><a href="../pro_local_dev/">Pro Local Dev practicum</a> (local Python + Git workflow)</li>
+                    <li><a href="../gitea_remote/">Gitea Workflow lesson</a> (your splash page repo + peer-review history)</li>
+                    <li><a href="../python-deployment-lab/">Python Deployment Lab</a> (capability-validation report)</li>
+                    <li>Any other PIT or prior IT-pathway project you&rsquo;re proud of</li>
+                  </ul>
+                </li>
+                <li><strong>Why I&rsquo;m applying.</strong> One short paragraph tying your interests, skills, and PIT experience to the specific posting you chose.</li>
+                <li><strong>Cover letter link.</strong> Either embed your cover letter on the page (in a <code class="inline">&lt;section&gt;</code>) or link out to a PDF copy committed to the repo.</li>
+              </ol>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">STEP 3</span> Commit and push</h3>
+<pre class="cmd-block">git add .
+git commit -m "Portfolio site for semester exam"
+git push</pre>
+              <p>Then visit your public URL:</p>
+<pre class="cmd-block">http://10.12.6.236/sites/your-username/semester_exam/</pre>
+              <p>If it loads, you&rsquo;re done with Part 2. If not, check the troubleshooting notes at the bottom of the <a href="../gitea_remote/">Gitea Workflow lesson</a>.</p>
+            </div>
+
+            <div class="key-fact">
+              <strong>Visual quality matters.</strong> You don&rsquo;t need to be a designer, but readable typography, consistent spacing, and a clear hierarchy go a long way. Bootstrap or a simple custom stylesheet are both fine. AI is allowed for the first HTML/CSS draft.
+            </div>
+
+            <div class="checkpoint">
+              <strong><i class="bi bi-check-circle-fill"></i> Checkpoint.</strong> Open the public URL on your phone or a second tab and skim it. Does it look like something an employer could read in 60 seconds and form a positive impression?
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== Part 3: Soft-Skills Review ===================== -->
+        <div class="phase-block" id="part3">
+          <div class="phase-banner">
+            <div class="phase-num">PART 3</div>
+            <h2>Year-One Soft-Skills Self-Review</h2>
+            <div class="phase-time">30 min &middot; 30 pts</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <strong>Objective.</strong>
+              <p>Imagine it&rsquo;s a year from now. You got the job from Part 1. You&rsquo;ve been on the job for twelve months. It&rsquo;s time for your first annual self-review. Many real companies make employees write theirs first &mdash; that&rsquo;s what you&rsquo;re doing here.</p>
+              <p>Rate yourself on five soft-skill categories. Real performance reviews don&rsquo;t go well when the employee just says &ldquo;5 across the board&rdquo; with no evidence &mdash; managers see right through it. Yours won&rsquo;t score well that way either.</p>
+            </div>
+
+            <div class="key-fact">
+              <strong>How this is graded.</strong> The goal is honest, evidence-based self-evaluation. Mid-range ratings (2&ndash;4) with concrete, specific examples score highest. Ratings at the extreme high end (5) may be cross-referenced against attendance records, assignment submissions, and observed classroom behavior &mdash; so make sure the evidence supports the rating.
+            </div>
+
+            <p>For each of the five categories below, write:</p>
+            <ul>
+              <li>A <strong>self-rating</strong> on a 1&ndash;5 scale (1 = needs significant improvement, 3 = meets expectations, 5 = consistently exceeds expectations)</li>
+              <li>A <strong>specific example</strong> from this semester that supports the rating</li>
+              <li>One <strong>concrete way you would improve</strong> (or sustain) this skill in year two</li>
+            </ul>
+
+            <div class="step-card">
+              <h3><span class="step-tag">1 / 5</span> Punctuality &amp; Attendance</h3>
+              <p>Showing up on time, every day, is the foundation of professional reliability. Tardies and unexcused absences in this class are a direct preview of what those behaviors look like at a real job.</p>
+              <p><em>Prompt:</em> How consistently did you arrive on time, ready to work? Use specific evidence (attendance record, tardies, how you handled days when you ran late).</p>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">2 / 5</span> Teamwork &amp; Collaboration</h3>
+              <p>Every job listed in Part 1 has a collaboration component &mdash; peer review, handoffs, paired work, classroom-to-team transitions.</p>
+              <p><em>Prompt:</em> How did you contribute when working with a partner or in a group this semester (e.g., the peer-review block of the Gitea lesson, paired troubleshooting in the Python Deployment lab)? Give one specific example where you either lifted the team up or fell short.</p>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">3 / 5</span> Communication (Written &amp; Verbal)</h3>
+              <p>Most of your professional communication will be written &mdash; email, tickets, commit messages, documentation. Your verbal communication shows up when you ask for help or present work.</p>
+              <p><em>Prompt:</em> How clearly did you communicate this semester? Use one written example (email, commit message, lab report, etc.) and one verbal example (how you asked for help, how you explained your work).</p>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">4 / 5</span> Professional Conduct &amp; Workplace Standards</h3>
+              <p>This category includes dress, language, phone use, lab cleanliness, and respect for the space and the people in it.</p>
+              <p><em>Prompt:</em> How well did you meet the professional standards expected in this classroom (and that would be expected in any real workplace)? Specifically address phone use, language, and how you treated equipment and classmates.</p>
+            </div>
+
+            <div class="step-card">
+              <h3><span class="step-tag">5 / 5</span> Adaptability &amp; Response to Feedback</h3>
+              <p>Receiving feedback gracefully and applying it is one of the most-watched behaviors in any first-year employee&rsquo;s review.</p>
+              <p><em>Prompt:</em> Describe a piece of feedback you received this semester &mdash; from a teacher, classmate, or anyone &mdash; and how you applied it. Use a specific example. What did you do differently afterward? If you didn&rsquo;t apply the feedback, be honest about why.</p>
+            </div>
+
+            <div class="reflection">
+              <strong><i class="bi bi-lightbulb"></i> Reflection format.</strong> Each category should be roughly 4&ndash;6 sentences total. Use complete sentences. No bullet fragments. Treat this the way you&rsquo;d want a real manager to read it.
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== Part 4: Technical Reflection ===================== -->
+        <div class="phase-block" id="part4">
+          <div class="phase-banner">
+            <div class="phase-num">PART 4</div>
+            <h2>Technical Reflection</h2>
+            <div class="phase-time">15 min &middot; 15 pts</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <strong>Objective.</strong>
+              <p>Identify the technical skills you actually built this semester and explain how they transfer &mdash; even if the job you picked in Part 1 isn&rsquo;t in IT.</p>
+            </div>
+
+            <p>Pick <strong>two or three</strong> technical skills you developed this semester and write one paragraph (3&ndash;5 sentences) on each. Possible skills &mdash; pick what&rsquo;s actually true for you:</p>
+            <ul>
+              <li>Local development environment setup (Python, VS Code, virtual environments)</li>
+              <li>Git workflow (init / add / commit / push / clone / branch)</li>
+              <li>Peer review and pull-request-style feedback</li>
+              <li>Diagnosing failures &mdash; capturing error text, isolating variables, escalating with context</li>
+              <li>Working in a managed enterprise environment (the deployment lab capability matrix)</li>
+              <li>HTML/CSS for a small website</li>
+              <li>Reading documentation and technical instructions independently</li>
+            </ul>
+
+            <p>For each skill: state what you can do now, give one example from a PIT assignment, and explain how that skill transfers to the posting you chose &mdash; even if it&rsquo;s nursing or marketing or accounting. (Hint: every job above is downstream of someone who documents carefully, follows a process, and handles failure gracefully.)</p>
+          </div>
+        </div>
+
+        <!-- ===================== Part 5: Future Goal ===================== -->
+        <div class="phase-block" id="part5">
+          <div class="phase-banner">
+            <div class="phase-num">PART 5</div>
+            <h2>Future Goal</h2>
+            <div class="phase-time">10 min &middot; 15 pts</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-objective">
+              <strong>Objective.</strong>
+              <p>Set <strong>one</strong> actionable career-development goal for the next twelve months. The goal should be specific, realistic, and clearly tied to the posting you chose.</p>
+            </div>
+
+            <p>Write a single paragraph (5&ndash;8 sentences) covering:</p>
+            <ul>
+              <li><strong>The goal itself.</strong> A specific certification, course, internship, project, license step, or experience &mdash; not &ldquo;get better at communication.&rdquo;</li>
+              <li><strong>Why this goal.</strong> Tie it directly to the responsibilities or requirements of the posting.</li>
+              <li><strong>How you&rsquo;d pursue it.</strong> One or two concrete steps (sign up by date X, complete by date Y).</li>
+              <li><strong>How you&rsquo;d know you achieved it.</strong> What would be different about you a year from now?</li>
+            </ul>
+
+            <div class="key-fact">
+              <strong>Examples of well-scoped goals.</strong> &ldquo;Pass the CompTIA A+ Core 1 exam by December 2026,&rdquo; &ldquo;Complete a 200-hour CNA-to-LVN bridge program,&rdquo; &ldquo;Build and ship a personal portfolio site in React,&rdquo; &ldquo;Earn the QuickBooks ProAdvisor certification.&rdquo;
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================== Submission ===================== -->
+        <div class="submit-block" id="submit">
+          <h2><i class="bi bi-cloud-upload-fill"></i> Submission &mdash; Two Deliverables</h2>
+          <p>You&rsquo;re submitting <strong>two things</strong> before the end of the block:</p>
+
+          <h4 style="color: #2c3e50; margin-top: 18px;">1. Portfolio website on Gitea</h4>
+          <ul>
+            <li>Repository: <code class="inline">semester_exam</code> on your Gitea account</li>
+            <li>Public URL: <code class="inline">http://10.12.6.236/sites/your-username/semester_exam/</code></li>
+            <li>Confirm it loads on a teacher workstation before you call it done</li>
+          </ul>
+
+          <h4 style="color: #2c3e50; margin-top: 18px;">2. PDF via Schoology</h4>
+          <ul>
+            <li>File name: <code class="inline">LASTNAME_FIRSTNAME_SemesterExam.pdf</code></li>
+            <li>Contents, in order:
+              <ol>
+                <li>Cover page (your name, date, period, &ldquo;PIT Semester Exam,&rdquo; the posting title you applied for)</li>
+                <li>Cover letter (Part 1)</li>
+                <li>Year-one soft-skills self-review (Part 3, all 5 categories)</li>
+                <li>Technical reflection (Part 4)</li>
+                <li>Future goal (Part 5)</li>
+                <li>Appendix: a screenshot of your portfolio page loading at the public URL</li>
+              </ol>
+            </li>
+            <li>Use the <strong>Submit Assignment button on this page</strong> in Schoology to attach the PDF</li>
+          </ul>
+
+          <p style="margin-top: 14px;"><strong>Both must be submitted before the end of the block to earn full credit.</strong> A late portfolio URL or a missing PDF will be graded per the standard late-work policy on the <a href="../">PIT homepage</a>.</p>
+        </div>
+
+        <!-- ===================== Rubric ===================== -->
+        <div class="phase-block" id="rubric">
+          <div class="phase-banner">
+            <div class="phase-num">RUBRIC</div>
+            <h2>Grading &mdash; 100 points</h2>
+            <div class="phase-time">5 sections</div>
+          </div>
+          <div class="phase-body">
+            <table class="rubric-table">
+              <thead>
+                <tr>
+                  <th>Criterion</th>
+                  <th class="points-col">Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Cover Letter.</strong> Clarity, relevance to the chosen posting, professional format, no typos, specific evidence tied to your actual work.</td>
+                  <td class="points-col">20</td>
+                </tr>
+                <tr>
+                  <td><strong>Portfolio Website.</strong> All six required sections present, three artifacts with reflection, page loads at the Gitea public URL, professional appearance.</td>
+                  <td class="points-col">20</td>
+                </tr>
+                <tr>
+                  <td><strong>Year-One Soft-Skills Self-Review.</strong> All five categories addressed with rating + specific evidence + improvement note. Honest, evidence-based ratings score highest.</td>
+                  <td class="points-col">30</td>
+                </tr>
+                <tr>
+                  <td><strong>Technical Reflection.</strong> 2&ndash;3 specific technical skills, each with example and transferability statement tied to the chosen posting.</td>
+                  <td class="points-col">15</td>
+                </tr>
+                <tr>
+                  <td><strong>Future Goal.</strong> Specific, realistic, time-bound, clearly tied to the posting, with a path and a success criterion.</td>
+                  <td class="points-col">15</td>
+                </tr>
+                <tr class="total-row">
+                  <td>Total</td>
+                  <td class="points-col">100</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ===================== TEKS Alignment ===================== -->
+        <div class="phase-block" id="teks">
+          <div class="phase-banner">
+            <div class="phase-num">TEKS</div>
+            <h2>Standards Alignment &mdash; &sect;130.312</h2>
+          </div>
+          <div class="phase-body">
+            <p>This exam is built around the Practicum in Information Technology TEKS. Each part below maps to specific sub-items.</p>
+
+            <details class="teks-detail">
+              <summary>Part 1 (Cover Letter) &rarr; &sect;130.312(c)(2)(B) and (c)(3)(A)</summary>
+              <div class="teks-detail-body">
+                <ul>
+                  <li>(c)(2)(B) develop a resume that includes letters of recommendation and a portfolio appropriate to a chosen career plan</li>
+                  <li>(c)(3)(A) demonstrate proper use of written, verbal, and visual communication techniques consistent with IT industry standards</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="teks-detail">
+              <summary>Part 2 (Portfolio Website) &rarr; &sect;130.312(c)(2)(B), (c)(6)(G), and (c)(7)</summary>
+              <div class="teks-detail-body">
+                <ul>
+                  <li>(c)(2)(B) portfolio appropriate to a chosen career plan</li>
+                  <li>(c)(6)(G) develop a project portfolio that documents the research and development process</li>
+                  <li>(c)(7)(A) create a portfolio that documents all projects and accomplishments</li>
+                  <li>(c)(7)(B) organize and prioritize information within the portfolio</li>
+                  <li>(c)(7)(C) use written, verbal, and visual communication techniques consistent with IT industry standards</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="teks-detail">
+              <summary>Part 3 (Year-One Soft-Skills Review) &rarr; &sect;130.312(c)(1)(A&ndash;F)</summary>
+              <div class="teks-detail-body">
+                <ul>
+                  <li>(c)(1)(A) work behaviors that enhance employability &mdash; attendance, promptness, attire, voice, pride in work</li>
+                  <li>(c)(1)(B) flexibility, open-mindedness, initiative, listening attentively, willingness to learn</li>
+                  <li>(c)(1)(C) effective reading and writing skills</li>
+                  <li>(c)(1)(D) effective verbal and nonverbal communication skills</li>
+                  <li>(c)(1)(E) solve problems and think critically</li>
+                  <li>(c)(1)(F) demonstrate leadership skills and function effectively as a team member</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="teks-detail">
+              <summary>Part 4 (Technical Reflection) &rarr; &sect;130.312(c)(1)(E), (c)(3)(A), and (c)(5)</summary>
+              <div class="teks-detail-body">
+                <ul>
+                  <li>(c)(1)(E) solve problems and think critically</li>
+                  <li>(c)(3)(A) demonstrate proper use of written communication techniques consistent with IT industry standards</li>
+                  <li>(c)(5)(A) apply critical-thinking strategies to develop a solution using appropriate technologies and resources, IT concepts, and industry standards</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="teks-detail">
+              <summary>Part 5 (Future Goal) &rarr; &sect;130.312(c)(2)(A)</summary>
+              <div class="teks-detail-body">
+                <ul>
+                  <li>(c)(2)(A) improve on a personal career plan along with education, job skills, and experience necessary to achieve career goals</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- ===================== Reminders ===================== -->
+        <div class="danger-fact">
+          <strong>Reminders.</strong>
+          <ul style="margin-top: 8px; line-height: 1.7;">
+            <li>This is an individual exam. You may use AI for brainstorming and first drafts, but the final work and the claims you make about yourself must be yours.</li>
+            <li>Phones away &mdash; per state law and class policy.</li>
+            <li>Liquids in sealed containers only. No food in the lab.</li>
+            <li>If your Gitea push fails, check the troubleshooting section of the <a href="../gitea_remote/">Gitea Workflow lesson</a> before raising your hand.</li>
+            <li>Submit the PDF and confirm the Gitea URL loads <em>before</em> the end of the block. &ldquo;I&rsquo;ll push it tonight&rdquo; is a late submission.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
