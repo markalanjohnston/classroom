@@ -1,0 +1,669 @@
+---
+---
+<!-- File: classroom/apcsp/semester_exam/online/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APCSP - Semester Exam (Online)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../../../css/styles.css" />
+    <style>
+      .exam-content {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .exam-header {
+        background: linear-gradient(135deg, #146c43 0%, #20c997 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 28px 30px;
+        margin-bottom: 26px;
+        text-align: center;
+      }
+      .exam-header h1 { margin-bottom: 8px; font-size: 1.9rem; }
+      .exam-header .subtitle { font-size: 1.05rem; opacity: 0.95; }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #6c757d;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+        margin-bottom: 20px;
+      }
+      .back-button:hover { background: #5a6268; color: white; }
+
+      .directions-box {
+        background: #fff8e9;
+        border: 1px solid #ffc107;
+        border-left: 4px solid #ffc107;
+        border-radius: 8px;
+        padding: 18px 22px;
+        margin-bottom: 26px;
+      }
+      .directions-box h2 { font-size: 1.15rem; color: #856404; margin-bottom: 8px; }
+      .directions-box ul { margin-bottom: 0; padding-left: 20px; }
+      .directions-box li { margin-bottom: 4px; }
+
+      .section-head {
+        background: #198754;
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 6px;
+        margin: 34px 0 16px 0;
+        font-size: 1.15rem;
+        font-weight: 700;
+      }
+      .section-head .count { float: right; font-weight: 400; font-size: 0.9rem; opacity: 0.95; }
+
+      .q {
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 18px 22px;
+        margin-bottom: 16px;
+        background: #fff;
+      }
+      .q .prompt { font-weight: 600; margin-bottom: 12px; }
+      .q .prompt .qnum {
+        display: inline-block;
+        background: #146c43;
+        color: #fff;
+        font-weight: 700;
+        border-radius: 6px;
+        padding: 1px 10px;
+        margin-right: 8px;
+      }
+      .q .choices { list-style: none; margin: 0; padding: 0; }
+      .q .choices li {
+        padding: 8px 14px;
+        margin-bottom: 7px;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        background: #f8f9fa;
+      }
+      .q .choices li .letter { font-weight: 700; color: #146c43; margin-right: 8px; }
+      .q .choices.code-choices li { font-family: 'Consolas', 'Courier New', monospace; font-size: 0.92rem; }
+
+      pre.code {
+        background: #1f2d3d;
+        color: #f8f8f2;
+        padding: 14px 18px;
+        border-radius: 6px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        margin: 10px 0;
+        overflow-x: auto;
+      }
+      .mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 0.92em; background: #eef4f0; padding: 1px 5px; border-radius: 3px; }
+      code { background: #eef4f0; padding: 1px 5px; border-radius: 3px; font-size: 0.9em; font-family: 'Consolas', 'Courier New', monospace; }
+
+      /* Password gate */
+      .lock-overlay {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #146c43 0%, #0d3b25 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 3000;
+        padding: 20px;
+      }
+      .lock-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 36px 34px;
+        max-width: 420px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+      }
+      .lock-card .lock-icon { font-size: 2.6rem; color: #146c43; }
+      .lock-card h2 { margin: 10px 0 6px 0; color: #146c43; }
+      .lock-card p { color: #495057; margin-bottom: 18px; }
+      .lock-card input {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 1.1rem;
+        border: 2px solid #cdd6d0;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 14px;
+      }
+      .lock-card input:focus { outline: none; border-color: #146c43; }
+      .lock-card button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #fff;
+        background: #146c43;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .lock-card button:hover { background: #0f5132; }
+      .lock-error { color: #b3261e; font-weight: 600; margin: 14px 0 0 0; }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================ -->
+    <!-- Password gate. TEACHER: change the password on the next line. -->
+    <!-- ============================================================ -->
+    <div class="lock-overlay" id="lockOverlay">
+      <div class="lock-card">
+        <i class="bi bi-lock-fill lock-icon"></i>
+        <h2>Semester Exam</h2>
+        <p>Enter the exam password to begin. Your teacher will give it to you when the exam starts.</p>
+        <input id="examPw" type="password" placeholder="Exam password" autocomplete="off" autofocus>
+        <button id="examPwBtn">Unlock Exam</button>
+        <p class="lock-error" id="lockError" hidden>Incorrect password. Try again.</p>
+      </div>
+    </div>
+
+    {% include navigation.html %}
+    <div class="main-container" id="examContent" style="display: none;">
+      <nav class="breadcrumb-nav">
+        <a href="../../../" class="text-white"><i class="bi bi-house"></i> Home</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../../" class="text-white">AP Computer Science Principles</a>
+        <span class="text-white-50 mx-2">/</span>
+        <a href="../" class="text-white">Semester Exam</a>
+        <span class="text-white-50 mx-2">/</span>
+        <span class="text-white">Online</span>
+      </nav>
+
+      <div class="exam-content">
+        <a href="../" class="back-button"><i class="bi bi-arrow-left"></i> Back to Semester Exam</a>
+
+        <div class="exam-header">
+          <h1><i class="bi bi-card-checklist"></i> Semester Exam</h1>
+          <p class="subtitle">40 questions &middot; Mark your answers on the printed answer sheet</p>
+        </div>
+
+        <div class="directions-box">
+          <h2><i class="bi bi-pencil-square"></i> Directions</h2>
+          <ul>
+            <li>Record every answer on your <strong>printed answer sheet</strong> &mdash; do not type anything here.</li>
+            <li>Choose the <strong>single best answer</strong> for each question. Each is worth 1 point; there is no penalty for guessing, so answer all 40.</li>
+            <li>For Part 3, use the <strong>AP CSP Reference Sheet</strong> you were given. Remember: <span class="mono">&larr;</span> is assignment, lists are <strong>1-indexed</strong>, and <span class="mono">MOD</span> is the remainder.</li>
+          </ul>
+        </div>
+
+        <!-- ===================== PART 1 ===================== -->
+        <div class="section-head">Part 1 &mdash; The Internet <span class="count">Questions 1&ndash;14</span></div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">1</span> Which of the following best describes the relationship between the Internet and the World Wide Web?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> The World Wide Web is a service that runs on top of the Internet.</li>
+            <li><span class="letter">B.</span> They are two different names for the same global network.</li>
+            <li><span class="letter">C.</span> The Internet is a service that runs on top of the World Wide Web.</li>
+            <li><span class="letter">D.</span> The Internet is the software, and the World Wide Web is the hardware.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">2</span> Which of the following uses the Internet but is <strong>not</strong> part of the World Wide Web?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Loading <code>https://example.com</code> in a web browser</li>
+            <li><span class="letter">B.</span> Clicking a hyperlink that connects two web pages</li>
+            <li><span class="letter">C.</span> Sending an email using SMTP</li>
+            <li><span class="letter">D.</span> Reading a news website in Chrome</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">3</span> A large file is sent from one computer to another over the Internet. Which best describes how the data travels?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> As one continuous stream that follows a single fixed path.</li>
+            <li><span class="letter">B.</span> Broken into packets that all follow the same path and arrive in order.</li>
+            <li><span class="letter">C.</span> Broken into packets that may take different paths and arrive out of order, then reassembled at the destination.</li>
+            <li><span class="letter">D.</span> Copied to every router on the network so the destination can pick it up.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">4</span> In addition to a chunk of the data being sent, what does each packet contain?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Routing metadata such as source address, destination address, and sequence information.</li>
+            <li><span class="letter">B.</span> A complete copy of the entire file.</li>
+            <li><span class="letter">C.</span> A copy of every other packet in the transmission.</li>
+            <li><span class="letter">D.</span> The sender's username and password.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">5</span> Which of the following best explains why the Internet is considered fault tolerant?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Every device on the Internet is required to have backup power.</li>
+            <li><span class="letter">B.</span> Every packet is duplicated, so if one is lost the other arrives.</li>
+            <li><span class="letter">C.</span> The Internet is owned by a single organization that monitors all hardware.</li>
+            <li><span class="letter">D.</span> There are multiple redundant paths between most points, and routing can adapt when a path fails.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">6</span> Including extra network components, such as alternate routing paths, that can be used if a primary component fails is known as:</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Latency</li>
+            <li><span class="letter">B.</span> Redundancy</li>
+            <li><span class="letter">C.</span> Bandwidth</li>
+            <li><span class="letter">D.</span> Encryption</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">7</span> A web browser needs to find the IP address that corresponds to <code>wikipedia.org</code>. Which protocol performs this lookup?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> HTTP</li>
+            <li><span class="letter">B.</span> UDP</li>
+            <li><span class="letter">C.</span> DNS</li>
+            <li><span class="letter">D.</span> TCP</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">8</span> Which two protocols work together to break a message into packets, address and route them across networks, and reassemble them in order at the destination?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> TCP and IP</li>
+            <li><span class="letter">B.</span> HTTP and HTTPS</li>
+            <li><span class="letter">C.</span> DNS and IP</li>
+            <li><span class="letter">D.</span> UDP and DNS</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">9</span> A live online game needs data delivered as fast as possible and can tolerate a small amount of lost data. Which protocol is the best fit?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> TCP, because it confirms and re-sends every lost packet.</li>
+            <li><span class="letter">B.</span> UDP, because it is faster and does not wait to confirm delivery.</li>
+            <li><span class="letter">C.</span> DNS, because it streams data continuously.</li>
+            <li><span class="letter">D.</span> HTTPS, because it is encrypted.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">10</span> What does HTTPS add compared to plain HTTP?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Faster downloads.</li>
+            <li><span class="letter">B.</span> A guarantee that the website is honest and accurate.</li>
+            <li><span class="letter">C.</span> A larger pool of IP addresses.</li>
+            <li><span class="letter">D.</span> Encryption of the data exchanged between the browser and the server.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">11</span> What is the primary reason the Internet is transitioning from IPv4 to IPv6?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> IPv6 is encrypted, while IPv4 is not.</li>
+            <li><span class="letter">B.</span> IPv6 provides a much larger address space, allowing many more connected devices.</li>
+            <li><span class="letter">C.</span> IPv6 packets are smaller, so they travel faster.</li>
+            <li><span class="letter">D.</span> IPv4 has been retired and no longer works on modern networks.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">12</span> Internet protocols such as TCP/IP and HTTP are <em>open standards</em>. Why does this matter?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> It keeps the Internet owned and controlled by one company.</li>
+            <li><span class="letter">B.</span> It makes every connection automatically encrypted.</li>
+            <li><span class="letter">C.</span> It lets devices made by any manufacturer communicate with one another.</li>
+            <li><span class="letter">D.</span> It guarantees that every website is trustworthy.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">13</span> A user reports that videos take a long time to <em>start</em> playing, even though once they begin they play smoothly in high quality. The long startup delay is best described as a problem of:</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Bandwidth</li>
+            <li><span class="letter">B.</span> Latency</li>
+            <li><span class="letter">C.</span> Encryption</li>
+            <li><span class="letter">D.</span> Redundancy</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">14</span> Which statement about the Internet is <strong>true</strong>?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> It is owned and controlled by a single company or government.</li>
+            <li><span class="letter">B.</span> The Internet and the World Wide Web are identical.</li>
+            <li><span class="letter">C.</span> Data always travels along one fixed, pre-assigned path.</li>
+            <li><span class="letter">D.</span> It is a network of networks with no single owner, connected by shared open protocols.</li>
+          </ul>
+        </div>
+
+        <!-- ===================== PART 2 ===================== -->
+        <div class="section-head">Part 2 &mdash; Cybersecurity &amp; Encryption <span class="count">Questions 15&ndash;27</span></div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">15</span> Encryption is best defined as:</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Permanently deleting data so no one can read it.</li>
+            <li><span class="letter">B.</span> Encoding data so that only authorized parties can read it.</li>
+            <li><span class="letter">C.</span> Copying data to a backup server.</li>
+            <li><span class="letter">D.</span> Compressing data to make it smaller.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">16</span> In <strong>symmetric</strong> encryption, how are keys used?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> One shared key both encrypts and decrypts the message.</li>
+            <li><span class="letter">B.</span> A public key encrypts and a separate private key decrypts.</li>
+            <li><span class="letter">C.</span> No keys are needed at all.</li>
+            <li><span class="letter">D.</span> A brand-new certificate is created for every message.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">17</span> Alice sends Bob an encrypted message using public-key (asymmetric) encryption. Which key does Bob use to <strong>decrypt</strong> the message?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Alice's public key</li>
+            <li><span class="letter">B.</span> Alice's private key</li>
+            <li><span class="letter">C.</span> Bob's public key</li>
+            <li><span class="letter">D.</span> Bob's private key</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">18</span> What is the primary advantage of public-key (asymmetric) encryption compared to symmetric encryption?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> It is mathematically faster than symmetric encryption.</li>
+            <li><span class="letter">B.</span> It produces shorter encrypted messages.</li>
+            <li><span class="letter">C.</span> Two parties can communicate securely without first exchanging a secret key.</li>
+            <li><span class="letter">D.</span> It cannot be broken by any computer, no matter how powerful.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">19</span> What is the purpose of a <strong>digital certificate</strong>?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> To vouch that a particular public key really belongs to a particular website.</li>
+            <li><span class="letter">B.</span> To encrypt the data being sent between two computers.</li>
+            <li><span class="letter">C.</span> To make the connection faster.</li>
+            <li><span class="letter">D.</span> To store the user's password securely.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">20</span> Who issues a digital certificate?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> The website's own server.</li>
+            <li><span class="letter">B.</span> A trusted third party called a Certificate Authority (CA).</li>
+            <li><span class="letter">C.</span> The user's web browser.</li>
+            <li><span class="letter">D.</span> The user's Internet Service Provider.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">21</span> A user sees <code>https://</code> and a padlock icon in the browser. Which of the following is <strong>guaranteed</strong> by HTTPS?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> The website's content is accurate and trustworthy.</li>
+            <li><span class="letter">B.</span> The website cannot have been hacked or compromised.</li>
+            <li><span class="letter">C.</span> The user's identity is hidden from the website's owner.</li>
+            <li><span class="letter">D.</span> Data exchanged between the browser and the server is encrypted in transit.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">22</span> Which of the following is <strong>NOT</strong> an example of multi-factor authentication (MFA)?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Entering a password and then approving a notification on a phone app.</li>
+            <li><span class="letter">B.</span> Entering a PIN and then scanning a fingerprint.</li>
+            <li><span class="letter">C.</span> Entering a password and then waiting through a 30-second lockout delay after typos.</li>
+            <li><span class="letter">D.</span> Inserting a USB security key and then typing a password.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">23</span> A student logs in by typing a password and then entering a 6-digit code texted to their phone. Which two authentication factors are being used?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Something you know + something you are</li>
+            <li><span class="letter">B.</span> Something you know + something you have</li>
+            <li><span class="letter">C.</span> Something you have + something you are</li>
+            <li><span class="letter">D.</span> Something you know + something you know</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">24</span> An attacker sets up a Wi-Fi hotspot in an airport named "Airport_Free_WiFi" so travelers connect to it instead of the real network, allowing the attacker to read their unencrypted traffic. This attack is best described as:</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Phishing</li>
+            <li><span class="letter">B.</span> A keylogger</li>
+            <li><span class="letter">C.</span> A computer virus</li>
+            <li><span class="letter">D.</span> A rogue access point</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">25</span> A user receives an email that looks like it is from their bank, warning of "suspicious activity" and asking them to click a link and log in to verify their account. The link leads to a convincing fake site that captures their password. This is an example of:</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Phishing</li>
+            <li><span class="letter">B.</span> A worm</li>
+            <li><span class="letter">C.</span> A rogue access point</li>
+            <li><span class="letter">D.</span> A keylogger</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">26</span> Which statement best distinguishes a <strong>worm</strong> from a <strong>virus</strong>?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> A worm self-replicates and spreads on its own; a virus needs a host file and user action to spread.</li>
+            <li><span class="letter">B.</span> A virus spreads on its own; a worm needs a host file and user action.</li>
+            <li><span class="letter">C.</span> They are two different names for exactly the same thing.</li>
+            <li><span class="letter">D.</span> A worm is a piece of hardware; a virus is software.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">27</span> Which combination of data is most likely to uniquely identify a specific individual, even though no single item is a strong identifier by itself?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> A list of the websites the person visits most often.</li>
+            <li><span class="letter">B.</span> The person's preferred display language and time zone.</li>
+            <li><span class="letter">C.</span> The person's ZIP code, date of birth, and gender.</li>
+            <li><span class="letter">D.</span> The person's screen resolution and device type.</li>
+          </ul>
+        </div>
+
+        <!-- ===================== PART 3 ===================== -->
+        <div class="section-head">Part 3 &mdash; Reading Pseudocode <span class="count">Questions 28&ndash;40</span></div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">28</span> In AP CSP pseudocode, what does the symbol <span class="mono">&larr;</span> (left arrow) do?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Tests whether two values are equal.</li>
+            <li><span class="letter">B.</span> Stores the value on the right into the variable on the left.</li>
+            <li><span class="letter">C.</span> Displays a value on the screen.</li>
+            <li><span class="letter">D.</span> Ends the program.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">29</span> What does the expression <span class="mono">x = 5</span> evaluate to in AP CSP pseudocode?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> It stores the value 5 in <span class="mono">x</span>.</li>
+            <li><span class="letter">B.</span> The number 5 every time.</li>
+            <li><span class="letter">C.</span> <span class="mono">true</span> or <span class="mono">false</span>, depending on whether <span class="mono">x</span> equals 5.</li>
+            <li><span class="letter">D.</span> An error.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">30</span> What does <span class="mono">17 MOD 5</span> evaluate to?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> 3</li>
+            <li><span class="letter">B.</span> 3.4</li>
+            <li><span class="letter">C.</span> 5</li>
+            <li><span class="letter">D.</span> 2</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">31</span> <span class="mono">RANDOM(1, 4)</span> could return which values?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> 1, 2, 3, or 4</li>
+            <li><span class="letter">B.</span> 1, 2, or 3</li>
+            <li><span class="letter">C.</span> 2, 3, or 4</li>
+            <li><span class="letter">D.</span> Any decimal between 1 and 4</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">32</span> Which expression evaluates to <span class="mono">true</span> only when <span class="mono">x</span> is between 50 and 80, <strong>inclusive</strong>?</p>
+          <ul class="choices code-choices">
+            <li><span class="letter">A.</span> (x &ge; 50) AND (x &le; 80)</li>
+            <li><span class="letter">B.</span> (x &le; 50) AND (x &ge; 80)</li>
+            <li><span class="letter">C.</span> (x &ge; 50) OR (x &le; 80)</li>
+            <li><span class="letter">D.</span> (x &gt; 50) AND (x &lt; 80)</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">33</span> The expression <span class="mono">a OR b</span> evaluates to <span class="mono">true</span> when:</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> Both <span class="mono">a</span> and <span class="mono">b</span> are true, and only then.</li>
+            <li><span class="letter">B.</span> At least one of <span class="mono">a</span> or <span class="mono">b</span> is true (including when both are true).</li>
+            <li><span class="letter">C.</span> Exactly one of <span class="mono">a</span> or <span class="mono">b</span> is true.</li>
+            <li><span class="letter">D.</span> Neither <span class="mono">a</span> nor <span class="mono">b</span> is true.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">34</span> How is an <span class="mono">IF / ELSE</span> different from two separate <span class="mono">IF</span> statements?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> They behave exactly the same way.</li>
+            <li><span class="letter">B.</span> Two separate <span class="mono">IF</span> statements always run both of their blocks.</li>
+            <li><span class="letter">C.</span> An <span class="mono">IF / ELSE</span> always runs exactly one of its two blocks; two separate <span class="mono">IF</span>s can both run or both be skipped.</li>
+            <li><span class="letter">D.</span> An <span class="mono">IF / ELSE</span> cannot contain any statements.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">35</span> A <span class="mono">REPEAT UNTIL(condition)</span> loop keeps running its block until:</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> the condition becomes <span class="mono">true</span>.</li>
+            <li><span class="letter">B.</span> the condition becomes <span class="mono">false</span>.</li>
+            <li><span class="letter">C.</span> it has run exactly 10 times.</li>
+            <li><span class="letter">D.</span> never &mdash; it loops forever.</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">36</span> Given <span class="mono">aList &larr; [10, 20, 30]</span>, what is the value of <span class="mono">aList[1]</span>?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> 20</li>
+            <li><span class="letter">B.</span> 30</li>
+            <li><span class="letter">C.</span> An error &mdash; there is no index 1.</li>
+            <li><span class="letter">D.</span> 10</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">37</span> For any list <span class="mono">aList</span>, which expression always gives the <strong>last</strong> element?</p>
+          <ul class="choices code-choices">
+            <li><span class="letter">A.</span> aList[0]</li>
+            <li><span class="letter">B.</span> aList[LENGTH(aList) + 1]</li>
+            <li><span class="letter">C.</span> aList[LENGTH(aList)]</li>
+            <li><span class="letter">D.</span> aList[last]</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">38</span> If <span class="mono">aList</span> is <span class="mono">[10, 20, 30]</span>, then <span class="mono">FOR EACH item IN aList</span> assigns <span class="mono">item</span> the values:</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> 1, 2, 3 (the indices)</li>
+            <li><span class="letter">B.</span> 10, 20, 30 (the values)</li>
+            <li><span class="letter">C.</span> only 30 (the last value)</li>
+            <li><span class="letter">D.</span> 0, 1, 2</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">39</span> What does the following program display?</p>
+<pre class="code">x &larr; 3
+y &larr; 5
+REPEAT 3 TIMES
+{
+    x &larr; x + y
+    y &larr; y - 1
+}
+DISPLAY(x)</pre>
+          <ul class="choices">
+            <li><span class="letter">A.</span> 11</li>
+            <li><span class="letter">B.</span> 8</li>
+            <li><span class="letter">C.</span> 18</li>
+            <li><span class="letter">D.</span> 15</li>
+          </ul>
+        </div>
+
+        <div class="q">
+          <p class="prompt"><span class="qnum">40</span> What happens when a <span class="mono">RETURN</span> statement runs inside a procedure?</p>
+          <ul class="choices">
+            <li><span class="letter">A.</span> It prints the value to the screen and keeps running the procedure.</li>
+            <li><span class="letter">B.</span> It immediately exits the procedure and sends the value back to whoever called it.</li>
+            <li><span class="letter">C.</span> It restarts the procedure from the top.</li>
+            <li><span class="letter">D.</span> It is ignored unless it is the very last line.</li>
+          </ul>
+        </div>
+
+        <p style="text-align: center; margin-top: 30px; font-weight: 700; color: #146c43;">&mdash; End of Exam &mdash;</p>
+        <p style="text-align: center; color: #6c757d;">Make sure every answer is marked on your printed answer sheet.</p>
+
+        <a href="../" class="back-button mt-3"><i class="bi bi-arrow-left"></i> Back to Semester Exam</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // ========================================================
+      // TEACHER: set the exam password here. Keep it simple and
+      // give it to students out loud when the exam begins.
+      // ========================================================
+      var EXAM_PASSWORD = "csp-go";
+
+      (function () {
+        var overlay = document.getElementById("lockOverlay");
+        var content = document.getElementById("examContent");
+        var input = document.getElementById("examPw");
+        var button = document.getElementById("examPwBtn");
+        var errorMsg = document.getElementById("lockError");
+
+        function unlock() {
+          overlay.style.display = "none";
+          content.style.display = "";
+          try { sessionStorage.setItem("cspExamUnlocked", "1"); } catch (e) {}
+        }
+
+        function tryUnlock() {
+          if (input.value.trim().toLowerCase() === EXAM_PASSWORD.toLowerCase()) {
+            unlock();
+          } else {
+            errorMsg.hidden = false;
+            input.value = "";
+            input.focus();
+          }
+        }
+
+        // Stay unlocked across accidental refreshes during the same session.
+        try {
+          if (sessionStorage.getItem("cspExamUnlocked") === "1") unlock();
+        } catch (e) {}
+
+        button.addEventListener("click", tryUnlock);
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") tryUnlock();
+        });
+      })();
+    </script>
+  </body>
+</html>
