@@ -75,3 +75,6 @@ archive/pae/weeks-17-18-19.pdf
 
 # Teacher resources (answer keys, quizzes) — keep local, never publish to the remote
 teacher_resources/
+
+# Account credential exports (CMU CS Academy, etc.) — keep local, NEVER publish
+*credentials*.csv
