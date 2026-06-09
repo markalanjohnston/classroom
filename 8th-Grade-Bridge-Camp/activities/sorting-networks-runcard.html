@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- Published activity run-card. Diagram based on CS Unplugged Activity 8 (CC BY-NC-SA, csunplugged.org). -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Networks &mdash; Run-Card</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { background: #ffffff; }
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 11.5pt; line-height: 1.45; color: #161616;
+        max-width: 7.5in; margin: 0 auto; padding: 0.4in 0.5in 1in;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      h1 { font-size: 19pt; margin: 0 0 2px; }
+      h2 { font-size: 13pt; margin: 20px 0 7px; border-bottom: 2px solid #222; padding-bottom: 3px; }
+      .sub { color:#444; font-style: italic; margin: 0 0 12px; }
+      p { margin: 6px 0; }
+      ol, ul { margin: 6px 0; padding-left: 22px; }
+      li { margin: 4px 0; }
+      .toolbar { background:#111; color:#fff; padding:10px 14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+      .toolbar button { font-size: 13px; padding: 7px 16px; border:0; border-radius:5px; background:#4f46e5; color:#fff; cursor:pointer; }
+      .toolbar .hint { font-size: 12px; }
+      figure { margin: 12px 0; text-align:center; page-break-inside: avoid; }
+      figure img { width: 100%; max-width: 620px; border: 1px solid #ccc; border-radius: 6px; }
+      figcaption { font-size: 9.5pt; color:#555; margin-top: 5px; }
+      .rule { background:#fff3cd; border:2px solid #f0c64a; border-radius:8px; padding:12px 16px; margin:12px 0; font-size:12.5pt; text-align:center; }
+      .rule b { font-size:14pt; }
+      .box { border:1px solid #999; border-left:6px solid #4f46e5; border-radius:6px; padding:12px 16px; margin:12px 0; background:#fbfbfe; page-break-inside: avoid; }
+      .box.g { border-left-color:#16a34a; background:#f6fef9; }
+      .box.amber { border-left-color:#d97706; background:#fffbeb; }
+      .box h3 { margin:0 0 6px; font-size:11.5pt; }
+      table.flow { width:100%; border-collapse:collapse; margin:8px 0; }
+      table.flow td { border:1px solid #bbb; padding:6px 10px; font-size:10.5pt; }
+      table.flow td.t { width:140px; font-weight:700; background:#f1f5f9; }
+      .pill { display:inline-block; background:#4f46e5; color:#fff; font-size:8.5pt; padding:2px 9px; border-radius:10px; letter-spacing:.5px; vertical-align:middle; }
+      .small { font-size:9.5pt; color:#666; }
+      @media print { .no-print { display:none !important; } body { padding:0; } }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar no-print">
+      <span class="hint"><strong>Teacher run-card.</strong> Print this + the <b>floor kit</b> + the <b>number cards</b> (links in setup).</span>
+      <button onclick="window.print()">&#128424; Print</button>
+    </div>
+
+    <h1>Sorting Networks &mdash; &ldquo;Beat the Clock&rdquo;</h1>
+    <p class="sub">Kinesthetic CS activity &middot; ~35&ndash;40 min &middot; 15 students = run as heats of 6 &middot; based on CS Unplugged Activity 8</p>
+
+    <h2>Today's shape (flexible)</h2>
+    <table class="flow">
+      <tr><td class="t">CMU CS Academy</td><td>Pick up where they left off in Hour of Code (~50&ndash;60 min). Finishers start a free-draw project.</td></tr>
+      <tr><td class="t">Brain break</td><td>Water + walk out to the network (~5 min).</td></tr>
+      <tr><td class="t">Sorting Networks</td><td><b>The kinesthetic block</b> &mdash; heats + Beat the Clock (~35&ndash;40 min).</td></tr>
+      <tr><td class="t">Back to CMU</td><td>Remaining time: keep coding / free explore. Wrap + preview next day.</td></tr>
+    </table>
+
+    <h2>Set up &mdash; NO TAPE NEEDED (chairs + signs)</h2>
+    <p>Use the diagram below as your map. You'll need ~24 chairs (you have 30 &mdash; plenty).</p>
+    <ol>
+      <li><b>Place the chairs in the network pattern:</b> a column of <b>6 chairs</b> on the left for <b>IN</b>, the comparison <b>circles</b> as chairs in the middle columns, and <b>6 chairs</b> on the right for <b>OUT</b>. Spread it out (~20 ft wide) so two kids fit at each circle.</li>
+      <li><b>Drop a printed sign on each chair</b> (from <code>sorting-network-floor-kit.html</code>): <b>IN&nbsp;1&ndash;6</b> on the left, a <b>COMPARE</b> sign on each middle chair, <b>OUT&nbsp;1&ndash;6</b> on the right.</li>
+      <li><b>Lay the printed ARROW tiles on the floor</b> between chairs to show which paths connect (follow the diagram's lines). <span class="small">Short on time/paper? Skip the arrows &mdash; with chairs in the right spots, students just walk to the next chair on the correct side.</span></li>
+      <li><b>Number cards</b> (<code>sorting-network-cards.html</code> &mdash; start with the 1&ndash;6 set) + a <b>stopwatch</b> (your phone).</li>
+    </ol>
+    <figure>
+      <img src="img/sorting-network-diagram.png" alt="Six-input sorting network: 6 IN boxes on the left, columns of comparison circles, 6 OUT boxes on the right" />
+      <figcaption>Your placement map &mdash; chairs go where the boxes (IN/OUT) and circles (COMPARE) are; arrows go along the lines. &copy; CS Unplugged (csunplugged.org), CC BY-NC-SA.</figcaption>
+    </figure>
+
+    <h2>The rule (tell the students)</h2>
+    <ol>
+      <li>Teams of <b>six</b> &mdash; only one team on the network at a time.</li>
+      <li>Each person takes a <b>number card</b>.</li>
+      <li>Sit/stand at the six <b>IN</b> chairs in <b>jumbled order</b> (not already sorted!).</li>
+      <li>Walk along the arrows. When you reach a <b>COMPARE</b> chair, <b>wait for the other person to arrive.</b></li>
+      <li>Compare your cards, then take your exit (see the rule below).</li>
+      <li>Keep going. At the <b>OUT</b> chairs you should be in order, smallest at the top. If you're not &mdash; the team starts again!</li>
+    </ol>
+    <div class="rule">At each circle: <b>SMALLER number &rarr; go to your LEFT &nbsp;&middot;&nbsp; LARGER number &rarr; go to your RIGHT.</b></div>
+
+    <h2>15 students &mdash; heats &amp; jobs</h2>
+    <p>Run <b>heats of 6</b> (two heats covers 12; rotate so all 15 get a turn). Waiting students get a job:</p>
+    <ul>
+      <li><b>Timekeeper</b> &mdash; runs the stopwatch.</li>
+      <li><b>Recorder</b> &mdash; writes the IN order and the OUT order to check it sorted.</li>
+      <li><b>Node monitors</b> &mdash; stand by a COMPARE chair; make sure both people wait and compare correctly.</li>
+      <li><b>Cheer squad</b> &mdash; this is &ldquo;Beat the Clock,&rdquo; so make noise!</li>
+    </ul>
+    <p><b>Beat the Clock:</b> time each heat and challenge them to beat the best time. Reshuffle the numbers between heats.</p>
+
+    <div class="box g">
+      <h3><span class="pill">FOR A SENIOR HELPER</span> Running one heat</h3>
+      <ol style="margin-bottom:0;">
+        <li>Hand out the 6 cards; put the 6 kids at the IN chairs in <b>random</b> order.</li>
+        <li>Say &ldquo;Go!&rdquo; and start the timer.</li>
+        <li>Remind them: <b>wait at each circle &middot; smaller goes left, larger goes right &middot; walk, don't run.</b></li>
+        <li>At OUT, check it's sorted &amp; call the time. Reset, reshuffle, next heat.</li>
+      </ol>
+    </div>
+
+    <h2>Debrief (about 5 min)</h2>
+    <ul>
+      <li>No matter what order they started in, they came out <b>sorted</b> every time. Why? <span class="small">(The network is built so it always works if everyone follows the rule.)</span></li>
+      <li>One person sorting alone makes about <b>12 comparisons</b> in a row. The team finished in only <b>~5 rounds</b> &mdash; because comparisons happened <b>at the same time</b>. That's <b>parallel processing</b>, how multi-core computers go faster.</li>
+      <li>What if someone took the wrong exit? <span class="small">(The answer comes out wrong &mdash; computers need <b>exact</b> rules.)</span></li>
+      <li>Could we sort <b>words</b> or <b>dates</b> with the same network? <span class="small">(Yes &mdash; anything you can compare.)</span></li>
+    </ul>
+
+    <div class="box amber">
+      <h3>If you have extra time / for tomorrow</h3>
+      <ul style="margin-bottom:0;">
+        <li><b>Reverse it:</b> larger goes left &rarr; comes out <b>descending</b>.</li>
+        <li><b>Harder cards:</b> the 3-digit set, or words compared alphabetically.</li>
+        <li><b>Challenge:</b> can a small team design a network that sorts just <b>3</b> or <b>4</b> numbers?</li>
+      </ul>
+    </div>
+
+    <h2>Safety</h2>
+    <p style="margin-bottom:4px;">Walk, don't run. Keep the exit paths clear, and don't slide on loose paper arrows.</p>
+
+    <p class="small" style="margin-top:18px;">Activity based on CS Unplugged, <i>Beat the Clock: Sorting Networks</i> (csunplugged.org, CC BY-NC-SA). Diagram reproduced with attribution.</p>
+  </body>
+</html>
