@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!-- LOCAL ONLY (teacher_resources/ is git-ignored) — Monday operational run-of-show. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bridge Camp — Run-of-Show (Teacher Copy)</title>
+    <style>
+      :root { --ink:#1a1a1a; --line:#333; --soft:#f2f4f7; }
+      * { box-sizing: border-box; }
+      html, body { background: #ffffff; }
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 11pt;
+        line-height: 1.4;
+        color: var(--ink);
+        max-width: 7.5in;
+        margin: 0 auto;
+        padding: 0.4in 0.5in 1in;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      h1 { font-size: 18pt; margin: 0 0 2px; }
+      h2 { font-size: 13.5pt; margin: 22px 0 8px; border-bottom: 2px solid var(--line); padding-bottom: 3px; }
+      h3 { font-size: 11.5pt; margin: 12px 0 4px; }
+      p { margin: 6px 0; }
+      .sub { color: #444; font-style: italic; margin: 0 0 14px; }
+      table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+      th, td { border: 1px solid #999; padding: 6px 9px; text-align: left; vertical-align: top; font-size: 10.5pt; }
+      th { background: #e7ebf0; }
+      .mode { border: 2px solid #111; border-radius: 6px; padding: 12px 16px; margin: 10px 0 4px; }
+      .mode h3 { margin-top: 0; }
+      .mode-row { display: flex; gap: 10px; flex-wrap: wrap; }
+      .mode-col { flex: 1; min-width: 190px; border: 1px solid #bbb; border-radius: 6px; padding: 10px 12px; background: var(--soft); }
+      .mode-col b { display:block; font-size: 11pt; border-bottom:1px solid #ccc; padding-bottom:3px; margin-bottom:5px; }
+      .track { border: 1px solid #999; border-left: 6px solid #4f46e5; border-radius: 6px; padding: 12px 16px; margin: 10px 0; background: #fbfbfe; page-break-inside: avoid; }
+      .track.g { border-left-color: #0ea5e9; }
+      .track.c { border-left-color: #16a34a; }
+      .lead-by { font-size: 9.5pt; color: #555; font-style: italic; }
+      .debrief { background: #fff7e6; border:1px solid #f0d28a; border-radius: 5px; padding: 7px 11px; margin-top: 8px; font-size: 10pt; }
+      ul, ol { margin: 5px 0; padding-left: 22px; }
+      li { margin: 3px 0; }
+      .grid2 { display: flex; gap: 10px; flex-wrap: wrap; }
+      .grid2 > div { flex: 1; min-width: 210px; }
+      .check li { list-style: none; position: relative; padding-left: 22px; }
+      .check li::before { content: "\2610"; position: absolute; left: 0; font-size: 13pt; line-height: 1; }
+      .pill { display:inline-block; background:#111; color:#fff; font-size:8.5pt; padding:2px 8px; border-radius:10px; letter-spacing:.5px; vertical-align:middle; }
+      a { color: #1a1a1a; }
+      .res a { color:#1a3fae; }
+      .page-break { page-break-before: always; }
+      .toolbar { background:#111; color:#fff; padding:10px 14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; font-family: Arial, sans-serif; }
+      .toolbar button { font-size: 13px; padding: 7px 16px; border:0; border-radius:5px; background:#4f46e5; color:#fff; cursor:pointer; }
+      @media print { .no-print { display: none !important; } body { padding: 0; } a { text-decoration: none; } }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar no-print">
+      <span><strong>Teacher copy</strong> &mdash; not posted online. Print a few; cut nothing.</span>
+      <button onclick="window.print()">&#128424; Print</button>
+    </div>
+
+    <h1>P-TECH Bridge Camp &mdash; Run-of-Show</h1>
+    <p class="sub">Monday, June 8 &middot; 9:00&ndash;12:00 &middot; Chapin Cafeteria + Computer Lab &middot; Theme: Coding &amp; Getting Acquainted</p>
+
+    <div class="mode">
+      <h3>&#9654; STEP 1 (do this at 9:00): count heads, pick your mode</h3>
+      <div class="mode-row">
+        <div class="mode-col">
+          <b>&#8804; 26 students &mdash; ONE GROUP</b>
+          Everyone together. <u>Block 1 = Games</u> (cafeteria), then <u>Block 2 = Coding</u> (lab). The 10:30 "swap" is just a break + walk to the lab.
+        </div>
+        <div class="mode-col">
+          <b>27&ndash;52 &mdash; TWO GROUPS (A/B)</b>
+          Split A &amp; B. They rotate between the two rooms; swap at 10:40. In the lab, if a group is over 26, <b>pair up</b> (one types, one reads; switch every ~10 min).
+        </div>
+        <div class="mode-col">
+          <b>53&ndash;70 &mdash; TWO GROUPS (A/B)</b>
+          Same A/B rotation. Lab group pairs up; cafeteria runs <b>2&ndash;3 icebreaker circles</b> at once (one senior each).
+        </div>
+      </div>
+      <p style="margin-bottom:0;"><b>To split fast:</b> count off 1&ndash;2 around the room, or split by birthday month (Jan&ndash;Jun = A, Jul&ndash;Dec = B).</p>
+    </div>
+
+    <h2>Monday timeline</h2>
+    <table>
+      <tr><th style="width:95px;">Time</th><th>What</th><th style="width:120px;">Where</th></tr>
+      <tr><td>8:30&ndash;9:00</td><td>Breakfast &amp; arrival &mdash; hand out name tags as they come in</td><td>Cafeteria</td></tr>
+      <tr><td>9:00&ndash;9:20</td><td><b>Whole-group opening</b> &mdash; welcome, the week ahead, 2&ndash;3 norms, assign A/B (if splitting)</td><td>Cafeteria</td></tr>
+      <tr><td>9:20&ndash;10:30</td><td><b>Block 1</b> (see rotation grid)</td><td>Caf + Lab</td></tr>
+      <tr><td>10:30&ndash;10:40</td><td><b>Transition / break / swap rooms</b> (water + restroom)</td><td>&mdash;</td></tr>
+      <tr><td>10:40&ndash;11:50</td><td><b>Block 2</b> (swapped)</td><td>Caf + Lab</td></tr>
+      <tr><td>11:50&ndash;12:00</td><td><b>Whole-group closing</b> &mdash; quick share, exit question, Tuesday preview</td><td>Cafeteria</td></tr>
+    </table>
+
+    <h3>Rotation grid (two-group mode)</h3>
+    <table>
+      <tr><th></th><th>Group A</th><th>Group B</th></tr>
+      <tr><td><b>Block 1</b><br>9:20&ndash;10:30</td><td><b>Track G &mdash; Getting Acquainted</b><br>Cafeteria</td><td><b>Track C &mdash; Coding</b><br>Computer Lab</td></tr>
+      <tr><td><b>Block 2</b><br>10:40&ndash;11:50</td><td><b>Track C &mdash; Coding</b><br>Computer Lab</td><td><b>Track G &mdash; Getting Acquainted</b><br>Cafeteria</td></tr>
+    </table>
+    <p style="font-size:10pt;"><b>One-group mode:</b> the whole camp does Track G in Block 1, then Track C in Block 2. Skip the grid.</p>
+
+    <h2>The two tracks (what actually happens in each room)</h2>
+
+    <div class="track g">
+      <h3><span class="pill">TRACK G</span> Getting Acquainted &mdash; Cafeteria, ~70 min, no computers</h3>
+      <p class="lead-by">Led by: P-TECH senior(s). Mr. Johnston floats. No tables needed.</p>
+      <ol>
+        <li><b>Icebreaker ball toss (~20 min).</b> Form a circle of 10&ndash;12 (more circles if large). Toss a ball; catcher says their name + answers the question under their right thumb, then tosses on. Keep it fast; "pass" is OK.</li>
+        <li><b>Quick team game (~15 min).</b> Pick one, no writing: silent birthday line-up &middot; "cross the circle if&hellip;" &middot; Two Truths &amp; a Lie in clusters of 4.</li>
+        <li><b>Harold the Robot (~25 min).</b> 10-min whole-group demo: an adult is "Harold," a robot that obeys <i>only</i> simple literal commands ("move hand left," "close hand," "lift") while students direct it to stack cups/books into a tower. Then break into groups of 4&ndash;6, each with their own "robot."</li>
+        <li><b>Buffer (~10 min).</b> Another ball-toss round, or "write your name in binary" using the binary cards.</li>
+      </ol>
+      <div class="debrief"><b>Debrief (2 min):</b> "Why was Harold so hard to boss around?" &rarr; Computers do <i>exactly</i> what you say, nothing more. Precise instructions = code. That's what you'll do on the computers next.</div>
+    </div>
+
+    <div class="track c">
+      <h3><span class="pill">TRACK C</span> Coding &mdash; Computer Lab (26 machines), ~70 min</h3>
+      <p class="lead-by">Led by: Mr. Johnston + a senior/AP floor helper. Pairs if a group is over 26.</p>
+      <ol>
+        <li><b>Log in &amp; settle (~5 min).</b> Hand each student a login slip &rarr; go to <b>academy.cs.cmu.edu</b> &rarr; click <b>Login</b> &rarr; enter the username &amp; password &rarr; open the <b>Hour of Code</b> lesson.</li>
+        <li><b>Teacher demo (~10 min).</b> On the projector, run the first activity &mdash; draw a shape, change a color, press <b>Run</b>. Show that the code is just instructions.</li>
+        <li><b>Work time (~45 min).</b> Students work through Hour of Code: <i>Drawing with Code &rarr; Using the Mouse &rarr; Changing Behavior</i>. Helpers walk the rows &mdash; <b>don't type for them</b>; ask "what do you want to happen?"</li>
+        <li><b>Share &amp; log off (~10 min).</b> Show your drawing to a neighbor; finishers get free-draw time; log off.</li>
+      </ol>
+      <div class="debrief"><b>Debrief (2 min):</b> "You just wrote real Python that draws on a screen." Tease Wednesday: we'll go further &mdash; games, robots, maybe a real circuit.</div>
+    </div>
+
+    <h2>Materials &amp; helper plan</h2>
+    <div class="grid2">
+      <div>
+        <h3>Bring / set up</h3>
+        <ul class="check">
+          <li>Name tags + markers</li>
+          <li>Icebreaker question-balls</li>
+          <li>2&ndash;3 sets of stackable objects (cups, books, erasers)</li>
+          <li>CMU login slips &mdash; pre-printed, 1 per student (collect at the end to reuse)</li>
+          <li>Projector on in the lab</li>
+          <li>This sheet + helper cue cards (printed)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Helpers (assign at 9:00)</h3>
+        <ul>
+          <li><b>Seniors &rarr;</b> lead icebreaker circles &amp; Harold groups; float the lab.</li>
+          <li><b>Ms. Sherman &rarr;</b> floor support / lab.</li>
+          <li><b>Mr. Johnston &rarr;</b> floats between both rooms, runs the demo.</li>
+        </ul>
+        <p style="font-size:10pt;">Hand each helper their cue card + a 60-second brief.</p>
+      </div>
+    </div>
+
+    <!-- ============ PAGE 2: TUE / WED (teacher planning only) ============ -->
+    <div class="page-break"></div>
+    <h1>Tuesday &amp; Wednesday &mdash; planning menus</h1>
+    <p class="sub">Teacher's eyes only. The public site shows these as "Not available yet." Finalize Monday afternoon once you know your numbers.</p>
+
+    <h2>Tuesday &mdash; Apply Texas + activities</h2>
+    <table>
+      <tr><th style="width:95px;">Time</th><th>What</th></tr>
+      <tr><td>9:00&ndash;10:30</td><td><b>Apply Texas application for EPCC</b> (counselor/teacher-led, in the lab). Students need: legal name, address, DOB, school info, and a working <b>email</b> &mdash; be ready to help anyone create one.</td></tr>
+      <tr><td>10:30&ndash;10:40</td><td>Break</td></tr>
+      <tr><td>10:40&ndash;12:00</td><td><b>Activity menu</b> (pick 1&ndash;2 below)</td></tr>
+    </table>
+    <p><b>~90-min activity menu:</b></p>
+    <ul>
+      <li>Continue CMU CS Academy Hour of Code (finishers start a creative project)</li>
+      <li>Binary Numbers &mdash; "your name in binary" / binary bracelets (unplugged-01)</li>
+      <li>20 Questions / Information Theory &mdash; no materials (unplugged-05)</li>
+      <li>VEX VR intro &mdash; browser, no logins to create</li>
+      <li>Tinkercad Circuits &mdash; "blink an LED" in the browser (primes Wednesday's Arduino)</li>
+    </ul>
+
+    <h2>Wednesday &mdash; Coding &amp; Games</h2>
+    <p>Same two-block skeleton as Monday. Mix one coding option + one game.</p>
+    <div class="grid2">
+      <div>
+        <h3>Coding options</h3>
+        <ul>
+          <li>A creative CMU CS Academy project</li>
+          <li>Minecraft EDU + Python &mdash; <i>only if</i> confirmed working on the lab machines</li>
+          <li>VEX VR (browser)</li>
+          <li><b>Tinkercad &rarr; Arduino UNO</b> &mdash; teacher demo or one station groups rotate through (blink an LED / play a tone); everyone else does the virtual Tinkercad version</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Games (CS-flavored)</h3>
+        <ul>
+          <li>Routing/Deadlock "Orange Game" w/ tennis balls (unplugged-10)</li>
+          <li>Marching Orders / line-drawing pairs (line-drawing.pdf)</li>
+          <li>Error-Detection "card-flip magic" trick (unplugged-04)</li>
+          <li>Closing team challenge + camp wrap-up</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="res">Activity PDFs (in this folder's parent)</h2>
+    <ul class="res">
+      <li><a href="../haroldtherobot.pdf">Harold the Robot</a> &mdash; Monday Track G</li>
+      <li><a href="../unplugged-01-binary_numbers.pdf">Binary Numbers</a> &mdash; "name in binary" filler / Tuesday</li>
+      <li><a href="../line-drawing.pdf">Line Drawing / Marching Orders</a> &mdash; Wednesday pairs</li>
+      <li><a href="../unplugged-04-error_detection.pdf">Error Detection</a> &mdash; Wednesday "magic trick"</li>
+      <li><a href="../unplugged-05-information_theory.pdf">Information Theory / 20 Questions</a> &mdash; Tuesday/Wednesday</li>
+      <li><a href="../unplugged-10-routing_and_deadlock.pdf">Routing &amp; Deadlock (Orange Game)</a> &mdash; Wednesday</li>
+      <li><a href="../unplugged-12-programming_languages.pdf">Programming Languages</a> &mdash; backup</li>
+      <li><a href="../Coding%20with%20Minecraft_Curriculum%20Overview.pdf">Coding with Minecraft (overview)</a> &mdash; Wednesday option</li>
+      <li><a href="../CMU-Hour_of_Code.png">CMU Hour of Code (screenshot)</a> &mdash; what students see</li>
+    </ul>
+
+    <p style="margin-top:24px; font-size:9.5pt; color:#666;">Companion site (public): classroom.mjstem.com/8th-Grade-Bridge-Camp &mdash; Monday only; Tue/Wed read "Not available yet."</p>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- LOCAL ONLY (git-ignored). Student handout — prints one per page. Needs a writing surface. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Someone Who… — Bridge Camp</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { background: #ffffff; }
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #111;
+        max-width: 8in;
+        margin: 0 auto;
+        padding: 0.35in 0.45in 0.6in;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .toolbar { background:#111; color:#fff; padding:10px 14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+      .toolbar button { font-size: 13px; padding: 7px 16px; border:0; border-radius:5px; background:#4f46e5; color:#fff; cursor:pointer; }
+      .head { text-align:center; margin-bottom: 10px; }
+      .head h1 { font-size: 22pt; margin: 0 0 2px; color:#3730a3; }
+      .head p { margin: 0; font-size: 11pt; color:#444; }
+      .name-line { text-align:right; font-size: 10.5pt; color:#444; margin: 6px 0 12px; }
+      table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+      td {
+        border: 1.5px solid #555; height: 1.15in; padding: 6px 7px;
+        vertical-align: top; font-size: 9.5pt; line-height: 1.25;
+      }
+      td .prompt { display:block; min-height: 0.5in; }
+      td .sig { display:block; border-top: 1px dotted #999; margin-top: 6px; padding-top: 3px; color:#888; font-size: 8pt; }
+      td.free {
+        background: #eef2ff; text-align:center; vertical-align: middle;
+        font-weight: 700; color:#4338ca; font-size: 11pt;
+      }
+      @media print { .no-print { display:none !important; } body { padding:0; } }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar no-print">
+      <span><strong>Find Someone Who&hellip;</strong> &mdash; print a class set. (Best with a clipboard or in the lab &mdash; needs something to write on.)</span>
+      <button onclick="window.print()">&#128424; Print</button>
+    </div>
+
+    <div class="head">
+      <h1>Find Someone Who&hellip;</h1>
+      <p>Walk around and meet people! Get a different person to sign each box. First to get 5 in a row (or fill the board) wins.</p>
+    </div>
+    <div class="name-line">My name: ______________________________</div>
+
+    <table>
+      <tr>
+        <td><span class="prompt">&hellip;has a summer birthday</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;plays a sport</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;has a pet</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;can speak two languages</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;has been to another state or country</span><span class="sig">name</span></td>
+      </tr>
+      <tr>
+        <td><span class="prompt">&hellip;loves a video game you love too</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;plays an instrument</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;has the same favorite color as you</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;has a brother or sister</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;wants to learn to code</span><span class="sig">name</span></td>
+      </tr>
+      <tr>
+        <td><span class="prompt">&hellip;can do a magic trick</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;read a book this summer</span><span class="sig">name</span></td>
+        <td class="free">FREE<br>&#11088;</td>
+        <td><span class="prompt">&hellip;likes drawing or art</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;went to a different middle school than you</span><span class="sig">name</span></td>
+      </tr>
+      <tr>
+        <td><span class="prompt">&hellip;can whistle</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;likes spicy food</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;has built something cool (Lego, model&hellip;)</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;knows what they want to be someday</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;likes math</span><span class="sig">name</span></td>
+      </tr>
+      <tr>
+        <td><span class="prompt">&hellip;has a favorite streamer or YouTuber</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;plays chess</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;has a birthday in the same month as you</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;likes pizza with pineapple</span><span class="sig">name</span></td>
+        <td><span class="prompt">&hellip;is excited for P-TECH</span><span class="sig">name</span></td>
+      </tr>
+    </table>
+  </body>
+</html>

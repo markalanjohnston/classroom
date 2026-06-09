@@ -75,6 +75,10 @@ archive/pae/weeks-17-18-19.pdf
 
 # Teacher resources (answer keys, quizzes) — keep local, never publish to the remote
 teacher_resources/
+# ...EXCEPT the Bridge Camp teacher resources, which we DO publish (no answer keys here):
+!8th-Grade-Bridge-Camp/teacher_resources/
+!8th-Grade-Bridge-Camp/teacher_resources/**
 
-# Account credential exports (CMU CS Academy, etc.) — keep local, NEVER publish
+# Account credential exports + pre-filled login slips — keep local, NEVER publish (real passwords)
 *credentials*.csv
+*login-slips*.html

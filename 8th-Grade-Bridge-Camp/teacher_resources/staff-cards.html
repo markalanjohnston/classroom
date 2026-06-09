@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- LOCAL ONLY (git-ignored). Print, then cut apart. Hand one to each helper in the morning. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bridge Camp — Helper Cue Cards</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { background: #ffffff; }
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 12pt;
+        line-height: 1.4;
+        color: #111;
+        max-width: 7.5in;
+        margin: 0 auto;
+        padding: 0.4in 0.4in 1in;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .toolbar { background:#111; color:#fff; padding:10px 14px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+      .toolbar button { font-size: 13px; padding: 7px 16px; border:0; border-radius:5px; background:#4f46e5; color:#fff; cursor:pointer; }
+      .toolbar .hint { font-size: 12px; }
+
+      .card {
+        border: 2px dashed #888;
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin-bottom: 16px;
+        page-break-inside: avoid;
+      }
+      .card-top {
+        display: flex; align-items: center; gap: 12px;
+        border-bottom: 2px solid #222; padding-bottom: 8px; margin-bottom: 10px;
+      }
+      .card-top .emoji { font-size: 26pt; line-height: 1; }
+      .card-top h2 { font-size: 16pt; margin: 0; }
+      .card-top .who { font-size: 10.5pt; color: #555; margin-top: 2px; }
+      .card h2 + .who { margin: 0; }
+      ol { margin: 6px 0; padding-left: 22px; }
+      li { margin: 5px 0; }
+      .remember {
+        margin-top: 12px; padding: 9px 13px; border-radius: 6px;
+        background: #fff3cd; border: 1px solid #ffe08a; font-weight: 600; font-size: 11pt;
+      }
+      .g  { background: #eaf6ff; }   /* icebreaker */
+      .h  { background: #f0fdf4; }   /* harold */
+      .lab{ background: #fef6ee; }   /* lab */
+      .floor { background: #f4f1ff; } /* floor captain */
+      strong.k { background:#111; color:#fff; padding:1px 6px; border-radius:4px; font-weight:700; }
+      @media print { .no-print { display:none !important; } body { padding:0; } }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar no-print">
+      <span class="hint"><strong>Helper cue cards</strong> &mdash; print, cut along the dashed lines, hand one to each helper.</span>
+      <button onclick="window.print()">&#128424; Print</button>
+    </div>
+
+    <!-- CARD 1 -->
+    <div class="card g">
+      <div class="card-top">
+        <span class="emoji">&#127944;</span>
+        <div>
+          <h2>Icebreaker Circle Leader</h2>
+          <div class="who">P-TECH senior &middot; Cafeteria</div>
+        </div>
+      </div>
+      <ol>
+        <li>Get ~10&ndash;12 kids into a circle. <b>You're in it too.</b></li>
+        <li>Toss the ball to someone. They say <b>their name</b> + answer the <b>question their right thumb is touching</b>, then toss it to someone new.</li>
+        <li>Keep it moving &mdash; about 20&ndash;30 seconds each. Shy? "Pass" is fine.</li>
+        <li>Run out of steam? Use the printed <b>question list</b>.</li>
+      </ol>
+      <div class="remember">&#127919; Goal: every kid says their name and talks at least once.</div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card h">
+      <div class="card-top">
+        <span class="emoji">&#129302;</span>
+        <div>
+          <h2>"Harold the Robot" Leader</h2>
+          <div class="who">P-TECH senior &middot; Cafeteria</div>
+        </div>
+      </div>
+      <ol>
+        <li>You (or a brave student) are <b>Harold the Robot</b>. Harold obeys <b>only simple, literal commands</b>: "move hand left," "close hand," "lift up."</li>
+        <li>Put a few cups/books on the floor. Kids take turns giving <b>one instruction at a time</b> to stack them into a tower.</li>
+        <li>If a command is too big or fuzzy ("build a tower"), <b>look confused / shake your head</b> &mdash; make them break it down.</li>
+        <li>Swap who plays Harold so everyone laughs.</li>
+      </ol>
+      <div class="remember">&#128172; End with: "Why was that harder than it looks?" &rarr; <b>Computers do EXACTLY what you say.</b></div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card lab">
+      <div class="card-top">
+        <span class="emoji">&#128187;</span>
+        <div>
+          <h2>Computer Lab Helper</h2>
+          <div class="who">Senior or AP &middot; Computer Lab</div>
+        </div>
+      </div>
+      <ol>
+        <li>Give each student a <b>login slip</b> &rarr; go to <strong class="k">academy.cs.cmu.edu</strong> &rarr; click <b>Login</b> &rarr; type the username &amp; password from the slip &rarr; open <b>Hour of Code</b>.</li>
+        <li>Walk the rows. If someone's stuck, <b>don't type for them</b> &mdash; ask <i>"What do you want to happen?"</i> and point to the example.</li>
+        <li>Most common fixes: a missing <b>comma</b> or <b>parenthesis</b>, re-read the step, then click <b>Run</b>.</li>
+        <li>Paired up? One types, one reads the directions &mdash; switch every few minutes.</li>
+      </ol>
+      <div class="remember">&#9989; Keep them on the lesson. Free-draw is the reward when they finish.</div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card floor">
+      <div class="card-top">
+        <span class="emoji">&#128205;</span>
+        <div>
+          <h2>Floor Captain</h2>
+          <div class="who">Ms. Sherman / Mr. Johnston</div>
+        </div>
+      </div>
+      <ol>
+        <li>Two rooms: <b>Lab = coding</b>, <b>Cafeteria = games</b>.</li>
+        <li>Groups <b>A</b> and <b>B</b> swap rooms at <strong class="k">~10:40</strong> (one transition).</li>
+        <li>Mr. J floats between rooms; seniors lead the small circles/stations.</li>
+        <li><b>&#8804; 26 kids total?</b> One group &mdash; everyone does games first (cafeteria), then coding (lab).</li>
+        <li>Reconvene in the <b>cafeteria at 11:50</b> for a quick wrap + Tuesday preview.</li>
+      </ol>
+      <div class="remember">&#9201; Watch the clock: protect the 10:40 swap and the 11:50 reconvene.</div>
+    </div>
+  </body>
+</html>
